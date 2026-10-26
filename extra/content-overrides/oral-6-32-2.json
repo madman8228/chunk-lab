@@ -1,0 +1,1549 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-6-32-2",
+    "name": "口语3000句 · 在外用餐时 · 饭桌上～付款",
+    "short": "饭桌上～付款",
+    "desc": "饭桌上～付款",
+    "chapter": 6,
+    "section": "6.32",
+    "sectionTitle": "在外用餐时",
+    "topic": "饭桌上～付款",
+    "baseCount": 0,
+    "totalCount": 63,
+    "items": [
+      {
+        "sentence": "I'm kind of hungry.",
+        "translation": "我有点饿了。",
+        "chunks": [
+          "I'm kind of",
+          "hungry."
+        ],
+        "hints": [
+          "我有点",
+          "饿了。"
+        ],
+        "cid": "d1aa6f72",
+        "sentenceAudio": {
+          "text": "I'm kind of hungry.",
+          "audio": {
+            "url": "assets/oral-d1aa6f72-3e9a33180723f1970372.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2208a4516ea4ac67f103de048bf6fe50e75dbc46b0fbb66b901bdcd5df4588ed",
+            "bytes": 4708
+          }
+        }
+      },
+      {
+        "sentence": "I'm starving.",
+        "translation": "我都快饿死了。",
+        "chunks": [
+          "I'm starving."
+        ],
+        "hints": [
+          "我都快饿死了。"
+        ],
+        "cid": "354a7594",
+        "sentenceAudio": {
+          "text": "I'm starving.",
+          "audio": {
+            "url": "assets/oral-354a7594-cb95ae0240940c535158.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e7782ef0aa709272aa11885aa1bc94bc08af52e213bfc7c169365f7b7a9919f2",
+            "bytes": 4010
+          }
+        }
+      },
+      {
+        "sentence": "I'm thirsty.",
+        "translation": "我渴了。",
+        "chunks": [
+          "I'm",
+          "thirsty."
+        ],
+        "hints": [
+          "我",
+          "渴了。"
+        ],
+        "cid": "ef438f73",
+        "sentenceAudio": {
+          "text": "I'm thirsty.",
+          "audio": {
+            "url": "assets/oral-ef438f73-3df994b7c0a67026be89.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "48071eb25ac8f9e422e1a1e1d04de32b3e013005def6e4edc5ca0be9867126d1",
+            "bytes": 4033
+          }
+        }
+      },
+      {
+        "sentence": "It smells good.",
+        "translation": "闻着真香。",
+        "chunks": [
+          "It smells",
+          "good."
+        ],
+        "hints": [
+          "闻着",
+          "真香。"
+        ],
+        "cid": "2fca7e79",
+        "sentenceAudio": {
+          "text": "It smells good.",
+          "audio": {
+            "url": "assets/oral-2fca7e79-7141cae1c92d179b8d21.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84f7a5b68f26d6d88f46fee6b4a194aad72b2eac5dca77c3b72392f2eb750bf7",
+            "bytes": 4267
+          }
+        }
+      },
+      {
+        "sentence": "I'm on a diet.",
+        "translation": "我在节食。",
+        "chunks": [
+          "I'm on",
+          "a diet."
+        ],
+        "hints": [
+          "我在",
+          "节食。"
+        ],
+        "cid": "5ba06c9e",
+        "sentenceAudio": {
+          "text": "I'm on a diet.",
+          "audio": {
+            "url": "assets/oral-5ba06c9e-5ffa50f7a9e38be54924.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "27f3954d6dc10d96fb6bc856bf0643f0182de3bea069156b768b77db45ba0513",
+            "bytes": 4172
+          }
+        }
+      },
+      {
+        "sentence": "This looks great!",
+        "translation": "看上去真好吃!",
+        "chunks": [
+          "This looks",
+          "great!"
+        ],
+        "hints": [
+          "看上去",
+          "真好吃！"
+        ],
+        "cid": "24d8092b",
+        "sentenceAudio": {
+          "text": "This looks great!",
+          "audio": {
+            "url": "assets/oral-24d8092b-b49fe5e51e138229d227.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4bd3407a8a6e9356a4c7d9cabe7125098849f212621556e91ccc642491c43308",
+            "bytes": 4301
+          }
+        }
+      },
+      {
+        "sentence": "They all look good.",
+        "translation": "它们看起来都很好吃。",
+        "chunks": [
+          "They",
+          "all look good."
+        ],
+        "hints": [
+          "它们",
+          "看起来都很好吃。"
+        ],
+        "cid": "7d8c147a",
+        "sentenceAudio": {
+          "text": "They all look good.",
+          "audio": {
+            "url": "assets/oral-7d8c147a-8c05dd30b13674d9f0b2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "772841c5c39aaf04c87b9cc1c1a04108a835360eb80740e1cfbe0766dee5cb20",
+            "bytes": 4471
+          }
+        }
+      },
+      {
+        "sentence": "Can I eat this?",
+        "translation": "我可以吃这个吗?",
+        "chunks": [
+          "Can I",
+          "eat this?"
+        ],
+        "hints": [
+          "我可以",
+          "吃这个吗？"
+        ],
+        "cid": "5ed24e85",
+        "sentenceAudio": {
+          "text": "Can I eat this?",
+          "audio": {
+            "url": "assets/oral-5ed24e85-2c520c553deca2a811b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "abb64d108a5d45507113555578d8db65080200f664b3c7d772dd00a9ae418953",
+            "bytes": 4308
+          }
+        }
+      },
+      {
+        "sentence": "You can't eat that.",
+        "translation": "你不能吃那个。",
+        "chunks": [
+          "You can't",
+          "eat that."
+        ],
+        "hints": [
+          "你不能",
+          "吃那个。"
+        ],
+        "cid": "d6528312",
+        "sentenceAudio": {
+          "text": "You can't eat that.",
+          "audio": {
+            "url": "assets/oral-d6528312-fea9f631284c0d9e203e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9e477775a066c022d5880f1f7444f5cf59e51d1a79a664f46c1647007ac837ea",
+            "bytes": 4375
+          }
+        }
+      },
+      {
+        "sentence": "Is this delicious?",
+        "translation": "这个好吃吗?",
+        "chunks": [
+          "Is this",
+          "delicious?"
+        ],
+        "hints": [
+          "这个",
+          "好吃吗？"
+        ],
+        "cid": "920ec403",
+        "sentenceAudio": {
+          "text": "Is this delicious?",
+          "audio": {
+            "url": "assets/oral-920ec403-27940192fb4d2aeef046.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b5f00cd51effc1a07de238648eef07727e64bfcf7cafaf616ccc7d1ee7307d94",
+            "bytes": 4715
+          }
+        }
+      },
+      {
+        "sentence": "It's good.",
+        "translation": "好吃。",
+        "chunks": [
+          "It's",
+          "good."
+        ],
+        "hints": [
+          "味道",
+          "不错。"
+        ],
+        "cid": "4fa25f13",
+        "sentenceAudio": {
+          "text": "It's good.",
+          "audio": {
+            "url": "assets/oral-4fa25f13-2d6b87f5609270406ac0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c5669bada8d37c80329d628293ab082ea3d657421e7e97c5e545a4e1b5b6e85",
+            "bytes": 3540
+          }
+        }
+      },
+      {
+        "sentence": "It's not good.",
+        "translation": "不好吃。",
+        "chunks": [
+          "It's",
+          "not good."
+        ],
+        "hints": [
+          "味道",
+          "不好。"
+        ],
+        "cid": "39c0b906",
+        "sentenceAudio": {
+          "text": "It's not good.",
+          "audio": {
+            "url": "assets/oral-39c0b906-719a058c7dbace76e94c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "44fa4fc0b7af1be22908d1c7f5e7344e11514d876c6ecb3ee8fcdc6b59e6e18e",
+            "bytes": 3943
+          }
+        }
+      },
+      {
+        "sentence": "This tastes strange.",
+        "translation": "味道很怪。",
+        "chunks": [
+          "This tastes",
+          "strange."
+        ],
+        "hints": [
+          "味道",
+          "很怪。"
+        ],
+        "cid": "acd7f117",
+        "sentenceAudio": {
+          "text": "This tastes strange.",
+          "audio": {
+            "url": "assets/oral-acd7f117-100758ab90d079aed421.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "14ee8a5282d63291b4409616dc0506a47f46e0224661884c6a16a62dc7822f10",
+            "bytes": 4870
+          }
+        }
+      },
+      {
+        "sentence": "I eat anything.",
+        "translation": "我什么都能吃。",
+        "chunks": [
+          "I eat",
+          "anything."
+        ],
+        "hints": [
+          "我什么",
+          "都能吃。"
+        ],
+        "cid": "6e62f832",
+        "sentenceAudio": {
+          "text": "I eat anything.",
+          "audio": {
+            "url": "assets/oral-6e62f832-4228ce29cbb8cf998f9d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b462fbb8faa4d33cd6e9c1e152220d3d38f500b9657df56df11f8d79f4fba373",
+            "bytes": 4135
+          }
+        }
+      },
+      {
+        "sentence": "Don't overeat.",
+        "translation": "别吃太多。",
+        "chunks": [
+          "Don't",
+          "overeat."
+        ],
+        "hints": [
+          "别",
+          "吃太多。"
+        ],
+        "cid": "92676809",
+        "sentenceAudio": {
+          "text": "Don't overeat.",
+          "audio": {
+            "url": "assets/oral-92676809-394c4e64dd19ebb5fe29.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5b5af4e5dd2dfa40e9acd3b77ec63b152f628306d272aecd9c4d6dcee7358da0",
+            "bytes": 3963
+          }
+        }
+      },
+      {
+        "sentence": "He's a big eater.",
+        "translation": "他真能吃。",
+        "chunks": [
+          "He's",
+          "a big eater."
+        ],
+        "hints": [
+          "他",
+          "真能吃。"
+        ],
+        "cid": "78a9273a",
+        "sentenceAudio": {
+          "text": "He's a big eater.",
+          "audio": {
+            "url": "assets/oral-78a9273a-e64786527af0af6008f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e7fcacebbf1f896032547561174d84259f123e7482746af1d4adf7e62e354bfe",
+            "bytes": 4454
+          }
+        }
+      },
+      {
+        "sentence": "I don't feel like eating anything.",
+        "translation": "我什么都不想吃。",
+        "chunks": [
+          "I don't feel like eating",
+          "anything."
+        ],
+        "hints": [
+          "我不想吃",
+          "任何东西。"
+        ],
+        "cid": "627b59e5",
+        "sentenceAudio": {
+          "text": "I don't feel like eating anything.",
+          "audio": {
+            "url": "assets/oral-627b59e5-1d91bc11a3b073301fc3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2c6ebecd9524515a5e1c88b38e5653e425e308634f61127a88f6440c1c9901cc",
+            "bytes": 5997
+          }
+        }
+      },
+      {
+        "sentence": "I drink like a fish.",
+        "translation": "我喝起酒来特别多。",
+        "chunks": [
+          "I drink",
+          "like a fish."
+        ],
+        "hints": [
+          "我喝起酒来",
+          "像鱼一样（喝很多）。"
+        ],
+        "cid": "e5c8bdce",
+        "sentenceAudio": {
+          "text": "I drink like a fish.",
+          "audio": {
+            "url": "assets/oral-e5c8bdce-15c86780175966d1308e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13aa036963ddfd05186b439894fcd93191f3e7ab42e241db45234c5e4013e6ee",
+            "bytes": 4956
+          }
+        }
+      },
+      {
+        "sentence": "I can hold my own.",
+        "translation": "我应付得来。",
+        "chunks": [
+          "I can",
+          "hold my own."
+        ],
+        "hints": [
+          "我能",
+          "应付得来。"
+        ],
+        "cid": "4601b7cb",
+        "sentenceAudio": {
+          "text": "I can hold my own.",
+          "audio": {
+            "url": "assets/oral-4601b7cb-2e45884023f9ce37d893.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5bf5a555b2627992e661241a2c392ec18c5555eeb864482479e9612f4bbd6a7e",
+            "bytes": 4609
+          }
+        }
+      },
+      {
+        "sentence": "Cake is fattening.",
+        "translation": "吃蛋糕会发胖。",
+        "chunks": [
+          "Cake",
+          "is fattening."
+        ],
+        "hints": [
+          "吃蛋糕",
+          "会发胖。"
+        ],
+        "cid": "acabb749",
+        "sentenceAudio": {
+          "text": "Cake is fattening.",
+          "audio": {
+            "url": "assets/oral-acabb749-6a14e285b9f92e8aac85.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "02d7250360f89d4105c5198cb8002bcad5df1572ea2890e6305fff0f8401f4d4",
+            "bytes": 4509
+          }
+        }
+      },
+      {
+        "sentence": "Please pass me the salt.",
+        "translation": "请把盐递给我。",
+        "chunks": [
+          "Please pass me",
+          "the salt."
+        ],
+        "hints": [
+          "请把盐",
+          "递给我。"
+        ],
+        "cid": "c469256b",
+        "sentenceAudio": {
+          "text": "Please pass me the salt.",
+          "audio": {
+            "url": "assets/oral-c469256b-87cd5e3d46e06951a192.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb9dca634a56346ab909fca2113d9225cee9337b273cb54487ea096b86cd99e7",
+            "bytes": 5063
+          }
+        }
+      },
+      {
+        "sentence": "It's called misoshiru.",
+        "translation": "这是大酱汤。",
+        "chunks": [
+          "It's called",
+          "misoshiru."
+        ],
+        "hints": [
+          "这是",
+          "大酱汤。"
+        ],
+        "cid": "c1fe2e6e",
+        "sentenceAudio": {
+          "text": "It's called misoshiru.",
+          "audio": {
+            "url": "assets/oral-c1fe2e6e-3514122f54f63c577d15.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be30ac81265fdc0c10be51242c18b2db4e0aa0df0d50412dcd7702189cbaee27",
+            "bytes": 5191
+          }
+        }
+      },
+      {
+        "sentence": "How do you eat sushi?",
+        "translation": "寿司怎么吃呀?",
+        "chunks": [
+          "How do you",
+          "eat sushi?"
+        ],
+        "hints": [
+          "你怎么",
+          "吃寿司？"
+        ],
+        "cid": "c1cde476",
+        "sentenceAudio": {
+          "text": "How do you eat sushi?",
+          "audio": {
+            "url": "assets/oral-c1cde476-c7e95641622bd872a2d4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "165f87390706abd7725434782958e9c5d32bca4c4ad02cc1d85078d4d8144581",
+            "bytes": 4793
+          }
+        }
+      },
+      {
+        "sentence": "You dip it in soy sauce.",
+        "translation": "把它蘸进酱油里。",
+        "chunks": [
+          "You dip it",
+          "in soy sauce."
+        ],
+        "hints": [
+          "把它蘸",
+          "酱油里。"
+        ],
+        "cid": "58603b07",
+        "sentenceAudio": {
+          "text": "You dip it in soy sauce.",
+          "audio": {
+            "url": "assets/oral-58603b07-5ca8b3c1d6386a4d6442.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b914f7f321c2567ea63aeadebe6947b3f84124918524915aa9f14f8b764503b1",
+            "bytes": 5668
+          }
+        }
+      },
+      {
+        "sentence": "Can you use chopsticks?",
+        "translation": "你会用筷子吗?",
+        "chunks": [
+          "Can you",
+          "use chopsticks?"
+        ],
+        "hints": [
+          "你会用",
+          "筷子吗？"
+        ],
+        "cid": "e65a330f",
+        "sentenceAudio": {
+          "text": "Can you use chopsticks?",
+          "audio": {
+            "url": "assets/oral-e65a330f-f373ebe74780320c16a0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c3c5e1e88d92480c550d485b519bed7903a36d482dd24ba18e16f43c2ff13450",
+            "bytes": 4853
+          }
+        }
+      },
+      {
+        "sentence": "What kind of fish is this?",
+        "translation": "这是哪一种鱼？",
+        "chunks": [
+          "What kind of fish",
+          "is this?"
+        ],
+        "hints": [
+          "哪一种鱼",
+          "这是？"
+        ],
+        "cid": "0e2a9d1f",
+        "sentenceAudio": {
+          "text": "What kind of fish is this?",
+          "audio": {
+            "url": "assets/oral-0e2a9d1f-f71111be8435a0a7fb43.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aadf402e26b6487a6b3e96970ed170b62454edbddb504b14d255ce7ca49106a4",
+            "bytes": 5041
+          }
+        }
+      },
+      {
+        "sentence": "It's spicy.",
+        "translation": "真辣!",
+        "chunks": [
+          "It's",
+          "spicy."
+        ],
+        "hints": [
+          "真",
+          "辣！"
+        ],
+        "cid": "69fc5dd6",
+        "sentenceAudio": {
+          "text": "It's spicy.",
+          "audio": {
+            "url": "assets/oral-69fc5dd6-2e447b25e657fadb4a2b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb7949b34f17993e76787436dfe9ba5e51c1e3a78ac3d4719e69bc73b848dca3",
+            "bytes": 4082
+          }
+        }
+      },
+      {
+        "sentence": "It's salty.",
+        "translation": "真咸。",
+        "chunks": [
+          "It's",
+          "salty."
+        ],
+        "hints": [
+          "真",
+          "咸。"
+        ],
+        "cid": "fd85b57d",
+        "sentenceAudio": {
+          "text": "It's salty.",
+          "audio": {
+            "url": "assets/oral-fd85b57d-1f813c900f0c23ca9868.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "52cbfd1efce94134e32fef9f5b0f0fcb5e07316a773d84a04d9682a4e80f1e85",
+            "bytes": 3828
+          }
+        }
+      },
+      {
+        "sentence": "It's sweet.",
+        "translation": "真甜。",
+        "chunks": [
+          "It's",
+          "sweet."
+        ],
+        "hints": [
+          "真",
+          "甜。"
+        ],
+        "cid": "a366c248",
+        "sentenceAudio": {
+          "text": "It's sweet.",
+          "audio": {
+            "url": "assets/oral-a366c248-267a853ff94d8234d4f1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "12c65e7801c145f54991196716a7c27ec6cfe7e242c019d434fe8047a7376589",
+            "bytes": 3609
+          }
+        }
+      },
+      {
+        "sentence": "It's crispy.",
+        "translation": "真脆。",
+        "chunks": [
+          "It's",
+          "crispy."
+        ],
+        "hints": [
+          "真",
+          "脆。"
+        ],
+        "cid": "8f9359a2",
+        "sentenceAudio": {
+          "text": "It's crispy.",
+          "audio": {
+            "url": "assets/oral-8f9359a2-d72c48c08b385bf8ad45.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c9e18baa63440f7be39e7e256736f640f51c2c67ca6aca9a37e97ac9bc4b7db5",
+            "bytes": 3838
+          }
+        }
+      },
+      {
+        "sentence": "It's slimy.",
+        "translation": "真粘。",
+        "chunks": [
+          "It's",
+          "slimy."
+        ],
+        "hints": [
+          "真",
+          "粘。"
+        ],
+        "cid": "27e6078c",
+        "sentenceAudio": {
+          "text": "It's slimy.",
+          "audio": {
+            "url": "assets/oral-27e6078c-2373b98b39feb9f06e97.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d3c6946b041b0c33d72e57c098ea7fabcbe4d61dde7e1bce410566571c09e135",
+            "bytes": 3777
+          }
+        }
+      },
+      {
+        "sentence": "This coffee is not hot enough.",
+        "translation": "这咖啡不够热。",
+        "chunks": [
+          "This coffee is",
+          "not hot enough."
+        ],
+        "hints": [
+          "这咖啡",
+          "不够热。"
+        ],
+        "cid": "b2aa5ba9",
+        "sentenceAudio": {
+          "text": "This coffee is not hot enough.",
+          "audio": {
+            "url": "assets/oral-b2aa5ba9-83abe505c90c40fff53c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a50eba6df0095d762652e33395aa1a1b8248ba1072171c31410dfb0b0ee6da2",
+            "bytes": 5816
+          }
+        }
+      },
+      {
+        "sentence": "This bread is soggy.",
+        "translation": "这面包泡软了。",
+        "chunks": [
+          "This bread",
+          "is soggy."
+        ],
+        "hints": [
+          "面包",
+          "泡软了。"
+        ],
+        "cid": "ce214414",
+        "sentenceAudio": {
+          "text": "This bread is soggy.",
+          "audio": {
+            "url": "assets/oral-ce214414-a85279d0b17afccfa008.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8ec746c42c5907acc61f080eb928a01a745d45448c9e4b7fa46de51139bf555f",
+            "bytes": 4717
+          }
+        }
+      },
+      {
+        "sentence": "These potato chips are stale.",
+        "translation": "这土豆片变味了。",
+        "chunks": [
+          "These potato chips",
+          "are stale."
+        ],
+        "hints": [
+          "这土豆片",
+          "变味了。"
+        ],
+        "cid": "8857148f",
+        "sentenceAudio": {
+          "text": "These potato chips are stale.",
+          "audio": {
+            "url": "assets/oral-8857148f-8787798c6f089f237d49.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e64946b0be0408e4196b33a38f72d7c19b7201e8c35bd8d2910a6dcb4599dca6",
+            "bytes": 6353
+          }
+        }
+      },
+      {
+        "sentence": "This milk is sour.",
+        "translation": "这牛奶酸了。",
+        "chunks": [
+          "This milk",
+          "is sour."
+        ],
+        "hints": [
+          "这牛奶",
+          "酸了。"
+        ],
+        "cid": "feafb935",
+        "sentenceAudio": {
+          "text": "This milk is sour.",
+          "audio": {
+            "url": "assets/oral-feafb935-b922891e3de68f8ca861.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2f07a2f8169279653ac4d9c3bf61983370b473f24a9f6329c275a807b2802a92",
+            "bytes": 4615
+          }
+        }
+      },
+      {
+        "sentence": "This coffee tastes bitter.",
+        "translation": "这咖啡太苦了。",
+        "chunks": [
+          "This coffee",
+          "tastes bitter."
+        ],
+        "hints": [
+          "这咖啡",
+          "太苦了。"
+        ],
+        "cid": "5a3d11e9",
+        "sentenceAudio": {
+          "text": "This coffee tastes bitter.",
+          "audio": {
+            "url": "assets/oral-5a3d11e9-cb0489ff2708b82946ba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a80a08e19ea797c5a44c7c8064e7cea1579aa4dda14791984790e73aa92f2008",
+            "bytes": 5412
+          }
+        }
+      },
+      {
+        "sentence": "This meat is tough.",
+        "translation": "这肉太老。",
+        "chunks": [
+          "This meat",
+          "is tough."
+        ],
+        "hints": [
+          "这肉",
+          "太老。"
+        ],
+        "cid": "7d2e4f5f",
+        "sentenceAudio": {
+          "text": "This meat is tough.",
+          "audio": {
+            "url": "assets/oral-7d2e4f5f-f40491d8ed9bf243d871.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "588fa8a5346cf670a147d2744ab6da68a401fe3d533462a2941d65efd227910d",
+            "bytes": 4424
+          }
+        }
+      },
+      {
+        "sentence": "This has a strong flavor.",
+        "translation": "味道很浓。",
+        "chunks": [
+          "This has",
+          "a strong flavor."
+        ],
+        "hints": [
+          "这有",
+          "很浓的味道。"
+        ],
+        "cid": "b7c8916f",
+        "sentenceAudio": {
+          "text": "This has a strong flavor.",
+          "audio": {
+            "url": "assets/oral-b7c8916f-0aa92f99fdc9020c105e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8b28ab513ff080d2bed83c22daf7ff21b0a23d7e683f1bfa991b2bc6a9437fb8",
+            "bytes": 5331
+          }
+        }
+      },
+      {
+        "sentence": "It's too salty.",
+        "translation": "太咸了。",
+        "chunks": [
+          "It's too",
+          "salty."
+        ],
+        "hints": [
+          "太",
+          "咸了。"
+        ],
+        "cid": "f50afb53",
+        "sentenceAudio": {
+          "text": "It's too salty.",
+          "audio": {
+            "url": "assets/oral-f50afb53-e777b26bb9cd2484633b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d5842eea43a5656ff47893415a4b5f0b2a78b8c1a22e4f3adc6af2388b63b4a6",
+            "bytes": 4453
+          }
+        }
+      },
+      {
+        "sentence": "It's too greasy.",
+        "translation": "太油腻。",
+        "chunks": [
+          "It's too",
+          "greasy."
+        ],
+        "hints": [
+          "太",
+          "油腻。"
+        ],
+        "cid": "a4d2a543",
+        "sentenceAudio": {
+          "text": "It's too greasy.",
+          "audio": {
+            "url": "assets/oral-a4d2a543-85c659712c51038cf5dc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "60ffea162afef0cd8035917c8574579f5813829234a0fb7380f3bbd6413d24d6",
+            "bytes": 4231
+          }
+        }
+      },
+      {
+        "sentence": "It's too hot.",
+        "translation": "太烫了。",
+        "chunks": [
+          "It's too",
+          "hot."
+        ],
+        "hints": [
+          "太",
+          "烫了。"
+        ],
+        "cid": "386a12c3",
+        "sentenceAudio": {
+          "text": "It's too hot.",
+          "audio": {
+            "url": "assets/oral-386a12c3-806641cdd204cdbcfaa3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4696c9870f6c462271ac3736c4a76eeee5618c9119dca6488ef89068c96f0db6",
+            "bytes": 4007
+          }
+        }
+      },
+      {
+        "sentence": "My mouth is burning.",
+        "translation": "我嘴里火辣辣的。",
+        "chunks": [
+          "My mouth",
+          "is burning."
+        ],
+        "hints": [
+          "我的嘴",
+          "火辣辣的。"
+        ],
+        "cid": "b3db9f47",
+        "sentenceAudio": {
+          "text": "My mouth is burning.",
+          "audio": {
+            "url": "assets/oral-b3db9f47-91d6c3978a1947a1e12c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "91bcd3553414fb074e461c634b1e3c28c02f86f7734b730bda3cf9cc218df879",
+            "bytes": 4951
+          }
+        }
+      },
+      {
+        "sentence": "Would you like some?",
+        "translation": "你也来点儿吗?",
+        "chunks": [
+          "Would you",
+          "like some?"
+        ],
+        "hints": [
+          "你也",
+          "来点儿吗？"
+        ],
+        "cid": "4e0a46bd",
+        "sentenceAudio": {
+          "text": "Would you like some?",
+          "audio": {
+            "url": "assets/oral-4e0a46bd-d97a19449914e0a80598.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "774ab2d330361d1dfe1438ee8b440b3edf0fc2179652d4cb767148a7f869347c",
+            "bytes": 4243
+          }
+        }
+      },
+      {
+        "sentence": "I'd like some more wine.",
+        "translation": "我想再要一点葡萄酒。",
+        "chunks": [
+          "I'd like",
+          "some more wine."
+        ],
+        "hints": [
+          "我想再要",
+          "一点葡萄酒。"
+        ],
+        "cid": "f1625676",
+        "sentenceAudio": {
+          "text": "I'd like some more wine.",
+          "audio": {
+            "url": "assets/oral-f1625676-7c2ecc61f3f5c5a6568e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3c135cda7f8dfe43afa3e58b027d0b7bccccabaa789c57ed5fbaae352d221f14",
+            "bytes": 4893
+          }
+        }
+      },
+      {
+        "sentence": "I dropped my fork.",
+        "translation": "我的叉子掉了。",
+        "chunks": [
+          "I dropped",
+          "my fork."
+        ],
+        "hints": [
+          "我弄掉了",
+          "我的叉子"
+        ],
+        "cid": "b365ee66",
+        "sentenceAudio": {
+          "text": "I dropped my fork.",
+          "audio": {
+            "url": "assets/oral-b365ee66-17914792b35de51d3f28.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dd24ff4fb3795e980e1f6a5dd7f8756bc34ffa21181746b6fe8fa7ac134c3afc",
+            "bytes": 4766
+          }
+        }
+      },
+      {
+        "sentence": "I'd like another cup of coffee.",
+        "translation": "再要一杯咖啡。",
+        "chunks": [
+          "I'd like another",
+          "cup of coffee."
+        ],
+        "hints": [
+          "再要",
+          "一杯咖啡。"
+        ],
+        "cid": "f3301228",
+        "sentenceAudio": {
+          "text": "I'd like another cup of coffee.",
+          "audio": {
+            "url": "assets/oral-f3301228-e58768c90ca3c683c164.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ee625e703360103ffa7dd7ebd07bc390fa3e9e831613229306afb2f1f15f18ef",
+            "bytes": 6014
+          }
+        }
+      },
+      {
+        "sentence": "That was good.",
+        "translation": "真好吃。",
+        "chunks": [
+          "That was",
+          "good."
+        ],
+        "hints": [
+          "真",
+          "好吃。"
+        ],
+        "cid": "b6f873f4",
+        "sentenceAudio": {
+          "text": "That was good.",
+          "audio": {
+            "url": "assets/oral-b6f873f4-08f94145fe3e8e986bbf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cdba8554c3569d3ed013fd60ee88b1aa611786c901940d1d022714c4d33a78a1",
+            "bytes": 3853
+          }
+        }
+      },
+      {
+        "sentence": "I'm very full.",
+        "translation": "我很饱。",
+        "chunks": [
+          "I'm very",
+          "full."
+        ],
+        "hints": [
+          "我很",
+          "饱。"
+        ],
+        "cid": "04518a79",
+        "sentenceAudio": {
+          "text": "I'm very full.",
+          "audio": {
+            "url": "assets/oral-04518a79-53c1ae6cb1aba95b4fb9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6f71d0e0101ee8aabcfd84c18487ac59159fd01d82226d2920854fbf3bb99c6a",
+            "bytes": 4244
+          }
+        }
+      },
+      {
+        "sentence": "There isn't enough food.",
+        "translation": "食物不够了。",
+        "chunks": [
+          "There isn't",
+          "enough food."
+        ],
+        "hints": [
+          "没有",
+          "足够的食物"
+        ],
+        "cid": "15ecde6e",
+        "sentenceAudio": {
+          "text": "There isn't enough food.",
+          "audio": {
+            "url": "assets/oral-15ecde6e-114bca1b584590dec118.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1617785817dbea44df8a22ea573c4b748e445ae214fda1b8d579ae64bf41f93b",
+            "bytes": 4723
+          }
+        }
+      },
+      {
+        "sentence": "Would you like another drink?",
+        "translation": "再喝一杯吗?",
+        "chunks": [
+          "Would you like",
+          "another drink?"
+        ],
+        "hints": [
+          "再喝",
+          "一杯吗？"
+        ],
+        "cid": "1f86304e",
+        "sentenceAudio": {
+          "text": "Would you like another drink?",
+          "audio": {
+            "url": "assets/oral-1f86304e-500667ee91aa82506320.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fec82784fe803a9b56c9aa9877a2a925ba41db338d14228df192302d6c2a65c9",
+            "bytes": 5353
+          }
+        }
+      },
+      {
+        "sentence": "How do you like your coffee?",
+        "translation": "您喜欢喝什么样的咖啡？",
+        "chunks": [
+          "How do you like",
+          "your coffee?"
+        ],
+        "hints": [
+          "您喜欢什么样的",
+          "咖啡？"
+        ],
+        "cid": "f8d3eb46",
+        "sentenceAudio": {
+          "text": "How do you like your coffee?",
+          "audio": {
+            "url": "assets/oral-f8d3eb46-f7b5b4353bf89208d446.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "edf794961ad8b304772e98129d498b28faaf8e8c9ef163ba86fdd634024e11ee",
+            "bytes": 5083
+          }
+        }
+      },
+      {
+        "sentence": "Bill, please.",
+        "translation": "请结账。",
+        "chunks": [
+          "Bill,",
+          "please."
+        ],
+        "hints": [
+          "账单",
+          "请。"
+        ],
+        "cid": "56f2b280",
+        "sentenceAudio": {
+          "text": "Bill, please.",
+          "audio": {
+            "url": "assets/oral-56f2b280-b768e11486f327c73d93.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1025ed0b6ebf95d97fa86ae96fe61a33bcd58140edfcfbc55164bb412182effe",
+            "bytes": 4012
+          }
+        }
+      },
+      {
+        "sentence": "Where should I pay?",
+        "translation": "在哪儿付钱?",
+        "chunks": [
+          "Where should",
+          "I pay?"
+        ],
+        "hints": [
+          "在哪儿",
+          "付钱？"
+        ],
+        "cid": "8cfffc13",
+        "sentenceAudio": {
+          "text": "Where should I pay?",
+          "audio": {
+            "url": "assets/oral-8cfffc13-80dd0f1e3ae23423726e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "df9ceb2198896cb756e468c219dc72a99e3aa62c8e7abcf503a467d8d6fde1be",
+            "bytes": 4312
+          }
+        }
+      },
+      {
+        "sentence": "It's on me.",
+        "translation": "我请客。",
+        "chunks": [
+          "It's",
+          "on me."
+        ],
+        "hints": [
+          "这次",
+          "我请客"
+        ],
+        "cid": "79da59f3",
+        "sentenceAudio": {
+          "text": "It's on me.",
+          "audio": {
+            "url": "assets/oral-79da59f3-deba5160f5f1356494cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0d439a5b049d1fd4a293f6a870c6da81b1ab78746263ef6eb1277e470530e9e4",
+            "bytes": 3901
+          }
+        }
+      },
+      {
+        "sentence": "What is this for?",
+        "translation": "这是做什么用的？",
+        "chunks": [
+          "What is",
+          "this for?"
+        ],
+        "hints": [
+          "是什么",
+          "这个的用途"
+        ],
+        "cid": "2c6bafbd",
+        "sentenceAudio": {
+          "text": "What is this for?",
+          "audio": {
+            "url": "assets/oral-2c6bafbd-f573c460d2e21d8cfd03.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9edf1597f8f4f00d97c6928f5610410f03745a3b359615419e8cb0473bc28294",
+            "bytes": 4251
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid there is a mistake here.",
+        "translation": "恐怕这里出了问题。",
+        "chunks": [
+          "I'm afraid",
+          "there is a mistake here."
+        ],
+        "hints": [
+          "恐怕",
+          "这里出了问题。"
+        ],
+        "cid": "a6410ea4",
+        "sentenceAudio": {
+          "text": "I'm afraid there is a mistake here.",
+          "audio": {
+            "url": "assets/oral-a6410ea4-f5bf4fa84485b31f08b4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f23a711938428313a5c63d754f3cf7718f049230248834a9157e454f6a75bd04",
+            "bytes": 6558
+          }
+        }
+      },
+      {
+        "sentence": "Let's go Dutch.",
+        "translation": "我们各付各的吧。",
+        "chunks": [
+          "Let's",
+          "go Dutch."
+        ],
+        "hints": [
+          "我们",
+          "各付各的吧。"
+        ],
+        "cid": "d6da0cf6",
+        "sentenceAudio": {
+          "text": "Let's go Dutch.",
+          "audio": {
+            "url": "assets/oral-d6da0cf6-c2856fa82aef475a2a5b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc0152f830ea06c57462f3a113d8ff349095f48d90024e1fa5494b72d9ba0f65",
+            "bytes": 4291
+          }
+        }
+      },
+      {
+        "sentence": "We'd like to pay separately.",
+        "translation": "我们分开付款。",
+        "chunks": [
+          "We'd like",
+          "to pay separately."
+        ],
+        "hints": [
+          "我们",
+          "分开付款。"
+        ],
+        "cid": "502571f8",
+        "sentenceAudio": {
+          "text": "We'd like to pay separately.",
+          "audio": {
+            "url": "assets/oral-502571f8-51f62a09b472e31e8b29.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cfd4a3cdb3204c11c45dd273e25517dc762e84bbd14edb6437d261a6db3e0b2b",
+            "bytes": 5456
+          }
+        }
+      },
+      {
+        "sentence": "Keep the change.",
+        "translation": "不用找钱了。",
+        "chunks": [
+          "Keep the change."
+        ],
+        "hints": [
+          "不用找钱了。"
+        ],
+        "cid": "d8db91e5",
+        "sentenceAudio": {
+          "text": "Keep the change.",
+          "audio": {
+            "url": "assets/oral-d8db91e5-c1980c8278641071ddaa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c49102588066d066b1addbd17cc250043d0f9ad3ec1ca48d69bc1751edb2d2a3",
+            "bytes": 4078
+          }
+        }
+      },
+      {
+        "sentence": "May I have a receipt, please?",
+        "translation": "请给我一张收据。",
+        "chunks": [
+          "May I have",
+          "a receipt, please?"
+        ],
+        "hints": [
+          "请给我",
+          "一张收据。"
+        ],
+        "cid": "a8c55b99",
+        "sentenceAudio": {
+          "text": "May I have a receipt, please?",
+          "audio": {
+            "url": "assets/oral-a8c55b99-7c263a0a33502ff7c8fe.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a72d499a1288fe66949a19aa18245fc7b554eb90d3007e1d84aba7925df43a25",
+            "bytes": 5654
+          }
+        }
+      },
+      {
+        "sentence": "Could I get this to go, please?",
+        "cid": "577c7ac5",
+        "translation": "这个能打包带走吗？",
+        "chunks": [
+          "Could I get this",
+          "to go,",
+          "please?"
+        ],
+        "hints": [
+          "我能把这个",
+          "外带",
+          "麻烦"
+        ],
+        "grammar": [
+          {
+            "role": "情态疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/aɪ/",
+              "/ɡet/",
+              "/ðɪs/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "我能把这个"
+          },
+          {
+            "role": "目的状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tuː/",
+              "/ɡoʊ/"
+            ],
+            "pos": "固定表达",
+            "meaning": "外带"
+          },
+          {
+            "role": "礼貌词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/pliːz/"
+            ],
+            "pos": "语气词",
+            "meaning": "麻烦"
+          }
+        ],
+        "explanations": [
+          "`to go` = 外带（美式）。常见错误：\n• \"for **takeaway**\" → takeaway 是英式名词，美式点餐说 to go\n• \"to **going**\" → to 后接原形 go",
+          "相对的说法是 dine in / for here（堂食）。点餐收尾常用：\"Is that for here or to go?\""
+        ],
+        "distractors": [
+          [
+            "Could me get this",
+            "Could I to get this",
+            "Could I gets this"
+          ],
+          [
+            "to going,",
+            "go,",
+            "for go,"
+          ],
+          [
+            "pleased.",
+            "pleases."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could I get this to go, please?",
+          "audio": {
+            "url": "assets/oral-577c7ac5-26dba850f68f5088bf4b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c68f5dbe4a1a30d37e6af742e7be037f0d2dd645c98da167b89977304b90aceb",
+            "bytes": 6082
+          }
+        }
+      },
+      {
+        "sentence": "Could we get the check, please?",
+        "cid": "b83b9640",
+        "translation": "请给我们结账。",
+        "chunks": [
+          "Could we get",
+          "the check,",
+          "please?"
+        ],
+        "hints": [
+          "我们能要",
+          "账单",
+          "麻烦"
+        ],
+        "grammar": [
+          {
+            "role": "情态疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/wiː/",
+              "/ɡet/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "我们能要"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/tʃek/"
+            ],
+            "pos": "名词",
+            "meaning": "账单"
+          },
+          {
+            "role": "礼貌词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/pliːz/"
+            ],
+            "pos": "语气词",
+            "meaning": "麻烦"
+          }
+        ],
+        "explanations": [
+          "结账用语分英美：美式 `the check`，英式 `the bill`。常见错误：\n• 混说 \"get the bill\" 英式场景也通，但美式餐厅多用 check\n• \"pay the check\" → 可以，但 get the check 是「请拿来账单」",
+          "同义表达：\"Check, please!\"（最简洁）/ \"Can we have the bill, please?\""
+        ],
+        "distractors": [
+          [
+            "Could us get",
+            "Could we to get",
+            "Could we gets"
+          ],
+          [
+            "the checks,",
+            "check,",
+            "the checkout,"
+          ],
+          [
+            "pleased.",
+            "pleases."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could we get the check, please?",
+          "audio": {
+            "url": "assets/oral-b83b9640-1a584777d81d7b6b9390.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9e20442d620223aa218731f378e40b9c63def8b8ef21815ce2648b8ba3be3a62",
+            "bytes": 5460
+          }
+        }
+      },
+      {
+        "sentence": "Let's split the bill, shall we?",
+        "cid": "352ea243",
+        "translation": "我们平摊账单吧，好吗？",
+        "chunks": [
+          "Let's split the bill,",
+          "shall we?"
+        ],
+        "hints": [
+          "我们分摊账单",
+          "好吗"
+        ],
+        "grammar": [
+          {
+            "role": "祈使提议",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lets/",
+              "/splɪt/",
+              "/ðə/",
+              "/bɪl/"
+            ],
+            "pos": "let's 结构",
+            "meaning": "我们分摊账单"
+          },
+          {
+            "role": "反意疑问",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʃæl/",
+              "/wiː/"
+            ],
+            "pos": "附加问句",
+            "meaning": "好吗"
+          }
+        ],
+        "explanations": [
+          "AA 制用语。`split the bill` = 平摊账单。常见错误：\n• \"split the **bills**\" → 一张账单用单数 the bill\n• \"divide the bill\" → 也可以，split 更口语",
+          "`Let's..., shall we?` = 我们…吧，好吗？Let's 开头的祈使句反意疑问固定用 shall we。常见错误：\n• \"Let's..., will we?\" → will we 不配 let's\n• \"Let us split\" → let us 正式，let's 口语"
+        ],
+        "distractors": [
+          [
+            "Let's splitting the bill,",
+            "Let split the bill,",
+            "Let's split the check,"
+          ],
+          [
+            "will we?",
+            "should we?",
+            "shall us?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let's split the bill, shall we?",
+          "audio": {
+            "url": "assets/oral-352ea243-9a93782adc016f21e720.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e7f10ce5abbd84ee2344f150188d2b567d93e604f40326527a0ac24404bf6f3",
+            "bytes": 5648
+          }
+        }
+      }
+    ]
+  }
+}

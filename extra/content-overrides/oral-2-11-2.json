@@ -1,0 +1,945 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-11-2",
+    "name": "口语3000句 · 内心表白 · 表扬",
+    "short": "表扬",
+    "desc": "表扬",
+    "chapter": 2,
+    "section": "2.11",
+    "sectionTitle": "内心表白",
+    "topic": "表扬",
+    "baseCount": 0,
+    "totalCount": 33,
+    "items": [
+      {
+        "sentence": "John is incredible!",
+        "translation": "约翰真是太出色了！",
+        "chunks": [
+          "John is",
+          "incredible!"
+        ],
+        "hints": [
+          "约翰真是",
+          "了不起！"
+        ],
+        "cid": "250bf736",
+        "sentenceAudio": {
+          "text": "John is incredible!",
+          "audio": {
+            "url": "assets/oral-250bf736-351b85dc2d7e9155f654.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c70f44cf659e5d3dd7d786af3743e80049e2f41e8b1b8cb64fd443e5b2109130",
+            "bytes": 5030
+          }
+        }
+      },
+      {
+        "sentence": "Good job!",
+        "translation": "真不错!",
+        "chunks": [
+          "Good job!"
+        ],
+        "hints": [
+          "干得不错！"
+        ],
+        "cid": "9b27c35e",
+        "sentenceAudio": {
+          "text": "Good job!",
+          "audio": {
+            "url": "assets/oral-9b27c35e-70981f81258f9d855c9c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "77b24cdbef26e573b6196efb684296aa412aceb00cb6cb982f118123f6592c24",
+            "bytes": 3735
+          }
+        }
+      },
+      {
+        "sentence": "Way to go!",
+        "translation": "干得真好!",
+        "chunks": [
+          "Way to go!"
+        ],
+        "hints": [
+          "干得真棒！"
+        ],
+        "cid": "91ae566c",
+        "sentenceAudio": {
+          "text": "Way to go!",
+          "audio": {
+            "url": "assets/oral-91ae566c-cffef6406e7240c46eeb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5893bfdb90d65250ca93f03f7b098d7a47fbabc7161072896d02fde727059a14",
+            "bytes": 3834
+          }
+        }
+      },
+      {
+        "sentence": "Well done, son!",
+        "translation": "儿子，你真棒!",
+        "chunks": [
+          "Well done,",
+          "son!"
+        ],
+        "hints": [
+          "做得好，",
+          "儿子！"
+        ],
+        "cid": "31e30c78",
+        "sentenceAudio": {
+          "text": "Well done, son!",
+          "audio": {
+            "url": "assets/oral-31e30c78-940545be31272f52adda.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "17a1eebfeaec58d1588d084cb9bb48b0f8d884fe48fd67807bbf8d615e794001",
+            "bytes": 4297
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations!",
+        "translation": "恭喜了!",
+        "chunks": [
+          "Congratulations!"
+        ],
+        "hints": [
+          "恭喜了！"
+        ],
+        "cid": "a577628f",
+        "sentenceAudio": {
+          "text": "Congratulations!",
+          "audio": {
+            "url": "assets/oral-a577628f-f5c2bb2005d1abf12806.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "72b13e1ff7a33136c24557471e41d8775f9b18c26348aca9c1f987d3e938b115",
+            "bytes": 4969
+          }
+        }
+      },
+      {
+        "sentence": "You were great!",
+        "translation": "你真了不起!",
+        "chunks": [
+          "You were",
+          "great!"
+        ],
+        "hints": [
+          "你真",
+          "了不起！"
+        ],
+        "cid": "0576ff27",
+        "sentenceAudio": {
+          "text": "You were great!",
+          "audio": {
+            "url": "assets/oral-0576ff27-d592a263e40de4511ff6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "745a5ffbf976ea7608b68ba9e8412e48d10de13fb538e2d3100677d4b6db31b1",
+            "bytes": 3985
+          }
+        }
+      },
+      {
+        "sentence": "Good for you.",
+        "cid": "d43245c6",
+        "translation": "真替你高兴！",
+        "chunks": [
+          "Good for you."
+        ],
+        "hints": [
+          "真替你高兴！"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɡʊd fər juː/"
+            ],
+            "pos": "回应好消息的惯用语",
+            "meaning": "真替你高兴"
+          }
+        ],
+        "explanations": [
+          "`Good for you` 是回应别人好消息的固定说法，表「为你高兴」。常见错误：\n• 理解成「对你有好处」→ 那是 Good for your health 之类的含义，语境不同\n• \"Good to you\" → 固定搭配用 for",
+          "同义：Nice! / That's great! / I'm happy for you."
+        ],
+        "distractors": [
+          [
+            "That's great!",
+            "I'm happy for you.",
+            "Nice work!"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Good for you.",
+          "audio": {
+            "url": "assets/oral-d43245c6-3d4d53f2f799646e5de7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2939e88d756f0e3046ad7759b6f84d5ffb32fb39478d5d14d5e9031ed48dc03d",
+            "bytes": 3891
+          }
+        }
+      },
+      {
+        "sentence": "Good boy.",
+        "translation": "真是好孩子。",
+        "chunks": [
+          "Good",
+          "boy."
+        ],
+        "hints": [
+          "真是",
+          "好孩子。"
+        ],
+        "cid": "16bd6800",
+        "sentenceAudio": {
+          "text": "Good boy.",
+          "audio": {
+            "url": "assets/oral-16bd6800-01a5edcc8d60938e29a6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "668f650669a78360f9b513f388fbc68202cae929beeea7249d94c256b2ec2629",
+            "bytes": 3689
+          }
+        }
+      },
+      {
+        "sentence": "What a nice dress!",
+        "translation": "多漂亮的裙子呀!",
+        "chunks": [
+          "What a nice",
+          "dress!"
+        ],
+        "hints": [
+          "多么漂亮的",
+          "裙子呀！"
+        ],
+        "cid": "9c115791",
+        "sentenceAudio": {
+          "text": "What a nice dress!",
+          "audio": {
+            "url": "assets/oral-9c115791-793149747de6487f6726.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c2a77dd34cf07e85cc3e717c0a3dc53ed3fc42911e96a70a1cb72c33007e541a",
+            "bytes": 4454
+          }
+        }
+      },
+      {
+        "sentence": "I like your shirt.",
+        "translation": "我真喜欢你的衬衫。",
+        "chunks": [
+          "I like",
+          "your shirt."
+        ],
+        "hints": [
+          "我真喜欢",
+          "你的衬衫。"
+        ],
+        "cid": "560de3f4",
+        "sentenceAudio": {
+          "text": "I like your shirt.",
+          "audio": {
+            "url": "assets/oral-560de3f4-f1a4b615ae36855c6c48.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c12807628454d9ba3552434abf20f3bf0a89129570c3b5f6499c862352f15c6",
+            "bytes": 4408
+          }
+        }
+      },
+      {
+        "sentence": "That's a great tie.",
+        "translation": "你的领带真漂亮。",
+        "chunks": [
+          "That's a",
+          "great tie."
+        ],
+        "hints": [
+          "这是一条",
+          "很棒的领带。"
+        ],
+        "cid": "fdbb0968",
+        "sentenceAudio": {
+          "text": "That's a great tie.",
+          "audio": {
+            "url": "assets/oral-fdbb0968-27f06e69d18635ae9299.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aabe2593549e47188f7d42eae1613fe9bf1d9d62241809d85223b0bdaaecf2cd",
+            "bytes": 4581
+          }
+        }
+      },
+      {
+        "sentence": "You have a nice car.",
+        "translation": "你有辆好车呀!",
+        "chunks": [
+          "You have",
+          "a nice car."
+        ],
+        "hints": [
+          "你有辆",
+          "好车呀！"
+        ],
+        "cid": "a596679e",
+        "sentenceAudio": {
+          "text": "You have a nice car.",
+          "audio": {
+            "url": "assets/oral-a596679e-3f7cb432e4a066358ff4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "25d72527bc22078b1c123017035a3709777ef37e266285619d90df94f05547d9",
+            "bytes": 4729
+          }
+        }
+      },
+      {
+        "sentence": "Where did you buy it?",
+        "translation": "在哪儿买的?",
+        "chunks": [
+          "Where did you",
+          "buy it?"
+        ],
+        "hints": [
+          "在哪儿",
+          "买的？"
+        ],
+        "cid": "c91806c8",
+        "sentenceAudio": {
+          "text": "Where did you buy it?",
+          "audio": {
+            "url": "assets/oral-c91806c8-58ff49273ec5a36fc560.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e8e05f5a7258ccff9710a0ab7329afad7e445d81df84f82a5dbc5e69a0084938",
+            "bytes": 4182
+          }
+        }
+      },
+      {
+        "sentence": "I bought it at the K store.",
+        "translation": "是在K店买的。",
+        "chunks": [
+          "I bought it",
+          "at the K store."
+        ],
+        "hints": [
+          "我买的",
+          "是在K店。"
+        ],
+        "cid": "abba5b98",
+        "sentenceAudio": {
+          "text": "I bought it at the K store.",
+          "audio": {
+            "url": "assets/oral-abba5b98-1187f53e56a68fd3f9a9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d55f19303f2241f822405732bf3c8ddacad2b5f9e7e2b835c7d7e86df7feeb0d",
+            "bytes": 5543
+          }
+        }
+      },
+      {
+        "sentence": "It was on sale.",
+        "translation": "它当时在打折。",
+        "chunks": [
+          "It was",
+          "on sale."
+        ],
+        "hints": [
+          "当时是",
+          "在打折。"
+        ],
+        "cid": "eee6b4f1",
+        "sentenceAudio": {
+          "text": "It was on sale.",
+          "audio": {
+            "url": "assets/oral-eee6b4f1-b41a86188b7bf6b8616e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8553a3fa266e469b60187718daba573d18030eb23da2e624f0261735583daa2f",
+            "bytes": 4192
+          }
+        }
+      },
+      {
+        "sentence": "You look nice.",
+        "translation": "你看上去真好/真帅。",
+        "chunks": [
+          "You look",
+          "nice."
+        ],
+        "hints": [
+          "你看上去",
+          "真好看/真帅。"
+        ],
+        "cid": "f65af60e",
+        "sentenceAudio": {
+          "text": "You look nice.",
+          "audio": {
+            "url": "assets/oral-f65af60e-8c836943023572105967.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5130788fbbfd973c5bd4c725c6d784b7e49900aad5678cc7cf886c21af4460a1",
+            "bytes": 4074
+          }
+        }
+      },
+      {
+        "sentence": "It looks nice on you.",
+        "translation": "穿在你身上很好看。",
+        "chunks": [
+          "It looks nice",
+          "on you."
+        ],
+        "hints": [
+          "看起来很好看",
+          "穿在你身上。"
+        ],
+        "cid": "34b3f361",
+        "sentenceAudio": {
+          "text": "It looks nice on you.",
+          "audio": {
+            "url": "assets/oral-34b3f361-e29497cd0657b0ead623.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "05fffc434cdf8be33cff4ad48d3969f52d006de020de463d352c166b7445d7ec",
+            "bytes": 4733
+          }
+        }
+      },
+      {
+        "sentence": "All the credit goes to you.",
+        "translation": "这得归功于您呀!",
+        "chunks": [
+          "All the credit",
+          "goes to you."
+        ],
+        "hints": [
+          "全部功劳",
+          "都归功于您！"
+        ],
+        "cid": "72d28a6a",
+        "sentenceAudio": {
+          "text": "All the credit goes to you.",
+          "audio": {
+            "url": "assets/oral-72d28a6a-dd104ad538fa95cd7bf7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "07990a4e0c166ffc28ab58cd90e0ad322e2cf6090c3ebc2d9e9439a051fd3744",
+            "bytes": 5182
+          }
+        }
+      },
+      {
+        "sentence": "Brilliant!",
+        "translation": "非常出色!",
+        "chunks": [
+          "Brilliant!"
+        ],
+        "hints": [
+          "非常出色！"
+        ],
+        "cid": "b18c961b",
+        "sentenceAudio": {
+          "text": "Brilliant!",
+          "audio": {
+            "url": "assets/oral-b18c961b-75b1e9b2e81a1424a25f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4663d71dbd10aa87f22cfa9df4bf957c4600dcb6df149f34f698bdd9ffd21e30",
+            "bytes": 3511
+          }
+        }
+      },
+      {
+        "sentence": "What a man!",
+        "translation": "真是个男子汉!",
+        "chunks": [
+          "What a",
+          "man!"
+        ],
+        "hints": [
+          "真是个",
+          "男子汉！"
+        ],
+        "cid": "db0b5a7b",
+        "sentenceAudio": {
+          "text": "What a man!",
+          "audio": {
+            "url": "assets/oral-db0b5a7b-ca9a7a2d2dbdebe5a18e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6559448c30bd88d3d7e603ccc296a92805f1851f981e682f9cf4b0b32256cb8b",
+            "bytes": 3673
+          }
+        }
+      },
+      {
+        "sentence": "Wow, you're on a winning streak.",
+        "translation": "哇，你正连胜呢！",
+        "chunks": [
+          "Wow, you're",
+          "on a winning streak."
+        ],
+        "hints": [
+          "哇，你",
+          "正连胜呢！"
+        ],
+        "cid": "fa50aa7d",
+        "sentenceAudio": {
+          "text": "Wow, you're on a winning streak.",
+          "audio": {
+            "url": "assets/oral-fa50aa7d-7ea07193be8c8369ac98.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7b09671e26bee9dcf6a3bfeb95b381040bc25f55d00d54b888b8e6e1e0e1ba64",
+            "bytes": 5639
+          }
+        }
+      },
+      {
+        "sentence": "You have a cute son.",
+        "translation": "你有个可爱的儿子。",
+        "chunks": [
+          "You have",
+          "a cute son."
+        ],
+        "hints": [
+          "你有",
+          "一个可爱的儿子。"
+        ],
+        "cid": "877fa736",
+        "sentenceAudio": {
+          "text": "You have a cute son.",
+          "audio": {
+            "url": "assets/oral-877fa736-2e2fd5a289f924ea08af.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9e5250aab11464bce0493c7bd8f1df8cf10e28a985bdf42c85010db17c8414df",
+            "bytes": 4568
+          }
+        }
+      },
+      {
+        "sentence": "You look young for your age.",
+        "translation": "以您的年龄来说，您看上去年轻。",
+        "chunks": [
+          "You look young",
+          "for your age."
+        ],
+        "hints": [
+          "您看上去年轻",
+          "以您的年龄来说。"
+        ],
+        "cid": "bbc010d6",
+        "sentenceAudio": {
+          "text": "You look young for your age.",
+          "audio": {
+            "url": "assets/oral-bbc010d6-2821e53d8fe9dd0388d0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "698bc28eb903754c9c8691652e2d439c4c12f88862aad13671d99ba1fe3466b6",
+            "bytes": 5384
+          }
+        }
+      },
+      {
+        "sentence": "I appreciate your effort very much.",
+        "translation": "我非常感谢您为此所做出的努力。",
+        "chunks": [
+          "I appreciate",
+          "your effort very much."
+        ],
+        "hints": [
+          "我感谢您",
+          "为此付出的努力。"
+        ],
+        "cid": "58e092d6",
+        "sentenceAudio": {
+          "text": "I appreciate your effort very much.",
+          "audio": {
+            "url": "assets/oral-58e092d6-ce28f6b873dc0a6084f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "011394929a63a1b89db97754e3c3dfd8c0022de7c48e403dd4f57e5780850c08",
+            "bytes": 7089
+          }
+        }
+      },
+      {
+        "sentence": "I envy you.",
+        "translation": "真羡慕你。",
+        "chunks": [
+          "I",
+          "envy you."
+        ],
+        "hints": [
+          "我",
+          "羡慕你。"
+        ],
+        "cid": "362b6a79",
+        "sentenceAudio": {
+          "text": "I envy you.",
+          "audio": {
+            "url": "assets/oral-362b6a79-8294b34f8f2bdfa26813.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a54e8d500ed28ea2c95e1874db6761d4904790c1aed86e904e7111b709f8e3e9",
+            "bytes": 4007
+          }
+        }
+      },
+      {
+        "sentence": "He thinks highly of you.",
+        "translation": "他对你的评价很高。",
+        "chunks": [
+          "He thinks",
+          "highly of you."
+        ],
+        "hints": [
+          "他认为",
+          "对你评价很高。"
+        ],
+        "cid": "79cc94ea",
+        "sentenceAudio": {
+          "text": "He thinks highly of you.",
+          "audio": {
+            "url": "assets/oral-79cc94ea-0d13ca27a2cc181bf0bc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2ea24db915642cfc6a626361f23d1d7674d28854b8708b4d09467ef66438795",
+            "bytes": 5077
+          }
+        }
+      },
+      {
+        "sentence": "I need a boss I can look up to.",
+        "translation": "我需要一个值得我尊敬的老板。",
+        "chunks": [
+          "I need a boss",
+          "I can look up to."
+        ],
+        "hints": [
+          "我需要一个",
+          "值得我尊敬的老板。"
+        ],
+        "cid": "4ee383bc",
+        "sentenceAudio": {
+          "text": "I need a boss I can look up to.",
+          "audio": {
+            "url": "assets/oral-4ee383bc-99e198dbe8d8b7e6d9b2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9bbfbf9378792ae1a3ceae497553e67ef95294a889ea6228ef95754fe1c37837",
+            "bytes": 6320
+          }
+        }
+      },
+      {
+        "sentence": "He's got guts.",
+        "translation": "他真有勇气。",
+        "chunks": [
+          "He's got",
+          "guts."
+        ],
+        "hints": [
+          "他真有",
+          "勇气。"
+        ],
+        "cid": "f82a6e63",
+        "sentenceAudio": {
+          "text": "He's got guts.",
+          "audio": {
+            "url": "assets/oral-f82a6e63-a04cd2907f8973f742cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3a3901cd54de5732bd407b64aa620dbf8f489f47c6bc8b2cfbf76d0fa4cf6717",
+            "bytes": 4229
+          }
+        }
+      },
+      {
+        "sentence": "Keep up the good work.",
+        "cid": "10e9ea4a",
+        "translation": "继续保持/干得漂亮。",
+        "chunks": [
+          "Keep up",
+          "the good work."
+        ],
+        "hints": [
+          "保持住",
+          "这份好工作"
+        ],
+        "grammar": [
+          {
+            "role": "祈使+副词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kiːp/",
+              "/ʌp/"
+            ],
+            "pos": "短语动词",
+            "meaning": "保持住"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ɡʊd/",
+              "/wɜːrk/"
+            ],
+            "pos": "名词短语",
+            "meaning": "好表现"
+          }
+        ],
+        "explanations": [
+          "**keep up the good work** = 继续加油/保持好表现，上司表扬下属的高频句。",
+          "keep up 后接抽象名词：keep up the pace（保持节奏）。若指「赶上进度」是 catch up，注意区分。"
+        ],
+        "distractors": [
+          [
+            "Keeps up",
+            "Keeping up",
+            "To keep up"
+          ],
+          [
+            "good work.",
+            "a good work.",
+            "the good works."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Keep up the good work.",
+          "audio": {
+            "url": "assets/oral-10e9ea4a-60fd25f2175837a48c33.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "006c575b717ff810c779980417c7ded7930791b7e0ee08da14046a236088e8b8",
+            "bytes": 4551
+          }
+        }
+      },
+      {
+        "sentence": "You really changed.",
+        "cid": "b8116edf",
+        "translation": "你真的变了。",
+        "chunks": [
+          "You really",
+          "changed."
+        ],
+        "hints": [
+          "你真的",
+          "变了"
+        ],
+        "grammar": [
+          {
+            "role": "主语+状语",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː/",
+              "/ˈriːəli/"
+            ],
+            "pos": "副词修饰谓语",
+            "meaning": "你真的"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/tʃeɪndʒd/"
+            ],
+            "pos": "一般过去时",
+            "meaning": "变了"
+          }
+        ],
+        "explanations": [
+          "`really` 修饰谓语时放在实义动词之前。常见错误：\n• \"You changed really\" → 语序错，副词不能放句末表程度\n• \"You real changed\" → 要用 really，real 是形容词",
+          "`changed` 用过去式表「已经发生了变化」。常见错误：\n• \"You are changed\" → 也可表被动，但口语直接说 changed 更自然"
+        ],
+        "distractors": [
+          [
+            "You real",
+            "You really's",
+            "You really are"
+          ],
+          [
+            "change.",
+            "changing.",
+            "changeed."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You really changed.",
+          "audio": {
+            "url": "assets/oral-b8116edf-0f6559d479be035cbdac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32082e2bdb1b1677a08bdf743731535f2716143e88d637a349e21f39f957d488",
+            "bytes": 4389
+          }
+        }
+      },
+      {
+        "sentence": "I'm so proud of you.",
+        "cid": "9e2532fc",
+        "translation": "我为你骄傲。",
+        "chunks": [
+          "I'm so",
+          "proud of you."
+        ],
+        "hints": [
+          "我非常",
+          "为你骄傲"
+        ],
+        "grammar": [
+          {
+            "role": "主语+系动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/soʊ/"
+            ],
+            "pos": "be + so",
+            "meaning": "我非常"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/praʊd/",
+              "/əv/",
+              "/juː/"
+            ],
+            "pos": "be proud of 固定搭配",
+            "meaning": "为你骄傲"
+          }
+        ],
+        "explanations": [
+          "`so` 修饰形容词，表程度。常见错误：\n• \"I so proud\" → 缺 be 动词\n• \"I'm such proud\" → such 后接名词短语",
+          "`be proud of sb` 是固定搭配，介词用 of。常见错误：\n• \"proud for you\" → 不用 for\n• \"proud at you\" → 不用 at"
+        ],
+        "distractors": [
+          [
+            "I so",
+            "I'm very",
+            "I'm such"
+          ],
+          [
+            "proud for you.",
+            "proud at you.",
+            "proud of your."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm so proud of you.",
+          "audio": {
+            "url": "assets/oral-9e2532fc-bab89d0a6d0a9d6c51e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4a654aa2a1bc29baa8137c2aae575ab4ace4cf0060cf862c81e50aeef05faef",
+            "bytes": 4709
+          }
+        }
+      },
+      {
+        "sentence": "Great job.",
+        "cid": "8ec45499",
+        "translation": "做得好。",
+        "chunks": [
+          "Great",
+          "job."
+        ],
+        "hints": [
+          "很棒的",
+          "活儿、表现"
+        ],
+        "grammar": [
+          {
+            "role": "形容词",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɡreɪt/"
+            ],
+            "pos": "形容词",
+            "meaning": "很棒的"
+          },
+          {
+            "role": "名词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/dʒɑːb/"
+            ],
+            "pos": "名词",
+            "meaning": "活儿、表现"
+          }
+        ],
+        "explanations": [
+          "`Great job.` 是表扬别人的固定说法，前面常省略 What a。常见错误：\n• 说成 \"Great work\" 也对，但 job 更口语\n• 想完整表达：You did a great job.",
+          "同类：Nice work. / Well done. / Good for you."
+        ],
+        "distractors": [
+          [
+            "Greatly",
+            "Greater",
+            "Greeting"
+          ],
+          [
+            "jop.",
+            "job's.",
+            "jobb."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Great job.",
+          "audio": {
+            "url": "assets/oral-8ec45499-d0ca9c96096015cdd459.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9295d30041e85d262b77c4ab0ebb07bd33c5abd877b5daa5d9af786d109577a8",
+            "bytes": 4077
+          }
+        }
+      },
+      {
+        "sentence": "You look great today.",
+        "cid": "734357e7",
+        "translation": "你今天精神很好。",
+        "chunks": [
+          "You look",
+          "great today."
+        ],
+        "hints": [
+          "你看起来",
+          "今天很棒"
+        ],
+        "grammar": [
+          {
+            "role": "主系动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː/",
+              "/lʊk/"
+            ],
+            "pos": "look + 形容词",
+            "meaning": "你看起来"
+          },
+          {
+            "role": "表语 + 时间状语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɡreɪt/",
+              "/təˈdeɪ/"
+            ],
+            "pos": "形容词 + 副词",
+            "meaning": "今天很棒"
+          }
+        ],
+        "explanations": [
+          "`look` 作系动词后接形容词，不接副词。常见错误：\n• \"You look greatly\" → 要用形容词 great\n• \"You look like great\" → like 后面必须接名词",
+          "相关：You look tired.（你看起来很累）/ You look nice today."
+        ],
+        "distractors": [
+          [
+            "You looks",
+            "You looking",
+            "You are look"
+          ],
+          [
+            "greatly today.",
+            "great to day.",
+            "great todays."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You look great today.",
+          "audio": {
+            "url": "assets/oral-734357e7-2e08b00e29091da86b5c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "23b6e760de105a6301b959359479b081bdec5ae5df1ee9b2cf586c339943db0e",
+            "bytes": 4959
+          }
+        }
+      }
+    ]
+  }
+}

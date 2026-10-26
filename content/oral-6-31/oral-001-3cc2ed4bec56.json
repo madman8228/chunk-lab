@@ -1,0 +1,4063 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Let's go window-shopping.",
+      "translation": "我们去(商店)逛逛吧!",
+      "chunks": [
+        "Let's go",
+        "window-shopping."
+      ],
+      "hints": [
+        "我们去",
+        "逛商店（只看不买）"
+      ],
+      "cid": "325f5349",
+      "sentenceAudio": {
+        "text": "Let's go window-shopping.",
+        "audio": {
+          "url": "assets/oral-325f5349-d9f0654197bc40162aa7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f647d2ca349b538a397a870e4430f35fbf54629eea8331dbe83250ebc3d0d711",
+          "bytes": 5459
+        }
+      }
+    },
+    {
+      "sentence": "What a crowd!",
+      "translation": "人多得要命!",
+      "chunks": [
+        "What a",
+        "crowd!"
+      ],
+      "hints": [
+        "多么",
+        "拥挤的人群"
+      ],
+      "cid": "ca57ac2c",
+      "sentenceAudio": {
+        "text": "What a crowd!",
+        "audio": {
+          "url": "assets/oral-ca57ac2c-987c8e77b35724ef0da9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f2a58a927db4921609ae45e48b8eee7a48b081ddb0b3f62f1e115a9944a3c3ce",
+          "bytes": 3806
+        }
+      }
+    },
+    {
+      "sentence": "When does the store open?",
+      "translation": "商店几点开门?",
+      "chunks": [
+        "When does the store",
+        "open?"
+      ],
+      "hints": [
+        "商店什么时候",
+        "开门"
+      ],
+      "cid": "fb1eb279",
+      "sentenceAudio": {
+        "text": "When does the store open?",
+        "audio": {
+          "url": "assets/oral-fb1eb279-f151f6169f069dc3079a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "92a860e295337b77a715118ee5b37ce20f7cf98f9ec8ccfc529695fea01ba75b",
+          "bytes": 5329
+        }
+      }
+    },
+    {
+      "sentence": "When does the store close?",
+      "translation": "商店几点关门?",
+      "chunks": [
+        "When does the store",
+        "close?"
+      ],
+      "hints": [
+        "商店什么时候",
+        "关门"
+      ],
+      "cid": "a3fa3dcd",
+      "sentenceAudio": {
+        "text": "When does the store close?",
+        "audio": {
+          "url": "assets/oral-a3fa3dcd-d2a576a0ece9abc5ee6d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "82afcbe26e4f6b451d76e731384b296544eceae63361ef719e1f324ea09eeb40",
+          "bytes": 5126
+        }
+      }
+    },
+    {
+      "sentence": "We won't open until eleven.",
+      "translation": "我们要到十一点才开门。",
+      "chunks": [
+        "We won't open until eleven."
+      ],
+      "hints": [
+        "我们要到十一点才开门"
+      ],
+      "cid": "e1353c2b",
+      "sentenceAudio": {
+        "text": "We won't open until eleven.",
+        "audio": {
+          "url": "assets/oral-e1353c2b-ffb34c87e936227c1983.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f0c440e1ef603982ba08b0db14cc9b187dc71edcd538dbc8a70e59dd435f0e58",
+          "bytes": 6254
+        }
+      }
+    },
+    {
+      "sentence": "Where's the shoe department?",
+      "translation": "卖鞋的专柜在哪儿呀?",
+      "chunks": [
+        "Where's",
+        "the shoe department?"
+      ],
+      "hints": [
+        "在哪里",
+        "卖鞋的专柜"
+      ],
+      "cid": "0f81cf67",
+      "sentenceAudio": {
+        "text": "Where's the shoe department?",
+        "audio": {
+          "url": "assets/oral-0f81cf67-d09d453d395e20fb99e3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "70c1aa519244830dc95111594b3b1c657aa1d90320dc282f076e4f195cfbd045",
+          "bytes": 5369
+        }
+      }
+    },
+    {
+      "sentence": "It's on the third floor.",
+      "translation": "在3楼。",
+      "chunks": [
+        "It's on",
+        "the third floor."
+      ],
+      "hints": [
+        "它在",
+        "三楼"
+      ],
+      "cid": "46fdcbef",
+      "sentenceAudio": {
+        "text": "It's on the third floor.",
+        "audio": {
+          "url": "assets/oral-46fdcbef-ae1bfdc52107c35877ca.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a0d2aac9a9a0355aabf89fa668d2a513373ff2e61f1821134efca03a7514b959",
+          "bytes": 4947
+        }
+      }
+    },
+    {
+      "sentence": "Going down?",
+      "translation": "您要下楼吗？",
+      "chunks": [
+        "Going down?"
+      ],
+      "hints": [
+        "您要下楼吗？/往下吗？"
+      ],
+      "cid": "39354314",
+      "sentenceAudio": {
+        "text": "Going down?",
+        "audio": {
+          "url": "assets/oral-39354314-03bfc74d3181d6307097.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2a23a60e1941023d0d79d957df748799c0439c8367f5aa840bb9cc0264c3f7ea",
+          "bytes": 4198
+        }
+      }
+    },
+    {
+      "sentence": "What are you looking for?",
+      "translation": "你在找什么呢？",
+      "chunks": [
+        "What are you looking for?"
+      ],
+      "hints": [
+        "你在找什么呢？"
+      ],
+      "cid": "70a48e15",
+      "sentenceAudio": {
+        "text": "What are you looking for?",
+        "audio": {
+          "url": "assets/oral-70a48e15-f673950f0fffa1e8cc78.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "64533bafe6b7d508a7ebf461a9cf587509325c3014ff7797232da570cc155a4c",
+          "bytes": 4649
+        }
+      }
+    },
+    {
+      "sentence": "Eighth, please.",
+      "translation": "请按8楼。",
+      "chunks": [
+        "Eighth,",
+        "please."
+      ],
+      "hints": [
+        "八楼",
+        "请"
+      ],
+      "cid": "3327ee3c",
+      "sentenceAudio": {
+        "text": "Eighth, please.",
+        "audio": {
+          "url": "assets/oral-3327ee3c-ce062e868620b57bbef3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cf43babd89128c29936e4d3bcbb54caf51973953fc03791bdfd9ae6270cd285d",
+          "bytes": 4026
+        }
+      }
+    },
+    {
+      "sentence": "May I help you?",
+      "translation": "需要我帮您吗？",
+      "chunks": [
+        "May I",
+        "help you?"
+      ],
+      "hints": [
+        "我可以",
+        "帮您吗"
+      ],
+      "cid": "8cfda84c",
+      "sentenceAudio": {
+        "text": "May I help you?",
+        "audio": {
+          "url": "assets/oral-8cfda84c-820e6e93a91c5042d3a9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b0cb5a8b976cd4a3f3ad9ac19f079b7e513b19ae7bac4bd200d29f86413b064e",
+          "bytes": 4191
+        }
+      }
+    },
+    {
+      "sentence": "I'd like a suit.",
+      "translation": "我想买件套装。",
+      "chunks": [
+        "I'd like",
+        "a suit."
+      ],
+      "hints": [
+        "我想要",
+        "一套西装"
+      ],
+      "cid": "8a510c6c",
+      "sentenceAudio": {
+        "text": "I'd like a suit.",
+        "audio": {
+          "url": "assets/oral-8a510c6c-b0d575a3b7526fe589d7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e3716a54ec326491b1d88b09c2d5bf456d0bc673349456d6511f74d4cc13a019",
+          "bytes": 4236
+        }
+      }
+    },
+    {
+      "sentence": "I'm looking for a ... bag.",
+      "translation": "我在找一种……包。",
+      "chunks": [
+        "I'm looking for",
+        "a ... bag."
+      ],
+      "hints": [
+        "我在找",
+        "一种……包"
+      ],
+      "cid": "3275a6d5",
+      "sentenceAudio": {
+        "text": "I'm looking for a ... bag.",
+        "audio": {
+          "url": "assets/oral-3275a6d5-a87279df1ef12fd5325b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0bab95be8336fb0781054a6d0ebfcc52d9909aa31ac0fd169f6860a7f0977e24",
+          "bytes": 6311
+        }
+      }
+    },
+    {
+      "sentence": "I'm just looking.",
+      "translation": "我只看看。",
+      "chunks": [
+        "I'm just",
+        "looking."
+      ],
+      "hints": [
+        "我只是",
+        "看看"
+      ],
+      "cid": "216638cf",
+      "sentenceAudio": {
+        "text": "I'm just looking.",
+        "audio": {
+          "url": "assets/oral-216638cf-ff5f470e6982e323940d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "24bb879f3e2120fe4e794fb001f0092f2d605a79ccfb7426a4724c1afd8ebcf9",
+          "bytes": 4383
+        }
+      }
+    },
+    {
+      "sentence": "If you need any help, let me know.",
+      "translation": "您有什么需要帮助的尽管说。",
+      "chunks": [
+        "If you need any help,",
+        "let me know."
+      ],
+      "hints": [
+        "如果您需要任何帮助",
+        "告诉我"
+      ],
+      "cid": "85255c6e",
+      "sentenceAudio": {
+        "text": "If you need any help, let me know.",
+        "audio": {
+          "url": "assets/oral-85255c6e-f2f25ca0abf6595c728c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "42adb446c813022c3bf709922997aba30deb3ed24ed33b86d0dc2ed61c06ef1b",
+          "bytes": 6331
+        }
+      }
+    },
+    {
+      "sentence": "These shoes are great!",
+      "translation": "这双鞋真漂亮!",
+      "chunks": [
+        "These shoes",
+        "are great!"
+      ],
+      "hints": [
+        "这双鞋",
+        "太棒了"
+      ],
+      "cid": "d6ab9d0a",
+      "sentenceAudio": {
+        "text": "These shoes are great!",
+        "audio": {
+          "url": "assets/oral-d6ab9d0a-1b75db4493906a329f76.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d6bc1a13d46dc996dfed66c314602dfbbd2a7b6330a5cf2ebef16c780a36eb54",
+          "bytes": 4660
+        }
+      }
+    },
+    {
+      "sentence": "Buy this.",
+      "translation": "买这个吧。",
+      "chunks": [
+        "Buy",
+        "this."
+      ],
+      "hints": [
+        "买",
+        "这个"
+      ],
+      "cid": "396942b1",
+      "sentenceAudio": {
+        "text": "Buy this.",
+        "audio": {
+          "url": "assets/oral-396942b1-3df94521639b9f923879.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1041f85349a6f6a315a36616853724c3913966f5b9620af664dd623f84ce7873",
+          "bytes": 3450
+        }
+      }
+    },
+    {
+      "sentence": "How much is this?",
+      "translation": "这个多少钱?",
+      "chunks": [
+        "How much is this?"
+      ],
+      "hints": [
+        "这个多少钱？"
+      ],
+      "cid": "6dde8d93",
+      "sentenceAudio": {
+        "text": "How much is this?",
+        "audio": {
+          "url": "assets/oral-6dde8d93-f0f20a98f1cf56135c61.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e6ae3bc937e7721840359d3995c951b9c6e51c29c0b5d29595a9d29a85a29be2",
+          "bytes": 4690
+        }
+      }
+    },
+    {
+      "sentence": "That's expensive!",
+      "translation": "太贵了!",
+      "chunks": [
+        "That's",
+        "expensive!"
+      ],
+      "hints": [
+        "真是",
+        "太贵了"
+      ],
+      "cid": "de79bb5a",
+      "sentenceAudio": {
+        "text": "That's expensive!",
+        "audio": {
+          "url": "assets/oral-de79bb5a-521f357434fd26e8da96.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2fa49cd73e97a2d46a8a645568b76f44326eb42c8cca950b20ef451d7e79203f",
+          "bytes": 4531
+        }
+      }
+    },
+    {
+      "sentence": "That's cheap!",
+      "translation": "真便宜!",
+      "chunks": [
+        "That's",
+        "cheap!"
+      ],
+      "hints": [
+        "真是",
+        "便宜"
+      ],
+      "cid": "3e8aeb7c",
+      "sentenceAudio": {
+        "text": "That's cheap!",
+        "audio": {
+          "url": "assets/oral-3e8aeb7c-318a58825186aec11306.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1b7493841c2abafbe404f97f20a24fff5e427d9fb4acae9f41e3feb32bc21345",
+          "bytes": 3704
+        }
+      }
+    },
+    {
+      "sentence": "Do you have this shirt in a small?",
+      "translation": "这种衬衫有小号的吗?",
+      "chunks": [
+        "Do you have this shirt",
+        "in a small?"
+      ],
+      "hints": [
+        "这种衬衫有吗",
+        "小号的"
+      ],
+      "cid": "9e5b0b35",
+      "sentenceAudio": {
+        "text": "Do you have this shirt in a small?",
+        "audio": {
+          "url": "assets/oral-9e5b0b35-0ceeda697acb9afd134f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "874dd856c3ec1223ddbcd4033e0b8389174d596cfe993a92b7fd818803a01ad5",
+          "bytes": 5855
+        }
+      }
+    },
+    {
+      "sentence": "Do you have this sweater in red?",
+      "translation": "这种毛衣有红色的吗?",
+      "chunks": [
+        "Do you have this sweater",
+        "in red?"
+      ],
+      "hints": [
+        "这种毛衣有吗",
+        "红色的"
+      ],
+      "cid": "1431901f",
+      "sentenceAudio": {
+        "text": "Do you have this sweater in red?",
+        "audio": {
+          "url": "assets/oral-1431901f-16929d4f8ef6eb12d67f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5b6956a12d52a88be2495b1fb9e61f2f7effd8a0f19a5e1285a4d0eae6e3b2dd",
+          "bytes": 5741
+        }
+      }
+    },
+    {
+      "sentence": "May I try it on?",
+      "translation": "我可以试试吗?",
+      "chunks": [
+        "May I",
+        "try it on?"
+      ],
+      "hints": [
+        "我可以",
+        "试穿吗"
+      ],
+      "cid": "a2eaa2d3",
+      "sentenceAudio": {
+        "text": "May I try it on?",
+        "audio": {
+          "url": "assets/oral-a2eaa2d3-489075060d0e85d2e80d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bdb478d3fe8805b7b8cc118d3f245439dcf7d7e0b38124dc4168582410b79dee",
+          "bytes": 4530
+        }
+      }
+    },
+    {
+      "sentence": "Where is the fitting room?",
+      "translation": "试衣间在哪儿?",
+      "chunks": [
+        "Where is",
+        "the fitting room?"
+      ],
+      "hints": [
+        "在哪里",
+        "试衣间"
+      ],
+      "cid": "f07c84e0",
+      "sentenceAudio": {
+        "text": "Where is the fitting room?",
+        "audio": {
+          "url": "assets/oral-f07c84e0-cb985a247e1f66712780.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "99585981fc8af8370ebf4663631380e365c303065995bebffa9022eca9cc6be1",
+          "bytes": 5020
+        }
+      }
+    },
+    {
+      "sentence": "It's too small for me.",
+      "translation": "我穿着太小。",
+      "chunks": [
+        "It's too small",
+        "for me."
+      ],
+      "hints": [
+        "太小了",
+        "对我来说"
+      ],
+      "cid": "61d843b4",
+      "sentenceAudio": {
+        "text": "It's too small for me.",
+        "audio": {
+          "url": "assets/oral-61d843b4-98ed5d411224f5c11b8a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5e478b95b3e7c3253dfc88ff6aa952f0872f3ef6c9e3c6a114ddf4ed2eb9a89c",
+          "bytes": 4838
+        }
+      }
+    },
+    {
+      "sentence": "This suit fits perfectly.",
+      "translation": "这套衣服正合适。",
+      "chunks": [
+        "This suit",
+        "fits perfectly."
+      ],
+      "hints": [
+        "这套衣服",
+        "非常合身"
+      ],
+      "cid": "49dcc18e",
+      "sentenceAudio": {
+        "text": "This suit fits perfectly.",
+        "audio": {
+          "url": "assets/oral-49dcc18e-50ab9334dba1a0d481c8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06bc83a32238d63e780fbc0869ac26d2765659a919984c5be8b8a28ae61b3b37",
+          "bytes": 5617
+        }
+      }
+    },
+    {
+      "sentence": "This is nice.",
+      "translation": "这个真不错。",
+      "chunks": [
+        "This",
+        "is nice."
+      ],
+      "hints": [
+        "这个",
+        "很不错"
+      ],
+      "cid": "1006fcf6",
+      "sentenceAudio": {
+        "text": "This is nice.",
+        "audio": {
+          "url": "assets/oral-1006fcf6-6b4970389ed1a6d9dafc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7b3c9b8a0a139b49d379ce87462ef09f9b42600b00cca636c979bc8c241b933c",
+          "bytes": 4139
+        }
+      }
+    },
+    {
+      "sentence": "This is better.",
+      "translation": "这个比较好。",
+      "chunks": [
+        "This",
+        "is better."
+      ],
+      "hints": [
+        "这个",
+        "更好"
+      ],
+      "cid": "9614b253",
+      "sentenceAudio": {
+        "text": "This is better.",
+        "audio": {
+          "url": "assets/oral-9614b253-2a23ee8b71ed68b50630.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1d19b42c8c3983e0e794c253357c75a99d780564628b0fff9b01440c6c58ade4",
+          "bytes": 4014
+        }
+      }
+    },
+    {
+      "sentence": "This skirt matches this blouse, doesn't it?",
+      "translation": "这条裙子和这件上衣挺配的，对吧？",
+      "chunks": [
+        "This skirt matches",
+        "this blouse,",
+        "doesn't it?"
+      ],
+      "hints": [
+        "这条裙子配",
+        "这件上衣",
+        "对吧？"
+      ],
+      "cid": "da1e8b77",
+      "sentenceAudio": {
+        "text": "This skirt matches this blouse, doesn't it?",
+        "audio": {
+          "url": "assets/oral-da1e8b77-0d4a80ab92f6d058ad76.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "605d1d2e9870290e5b4dff7ee8bcaecb2c9ffd3ed275cf0a090db53437cfe281",
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "sentence": "Which is better?",
+      "translation": "你觉得哪个好?",
+      "chunks": [
+        "Which",
+        "is better?"
+      ],
+      "hints": [
+        "哪一个",
+        "更好"
+      ],
+      "cid": "35ae059d",
+      "sentenceAudio": {
+        "text": "Which is better?",
+        "audio": {
+          "url": "assets/oral-35ae059d-1508c82430dce844e6cf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2bf1bc7f98f60b7419e72ccb13330db6480b82077809638e5adbbc5b635e5cbd",
+          "bytes": 4262
+        }
+      }
+    },
+    {
+      "sentence": "I want both of them.",
+      "translation": "两个我都想要。",
+      "chunks": [
+        "I want",
+        "both of them."
+      ],
+      "hints": [
+        "我想要",
+        "两个都要"
+      ],
+      "cid": "4bc249da",
+      "sentenceAudio": {
+        "text": "I want both of them.",
+        "audio": {
+          "url": "assets/oral-4bc249da-0dfcd6731e10ccd9e0bb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "75ffa6bd37efce11a2fe373a369ea202401d5d16be1544fb637ce70ebd22a55c",
+          "bytes": 4881
+        }
+      }
+    },
+    {
+      "sentence": "It's too flashy.",
+      "translation": "太艳了!",
+      "chunks": [
+        "It's",
+        "too flashy."
+      ],
+      "hints": [
+        "它",
+        "太艳丽了"
+      ],
+      "cid": "fe5f2649",
+      "sentenceAudio": {
+        "text": "It's too flashy.",
+        "audio": {
+          "url": "assets/oral-fe5f2649-30a8961447d083a7f03a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "264f023e46d82e1351ba7797838804896488f26d8ffb95225644bc6305f12b43",
+          "bytes": 4343
+        }
+      }
+    },
+    {
+      "sentence": "It's too plain.",
+      "translation": "太素了。",
+      "chunks": [
+        "It's",
+        "too plain."
+      ],
+      "hints": [
+        "它",
+        "太素了"
+      ],
+      "cid": "7f61a89a",
+      "sentenceAudio": {
+        "text": "It's too plain.",
+        "audio": {
+          "url": "assets/oral-7f61a89a-6b71258049a0787b2842.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "56918cf0a1ac3f17724f91fe49ff94e4fbef86b561378765b3b8a2de17e3a61e",
+          "bytes": 4181
+        }
+      }
+    },
+    {
+      "sentence": "Would you hem it?",
+      "translation": "您能给锁边吗?",
+      "chunks": [
+        "Would you",
+        "hem it?"
+      ],
+      "hints": [
+        "您能",
+        "给它锁边吗"
+      ],
+      "cid": "8d32b9c1",
+      "sentenceAudio": {
+        "text": "Would you hem it?",
+        "audio": {
+          "url": "assets/oral-8d32b9c1-2d5183633d79249ed998.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f8b735755530958e322bc371756015a2d368401bd008460088149caed4c5ac4b",
+          "bytes": 4120
+        }
+      }
+    },
+    {
+      "sentence": "How much is it?",
+      "translation": "多少钱?",
+      "chunks": [
+        "How much is it?"
+      ],
+      "hints": [
+        "多少钱？"
+      ],
+      "cid": "3d06cfac",
+      "sentenceAudio": {
+        "text": "How much is it?",
+        "audio": {
+          "url": "assets/oral-3d06cfac-2bf67f0e1c8cb6616723.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "754dfa7de5babf6d048ad1a4d1183c2b8562cb709e9d9368e037855af678a83e",
+          "bytes": 4368
+        }
+      }
+    },
+    {
+      "sentence": "I'll take this one.",
+      "translation": "我要这个。",
+      "chunks": [
+        "I'll take",
+        "this one."
+      ],
+      "hints": [
+        "我要买",
+        "这个"
+      ],
+      "cid": "eeb35712",
+      "sentenceAudio": {
+        "text": "I'll take this one.",
+        "audio": {
+          "url": "assets/oral-eeb35712-55553bb78516afa7d5cd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "caec53d9195f195d8349e50c38f2762b9416da05caf7f2ba57b2c3d0a592581c",
+          "bytes": 4567
+        }
+      }
+    },
+    {
+      "sentence": "Will that be cash or charge?",
+      "translation": "您用现金还是刷卡？",
+      "chunks": [
+        "Will that be cash or charge?"
+      ],
+      "hints": [
+        "您用现金还是刷卡？"
+      ],
+      "cid": "9d91645e",
+      "sentenceAudio": {
+        "text": "Will that be cash or charge?",
+        "audio": {
+          "url": "assets/oral-9d91645e-f0bc461140fb4ccb1051.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b499a151186d4efdd4a037211ffa57bb094ff06401f7bb8a362f9063b63a1b76",
+          "bytes": 5994
+        }
+      }
+    },
+    {
+      "sentence": "Charge, please.",
+      "translation": "刷卡。",
+      "chunks": [
+        "Charge,",
+        "please."
+      ],
+      "hints": [
+        "刷卡",
+        "请"
+      ],
+      "cid": "9e1acd57",
+      "sentenceAudio": {
+        "text": "Charge, please.",
+        "audio": {
+          "url": "assets/oral-9e1acd57-62635193bdc1d136e7f3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "40856b11ff8bdc8ee966aea439a3fac2973acc406e656cff2b89d498e9ddbc13",
+          "bytes": 4441
+        }
+      }
+    },
+    {
+      "sentence": "Can I use VISA?",
+      "translation": "我可以用VISA卡吗?",
+      "chunks": [
+        "Can I",
+        "use VISA?"
+      ],
+      "hints": [
+        "我可以",
+        "用VISA吗"
+      ],
+      "cid": "7c61c5eb",
+      "sentenceAudio": {
+        "text": "Can I use VISA?",
+        "audio": {
+          "url": "assets/oral-7c61c5eb-3bfe19c65aca1a8045b2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5473bdc70b94f62e8400f2ace12cfcf1356f011e082bda414497064274c93bf5",
+          "bytes": 4722
+        }
+      }
+    },
+    {
+      "sentence": "Can I pay by installment payment?",
+      "translation": "我可以分期付款吗?",
+      "chunks": [
+        "Can I pay",
+        "by installment payment?"
+      ],
+      "hints": [
+        "我可以付款",
+        "用分期付款"
+      ],
+      "cid": "372408bd",
+      "sentenceAudio": {
+        "text": "Can I pay by installment payment?",
+        "audio": {
+          "url": "assets/oral-372408bd-24ddb3c1b541ed9e4aba.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c319d01ea8a0770b452106a96b50f01634649af746b93240ae4cce33d03286ed",
+          "bytes": 6752
+        }
+      }
+    },
+    {
+      "sentence": "Can I pay in Japanese yen?",
+      "translation": "我可以付日元吗?",
+      "chunks": [
+        "Can I pay",
+        "in Japanese yen?"
+      ],
+      "hints": [
+        "我可以付款",
+        "用日元"
+      ],
+      "cid": "bfd8ac97",
+      "sentenceAudio": {
+        "text": "Can I pay in Japanese yen?",
+        "audio": {
+          "url": "assets/oral-bfd8ac97-9c9efce0c22a81b6ba77.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9a18e9d3cff3f41e47544c356ca694f54b37977f3cfdbd29176054b01f01247d",
+          "bytes": 6135
+        }
+      }
+    },
+    {
+      "sentence": "Please wrap it.",
+      "translation": "请给包一下。",
+      "chunks": [
+        "Please",
+        "wrap it."
+      ],
+      "hints": [
+        "请",
+        "把它包起来"
+      ],
+      "cid": "039d2fa0",
+      "sentenceAudio": {
+        "text": "Please wrap it.",
+        "audio": {
+          "url": "assets/oral-039d2fa0-3797b515bd45c16e5c29.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5e96c37e622d8fb43af1111a236e9de06f3238bdf65fd678640114b47b6bad77",
+          "bytes": 4006
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to return this.",
+      "translation": "我想退货。",
+      "chunks": [
+        "I'd like to",
+        "return this."
+      ],
+      "hints": [
+        "我想要",
+        "退这个"
+      ],
+      "cid": "cbfc5d95",
+      "sentenceAudio": {
+        "text": "I'd like to return this.",
+        "audio": {
+          "url": "assets/oral-cbfc5d95-60b0deeff9e52cf5fc2a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f8812bcec4795003927d4643b50e2cd3905a9aa8873d8b81a77a9fb98abc4b64",
+          "bytes": 4858
+        }
+      }
+    },
+    {
+      "sentence": "Could you exchange this, please?",
+      "translation": "您能给我换一下这个吗?",
+      "chunks": [
+        "Could you exchange this,",
+        "please?"
+      ],
+      "hints": [
+        "您能换这个吗",
+        "请"
+      ],
+      "cid": "09188855",
+      "sentenceAudio": {
+        "text": "Could you exchange this, please?",
+        "audio": {
+          "url": "assets/oral-09188855-4b3bb479a8534c012101.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3ed237d8412d02899e1123bc14ce29799c30291a5fe191acf38d048f2035a789",
+          "bytes": 5836
+        }
+      }
+    },
+    {
+      "sentence": "It's got a stain.",
+      "translation": "上面有一块污渍。",
+      "chunks": [
+        "It's got",
+        "a stain."
+      ],
+      "hints": [
+        "它上面有",
+        "一块污渍"
+      ],
+      "cid": "95ed45b8",
+      "sentenceAudio": {
+        "text": "It's got a stain.",
+        "audio": {
+          "url": "assets/oral-95ed45b8-84b60df7cbddf23f4696.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b8fad93db43154fd39422e0a829614ef9ba645f3b3423afd01e5037f3b558096",
+          "bytes": 4332
+        }
+      }
+    },
+    {
+      "sentence": "Can I have a refund?",
+      "translation": "可以退款吗?",
+      "chunks": [
+        "Can I have",
+        "a refund?"
+      ],
+      "hints": [
+        "我可以拿到",
+        "退款吗"
+      ],
+      "cid": "2b84cb5c",
+      "sentenceAudio": {
+        "text": "Can I have a refund?",
+        "audio": {
+          "url": "assets/oral-2b84cb5c-03b5063101c4c98ca9c9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1e9a4bb49ba5ea556f2f16929bad7d98090c820282845652ab0a6ae93af83038",
+          "bytes": 4910
+        }
+      }
+    },
+    {
+      "sentence": "Would you give me a discount?",
+      "translation": "能再便宜一些吗?",
+      "chunks": [
+        "Would you give me",
+        "a discount?"
+      ],
+      "hints": [
+        "您能给我",
+        "折扣吗"
+      ],
+      "cid": "e54ca6fb",
+      "sentenceAudio": {
+        "text": "Would you give me a discount?",
+        "audio": {
+          "url": "assets/oral-e54ca6fb-ba2c99f4ac60333dd68d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "304e32e122c84345abc9f48db6399370964b61dee601da52c1a1e1193d073782",
+          "bytes": 5162
+        }
+      }
+    },
+    {
+      "sentence": "Take it or leave it.",
+      "translation": "要就要，不要拉倒。",
+      "chunks": [
+        "Take it or leave it."
+      ],
+      "hints": [
+        "要就接受，不接受就算了。"
+      ],
+      "cid": "9661347e",
+      "sentenceAudio": {
+        "text": "Take it or leave it.",
+        "audio": {
+          "url": "assets/oral-9661347e-c3dee918d84160b94dd1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7dc28381acc172bdce8063ccf211b22b0f25835523b92a68b5a870d8b8f3d264",
+          "bytes": 4530
+        }
+      }
+    },
+    {
+      "sentence": "Can I try this on?",
+      "cid": "8e88da8b",
+      "translation": "我可以试穿这件吗？",
+      "chunks": [
+        "Can I",
+        "try this on?"
+      ],
+      "hints": [
+        "我可以吗",
+        "试穿这件"
+      ],
+      "grammar": [
+        {
+          "role": "情态主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/"
+          ],
+          "pos": "情态动词+主语",
+          "meaning": "我可以"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/traɪ/",
+            "/ðɪs/",
+            "/ɒn/"
+          ],
+          "pos": "动词短语",
+          "meaning": "试穿这件"
+        }
+      ],
+      "explanations": [
+        "**Can I...?** 请求许可。Could/May 更礼貌，Can 最常用。注意：回答 \"You can\" 或 \"Sure\" 表示允许。",
+        "**try sth on** 是固定短语（= 试穿）。关键规则：**代词必须放在中间**！\n• \"try **on** this\" → ❌ 代词不能放后面\n• \"try **it/them** on\" → ✅ 正确（it=单件，them=多件）"
+      ],
+      "distractors": [
+        [
+          "Do I can",
+          "Can me",
+          "Can I to"
+        ],
+        [
+          "try this in?",
+          "tries this on?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can I try this on?",
+        "audio": {
+          "url": "assets/oral-8e88da8b-ba9c821e5268aad3ded2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "015b55b8574ec355adbd22677d3c153e1445abd9fbfbeeec452307ead0868df4",
+          "bytes": 4652
+        }
+      }
+    },
+    {
+      "sentence": "Do you have this in a smaller size?",
+      "cid": "11eab175",
+      "translation": "这个有小一号的吗？",
+      "chunks": [
+        "Do you have this",
+        "in a smaller size?"
+      ],
+      "hints": [
+        "你们有这个吗",
+        "小一号尺码的"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/",
+            "/ðɪs/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你们有这个吗"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ə/",
+            "/ˈsmɔːlər/",
+            "/saɪz/"
+          ],
+          "pos": "介词短语",
+          "meaning": "小一号尺码"
+        }
+      ],
+      "explanations": [
+        "**have** 是实义动词，疑问句需要助动词 **Do**。常见错误：\n• \"**Have** you this...\" → ❌ have 作实义动词不能直接提问\n• \"Do you **got** this...\" → ❌ got 是过去分词，不能用在这里",
+        "**in + size/color** 是询问款式规格的固定搭配。常见错误：\n• \"**with** a smaller size\" → with 不对\n• \"**of** a smaller size\" → of 也可以但 in 更常用"
+      ],
+      "distractors": [
+        [
+          "Are you have this",
+          "Do you has this",
+          "Do you have these"
+        ],
+        [
+          "in smaller size?",
+          "in a small size?",
+          "at a smaller size?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you have this in a smaller size?",
+        "audio": {
+          "url": "assets/oral-11eab175-ac90ae0e61a43dde1fb3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6f7ae85ebbce7a40676e8d79e82d1f18e934010797a9de5fcdc40f7088b69fc4",
+          "bytes": 6697
+        }
+      }
+    },
+    {
+      "sentence": "How much does this cost?",
+      "cid": "a502b123",
+      "translation": "这个多少钱？",
+      "chunks": [
+        "How much",
+        "does this cost?"
+      ],
+      "hints": [
+        "多少",
+        "这个要花"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词组",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/mʌtʃ/"
+          ],
+          "pos": "疑问词+副词",
+          "meaning": "多少钱"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dʌz/",
+            "/ðɪs/",
+            "/kɒst/"
+          ],
+          "pos": "一般现在时疑问",
+          "meaning": "这个要花（多少钱）"
+        }
+      ],
+      "explanations": [
+        "**How much** 问价格（不可数）。问可数数量用 **How many**。cost 是抽象概念，所以用 much。",
+        "**does + 主语 + 动词原形**。常见错误：\n• \"How much **is** this cost?\" → ❌ cost 是动词，不能和 be 动词连用\n• \"How much **this** costs?\" → 这是陈述语序，不是疑问句\n• 注意：**cost** 的过去式还是 cost（不规则变化）"
+      ],
+      "distractors": [
+        [
+          "How many",
+          "How money",
+          "How prices"
+        ],
+        [
+          "do this cost?",
+          "does these cost?",
+          "costs this?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How much does this cost?",
+        "audio": {
+          "url": "assets/oral-a502b123-b79d85c863996a7854bb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "532f718a2762551d1c2fec8e76aa424077eb5bcb8c690e6cf61279ef45363085",
+          "bytes": 5194
+        }
+      }
+    },
+    {
+      "sentence": "I'm just looking around, thanks.",
+      "cid": "ea8bea79",
+      "translation": "我只是随便看看，谢谢。",
+      "chunks": [
+        "I'm just",
+        "looking around,",
+        "thanks."
+      ],
+      "hints": [
+        "我只是",
+        "随便看看",
+        "谢谢"
+      ],
+      "grammar": [
+        {
+          "role": "主语+状语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/dʒʌst/"
+          ],
+          "pos": "主系结构",
+          "meaning": "我只是"
+        },
+        {
+          "role": "现在分词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈlʊkɪŋ/",
+            "/əˈraʊnd/"
+          ],
+          "pos": "进行时态",
+          "meaning": "随便看看"
+        },
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/θæŋks/"
+          ],
+          "pos": "感叹词",
+          "meaning": "谢谢"
+        }
+      ],
+      "explanations": [
+        "**just** 在这里表示「只是、仅仅」，语气委婉（= 我不买，就是看看）。常见错误：\n• \"I **only** looking\" → only 是形容词/副词，不能代替 just 的语法功能\n• \"I **am** just **look**\" → 缺少 ing（表示正在进行的动作）",
+        "**look around** = 四处看看。around 表示方向上的「到处」。常见错误：\n• 只说 \"**looking**\" → 也可以，但少了「四处」这层随意感\n• \"look **round**\" → 英式英语也可以，美式用 around",
+        "**thanks** 比 thank you 更口语化，在购物场景中非常自然，表示委婉拒绝店员的推销。"
+      ],
+      "distractors": [
+        [
+          "I just",
+          "I'm justly"
+        ],
+        [
+          "look around,",
+          "looks around,",
+          "looking around the store,"
+        ],
+        [
+          "thank.",
+          "thankss."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm just looking around, thanks.",
+        "audio": {
+          "url": "assets/oral-ea8bea79-d5e16ae9eba5a75b0fc0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "956f8766f60e6ec1bc1d6b1ec3cd981d6823824c52d146c9640204aed945786f",
+          "bytes": 6023
+        }
+      }
+    },
+    {
+      "sentence": "Is this item on sale?",
+      "cid": "4a8ecc17",
+      "translation": "这件商品在打折吗？",
+      "chunks": [
+        "Is this item",
+        "on sale?"
+      ],
+      "hints": [
+        "这件商品",
+        "在打折吗"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ðɪs/",
+            "/ˈaɪtəm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "这件商品"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɒn/",
+            "/seɪl/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在打折"
+        }
+      ],
+      "explanations": [
+        "**this item** 中 item = 商品、单品。也可以省略直接说 \"Is **this** on sale?\"",
+        "**on sale** = 打折中 / 特价。注意和 **for sale** 的区别：\n• **on sale** = 降价出售（原价 100 → 现价 70）\n• **for sale** = 待售（不管打没打折，就是「在卖」）\n常见错误：用 \"**in** sale\" → ❌ 不对"
+      ],
+      "distractors": [
+        [
+          "Are this item",
+          "Is this items",
+          "This item is"
+        ],
+        [
+          "in sale?",
+          "on the sale?",
+          "for sale?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Is this item on sale?",
+        "audio": {
+          "url": "assets/oral-4a8ecc17-3e57f5fb6bea213d8225.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d1fc663ba2723a852d97183936eb79086e2a171227a1d91a77eb654175a75b3f",
+          "bytes": 5393
+        }
+      }
+    },
+    {
+      "sentence": "Could I pay by credit card?",
+      "cid": "5bd1ca12",
+      "translation": "我可以用信用卡付款吗？",
+      "chunks": [
+        "Could I pay",
+        "by credit card?"
+      ],
+      "hints": [
+        "我可以付款吗",
+        "用信用卡"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/peɪ/"
+          ],
+          "pos": "情态动词+动词",
+          "meaning": "我可以付款"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/baɪ/",
+            "/ˈkredɪt/",
+            "/kɑːrd/"
+          ],
+          "pos": "介词短语",
+          "meaning": "用信用卡"
+        }
+      ],
+      "explanations": [
+        "**Could I...?** 比 Can I 更礼貌委婉。在购物、服务场景中很常用。",
+        "**by + 支付方式** 是固定搭配。常见错误：\n• \"**with** credit card\" → with 不对，要用 **by**\n• \"**use** credit card\" → 语法没错但不够地道\n• **credit card** 前面通常不加 a/the（作为固定说法）"
+      ],
+      "distractors": [
+        [
+          "Could me pay",
+          "Could I pays",
+          "Could I to pay"
+        ],
+        [
+          "with credit card?",
+          "by a credit card?",
+          "by credit cards?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Could I pay by credit card?",
+        "audio": {
+          "url": "assets/oral-5bd1ca12-e6f7fb46784bcccbcee4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5ee22db1b31ec2b4f13819e941f3c4034f338b9ef33459987efd4a129c19f204",
+          "bytes": 6006
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to return this item, please.",
+      "cid": "49fecae0",
+      "translation": "我想退掉这件商品。",
+      "chunks": [
+        "I'd like to",
+        "return this item,",
+        "please."
+      ],
+      "hints": [
+        "我想要",
+        "退这件商品",
+        "麻烦了"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/tuː/"
+          ],
+          "pos": "would like 结构",
+          "meaning": "我想要"
+        },
+        {
+          "role": "不定式谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪˈtɜːrn/",
+            "/ðɪs/",
+            "/ˈaɪtəm/"
+          ],
+          "pos": "不定式短语",
+          "meaning": "退这件商品"
+        },
+        {
+          "role": "语气词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "礼貌用语",
+          "meaning": "麻烦了"
+        }
+      ],
+      "explanations": [
+        "**'d like = would like**，比 want 更委婉客气。常见错误：\n• \"I **want** to return\" → 语法正确但不够礼貌\n• \"I **would like** return\" → ❌ like 后面要加 to",
+        "**return** = 退货。常见错误：\n• \"**give back** this item\" → 口语也可以，但 return 更正式\n• \"**exchange**\" = 换货（不是退货），不要混淆",
+        "**please** 放在句末表示礼貌请求，用逗号隔开。"
+      ],
+      "distractors": [
+        [
+          "I like to",
+          "I'd like",
+          "I'd liked to"
+        ],
+        [
+          "returning this item,",
+          "return this items,",
+          "return item,"
+        ],
+        [
+          "pleased.",
+          "pleases."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'd like to return this item, please.",
+        "audio": {
+          "url": "assets/oral-49fecae0-8810aab613c73f5ab51e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06612b597c16c0d52bd073347c866186451129a45dac52f1cb937efcbff4b301",
+          "bytes": 6969
+        }
+      }
+    },
+    {
+      "sentence": "Do you offer a refund without a receipt?",
+      "cid": "27e9bd68",
+      "translation": "没有小票可以退款吗？",
+      "chunks": [
+        "Do you offer a refund",
+        "without a receipt?"
+      ],
+      "hints": [
+        "你们提供退款吗",
+        "在没有小票的情况下"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/ˈɒfər/",
+            "/ə/",
+            "/rɪˈfʌnd/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你们提供退款吗"
+        },
+        {
+          "role": "条件状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪˈðaʊt/",
+            "/ə/",
+            "/rɪˈsiːt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "没有小票的情况下"
+        }
+      ],
+      "explanations": [
+        "**offer** = 提供（服务）。常见错误：\n• \"Do you **refund**...\" → refund 是动词「退款」，但这里强调的是「是否提供这项服务」\n• \"Can I **get** a refund\" → 也可以，但 offer 更侧重商家的服务政策",
+        "**without a receipt** 中 **a 不能省略**。receipt 是可数名词。常见错误：\n• \"without **receipt**\" → ❌ 可数名词单数不能裸用\n• \"**no** receipt\" → 语法上也可以（no + 名词），但 without a 更常用"
+      ],
+      "distractors": [
+        [
+          "Do you offer refund",
+          "Do you offers a refund",
+          "Are you offer a refund"
+        ],
+        [
+          "with a receipt?",
+          "without receipt?",
+          "without a receive?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you offer a refund without a receipt?",
+        "audio": {
+          "url": "assets/oral-27e9bd68-aa04a3834a9e8b2cabb2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a5442055e308b20f8d45e320fd713958d029ede02793a3c45171cb45c9b124e9",
+          "bytes": 7582
+        }
+      }
+    },
+    {
+      "sentence": "Where can I find the fitting room?",
+      "cid": "09ee0d9c",
+      "translation": "请问试衣间在哪里？",
+      "chunks": [
+        "Where can I find",
+        "the fitting room?"
+      ],
+      "hints": [
+        "我在哪能找到",
+        "试衣间"
+      ],
+      "grammar": [
+        {
+          "role": "疑问主句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wer/",
+            "/kæn/",
+            "/aɪ/",
+            "/faɪnd/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "我在哪能找到"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈfɪtɪŋ/",
+            "/ruːm/"
+          ],
+          "pos": "名词短语",
+          "meaning": "试衣间"
+        }
+      ],
+      "explanations": [
+        "**Where can I find...?** 问某物/某地在哪，比 Where is... 更礼貌自然。常见错误：\n• \"Where I can find\" → 情态动词 can 提前\n• \"Where is the **fit** room\" → 固定说法 fitting room",
+        "英式也说 the changing room。试衣间门上常见标识：Fitting Room / Dressing Room。"
+      ],
+      "distractors": [
+        [
+          "Where can me find",
+          "Where I can find",
+          "Where can I found"
+        ],
+        [
+          "the fit room?",
+          "the fitting rooms?",
+          "the fittings room?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Where can I find the fitting room?",
+        "audio": {
+          "url": "assets/oral-09ee0d9c-0e331d239a99607e13fb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "300f320faf88937e6e7bf799b1edbbb0d65255748c6b2ccfea01f4211b25060b",
+          "bytes": 6061
+        }
+      }
+    },
+    {
+      "sentence": "This shirt is a bit too big for me.",
+      "cid": "8437bd38",
+      "translation": "这件衬衫对我来说有点太大了。",
+      "chunks": [
+        "This shirt is",
+        "a bit too big",
+        "for me."
+      ],
+      "hints": [
+        "这件衬衫",
+        "有点太大",
+        "对我来说"
+      ],
+      "grammar": [
+        {
+          "role": "主语+be",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðɪs/",
+            "/ʃɜːrt/",
+            "/ɪz/"
+          ],
+          "pos": "主系结构",
+          "meaning": "这件衬衫"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ə/",
+            "/bɪt/",
+            "/tuː/",
+            "/bɪɡ/"
+          ],
+          "pos": "程度+形容词",
+          "meaning": "有点太大"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我来说"
+        }
+      ],
+      "explanations": [
+        "**too + 形容词 + for sb** = 对某人来说太……。常见错误：\n• \"too much big\" → big 是形容词，用 too（too much 修饰不可数名词/动词）\n• \"very too big\" → very 不能修饰 too",
+        "**a bit too** = 稍微太……，比 too 语气缓和。试衣反馈常用：a bit too big / a little tight / just right（刚好）。"
+      ],
+      "distractors": [
+        [
+          "This shirt are",
+          "These shirt is",
+          "This shirt"
+        ],
+        [
+          "a bit of too big",
+          "a bit too bigger",
+          "too big a bit"
+        ],
+        [
+          "to me.",
+          "for I.",
+          "for my."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "This shirt is a bit too big for me.",
+        "audio": {
+          "url": "assets/oral-8437bd38-b2b9547e3f438049f003.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5dfe43ddb97863bfc3d352fd1768d1213d3f079d0f0665ace3a2b8bbe5f47d94",
+          "bytes": 6714
+        }
+      }
+    },
+    {
+      "sentence": "Do you have this in other colors?",
+      "cid": "b6b38927",
+      "translation": "这个有其他颜色吗？",
+      "chunks": [
+        "Do you have this",
+        "in other colors?"
+      ],
+      "hints": [
+        "你们有这个吗",
+        "其他颜色"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/",
+            "/ðɪs/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "你们有这个吗"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ˈʌðər/",
+            "/ˈkʌlərz/"
+          ],
+          "pos": "介词短语",
+          "meaning": "其他颜色"
+        }
+      ],
+      "explanations": [
+        "**in other colors** = 以其他颜色（出售），in + 颜色/款式表示规格。常见错误：\n• \"with other colors\" → 用 in 不用 with\n• \"other **color**\" → 多种可选色用复数 colors",
+        "换规格三连问：in other colors / in a smaller size / in a larger size。同类：in stock（有货）。"
+      ],
+      "distractors": [
+        [
+          "Are you have this",
+          "Do you has this",
+          "Do you have these"
+        ],
+        [
+          "in other color?",
+          "in the other colors?",
+          "with other colors?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you have this in other colors?",
+        "audio": {
+          "url": "assets/oral-b6b38927-6dc105a3dbe850bcc016.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c6c7aa10a5301845787fd2c6e592def18f39cdaa6c313b211fdd67d686f41d59",
+          "bytes": 6232
+        }
+      }
+    },
+    {
+      "sentence": "Can you recommend something cheaper?",
+      "cid": "52e57cb1",
+      "translation": "能推荐便宜点的吗？",
+      "chunks": [
+        "Can you recommend",
+        "something cheaper?"
+      ],
+      "hints": [
+        "你能推荐",
+        "更便宜的东西"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/juː/",
+            "/ˌrekəˈmend/"
+          ],
+          "pos": "请求句型",
+          "meaning": "你能推荐"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈsʌmθɪŋ/",
+            "/ˈtʃiːpər/"
+          ],
+          "pos": "复合不定代词",
+          "meaning": "更便宜的东西"
+        }
+      ],
+      "explanations": [
+        "**something cheaper**：形容词修饰复合不定代词要**后置**。常见错误：\n• \"cheaper **something**\" → 形容词放 something/anything/nothing 后面\n• \"some **things** cheaper\" → 口语指某件东西用 something",
+        "**recommend** = 推荐。同义：suggest。表达预算可说 I'm on a budget / I don't want to spend too much."
+      ],
+      "distractors": [
+        [
+          "Can your recommend",
+          "Can you recommends",
+          "Do you recommend"
+        ],
+        [
+          "something cheap?",
+          "some cheaper?",
+          "something more cheaper?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can you recommend something cheaper?",
+        "audio": {
+          "url": "assets/oral-52e57cb1-81d171e3e73cabfe6158.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb6ee0cb07ec60ac05be0c715ecad313cd6f9f372db1ed67917ad85ee802492a",
+          "bytes": 6161
+        }
+      }
+    },
+    {
+      "sentence": "I'm afraid it's out of stock.",
+      "cid": "b4d9f9ed",
+      "translation": "恐怕这款缺货了。",
+      "chunks": [
+        "I'm afraid",
+        "it's out of stock."
+      ],
+      "hints": [
+        "恐怕",
+        "它缺货了"
+      ],
+      "grammar": [
+        {
+          "role": "引子",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪm/",
+            "/əˈfreɪd/"
+          ],
+          "pos": "委婉开场",
+          "meaning": "恐怕"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪts/",
+            "/aʊt/",
+            "/əv/",
+            "/stɒk/"
+          ],
+          "pos": "固定短语",
+          "meaning": "缺货了"
+        }
+      ],
+      "explanations": [
+        "**out of stock** = 缺货/售罄。常见错误：\n• \"out of **the** stock\" → 固定搭配不加 the\n• \"**no** stock\" → 口语可以说，但 out of stock 是标准说法",
+        "反义：**in stock**（有货）。店员可说：We're out of stock right now. / Would you like me to check another store?（要不要我查下别的店？）"
+      ],
+      "distractors": [
+        [
+          "I afraid",
+          "I'm feared",
+          "I'm afraid of"
+        ],
+        [
+          "it out of stock.",
+          "it's out of the stock.",
+          "it's out of stocks."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm afraid it's out of stock.",
+        "audio": {
+          "url": "assets/oral-b4d9f9ed-f20689a866a213fc2c6e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "273345425641f7dc110aa7a7fb26dbc6dfecf225618a75826e557977444d6e57",
+          "bytes": 5324
+        }
+      }
+    },
+    {
+      "sentence": "Could you wrap it up for me?",
+      "cid": "317bf159",
+      "translation": "能帮我把它包起来吗？",
+      "chunks": [
+        "Could you wrap it up",
+        "for me?"
+      ],
+      "hints": [
+        "你能包起来",
+        "帮我"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ræp/",
+            "/ɪt/",
+            "/ʌp/"
+          ],
+          "pos": "动词短语",
+          "meaning": "你能包起来"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "帮我"
+        }
+      ],
+      "explanations": [
+        "**wrap sth up** = 把……包起来（wrap up 可分离，代词放中间）。常见错误：\n• \"wrap up **it**\" → 代词 it/them 放中间：wrap it up\n• \"wrap it **in**\" → 需要 in + 包装材料，但这里表完成用 up",
+        "送礼语境常用。店员的确认：Would you like me to wrap it? / 加 gift wrapping（礼品包装）"
+      ],
+      "distractors": [
+        [
+          "Could you wrap up it",
+          "Could your wrap it up",
+          "Could you wraps it up"
+        ],
+        [
+          "to me?",
+          "for I?",
+          "for my?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Could you wrap it up for me?",
+        "audio": {
+          "url": "assets/oral-317bf159-47f8d874d1a370954109.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5d75bf674e1a77d99dc87b1af414b56336b8b72f0f000e57c1a937b167d7c0f8",
+          "bytes": 5057
+        }
+      }
+    },
+    {
+      "sentence": "Can I pay with my phone?",
+      "cid": "d6d76e5b",
+      "translation": "我可以手机支付吗？",
+      "chunks": [
+        "Can I pay",
+        "with my phone?"
+      ],
+      "hints": [
+        "我可以付款吗",
+        "用我的手机"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/",
+            "/peɪ/"
+          ],
+          "pos": "请求句型",
+          "meaning": "我可以付款吗"
+        },
+        {
+          "role": "方式状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɪð/",
+            "/maɪ/",
+            "/foʊn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "用我的手机"
+        }
+      ],
+      "explanations": [
+        "支付方式介词辨析：**by** credit card / **with** my phone（用具体工具）→ 两者界限模糊时 with 更保险。常见错误：\n• \"pay **by** my phone\" → 手机上支付叫 pay by phone，拿手机刷叫 pay with my phone\n• \"pay **use** my phone\" → 动词并列需 pay using",
+        "移动支付常见词：mobile payment / scan the QR code（扫码）/ Alipay / WeChat Pay。"
+      ],
+      "distractors": [
+        [
+          "Can me pay",
+          "Can I to pay",
+          "Do I can pay"
+        ],
+        [
+          "by my phone?",
+          "with me phone?",
+          "with my phones?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can I pay with my phone?",
+        "audio": {
+          "url": "assets/oral-d6d76e5b-0f9a2d231cd688035474.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "90f99c5ae2c03bd308e3c4bcca288bdaade89f20edc3a123e0e2ddfc282122b9",
+          "bytes": 5378
+        }
+      }
+    },
+    {
+      "sentence": "Do you have a membership card?",
+      "cid": "44614ab3",
+      "translation": "请问您有会员卡吗？",
+      "chunks": [
+        "Do you have",
+        "a membership card?"
+      ],
+      "hints": [
+        "您有",
+        "会员卡吗"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/"
+          ],
+          "pos": "疑问句",
+          "meaning": "你有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈmembərʃɪp/",
+            "/kɑːrd/"
+          ],
+          "pos": "名词短语",
+          "meaning": "会员卡"
+        }
+      ],
+      "explanations": [
+        "**membership card** = 会员卡。常见错误：\n• \"member **'s** card\" → 名词定语直接用 membership\n• \"member **ship**\" → 一词：membership 会员资格",
+        "积分/折扣语境：Do you have a loyalty card? / Earn points（积分）/ 若没卡：Can I sign up for one?（能办一张吗？）"
+      ],
+      "distractors": [
+        [
+          "Are you have",
+          "Do you has",
+          "Do you having"
+        ],
+        [
+          "a member card?",
+          "a membership cards?",
+          "membership card?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you have a membership card?",
+        "audio": {
+          "url": "assets/oral-44614ab3-9b6c544a635165af3970.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7bcc93b30b4967fd92ac54794c46c9f186335974d2a49ea7ebc2b1d7405b17b8",
+          "bytes": 5584
+        }
+      }
+    },
+    {
+      "sentence": "It doesn't fit me well.",
+      "cid": "2bccbf9f",
+      "translation": "这件我穿着不合身。",
+      "chunks": [
+        "It doesn't fit",
+        "me well."
+      ],
+      "hints": [
+        "它不合身",
+        "我穿着"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪt/",
+            "/ˈdʌznt/",
+            "/fɪt/"
+          ],
+          "pos": "否定句",
+          "meaning": "它不合身"
+        },
+        {
+          "role": "宾语+状语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/miː/",
+            "/wel/"
+          ],
+          "pos": "代词+副词",
+          "meaning": "我穿着"
+        }
+      ],
+      "explanations": [
+        "**fit** = 合身（尺寸），主语是衣服。常见错误：\n• \"It isn't fit me\" → fit 是动词，否定用 doesn't\n• \"It doesn't fit **to** me\" → fit 直接接人，不加 to",
+        "辨析三个词：**fit**（合身尺寸）/ **suit**（适合气质风格）/ **match**（颜色搭配）。This color suits you. 颜色衬你。"
+      ],
+      "distractors": [
+        [
+          "It don't fit",
+          "It doesn't fits",
+          "It not fit"
+        ],
+        [
+          "me good.",
+          "myself well.",
+          "to me well."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It doesn't fit me well.",
+        "audio": {
+          "url": "assets/oral-2bccbf9f-dea0bc7e3d32f86ff6e7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2b24565f781115a1c8826a764c0cb2b4c8334e33589730bf8358f4da374728c5",
+          "bytes": 4559
+        }
+      }
+    },
+    {
+      "sentence": "Could you show me the latest one?",
+      "cid": "0ba46f6f",
+      "translation": "能给我看看最新款吗？",
+      "chunks": [
+        "Could you show me",
+        "the latest one?"
+      ],
+      "hints": [
+        "你能给我看",
+        "最新款"
+      ],
+      "grammar": [
+        {
+          "role": "情态+双宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/juː/",
+            "/ʃoʊ/",
+            "/miː/"
+          ],
+          "pos": "情态动词+双宾语",
+          "meaning": "你能给我看"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈleɪtɪst/",
+            "/wʌn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "最新款"
+        }
+      ],
+      "explanations": [
+        "**show sb sth** = show sth to sb，双宾结构。常见错误：\n• \"show **to me** the latest\" → 也正确但 show me 更口语\n• \"show me **lastest**\" → 拼写是 latest（无 lastest 一词）",
+        "**the latest one** = 最新款，one 代替前面提到的商品避免重复。latest 也可接型号：the latest model。"
+      ],
+      "distractors": [
+        [
+          "Could your show me",
+          "Could you shows me",
+          "Could you to show me"
+        ],
+        [
+          "the last one?",
+          "the lately one?",
+          "the latest?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Could you show me the latest one?",
+        "audio": {
+          "url": "assets/oral-0ba46f6f-9d3900a10af0d7df568e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9aa69b0a356e235ea96ccc6067065f0d3af0116b15eaa3ec88136df34d4468ec",
+          "bytes": 5693
+        }
+      }
+    },
+    {
+      "sentence": "Is there a warranty on this watch?",
+      "cid": "fa0974dd",
+      "translation": "这款手表有保修吗？",
+      "chunks": [
+        "Is there a warranty",
+        "on this watch?"
+      ],
+      "hints": [
+        "有保修",
+        "在这款手表上"
+      ],
+      "grammar": [
+        {
+          "role": "存在句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/ðer/",
+            "/ə/",
+            "/ˈwɒrənti/"
+          ],
+          "pos": "there be 疑问",
+          "meaning": "有保修吗"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ðɪs/",
+            "/wɒtʃ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在这款手表上"
+        }
+      ],
+      "explanations": [
+        "**warranty** = 保修（期）/质保，比 guarantee 更常用于电子产品。常见错误：\n• \"warrant\" → warrant 是动词/名词「授权」，保修是 warranty\n• \"How long is the warranty?\" → 问保修期多长",
+        "相关：under warranty（在保修期内）/ It comes with a one-year warranty.（一年保修。）"
+      ],
+      "distractors": [
+        [
+          "Are there a warranty",
+          "There is a warranty",
+          "Is there warranty"
+        ],
+        [
+          "on the watch?",
+          "for this watch?",
+          "on this watches?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Is there a warranty on this watch?",
+        "audio": {
+          "url": "assets/oral-fa0974dd-7699675b9d6a59102264.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c4fe2a7b31b117acd880f6b7d610b4528eddb070542ca275fe3412339e19277d",
+          "bytes": 6267
+        }
+      }
+    },
+    {
+      "sentence": "I'm looking for something for my mom.",
+      "cid": "a5220aa4",
+      "translation": "我想给我妈妈买个东西。",
+      "chunks": [
+        "I'm looking for something",
+        "for my mom."
+      ],
+      "hints": [
+        "我在找某样东西",
+        "给我妈妈"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈlʊkɪŋ/",
+            "/fɔːr/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我在找某样东西"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/maɪ/",
+            "/mɒm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "给我妈妈"
+        }
+      ],
+      "explanations": [
+        "**look for** = 寻找（强调过程）；**find** = 找到（强调结果）。常见错误：\n• \"I'm looking **at** something for\" → look at 是看，找东西用 look for\n• \"looking for something **to** my mom\" → 给谁买用 for",
+        "店员会问：What kind of thing are you looking for? 回答给谁买+预算+用途即可。"
+      ],
+      "distractors": [
+        [
+          "I looking for something",
+          "I'm look for something",
+          "I'm looking something"
+        ],
+        [
+          "to my mom.",
+          "for me mom.",
+          "for my moms."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm looking for something for my mom.",
+        "audio": {
+          "url": "assets/oral-a5220aa4-6a3c96e902b92b09a477.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7e3c5dc113a343097283d444f3a75ec06b3b909da7ddef6960d1530635dc84e0",
+          "bytes": 6821
+        }
+      }
+    },
+    {
+      "sentence": "Do you offer free delivery?",
+      "cid": "4993d618",
+      "translation": "你们免费配送吗？",
+      "chunks": [
+        "Do you offer",
+        "free delivery?"
+      ],
+      "hints": [
+        "你们提供",
+        "免费配送吗"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/ˈɒfər/"
+          ],
+          "pos": "疑问句",
+          "meaning": "你们提供"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/friː/",
+            "/dɪˈlɪvəri/"
+          ],
+          "pos": "名词短语",
+          "meaning": "免费配送"
+        }
+      ],
+      "explanations": [
+        "**delivery** = 配送/快递（动词 deliver）。常见错误：\n• \"deliver **ing** free\" → 作名词用 delivery\n• \"free **deliver**\" → deliver 是动词，需要名词 delivery",
+        "网购高频：free delivery / shipping cost（运费）/ delivery time（配送时间）/ Do you ship internationally?（国际配送吗？）"
+      ],
+      "distractors": [
+        [
+          "Are you offer",
+          "Do you offers",
+          "Do you offering"
+        ],
+        [
+          "free deliver?",
+          "free deliveries?",
+          "the free delivery?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you offer free delivery?",
+        "audio": {
+          "url": "assets/oral-4993d618-2d123ebbfaa438fa8e1b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "044c47b86c65142360adc1440ff421902754259d8f66756de9bef3f879fe6f29",
+          "bytes": 5588
+        }
+      }
+    },
+    {
+      "sentence": "Can I have a receipt, please?",
+      "cid": "cd506d36",
+      "translation": "请给我开张小票。",
+      "chunks": [
+        "Can I have",
+        "a receipt,",
+        "please?"
+      ],
+      "hints": [
+        "我能要",
+        "一张小票",
+        "麻烦"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/",
+            "/hæv/"
+          ],
+          "pos": "请求句型",
+          "meaning": "我能要"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/rɪˈsiːt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一张小票"
+        },
+        {
+          "role": "礼貌词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/pliːz/"
+          ],
+          "pos": "语气词",
+          "meaning": "麻烦"
+        }
+      ],
+      "explanations": [
+        "**Can I have...?** = 能给我……吗？比 Can I get 更礼貌正式。常见错误：\n• \"Can I have **a receipt please**\" → please 前应有逗号（口语无妨，书面规范）\n• \"Can I **get to** have\" → get/have 二选一",
+        "**receipt** 发音 /rɪˈsiːt/，p 不发音！这是最常读错的词之一。可数名词前要加 a。"
+      ],
+      "distractors": [
+        [
+          "Can me have",
+          "Can I has",
+          "Can I to have"
+        ],
+        [
+          "the receipt,",
+          "receipt,",
+          "a receive,"
+        ],
+        [
+          "pleased?",
+          "pleases?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can I have a receipt, please?",
+        "audio": {
+          "url": "assets/oral-cd506d36-0adfd984c3b1c66454bb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "05eb28074127726d6470a5c106ce7ddd783c730f8447c28c826c6be798284784",
+          "bytes": 5685
+        }
+      }
+    },
+    {
+      "sentence": "How much is it in total?",
+      "cid": "79421135",
+      "translation": "一共多少钱？",
+      "chunks": [
+        "How much is it",
+        "in total?"
+      ],
+      "hints": [
+        "多少钱",
+        "总共"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/mʌtʃ/",
+            "/ɪz/",
+            "/ɪt/"
+          ],
+          "pos": "价格疑问",
+          "meaning": "多少钱"
+        },
+        {
+          "role": "状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ˈtoʊtl/"
+          ],
+          "pos": "固定短语",
+          "meaning": "总共"
+        }
+      ],
+      "explanations": [
+        "**in total** = 总共（合计）。常见错误：\n• \"How much **are** it\" → it 是单数，用 is\n• \"in **the** total\" → 固定搭配不加 the",
+        "结账相关：That comes to twenty dollars. / altogether（一起）。收银员会确认：Your total is...（您的总计是……）"
+      ],
+      "distractors": [
+        [
+          "How much it is",
+          "How many is it",
+          "How much are it"
+        ],
+        [
+          "in the total?",
+          "at total?",
+          "in totals?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How much is it in total?",
+        "audio": {
+          "url": "assets/oral-79421135-122eee1614705108863d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "acfecaa380272788682db448cf66230fd3171a3ce332448a32ebcdf1513f1ad7",
+          "bytes": 5361
+        }
+      }
+    },
+    {
+      "sentence": "Could I exchange it for a bigger one?",
+      "cid": "1a0d45be",
+      "translation": "我能换个大一号的吗？",
+      "chunks": [
+        "Could I exchange it",
+        "for a bigger one?"
+      ],
+      "hints": [
+        "我能换它",
+        "换个大一号的"
+      ],
+      "grammar": [
+        {
+          "role": "情态主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/ɪksˈtʃeɪndʒ/",
+            "/ɪt/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能换它"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/ə/",
+            "/ˈbɪɡər/",
+            "/wʌn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "换个更大号的"
+        }
+      ],
+      "explanations": [
+        "**exchange A for B** = 把 A 换成 B（固定搭配 for）。常见错误：\n• \"exchange it **to** a bigger\" → 换「成」用 for，不用 to\n• \"exchange it **with**\" → with 是「和某人换」，不是换货",
+        "退换区分：**return**（退货退款）/ **exchange**（换货）。店家常问换什么尺码：What size would you like to exchange it for?"
+      ],
+      "distractors": [
+        [
+          "Could me exchange it",
+          "Could I exchange",
+          "Could I to exchange it"
+        ],
+        [
+          "to a bigger one?",
+          "for a big one?",
+          "for a bigger?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Could I exchange it for a bigger one?",
+        "audio": {
+          "url": "assets/oral-1a0d45be-2f0680818205d81dfbf6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8fdf0860825fece33030b90af2bc1e7cf18b28ea3162048c4255ca2bde9ecfdd",
+          "bytes": 6652
+        }
+      }
+    },
+    {
+      "sentence": "Is this the final price?",
+      "cid": "31c49222",
+      "translation": "这是最终价了吗？（还能便宜吗？）",
+      "chunks": [
+        "Is this",
+        "the final price?"
+      ],
+      "hints": [
+        "这是",
+        "最终价格吗"
+      ],
+      "grammar": [
+        {
+          "role": "主系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ðɪs/"
+          ],
+          "pos": "一般疑问句",
+          "meaning": "这是"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈfaɪnl/",
+            "/praɪs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "最终价格"
+        }
+      ],
+      "explanations": [
+        "**final price** = 最终价/一口价。砍价场景常见：\n• \"the **finally** price\" → 用形容词 final\n• \"last price\" → 也有此意（最后价），但 final price 更标准",
+        "砍价常用句式：Can you do better than that? / What's your best price? / Is that the best you can do?"
+      ],
+      "distractors": [
+        [
+          "Are this",
+          "This is",
+          "Is these"
+        ],
+        [
+          "a final price?",
+          "the finally price?",
+          "the final prices?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Is this the final price?",
+        "audio": {
+          "url": "assets/oral-31c49222-08c472f8c29515b9f99f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ba758e3a6e9ad581165245ca3ff16c5435b4116060cfe2ee9d76dc1d148d0d7f",
+          "bytes": 5597
+        }
+      }
+    },
+    {
+      "sentence": "I'd rather go for the cheaper one.",
+      "cid": "72a8211b",
+      "translation": "我宁愿要那个便宜点的。",
+      "chunks": [
+        "I'd rather go for",
+        "the cheaper one."
+      ],
+      "hints": [
+        "我宁愿选",
+        "那个更便宜的"
+      ],
+      "grammar": [
+        {
+          "role": "主句谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/ˈrɑːðər/",
+            "/ɡəʊ/",
+            "/fɔːr/"
+          ],
+          "pos": "would rather 结构",
+          "meaning": "我宁愿选"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈtʃiːpər/",
+            "/wʌn/"
+          ],
+          "pos": "名词短语",
+          "meaning": "那个更便宜的"
+        }
+      ],
+      "explanations": [
+        "**would rather do** = 宁愿做……，后接动词原形。常见错误：\n• \"I'd rather **to** go\" → rather 后接原形不加 to\n• \"I'd rather **going**\" → 用原形 go",
+        "**go for** = 选择（口语）。同义：I'll take this one. / I'd like to go with the cheaper one."
+      ],
+      "distractors": [
+        [
+          "I rather go for",
+          "I'd rather to go for",
+          "I'd rather going for"
+        ],
+        [
+          "a cheaper one.",
+          "the cheap one.",
+          "the cheaper."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'd rather go for the cheaper one.",
+        "audio": {
+          "url": "assets/oral-72a8211b-84a30e0d83d13a8a64f9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a70462b5ee0be8b8fe9681ae80e1b63db94084532306149e52e33a7e3645428e",
+          "bytes": 6342
+        }
+      }
+    },
+    {
+      "sentence": "The price seems a little high.",
+      "cid": "7c63ccd9",
+      "translation": "价格似乎有点高。",
+      "chunks": [
+        "The price seems",
+        "a little high."
+      ],
+      "hints": [
+        "价格似乎",
+        "有点高"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðə/",
+            "/praɪs/",
+            "/siːmz/"
+          ],
+          "pos": "主系表",
+          "meaning": "价格似乎"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlɪtl/",
+            "/haɪ/"
+          ],
+          "pos": "程度+形容词",
+          "meaning": "有点高"
+        }
+      ],
+      "explanations": [
+        "**seem + 形容词** = 看起来/似乎……。常见错误：\n• \"seems **is** high\" → seem 已是系动词，不叠加 is\n• \"price is seem high\" → 语序反了",
+        "**a little** 修饰形容词表「有点」。砍价前先抱怨价格：That's more than I expected.（超出我的预期。）"
+      ],
+      "distractors": [
+        [
+          "The price seem",
+          "Price seems",
+          "The prices seems"
+        ],
+        [
+          "a little highly.",
+          "a little of high.",
+          "a little higher."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "The price seems a little high.",
+        "audio": {
+          "url": "assets/oral-7c63ccd9-5e3f51a07a0eed63e23b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "95e124866ef884251f70a7b7ce8b3ab7aa6ad6c8559304faa18300821524c261",
+          "bytes": 5443
+        }
+      }
+    },
+    {
+      "sentence": "Is this the only size you have?",
+      "cid": "286efe6b",
+      "translation": "你们只有这一个尺码吗？",
+      "chunks": [
+        "Is this the only size",
+        "you have?"
+      ],
+      "hints": [
+        "这是唯一尺码吗",
+        "你们有的"
+      ],
+      "grammar": [
+        {
+          "role": "主句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪz/",
+            "/ðɪs/",
+            "/ðə/",
+            "/ˈoʊnli/",
+            "/saɪz/"
+          ],
+          "pos": "主系表",
+          "meaning": "这是唯一尺码吗"
+        },
+        {
+          "role": "定语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/juː/",
+            "/hæv/"
+          ],
+          "pos": "定语从句（省略 that）",
+          "meaning": "你们有的"
+        }
+      ],
+      "explanations": [
+        "**the only + 名词 + (that) 从句**：关系代词 that 作宾语可省略。常见错误：\n• \"the only size **what** you have\" → 定语从句用 that/which，不用 what\n• \"the **only** size\" → only 强调「唯一」，别漏",
+        "当尺码/颜色不全时问：Do you have this in any other sizes? / When will you get more in stock?（什么时候补货？）"
+      ],
+      "distractors": [
+        [
+          "Are this",
+          "This is",
+          "Is these"
+        ],
+        [
+          "the only sizes you have?",
+          "only size you have?",
+          "the only size you has?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Is this the only size you have?",
+        "audio": {
+          "url": "assets/oral-286efe6b-b6983fd0ecdc5f6e9c94.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "da00cea1074486d908018d86ef8e4be2ef3f8c6f6eba07a094aa23587a439938",
+          "bytes": 6325
+        }
+      }
+    },
+    {
+      "sentence": "I'll take it.",
+      "cid": "72aa19b1",
+      "translation": "我就要这个了/我买了。",
+      "chunks": [
+        "I'll",
+        "take it."
+      ],
+      "hints": [
+        "我就",
+        "要这个"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪl/"
+          ],
+          "pos": "将来时",
+          "meaning": "我就"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ɪt/"
+          ],
+          "pos": "动词短语",
+          "meaning": "要这个（决定购买）"
+        }
+      ],
+      "explanations": [
+        "**I'll take it.** 购物时决定购买某物的标准表达。",
+        "也可以说 **I'll get this one.** 或 **I'd like to buy this.** 但 \"I'll take it.\" 最地道、最常用。"
+      ],
+      "distractors": [
+        [
+          "I",
+          "I'd"
+        ],
+        [
+          "take them.",
+          "takes it.",
+          "to take it."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'll take it.",
+        "audio": {
+          "url": "assets/oral-72aa19b1-33b32393ed435fda3da0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "73916bb8bee4ec6c65011835f1f29a72d433eb08c2f9d6c8867f263514e88db0",
+          "bytes": 3906
+        }
+      }
+    },
+    {
+      "sentence": "Where can I find the checkout?",
+      "cid": "8d72c5ea",
+      "translation": "我在哪儿能找到收银台？",
+      "chunks": [
+        "Where can I find",
+        "the checkout?"
+      ],
+      "hints": [
+        "我在哪能找到",
+        "收银台"
+      ],
+      "alts": [
+        null,
+        [
+          "the cashier?",
+          "the counter?"
+        ]
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wer/",
+            "/kæn/",
+            "/aɪ/",
+            "/faɪnd/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "我在哪能找到"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈtʃekaʊt/"
+          ],
+          "pos": "名词",
+          "meaning": "收银台"
+        }
+      ],
+      "explanations": [
+        "`Where can I find...` 问某物位置。常见错误：\n• \"Where **I can** find\" → 疑问句情态动词要提前到主语前\n• \"Where can I **to** find\" → 不要 to",
+        "`checkout` 在英美超市/商场指「收银台/结账处」。同义表达均可：`the cashier`（收银员）、`the counter`（柜台）。"
+      ],
+      "distractors": [
+        [
+          "Where can me find",
+          "Where can I to find",
+          "Where can I found"
+        ],
+        [
+          "the check-in?",
+          "the checkouts?",
+          "the checking?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Where can I find the checkout?",
+        "audio": {
+          "url": "assets/oral-8d72c5ea-eae65d7722802d2bfc36.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e3c22652b42443910224779e27211bcbcc59268a05b7dd38821563a60206f97",
+          "bytes": 5880
+        }
+      }
+    },
+    {
+      "sentence": "How much does this one cost?",
+      "cid": "f09dfd8b",
+      "translation": "这个多少钱？",
+      "chunks": [
+        "How much",
+        "does this one cost?"
+      ],
+      "hints": [
+        "多少钱",
+        "这个要花"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/haʊ/",
+            "/mʌtʃ/"
+          ],
+          "pos": "价格疑问",
+          "meaning": "多少钱"
+        },
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/dʌz/",
+            "/ðɪs/",
+            "/wʌn/",
+            "/kɒst/"
+          ],
+          "pos": "第三人称单数",
+          "meaning": "这个要花"
+        }
+      ],
+      "explanations": [
+        "`How much does ... cost?` 问价格。常见错误：\n• \"How much **is cost** this\" → cost 是动词，不用 is\n• \"How many **money**\" → money 不可数，用 much 不是 many",
+        "`this one` 指代眼前这个商品（one 替代前面提到的名词，避免重复）。"
+      ],
+      "distractors": [
+        [
+          "How many",
+          "How money",
+          "How prices"
+        ],
+        [
+          "do this one cost?",
+          "does this ones cost?",
+          "costs this one?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How much does this one cost?",
+        "audio": {
+          "url": "assets/oral-f09dfd8b-2de3ee872df6e85f47d5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b7e574b2cf4b268f9c1edd5abe6ee41c0a72169bc900348bc2af1d56102c6363",
+          "bytes": 5735
+        }
+      }
+    },
+    {
+      "sentence": "This one is way cheaper than that.",
+      "cid": "137ff5fe",
+      "translation": "这个比那个便宜多了。",
+      "chunks": [
+        "This one is",
+        "way cheaper",
+        "than that."
+      ],
+      "hints": [
+        "这个",
+        "便宜得多",
+        "比那个"
+      ],
+      "grammar": [
+        {
+          "role": "主语+系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðɪs/",
+            "/wʌn/",
+            "/ɪz/"
+          ],
+          "pos": "主系",
+          "meaning": "这个"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/weɪ/",
+            "/ˈtʃiːpər/"
+          ],
+          "pos": "比较级",
+          "meaning": "便宜得多"
+        },
+        {
+          "role": "比较对象",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðæn/",
+            "/ðæt/"
+          ],
+          "pos": "比较状语",
+          "meaning": "比那个"
+        }
+      ],
+      "explanations": [
+        "`cheaper` 是 cheap 的比较级。常见错误：\n• \"more cheap\" → cheap 是单音节，加 -er，不用 more\n• \"cheap**er than** that\" ✓ 正确结构",
+        "`way` 作副词加强比较级，表「…得多」（= much）。口语常用：`way better` `way bigger`。"
+      ],
+      "distractors": [
+        [
+          "This one are",
+          "This is one",
+          "This one"
+        ],
+        [
+          "ways cheaper",
+          "very cheaper",
+          "cheaper way"
+        ],
+        [
+          "then that.",
+          "as that.",
+          "than this."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "This one is way cheaper than that.",
+        "audio": {
+          "url": "assets/oral-137ff5fe-18ad8cbc3e249c67c482.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "304281f31042a63b29d3d4afa73c6e596b46fa38f19cd7147e9beec29a2c6ca4",
+          "bytes": 6597
+        }
+      }
+    },
+    {
+      "sentence": "Can you give me a discount?",
+      "cid": "c5710a04",
+      "translation": "能给我打个折吗？",
+      "chunks": [
+        "Can you give me",
+        "a discount?"
+      ],
+      "hints": [
+        "你能给我",
+        "一个折扣"
+      ],
+      "grammar": [
+        {
+          "role": "情态+双宾谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/juː/",
+            "/ɡɪv/",
+            "/miː/"
+          ],
+          "pos": "情态动词+双宾语",
+          "meaning": "你能给我"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈdɪskaʊnt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "折扣"
+        }
+      ],
+      "explanations": [
+        "`give sb sth` = give sth to sb，双宾语结构。常见错误：\n• \"give **to me** a discount\" → 双宾时 give me a discount 更自然\n• \"a **discounting**\" → discount 作名词直接说 a discount",
+        "砍价场景常用语。同义：\"Any discount?\" \"Can you do it for less?\" 注意 discount 前用 a（可数）。"
+      ],
+      "distractors": [
+        [
+          "Can you gives me",
+          "Can you to give me",
+          "Can you give I"
+        ],
+        [
+          "discount?",
+          "a discounts?",
+          "the discount?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can you give me a discount?",
+        "audio": {
+          "url": "assets/oral-c5710a04-a8cfd4e9d653706511db.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3ae67c97255c7d70b2e325b57dfe14993feb9df89835f1c0456bd6f20d04f73b",
+          "bytes": 5203
+        }
+      }
+    },
+    {
+      "sentence": "We're just looking, but thanks anyway.",
+      "cid": "8e299f97",
+      "translation": "我们只是看看，不过还是谢谢。",
+      "chunks": [
+        "We're just looking,",
+        "but thanks anyway."
+      ],
+      "hints": [
+        "我们只是看看",
+        "但还是要谢谢你"
+      ],
+      "grammar": [
+        {
+          "role": "进行时态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɪr/",
+            "/dʒʌst/",
+            "/ˈlʊkɪŋ/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "我们只是看看"
+        },
+        {
+          "role": "转折谢语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/bʌt/",
+            "/θæŋks/",
+            "/ˈeniweɪ/"
+          ],
+          "pos": "固定表达",
+          "meaning": "但还是谢谢你"
+        }
+      ],
+      "explanations": [
+        "`just looking` 是婉拒店员推销的标准话术（= 我自己看，不需要帮忙）。常见错误：\n• \"just **look**\" → 进行时强调当下状态更自然\n• \"we look **only**\" → only 位置不对，要用 just",
+        "`thanks anyway` = 无论如何谢谢你（即使没接受帮助）。anyway 放句尾表「反正、无论如何」。"
+      ],
+      "distractors": [
+        [
+          "We just looking,",
+          "We're just look,",
+          "We're just looks,"
+        ],
+        [
+          "but thank anyway.",
+          "but thanks any way.",
+          "but thanks anyways."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "We're just looking, but thanks anyway.",
+        "audio": {
+          "url": "assets/oral-8e299f97-f7c74544cd5300e66721.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4197c2ff4ab334d2424795a8960cb37a409ea357236acf4d391c0e34695257a6",
+          "bytes": 6824
+        }
+      }
+    },
+    {
+      "sentence": "What size do you take in shoes?",
+      "cid": "28fc81b5",
+      "translation": "你穿多大码的鞋？",
+      "chunks": [
+        "What size do you take in shoes?"
+      ],
+      "hints": [
+        "你穿多大码的鞋？"
+      ],
+      "grammar": [
+        {
+          "role": "尺码问句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wɒt/",
+            "/saɪz/",
+            "/duː/",
+            "/juː/",
+            "/teɪk/",
+            "/ɪn/",
+            "/ʃuːz/"
+          ],
+          "pos": "询问鞋码",
+          "meaning": "你穿多大码的鞋"
+        }
+      ],
+      "explanations": [
+        "问尺码：`What size do you take?`。常见错误：\n• \"How big **are** your shoes\" → 问鞋子大小不问人\n• \"What size **are** you take\" → 实义动词 take 要借助助动词 do",
+        "`in shoes` = 在鞋子的品类里。类似：What size are you in?（你穿什么码？）。答：I take a size 8."
+      ],
+      "distractors": [
+        [
+          "What size you take in shoes?",
+          "How big are your shoes?",
+          "What sizes do you take?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "What size do you take in shoes?",
+        "audio": {
+          "url": "assets/oral-28fc81b5-ace150ba7e69cf156add.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d3b82008847d73178d73d97be811a03a279227f4d02f0d921a6aa652a6bed38",
+          "bytes": 6253
+        }
+      }
+    },
+    {
+      "sentence": "Do you have this in a bigger size?",
+      "cid": "6fc23ceb",
+      "translation": "这个有大一号的吗？",
+      "chunks": [
+        "Do you have this",
+        "in a bigger size?"
+      ],
+      "hints": [
+        "你有这个",
+        "更大尺码"
+      ],
+      "grammar": [
+        {
+          "role": "一般疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/duː/",
+            "/juː/",
+            "/hæv/",
+            "/ðɪs/"
+          ],
+          "pos": "一般疑问",
+          "meaning": "你有这个"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪn/",
+            "/ə/",
+            "/ˈbɪɡər/",
+            "/saɪz/"
+          ],
+          "pos": "方式状语",
+          "meaning": "更大尺码"
+        }
+      ],
+      "explanations": [
+        "购物换尺码用语。`this` 指代看中的商品。常见错误：\n• \"Do you **has** this\" → 助动词后接原形 have\n• \"Is there bigger\" → 商品场景用 Do you have this in…",
+        "`in a bigger size` = 更大一码。比较级 bigger。常见错误：\n• \"in **bigger** size\" → 缺 a：in a bigger size"
+      ],
+      "distractors": [
+        [
+          "Do you has this",
+          "Are you have this",
+          "Do you have it"
+        ],
+        [
+          "in a big size?",
+          "in bigger size?",
+          "on a bigger size?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Do you have this in a bigger size?",
+        "audio": {
+          "url": "assets/oral-6fc23ceb-3ddce7a261e001db8544.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f8551681332365eae15462377cd37cf09413c56ee47891ef7a1d99e8f04277ad",
+          "bytes": 6330
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to return this, it doesn't fit.",
+      "cid": "350e2601",
+      "translation": "我想退掉这个，它不合身。",
+      "chunks": [
+        "I'd like to return this,",
+        "it doesn't fit."
+      ],
+      "hints": [
+        "我想退掉这个",
+        "它不合身"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪd/",
+            "/laɪk/",
+            "/tuː/",
+            "/rɪˈtɜːn/",
+            "/ðɪs/"
+          ],
+          "pos": "would like 结构",
+          "meaning": "我想退掉这个"
+        },
+        {
+          "role": "主谓结构",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/ˈdʌznt/",
+            "/fɪt/"
+          ],
+          "pos": "原因陈述",
+          "meaning": "它不合身"
+        }
+      ],
+      "explanations": [
+        "退换货用语。`I'd like to return` = 我想退。常见错误：\n• \"I'd like return\" → would like 后接 to + 原形\n• \"I want to give back\" → give back 也可以，return 更正式",
+        "`it doesn't fit` = 不合身。fit 指尺寸合适。常见错误：\n• \"it doesn't **fits**\" → 助动词后接原形 fit"
+      ],
+      "distractors": [
+        [
+          "I'd like return this,",
+          "I like to return this,",
+          "I'd like to returning this,"
+        ],
+        [
+          "it doesn't fits.",
+          "it isn't fit.",
+          "they don't fit."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'd like to return this, it doesn't fit.",
+        "audio": {
+          "url": "assets/oral-350e2601-fd7735563278f058adc5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "97c94d10a9d7c8b69de75cd5770b82e21c8203451ab3aadd7393877f89940bb4",
+          "bytes": 7264
+        }
+      }
+    },
+    {
+      "sentence": "Could I try this on?",
+      "cid": "62ff1252",
+      "translation": "我能试穿一下这个吗？",
+      "chunks": [
+        "Could I try",
+        "this on?"
+      ],
+      "hints": [
+        "我能试试",
+        "把这个穿上"
+      ],
+      "grammar": [
+        {
+          "role": "情态疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kʊd/",
+            "/aɪ/",
+            "/traɪ/"
+          ],
+          "pos": "委婉请求",
+          "meaning": "我能试试"
+        },
+        {
+          "role": "代词+副词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðɪs/",
+            "/ɒn/"
+          ],
+          "pos": "短语动词宾语",
+          "meaning": "试穿这个"
+        }
+      ],
+      "explanations": [
+        "试穿用语。`try on` = 试穿。代词宾语放中间：try **this** on。常见错误：\n• \"try on **this**\" → this 放 on 后不自然（名词可后置，代词前置）\n• \"try this clothes\" → 试穿用 try on",
+        "`this on` 中 on 是副词，不能丢。同场景：Can I try these on?"
+      ],
+      "distractors": [
+        [
+          "Can I trying",
+          "Could me try",
+          "Could I to try"
+        ],
+        [
+          "on this?",
+          "it on?",
+          "this up?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Could I try this on?",
+        "audio": {
+          "url": "assets/oral-62ff1252-29da46f760b212bc517d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6b8c3a7d02c21ec4e2b3b5cf175cd57fd543c3f43d437d48c91f860f39cefeb9",
+          "bytes": 4782
+        }
+      }
+    },
+    {
+      "sentence": "It's a used one.",
+      "cid": "17294bac",
+      "translation": "这是二手的。",
+      "chunks": [
+        "It's a",
+        "used one."
+      ],
+      "hints": [
+        "它是一个",
+        "用过的"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ə/"
+          ],
+          "pos": "it + is + a",
+          "meaning": "它是一个"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/juːzd/",
+            "/wʌn/"
+          ],
+          "pos": "形容词 + 代词",
+          "meaning": "用过的（那个）"
+        }
+      ],
+      "explanations": [
+        "`It's a` 后接单数名词或代词 one。常见错误：\n• \"It's an used one\" → u 在此读 /juː/，是辅音音素，用 a\n• \"It's a use one\" → 形容词要用过去分词 used",
+        "`used` 作形容词读 /juːzd/，表「用过的、二手的」。常见错误：\n• \"used one\" 读成 /juːst/ → 那是 be used to 的读音，语义不同"
+      ],
+      "distractors": [
+        [
+          "It's an",
+          "It a",
+          "It's a used"
+        ],
+        [
+          "use one.",
+          "using one.",
+          "used ones."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It's a used one.",
+        "audio": {
+          "url": "assets/oral-17294bac-4981fcf6c473864a0882.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d8de47532c4d337bfacd14b25d70f14aa69f72d8927bec80738b39a0f6e48469",
+          "bytes": 4329
+        }
+      }
+    },
+    {
+      "sentence": "But the price is right.",
+      "cid": "880a8346",
+      "translation": "但价格合适。",
+      "chunks": [
+        "But the price",
+        "is right."
+      ],
+      "hints": [
+        "但价格",
+        "是合适的"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/bʌt/",
+            "/ðə/",
+            "/praɪs/"
+          ],
+          "pos": "名词短语",
+          "meaning": "但价格"
+        },
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪz/",
+            "/raɪt/"
+          ],
+          "pos": "is + 形容词",
+          "meaning": "是合适的"
+        }
+      ],
+      "explanations": [
+        "`the price is right` 是固定说法，表「价钱公道」。常见错误：\n• \"the prize\" → prize 是奖品，别和 price 混\n• \"the prices is\" → 主语复数才用 are",
+        "`right` 在这里是「合适的、公道的」，不是「正确的」。同义：It's a fair price."
+      ],
+      "distractors": [
+        [
+          "But the prices",
+          "But price",
+          "But the prize"
+        ],
+        [
+          "are right.",
+          "is right's.",
+          "was right."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "But the price is right.",
+        "audio": {
+          "url": "assets/oral-880a8346-c9c5926f7dadd1aaa12e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6ab699e4c444069e3c47c02a43c9378947946c2834b50c18e89730ee38f49d10",
+          "bytes": 5135
+        }
+      }
+    },
+    {
+      "sentence": "That comes to 30.",
+      "cid": "bd951c11",
+      "translation": "一共三十。",
+      "chunks": [
+        "That comes",
+        "to 30."
+      ],
+      "hints": [
+        "一共（算下来）",
+        "到三十"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðæt/",
+            "/kʌmz/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "那算下来"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tə/",
+            "/ˈθɜːrti/"
+          ],
+          "pos": "介词短语",
+          "meaning": "到三十"
+        }
+      ],
+      "explanations": [
+        "`come to + 金额` 是结账固定搭配，表「总计」。常见错误：\n• \"That comes 30\" → 少了介词 to\n• \"That come to 30\" → 主语是 that，动词加 s",
+        "金额读法：30 读 thirty。同义：That'll be 30. / Your total is 30."
+      ],
+      "distractors": [
+        [
+          "That come",
+          "That coming",
+          "Those comes"
+        ],
+        [
+          "to thirteen.",
+          "at 30.",
+          "for 30."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "That comes to 30.",
+        "audio": {
+          "url": "assets/oral-bd951c11-2cca5d11af4341dc5083.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ce12dcfbc9dbc8177acd2ca09a7fa8a43821aae936a873e7941830468ef45b6",
+          "bytes": 4876
+        }
+      }
+    },
+    {
+      "sentence": "Cash or credit?",
+      "cid": "3ec98065",
+      "translation": "现金还是刷卡？",
+      "chunks": [
+        "Cash",
+        "or credit?"
+      ],
+      "hints": [
+        "现金",
+        "还是刷卡"
+      ],
+      "grammar": [
+        {
+          "role": "名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/kæʃ/"
+          ],
+          "pos": "不可数名词",
+          "meaning": "现金"
+        },
+        {
+          "role": "选择问句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɔːr/",
+            "/ˈkredɪt/"
+          ],
+          "pos": "or + 名词",
+          "meaning": "还是刷卡"
+        }
+      ],
+      "explanations": [
+        "结账时的省略问句（Cash or credit? = Will you pay in cash or by credit card?）。常见错误：\n• \"Cash or credit card?\" → 也常听到，口语里 credit 单独用即可\n• 注意 cash 与 cache（缓存/藏匿）拼写不同",
+        "选择疑问句用 or 连接两个选项，读时前项升调、后项降调。"
+      ],
+      "distractors": [
+        [
+          "Cash's",
+          "Cache",
+          "Cashier"
+        ],
+        [
+          "and credit?",
+          "or credit card?",
+          "nor credit?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Cash or credit?",
+        "audio": {
+          "url": "assets/oral-3ec98065-e6055dc505cf3df880b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eff89828868d4d860ca84c07870adef03cc22bc17aba76870a2f275baed6da6e",
+          "bytes": 4475
+        }
+      }
+    },
+    {
+      "sentence": "What size are you?",
+      "cid": "0d6e7a1e",
+      "translation": "你穿多大码？",
+      "chunks": [
+        "What size are you?"
+      ],
+      "hints": [
+        "你穿多大码？"
+      ],
+      "grammar": [
+        {
+          "role": "尺码问句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wʌt/",
+            "/saɪz/",
+            "/ɑːr/",
+            "/juː/"
+          ],
+          "pos": "固定问法",
+          "meaning": "你穿多大码"
+        }
+      ],
+      "explanations": [
+        "买衣服问尺码最常用这句。常见错误：\n• \"What size you are?\" → 疑问句要用 are you 的语序\n• \"What's your size?\" 也对，但店员更常说 What size are you?",
+        "回答：I'm a medium. / I wear a size 8."
+      ],
+      "distractors": [
+        [
+          "What size you are?",
+          "How size are you?",
+          "What sizes are you?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "What size are you?",
+        "audio": {
+          "url": "assets/oral-0d6e7a1e-bf0b5162c26b02a377b2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fb2ef2990d3cf3cfce48ac38e8dd3338bc9e5bcb3bdb77667740ab10a809c8d9",
+          "bytes": 4243
+        }
+      }
+    },
+    {
+      "sentence": "Just pick out anything.",
+      "cid": "ce389d98",
+      "translation": "随便挑。",
+      "chunks": [
+        "Just pick out",
+        "anything."
+      ],
+      "hints": [
+        "随便挑",
+        "任何东西"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/dʒʌst/",
+            "/pɪk/",
+            "/aʊt/"
+          ],
+          "pos": "短语动词 pick out（祈使）",
+          "meaning": "随便挑"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈeniθɪŋ/"
+          ],
+          "pos": "不定代词",
+          "meaning": "任何东西"
+        }
+      ],
+      "explanations": [
+        "`pick out` = 挑选；表「随便挑」时宾语用 anything。常见错误：\n• \"Pick out something\" → 随便挑要用 anything\n• \"Pick of\" → 少了 out，pick 单独用意思变成「采、摘」",
+        "同类：Choose whichever you like. / Take your pick."
+      ],
+      "distractors": [
+        [
+          "Pick up out",
+          "Just pick of",
+          "Just picks out"
+        ],
+        [
+          "something.",
+          "anythings.",
+          "anything is."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Just pick out anything.",
+        "audio": {
+          "url": "assets/oral-ce389d98-70ad7d73bfe907afa00d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a8dbd86b9ebea313c0b93d1b163edb1a2ee9424e65c581ee2d7738fbba7ed366",
+          "bytes": 4830
+        }
+      }
+    },
+    {
+      "sentence": "Put it on.",
+      "cid": "6a78132a",
+      "translation": "穿上。",
+      "chunks": [
+        "Put it",
+        "on."
+      ],
+      "hints": [
+        "把它",
+        "穿上"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/pʊt/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 put on（代词夹中）",
+          "meaning": "把它（穿）上"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɑːn/"
+          ],
+          "pos": "副词",
+          "meaning": "上（穿戴）"
+        }
+      ],
+      "explanations": [
+        "`put on` 表穿戴，代词宾语必须放中间：put **it** on。常见错误：\n• \"Put on it\" → 代词不能放后面\n• put on 是穿的动作，wear 是穿着的状态",
+        "反义：take it off（脱下来）。"
+      ],
+      "distractors": [
+        [
+          "Put on it",
+          "Putting it on",
+          "Put it of"
+        ],
+        [
+          "off.",
+          "in.",
+          "up."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Put it on.",
+        "audio": {
+          "url": "assets/oral-6a78132a-72c5f8bb7501b66f741f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "87ac03ee4fa20b08cd7a87a2ff501d55fcb6cd0aa96f5f945b2e2dde22eaf70f",
+          "bytes": 3486
+        }
+      }
+    },
+    {
+      "sentence": "Take it off.",
+      "cid": "2b8d1614",
+      "translation": "脱下来。",
+      "chunks": [
+        "Take it",
+        "off."
+      ],
+      "hints": [
+        "把它",
+        "脱下"
+      ],
+      "grammar": [
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/ɪt/"
+          ],
+          "pos": "短语动词 take off（代词夹中）",
+          "meaning": "把它脱下来"
+        },
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɔːf/"
+          ],
+          "pos": "副词",
+          "meaning": "下（脱下）"
+        }
+      ],
+      "explanations": [
+        "`take off` 表脱下衣物，代词夹在中间：take **it** off。常见错误：\n• \"Take off it\" → 代词要放中间\n• take off 还能表「飞机起飞」，靠上下文区分",
+        "反义：put it on（穿上）。"
+      ],
+      "distractors": [
+        [
+          "Take off it",
+          "Taking it off",
+          "Take it of"
+        ],
+        [
+          "on.",
+          "in.",
+          "out."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Take it off.",
+        "audio": {
+          "url": "assets/oral-2b8d1614-ccad5d54ce6376259c13.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "512995395c3e7664e230da1a205df48c355b424225c7453279d312f030e0239e",
+          "bytes": 3735
+        }
+      }
+    },
+    {
+      "sentence": "It doesn't fit.",
+      "cid": "2bfa5969",
+      "translation": "它不合身。",
+      "chunks": [
+        "It doesn't",
+        "fit."
+      ],
+      "hints": [
+        "它不",
+        "合身"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/ˈdʌznt/"
+          ],
+          "pos": "第三人称否定",
+          "meaning": "它不"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/fɪt/"
+          ],
+          "pos": "动词原形",
+          "meaning": "合身"
+        }
+      ],
+      "explanations": [
+        "衣服合不合身穿 `fit`；太紧太松则说 too tight / too loose. 常见错误：\n• \"It doesn't fits\" → 助动词 doesn't 后跟动词原形\n• \"It's not fit\" → 意思会变成「它不健康」",
+        "相关：It fits perfectly.（正合适）/ It fits like a glove."
+      ],
+      "distractors": [
+        [
+          "It don't",
+          "It isn't",
+          "They doesn't"
+        ],
+        [
+          "fits.",
+          "fitting.",
+          "fit on."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It doesn't fit.",
+        "audio": {
+          "url": "assets/oral-2bfa5969-58dea585ccf95e028708.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "273df280818ba4b1e5680e986da97bf976461a7475de5553c1d36646f47aca5d",
+          "bytes": 4014
+        }
+      }
+    },
+    {
+      "sentence": "Can I return it?",
+      "cid": "433047e6",
+      "translation": "可以退吗？",
+      "chunks": [
+        "Can I",
+        "return it?"
+      ],
+      "hints": [
+        "我可以",
+        "退掉它吗"
+      ],
+      "grammar": [
+        {
+          "role": "情态动词 + 主语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kæn/",
+            "/aɪ/"
+          ],
+          "pos": "请求许可",
+          "meaning": "我可以"
+        },
+        {
+          "role": "谓语 + 宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/rɪˈtɜːrn/",
+            "/ɪt/"
+          ],
+          "pos": "动词短语",
+          "meaning": "退掉它"
+        }
+      ],
+      "explanations": [
+        "退货用 `return`，拿回钱说 get a refund。常见错误：\n• \"Can I return back it?\" → return 已含「回」，不加 back\n• 指着商品时也可说 Can I return this?",
+        "相关：exchange it（换货）/ get a refund（退款）"
+      ],
+      "distractors": [
+        [
+          "Can I do",
+          "Could I to",
+          "Can me"
+        ],
+        [
+          "returning it?",
+          "return it back?",
+          "return of it?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Can I return it?",
+        "audio": {
+          "url": "assets/oral-433047e6-a3e3d8a5dd96604630b8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5921977550b1a8d5b7bda32746fa81c5946877f7b80a9b85a2b5f7cb5cbdcad2",
+          "bytes": 4328
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2029 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-6-30-2",
+    "name": "口语3000句 · 走在街上的时候 · 乘坐交通工具～交通标志",
+    "short": "乘坐交通工具～交通标志",
+    "desc": "乘坐交通工具～交通标志",
+    "chapter": 6,
+    "section": "6.30",
+    "sectionTitle": "走在街上的时候",
+    "topic": "乘坐交通工具～交通标志",
+    "baseCount": 0,
+    "totalCount": 69,
+    "items": [
+      {
+        "sentence": "A subway map, please.",
+        "translation": "请给我一张地铁图。",
+        "chunks": [
+          "A subway map,",
+          "please."
+        ],
+        "hints": [
+          "一张地铁图",
+          "请。"
+        ],
+        "cid": "cf9c51f9",
+        "sentenceAudio": {
+          "text": "A subway map, please.",
+          "audio": {
+            "url": "assets/oral-cf9c51f9-06d17530e161837329f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "541f13ec380bf99e27e48589048a1593d288f7104d12878d20297a07ea877d77",
+            "bytes": 5150
+          }
+        }
+      },
+      {
+        "sentence": "Where's the ticket counter?",
+        "translation": "售票处在哪儿?",
+        "chunks": [
+          "Where's",
+          "the ticket counter?"
+        ],
+        "hints": [
+          "在哪儿？",
+          "售票处"
+        ],
+        "cid": "a6e529dc",
+        "sentenceAudio": {
+          "text": "Where's the ticket counter?",
+          "audio": {
+            "url": "assets/oral-a6e529dc-8e961cf841f149f9c3c8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "98ea73b626c815116458d4cac9b56e42d2c4ffe01dda30e562a6b689fdf921f1",
+            "bytes": 5392
+          }
+        }
+      },
+      {
+        "sentence": "How much is the fare to Shinjuku?",
+        "translation": "到新宿多少钱?",
+        "chunks": [
+          "How much is the fare",
+          "to Shinjuku?"
+        ],
+        "hints": [
+          "车费多少钱",
+          "到新宿"
+        ],
+        "cid": "2ad943ca",
+        "sentenceAudio": {
+          "text": "How much is the fare to Shinjuku?",
+          "audio": {
+            "url": "assets/oral-2ad943ca-a591f9344c01488878b4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6969c783dd16c4ea75e60c640936ee685a82288cb7ae958006242ed53b51b468",
+            "bytes": 6750
+          }
+        }
+      },
+      {
+        "sentence": "It's one hundred fifty yen.",
+        "translation": "是150日元。",
+        "chunks": [
+          "It's",
+          "one hundred fifty yen."
+        ],
+        "hints": [
+          "是",
+          "150日元。"
+        ],
+        "cid": "ec7d7e56",
+        "sentenceAudio": {
+          "text": "It's one hundred fifty yen.",
+          "audio": {
+            "url": "assets/oral-ec7d7e56-9b6841ca512ab6419465.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8aa3a3e89c62e10201a025649402e2121112c8029d9fa3bd30e76b1835734fa0",
+            "bytes": 5789
+          }
+        }
+      },
+      {
+        "sentence": "Which train should I take to Shinjuku?",
+        "translation": "到新宿，我该坐哪趟车?",
+        "chunks": [
+          "Which train should I take",
+          "to Shinjuku?"
+        ],
+        "hints": [
+          "我该坐哪趟车",
+          "到新宿"
+        ],
+        "cid": "890b02de",
+        "sentenceAudio": {
+          "text": "Which train should I take to Shinjuku?",
+          "audio": {
+            "url": "assets/oral-890b02de-98cfa1f3ece2718b8bbb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0d929a6cf3f3367d08c2d909be52ac47228cd98c09629cce3444eee6d74abb2d",
+            "bytes": 7310
+          }
+        }
+      },
+      {
+        "sentence": "Where am I supposed to change?",
+        "translation": "我应该在哪站换车?",
+        "chunks": [
+          "Where am I supposed to",
+          "change?"
+        ],
+        "hints": [
+          "我应该在哪站",
+          "换车？"
+        ],
+        "cid": "0ada1c64",
+        "sentenceAudio": {
+          "text": "Where am I supposed to change?",
+          "audio": {
+            "url": "assets/oral-0ada1c64-df6f739f7d6c485b30da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "03543b80cbee684c1e1ef20119d5e2c9168f477b3b8b29b48181bd3be8cd66c0",
+            "bytes": 6030
+          }
+        }
+      },
+      {
+        "sentence": "Where am I supposed to get off for Ogikubo?",
+        "translation": "我要到荻洼在哪儿下车?",
+        "chunks": [
+          "Where am I supposed to get off",
+          "for Ogikubo?"
+        ],
+        "hints": [
+          "在哪儿下车？",
+          "到荻洼"
+        ],
+        "cid": "92d9369a",
+        "sentenceAudio": {
+          "text": "Where am I supposed to get off for Ogikubo?",
+          "audio": {
+            "url": "assets/oral-92d9369a-bccee81c3d5132ea0864.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "009ed144eb604e596a93baa9096022c857a9b45e3c370da3168124af7be52c73",
+            "bytes": 8486
+          }
+        }
+      },
+      {
+        "sentence": "You can change to the JR Chuo Line at Shinjuku.",
+        "translation": "你可以在新宿换乘JR中央线。",
+        "chunks": [
+          "You can change",
+          "to the JR Chuo Line at Shinjuku."
+        ],
+        "hints": [
+          "你可以换乘",
+          "JR中央线（在新宿）"
+        ],
+        "cid": "f5aee97d",
+        "sentenceAudio": {
+          "text": "You can change to the JR Chuo Line at Shinjuku.",
+          "audio": {
+            "url": "assets/oral-f5aee97d-40aee6499f56053ca9ba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f66ba36ba59a197f0631f7c2a7b4faeb94fd5beaf8fb71c4d33beaa08aca7eca",
+            "bytes": 10720
+          }
+        }
+      },
+      {
+        "sentence": "Where can I catch an express train?",
+        "translation": "在哪儿能坐上快车?",
+        "chunks": [
+          "Where can I catch",
+          "an express train?"
+        ],
+        "hints": [
+          "在哪儿能",
+          "坐上快车？"
+        ],
+        "cid": "89ac1e48",
+        "sentenceAudio": {
+          "text": "Where can I catch an express train?",
+          "audio": {
+            "url": "assets/oral-89ac1e48-f7b71324e454d85eebfa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5306dbd6d08797c9a0dfc0991038ac5b1157122b85874e7adbfa68136907d025",
+            "bytes": 6377
+          }
+        }
+      },
+      {
+        "sentence": "Go to track number two.",
+        "translation": "到第二站台。",
+        "chunks": [
+          "Go to",
+          "track number two."
+        ],
+        "hints": [
+          "到",
+          "第二站台。"
+        ],
+        "cid": "191e7b0c",
+        "sentenceAudio": {
+          "text": "Go to track number two.",
+          "audio": {
+            "url": "assets/oral-191e7b0c-720296ebe737dea01e1e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6554191c6c02761ba9f6cf8b9a5edf9ab6d2cfb86f5a754bea0eb48d8c80da6c",
+            "bytes": 4951
+          }
+        }
+      },
+      {
+        "sentence": "How often do the trains come?",
+        "translation": "电车多长时间来一趟?",
+        "chunks": [
+          "How often",
+          "do the trains come?"
+        ],
+        "hints": [
+          "电车多长时间",
+          "来一趟？"
+        ],
+        "cid": "5ec700e5",
+        "sentenceAudio": {
+          "text": "How often do the trains come?",
+          "audio": {
+            "url": "assets/oral-5ec700e5-27b05fcf45ff0c78b24c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84d3e18b38d880c78c3de47682f85265889656e6d89e545fbd8009a10b27637a",
+            "bytes": 6117
+          }
+        }
+      },
+      {
+        "sentence": "The trains come every ten minutes.",
+        "translation": "电车每10分钟一趟。",
+        "chunks": [
+          "The trains",
+          "come every ten minutes."
+        ],
+        "hints": [
+          "电车",
+          "每10分钟一趟。"
+        ],
+        "cid": "98ab5a62",
+        "sentenceAudio": {
+          "text": "The trains come every ten minutes.",
+          "audio": {
+            "url": "assets/oral-98ab5a62-2aedf0635588aff40399.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e1de11d00d10a29e7799dce0c3f9b74e7269578818393d8e887f337d81a9830c",
+            "bytes": 6549
+          }
+        }
+      },
+      {
+        "sentence": "When is the next express?",
+        "translation": "下趟快车是几点?",
+        "chunks": [
+          "When is",
+          "the next express?"
+        ],
+        "hints": [
+          "几点？",
+          "下趟快车"
+        ],
+        "cid": "13ee055a",
+        "sentenceAudio": {
+          "text": "When is the next express?",
+          "audio": {
+            "url": "assets/oral-13ee055a-acb5a1bba41a9d3da32c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0f0b8498d12025396335086913e62d4805f406399ee3974672a3e4729b0659e9",
+            "bytes": 5566
+          }
+        }
+      },
+      {
+        "sentence": "What time is the last train to Chofu?",
+        "translation": "到调布的末班车是几点?",
+        "chunks": [
+          "What time is",
+          "the last train to Chofu?"
+        ],
+        "hints": [
+          "是几点？",
+          "到调布的末班车"
+        ],
+        "cid": "6c8ff1f2",
+        "sentenceAudio": {
+          "text": "What time is the last train to Chofu?",
+          "audio": {
+            "url": "assets/oral-6c8ff1f2-fb6a234c241b9e122068.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c57123dfb585ac7340150744b7cac14af3386be7d7fa397930b2367f25b31bac",
+            "bytes": 7310
+          }
+        }
+      },
+      {
+        "sentence": "Is the next train an express?",
+        "translation": "下趟车是快车吗?",
+        "chunks": [
+          "Is the next train",
+          "an express?"
+        ],
+        "hints": [
+          "下趟车",
+          "是快车吗？"
+        ],
+        "cid": "6bb00dbd",
+        "sentenceAudio": {
+          "text": "Is the next train an express?",
+          "audio": {
+            "url": "assets/oral-6bb00dbd-5cd957cb99f93b180933.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e5c2a4695431bcca2a7b9db199acf4fd5187b6d4701fce55349fc532ad47d94",
+            "bytes": 5717
+          }
+        }
+      },
+      {
+        "sentence": "Does this train stop at Chofu?",
+        "translation": "这趟车在调布停吗?",
+        "chunks": [
+          "Does this train",
+          "stop at Chofu?"
+        ],
+        "hints": [
+          "这趟车",
+          "在调布停吗？"
+        ],
+        "cid": "d749c01f",
+        "sentenceAudio": {
+          "text": "Does this train stop at Chofu?",
+          "audio": {
+            "url": "assets/oral-d749c01f-e6d3cefe6935eac6e92c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "caa1f1c1579fc535c754a45aee555a515e68ee1069e12b35eb63a49c7a1f648e",
+            "bytes": 6229
+          }
+        }
+      },
+      {
+        "sentence": "It's the fourth stop from here.",
+        "translation": "从这里数第4站。",
+        "chunks": [
+          "It's the fourth stop",
+          "from here."
+        ],
+        "hints": [
+          "第四站",
+          "从这里数"
+        ],
+        "cid": "b7c022c3",
+        "sentenceAudio": {
+          "text": "It's the fourth stop from here.",
+          "audio": {
+            "url": "assets/oral-b7c022c3-4104f35676f1405ec619.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c456226c483a4a7986fab7588f33e3840e20cd44a8e005185c9f218f998fda52",
+            "bytes": 5649
+          }
+        }
+      },
+      {
+        "sentence": "After the next stop.",
+        "translation": "下下站。",
+        "chunks": [
+          "After",
+          "the next stop."
+        ],
+        "hints": [
+          "下",
+          "下站。"
+        ],
+        "cid": "4c65f091",
+        "sentenceAudio": {
+          "text": "After the next stop.",
+          "audio": {
+            "url": "assets/oral-4c65f091-758bbef79e82204a1a8a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5cb7cf1e0347237dc11bcb1079ca067fe3aa6047628860861315a8693d202903",
+            "bytes": 4811
+          }
+        }
+      },
+      {
+        "sentence": "How many stops are there to Shinjuku?",
+        "translation": "到新宿还有几站？",
+        "chunks": [
+          "How many stops",
+          "are there to Shinjuku?"
+        ],
+        "hints": [
+          "还有几站",
+          "到新宿？"
+        ],
+        "cid": "aa72fd54",
+        "sentenceAudio": {
+          "text": "How many stops are there to Shinjuku?",
+          "audio": {
+            "url": "assets/oral-aa72fd54-f9b096be68e47bfee0ad.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "074df509ac8d3a0eef5c39fc1e321e56b1656956bc6be0d8cec627e2c131ecf9",
+            "bytes": 7223
+          }
+        }
+      },
+      {
+        "sentence": "What's the next stop?",
+        "translation": "下站是哪儿?",
+        "chunks": [
+          "What's",
+          "the next stop?"
+        ],
+        "hints": [
+          "是哪里？",
+          "下一站"
+        ],
+        "cid": "ebb5c356",
+        "sentenceAudio": {
+          "text": "What's the next stop?",
+          "audio": {
+            "url": "assets/oral-ebb5c356-1014fdcee8ec3e4c5bb6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e1d386df4f413025729b04d2b97176a94f00dfd892df359a1c48cf52790644c",
+            "bytes": 4547
+          }
+        }
+      },
+      {
+        "sentence": "The next stop is Chofu.",
+        "translation": "下站是调布。",
+        "chunks": [
+          "The next stop",
+          "is Chofu."
+        ],
+        "hints": [
+          "下站",
+          "是调布。"
+        ],
+        "cid": "2d483d72",
+        "sentenceAudio": {
+          "text": "The next stop is Chofu.",
+          "audio": {
+            "url": "assets/oral-2d483d72-91f10154b60eaa17c1cf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "11b06a1a9be402739d45f9a22533343ce8b126a0e8a7315ab517e0c0eadad0e6",
+            "bytes": 5543
+          }
+        }
+      },
+      {
+        "sentence": "Where can I get a taxi?",
+        "translation": "我在哪儿可以打到车?",
+        "chunks": [
+          "Where can I",
+          "get a taxi?"
+        ],
+        "hints": [
+          "我在哪儿可以",
+          "打到车？"
+        ],
+        "cid": "ed1f408b",
+        "sentenceAudio": {
+          "text": "Where can I get a taxi?",
+          "audio": {
+            "url": "assets/oral-ed1f408b-bf923873b5c92395c67b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32b36eb3a97a4d10a08c08be47c263af721d8a3041d0fca5cdf442a78cbe8a1d",
+            "bytes": 5300
+          }
+        }
+      },
+      {
+        "sentence": "Where's the taxi stand?",
+        "translation": "出租车站在哪儿?",
+        "chunks": [
+          "Where's",
+          "the taxi stand?"
+        ],
+        "hints": [
+          "在哪儿？",
+          "出租车站"
+        ],
+        "cid": "e8f2b838",
+        "sentenceAudio": {
+          "text": "Where's the taxi stand?",
+          "audio": {
+            "url": "assets/oral-e8f2b838-95bdc1f81ca17dbd8f4d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cb084d1cdbfe6711369d629cb8adffc1201b38ee996e6361101dcd6a6ff00a2e",
+            "bytes": 5315
+          }
+        }
+      },
+      {
+        "sentence": "Call me a taxi, please.",
+        "translation": "请帮我叫辆出租车。",
+        "chunks": [
+          "Call me a taxi,",
+          "please."
+        ],
+        "hints": [
+          "帮我叫辆出租车",
+          "请。"
+        ],
+        "cid": "baacc802",
+        "sentenceAudio": {
+          "text": "Call me a taxi, please.",
+          "audio": {
+            "url": "assets/oral-baacc802-8adcb04d9565103f26b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5969773c9b4956813c31b2e09badce11849eae2747c08069c9b218e96f891f95",
+            "bytes": 5821
+          }
+        }
+      },
+      {
+        "sentence": "How long does it take to get downtown?",
+        "translation": "到市中心得多长时间?",
+        "chunks": [
+          "How long does it take",
+          "to get downtown?"
+        ],
+        "hints": [
+          "得多长时间",
+          "到市中心？"
+        ],
+        "cid": "2d0e82c6",
+        "sentenceAudio": {
+          "text": "How long does it take to get downtown?",
+          "audio": {
+            "url": "assets/oral-2d0e82c6-2993a4224307ba9fe875.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3198929e45075448372e9892ac144b4789763f58c798b96c288c5650e0810745",
+            "bytes": 7154
+          }
+        }
+      },
+      {
+        "sentence": "How much does it cost?",
+        "translation": "要花多少钱?",
+        "chunks": [
+          "How much",
+          "does it cost?"
+        ],
+        "hints": [
+          "多少钱？",
+          "要花"
+        ],
+        "cid": "3bdad172",
+        "sentenceAudio": {
+          "text": "How much does it cost?",
+          "audio": {
+            "url": "assets/oral-3bdad172-643ac9d4a9bd85e5b9a3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3973d4c8766b8bdf309da7447f89daabedaa6fec32d9449905faa2b3f567b1e3",
+            "bytes": 4864
+          }
+        }
+      },
+      {
+        "sentence": "Where to?",
+        "translation": "您去哪儿?",
+        "chunks": [
+          "Where to?"
+        ],
+        "hints": [
+          "您要去哪儿？"
+        ],
+        "cid": "75f74a5a",
+        "sentenceAudio": {
+          "text": "Where to?",
+          "audio": {
+            "url": "assets/oral-75f74a5a-c1bdce1a4bf5ec15fad5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "571113ad91d217c8c2d46150911bbdfca879c9a61352684019d8b8afea438b07",
+            "bytes": 3597
+          }
+        }
+      },
+      {
+        "sentence": "To Wall Street, please.",
+        "translation": "请到华尔街。",
+        "chunks": [
+          "To Wall Street,",
+          "please."
+        ],
+        "hints": [
+          "到华尔街",
+          "请。"
+        ],
+        "cid": "c34c89d9",
+        "sentenceAudio": {
+          "text": "To Wall Street, please.",
+          "audio": {
+            "url": "assets/oral-c34c89d9-38578651225d9c14ffd7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb6a6063a6830894263bcb51dafa0094f0eef3c4c428ecdf4f41f161f26dead9",
+            "bytes": 5226
+          }
+        }
+      },
+      {
+        "sentence": "To this address, please.",
+        "translation": "请到这个地址。",
+        "chunks": [
+          "To this address,",
+          "please."
+        ],
+        "hints": [
+          "到这个地址",
+          "请。"
+        ],
+        "cid": "eb55667c",
+        "sentenceAudio": {
+          "text": "To this address, please.",
+          "audio": {
+            "url": "assets/oral-eb55667c-240b60754680adad44e1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "22038b1810171048f0846ad24de6a2cb0633865db7af3c5184bc3f0c97d52446",
+            "bytes": 5117
+          }
+        }
+      },
+      {
+        "sentence": "I'm in a hurry.",
+        "translation": "我有急事。",
+        "chunks": [
+          "I'm",
+          "in a hurry."
+        ],
+        "hints": [
+          "我",
+          "赶时间。"
+        ],
+        "cid": "82c952bc",
+        "sentenceAudio": {
+          "text": "I'm in a hurry.",
+          "audio": {
+            "url": "assets/oral-82c952bc-3541dc375c7db7b7262b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "76ce64bb6164425ec36cbad783e35cec7045c98f412ef9e3a53baef6615c504e",
+            "bytes": 4018
+          }
+        }
+      },
+      {
+        "sentence": "Take the shortest way, please.",
+        "translation": "请走最近的路。",
+        "chunks": [
+          "Take the shortest way,",
+          "please."
+        ],
+        "hints": [
+          "走最近的路",
+          "请。"
+        ],
+        "cid": "8d616cd6",
+        "sentenceAudio": {
+          "text": "Take the shortest way, please.",
+          "audio": {
+            "url": "assets/oral-8d616cd6-ab50ec65b6ce8819485e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f6939b8d6dcc1dacb9c099789be3fc309662a360d2250ea288b86f82bf442063",
+            "bytes": 6321
+          }
+        }
+      },
+      {
+        "sentence": "Could you wait for me, please?",
+        "translation": "能请您等我一下吗？",
+        "chunks": [
+          "Could you",
+          "wait for me, please?"
+        ],
+        "hints": [
+          "您能",
+          "请等我一下吗？"
+        ],
+        "cid": "0b09d220",
+        "sentenceAudio": {
+          "text": "Could you wait for me, please?",
+          "audio": {
+            "url": "assets/oral-0b09d220-af5468116f0a957e2db4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ca5d9d72d012623881cb651e7d27c5de830d489d9c3eb4df2b1d73c968bacf6f",
+            "bytes": 5622
+          }
+        }
+      },
+      {
+        "sentence": "Stop here, please.",
+        "translation": "请在这儿停吧。",
+        "chunks": [
+          "Stop here,",
+          "please."
+        ],
+        "hints": [
+          "在这儿停",
+          "请。"
+        ],
+        "cid": "3c49313f",
+        "sentenceAudio": {
+          "text": "Stop here, please.",
+          "audio": {
+            "url": "assets/oral-3c49313f-452c5d5e25fba1631626.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "078039e5f65aa1ba278b1afa55902bbc1409ff39c55bcbbf36a531d20cfb14ec",
+            "bytes": 4509
+          }
+        }
+      },
+      {
+        "sentence": "Could you help me carry my bag?",
+        "translation": "您能帮我拿一下行李吗?",
+        "chunks": [
+          "Could you help me",
+          "carry my bag?"
+        ],
+        "hints": [
+          "您能帮我",
+          "拿一下行李吗？"
+        ],
+        "cid": "ffab3760",
+        "sentenceAudio": {
+          "text": "Could you help me carry my bag?",
+          "audio": {
+            "url": "assets/oral-ffab3760-8b8402a741e2394d3122.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fafd646dd309945e3932fd011dcc985137a5ab156178f0a1031f898ebbd6fb54",
+            "bytes": 5952
+          }
+        }
+      },
+      {
+        "sentence": "How much would it cost to get there?",
+        "translation": "到那儿的话要花多少钱?",
+        "chunks": [
+          "How much would it cost",
+          "to get there?"
+        ],
+        "hints": [
+          "要花多少钱",
+          "到那儿"
+        ],
+        "cid": "01cd2149",
+        "sentenceAudio": {
+          "text": "How much would it cost to get there?",
+          "audio": {
+            "url": "assets/oral-01cd2149-78707797c53b5f87a7fb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f3a6ba96a36c4f80a6121fc69588651a41f8d94a0a0e6c2fc7760142af8ae671",
+            "bytes": 6108
+          }
+        }
+      },
+      {
+        "sentence": "Where's the bus stop?",
+        "translation": "公共汽车站在哪儿?",
+        "chunks": [
+          "Where's",
+          "the bus stop?"
+        ],
+        "hints": [
+          "在哪儿？",
+          "公共汽车站"
+        ],
+        "cid": "49459476",
+        "sentenceAudio": {
+          "text": "Where's the bus stop?",
+          "audio": {
+            "url": "assets/oral-49459476-c6a293f849c33c765345.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c7e45e13576244fd6dd1ce8b0d45c8b640e69c3dbabdec71de2357832b1d7fbb",
+            "bytes": 4620
+          }
+        }
+      },
+      {
+        "sentence": "Is there a bus to the airport?",
+        "translation": "有去机场的汽车吗?",
+        "chunks": [
+          "Is there",
+          "a bus to the airport?"
+        ],
+        "hints": [
+          "有吗？",
+          "去机场的公交车"
+        ],
+        "cid": "c76f2a50",
+        "sentenceAudio": {
+          "text": "Is there a bus to the airport?",
+          "audio": {
+            "url": "assets/oral-c76f2a50-9e5daaa50a03621d0763.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "088bd4edb90f7d754f23fdb9a867fb9ec57ebf476cd26dfac5e65dd1637d8415",
+            "bytes": 5799
+          }
+        }
+      },
+      {
+        "sentence": "How many stops to the museum?",
+        "translation": "到美术馆还有几站？",
+        "chunks": [
+          "How many stops",
+          "to the museum?"
+        ],
+        "hints": [
+          "还有几站",
+          "到美术馆？"
+        ],
+        "cid": "bee2e3b8",
+        "sentenceAudio": {
+          "text": "How many stops to the museum?",
+          "audio": {
+            "url": "assets/oral-bee2e3b8-cdd269c64efed09207b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "38650dc2b436cd0a3e9e30cd3c6097e2ef8bf454ccf89a5da6c756c77dfdba6f",
+            "bytes": 5955
+          }
+        }
+      },
+      {
+        "sentence": "When is the next bus to Narita?",
+        "translation": "下趟到成田机场的车是几点?",
+        "chunks": [
+          "When is the next bus",
+          "to Narita?"
+        ],
+        "hints": [
+          "下一班车是几点",
+          "到成田机场"
+        ],
+        "cid": "aaa746ac",
+        "sentenceAudio": {
+          "text": "When is the next bus to Narita?",
+          "audio": {
+            "url": "assets/oral-aaa746ac-959eed9c29a35088d795.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9f174c6871f32d6f5520235c2b0003be3aa2358b34831f4d11d2584c7b3656e9",
+            "bytes": 6836
+          }
+        }
+      },
+      {
+        "sentence": "Does this bus go to the airport?",
+        "translation": "这辆车是去机场的吗?",
+        "chunks": [
+          "Does this bus",
+          "go to the airport?"
+        ],
+        "hints": [
+          "这辆公交车",
+          "去机场吗？"
+        ],
+        "cid": "35c1f5e6",
+        "sentenceAudio": {
+          "text": "Does this bus go to the airport?",
+          "audio": {
+            "url": "assets/oral-35c1f5e6-2bcdcf9c4e6ddfee6d11.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1422283e944c5c3cd6dd8264d6d0ec3bd7f190f8ba2fa39edcbd2f62e2514503",
+            "bytes": 6224
+          }
+        }
+      },
+      {
+        "sentence": "Could you tell me when to get off?",
+        "translation": "麻烦您到站时告诉我一声。",
+        "chunks": [
+          "Could you tell me",
+          "when to get off?"
+        ],
+        "hints": [
+          "麻烦您告诉我",
+          "什么时候下车？"
+        ],
+        "cid": "0ddca78f",
+        "sentenceAudio": {
+          "text": "Could you tell me when to get off?",
+          "audio": {
+            "url": "assets/oral-0ddca78f-43ea3c31915e2d4f2ec2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d38920f5bc7a437c57929f161dcc090962a588b164fc1a7e8eac08deddee605c",
+            "bytes": 5377
+          }
+        }
+      },
+      {
+        "sentence": "The bus has just left.",
+        "translation": "汽车刚走。",
+        "chunks": [
+          "The bus has",
+          "just left."
+        ],
+        "hints": [
+          "汽车",
+          "刚走。"
+        ],
+        "cid": "f1b38325",
+        "sentenceAudio": {
+          "text": "The bus has just left.",
+          "audio": {
+            "url": "assets/oral-f1b38325-0bafb54d8e6d7e1324d6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "60825c1d65632d32f7ba610895d948f4c8792852bc63be7f15598713d856f059",
+            "bytes": 5246
+          }
+        }
+      },
+      {
+        "sentence": "The buses don't come on time.",
+        "translation": "公交车不准时到。",
+        "chunks": [
+          "The buses",
+          "don't come on time."
+        ],
+        "hints": [
+          "公交车",
+          "不准时到。"
+        ],
+        "cid": "62b5d178",
+        "sentenceAudio": {
+          "text": "The buses don't come on time.",
+          "audio": {
+            "url": "assets/oral-62b5d178-ac4db42c4c8f57a65890.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e2ac8af08f69e6d57136eaa8302ef7dfb2c9753dc178823b48b8b04b85f6a524",
+            "bytes": 6016
+          }
+        }
+      },
+      {
+        "sentence": "Isn't the traffic heavy?",
+        "translation": "路上是不是很堵车?",
+        "chunks": [
+          "Isn't the traffic",
+          "heavy?"
+        ],
+        "hints": [
+          "路上是不是",
+          "很堵车？"
+        ],
+        "cid": "76175584",
+        "sentenceAudio": {
+          "text": "Isn't the traffic heavy?",
+          "audio": {
+            "url": "assets/oral-76175584-6221dcf0619d912e20ff.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "61095af067b739cd5aa918024867c86c8fb3838531cc0f1d9328538b17b0bb01",
+            "bytes": 4995
+          }
+        }
+      },
+      {
+        "sentence": "Who should I ask about car rentals?",
+        "translation": "租车的事，我该问谁?",
+        "chunks": [
+          "Who should I ask",
+          "about car rentals?"
+        ],
+        "hints": [
+          "我该问谁",
+          "租车的事"
+        ],
+        "cid": "8cafbb51",
+        "sentenceAudio": {
+          "text": "Who should I ask about car rentals?",
+          "audio": {
+            "url": "assets/oral-8cafbb51-d6c187ee1935f63bb771.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3d03ed8df3a460d9176b811dd1838093d23222955db30defa7d731437a701a9a",
+            "bytes": 6602
+          }
+        }
+      },
+      {
+        "sentence": "I'd like to rent a car, please.",
+        "translation": "我想租一辆车。",
+        "chunks": [
+          "I'd like",
+          "to rent a car, please."
+        ],
+        "hints": [
+          "我想",
+          "租一辆车。"
+        ],
+        "cid": "c2167301",
+        "sentenceAudio": {
+          "text": "I'd like to rent a car, please.",
+          "audio": {
+            "url": "assets/oral-c2167301-6c7102845e15558af354.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c7f64c94f2d8b6a8ace6275afe15d9d8bb5d3e4ba61fd670d206381d32abd165",
+            "bytes": 6116
+          }
+        }
+      },
+      {
+        "sentence": "What type do you have in mind?",
+        "translation": "你喜欢什么车型?",
+        "chunks": [
+          "What type",
+          "do you have in mind?"
+        ],
+        "hints": [
+          "什么车型",
+          "你想要的"
+        ],
+        "cid": "fce01309",
+        "sentenceAudio": {
+          "text": "What type do you have in mind?",
+          "audio": {
+            "url": "assets/oral-fce01309-892fd5d343e1eabbf7b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e7ffd3b288adaec25639b4f158219b4c036c5f4cf6fc6bc55cac8265d31458ec",
+            "bytes": 5703
+          }
+        }
+      },
+      {
+        "sentence": "A compact, please.",
+        "translation": "请给我一辆紧凑型车。",
+        "chunks": [
+          "A compact,",
+          "please."
+        ],
+        "hints": [
+          "一辆紧凑型车",
+          "请。"
+        ],
+        "cid": "82e16c9f",
+        "sentenceAudio": {
+          "text": "A compact, please.",
+          "audio": {
+            "url": "assets/oral-82e16c9f-577314fec782dc224a5c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "caf9bfa15112b7814c2dd27f32d715df9a43d5fd8b18e802fe366e0e7fc4279d",
+            "bytes": 5114
+          }
+        }
+      },
+      {
+        "sentence": "Do you have any Japanese cars?",
+        "translation": "有日本车吗?",
+        "chunks": [
+          "Do you have",
+          "any Japanese cars?"
+        ],
+        "hints": [
+          "有",
+          "日本车吗？"
+        ],
+        "cid": "7b8db31c",
+        "sentenceAudio": {
+          "text": "Do you have any Japanese cars?",
+          "audio": {
+            "url": "assets/oral-7b8db31c-ab6cf498bcb2d139fe69.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4f7dd3a1ea51c0eb41523bc83dea3e13af5fcee33d36a973d172ed5fd7df713",
+            "bytes": 6558
+          }
+        }
+      },
+      {
+        "sentence": "What's the rental fee?",
+        "translation": "租金是多少?",
+        "chunks": [
+          "What's",
+          "the rental fee?"
+        ],
+        "hints": [
+          "是多少？",
+          "租车费"
+        ],
+        "cid": "487d8a2d",
+        "sentenceAudio": {
+          "text": "What's the rental fee?",
+          "audio": {
+            "url": "assets/oral-487d8a2d-202b5b189c91d9b81a4b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "92244e026e04687ca59df54f1de6591e85008ab999131e3e05a33b5b31c382f4",
+            "bytes": 4851
+          }
+        }
+      },
+      {
+        "sentence": "Thirty dollars a day, plus twenty cents per mile.",
+        "translation": "每天30美元，每英里另加20美分。",
+        "chunks": [
+          "Thirty dollars a day,",
+          "plus twenty cents per mile."
+        ],
+        "hints": [
+          "一天30美金，",
+          "每英里另加20美分。"
+        ],
+        "cid": "fb741b75",
+        "sentenceAudio": {
+          "text": "Thirty dollars a day, plus twenty cents per mile.",
+          "audio": {
+            "url": "assets/oral-fb741b75-628cbbc00c383695f0da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "61e3aeca8a0650ce4285625713c8cc1dc2e49721ae146054ab9238b20bc941ab",
+            "bytes": 9021
+          }
+        }
+      },
+      {
+        "sentence": "Do you want insurance?",
+        "translation": "你要上保险吗?",
+        "chunks": [
+          "Do you want",
+          "insurance?"
+        ],
+        "hints": [
+          "你要",
+          "上保险吗？"
+        ],
+        "cid": "30361c48",
+        "sentenceAudio": {
+          "text": "Do you want insurance?",
+          "audio": {
+            "url": "assets/oral-30361c48-55fe0029dfd9523afde1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c148c7f0422bd941aab7bf5ae17914e27415355c965df289d4bba080b23029da",
+            "bytes": 5028
+          }
+        }
+      },
+      {
+        "sentence": "I'd like full insurance.",
+        "translation": "我要上全部的保险。",
+        "chunks": [
+          "I'd like",
+          "full insurance."
+        ],
+        "hints": [
+          "我要上",
+          "全部的保险。"
+        ],
+        "cid": "e9ee1a8f",
+        "sentenceAudio": {
+          "text": "I'd like full insurance.",
+          "audio": {
+            "url": "assets/oral-e9ee1a8f-5f064ae9409ba709d412.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ec78659017bed626184324e9cfd1ebf6e093bb10033e822b4dce751c862b5781",
+            "bytes": 5386
+          }
+        }
+      },
+      {
+        "sentence": "Can I drop off the car in...?",
+        "translation": "我能把车还在……吗？",
+        "chunks": [
+          "Can I",
+          "drop off the car in...?"
+        ],
+        "hints": [
+          "我能",
+          "把车还在……？"
+        ],
+        "cid": "0b9738a5",
+        "sentenceAudio": {
+          "text": "Can I drop off the car in...?",
+          "audio": {
+            "url": "assets/oral-0b9738a5-7dd3f07687001cbd29cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "05d072e40e4e4da7856fd9e7fe772a4aee77250ab2a218b8b62757a63dd9bf83",
+            "bytes": 5879
+          }
+        }
+      },
+      {
+        "sentence": "No outlet!",
+        "translation": "此路不通！",
+        "chunks": [
+          "No outlet!"
+        ],
+        "hints": [
+          "此路不通！"
+        ],
+        "cid": "a40080ae",
+        "sentenceAudio": {
+          "text": "No outlet!",
+          "audio": {
+            "url": "assets/oral-a40080ae-51c5d490c0d3cddfffa0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e82909f99fb29b23ac9337e5fa894fc3362eba93f98115a86acae44ba7b04aa3",
+            "bytes": 3990
+          }
+        }
+      },
+      {
+        "sentence": "No parking!",
+        "translation": "禁止停车!",
+        "chunks": [
+          "No",
+          "parking!"
+        ],
+        "hints": [
+          "禁止",
+          "停车！"
+        ],
+        "cid": "e6d5b1d1",
+        "sentenceAudio": {
+          "text": "No parking!",
+          "audio": {
+            "url": "assets/oral-e6d5b1d1-c4a26caa03d8ca145072.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "64f2daab14ff0440f31f9d075bcb7254a52b02ebb2cc9375f23b9876552d274b",
+            "bytes": 4137
+          }
+        }
+      },
+      {
+        "sentence": "No passing!",
+        "translation": "禁止超车!",
+        "chunks": [
+          "No",
+          "passing!"
+        ],
+        "hints": [
+          "禁止",
+          "超车！"
+        ],
+        "cid": "f8582108",
+        "sentenceAudio": {
+          "text": "No passing!",
+          "audio": {
+            "url": "assets/oral-f8582108-6c3a20f8358d3fa4539c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ed1d94919d743640e2ead8a7373da889c1eb95882a4e7473bbec55302e022cad",
+            "bytes": 4158
+          }
+        }
+      },
+      {
+        "sentence": "One-way street!",
+        "translation": "单行道。",
+        "chunks": [
+          "One-way",
+          "street!"
+        ],
+        "hints": [
+          "单向",
+          "道路。"
+        ],
+        "cid": "729e1bbb",
+        "sentenceAudio": {
+          "text": "One-way street!",
+          "audio": {
+            "url": "assets/oral-729e1bbb-c730bee13b931a517275.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be46ea61981aa9c3fc689365456256e4cd483e18ef7369877fa43cfaecad6ba0",
+            "bytes": 4336
+          }
+        }
+      },
+      {
+        "sentence": "road junction!",
+        "translation": "十字路口。",
+        "chunks": [
+          "road",
+          "junction!"
+        ],
+        "hints": [
+          "道路",
+          "交叉口。"
+        ],
+        "cid": "d086c510",
+        "sentenceAudio": {
+          "text": "road junction!",
+          "audio": {
+            "url": "assets/oral-d086c510-b588cd16a8ea2f5a003e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "df04f9bd80ef94c003c85a380a33a51964f9c516b3f0b9c752ada715b0e63664",
+            "bytes": 4293
+          }
+        }
+      },
+      {
+        "sentence": "Which bus goes to the station?",
+        "cid": "eb546ded",
+        "translation": "哪路公交车去车站？",
+        "chunks": [
+          "Which bus",
+          "goes to",
+          "the station?"
+        ],
+        "hints": [
+          "哪路车",
+          "去",
+          "车站"
+        ],
+        "grammar": [
+          {
+            "role": "疑问主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɪtʃ/",
+              "/bʌs/"
+            ],
+            "pos": "疑问词+名词",
+            "meaning": "哪路车"
+          },
+          {
+            "role": "谓语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɡoʊz/",
+              "/tuː/"
+            ],
+            "pos": "第三人称单数",
+            "meaning": "去"
+          },
+          {
+            "role": "状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðə/",
+              "/ˈsteɪʃn/"
+            ],
+            "pos": "介词短语",
+            "meaning": "车站"
+          }
+        ],
+        "explanations": [
+          "`Which bus` 当主语时，谓语动词用单数 `goes`。常见错误：\n• \"Which bus **go** to\" → 主语是单数 bus，要用 goes\n• \"Which **buses** goes\" → buses 是复数，应用 go",
+          "`goes to the station` 中 the 特指对话双方都知道的那个车站。"
+        ],
+        "distractors": [
+          [
+            "Whose bus",
+            "Which buses",
+            "Which a bus"
+          ],
+          [
+            "go to",
+            "going to",
+            "goes for"
+          ],
+          [
+            "the stop?",
+            "the stations?",
+            "a station?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Which bus goes to the station?",
+          "audio": {
+            "url": "assets/oral-eb546ded-da536343122750e02e3a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e726417dd4b96a0ac3e27a6b573a9426497438f01d39d59d2e40e24d2254a024",
+            "bytes": 6204
+          }
+        }
+      },
+      {
+        "sentence": "The subway is faster than driving downtown.",
+        "cid": "bfe52436",
+        "translation": "进城坐地铁比开车快。",
+        "chunks": [
+          "The subway is faster",
+          "than driving",
+          "downtown."
+        ],
+        "hints": [
+          "地铁更快",
+          "比开车",
+          "去市中心"
+        ],
+        "grammar": [
+          {
+            "role": "比较级主句",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðə/",
+              "/ˈsʌbweɪ/",
+              "/ɪz/",
+              "/ˈfɑːstər/"
+            ],
+            "pos": "比较级",
+            "meaning": "地铁更快"
+          },
+          {
+            "role": "比较对象",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðæn/",
+              "/ˈdraɪvɪŋ/"
+            ],
+            "pos": "than+动名词",
+            "meaning": "比开车"
+          },
+          {
+            "role": "方向副词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈdaʊntaʊn/"
+            ],
+            "pos": "副词",
+            "meaning": "去市中心"
+          }
+        ],
+        "explanations": [
+          "比较结构 `A is + 比较级 + than + B`。常见错误：\n• \"more faster\" → fast 是单音节，比较级直接 faster，不加 more\n• \"than **drive**\" → 比较对象要对称，用动名词 driving",
+          "`downtown` = 市中心/去市中心，副词用法前不加 to（比较 go downtown / go to the city center）。"
+        ],
+        "distractors": [
+          [
+            "The subway are faster",
+            "Subway is faster",
+            "The subway is more faster"
+          ],
+          [
+            "than drive",
+            "then driving",
+            "to driving"
+          ],
+          [
+            "down town.",
+            "to downtown.",
+            "in downtown."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The subway is faster than driving downtown.",
+          "audio": {
+            "url": "assets/oral-bfe52436-56a2bc7af2a70b217a25.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "737df53bdf3906dc435cabf053b9ce844d3b2220e1dc38689260edf21f94cf8b",
+            "bytes": 8791
+          }
+        }
+      },
+      {
+        "sentence": "Could you drop me off at the airport?",
+        "cid": "afd0eb9f",
+        "translation": "你能送我到机场吗？",
+        "chunks": [
+          "Could you drop me off",
+          "at the airport?"
+        ],
+        "hints": [
+          "你能送我下车",
+          "在机场"
+        ],
+        "grammar": [
+          {
+            "role": "情态+短语动词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/drɒp/",
+              "/miː/",
+              "/ɒf/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能送我"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/ði/",
+              "/ˈeəpɔːt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在机场"
+          }
+        ],
+        "explanations": [
+          "打车/搭顺风车用语。`drop someone off` = 把某人送到（下车）。常见错误：\n• \"drop off **me**\" → 代词宾语放短语中间：drop me off\n• \"drop me **at**\" → 需要 off 组成短语动词",
+          "`at the airport` 表到达地点。机场相关：at the airport / to the airport（去机场）。"
+        ],
+        "distractors": [
+          [
+            "Could you drop off me",
+            "Can you to drop me off",
+            "Could your drop me off"
+          ],
+          [
+            "to the airport?",
+            "in the airport?",
+            "at an airport?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you drop me off at the airport?",
+          "audio": {
+            "url": "assets/oral-afd0eb9f-d9f5667dfd4c730c4efe.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "782cb866974dd2486d29b7588dbd6710121acdd4120ad20d5cae402bcd8bfce0",
+            "bytes": 6259
+          }
+        }
+      },
+      {
+        "sentence": "Please pull over here, that's fine.",
+        "cid": "20563507",
+        "translation": "请靠边停在这里，这就行。",
+        "chunks": [
+          "Please pull over here,",
+          "that's fine."
+        ],
+        "hints": [
+          "请靠边停这",
+          "那就可以了"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/pliːz/",
+              "/pʊl/",
+              "/ˈəʊvər/",
+              "/hɪər/"
+            ],
+            "pos": "短语动词祈使",
+            "meaning": "请靠边停这"
+          },
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðæts/",
+              "/faɪn/"
+            ],
+            "pos": "肯定回应",
+            "meaning": "这就行"
+          }
+        ],
+        "explanations": [
+          "打车到目的地让司机停车的用语。`pull over` = 靠边停车。常见错误：\n• \"pull **on** here\" → 靠边是 pull over\n• \"stop here\" → 也可以，但 pull over 强调靠路边",
+          "`that's fine.` = 那就可以/这里就行。回应司机的确认询问。"
+        ],
+        "distractors": [
+          [
+            "Please pull up here,",
+            "Please pull in here,",
+            "Pulling over here,"
+          ],
+          [
+            "that's okay?",
+            "it's fine.",
+            "that fine."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Please pull over here, that's fine.",
+          "audio": {
+            "url": "assets/oral-20563507-597021309bd1c4d91161.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "379ecd16dcad958626a0e0184a05656059bb2736a02b7e7813e109e07df94b65",
+            "bytes": 6541
+          }
+        }
+      },
+      {
+        "sentence": "Keep the change, please.",
+        "cid": "515d82ef",
+        "translation": "不用找零了，谢谢。",
+        "chunks": [
+          "Keep the change,",
+          "please."
+        ],
+        "hints": [
+          "留着零钱",
+          "请"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kiːp/",
+              "/ðə/",
+              "/tʃeɪndʒ/"
+            ],
+            "pos": "动词短语",
+            "meaning": "留着零钱"
+          },
+          {
+            "role": "礼貌词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/pliːz/"
+            ],
+            "pos": "语气词",
+            "meaning": "请"
+          }
+        ],
+        "explanations": [
+          "给小费/付现金不用找零的用语。`keep the change` = 零钱不用找了。常见错误：\n• \"keep **changes**\" → change 表零钱不可数\n• \"don't give me change\" → 不自然，固定说 keep the change",
+          "`the change` 特指「该找的零钱」。付现金多于车费时说这句。"
+        ],
+        "distractors": [
+          [
+            "Keeping the change,",
+            "Keep the changes,",
+            "Take the change,"
+          ],
+          [
+            "thank you.",
+            "pleased.",
+            "thanks a lot."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Keep the change, please.",
+          "audio": {
+            "url": "assets/oral-515d82ef-0de5f6ca58de4fbdbb93.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8795a2c2e8a8311176da13cbd41d788403b4a745daf632cb93e6ce97f4d6c510",
+            "bytes": 5293
+          }
+        }
+      },
+      {
+        "sentence": "I'd like to send this package by air mail.",
+        "cid": "3270501d",
+        "translation": "我想用航空邮件寄这个包裹。",
+        "chunks": [
+          "I'd like to send",
+          "this package",
+          "by air mail."
+        ],
+        "hints": [
+          "我想寄",
+          "这个包裹",
+          "用航空邮件"
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪd/",
+              "/laɪk/",
+              "/tə/",
+              "/send/"
+            ],
+            "pos": "would like to",
+            "meaning": "我想寄"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðɪs/",
+              "/ˈpækɪdʒ/"
+            ],
+            "pos": "名词",
+            "meaning": "这个包裹"
+          },
+          {
+            "role": "方式状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/baɪ/",
+              "/er/",
+              "/meɪl/"
+            ],
+            "pos": "介词短语",
+            "meaning": "用航空邮件"
+          }
+        ],
+        "explanations": [
+          "邮局寄件。`by air mail` = 航空邮件（相对 surface mail 平邮/海运）。常见错误：\n• \"send **to** air mail\" → 方式状语用 by\n• \"by the air mail\" → by + 方式名词不加 the",
+          "寄件常用：How long will it take?（要多久？）"
+        ],
+        "distractors": [
+          [
+            "I like to send",
+            "I'd like sending",
+            "I'd like to sending"
+          ],
+          [
+            "this packages",
+            "these package",
+            "a package"
+          ],
+          [
+            "by the air mail.",
+            "on air mail.",
+            "for air mail."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'd like to send this package by air mail.",
+          "audio": {
+            "url": "assets/oral-3270501d-16fcdc45252c0bfbfc0a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e088d14ed4a305511f3b6ef567be32787f41fc7e53389e4727513bbab880dd7c",
+            "bytes": 7597
+          }
+        }
+      },
+      {
+        "sentence": "What's the postage for a letter to Japan?",
+        "cid": "742e248f",
+        "translation": "寄一封信到日本的邮费是多少？",
+        "chunks": [
+          "What's",
+          "the postage for",
+          "a letter to Japan?"
+        ],
+        "hints": [
+          "是多少",
+          "……的邮费",
+          "一封寄到日本的信"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wʌts/"
+            ],
+            "pos": "what is 缩写",
+            "meaning": "是多少"
+          },
+          {
+            "role": "主语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈpoʊstɪdʒ/",
+              "/fɔːr/"
+            ],
+            "pos": "名词短语",
+            "meaning": "……的邮费"
+          },
+          {
+            "role": "介词宾语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ə/",
+              "/ˈletər/",
+              "/tə/",
+              "/dʒəˈpæn/"
+            ],
+            "pos": "名词短语",
+            "meaning": "寄到日本的信"
+          }
+        ],
+        "explanations": [
+          "`postage` = 邮费/邮资。常见错误：\n• \"How much is postage\" → 口语可说，What's the postage for... 更完整\n• \"postage of a letter\" → 表「寄给谁/到哪」用 for + to",
+          "`a letter to Japan` = 寄到日本的信，介词 to 表方向。"
+        ],
+        "distractors": [
+          [
+            "How's",
+            "What are",
+            "What is it"
+          ],
+          [
+            "the postages for",
+            "postage to",
+            "a postage for"
+          ],
+          [
+            "a letters to Japan?",
+            "letter to Japan?",
+            "a letter for Japan?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What's the postage for a letter to Japan?",
+          "audio": {
+            "url": "assets/oral-742e248f-81abc75e4c330e5367f6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ab3079ebb90eb5da3691f30c18d7239706367bd3b1417539f97adf8c4cf4a65f",
+            "bytes": 7691
+          }
+        }
+      },
+      {
+        "sentence": "My car broke down on the highway.",
+        "cid": "0bdabc0d",
+        "translation": "我的车在高速公路上抛锚了。",
+        "chunks": [
+          "My car",
+          "broke down",
+          "on the highway."
+        ],
+        "hints": [
+          "我的车",
+          "抛锚了",
+          "在高速公路上"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/maɪ/",
+              "/kɑːr/"
+            ],
+            "pos": "名词",
+            "meaning": "我的车"
+          },
+          {
+            "role": "谓语(短语动词)",
+            "color": "#3358e0",
+            "phonetic": [
+              "/broʊk/",
+              "/daʊn/"
+            ],
+            "pos": "break down 过去式",
+            "meaning": "抛锚"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɑːn/",
+              "/ðə/",
+              "/ˈhaɪweɪ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在高速公路上"
+          }
+        ],
+        "explanations": [
+          "车辆故障。`break down` = 抛锚（机器/车），过去式 broke down。常见错误：\n• \"break **off**\" → 断开，抛锚用 break down\n• \"my car is break down\" → be 动词后要 broken down",
+          "`on the highway` = 在高速上（美式 highway，英式 motorway）。"
+        ],
+        "distractors": [
+          [
+            "Mine car",
+            "My cars",
+            "The my car"
+          ],
+          [
+            "breaks down",
+            "broke off",
+            "was broken"
+          ],
+          [
+            "in the highway.",
+            "on highway.",
+            "at the highway."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "My car broke down on the highway.",
+          "audio": {
+            "url": "assets/oral-0bdabc0d-55571f13bead1c8573d5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "48e5014923374376e46b275c055c4542a29f0198fec16e4a0b0a3fd3203a4586",
+            "bytes": 6480
+          }
+        }
+      },
+      {
+        "sentence": "Could you check the tire pressure for me?",
+        "cid": "69d57e53",
+        "translation": "你能帮我检查一下轮胎气压吗？",
+        "chunks": [
+          "Could you check",
+          "the tire pressure",
+          "for me?"
+        ],
+        "hints": [
+          "你能检查",
+          "轮胎气压",
+          "帮我"
+        ],
+        "grammar": [
+          {
+            "role": "委婉请求",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/tʃek/"
+            ],
+            "pos": "could 请求句",
+            "meaning": "你能检查"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈtaɪər/",
+              "/ˈpreʃər/"
+            ],
+            "pos": "名词短语",
+            "meaning": "轮胎气压"
+          },
+          {
+            "role": "目的状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/miː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "为我"
+          }
+        ],
+        "explanations": [
+          "加油站/修车店用语。`tire pressure` = 胎压（英式 tyre）。常见错误：\n• \"check the tire **press**\" → 气压是 pressure\n• \"check tire pressure\" → 特指时加 the",
+          "`Could you... for me?` = 能帮我……吗？很礼貌。"
+        ],
+        "distractors": [
+          [
+            "Can you check",
+            "Could you checked",
+            "Could you to check"
+          ],
+          [
+            "the tires pressure",
+            "a tire pressure",
+            "tire pressures"
+          ],
+          [
+            "to me?",
+            "with me?",
+            "for I?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you check the tire pressure for me?",
+          "audio": {
+            "url": "assets/oral-69d57e53-55ec241447da662e4e3c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "69379390c28f18b7c1c8e68ca155cdccd12dd3b97a1abc16f3baa7c0f8a0ecc5",
+            "bytes": 6740
+          }
+        }
+      },
+      {
+        "sentence": "Get in the car.",
+        "cid": "867d1dff",
+        "translation": "上车吧。",
+        "chunks": [
+          "Get in",
+          "the car."
+        ],
+        "hints": [
+          "上",
+          "车"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡet/",
+              "/ɪn/"
+            ],
+            "pos": "短语动词 get in",
+            "meaning": "进入"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/kɑːr/"
+            ],
+            "pos": "名词短语",
+            "meaning": "汽车"
+          }
+        ],
+        "explanations": [
+          "私家车这类「钻进里面」的用 `get in`，公交车、飞机、火车用 get on。常见错误：\n• \"Get on the car\" → 会被理解成爬到车上去\n• \"Get into the car\" 也对，into 更强调进入的动作",
+          "对比：get in the car / get on the bus / get on the plane。"
+        ],
+        "distractors": [
+          [
+            "Get on",
+            "Get at",
+            "Get of"
+          ],
+          [
+            "the cars.",
+            "a car.",
+            "the car of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Get in the car.",
+          "audio": {
+            "url": "assets/oral-867d1dff-00f4e23279b776b93f6c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "344a9749aa84abdf2e4612651a18bbdbd5a13f28918ed5bf2a6d83c074daa2ea",
+            "bytes": 4045
+          }
+        }
+      }
+    ]
+  }
+}

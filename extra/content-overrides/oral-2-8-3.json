@@ -1,0 +1,1554 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-8-3",
+    "name": "口语3000句 · 见面、分手时 · 介绍某人～有关工作",
+    "short": "介绍某人～有关工作",
+    "desc": "介绍某人～有关工作",
+    "chapter": 2,
+    "section": "2.8",
+    "sectionTitle": "见面、分手时",
+    "topic": "介绍某人～有关工作",
+    "baseCount": 0,
+    "totalCount": 63,
+    "items": [
+      {
+        "sentence": "Ms. Kane, this is Mr. Sato, my boss.",
+        "translation": "凯恩女士，这位是我的上司佐藤先生。",
+        "chunks": [
+          "Ms. Kane,",
+          "this is Mr. Sato,",
+          "my boss."
+        ],
+        "hints": [
+          "凯恩女士，",
+          "这位是佐藤先生，",
+          "我的上司。"
+        ],
+        "cid": "17a64001",
+        "sentenceAudio": {
+          "text": "Ms. Kane, this is Mr. Sato, my boss.",
+          "audio": {
+            "url": "assets/oral-17a64001-52d80b3e17823b4a855c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "45a9af192c4f5e188da711edb151edc814b6e4bc41ac25990d4435226f2d356e",
+            "bytes": 10138
+          }
+        }
+      },
+      {
+        "sentence": "Nice to meet you.",
+        "cid": "a3d72107",
+        "translation": "很高兴认识您。",
+        "chunks": [
+          "Nice to",
+          "meet you."
+        ],
+        "hints": [
+          "很高兴",
+          "认识您。"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#3358e0",
+            "phonetic": [
+              "/naɪs/",
+              "/tuː/"
+            ],
+            "pos": "惯用语开头",
+            "meaning": "很高兴"
+          },
+          {
+            "role": "谓语+宾语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/miːt/",
+              "/juː/"
+            ],
+            "pos": "动词短语",
+            "meaning": "认识你"
+          }
+        ],
+        "explanations": [
+          "`Nice to meet you` 是初次见面的固定客套。常见错误：\n• \"Nice **meeting** you\" → 见面当时用 meet（进行时结构）；分手时可以说 Nice meeting you\n• \"**Glad** to meet you\" → 也可以，但 Nice 最常用",
+          "这是省略了 `It is` 的结构（It is nice to meet you）。口语中 it is 省略很自然。"
+        ],
+        "distractors": [
+          [
+            "Nice too",
+            "Nice",
+            "Nice to to"
+          ],
+          [
+            "meeting you.",
+            "met you.",
+            "meet yours."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Nice to meet you.",
+          "audio": {
+            "url": "assets/oral-a3d72107-3a28545758df705d09fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "41a41552be00aedc36c7683dd3c7c49a170f3c6abf055e613b559f0123d87b43",
+            "bytes": 4418
+          }
+        }
+      },
+      {
+        "sentence": "Nice to meet you, too.",
+        "translation": "我也很高兴认识您。",
+        "chunks": [
+          "Nice to meet you, too."
+        ],
+        "hints": [
+          "我也很高兴认识您。"
+        ],
+        "cid": "1f9df89b",
+        "sentenceAudio": {
+          "text": "Nice to meet you, too.",
+          "audio": {
+            "url": "assets/oral-1f9df89b-339abc458fd0c70b4ba7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5eb782e577008c63dc24ca565620fa516856740a56f275ddfee3fe60bf846c72",
+            "bytes": 4949
+          }
+        }
+      },
+      {
+        "sentence": "May I have your name, please?",
+        "translation": "您贵姓?",
+        "chunks": [
+          "May I have",
+          "your name, please?"
+        ],
+        "hints": [
+          "请问",
+          "您贵姓？"
+        ],
+        "cid": "a4a5dc3e",
+        "sentenceAudio": {
+          "text": "May I have your name, please?",
+          "audio": {
+            "url": "assets/oral-a4a5dc3e-e90d1ef03edf6dccbc3e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a454a462868d72e6d022c3ca148744ed5118e16ecfe5c1a94ba782be27d928e9",
+            "bytes": 5312
+          }
+        }
+      },
+      {
+        "sentence": "I'd like you to meet a friend of mine.",
+        "translation": "我给你介绍一下我的朋友。",
+        "chunks": [
+          "I'd like you to meet",
+          "a friend of mine."
+        ],
+        "hints": [
+          "我想让你认识",
+          "我的一位朋友。"
+        ],
+        "cid": "bd0389b8",
+        "sentenceAudio": {
+          "text": "I'd like you to meet a friend of mine.",
+          "audio": {
+            "url": "assets/oral-bd0389b8-635589a18c0cfd051514.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc903e64984c70b777ae92932e3c6f12d449e8f228886623cd816a922f6b1ad8",
+            "bytes": 6821
+          }
+        }
+      },
+      {
+        "sentence": "He's a nice guy.",
+        "translation": "他是个好人。",
+        "chunks": [
+          "He's",
+          "a nice guy."
+        ],
+        "hints": [
+          "他是个",
+          "好人。"
+        ],
+        "cid": "21eb878f",
+        "sentenceAudio": {
+          "text": "He's a nice guy.",
+          "audio": {
+            "url": "assets/oral-21eb878f-bd8d9adc96e2a93cab4c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "562331d282d8115910073f491c924bf663f2a8591f4c89114f5a66f0dfe0d67c",
+            "bytes": 4539
+          }
+        }
+      },
+      {
+        "sentence": "I'm glad to meet you.",
+        "translation": "见到您我很高兴。",
+        "chunks": [
+          "I'm glad",
+          "to meet you."
+        ],
+        "hints": [
+          "我很高兴",
+          "见到您。"
+        ],
+        "cid": "0797ce5d",
+        "sentenceAudio": {
+          "text": "I'm glad to meet you.",
+          "audio": {
+            "url": "assets/oral-0797ce5d-ff06d634a0339d2b91c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c87871b9ff6fad77b986010975f14a326fd3bd2371480ede140b01d113613e8",
+            "bytes": 4741
+          }
+        }
+      },
+      {
+        "sentence": "It's an honor for me to meet you.",
+        "translation": "能认识您我感到非常荣幸。",
+        "chunks": [
+          "It's an honor for me",
+          "to meet you."
+        ],
+        "hints": [
+          "我感到非常荣幸",
+          "能认识您"
+        ],
+        "cid": "220b9e73",
+        "sentenceAudio": {
+          "text": "It's an honor for me to meet you.",
+          "audio": {
+            "url": "assets/oral-220b9e73-14cf2bd410e69044522a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dbe8cfd8dec338944d82031234febd55142911a6157b50c4f0584e09ef5676c9",
+            "bytes": 5731
+          }
+        }
+      },
+      {
+        "sentence": "Please call me...",
+        "translation": "请叫我……",
+        "chunks": [
+          "Please",
+          "call me..."
+        ],
+        "hints": [
+          "请",
+          "叫我……"
+        ],
+        "cid": "e2b64105",
+        "sentenceAudio": {
+          "text": "Please call me...",
+          "audio": {
+            "url": "assets/oral-e2b64105-82944867c30ae462c84f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8d2e75bba1cf1de11efcab3bc761c8402d29994ac6b3cf1abd671719b4049a8d",
+            "bytes": 4140
+          }
+        }
+      },
+      {
+        "sentence": "Don't I know you from somewhere?",
+        "translation": "我们是不是在哪儿见过面?",
+        "chunks": [
+          "Don't I know you",
+          "from somewhere?"
+        ],
+        "hints": [
+          "我是不是",
+          "在哪儿见过你？"
+        ],
+        "cid": "4ef4883e",
+        "sentenceAudio": {
+          "text": "Don't I know you from somewhere?",
+          "audio": {
+            "url": "assets/oral-4ef4883e-bcedad18e99311273e11.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6cfbcbee793e94814c92e97e1bf64857123378ab2c6c9da485bfac33923163b4",
+            "bytes": 5472
+          }
+        }
+      },
+      {
+        "sentence": "Remember?",
+        "translation": "想起来了吗?",
+        "chunks": [
+          "Remember?"
+        ],
+        "hints": [
+          "想起来了吗？"
+        ],
+        "cid": "d0915607",
+        "sentenceAudio": {
+          "text": "Remember?",
+          "audio": {
+            "url": "assets/oral-d0915607-b6194b847165de168ebc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "29f558e11f0904125031ca136d96cc5f8f7c0977387924f9537d79b20caebcc8",
+            "bytes": 3480
+          }
+        }
+      },
+      {
+        "sentence": "Oh, yeah, you're Mr. Smith!",
+        "translation": "啊!对了，你是史密斯先生。",
+        "chunks": [
+          "Oh, yeah,",
+          "you're Mr. Smith!"
+        ],
+        "hints": [
+          "啊，对了，",
+          "你是史密斯先生！"
+        ],
+        "cid": "08766133",
+        "sentenceAudio": {
+          "text": "Oh, yeah, you're Mr. Smith!",
+          "audio": {
+            "url": "assets/oral-08766133-b5ad595b21cbebd19b6b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d0c532014019d5613552a891da897cf9836c8d09df3402156e02a5957a20df47",
+            "bytes": 6370
+          }
+        }
+      },
+      {
+        "sentence": "I'm not sure. Maybe.",
+        "translation": "我不太确定。也许吧。",
+        "chunks": [
+          "I'm",
+          "not sure. Maybe."
+        ],
+        "hints": [
+          "我",
+          "不太确定。也许吧。"
+        ],
+        "cid": "e15d5572",
+        "sentenceAudio": {
+          "text": "I'm not sure. Maybe.",
+          "audio": {
+            "url": "assets/oral-e15d5572-c93515f9a3e3dbb2f69a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2c25560f6d18bada2728c465836d4cf89c6a185369b3211d6744994790f92597",
+            "bytes": 5640
+          }
+        }
+      },
+      {
+        "sentence": "No, I don't think so.",
+        "translation": "不，我想不是这样的。",
+        "chunks": [
+          "No,",
+          "I don't think so."
+        ],
+        "hints": [
+          "不，",
+          "我想不是这样。"
+        ],
+        "cid": "41d2e37f",
+        "sentenceAudio": {
+          "text": "No, I don't think so.",
+          "audio": {
+            "url": "assets/oral-41d2e37f-097c8a9107c5d4b692eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "00d8c802e513448f9ca744b8f3ecc9752e89b94429952c46a6b3a4d8eed96dbe",
+            "bytes": 5038
+          }
+        }
+      },
+      {
+        "sentence": "This is the first time we have met.",
+        "translation": "这是我们第一次见面。",
+        "chunks": [
+          "This is the first time",
+          "we have met."
+        ],
+        "hints": [
+          "这是第一次",
+          "我们见面。"
+        ],
+        "cid": "bcd81e93",
+        "sentenceAudio": {
+          "text": "This is the first time we have met.",
+          "audio": {
+            "url": "assets/oral-bcd81e93-11013e45caa8110b0d1e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4863acd5bf74bc169db31fd708d55b968245a87f93cc805c5ec2a10b8ca880f6",
+            "bytes": 6540
+          }
+        }
+      },
+      {
+        "sentence": "Is Bob an old friend of yours?",
+        "translation": "鲍勃是你的老朋友吗?",
+        "chunks": [
+          "Is Bob",
+          "an old friend of yours?"
+        ],
+        "hints": [
+          "鲍勃是",
+          "你的老朋友吗？"
+        ],
+        "cid": "fe1944a2",
+        "sentenceAudio": {
+          "text": "Is Bob an old friend of yours?",
+          "audio": {
+            "url": "assets/oral-fe1944a2-a1376d54863aec12c3e6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d309ef1a11d12ca8bf6c733484cac9f3c0955e92f65bd340da0efb990c0cbb47",
+            "bytes": 6582
+          }
+        }
+      },
+      {
+        "sentence": "I can't remember his name.",
+        "translation": "我想不起来他叫什么名字了。",
+        "chunks": [
+          "I can't remember",
+          "his name."
+        ],
+        "hints": [
+          "我想不起来",
+          "他叫什么名字了。"
+        ],
+        "cid": "893c3f4f",
+        "sentenceAudio": {
+          "text": "I can't remember his name.",
+          "audio": {
+            "url": "assets/oral-893c3f4f-2acbcb1d8f355d4e6313.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09253b3ce17e4cbc2c4607aeda34d6085b1edb7cd02165d1c76a12dc8cf8ac15",
+            "bytes": 5672
+          }
+        }
+      },
+      {
+        "sentence": "I leave it entirely to your kind consideration.",
+        "translation": "我将此事全权交由您酌情处理。",
+        "chunks": [
+          "I leave it entirely",
+          "to your kind consideration."
+        ],
+        "hints": [
+          "我将此事全权交由",
+          "您酌情处理。"
+        ],
+        "cid": "1f2d9de2",
+        "sentenceAudio": {
+          "text": "I leave it entirely to your kind consideration.",
+          "audio": {
+            "url": "assets/oral-1f2d9de2-1a69bee66fab5ad4fcea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "77af3e800d73318db0e755aea8586a7260e1995ab5d4c95e50fbbc31d9966d0c",
+            "bytes": 9774
+          }
+        }
+      },
+      {
+        "sentence": "I'm John Sheehan.",
+        "translation": "我叫约翰·希恩。",
+        "chunks": [
+          "I'm",
+          "John Sheehan."
+        ],
+        "hints": [
+          "我叫",
+          "约翰·希恩。"
+        ],
+        "cid": "f3bb8189",
+        "sentenceAudio": {
+          "text": "I'm John Sheehan.",
+          "audio": {
+            "url": "assets/oral-f3bb8189-7bdf7dd189346b066199.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6ee8c0abecf7eeaebf4395c287f89e0ee1344a1ea6999905d30b8bb243ac2c4b",
+            "bytes": 4711
+          }
+        }
+      },
+      {
+        "sentence": "Where are you from?",
+        "translation": "您是哪里人?",
+        "chunks": [
+          "Where are you from?"
+        ],
+        "hints": [
+          "您是哪里人？"
+        ],
+        "cid": "280c6c10",
+        "sentenceAudio": {
+          "text": "Where are you from?",
+          "audio": {
+            "url": "assets/oral-280c6c10-c2f499e8971ab5192332.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "00a28681d91b3e5342488dcc522be02396af7104ae4524a233b21876c2f35ef9",
+            "bytes": 4118
+          }
+        }
+      },
+      {
+        "sentence": "I'm from Canada.",
+        "translation": "我是加拿大人。",
+        "chunks": [
+          "I'm",
+          "from Canada."
+        ],
+        "hints": [
+          "我是",
+          "加拿大人。"
+        ],
+        "cid": "d9953878",
+        "sentenceAudio": {
+          "text": "I'm from Canada.",
+          "audio": {
+            "url": "assets/oral-d9953878-016702e36fd62566a7ad.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b012db580c57ce74da9e7c7a7b2921135f8643a9724a03ee44091e77cce23794",
+            "bytes": 4495
+          }
+        }
+      },
+      {
+        "sentence": "I come from Canada.",
+        "translation": "我来自加拿大。",
+        "chunks": [
+          "I come from",
+          "Canada."
+        ],
+        "hints": [
+          "我来自",
+          "加拿大。"
+        ],
+        "cid": "32cecb88",
+        "sentenceAudio": {
+          "text": "I come from Canada.",
+          "audio": {
+            "url": "assets/oral-32cecb88-f0b1661d22fd3b7cccd0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b168627f83c324450030f9e57abf6fdd77d13d64b2a10fe79e74082ceae12dbe",
+            "bytes": 4765
+          }
+        }
+      },
+      {
+        "sentence": "How do you like Japan?",
+        "translation": "你觉得日本怎么样?",
+        "chunks": [
+          "How do you like",
+          "Japan?"
+        ],
+        "hints": [
+          "觉得怎么样？",
+          "日本"
+        ],
+        "cid": "e9f55189",
+        "sentenceAudio": {
+          "text": "How do you like Japan?",
+          "audio": {
+            "url": "assets/oral-e9f55189-3540a64f78c881f4b504.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "003ccfbf0693ee61a00db724f94ad2c82c9ee916f621ce38b9385fd76ab4dea6",
+            "bytes": 5011
+          }
+        }
+      },
+      {
+        "sentence": "I like it.",
+        "translation": "我很喜欢。",
+        "chunks": [
+          "I",
+          "like it."
+        ],
+        "hints": [
+          "我",
+          "很喜欢。"
+        ],
+        "cid": "ceb8f092",
+        "sentenceAudio": {
+          "text": "I like it.",
+          "audio": {
+            "url": "assets/oral-ceb8f092-1e57e24d89d0915a39f1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "605a787df78c5d361d2d2b13e8437c31451fb45f319d2e887cf86fea59f79c46",
+            "bytes": 3741
+          }
+        }
+      },
+      {
+        "sentence": "It's a good place.",
+        "translation": "是个好地方。",
+        "chunks": [
+          "It's",
+          "a good place."
+        ],
+        "hints": [
+          "那是",
+          "个好地方。"
+        ],
+        "cid": "d6198471",
+        "sentenceAudio": {
+          "text": "It's a good place.",
+          "audio": {
+            "url": "assets/oral-d6198471-3f4ffab80b6b4062c9b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e952a7dfb238f3e1e5594f2b08de89c027d7fee1118a6f838cf4f5ddf60fbea7",
+            "bytes": 4299
+          }
+        }
+      },
+      {
+        "sentence": "Where have you been in Japan?",
+        "translation": "你在日本都去过哪些地方？",
+        "chunks": [
+          "Where have you been",
+          "in Japan?"
+        ],
+        "hints": [
+          "你都去过哪些地方",
+          "在日本？"
+        ],
+        "cid": "ef95b7dd",
+        "sentenceAudio": {
+          "text": "Where have you been in Japan?",
+          "audio": {
+            "url": "assets/oral-ef95b7dd-5331812d050229386101.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7178f2f37c9f682aa1eff74546b56f1d61c4420c89e543ae030b96cb190341a2",
+            "bytes": 5646
+          }
+        }
+      },
+      {
+        "sentence": "Where do you live now?",
+        "translation": "你现在住在哪儿?",
+        "chunks": [
+          "Where do you",
+          "live now?"
+        ],
+        "hints": [
+          "你在哪儿",
+          "现在居住"
+        ],
+        "cid": "38eb22d1",
+        "sentenceAudio": {
+          "text": "Where do you live now?",
+          "audio": {
+            "url": "assets/oral-38eb22d1-60236e0b862e8c92221c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ed93d9914b5a0ffa8d1e4ebbdaae1de1de6b1bcb17c48f2fc2f83e5a2e373a7a",
+            "bytes": 4427
+          }
+        }
+      },
+      {
+        "sentence": "I live in Tokyo.",
+        "translation": "我住在东京。",
+        "chunks": [
+          "I live",
+          "in Tokyo."
+        ],
+        "hints": [
+          "我住在",
+          "东京。"
+        ],
+        "cid": "d257e85f",
+        "sentenceAudio": {
+          "text": "I live in Tokyo.",
+          "audio": {
+            "url": "assets/oral-d257e85f-77e746ef349b80d27085.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "43e6f764e3dcc27c7cb15fa783c52341af68fef75c3dc529b5d9e09e2a6cd842",
+            "bytes": 4968
+          }
+        }
+      },
+      {
+        "sentence": "Are you here on vacation?",
+        "translation": "您是来度假的吗?",
+        "chunks": [
+          "Are you here",
+          "on vacation?"
+        ],
+        "hints": [
+          "你是来",
+          "度假的吗？"
+        ],
+        "cid": "df9d4e51",
+        "sentenceAudio": {
+          "text": "Are you here on vacation?",
+          "audio": {
+            "url": "assets/oral-df9d4e51-bcded00a3ae7c18f213b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "918294ee4e2210c7bcd20aabaf3aba847ae26d2d8a5cc265c4d853aa3a048e5e",
+            "bytes": 5237
+          }
+        }
+      },
+      {
+        "sentence": "I'm here on business.",
+        "translation": "我是来工作的。",
+        "chunks": [
+          "I'm here",
+          "on business."
+        ],
+        "hints": [
+          "我是来",
+          "工作的。"
+        ],
+        "cid": "8505e177",
+        "sentenceAudio": {
+          "text": "I'm here on business.",
+          "audio": {
+            "url": "assets/oral-8505e177-1445736d898e8c9f06b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "00f1a0e589aaca094a4efe74e3fad9eb6b9994e17a82cab794bec997771e3f79",
+            "bytes": 4918
+          }
+        }
+      },
+      {
+        "sentence": "How long have you been in Japan?",
+        "translation": "您来日本多长时间了?",
+        "chunks": [
+          "How long have you been",
+          "in Japan?"
+        ],
+        "hints": [
+          "您来了多长时间？",
+          "在日本"
+        ],
+        "cid": "230ba4d4",
+        "sentenceAudio": {
+          "text": "How long have you been in Japan?",
+          "audio": {
+            "url": "assets/oral-230ba4d4-a1025bb98eee097859d8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "afe1e66469af4bcfd1000fa61c628100ec2b53151539844c2c9d92a614de498b",
+            "bytes": 5930
+          }
+        }
+      },
+      {
+        "sentence": "About four months.",
+        "translation": "4个月左右。",
+        "chunks": [
+          "About",
+          "four months."
+        ],
+        "hints": [
+          "大约",
+          "四个月。"
+        ],
+        "cid": "d5fc620d",
+        "sentenceAudio": {
+          "text": "About four months.",
+          "audio": {
+            "url": "assets/oral-d5fc620d-4e87ea509b8078585ba8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d3876ecc30feb1565461d95bc7ed173ed91f01140874fa0c6e7a0d53da70d793",
+            "bytes": 4229
+          }
+        }
+      },
+      {
+        "sentence": "Are you used to life in Japan?",
+        "translation": "你习惯日本的生活了吗?",
+        "chunks": [
+          "Are you used to",
+          "life in Japan?"
+        ],
+        "hints": [
+          "你习惯",
+          "日本的生活了吗？"
+        ],
+        "cid": "d1bf653e",
+        "sentenceAudio": {
+          "text": "Are you used to life in Japan?",
+          "audio": {
+            "url": "assets/oral-d1bf653e-8c76c3f5685671fd61fe.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e9ea6aab68f6f8a6dd5fdca53afea77988829ae9be94bbf52ff56fac1e232630",
+            "bytes": 5906
+          }
+        }
+      },
+      {
+        "sentence": "How long will you be in Japan?",
+        "translation": "你会在日本待多久？",
+        "chunks": [
+          "How long will you be",
+          "in Japan?"
+        ],
+        "hints": [
+          "你会待多久？",
+          "在日本"
+        ],
+        "cid": "63edd0f5",
+        "sentenceAudio": {
+          "text": "How long will you be in Japan?",
+          "audio": {
+            "url": "assets/oral-63edd0f5-db42c80657cf082f4cff.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a5bb46592abc30990cad849674f0bfb3128dccd3ee1ea0d6c56d6810d9f46d88",
+            "bytes": 5911
+          }
+        }
+      },
+      {
+        "sentence": "Until December.",
+        "translation": "待到12月。",
+        "chunks": [
+          "Until",
+          "December."
+        ],
+        "hints": [
+          "待到",
+          "12月。"
+        ],
+        "cid": "5ddce198",
+        "sentenceAudio": {
+          "text": "Until December.",
+          "audio": {
+            "url": "assets/oral-5ddce198-45c181884f52362f7e8c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a5317225d28e609313de3a72ace1b967bc34e83a1eb5a8a97e6d750884001dea",
+            "bytes": 4515
+          }
+        }
+      },
+      {
+        "sentence": "Do you speak Japanese?",
+        "translation": "你说日语吗?",
+        "chunks": [
+          "Do you speak",
+          "Japanese?"
+        ],
+        "hints": [
+          "你说",
+          "日语吗？"
+        ],
+        "cid": "9193ce59",
+        "sentenceAudio": {
+          "text": "Do you speak Japanese?",
+          "audio": {
+            "url": "assets/oral-9193ce59-213a8ee69768de5d3adc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c8c2e9ee4abc14e2a0343335698a1dff6258f8310c166eacb5f38677a77d8325",
+            "bytes": 5067
+          }
+        }
+      },
+      {
+        "sentence": "A little.",
+        "cid": "8e16eb62",
+        "translation": "一点儿。",
+        "chunks": [
+          "A little."
+        ],
+        "hints": [
+          "一点儿。"
+        ],
+        "grammar": [
+          {
+            "role": "固定数量短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ə/",
+              "/ˈlɪtl/"
+            ],
+            "pos": "a little 整体短语",
+            "meaning": "一点儿"
+          }
+        ],
+        "explanations": [
+          "`a little` 是整体短语，表「一点点」，回答 Are you tired? 时常省略主句。常见错误：\n• \"a few\" → few 接可数名词，回答程度要用 a little\n• \"little\" 单用 → 表「几乎没有」，否定意味，跟 a little 相反",
+          "同义：A bit. / Kind of. / Somewhat."
+        ],
+        "distractors": [
+          [
+            "A bit.",
+            "Some.",
+            "A few."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "A little.",
+          "audio": {
+            "url": "assets/oral-8e16eb62-218032b997efeae739c9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "61897b99aab10442c02f66c3a6ed8fea8f349c71ec3ffc394bff4f1395f4ad2b",
+            "bytes": 3218
+          }
+        }
+      },
+      {
+        "sentence": "I can't speak Japanese at all.",
+        "translation": "我一点儿都不会说。",
+        "chunks": [
+          "I",
+          "can't speak Japanese at all."
+        ],
+        "hints": [
+          "我",
+          "一点儿日语都不会说。"
+        ],
+        "cid": "c728bb12",
+        "sentenceAudio": {
+          "text": "I can't speak Japanese at all.",
+          "audio": {
+            "url": "assets/oral-c728bb12-25c741cbe32698218713.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5db1a10119cf885894568f9b81d7020b90cc8a3be4ff92020eeeb9e396eda00d",
+            "bytes": 6584
+          }
+        }
+      },
+      {
+        "sentence": "I know everyday conversational Japanese.",
+        "translation": "我懂日常会话日语。",
+        "chunks": [
+          "I know everyday",
+          "conversational Japanese."
+        ],
+        "hints": [
+          "我懂日常",
+          "会话日语。"
+        ],
+        "cid": "453b444f",
+        "sentenceAudio": {
+          "text": "I know everyday conversational Japanese.",
+          "audio": {
+            "url": "assets/oral-453b444f-014dbac696d159370e65.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b0dc5a11872fd3baae1af5091cdfbbda29ccc66d7ec83d082b2052b76d1675dd",
+            "bytes": 8873
+          }
+        }
+      },
+      {
+        "sentence": "Where did you learn Japanese?",
+        "translation": "你是在哪儿学的日语?",
+        "chunks": [
+          "Where did you",
+          "learn Japanese?"
+        ],
+        "hints": [
+          "你是在哪儿",
+          "学的日语？"
+        ],
+        "cid": "7b452e20",
+        "sentenceAudio": {
+          "text": "Where did you learn Japanese?",
+          "audio": {
+            "url": "assets/oral-7b452e20-1db68cbdb280eb1ed5f5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e8e2bd4fda2b8f5cc830976d6da8a296ecfca14f2a15f5c3912a9bebdca63dee",
+            "bytes": 5577
+          }
+        }
+      },
+      {
+        "sentence": "At school.",
+        "translation": "在学校。",
+        "chunks": [
+          "At",
+          "school."
+        ],
+        "hints": [
+          "在",
+          "学校。"
+        ],
+        "cid": "0eebb0de",
+        "sentenceAudio": {
+          "text": "At school.",
+          "audio": {
+            "url": "assets/oral-0eebb0de-f45132f788ce77c344e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "18f2b00326422a11e4651eacc54df91d2c02c5daff84bf85ae5ed3068249b845",
+            "bytes": 3576
+          }
+        }
+      },
+      {
+        "sentence": "I learned it on my own.",
+        "translation": "我靠自己学会的。",
+        "chunks": [
+          "I learned it",
+          "on my own."
+        ],
+        "hints": [
+          "我学会了",
+          "靠自己。"
+        ],
+        "cid": "14fc08cd",
+        "sentenceAudio": {
+          "text": "I learned it on my own.",
+          "audio": {
+            "url": "assets/oral-14fc08cd-cc0950cbeaaf0dc5c67e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "158c13b4b0eb6d6b1da28e539ba61d69f1fec3d30dd19207b3ab156ea788e63e",
+            "bytes": 4872
+          }
+        }
+      },
+      {
+        "sentence": "When's your birthday?",
+        "translation": "你什么时候过生日?",
+        "chunks": [
+          "When's",
+          "your birthday?"
+        ],
+        "hints": [
+          "什么时候",
+          "你的生日"
+        ],
+        "cid": "81bc151c",
+        "sentenceAudio": {
+          "text": "When's your birthday?",
+          "audio": {
+            "url": "assets/oral-81bc151c-0a3a728b9f844585961a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e47e3946e421147cd2eaca95debe6eb40d31f72d3b5595098f7ba00793e35af7",
+            "bytes": 4602
+          }
+        }
+      },
+      {
+        "sentence": "Do you know his background?",
+        "translation": "你了解他的背景吗?",
+        "chunks": [
+          "Do you know",
+          "his background?"
+        ],
+        "hints": [
+          "你了解",
+          "他的背景吗？"
+        ],
+        "cid": "8d08cdff",
+        "sentenceAudio": {
+          "text": "Do you know his background?",
+          "audio": {
+            "url": "assets/oral-8d08cdff-58231ce8e26c0fb5bddb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2891b2c78aab8abb9e5726f6d07854511b93df3ef10adfff9671666cce179d1a",
+            "bytes": 5293
+          }
+        }
+      },
+      {
+        "sentence": "I work for a computer company.",
+        "translation": "我在一家电脑公司工作。",
+        "chunks": [
+          "I work",
+          "for a computer company."
+        ],
+        "hints": [
+          "我在",
+          "一家电脑公司工作。"
+        ],
+        "cid": "20cbb4f1",
+        "sentenceAudio": {
+          "text": "I work for a computer company.",
+          "audio": {
+            "url": "assets/oral-20cbb4f1-029e2de663049475d02e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb62affb4b47f237191dc3ee5eeb392a99b78c585d2ade0e76a32825f2089830",
+            "bytes": 6413
+          }
+        }
+      },
+      {
+        "sentence": "I'm a government employee.",
+        "translation": "我是国家公务员。",
+        "chunks": [
+          "I'm",
+          "a government employee."
+        ],
+        "hints": [
+          "我是",
+          "国家公务员。"
+        ],
+        "cid": "94cdfe18",
+        "sentenceAudio": {
+          "text": "I'm a government employee.",
+          "audio": {
+            "url": "assets/oral-94cdfe18-d8e9bbf028b21c22521c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c1393dc08851b47bf03cf02f5514dc57f6a0e85dda7624d88bed7e307868a86e",
+            "bytes": 5744
+          }
+        }
+      },
+      {
+        "sentence": "I'm self-employed.",
+        "translation": "我是个体经营者。",
+        "chunks": [
+          "I'm",
+          "self-employed."
+        ],
+        "hints": [
+          "我是",
+          "个体经营者。"
+        ],
+        "cid": "836a740c",
+        "sentenceAudio": {
+          "text": "I'm self-employed.",
+          "audio": {
+            "url": "assets/oral-836a740c-e905ce3cf86cd6aa8548.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "95d6965cb19f9e5358b979b903a5f004433c33bd82e5bd25fca1d592d5d56ce0",
+            "bytes": 4678
+          }
+        }
+      },
+      {
+        "sentence": "Which department do you work for?",
+        "translation": "你在哪个部门工作?",
+        "chunks": [
+          "Which department",
+          "do you work for?"
+        ],
+        "hints": [
+          "你在哪个部门",
+          "工作？"
+        ],
+        "cid": "6cd862ad",
+        "sentenceAudio": {
+          "text": "Which department do you work for?",
+          "audio": {
+            "url": "assets/oral-6cd862ad-c970ab6f6aa7be006b52.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be6cd8a2e4193b058b2aa797bdbd6366a8f17602f270d8b549b3c133f5ac1638",
+            "bytes": 6247
+          }
+        }
+      },
+      {
+        "sentence": "Sales.",
+        "translation": "搞销售的。",
+        "chunks": [
+          "Sales."
+        ],
+        "hints": [
+          "搞销售的。"
+        ],
+        "cid": "2d7f217b",
+        "sentenceAudio": {
+          "text": "Sales.",
+          "audio": {
+            "url": "assets/oral-2d7f217b-d1dcca45dba0b17e60ff.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8baf52b20b972846ec77b648b8fd8e015121ac71dc9932c9fb020f62ffca39c3",
+            "bytes": 3252
+          }
+        }
+      },
+      {
+        "sentence": "How long have you been doing that job?",
+        "translation": "你做这份工作多久了？",
+        "chunks": [
+          "How long have you been",
+          "doing that job?"
+        ],
+        "hints": [
+          "你做了多久了？",
+          "这份工作"
+        ],
+        "cid": "095fb6b8",
+        "sentenceAudio": {
+          "text": "How long have you been doing that job?",
+          "audio": {
+            "url": "assets/oral-095fb6b8-a0b44a60d21a9facdf0a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5558d93bd47aa5e0c62a353444c008a6bed969e4234cca34acff47407b543ac2",
+            "bytes": 6725
+          }
+        }
+      },
+      {
+        "sentence": "For 10 years.",
+        "translation": "10年了。",
+        "chunks": [
+          "For",
+          "10 years."
+        ],
+        "hints": [
+          "有",
+          "10 年了。"
+        ],
+        "cid": "d53c4b4b",
+        "sentenceAudio": {
+          "text": "For 10 years.",
+          "audio": {
+            "url": "assets/oral-d53c4b4b-f32245874245e586b3b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f50d033c2ccbd6baaf1cb0620f97adf842707ef748f832a3e5f47082a439fa1c",
+            "bytes": 4032
+          }
+        }
+      },
+      {
+        "sentence": "Where is your company?",
+        "translation": "你的公司在哪儿?",
+        "chunks": [
+          "Where is",
+          "your company?"
+        ],
+        "hints": [
+          "在哪里",
+          "你的公司"
+        ],
+        "cid": "08f43fc5",
+        "sentenceAudio": {
+          "text": "Where is your company?",
+          "audio": {
+            "url": "assets/oral-08f43fc5-962cdaae62face68785f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e682c635304afeca10e204d6d69a2abf0f30d128370d175dea49fae2655c591",
+            "bytes": 4692
+          }
+        }
+      },
+      {
+        "sentence": "In Shinjuku.",
+        "translation": "在新宿。",
+        "chunks": [
+          "In",
+          "Shinjuku."
+        ],
+        "hints": [
+          "在",
+          "新宿。"
+        ],
+        "cid": "62b68e1f",
+        "sentenceAudio": {
+          "text": "In Shinjuku.",
+          "audio": {
+            "url": "assets/oral-62b68e1f-05f8e3f85f1ee8c4b977.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9cbdd45a3f4db9e9aaa3d78bba6f683778e8cd8b1654c23941cd4afcacdca639",
+            "bytes": 4209
+          }
+        }
+      },
+      {
+        "sentence": "How long does it take you to commute?",
+        "translation": "上下班路上要花多长时间?",
+        "chunks": [
+          "How long does it take you",
+          "to commute?"
+        ],
+        "hints": [
+          "你要花多长时间",
+          "上下班通勤？"
+        ],
+        "cid": "f3ff6e4b",
+        "sentenceAudio": {
+          "text": "How long does it take you to commute?",
+          "audio": {
+            "url": "assets/oral-f3ff6e4b-4c369a2f4976c8783171.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "37f455e4b749a5745165e4ff18cb19faa87626f4ca1fa30687eb3a9145a9f3f1",
+            "bytes": 6465
+          }
+        }
+      },
+      {
+        "sentence": "About one hour.",
+        "translation": "1个小时左右。",
+        "chunks": [
+          "About",
+          "one hour."
+        ],
+        "hints": [
+          "大约",
+          "一个小时。"
+        ],
+        "cid": "7c75501e",
+        "sentenceAudio": {
+          "text": "About one hour.",
+          "audio": {
+            "url": "assets/oral-7c75501e-9c2e581c7742ce7612de.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ac6202b2b23b2da602f36d1bf0dc7d2590a0bc404467f5a5eaa85e8ab10d3555",
+            "bytes": 4347
+          }
+        }
+      },
+      {
+        "sentence": "How do you get to work?",
+        "translation": "你怎么去上班?",
+        "chunks": [
+          "How do you",
+          "get to work?"
+        ],
+        "hints": [
+          "你怎么",
+          "去上班？"
+        ],
+        "cid": "2d4f6af4",
+        "sentenceAudio": {
+          "text": "How do you get to work?",
+          "audio": {
+            "url": "assets/oral-2d4f6af4-d26335b668e5e0eb0094.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "59970754b6c133503a8385cf6afacac812b96ecf80248c0d8d465e54188783d5",
+            "bytes": 4788
+          }
+        }
+      },
+      {
+        "sentence": "I ride the subway.",
+        "translation": "我坐地铁。",
+        "chunks": [
+          "I ride",
+          "the subway."
+        ],
+        "hints": [
+          "我坐",
+          "地铁。"
+        ],
+        "cid": "d4ca6970",
+        "sentenceAudio": {
+          "text": "I ride the subway.",
+          "audio": {
+            "url": "assets/oral-d4ca6970-b3f8cf91d28b15b7db1c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fe337b101aed0beafbb371c7de9c4334e817dac263bd6785ef70d11b3160ac18",
+            "bytes": 4693
+          }
+        }
+      },
+      {
+        "sentence": "I'm changing jobs.",
+        "translation": "我正在调工作。",
+        "chunks": [
+          "I'm",
+          "changing jobs."
+        ],
+        "hints": [
+          "我正在",
+          "调工作。"
+        ],
+        "cid": "82714419",
+        "sentenceAudio": {
+          "text": "I'm changing jobs.",
+          "audio": {
+            "url": "assets/oral-82714419-0cfddc4b950758adb9fb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "64ccc1a9f1061bb535beb71a7dd5f774a8d69a64095ad8602a7cde87930867d5",
+            "bytes": 5053
+          }
+        }
+      },
+      {
+        "sentence": "I'm job hunting now.",
+        "translation": "我正在找工作。",
+        "chunks": [
+          "I'm",
+          "job hunting now."
+        ],
+        "hints": [
+          "我正在",
+          "找工作。"
+        ],
+        "cid": "73dff94e",
+        "sentenceAudio": {
+          "text": "I'm job hunting now.",
+          "audio": {
+            "url": "assets/oral-73dff94e-729b63e642d5473cefa3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8dc60cd9980225c62ffc8ae3c514d296d5899f310ec13eb16773216d2fa4e312",
+            "bytes": 5473
+          }
+        }
+      },
+      {
+        "sentence": "I'm retiring next year.",
+        "translation": "我明年退休。",
+        "chunks": [
+          "I'm retiring",
+          "next year."
+        ],
+        "hints": [
+          "我将退休",
+          "明年"
+        ],
+        "cid": "f87055cc",
+        "sentenceAudio": {
+          "text": "I'm retiring next year.",
+          "audio": {
+            "url": "assets/oral-f87055cc-3575b1716c17da29e2f7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b1833f9b555d2f597bf5784bda5e656b93b0c376fa9a3844a7c3c42e334bdf53",
+            "bytes": 5668
+          }
+        }
+      },
+      {
+        "sentence": "I'm out of work now.",
+        "translation": "我现在失业了。",
+        "chunks": [
+          "I'm",
+          "out of work now."
+        ],
+        "hints": [
+          "我",
+          "现在失业了。"
+        ],
+        "cid": "3acc62f4",
+        "sentenceAudio": {
+          "text": "I'm out of work now.",
+          "audio": {
+            "url": "assets/oral-3acc62f4-62d84ca80414c526df57.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6d503f7211788a1f9356a0d1c9a604705e28f828f7953b2f688cebc53f719fd8",
+            "bytes": 4701
+          }
+        }
+      },
+      {
+        "sentence": "How do you usually get to work?",
+        "cid": "f26b491f",
+        "translation": "你平时怎么去上班？",
+        "chunks": [
+          "How do you usually",
+          "get to work?"
+        ],
+        "hints": [
+          "你平时怎么",
+          "去上班"
+        ],
+        "grammar": [
+          {
+            "role": "疑问主句",
+            "color": "#c87033",
+            "phonetic": [
+              "/haʊ/",
+              "/duː/",
+              "/juː/",
+              "/ˈjuːʒuəli/"
+            ],
+            "pos": "特殊疑问句",
+            "meaning": "你怎么通常"
+          },
+          {
+            "role": "谓语+宾语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡet/",
+              "/tuː/",
+              "/wɜːrk/"
+            ],
+            "pos": "动词短语",
+            "meaning": "去上班"
+          }
+        ],
+        "explanations": [
+          "**get to work** = 到达工作地点。常见错误：\n• \"go to work\" → 也可以（go 侧重去的过程），get 侧重到达\n• \"get **in** work\" → in 用于 get in the car，地点用 get to",
+          "回答交通方式：by bus / by subway / on foot / take the subway。通常用于了解对方的通勤习惯。"
+        ],
+        "distractors": [
+          [
+            "How are you usually",
+            "How do you usual",
+            "What do you usually"
+          ],
+          [
+            "get work?",
+            "get to the work?",
+            "gets to work?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "How do you usually get to work?",
+          "audio": {
+            "url": "assets/oral-f26b491f-dfb285c32875d5d9bf9f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9e9b2324e567f9c0120e65734ad308892fbd23124b6a964069f5310ec73ff76a",
+            "bytes": 6005
+          }
+        }
+      },
+      {
+        "sentence": "I've been working on it all day.",
+        "cid": "fdc5ae18",
+        "translation": "我一整天都在忙这件事。",
+        "chunks": [
+          "I've been working",
+          "on it",
+          "all day."
+        ],
+        "hints": [
+          "我一直在忙",
+          "这件事",
+          "一整天"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪv/",
+              "/bɪn/",
+              "/ˈwɜːrkɪŋ/"
+            ],
+            "pos": "现在完成进行时",
+            "meaning": "我一直在忙"
+          },
+          {
+            "role": "介词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɒn/",
+              "/ɪt/"
+            ],
+            "pos": "work on 搭配",
+            "meaning": "这件事"
+          },
+          {
+            "role": "时间状语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɔːl/",
+              "/deɪ/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一整天"
+          }
+        ],
+        "explanations": [
+          "**have been doing** = 现在完成进行时，强调动作从过去一直持续到现在。常见错误：\n• \"I **work** on it all day\" → 缺少进行/完成含义\n• \"I've been working **in** it\" → 搭配是 work on sth",
+          "**all day** = 整天（all + 时间名词）。类似：all night / all week / all morning。"
+        ],
+        "distractors": [
+          [
+            "I've been work",
+            "I been working",
+            "I've being working"
+          ],
+          [
+            "on them",
+            "in it",
+            "at it"
+          ],
+          [
+            "all the day.",
+            "whole day.",
+            "all days."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I've been working on it all day.",
+          "audio": {
+            "url": "assets/oral-fdc5ae18-67843bdd028d3e881feb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0d3867d00e6f72754bbc1092dd5efff790ad35013a176f017354182a33a5cb1c",
+            "bytes": 6223
+          }
+        }
+      }
+    ]
+  }
+}

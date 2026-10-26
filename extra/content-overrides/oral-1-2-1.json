@@ -1,0 +1,2954 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-2-1",
+    "name": "口语3000句 · 享受余暇时间 · 邀请友人～去听音乐会",
+    "short": "邀请友人～去听音乐会",
+    "desc": "邀请友人～去听音乐会",
+    "chapter": 1,
+    "section": "1.2",
+    "sectionTitle": "享受余暇时间",
+    "topic": "邀请友人～去听音乐会",
+    "baseCount": 0,
+    "totalCount": 86,
+    "items": [
+      {
+        "sentence": "Are you free this weekend?",
+        "cid": "15accdce",
+        "translation": "这个周末你有空吗?",
+        "chunks": [
+          "Are you free",
+          "this weekend?"
+        ],
+        "hints": [
+          "你有空吗",
+          "这个周末？"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɑːr/",
+              "/juː/",
+              "/friː/"
+            ],
+            "pos": "主系表",
+            "meaning": "你有空吗"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðɪs/",
+              "/ˈwiːkend/"
+            ],
+            "pos": "名词短语",
+            "meaning": "这个周末"
+          }
+        ],
+        "explanations": [
+          "`Are you free...` 询问是否有空。常见错误：\n• \"Do you **have** free\" → 不自然，have free time 才搭配 have\n• \"Are you **freed**\" → free 是形容词，不是动词过去式",
+          "`this weekend` 前不加介词（不说 on this weekend，尽管美语偶尔加 on，但 this weekend 最简洁常用）。"
+        ],
+        "distractors": [
+          [
+            "Do you free",
+            "Are you freely",
+            "Are you freedom"
+          ],
+          [
+            "this week?",
+            "that weekend?",
+            "this weekends?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Are you free this weekend?",
+          "audio": {
+            "url": "assets/oral-15accdce-5c61e44041dee62cdd32.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1909e4a51106280d32b46988ac4d39c850eeb8a728b715c27ad02d2bf0e37363",
+            "bytes": 5301
+          }
+        }
+      },
+      {
+        "sentence": "Could I see you again?",
+        "translation": "我们还可以再见面吗?",
+        "chunks": [
+          "Could I see you",
+          "again?"
+        ],
+        "hints": [
+          "我们还可以",
+          "再见面吗？"
+        ],
+        "cid": "79fcd34e",
+        "sentenceAudio": {
+          "text": "Could I see you again?",
+          "audio": {
+            "url": "assets/oral-79fcd34e-444720704d8fb2b86ad5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b8f65c405f3e38027d4dd31e866efe23c627b5f84f47b305de9223a1d7add107",
+            "bytes": 4654
+          }
+        }
+      },
+      {
+        "sentence": "Could you give me your phone number?",
+        "translation": "能给我你的电话号码吗?",
+        "chunks": [
+          "Could you give me",
+          "your phone number?"
+        ],
+        "hints": [
+          "能给我",
+          "你的电话号码吗？"
+        ],
+        "cid": "ae489ff9",
+        "sentenceAudio": {
+          "text": "Could you give me your phone number?",
+          "audio": {
+            "url": "assets/oral-ae489ff9-3b782f1fac41065a08cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6de6042edd68181660c46e42028fe2498be3cd3a7636cf78ed26f18e95947e21",
+            "bytes": 5607
+          }
+        }
+      },
+      {
+        "sentence": "Where shall we meet?",
+        "translation": "我们在哪儿见面?",
+        "chunks": [
+          "Where",
+          "shall we meet?"
+        ],
+        "hints": [
+          "在哪儿",
+          "我们见面？"
+        ],
+        "cid": "7f94ae62",
+        "sentenceAudio": {
+          "text": "Where shall we meet?",
+          "audio": {
+            "url": "assets/oral-7f94ae62-2a7ec1d29d9a2e46d905.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cffb446de723f7215f06a0cae80055b4c5a1b7ef58734ad5fbb5144a0cc0444d",
+            "bytes": 4192
+          }
+        }
+      },
+      {
+        "sentence": "Shall I come to pick you up?",
+        "translation": "要我过来接你吗？",
+        "chunks": [
+          "Shall I",
+          "come to pick you up?"
+        ],
+        "hints": [
+          "要我",
+          "过来接你吗？"
+        ],
+        "cid": "511af821",
+        "sentenceAudio": {
+          "text": "Shall I come to pick you up?",
+          "audio": {
+            "url": "assets/oral-511af821-ca5dc24761b64ae8499a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e1d55f2868df3db04eac5a9c400169ac9920a3c31c133b00ef194ad67b3fad05",
+            "bytes": 5022
+          }
+        }
+      },
+      {
+        "sentence": "Are you doing anything this afternoon?",
+        "translation": "你今天下午有安排吗?",
+        "chunks": [
+          "Are you doing anything",
+          "this afternoon?"
+        ],
+        "hints": [
+          "你有安排吗",
+          "今天下午？"
+        ],
+        "cid": "785fa9bc",
+        "sentenceAudio": {
+          "text": "Are you doing anything this afternoon?",
+          "audio": {
+            "url": "assets/oral-785fa9bc-9a9540262942c1a0a1fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0de4f9c1f4aefe056fc895e46083c6a563e3778d9564da213d8df98b1483899d",
+            "bytes": 6853
+          }
+        }
+      },
+      {
+        "sentence": "How about having dinner with me?",
+        "translation": "和我一起吃晚饭，好吗?",
+        "chunks": [
+          "How about",
+          "having dinner with me?"
+        ],
+        "hints": [
+          "怎么样",
+          "和我一起吃晚饭"
+        ],
+        "cid": "bef3c01a",
+        "sentenceAudio": {
+          "text": "How about having dinner with me?",
+          "audio": {
+            "url": "assets/oral-bef3c01a-0b2e7c259471503453e9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2746874b98146b8f49cb3281cba5f5bae7226d31b28a2bb2deb11bc278d8813",
+            "bytes": 5653
+          }
+        }
+      },
+      {
+        "sentence": "Why don't we go to see a baseball game?",
+        "translation": "我们干嘛不去看棒球比赛呢?",
+        "chunks": [
+          "Why don't we go",
+          "to see a baseball game?"
+        ],
+        "hints": [
+          "我们干嘛不去",
+          "看棒球比赛呢？"
+        ],
+        "cid": "6184e991",
+        "sentenceAudio": {
+          "text": "Why don't we go to see a baseball game?",
+          "audio": {
+            "url": "assets/oral-6184e991-1b0e75322377cab4c886.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "51aa619029150ce85e5b526960af7c6bc31c79c72b5a8e41e9a37f4e27c2a608",
+            "bytes": 6780
+          }
+        }
+      },
+      {
+        "sentence": "Sorry, I'm tied up.",
+        "translation": "真对不起，我另有安排。",
+        "chunks": [
+          "Sorry,",
+          "I'm tied up."
+        ],
+        "hints": [
+          "真对不起，",
+          "我另有安排。"
+        ],
+        "cid": "a095d5f4",
+        "sentenceAudio": {
+          "text": "Sorry, I'm tied up.",
+          "audio": {
+            "url": "assets/oral-a095d5f4-b5058b82af4ef663695c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cbf9c733f3881a7036a9426ee0abcb44558babde17c050d43028ee927a91c474",
+            "bytes": 4930
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid I can't.",
+        "translation": "实在对不起，恐怕不行。",
+        "chunks": [
+          "I'm afraid",
+          "I can't."
+        ],
+        "hints": [
+          "实在对不起，",
+          "恐怕不行。"
+        ],
+        "cid": "802c3fbd",
+        "sentenceAudio": {
+          "text": "I'm afraid I can't.",
+          "audio": {
+            "url": "assets/oral-802c3fbd-cef625012113a3a0cdbd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4b4abf63c69bd76ea9e0dd4d09bce93745945bc7642cc03c8b546ef4136681c5",
+            "bytes": 4732
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for asking, but...",
+        "translation": "谢谢您的邀请，可是……",
+        "chunks": [
+          "Thanks for asking,",
+          "but..."
+        ],
+        "hints": [
+          "谢谢您的邀请，",
+          "可是……"
+        ],
+        "cid": "feea942d",
+        "sentenceAudio": {
+          "text": "Thanks for asking, but...",
+          "audio": {
+            "url": "assets/oral-feea942d-adc98c2c884dc881df7d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d1b26312347d4873b1ca3de762954bb3795474393d37b21d4edebd9e85bd717",
+            "bytes": 5019
+          }
+        }
+      },
+      {
+        "sentence": "How about a rain check?",
+        "translation": "改天再约怎么样？",
+        "chunks": [
+          "How about",
+          "a rain check?"
+        ],
+        "hints": [
+          "你觉得怎么样",
+          "改天再约"
+        ],
+        "cid": "7ba6597c",
+        "sentenceAudio": {
+          "text": "How about a rain check?",
+          "audio": {
+            "url": "assets/oral-7ba6597c-229f5ea23b1c0bea8520.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31e44903a5c9c04b4049f4f5cce07788118642b24c39e01b833ebaa9235d7754",
+            "bytes": 4965
+          }
+        }
+      },
+      {
+        "sentence": "I hope you can come.",
+        "translation": "我希望你能来。",
+        "chunks": [
+          "I hope",
+          "you can come."
+        ],
+        "hints": [
+          "我希望",
+          "你能来。"
+        ],
+        "cid": "bcb3305d",
+        "sentenceAudio": {
+          "text": "I hope you can come.",
+          "audio": {
+            "url": "assets/oral-bcb3305d-a363e23073d651153d80.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0851cfe2ad1a7bf4e2d16f393de9b99917d785a9f45a1555a76bd004330eebdf",
+            "bytes": 4843
+          }
+        }
+      },
+      {
+        "sentence": "When is it convenient for you?",
+        "translation": "你什么时候方便?",
+        "chunks": [
+          "When is it convenient",
+          "for you?"
+        ],
+        "hints": [
+          "什么时候",
+          "对你方便？"
+        ],
+        "cid": "120fac06",
+        "sentenceAudio": {
+          "text": "When is it convenient for you?",
+          "audio": {
+            "url": "assets/oral-120fac06-dece78ea04ebdeb15199.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "acccacf4bb2539dee506654777f9245c162b05fcf728a950edf5794cfeb11b2f",
+            "bytes": 6046
+          }
+        }
+      },
+      {
+        "sentence": "About what time?",
+        "translation": "什么时候?",
+        "chunks": [
+          "About",
+          "what time?"
+        ],
+        "hints": [
+          "大约",
+          "几点？"
+        ],
+        "cid": "84891182",
+        "sentenceAudio": {
+          "text": "About what time?",
+          "audio": {
+            "url": "assets/oral-84891182-d64e3e3919d8ee69db21.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ba9509a56603eb8ed03c02fc22c67d674b584f0687b17e2e46c4fe52cfeff4a5",
+            "bytes": 4347
+          }
+        }
+      },
+      {
+        "sentence": "Whenever.",
+        "translation": "什么时候都行。",
+        "chunks": [
+          "Whenever."
+        ],
+        "hints": [
+          "什么时候都行。"
+        ],
+        "cid": "83f2adcd",
+        "sentenceAudio": {
+          "text": "Whenever.",
+          "audio": {
+            "url": "assets/oral-83f2adcd-c4bc3560257fb90acfb6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b0d34658b56854cafa0a08b570ef49d6f85d1fd0a1386894505c156cb12b2545",
+            "bytes": 3348
+          }
+        }
+      },
+      {
+        "sentence": "When you have time.",
+        "translation": "等你有时间的时候吧。",
+        "chunks": [
+          "When you",
+          "have time."
+        ],
+        "hints": [
+          "等你有时间",
+          "的时候吧。"
+        ],
+        "cid": "7303c39d",
+        "sentenceAudio": {
+          "text": "When you have time.",
+          "audio": {
+            "url": "assets/oral-7303c39d-57837f6d01896008e032.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c64bf90914801d4bae41fa70757e3782b1c65b87e05e024731b6f0b96fa05c2",
+            "bytes": 4305
+          }
+        }
+      },
+      {
+        "sentence": "I'm free today.",
+        "translation": "我今天有空。",
+        "chunks": [
+          "I'm free",
+          "today."
+        ],
+        "hints": [
+          "我有空",
+          "今天。"
+        ],
+        "cid": "95212793",
+        "sentenceAudio": {
+          "text": "I'm free today.",
+          "audio": {
+            "url": "assets/oral-95212793-ac0f45d32a22cef302ad.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "de1f9b9c1aeeca89a7b5532d3fa723270b4483d840f920bbf767e627dac788a7",
+            "bytes": 4445
+          }
+        }
+      },
+      {
+        "sentence": "I'll be busy tomorrow.",
+        "translation": "明天我会很忙。",
+        "chunks": [
+          "I'll be busy",
+          "tomorrow."
+        ],
+        "hints": [
+          "我会很忙",
+          "明天。"
+        ],
+        "cid": "90b1b154",
+        "sentenceAudio": {
+          "text": "I'll be busy tomorrow.",
+          "audio": {
+            "url": "assets/oral-90b1b154-2fe370b65bb510b01030.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dbef46fa42251823d990f48adbc384ab5231e3a19a5f31f453df224041745c53",
+            "bytes": 5239
+          }
+        }
+      },
+      {
+        "sentence": "How about the tenth?",
+        "translation": "10号怎么样?",
+        "chunks": [
+          "How about",
+          "the tenth?"
+        ],
+        "hints": [
+          "怎么样",
+          "10号？"
+        ],
+        "cid": "da3f4a1d",
+        "sentenceAudio": {
+          "text": "How about the tenth?",
+          "audio": {
+            "url": "assets/oral-da3f4a1d-8cbb0d8f091c11a3d154.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "87543f6accf6e60624369b0563febd98e5032e3d273179729512064b6f0ee4a4",
+            "bytes": 4416
+          }
+        }
+      },
+      {
+        "sentence": "When are you free?",
+        "translation": "你什么时候有空?",
+        "chunks": [
+          "When are",
+          "you free?"
+        ],
+        "hints": [
+          "什么时候",
+          "你有空？"
+        ],
+        "cid": "0cece22b",
+        "sentenceAudio": {
+          "text": "When are you free?",
+          "audio": {
+            "url": "assets/oral-0cece22b-ddee881781fda057dbfc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c06d1ee2cfb3f92d77a3a823f18ff16502640ade7e1c6865c7fa7d36f44ea545",
+            "bytes": 4140
+          }
+        }
+      },
+      {
+        "sentence": "That's a bad day for me.",
+        "translation": "那天我不行。",
+        "chunks": [
+          "That's a bad day",
+          "for me."
+        ],
+        "hints": [
+          "那天",
+          "我不行。"
+        ],
+        "cid": "87becf1b",
+        "sentenceAudio": {
+          "text": "That's a bad day for me.",
+          "audio": {
+            "url": "assets/oral-87becf1b-78e7ff945c029cf36dab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "52f807743e240b82d2a84f2e9a1e2bd674e61f991a506c9c8015cae8a9bbf997",
+            "bytes": 5060
+          }
+        }
+      },
+      {
+        "sentence": "That day is fine.",
+        "translation": "那天我可以。",
+        "chunks": [
+          "That day",
+          "is fine."
+        ],
+        "hints": [
+          "那天",
+          "我可以。"
+        ],
+        "cid": "d168845c",
+        "sentenceAudio": {
+          "text": "That day is fine.",
+          "audio": {
+            "url": "assets/oral-d168845c-ebc78944434c313573e8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "40d64d264275fa25a645fd7ce443fa000874ab36ad0d0ae1399086f4d5cfc4f9",
+            "bytes": 4334
+          }
+        }
+      },
+      {
+        "sentence": "When can I come over?",
+        "translation": "我什么时候去合适?",
+        "chunks": [
+          "When can I",
+          "come over?"
+        ],
+        "hints": [
+          "我什么时候",
+          "去合适？"
+        ],
+        "cid": "3185a4c3",
+        "sentenceAudio": {
+          "text": "When can I come over?",
+          "audio": {
+            "url": "assets/oral-3185a4c3-93f7fc01580065e36306.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2a9c790cac48bbe952d24ecad9f8d980b1cded5410ee51f85a0d743630ae68b7",
+            "bytes": 4835
+          }
+        }
+      },
+      {
+        "sentence": "You decide when.",
+        "translation": "你定时间吧。",
+        "chunks": [
+          "You decide",
+          "when."
+        ],
+        "hints": [
+          "你定",
+          "时间吧。"
+        ],
+        "cid": "3caf0366",
+        "sentenceAudio": {
+          "text": "You decide when.",
+          "audio": {
+            "url": "assets/oral-3caf0366-a0f6392fe6851e59158b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "57888735c653a8fea282596cd4223b59fe7e476a534540571de3f1dc2ab47097",
+            "bytes": 4335
+          }
+        }
+      },
+      {
+        "sentence": "You decide where.",
+        "translation": "你定地点吧。",
+        "chunks": [
+          "You decide",
+          "where."
+        ],
+        "hints": [
+          "你定",
+          "地点吧。"
+        ],
+        "cid": "730ebe1b",
+        "sentenceAudio": {
+          "text": "You decide where.",
+          "audio": {
+            "url": "assets/oral-730ebe1b-256aca2f04029004221e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d0e4628c43dec0dee2117e302fe3edae5809d1d10707291d028b25b31c5e9e03",
+            "bytes": 4357
+          }
+        }
+      },
+      {
+        "sentence": "Is seven convenient for you?",
+        "translation": "7点行吗?",
+        "chunks": [
+          "Is seven",
+          "convenient for you?"
+        ],
+        "hints": [
+          "7点",
+          "行吗？"
+        ],
+        "cid": "8b2a8bde",
+        "sentenceAudio": {
+          "text": "Is seven convenient for you?",
+          "audio": {
+            "url": "assets/oral-8b2a8bde-3ae05b3fe6f50e695a75.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "548f387b87bcd538acefac0d5fa617281ee0235efdba08ac306300ae603b5c2d",
+            "bytes": 5934
+          }
+        }
+      },
+      {
+        "sentence": "When can you come over?",
+        "translation": "你什么时候能过来？",
+        "chunks": [
+          "When",
+          "can you come over?"
+        ],
+        "hints": [
+          "什么时候",
+          "你能过来？"
+        ],
+        "cid": "f364443b",
+        "sentenceAudio": {
+          "text": "When can you come over?",
+          "audio": {
+            "url": "assets/oral-f364443b-1ff6b277f34e43ccadb9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f8283641fdb59b0b2665bcb2fb0c95f88cb0570b05c00c5b8caaab859d83d007",
+            "bytes": 4782
+          }
+        }
+      },
+      {
+        "sentence": "Is it too early?",
+        "translation": "是不是太早了？",
+        "chunks": [
+          "Is it",
+          "too early?"
+        ],
+        "hints": [
+          "是不是",
+          "太早了？"
+        ],
+        "cid": "90d8624c",
+        "sentenceAudio": {
+          "text": "Is it too early?",
+          "audio": {
+            "url": "assets/oral-90d8624c-0b9019d0d008989bd461.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c48332c6d27bdc70b484f3a1812d38c8c878f3bccf41ea1bbb096d5916359092",
+            "bytes": 4272
+          }
+        }
+      },
+      {
+        "sentence": "Is it too late?",
+        "translation": "是不是太晚了？",
+        "chunks": [
+          "Is it",
+          "too late?"
+        ],
+        "hints": [
+          "是不是",
+          "太晚了？"
+        ],
+        "cid": "1697d5d5",
+        "sentenceAudio": {
+          "text": "Is it too late?",
+          "audio": {
+            "url": "assets/oral-1697d5d5-b2b7c32a3a8cdb6d1538.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e20c4d937ac59f93b28dc12ec3c427e16ed0cb3b9a6f50ed0be6c854ae3f3a8c",
+            "bytes": 4275
+          }
+        }
+      },
+      {
+        "sentence": "It's a date.",
+        "translation": "就那个时间吧。",
+        "chunks": [
+          "It's",
+          "a date."
+        ],
+        "hints": [
+          "就那个",
+          "时间吧。"
+        ],
+        "cid": "0a6941df",
+        "sentenceAudio": {
+          "text": "It's a date.",
+          "audio": {
+            "url": "assets/oral-0a6941df-2a701ba31fdf0cfbe68a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9c71ef3a3fb10bcd69482144747aa86b8645c289e5e86898311fcc25e65c06cc",
+            "bytes": 3794
+          }
+        }
+      },
+      {
+        "sentence": "See you then.",
+        "translation": "回头见。",
+        "chunks": [
+          "See you",
+          "then."
+        ],
+        "hints": [
+          "回头",
+          "见。"
+        ],
+        "cid": "2797237c",
+        "sentenceAudio": {
+          "text": "See you then.",
+          "audio": {
+            "url": "assets/oral-2797237c-acc08ff2e0c93a46d036.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e971529b11055e11ba00330d25ddc1fbc87546d18880979101ccab160037daba",
+            "bytes": 3655
+          }
+        }
+      },
+      {
+        "sentence": "Are you ready?",
+        "translation": "准备好了吗?",
+        "chunks": [
+          "Are you",
+          "ready?"
+        ],
+        "hints": [
+          "你",
+          "准备好了吗？"
+        ],
+        "cid": "b93bfeba",
+        "sentenceAudio": {
+          "text": "Are you ready?",
+          "audio": {
+            "url": "assets/oral-b93bfeba-8ec3c0da39e138842238.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "24fd4f7811b07b70e15fcded4c21de5d7ea80be1b502e2b36d7f876094da5ae3",
+            "bytes": 3826
+          }
+        }
+      },
+      {
+        "sentence": "Ready.",
+        "translation": "准备好了。",
+        "chunks": [
+          "Ready."
+        ],
+        "hints": [
+          "准备好了。"
+        ],
+        "cid": "494ddace",
+        "sentenceAudio": {
+          "text": "Ready.",
+          "audio": {
+            "url": "assets/oral-494ddace-6ab7c25022d3f7434db4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c18fe4395c00ae125c95306020510d3346e62bd690f82302fafcc9021900311",
+            "bytes": 3099
+          }
+        }
+      },
+      {
+        "sentence": "I'm not ready.",
+        "translation": "还没准备好呢。",
+        "chunks": [
+          "I'm",
+          "not ready."
+        ],
+        "hints": [
+          "我",
+          "还没准备好呢。"
+        ],
+        "cid": "b0911d80",
+        "sentenceAudio": {
+          "text": "I'm not ready.",
+          "audio": {
+            "url": "assets/oral-b0911d80-ab344d063ddbb08b8c10.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5fd37c2f54214340fe377c6696239db6116491a2fb4cb05c5995641012e9aef5",
+            "bytes": 4160
+          }
+        }
+      },
+      {
+        "sentence": "What time shall we leave?",
+        "translation": "我们几点出发？",
+        "chunks": [
+          "What time shall we",
+          "leave?"
+        ],
+        "hints": [
+          "我们几点",
+          "出发？"
+        ],
+        "cid": "75c66f0e",
+        "sentenceAudio": {
+          "text": "What time shall we leave?",
+          "audio": {
+            "url": "assets/oral-75c66f0e-2345d3534995df28641c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "88dfd88321ccf4854086cc14eaa70fb54dd0b9b6dce0d34a9db119c79a344aaa",
+            "bytes": 5082
+          }
+        }
+      },
+      {
+        "sentence": "What time do we arrive?",
+        "translation": "我们几点能到?",
+        "chunks": [
+          "What time do we",
+          "arrive?"
+        ],
+        "hints": [
+          "我们几点",
+          "到？"
+        ],
+        "cid": "5593532b",
+        "sentenceAudio": {
+          "text": "What time do we arrive?",
+          "audio": {
+            "url": "assets/oral-5593532b-e0308a6f3c13c4204a9e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c8a3fc0fd5780d8564fdded433cfafd4583686bdb2f75cbafa0e3e95d832905",
+            "bytes": 5133
+          }
+        }
+      },
+      {
+        "sentence": "Let's get going.",
+        "translation": "那我们走吧。",
+        "chunks": [
+          "Let's",
+          "get going."
+        ],
+        "hints": [
+          "那我们",
+          "走吧。"
+        ],
+        "cid": "7e27bc64",
+        "sentenceAudio": {
+          "text": "Let's get going.",
+          "audio": {
+            "url": "assets/oral-7e27bc64-007709aa7ece51a881bd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ca827390d2b3c23355c550cc6e68dba554b9c62a01a5e70a48630aa55d0421d7",
+            "bytes": 4492
+          }
+        }
+      },
+      {
+        "sentence": "Would you like to go to a movie?",
+        "translation": "你想去看电影吗?",
+        "chunks": [
+          "Would you like",
+          "to go to a movie?"
+        ],
+        "hints": [
+          "你想不想",
+          "去看电影？"
+        ],
+        "cid": "d4977a6a",
+        "sentenceAudio": {
+          "text": "Would you like to go to a movie?",
+          "audio": {
+            "url": "assets/oral-d4977a6a-e3f207631b317e22148c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ffc98f51602473f42fa160a6ede0645eb7d1da9d17ec667d465e317644d69a43",
+            "bytes": 5878
+          }
+        }
+      },
+      {
+        "sentence": "What's on tonight?",
+        "translation": "今天晚上放什么电影?",
+        "chunks": [
+          "What's on",
+          "tonight?"
+        ],
+        "hints": [
+          "演什么",
+          "今天晚上？"
+        ],
+        "cid": "467d6b48",
+        "sentenceAudio": {
+          "text": "What's on tonight?",
+          "audio": {
+            "url": "assets/oral-467d6b48-ce083198663de397e92f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "74944ce2dc30760ba21b0e8187512dc016f271b8aade200fd2cf2a3dd8ed0d8e",
+            "bytes": 4396
+          }
+        }
+      },
+      {
+        "sentence": "What movie do you want to see?",
+        "translation": "你想看什么电影?",
+        "chunks": [
+          "What movie",
+          "do you want to see?"
+        ],
+        "hints": [
+          "什么电影",
+          "你想看？"
+        ],
+        "cid": "9f367ee8",
+        "sentenceAudio": {
+          "text": "What movie do you want to see?",
+          "audio": {
+            "url": "assets/oral-9f367ee8-eb158623947ea39ebd26.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1adbdb78a938b42ad663134bfbb1e0060724205ee241071b93098a0b467444a0",
+            "bytes": 5690
+          }
+        }
+      },
+      {
+        "sentence": "I want to see...",
+        "translation": "我想看《××》",
+        "chunks": [
+          "I want",
+          "to see..."
+        ],
+        "hints": [
+          "我想",
+          "看《××》"
+        ],
+        "cid": "fe8006b2",
+        "sentenceAudio": {
+          "text": "I want to see...",
+          "audio": {
+            "url": "assets/oral-fe8006b2-cec1502b293f0528645c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c77dcfb21d19c8f1a48d880c8578f552f278eee8e698d8d27be73ac649b2dc7",
+            "bytes": 4394
+          }
+        }
+      },
+      {
+        "sentence": "Where is... playing?",
+        "translation": "《××》在哪儿上映？",
+        "chunks": [
+          "Where is... playing?"
+        ],
+        "hints": [
+          "《××》在哪儿上映？"
+        ],
+        "cid": "5afa9b39",
+        "sentenceAudio": {
+          "text": "Where is... playing?",
+          "audio": {
+            "url": "assets/oral-5afa9b39-01beb1b3b601900b6615.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2a2a052946a76a709dad683a101b87f61675bb2eb26b870f0867c1e287ec5d36",
+            "bytes": 5674
+          }
+        }
+      },
+      {
+        "sentence": "How long is... playing?",
+        "translation": "《××》还会上映多久？",
+        "chunks": [
+          "How long",
+          "is... playing?"
+        ],
+        "hints": [
+          "多久",
+          "在上映？"
+        ],
+        "cid": "d92eca32",
+        "sentenceAudio": {
+          "text": "How long is... playing?",
+          "audio": {
+            "url": "assets/oral-d92eca32-178615626d2198605575.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2780507186b022b33095586c8b58ab8d77f08809c4b7048480c1afc36e0a889a",
+            "bytes": 6172
+          }
+        }
+      },
+      {
+        "sentence": "Who is in this movie?",
+        "translation": "这部电影是谁演的?",
+        "chunks": [
+          "Who is in",
+          "this movie?"
+        ],
+        "hints": [
+          "谁演",
+          "这部电影？"
+        ],
+        "cid": "7bc67021",
+        "sentenceAudio": {
+          "text": "Who is in this movie?",
+          "audio": {
+            "url": "assets/oral-7bc67021-9632e1bae16c401b1b76.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4de431910c97962dbff729b6419b831bc7ff8809d5bb89f7a58a3e7964a42737",
+            "bytes": 4919
+          }
+        }
+      },
+      {
+        "sentence": "How long does it last?",
+        "translation": "会持续多长时间？",
+        "chunks": [
+          "How long",
+          "does it last?"
+        ],
+        "hints": [
+          "多长时间",
+          "会持续？"
+        ],
+        "cid": "b6c43aea",
+        "sentenceAudio": {
+          "text": "How long does it last?",
+          "audio": {
+            "url": "assets/oral-b6c43aea-557be9dde0ee541e693d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a04f4446f2f9342959d7d0058babbd8a8f2e467c32b6d8110ec12f478750246",
+            "bytes": 5013
+          }
+        }
+      },
+      {
+        "sentence": "What time is the next showing?",
+        "translation": "下一场几点开演?",
+        "chunks": [
+          "What time",
+          "is the next showing?"
+        ],
+        "hints": [
+          "几点",
+          "下一场放映？"
+        ],
+        "cid": "7fa99c90",
+        "sentenceAudio": {
+          "text": "What time is the next showing?",
+          "audio": {
+            "url": "assets/oral-7fa99c90-c4ee817710b810c38f35.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "55aa4286fb259de066a2ee97954581ee5b99595b4cb878f6d615cce2821368ec",
+            "bytes": 5589
+          }
+        }
+      },
+      {
+        "sentence": "What time will it be over?",
+        "translation": "几点演完?",
+        "chunks": [
+          "What time will",
+          "it be over?"
+        ],
+        "hints": [
+          "几点",
+          "演完？"
+        ],
+        "cid": "76ce0a3d",
+        "sentenceAudio": {
+          "text": "What time will it be over?",
+          "audio": {
+            "url": "assets/oral-76ce0a3d-d646d5ec838b8e7d69da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c38ad85530e3dd12807f6f9d2a09eb1f2dedfbb4caedd3ec9b49e4517068a549",
+            "bytes": 5245
+          }
+        }
+      },
+      {
+        "sentence": "Two, please.",
+        "translation": "两张，麻烦了。",
+        "chunks": [
+          "Two,",
+          "please."
+        ],
+        "hints": [
+          "两张",
+          "麻烦了。"
+        ],
+        "cid": "7c2652af",
+        "sentenceAudio": {
+          "text": "Two, please.",
+          "audio": {
+            "url": "assets/oral-7c2652af-330328b91dfdd9a5deed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2d04f85e8f9e4b839ed718eec16ec672a617082c6eeccd9bc3fa398e7ac05388",
+            "bytes": 3892
+          }
+        }
+      },
+      {
+        "sentence": "I can't see because of the person in front of me.",
+        "translation": "前边的人挡着，我看不见。",
+        "chunks": [
+          "I can't see",
+          "because of the person in front of me."
+        ],
+        "hints": [
+          "我看不见",
+          "因为前边的人挡着。"
+        ],
+        "cid": "a58cd420",
+        "sentenceAudio": {
+          "text": "I can't see because of the person in front of me.",
+          "audio": {
+            "url": "assets/oral-a58cd420-c1d58c2869198bd605e1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9d937a3c424f5ecc5817d9dc31ce8770223df476ee317f7a5a820a1ab4e0f741",
+            "bytes": 8827
+          }
+        }
+      },
+      {
+        "sentence": "We are way in the back, aren't we?",
+        "translation": "我们怎么坐得这么靠后呀?",
+        "chunks": [
+          "We are way in the back,",
+          "aren't we?"
+        ],
+        "hints": [
+          "我们坐得这么靠后",
+          "对吧？"
+        ],
+        "cid": "14d37341",
+        "sentenceAudio": {
+          "text": "We are way in the back, aren't we?",
+          "audio": {
+            "url": "assets/oral-14d37341-5416791ad3ae31f50957.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4595ce8a31ef52cefd399689c81d3fb8568e0a710726a9bef3e1c5fc5f310a8e",
+            "bytes": 6255
+          }
+        }
+      },
+      {
+        "sentence": "Let's sit closer up front.",
+        "translation": "我们坐到前面的座位上吧。",
+        "chunks": [
+          "Let's sit closer",
+          "up front."
+        ],
+        "hints": [
+          "我们坐到",
+          "前面的座位上吧。"
+        ],
+        "cid": "87c09c46",
+        "sentenceAudio": {
+          "text": "Let's sit closer up front.",
+          "audio": {
+            "url": "assets/oral-87c09c46-f5d0a71ac8fa14d05466.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f898001e9931d18976ac38abb1089aced77fb326a80158c5a12bc379aded7667",
+            "bytes": 5652
+          }
+        }
+      },
+      {
+        "sentence": "That was interesting, wasn't it?",
+        "translation": "真太有意思了，是不是?",
+        "chunks": [
+          "That was interesting,",
+          "wasn't it?"
+        ],
+        "hints": [
+          "真太有意思了，",
+          "是不是？"
+        ],
+        "cid": "ff7c651b",
+        "sentenceAudio": {
+          "text": "That was interesting, wasn't it?",
+          "audio": {
+            "url": "assets/oral-ff7c651b-4647f3f55db2e063339e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "018253eef659ca9df4c904ea42a59d049c8d07fdfbb48552b2e69e626fa0e1d5",
+            "bytes": 6210
+          }
+        }
+      },
+      {
+        "sentence": "That was boring, wasn't it?",
+        "translation": "那部电影真无聊，不是吗？",
+        "chunks": [
+          "That was boring,",
+          "wasn't it?"
+        ],
+        "hints": [
+          "那部电影真无聊，",
+          "不是吗？"
+        ],
+        "cid": "22f73b7a",
+        "sentenceAudio": {
+          "text": "That was boring, wasn't it?",
+          "audio": {
+            "url": "assets/oral-22f73b7a-8c49fd3be1661d0890ae.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "889d73ed01daf16c1ac9815f4bf68e362ba33fa48d397899495917bbf8c5df6a",
+            "bytes": 5422
+          }
+        }
+      },
+      {
+        "sentence": "I was moved.",
+        "translation": "我很感动。",
+        "chunks": [
+          "I was",
+          "moved."
+        ],
+        "hints": [
+          "我",
+          "很感动。"
+        ],
+        "cid": "7eb71864",
+        "sentenceAudio": {
+          "text": "I was moved.",
+          "audio": {
+            "url": "assets/oral-7eb71864-3ddab259c9a19c408945.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "581b9811ee4f2a34c51bca1e068dfe77f58eda5802ab59225b27ec4adcdc6c02",
+            "bytes": 3915
+          }
+        }
+      },
+      {
+        "sentence": "I'd like two tickets for October 3rd, please.",
+        "translation": "我想买两张10月3号的票，麻烦了。",
+        "chunks": [
+          "I'd like two tickets",
+          "for October 3rd, please."
+        ],
+        "hints": [
+          "我想买两张票",
+          "10月3号的，麻烦了。"
+        ],
+        "cid": "eeb8ffc7",
+        "sentenceAudio": {
+          "text": "I'd like two tickets for October 3rd, please.",
+          "audio": {
+            "url": "assets/oral-eeb8ffc7-fb628cb6b1664e3bd98a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b9bb5fc24cd8e5c38388afc89fd9a3a67298374f9861d6496468bdc81ee79256",
+            "bytes": 8757
+          }
+        }
+      },
+      {
+        "sentence": "Sorry, we're sold out.",
+        "translation": "对不起，卖完了。",
+        "chunks": [
+          "Sorry,",
+          "we're sold out."
+        ],
+        "hints": [
+          "对不起，",
+          "卖完了。"
+        ],
+        "cid": "81b9ca6a",
+        "sentenceAudio": {
+          "text": "Sorry, we're sold out.",
+          "audio": {
+            "url": "assets/oral-81b9ca6a-80f38f7bf0866d7b732a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cce02da05b1899885a847f337749d3e23bcc9561dc5e569168a2c2c2f3c14902",
+            "bytes": 5020
+          }
+        }
+      },
+      {
+        "sentence": "When do you have tickets?",
+        "translation": "你们什么时候有票？",
+        "chunks": [
+          "When",
+          "do you have tickets?"
+        ],
+        "hints": [
+          "什么时候",
+          "你们有票？"
+        ],
+        "cid": "9c36ad6d",
+        "sentenceAudio": {
+          "text": "When do you have tickets?",
+          "audio": {
+            "url": "assets/oral-9c36ad6d-fc734a209e06ebd6a1f9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9adc39063ad97911021948a69a1d5212354a6aa14355856f092c85cd801c8635",
+            "bytes": 4965
+          }
+        }
+      },
+      {
+        "sentence": "What time does it start?",
+        "translation": "几点开始?",
+        "chunks": [
+          "What time",
+          "does it start?"
+        ],
+        "hints": [
+          "几点",
+          "开始？"
+        ],
+        "cid": "9411d247",
+        "sentenceAudio": {
+          "text": "What time does it start?",
+          "audio": {
+            "url": "assets/oral-9411d247-1c77cc69f2f63ee14ba5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "36d1f4587849ec5a7b36b31b4d61495368da016e09fa99ce873b640ac95b02b2",
+            "bytes": 4934
+          }
+        }
+      },
+      {
+        "sentence": "Can I make a reservation?",
+        "translation": "可以预订吗?",
+        "chunks": [
+          "Can I",
+          "make a reservation?"
+        ],
+        "hints": [
+          "我可以",
+          "预订吗？"
+        ],
+        "cid": "5f389b9a",
+        "sentenceAudio": {
+          "text": "Can I make a reservation?",
+          "audio": {
+            "url": "assets/oral-5f389b9a-70fd2a6f3756f2538d88.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "286037c0964b930782d3453f708958f734ecb458736c1edd0ff766847e161741",
+            "bytes": 5850
+          }
+        }
+      },
+      {
+        "sentence": "Where can I buy a ticket?",
+        "translation": "在哪儿买票?",
+        "chunks": [
+          "Where can I",
+          "buy a ticket?"
+        ],
+        "hints": [
+          "在哪儿",
+          "买票？"
+        ],
+        "cid": "1c1f7777",
+        "sentenceAudio": {
+          "text": "Where can I buy a ticket?",
+          "audio": {
+            "url": "assets/oral-1c1f7777-b867342791ef49d65a68.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2cc6730468a88590b786b5aae5c68d155a4acc8788bb0f44cd3a42e2b7bbd06",
+            "bytes": 5255
+          }
+        }
+      },
+      {
+        "sentence": "Is this seat taken?",
+        "translation": "这位子有人吗?",
+        "chunks": [
+          "Is this seat",
+          "taken?"
+        ],
+        "hints": [
+          "这位子",
+          "有人吗？"
+        ],
+        "cid": "a296bdc8",
+        "sentenceAudio": {
+          "text": "Is this seat taken?",
+          "audio": {
+            "url": "assets/oral-a296bdc8-1e18ebe604568e68c4cd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ead2bc5cc1b3aeb0bc8fa1f3aa30ba83db04ca3db40246ee06027a921b1abb69",
+            "bytes": 4935
+          }
+        }
+      },
+      {
+        "sentence": "We have great seats, don't we?",
+        "translation": "我们这个位子真棒，对吧？",
+        "chunks": [
+          "We have",
+          "great seats, don't we?"
+        ],
+        "hints": [
+          "我们有",
+          "很棒的座位，对吧？"
+        ],
+        "cid": "478afe79",
+        "sentenceAudio": {
+          "text": "We have great seats, don't we?",
+          "audio": {
+            "url": "assets/oral-478afe79-c5784bc293c44c44d74d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "232453254530403d4c8a7d5c59b1876209995acbb7f16e2ca5fb69728f3c0352",
+            "bytes": 5910
+          }
+        }
+      },
+      {
+        "sentence": "Encore!",
+        "translation": "再来一个!",
+        "chunks": [
+          "Encore!"
+        ],
+        "hints": [
+          "再来一个！"
+        ],
+        "cid": "51e993a4",
+        "sentenceAudio": {
+          "text": "Encore!",
+          "audio": {
+            "url": "assets/oral-51e993a4-3f5e3440d99da72dce3f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cf165c3d6992cec1d114929e421739cb8bcf72858f3b2b5ce41f5549c16e03c9",
+            "bytes": 3565
+          }
+        }
+      },
+      {
+        "sentence": "Go for it,...!",
+        "translation": "××，加油！",
+        "chunks": [
+          "Go for it,...!"
+        ],
+        "hints": [
+          "××，加油！"
+        ],
+        "cid": "5f8a6d36",
+        "sentenceAudio": {
+          "text": "Go for it,...!",
+          "audio": {
+            "url": "assets/oral-5f8a6d36-51f07568a7fbeb486343.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ad5c6098cd0b53e1eafe1bc9b5ec0fa47481240d76578e32151bb55fecdab49",
+            "bytes": 3951
+          }
+        }
+      },
+      {
+        "sentence": "I'm going to meet a friend for lunch.",
+        "cid": "cff80fb6",
+        "translation": "我打算和朋友一起吃午饭。",
+        "chunks": [
+          "I'm going to",
+          "meet a friend",
+          "for lunch."
+        ],
+        "hints": [
+          "我打算",
+          "见一个朋友",
+          "一起吃午饭"
+        ],
+        "grammar": [
+          {
+            "role": "主语+谓语",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈɡəʊɪŋ/",
+              "/tuː/"
+            ],
+            "pos": "主谓结构",
+            "meaning": "我打算"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/miːt/",
+              "/ə/",
+              "/frend/"
+            ],
+            "pos": "动词短语",
+            "meaning": "见一个朋友"
+          },
+          {
+            "role": "目的状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/lʌntʃ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "为了午餐"
+          }
+        ],
+        "explanations": [
+          "**be going to** 表示\"计划、打算做某事\"。常见错误：\n• \"I will going\" → will 后面不能加 ing\n• \"I go to meet\" → 缺少 be going to 结构，语气也不够自然",
+          "**meet** 是原形动词，因为前面有 \"going to\" 搭配。不要写成 \"meeting\"（那需要 am going to meeting，重复了）。",
+          "**for + 名词** 表示目的。这里 for lunch = 为了吃午餐。不要用 \"to lunch\"（to 后面要接动词原形）。"
+        ],
+        "distractors": [
+          [
+            "I going to",
+            "I'm go to",
+            "I'm going for"
+          ],
+          [
+            "meet the friend",
+            "meet friend",
+            "meets a friend"
+          ],
+          [
+            "for the lunch.",
+            "to lunch.",
+            "at lunch."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm going to meet a friend for lunch.",
+          "audio": {
+            "url": "assets/oral-cff80fb6-1e97d7a8ced97c58046d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "187921de6a86aa1a46033adc7faa1bad85a86e1af62e1ca9ae5e4d741be65964",
+            "bytes": 6934
+          }
+        }
+      },
+      {
+        "sentence": "Let's grab a coffee after work.",
+        "cid": "f03e78e8",
+        "translation": "下班后一起去喝杯咖啡吧。",
+        "chunks": [
+          "Let's grab a coffee",
+          "after work."
+        ],
+        "hints": [
+          "我们去喝杯咖啡",
+          "下班之后"
+        ],
+        "grammar": [
+          {
+            "role": "祈使主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lets/",
+              "/ɡræb/",
+              "/ə/",
+              "/ˈkɒfi/"
+            ],
+            "pos": "let's + 动词",
+            "meaning": "我们去喝咖啡"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈɑːftər/",
+              "/wɜːrk/"
+            ],
+            "pos": "介词短语",
+            "meaning": "下班后"
+          }
+        ],
+        "explanations": [
+          "**Let's = Let us**，表示建议或邀请。常见错误：\n• 写成 **Let us** → 太正式，口语用 Let's\n• **grab** 在这里不是'抓'，是口语化的'去吃/去喝'",
+          "**work** 作'上班'讲时是不可数名词，不加 the。常见错误：\n• after **the** work → 错误\n• after **working** → 语法正确但 after work 更简洁常用"
+        ],
+        "distractors": [
+          [
+            "Let's grab coffee",
+            "Let's grab the coffee"
+          ],
+          [
+            "after the work.",
+            "before work.",
+            "after works."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let's grab a coffee after work.",
+          "audio": {
+            "url": "assets/oral-f03e78e8-5d8dc08a328b9d1185fc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a9a587f6cdb6ce62112adc88c219c6b8783d98a6cac80b26d746a253d766b2cf",
+            "bytes": 6534
+          }
+        }
+      },
+      {
+        "sentence": "Are you doing anything this evening?",
+        "cid": "b3b8b56c",
+        "translation": "你今晚有什么安排吗？",
+        "chunks": [
+          "Are you doing anything",
+          "this evening?"
+        ],
+        "hints": [
+          "你有什么安排吗",
+          "今晚"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɑːr/",
+              "/juː/",
+              "/ˈduːɪŋ/",
+              "/ˈeniθɪŋ/"
+            ],
+            "pos": "现在进行时",
+            "meaning": "你在做什么事吗"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðɪs/",
+              "/ˈiːvnɪŋ/"
+            ],
+            "pos": "名词短语",
+            "meaning": "今晚"
+          }
+        ],
+        "explanations": [
+          "**Are you doing anything...?** 是问对方近期安排的标准开头。用现在进行时表将来计划。常见错误：\n• \"Do you doing anything\" → 疑问句 be 要提前\n• \"Are you **do** anything\" → 进行时需要 doing",
+          "**this evening** 前不加介词（on this evening ❌）。想约人时可接：Are you doing anything this evening? — 我想约你看电影。"
+        ],
+        "distractors": [
+          [
+            "Do you doing anything",
+            "Are you do anything",
+            "Are you doing anythings"
+          ],
+          [
+            "this morning?",
+            "the evening?",
+            "this evenings?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Are you doing anything this evening?",
+          "audio": {
+            "url": "assets/oral-b3b8b56c-7a06b6670cfd960c7597.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da51d237a7f11123531c978e2d24e40b3b9e3f8d070226ae54473d498a13482b",
+            "bytes": 6275
+          }
+        }
+      },
+      {
+        "sentence": "I'd love to, but I'm afraid I'm busy.",
+        "cid": "c5333fc3",
+        "translation": "我很想去，但恐怕我没空。",
+        "chunks": [
+          "I'd love to,",
+          "but I'm afraid",
+          "I'm busy."
+        ],
+        "hints": [
+          "我很乐意",
+          "但恐怕",
+          "我很忙"
+        ],
+        "grammar": [
+          {
+            "role": "主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪd/",
+              "/lʌv/",
+              "/tuː/"
+            ],
+            "pos": "would love to",
+            "meaning": "我很乐意"
+          },
+          {
+            "role": "转折从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/bʌt/",
+              "/aɪm/",
+              "/əˈfreɪd/"
+            ],
+            "pos": "委婉表达",
+            "meaning": "但恐怕"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#3358e0",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈbɪzi/"
+            ],
+            "pos": "主系表",
+            "meaning": "我很忙"
+          }
+        ],
+        "explanations": [
+          "**I'd love to, but...** 是拒绝邀请的礼貌句式（先肯定再转折）。常见错误：\n• \"I'd love **it**, but\" → 这里 to 代替整句（I'd love to go），不用 it\n• 直接说 No → 太生硬，不礼貌",
+          "**I'm afraid** 在这里不是「害怕」，而是「恐怕/遗憾」，用来软化拒绝。口语高频：I'm afraid I can't make it."
+        ],
+        "distractors": [
+          [
+            "I love to,",
+            "I'd love,",
+            "I'd loved to,"
+          ],
+          [
+            "but I afraid",
+            "but I'm feared",
+            "but I'm afraid of"
+          ],
+          [
+            "I busy.",
+            "I'm busied.",
+            "I'm busying."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'd love to, but I'm afraid I'm busy.",
+          "audio": {
+            "url": "assets/oral-c5333fc3-016006732da3b914071c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0f15ca6e870029af93460b7442e101452c739162d7769972f01073127931339e",
+            "bytes": 7603
+          }
+        }
+      },
+      {
+        "sentence": "Why don't we meet at the usual place?",
+        "cid": "e5c1bf50",
+        "translation": "我们在老地方见怎么样？",
+        "chunks": [
+          "Why don't we meet",
+          "at the usual place?"
+        ],
+        "hints": [
+          "我们何不见面",
+          "在老地方"
+        ],
+        "grammar": [
+          {
+            "role": "建议主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/waɪ/",
+              "/doʊnt/",
+              "/wiː/",
+              "/miːt/"
+            ],
+            "pos": "建议疑问句",
+            "meaning": "我们何不见面"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/ðə/",
+              "/ˈjuːʒuəl/",
+              "/pleɪs/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在老地方"
+          }
+        ],
+        "explanations": [
+          "**Why don't we...?** = 我们……怎么样？是提建议的常用句式。常见错误：\n• \"Why we don't meet\" → 疑问句 don't 提前\n• \"Why don't we **to** meet\" → 后接动词原形",
+          "**the usual place** = 老地方（双方都熟悉的地方）。usual 是形容词「惯常的」。"
+        ],
+        "distractors": [
+          [
+            "Why don't us meet",
+            "Why not we meet",
+            "Why aren't we meet"
+          ],
+          [
+            "in the usual place?",
+            "at usual place?",
+            "at the usually place?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Why don't we meet at the usual place?",
+          "audio": {
+            "url": "assets/oral-e5c1bf50-be4f7af755460f3b1ee4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa71009d4d085f8cad785e2bc0bac898d6f1bbffb08b5798631c7a8ac6dbb43b",
+            "bytes": 6662
+          }
+        }
+      },
+      {
+        "sentence": "I'll pick you up at your place.",
+        "cid": "9ae0b549",
+        "translation": "我去你那儿接你。",
+        "chunks": [
+          "I'll pick you up",
+          "at your place."
+        ],
+        "hints": [
+          "我会接你",
+          "在你家"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/",
+              "/pɪk/",
+              "/juː/",
+              "/ʌp/"
+            ],
+            "pos": "一般将来时",
+            "meaning": "我会接你"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/jɔːr/",
+              "/pleɪs/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在你家"
+          }
+        ],
+        "explanations": [
+          "**pick sb up** = 开车接某人。代词放中间：pick **you** up / pick **me** up。常见错误：\n• \"pick up **you**\" → 代词必须放中间\n• \"pick you **upstairs**\" → upstairs 是楼上，不是接你",
+          "**your place** = 你家（口语）。比较：at my place / at home。正式说法 your house / your apartment。"
+        ],
+        "distractors": [
+          [
+            "I'll pick up you",
+            "I'll picks you up",
+            "I pick you up"
+          ],
+          [
+            "at yours place.",
+            "in your place.",
+            "at you place."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll pick you up at your place.",
+          "audio": {
+            "url": "assets/oral-9ae0b549-563567311293a7530425.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "edf55428636b2b0f85c76676523b976c9e37bbf4a26b583b5f25b53f061c230b",
+            "bytes": 5261
+          }
+        }
+      },
+      {
+        "sentence": "Could we reschedule for tomorrow instead?",
+        "cid": "249e8feb",
+        "translation": "我们能改到明天吗？",
+        "chunks": [
+          "Could we reschedule",
+          "for tomorrow instead?"
+        ],
+        "hints": [
+          "我们能改期吗",
+          "改到明天"
+        ],
+        "grammar": [
+          {
+            "role": "情态主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/wiː/",
+              "/riːˈʃedjuːl/"
+            ],
+            "pos": "情态动词+动词",
+            "meaning": "我们能改期吗"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/təˈmɒroʊ/",
+              "/ɪnˈsted/"
+            ],
+            "pos": "介词短语",
+            "meaning": "改到明天"
+          }
+        ],
+        "explanations": [
+          "**reschedule** = 重新安排时间（re + schedule）。常见错误：\n• \"change the schedule\" → 也可以，但 reschedule 更地道\n• \"reschedule **to** tomorrow\" → 固定搭配是 for tomorrow",
+          "**instead** = 作为替代，放句末。完整意思：不是原定时间，而是改为明天。"
+        ],
+        "distractors": [
+          [
+            "Could us reschedule",
+            "Could we reschedules",
+            "Could we to reschedule"
+          ],
+          [
+            "on tomorrow instead?",
+            "for the tomorrow instead?",
+            "for tomorrow instead of?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could we reschedule for tomorrow instead?",
+          "audio": {
+            "url": "assets/oral-249e8feb-d1108883c6418f92ac92.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8eeaaf88945b1a91d2d9ffe48dde1377a8742c319b8655ae15dd75ee3ccc8178",
+            "bytes": 7717
+          }
+        }
+      },
+      {
+        "sentence": "I'm running a bit late, sorry.",
+        "cid": "684f3d80",
+        "translation": "我可能要晚点到，抱歉。",
+        "chunks": [
+          "I'm running",
+          "a bit late,",
+          "sorry."
+        ],
+        "hints": [
+          "我可能会",
+          "晚一点到，",
+          "抱歉"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈrʌnɪŋ/"
+            ],
+            "pos": "现在进行时",
+            "meaning": "我在（变）"
+          },
+          {
+            "role": "程度+表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/bɪt/",
+              "/leɪt/"
+            ],
+            "pos": "副词短语",
+            "meaning": "稍微晚"
+          },
+          {
+            "role": "致歉插入语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈsɒri/"
+            ],
+            "pos": "感叹词",
+            "meaning": "抱歉"
+          }
+        ],
+        "explanations": [
+          "**run late** = 迟到/时间赶不上（run 表「变得」，口语固定搭配）。常见错误：\n• \"I'm **arriving** late\" → 可以但 run late 更口语\n• \"I'm late **running**\" → 语序反了",
+          "迟到通知要主动：I'm running a bit late. / I'll be there in ten minutes.（十分钟到）"
+        ],
+        "distractors": [
+          [
+            "I running",
+            "I'm run",
+            "I'm runing"
+          ],
+          [
+            "a bit of late,",
+            "a bit later,",
+            "a bit lately,"
+          ],
+          [
+            "sory.",
+            "sorrys."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm running a bit late, sorry.",
+          "audio": {
+            "url": "assets/oral-684f3d80-1fccb9b59344e385118d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6fd33e630ee730409ee580db1d6060f847caa9679c8b19c882a89b896659c83b",
+            "bytes": 6089
+          }
+        }
+      },
+      {
+        "sentence": "Shall we take a walk after dinner?",
+        "cid": "5f612d59",
+        "translation": "晚饭后我们去散散步好吗？",
+        "chunks": [
+          "Shall we",
+          "take a walk",
+          "after dinner?"
+        ],
+        "hints": [
+          "我们要不要",
+          "散散步",
+          "晚饭后"
+        ],
+        "grammar": [
+          {
+            "role": "建议句式",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ʃæl/",
+              "/wiː/"
+            ],
+            "pos": "Shall we 建议",
+            "meaning": "我们要不要"
+          },
+          {
+            "role": "谓语+宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/teɪk/",
+              "/ə/",
+              "/wɔːk/"
+            ],
+            "pos": "动词短语",
+            "meaning": "散散步"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈɑːftər/",
+              "/ˈdɪnər/"
+            ],
+            "pos": "介词短语",
+            "meaning": "晚饭后"
+          }
+        ],
+        "explanations": [
+          "**Shall we...?** = 我们……好吗？（英式常用，表提议）。常见错误：\n• \"Will we take a walk\" → Shall we 才是标准提议句式\n• \"Shall we **to** take\" → shall 后接动词原形",
+          "**take a walk** = 散步，固定搭配。同义：go for a walk / go for a stroll。美式更多说 Let's go for a walk."
+        ],
+        "distractors": [
+          [
+            "Will we",
+            "Shall us",
+            "Do we shall"
+          ],
+          [
+            "take walk",
+            "takes a walk",
+            "take the walk"
+          ],
+          [
+            "after the dinner?",
+            "before dinner?",
+            "after dinners?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Shall we take a walk after dinner?",
+          "audio": {
+            "url": "assets/oral-5f612d59-52d6097504f4314153b0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4246813e2ebbf6b6491ffd610b12737a38689e8c41563b7fe33777c506130749",
+            "bytes": 6313
+          }
+        }
+      },
+      {
+        "sentence": "I'll see you at the entrance at seven.",
+        "cid": "f900c537",
+        "translation": "我们七点在入口见。",
+        "chunks": [
+          "I'll see you",
+          "at the entrance",
+          "at seven."
+        ],
+        "hints": [
+          "我们见面",
+          "在入口",
+          "七点"
+        ],
+        "grammar": [
+          {
+            "role": "主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/",
+              "/siː/",
+              "/juː/"
+            ],
+            "pos": "一般将来时",
+            "meaning": "我会见到你"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/ði/",
+              "/ˈentrəns/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在入口"
+          },
+          {
+            "role": "时间状语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/æt/",
+              "/ˈsevn/"
+            ],
+            "pos": "at+时刻",
+            "meaning": "七点"
+          }
+        ],
+        "explanations": [
+          "**see you at + 地点 + at + 时间**：地点用 at，时刻用 at。常见错误：\n• \"see you **on** the entrance\" → 地点在门口用 at 不用 on\n• \"at seven o'clock **pm**\" → 口语说 at seven 即可",
+          "约定见面：地点 + 时间两个要素都要交代清楚。I'll see you there!（到那儿见！）"
+        ],
+        "distractors": [
+          [
+            "I see you",
+            "I'll sees you",
+            "I'll see your"
+          ],
+          [
+            "in the entrance",
+            "at entrance",
+            "at an entrance"
+          ],
+          [
+            "on seven.",
+            "in seven.",
+            "at the seven."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll see you at the entrance at seven.",
+          "audio": {
+            "url": "assets/oral-f900c537-4051c4de9573a03a703f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b80764e90bc4a12e1f38c2bd99254791d4a14f081a49a6a0043d2da044874bdd",
+            "bytes": 6806
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid I can't make it tonight.",
+        "cid": "ef7de65b",
+        "translation": "恐怕今晚我抽不出时间。",
+        "chunks": [
+          "I'm afraid",
+          "I can't make it",
+          "tonight."
+        ],
+        "hints": [
+          "恐怕",
+          "我没法去/参加",
+          "今晚"
+        ],
+        "grammar": [
+          {
+            "role": "引子",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/aɪm/",
+              "/əˈfreɪd/"
+            ],
+            "pos": "委婉开场",
+            "meaning": "恐怕"
+          },
+          {
+            "role": "主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/kænt/",
+              "/meɪk/",
+              "ɪt/"
+            ],
+            "pos": "否定句",
+            "meaning": "我没法去"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/təˈnaɪt/"
+            ],
+            "pos": "副词",
+            "meaning": "今晚"
+          }
+        ],
+        "explanations": [
+          "`I'm afraid...` 是委婉拒绝/告知坏消息的开场，不是真的害怕。常见错误：\n• \"I'm **afraid of** I can't\" → afraid of 后接名词，接句子用 afraid (that)\n• 直译成「我害怕」→ 语境是礼貌，不是恐惧",
+          "`make it` = 能到场/能成行。常见错误：\n• \"I can't **come** it\" → 搭配是 make it，不是 come it\n• \"I can't **do** it\" → do it 指做某事，make it 指能出席"
+        ],
+        "distractors": [
+          [
+            "I afraid",
+            "I'm feared"
+          ],
+          [
+            "I can't take it",
+            "I don't make it",
+            "I can't makes it"
+          ],
+          [
+            "today.",
+            "this night."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm afraid I can't make it tonight.",
+          "audio": {
+            "url": "assets/oral-ef7de65b-d7509531f1817897256b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1d0db45899f558334d317aed683f555ed977a31efb21e71478e90b78ac365560",
+            "bytes": 6589
+          }
+        }
+      },
+      {
+        "sentence": "Why don't we grab a bite to eat?",
+        "cid": "966b3754",
+        "translation": "我们随便吃点东西怎么样？",
+        "chunks": [
+          "Why don't we",
+          "grab a bite to eat?"
+        ],
+        "hints": [
+          "我们要不要",
+          "随便吃点东西"
+        ],
+        "grammar": [
+          {
+            "role": "建议句型",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/waɪ/",
+              "/doʊnt/",
+              "/wiː/"
+            ],
+            "pos": "建议疑问句",
+            "meaning": "我们为什么不"
+          },
+          {
+            "role": "谓语（固定习语）",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɡræb/",
+              "/ə/",
+              "/baɪt/",
+              "/tuː/",
+              "/iːt/"
+            ],
+            "pos": "动词短语",
+            "meaning": "随便吃点东西"
+          }
+        ],
+        "explanations": [
+          "`Why don't we...` 是提建议的委婉句式，等于 Let's...。常见错误：\n• \"Why **we don't** grab\" → 疑问句 don't 要提前\n• \"Why don't we **to** grab\" → 后接动词原形",
+          "`grab a bite (to eat)` 是口语「随便吃点、填饱肚子」，非正式。bite 本义「一口」，这里指小吃。"
+        ],
+        "distractors": [
+          [
+            "Why don't us",
+            "Why not we",
+            "Why aren't we"
+          ],
+          [
+            "grab a bite to drink?",
+            "grab a bit to eat?",
+            "grab a bite eat?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Why don't we grab a bite to eat?",
+          "audio": {
+            "url": "assets/oral-966b3754-7cffd1d15929b29af140.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0074458268a76f8591d4df9cd71823f8c5c3bec469db3ff65f20c0a3e2898340",
+            "bytes": 6145
+          }
+        }
+      },
+      {
+        "sentence": "What time should we meet up?",
+        "cid": "09096d4a",
+        "translation": "我们几点碰面好？",
+        "chunks": [
+          "What time should we",
+          "meet up?"
+        ],
+        "hints": [
+          "我们几点",
+          "碰面好？"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɒt/",
+              "/taɪm/"
+            ],
+            "pos": "特殊疑问词",
+            "meaning": "几点"
+          },
+          {
+            "role": "情态+主语+谓语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ʃʊd/",
+              "/wiː/",
+              "/miːt/",
+              "ʌp/"
+            ],
+            "pos": "建议疑问句",
+            "meaning": "我们该碰面"
+          }
+        ],
+        "explanations": [
+          "`What time` 问具体时刻（对比 When 问大概时间）。常见错误：\n• \"**Which** time should we\" → 用 what 不是 which\n• \"What time **we should**\" → 疑问句 should 提前",
+          "`meet up` 强调「见面、碰头」（尤指约定会面）。也可只用 meet，meet up 更口语化。"
+        ],
+        "distractors": [
+          [
+            "What times",
+            "When time",
+            "How time"
+          ],
+          [
+            "should us meet up?",
+            "should we to meet up?",
+            "should we meets up?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What time should we meet up?",
+          "audio": {
+            "url": "assets/oral-09096d4a-fc391fa1e3470587bbe4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8af877c739b548a82cfd14aedf8ca577aa3f1011d6570cab1ecc816f381ed424",
+            "bytes": 5108
+          }
+        }
+      },
+      {
+        "sentence": "Mind if I join you for lunch?",
+        "cid": "5dea8d2a",
+        "translation": "介意我跟你们一起吃午饭吗？",
+        "chunks": [
+          "Mind if I",
+          "join you",
+          "for lunch?"
+        ],
+        "hints": [
+          "我能不能",
+          "跟你们一起",
+          "吃午饭？"
+        ],
+        "grammar": [
+          {
+            "role": "省略问句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/maɪnd/",
+              "/ɪf/",
+              "/aɪ/"
+            ],
+            "pos": "口语省略 Do you",
+            "meaning": "介意如果我"
+          },
+          {
+            "role": "谓语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/dʒɔɪn/",
+              "/juː/"
+            ],
+            "pos": "动词短语",
+            "meaning": "加入你们"
+          },
+          {
+            "role": "目的状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/lʌntʃ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "吃午饭"
+          }
+        ],
+        "explanations": [
+          "`Mind if I...` = Do you mind if I... 的口语省略版。常见错误：\n• 回答 \"Yes\" → 指「介意」，别让人家一起坐；不介意要说 No/Not at all\n• \"Mind **that** I join\" → if 从句表条件，不用 that",
+          "`join sb` = 加入某人（一起做某事）。加入某活动可说 join sb for lunch / join the game。"
+        ],
+        "distractors": [
+          [
+            "Mind that I",
+            "Minds if I",
+            "Mind do I"
+          ],
+          [
+            "join with you",
+            "joins you",
+            "joining you"
+          ],
+          [
+            "to lunch?",
+            "for the lunch?",
+            "at lunch?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Mind if I join you for lunch?",
+          "audio": {
+            "url": "assets/oral-5dea8d2a-8dad0cc9fc21a3d8cc38.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f1a932857d59c545a3d63be0263dd6b689adc661b7cd59c2f278c84a527f4c49",
+            "bytes": 6239
+          }
+        }
+      },
+      {
+        "sentence": "I'm supposed to meet him at six.",
+        "cid": "141237b8",
+        "translation": "我六点应该和他见面。",
+        "chunks": [
+          "I'm supposed to",
+          "meet him",
+          "at six."
+        ],
+        "hints": [
+          "我按计划要",
+          "见他",
+          "六点"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪm/",
+              "/səˈpoʊzd/",
+              "/tə/"
+            ],
+            "pos": "be supposed to",
+            "meaning": "按约定应该"
+          },
+          {
+            "role": "谓语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/miːt/",
+              "/hɪm/"
+            ],
+            "pos": "动词+宾语",
+            "meaning": "见他"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/sɪks/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在六点"
+          }
+        ],
+        "explanations": [
+          "`be supposed to` = 按计划/规定应该。常见错误：\n• \"suppose to\" → 缺 be 且 supposed 不能省 d\n• \"I'm suppose to\" → 漏 d",
+          "`at six` — 钟点前用 at。常见错误：\n• \"in six\" → 钟点用 at（in 表在一段时间之后）"
+        ],
+        "distractors": [
+          [
+            "I suppose to",
+            "I'm suppose to",
+            "I'm supposed"
+          ],
+          [
+            "meets him",
+            "meet he",
+            "to meeting him"
+          ],
+          [
+            "in six.",
+            "at six o'clock now.",
+            "on six."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm supposed to meet him at six.",
+          "audio": {
+            "url": "assets/oral-141237b8-ed499bad7569f07aa81a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3cac9585cd4dab7e5e0cc145f3bab14fb90a2611baec396faa114ab99bb280aa",
+            "bytes": 6570
+          }
+        }
+      },
+      {
+        "sentence": "Would you like to grab dinner sometime?",
+        "cid": "9352bdcd",
+        "translation": "改天一起吃个晚饭怎么样？",
+        "chunks": [
+          "Would you like to",
+          "grab dinner",
+          "sometime?"
+        ],
+        "hints": [
+          "你愿意",
+          "随便吃点晚饭",
+          "改天"
+        ],
+        "grammar": [
+          {
+            "role": "委婉邀约",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wʊd/",
+              "/juː/",
+              "/laɪk/",
+              "/tə/"
+            ],
+            "pos": "would you like to",
+            "meaning": "你愿意……吗"
+          },
+          {
+            "role": "谓语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɡræb/",
+              "/ˈdɪnər/"
+            ],
+            "pos": "grab + 餐",
+            "meaning": "随便吃晚饭"
+          },
+          {
+            "role": "时间副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈsʌmtaɪm/"
+            ],
+            "pos": "副词",
+            "meaning": "改天/某个时候"
+          }
+        ],
+        "explanations": [
+          "`Would you like to...?` 比 Do you want to 更礼貌的邀约。常见错误：\n• \"Would you like dinner?\" → 也可以但少了动作\n• \"Do you like to grab dinner\" → like 表喜好不是邀约",
+          "`grab` = 匆匆吃点/随便吃。`sometime` = 某时（一个词），`some time` = 一些时间。"
+        ],
+        "distractors": [
+          [
+            "Do you like to",
+            "Would you to",
+            "Could you like to"
+          ],
+          [
+            "grabbing dinner",
+            "grab a dinner",
+            "get dinner over"
+          ],
+          [
+            "sometimes?",
+            "some time?",
+            "anytime soon?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Would you like to grab dinner sometime?",
+          "audio": {
+            "url": "assets/oral-9352bdcd-81866f4997de5dbecf62.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "22557489cddb32ba8736778dd22d7946a6363935d528866a7d60d6c1781b8206",
+            "bytes": 6793
+          }
+        }
+      },
+      {
+        "sentence": "Let's catch up over coffee this weekend.",
+        "cid": "e4eb1b2b",
+        "translation": "这周末我们喝咖啡聊聊近况吧。",
+        "chunks": [
+          "Let's catch up",
+          "over coffee",
+          "this weekend."
+        ],
+        "hints": [
+          "我们聊聊近况吧",
+          "边喝咖啡",
+          "这周末"
+        ],
+        "grammar": [
+          {
+            "role": "祈使提议",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lets/",
+              "/kætʃ/",
+              "/ʌp/"
+            ],
+            "pos": "let's + 动词",
+            "meaning": "我们……吧"
+          },
+          {
+            "role": "方式状语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈoʊvər/",
+              "/ˈkɔːfi/"
+            ],
+            "pos": "介词短语",
+            "meaning": "边喝咖啡"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðɪs/",
+              "/ˌwiːkˈend/"
+            ],
+            "pos": "名词短语",
+            "meaning": "这周末"
+          }
+        ],
+        "explanations": [
+          "`catch up` = 叙旧/聊近况。常见错误：\n• \"catch up **with each other**\" → 也可，简说 catch up\n• \"catch **on**\" → 那是赶上潮流",
+          "`over coffee` = 喝着咖啡（时）。`this weekend` 前不加介词。"
+        ],
+        "distractors": [
+          [
+            "Let us catch up",
+            "Let's catching up",
+            "Let we catch up"
+          ],
+          [
+            "on coffee",
+            "with coffee",
+            "for a coffee over"
+          ],
+          [
+            "in this weekend.",
+            "at weekend.",
+            "this weekends."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let's catch up over coffee this weekend.",
+          "audio": {
+            "url": "assets/oral-e4eb1b2b-a935ecb3f383286a4b45.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9fe6a30bc61110988afda868f9f3337770f05bebb9ddda86e79ca70630165997",
+            "bytes": 7719
+          }
+        }
+      },
+      {
+        "sentence": "Why don't you come over for dinner tonight?",
+        "cid": "ea7d8a4b",
+        "translation": "今晚你过来一起吃晚饭吧？",
+        "chunks": [
+          "Why don't you",
+          "come over",
+          "for dinner tonight?"
+        ],
+        "hints": [
+          "你要不要",
+          "来我家",
+          "今晚一起吃晚饭"
+        ],
+        "grammar": [
+          {
+            "role": "建议句型",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/waɪ/",
+              "/doʊnt/",
+              "/juː/"
+            ],
+            "pos": "why don't you",
+            "meaning": "你何不"
+          },
+          {
+            "role": "谓语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/kʌm/",
+              "/ˈoʊvər/"
+            ],
+            "pos": "短语动词",
+            "meaning": "过来"
+          },
+          {
+            "role": "目的状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/ˈdɪnər/",
+              "/təˈnaɪt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "今晚吃晚饭"
+          }
+        ],
+        "explanations": [
+          "`Why don't you...?` = 建议/邀约。常见错误：\n• \"Why you don't\" → 疑问句助动词提前\n• \"Why not come over\" → 也可，省主语",
+          "`come over` = 到（某人）家来。"
+        ],
+        "distractors": [
+          [
+            "Why you don't",
+            "Why don't to you",
+            "Why not you"
+          ],
+          [
+            "come up",
+            "coming over",
+            "come on"
+          ],
+          [
+            "for the dinner tonight?",
+            "tonight for dinner?",
+            "at tonight for dinner?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Why don't you come over for dinner tonight?",
+          "audio": {
+            "url": "assets/oral-ea7d8a4b-d0f8344406a55370d766.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e405d2c21269fe6f1e671c7a5cad643c9ea9f10de42bc14ad548bd307008d044",
+            "bytes": 6825
+          }
+        }
+      },
+      {
+        "sentence": "Wanna go for a run?",
+        "cid": "6c4276f8",
+        "translation": "想去跑步吗？",
+        "chunks": [
+          "Wanna",
+          "go for a run?"
+        ],
+        "hints": [
+          "想不想",
+          "去跑步"
+        ],
+        "grammar": [
+          {
+            "role": "情态+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ˈwɑːnə/"
+            ],
+            "pos": "want to 的口语缩写",
+            "meaning": "想要"
+          },
+          {
+            "role": "固定表达",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɡoʊ/",
+              "/fɔːr/",
+              "/ə/",
+              "/rʌn/"
+            ],
+            "pos": "go for a run 惯用短语",
+            "meaning": "去跑步"
+          }
+        ],
+        "explanations": [
+          "`wanna` = want to 的连读写法，只用于非正式场合。常见错误：\n• \"Wanna to go\" → wanna 已含 to，不能再加\n• 书面写作要用 want to",
+          "`go for a run` 是固定搭配「去跑步」，整体是一个 chunk 不可拆。常见错误：\n• \"go for run\" → 漏掉冠词 a\n• \"go to a run\" → 介词是 for 不是 to\n同义：Want to go running? / Feel like a run?"
+        ],
+        "distractors": [
+          [
+            "Want",
+            "Wanna to",
+            "Wanted to"
+          ],
+          [
+            "go for run?",
+            "go to a run?",
+            "go for a running?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Wanna go for a run?",
+          "audio": {
+            "url": "assets/oral-6c4276f8-88abd72ac3fbc5f3154a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "28b1d808149b667f48e14f979ee4b69ce861fed65a093bea732e76a0feb4bc71",
+            "bytes": 5023
+          }
+        }
+      },
+      {
+        "sentence": "I'm down for it.",
+        "cid": "d6700842",
+        "translation": "我没问题。",
+        "chunks": [
+          "I'm down",
+          "for it."
+        ],
+        "hints": [
+          "我愿意",
+          "做这件事"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/daʊn/"
+            ],
+            "pos": "be down 口语习语",
+            "meaning": "我愿意"
+          },
+          {
+            "role": "介词宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/fɔːr/",
+              "/ɪt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "做这件事"
+          }
+        ],
+        "explanations": [
+          "`be down for sth` 是口语习语，表「乐意、算我一个」，跟「在下面」无关。常见错误：\n• \"I'm down to it\" → 固定搭配用 for\n• 按字面理解成「我在下面」→ 会完全跑偏",
+          "`for it` 指代前面提到的那件事。同义：I'm in. / Count me in. / I'm up for it."
+        ],
+        "distractors": [
+          [
+            "I'm up",
+            "I'm down on",
+            "I down"
+          ],
+          [
+            "to it.",
+            "on it.",
+            "at it."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm down for it.",
+          "audio": {
+            "url": "assets/oral-d6700842-ec9fb0b93633d34f9268.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9391706e6e4389a8fd26e6bdf59d54cd1fba14d3925d06d812f63d84f77f3423",
+            "bytes": 4383
+          }
+        }
+      },
+      {
+        "sentence": "Let's hang out.",
+        "cid": "01b8d6e2",
+        "translation": "出去玩吧。",
+        "chunks": [
+          "Let's",
+          "hang out."
+        ],
+        "hints": [
+          "我们",
+          "一起玩、闲逛"
+        ],
+        "grammar": [
+          {
+            "role": "主谓（祈使）",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lets/"
+            ],
+            "pos": "let us 缩写",
+            "meaning": "我们"
+          },
+          {
+            "role": "谓语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/hæŋ/",
+              "/aʊt/"
+            ],
+            "pos": "短语动词 hang out",
+            "meaning": "一起玩、闲逛"
+          }
+        ],
+        "explanations": [
+          "`hang out` = 一起消磨时间、闲逛，超常用。常见错误：\n• 别写成 \"hang on\"，那是「等一下」\n• \"Let's hanging out\" → Let's 后接动词原形",
+          "更随意：Wanna hang out? / Hang out sometime?"
+        ],
+        "distractors": [
+          [
+            "Let is",
+            "Let us to",
+            "Let's to"
+          ],
+          [
+            "hangs out.",
+            "hanging out.",
+            "hang on."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let's hang out.",
+          "audio": {
+            "url": "assets/oral-01b8d6e2-9e7b24ec324e1282c8c9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f2f6990316c26354f7d11cd6eb10552535f093e7315f27a5cd4353c1af72fe28",
+            "bytes": 4090
+          }
+        }
+      }
+    ]
+  }
+}

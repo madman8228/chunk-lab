@@ -1,0 +1,728 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Is it all right if...?",
+      "translation": "做……可以吗?",
+      "chunks": [
+        "Is it all right",
+        "if...?"
+      ],
+      "hints": [
+        "可以吗",
+        "如果……的话"
+      ],
+      "cid": "043946d5",
+      "sentenceAudio": {
+        "text": "Is it all right if...?",
+        "audio": {
+          "url": "assets/oral-043946d5-bfb37c4a460c0f5a3b2e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d7abbd04df665f96b11ae2f37d22b26a27e9c9e87a1e40c84fb53e2cadae38bb",
+          "bytes": 4418
+        }
+      }
+    },
+    {
+      "sentence": "May I come in?",
+      "translation": "我可以进来吗?",
+      "chunks": [
+        "May I",
+        "come in?"
+      ],
+      "hints": [
+        "我可以",
+        "进来吗"
+      ],
+      "cid": "6bb9e4db",
+      "sentenceAudio": {
+        "text": "May I come in?",
+        "audio": {
+          "url": "assets/oral-6bb9e4db-4f779fcf34da7dc7bf72.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2df1ab3c1fb8db10f5bf76bce9627c7c1bae166a033d04d80813fb704652bf20",
+          "bytes": 4169
+        }
+      }
+    },
+    {
+      "sentence": "May I sit here?",
+      "translation": "我可以坐这儿吗?",
+      "chunks": [
+        "May I",
+        "sit here?"
+      ],
+      "hints": [
+        "我可以",
+        "坐这儿吗"
+      ],
+      "cid": "ec3f6c3a",
+      "sentenceAudio": {
+        "text": "May I sit here?",
+        "audio": {
+          "url": "assets/oral-ec3f6c3a-0cfedc542af82e39b538.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "45d6eeddfd8fb4d12cd338abc20286b258b245680867e096255960797ea4b82d",
+          "bytes": 4317
+        }
+      }
+    },
+    {
+      "sentence": "May I play catch here?",
+      "translation": "我可以在这儿玩抛接球吗?",
+      "chunks": [
+        "May I",
+        "play catch here?"
+      ],
+      "hints": [
+        "我可以",
+        "在这儿玩抛接球吗？"
+      ],
+      "cid": "7fce8441",
+      "sentenceAudio": {
+        "text": "May I play catch here?",
+        "audio": {
+          "url": "assets/oral-7fce8441-d5879762d12bce338f1a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8c576bd40b133ce969e7c09a7e220351ebf6a42275e62c6edcea9b0a5ec7d202",
+          "bytes": 4850
+        }
+      }
+    },
+    {
+      "sentence": "Am I allowed to take pictures here?",
+      "translation": "我可以在这儿拍照吗？",
+      "chunks": [
+        "Am I allowed",
+        "to take pictures here?"
+      ],
+      "hints": [
+        "我可以",
+        "在这儿拍照吗？"
+      ],
+      "cid": "8a7eabd8",
+      "sentenceAudio": {
+        "text": "Am I allowed to take pictures here?",
+        "audio": {
+          "url": "assets/oral-8a7eabd8-a02141678730fc0e0274.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0eb993eaa5821ebf0afdc7b72bff66b964d6df4d0e2f8a3ae4e8deca9e6d4c53",
+          "bytes": 6535
+        }
+      }
+    },
+    {
+      "sentence": "Let me see it.",
+      "translation": "让我看看。",
+      "chunks": [
+        "Let me",
+        "see it."
+      ],
+      "hints": [
+        "让我",
+        "看看"
+      ],
+      "cid": "e172e80a",
+      "sentenceAudio": {
+        "text": "Let me see it.",
+        "audio": {
+          "url": "assets/oral-e172e80a-b49f871fdb5cce625084.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8f17cc51fc77a7ad23357a80c7f4d43a48c21c496cf2a2e4bee8f0e155e9a603",
+          "bytes": 3878
+        }
+      }
+    },
+    {
+      "sentence": "May I use the bathroom?",
+      "translation": "我可以借用您的卫生间吗?",
+      "chunks": [
+        "May I use",
+        "the bathroom?"
+      ],
+      "hints": [
+        "我可以借用",
+        "卫生间吗"
+      ],
+      "cid": "9406c6c6",
+      "sentenceAudio": {
+        "text": "May I use the bathroom?",
+        "audio": {
+          "url": "assets/oral-9406c6c6-410a05325f04502d45cc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c28cb14418c499f4e8f1737b47e36d1306f4e89350fc4f12df887b645f78133e",
+          "bytes": 5366
+        }
+      }
+    },
+    {
+      "sentence": "Can I park my car there?",
+      "translation": "我可以把车停在那儿吗?",
+      "chunks": [
+        "Can I",
+        "park my car there?"
+      ],
+      "hints": [
+        "我可以",
+        "把车停在那儿吗？"
+      ],
+      "cid": "5e7e2685",
+      "sentenceAudio": {
+        "text": "Can I park my car there?",
+        "audio": {
+          "url": "assets/oral-5e7e2685-fc2dc4a89b2ff8c0d703.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e11e420c7603e8739039abd5d47cb7bf87cac7c7ce07e30753b1928facf092ac",
+          "bytes": 5717
+        }
+      }
+    },
+    {
+      "sentence": "May I take a look?",
+      "translation": "我可以看一眼吗?",
+      "chunks": [
+        "May I",
+        "take a look?"
+      ],
+      "hints": [
+        "我可以",
+        "看一眼吗"
+      ],
+      "cid": "fce80317",
+      "sentenceAudio": {
+        "text": "May I take a look?",
+        "audio": {
+          "url": "assets/oral-fce80317-cac7e033f3305085fd6f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ca05850ecf5b037910dfa859f384b9eacb9c8cdf3fa7b899657fa5c909179a9d",
+          "bytes": 4640
+        }
+      }
+    },
+    {
+      "sentence": "You mean any place?",
+      "translation": "哪儿都可以吗?",
+      "chunks": [
+        "You mean",
+        "any place?"
+      ],
+      "hints": [
+        "你的意思是",
+        "任何地方吗"
+      ],
+      "cid": "9bd0c2c9",
+      "sentenceAudio": {
+        "text": "You mean any place?",
+        "audio": {
+          "url": "assets/oral-9bd0c2c9-d54788d0b6fb7338281d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ca72da976d2aee6b5629b82a9c033bf456bbce899686391bb48d719cf43c9918",
+          "bytes": 4424
+        }
+      }
+    },
+    {
+      "sentence": "Sure.",
+      "translation": "可以。",
+      "chunks": [
+        "Sure."
+      ],
+      "hints": [
+        "可以"
+      ],
+      "cid": "1c440e8a",
+      "sentenceAudio": {
+        "text": "Sure.",
+        "audio": {
+          "url": "assets/oral-1c440e8a-7c1d4372b10b7dd462ac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6f9c4172e5d3938043d769caaf4f2c619db3a6c748663f3a55ae9e90c830fdf6",
+          "bytes": 2973
+        }
+      }
+    },
+    {
+      "sentence": "I'm game!",
+      "translation": "行啊!",
+      "chunks": [
+        "I'm game!"
+      ],
+      "hints": [
+        "我愿意！"
+      ],
+      "cid": "051e9a6d",
+      "sentenceAudio": {
+        "text": "I'm game!",
+        "audio": {
+          "url": "assets/oral-051e9a6d-4353d14cad6b05fe4b85.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d44c58a61d76c4c44c2f1d0f5a3587a5484d5ec5f4a7da914032b427c6cad08e",
+          "bytes": 3624
+        }
+      }
+    },
+    {
+      "sentence": "If that's all right with you.",
+      "translation": "如果你觉得没问题的话。",
+      "chunks": [
+        "If that's all right with you."
+      ],
+      "hints": [
+        "如果你觉得没问题的话。"
+      ],
+      "cid": "d6050f33",
+      "sentenceAudio": {
+        "text": "If that's all right with you.",
+        "audio": {
+          "url": "assets/oral-d6050f33-8c2575ba7dfebd8a5b14.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b74229f99c1dddc7238badfe235b298fb5438fdc475b52e89aead4cc2db8c5c5",
+          "bytes": 5206
+        }
+      }
+    },
+    {
+      "sentence": "If it's all right with you,…",
+      "translation": "如果方便的话……",
+      "chunks": [
+        "If it's all right with you,…"
+      ],
+      "hints": [
+        "如果你觉得没问题的话……"
+      ],
+      "cid": "e507b401",
+      "sentenceAudio": {
+        "text": "If it's all right with you,…",
+        "audio": {
+          "url": "assets/oral-e507b401-fea9cd2021796452bc30.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fbcf1ba76b425290fc837f937d3ccef0fe272968f23f09c47ef35cc9e278ffc2",
+          "bytes": 5177
+        }
+      }
+    },
+    {
+      "sentence": "Yes, please do.",
+      "translation": "可以，您请坐。",
+      "chunks": [
+        "Yes,",
+        "please do."
+      ],
+      "hints": [
+        "可以",
+        "请吧"
+      ],
+      "cid": "d71870bf",
+      "sentenceAudio": {
+        "text": "Yes, please do.",
+        "audio": {
+          "url": "assets/oral-d71870bf-6f5872d01c64423d9d4d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "db5cff32498c355c89b49d6054c767c573e0407d7934fd27fa2a7f4af59a7776",
+          "bytes": 4673
+        }
+      }
+    },
+    {
+      "sentence": "You may go home now, John.",
+      "translation": "约翰，你可以回家了。",
+      "chunks": [
+        "You may go home now,",
+        "John."
+      ],
+      "hints": [
+        "你现在可以回家了",
+        "约翰"
+      ],
+      "cid": "822ea4d1",
+      "sentenceAudio": {
+        "text": "You may go home now, John.",
+        "audio": {
+          "url": "assets/oral-822ea4d1-84e0e31f9b6a620818f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3a6eedaa6407c2b0e457590a5053c2dc9a54463665b86258431168cd8552bfdd",
+          "bytes": 5746
+        }
+      }
+    },
+    {
+      "sentence": "I'm afraid not.",
+      "translation": "很遗憾，恐怕不行。",
+      "chunks": [
+        "I'm",
+        "afraid not."
+      ],
+      "hints": [
+        "恐怕",
+        "不行"
+      ],
+      "cid": "55ee6e30",
+      "sentenceAudio": {
+        "text": "I'm afraid not.",
+        "audio": {
+          "url": "assets/oral-55ee6e30-b3691133985b074929fd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "872a932775b3af71a89993ca07f350e8ae93148af98692d1a7e4cdac01619713",
+          "bytes": 4490
+        }
+      }
+    },
+    {
+      "sentence": "I'd rather you didn't.",
+      "translation": "最好不要。",
+      "chunks": [
+        "I'd rather",
+        "you didn't."
+      ],
+      "hints": [
+        "我宁愿",
+        "你不要"
+      ],
+      "cid": "d5c7060c",
+      "sentenceAudio": {
+        "text": "I'd rather you didn't.",
+        "audio": {
+          "url": "assets/oral-d5c7060c-c1635c0cc5c7d3227b45.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a35c5b167724eadcc7a6cc90b15a65ef8facf95367d1c16300cc7931e6cc57f6",
+          "bytes": 4766
+        }
+      }
+    },
+    {
+      "sentence": "Not on your life!",
+      "translation": "不行!",
+      "chunks": [
+        "Not on your life!"
+      ],
+      "hints": [
+        "绝对不行！"
+      ],
+      "cid": "d494b677",
+      "sentenceAudio": {
+        "text": "Not on your life!",
+        "audio": {
+          "url": "assets/oral-d494b677-1ba5e82e9b608ffa05df.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "20e2aa090d8d400bb011acc1823e2e3363f61360cc77edbd3c90c417380611f9",
+          "bytes": 4142
+        }
+      }
+    },
+    {
+      "sentence": "Over my dead body!",
+      "translation": "绝不允许!",
+      "chunks": [
+        "Over my dead body!"
+      ],
+      "hints": [
+        "想都别想！"
+      ],
+      "cid": "995b0280",
+      "sentenceAudio": {
+        "text": "Over my dead body!",
+        "audio": {
+          "url": "assets/oral-995b0280-aea936265a7e85035d9d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7a47a06f3ca70ba702c0e42b7b1eabeff6a69b43f7e1f5ac1c05b0ff703935c2",
+          "bytes": 5017
+        }
+      }
+    },
+    {
+      "sentence": "Nope!",
+      "translation": "不!不行!",
+      "chunks": [
+        "Nope!"
+      ],
+      "hints": [
+        "不"
+      ],
+      "cid": "71a2f6c0",
+      "sentenceAudio": {
+        "text": "Nope!",
+        "audio": {
+          "url": "assets/oral-71a2f6c0-b178f567b633d74f6c22.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "185e9fd9e501025e8d662aae5ac9e8f05d249a7cdb39b3810a9aa211f0cb7a37",
+          "bytes": 3022
+        }
+      }
+    },
+    {
+      "sentence": "Not yet.",
+      "translation": "还没有。",
+      "chunks": [
+        "Not yet."
+      ],
+      "hints": [
+        "还没有。"
+      ],
+      "cid": "d0421716",
+      "sentenceAudio": {
+        "text": "Not yet.",
+        "audio": {
+          "url": "assets/oral-d0421716-cbd916fdf6781421b0a0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b363b8f2af27992dcd3b662d1547a3e990a21bb5ba0330bba9f0f8e90eef6c7f",
+          "bytes": 3594
+        }
+      }
+    },
+    {
+      "sentence": "Not now.",
+      "translation": "现在不行。",
+      "chunks": [
+        "Not now."
+      ],
+      "hints": [
+        "现在不行。"
+      ],
+      "cid": "84b71da0",
+      "sentenceAudio": {
+        "text": "Not now.",
+        "audio": {
+          "url": "assets/oral-84b71da0-5a73003c9cb4aef026d3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "35b1d4c8cefaed3faebac4d476eb33d46b12a83ae00a59f6048f179964abdc60",
+          "bytes": 3643
+        }
+      }
+    },
+    {
+      "sentence": "Not here.",
+      "translation": "这里不行。",
+      "chunks": [
+        "Not here."
+      ],
+      "hints": [
+        "这里不行。"
+      ],
+      "cid": "c3c7fc9a",
+      "sentenceAudio": {
+        "text": "Not here.",
+        "audio": {
+          "url": "assets/oral-c3c7fc9a-6e7e7200a5c37beabab4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b904f38ac6562bdb1a4ec5eb0335f541ba2003dd213b66b0d7a51e5933291cab",
+          "bytes": 3426
+        }
+      }
+    },
+    {
+      "sentence": "You may not eat here.",
+      "translation": "你不能在这儿吃东西。",
+      "chunks": [
+        "You may not",
+        "eat here."
+      ],
+      "hints": [
+        "你不能",
+        "在这儿吃东西"
+      ],
+      "cid": "34b0227a",
+      "sentenceAudio": {
+        "text": "You may not eat here.",
+        "audio": {
+          "url": "assets/oral-34b0227a-d5e9279c1e0d96ccb20b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2dd101c70a6375159a7b1fa55dab4566e865b9545e1714bf1ec328f9437e2ebe",
+          "bytes": 4533
+        }
+      }
+    },
+    {
+      "sentence": "Take a look!",
+      "translation": "看!",
+      "chunks": [
+        "Take a look!"
+      ],
+      "hints": [
+        "看一眼！"
+      ],
+      "cid": "b3df1d8b",
+      "sentenceAudio": {
+        "text": "Take a look!",
+        "audio": {
+          "url": "assets/oral-b3df1d8b-538de2ada5691f01fbb8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "64e816515c34a9ba7dcf01f6f91098a0b1e27983e96765a20cc22a7c06a51e72",
+          "bytes": 3650
+        }
+      }
+    },
+    {
+      "sentence": "Listen!",
+      "translation": "听好喽!",
+      "chunks": [
+        "Listen!"
+      ],
+      "hints": [
+        "听着"
+      ],
+      "cid": "a4feb5a5",
+      "sentenceAudio": {
+        "text": "Listen!",
+        "audio": {
+          "url": "assets/oral-a4feb5a5-bff68099c0e82c2d63fe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d506858f822103a742784b27a53397d18a0ccbef36a33236f9bf553c0f8344e",
+          "bytes": 3325
+        }
+      }
+    },
+    {
+      "sentence": "Don't ignore me.",
+      "translation": "别不理我。",
+      "chunks": [
+        "Don't ignore me."
+      ],
+      "hints": [
+        "别无视我！"
+      ],
+      "cid": "f0872a4d",
+      "sentenceAudio": {
+        "text": "Don't ignore me.",
+        "audio": {
+          "url": "assets/oral-f0872a4d-79733b3fe21cb129214f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a28ca1a4679849bb47200cd3311747e47b6280d8402c562b13c05dbbf421de6c",
+          "bytes": 4141
+        }
+      }
+    },
+    {
+      "sentence": "Look here!",
+      "translation": "看这儿!",
+      "chunks": [
+        "Look",
+        "here!"
+      ],
+      "hints": [
+        "看",
+        "这儿"
+      ],
+      "cid": "d8a533bf",
+      "sentenceAudio": {
+        "text": "Look here!",
+        "audio": {
+          "url": "assets/oral-d8a533bf-156fec31b7d3d7187dbd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7dff764245f040a4135cb3ff25bc018f45472b2f00164152f4271ef19094ef16",
+          "bytes": 3338
+        }
+      }
+    },
+    {
+      "sentence": "Look at that!",
+      "translation": "看那儿!",
+      "chunks": [
+        "Look at",
+        "that!"
+      ],
+      "hints": [
+        "看",
+        "那边"
+      ],
+      "cid": "4a17d147",
+      "sentenceAudio": {
+        "text": "Look at that!",
+        "audio": {
+          "url": "assets/oral-4a17d147-3271364dae09064d16ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3381ea3c32ac43d0d901f65a4461533abcff1dcd11098ac330214ccd57b60448",
+          "bytes": 3709
+        }
+      }
+    },
+    {
+      "sentence": "Come, look!",
+      "translation": "快来看呀!",
+      "chunks": [
+        "Come,",
+        "look!"
+      ],
+      "hints": [
+        "快过来",
+        "看呀"
+      ],
+      "cid": "cb29db45",
+      "sentenceAudio": {
+        "text": "Come, look!",
+        "audio": {
+          "url": "assets/oral-cb29db45-9c17f2d63323f2ab312b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dc0d6e7902188bf448af0cab985fa8ae3e0197f4dab001fe576f67727674fc68",
+          "bytes": 3441
+        }
+      }
+    },
+    {
+      "sentence": "I heard something.",
+      "translation": "我听见有声音。",
+      "chunks": [
+        "I heard",
+        "something."
+      ],
+      "hints": [
+        "我听见",
+        "有动静"
+      ],
+      "cid": "9bd12fae",
+      "sentenceAudio": {
+        "text": "I heard something.",
+        "audio": {
+          "url": "assets/oral-9bd12fae-91972551c8bb32831679.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "21047336ac79b4819a40956de224823af022532c2930ed1951d8faed91e49a72",
+          "bytes": 4545
+        }
+      }
+    },
+    {
+      "sentence": "I'll go and take a look right away.",
+      "translation": "我这就去看看。",
+      "chunks": [
+        "I'll go and take a look",
+        "right away."
+      ],
+      "hints": [
+        "我去看一眼",
+        "马上"
+      ],
+      "cid": "428f87dd",
+      "sentenceAudio": {
+        "text": "I'll go and take a look right away.",
+        "audio": {
+          "url": "assets/oral-428f87dd-3cde682efe1bf45a3deb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "64a9c1380035cba6e44cdf2883c349e98306b6dc7aef73e07a70751cc506b687",
+          "bytes": 6637
+        }
+      }
+    },
+    {
+      "sentence": "It's your turn.",
+      "translation": "该你了。",
+      "chunks": [
+        "It's",
+        "your turn."
+      ],
+      "hints": [
+        "轮到",
+        "你了"
+      ],
+      "cid": "edd88272",
+      "sentenceAudio": {
+        "text": "It's your turn.",
+        "audio": {
+          "url": "assets/oral-edd88272-fc6d5db32b5e229c1932.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "110cd6313aa1ab71a09759455c6413acb59aa6306febfce87cef056c07c838b0",
+          "bytes": 4155
+        }
+      }
+    }
+  ]
+}

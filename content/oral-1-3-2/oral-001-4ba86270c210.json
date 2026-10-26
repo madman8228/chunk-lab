@@ -1,0 +1,1929 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Are you feeling okay?",
+      "translation": "你感觉还好吗？",
+      "chunks": [
+        "Are you",
+        "feeling okay?"
+      ],
+      "hints": [
+        "你",
+        "感觉还好吗？"
+      ],
+      "cid": "4b8014b7",
+      "sentenceAudio": {
+        "text": "Are you feeling okay?",
+        "audio": {
+          "url": "assets/oral-4b8014b7-68583e9319ca1c9379e0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "901bc3aeb04fe9211264fc46fc1c7caf48478c0f39d62ccb915a70dec32698aa",
+          "bytes": 4802
+        }
+      }
+    },
+    {
+      "sentence": "What's wrong?",
+      "translation": "你怎么了?",
+      "chunks": [
+        "What's wrong?"
+      ],
+      "hints": [
+        "你怎么了？"
+      ],
+      "cid": "91639729",
+      "sentenceAudio": {
+        "text": "What's wrong?",
+        "audio": {
+          "url": "assets/oral-91639729-f4d4597e984aad936832.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b2d5e62c16ea86f9ab791c0325a9bffa923b23549b10c29b0eb858fe0a3de2a3",
+          "bytes": 3744
+        }
+      }
+    },
+    {
+      "sentence": "You look pale.",
+      "translation": "你的脸色真不好。",
+      "chunks": [
+        "You",
+        "look pale."
+      ],
+      "hints": [
+        "你",
+        "脸色真不好。"
+      ],
+      "cid": "6ef8e189",
+      "sentenceAudio": {
+        "text": "You look pale.",
+        "audio": {
+          "url": "assets/oral-6ef8e189-7f8d11baf455edae825f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bef103eabf546d8a32bde7fcf27a6c13b32a48f7a0202cbeaa61f94efccaa9b0",
+          "bytes": 3993
+        }
+      }
+    },
+    {
+      "sentence": "I don't feel well.",
+      "translation": "我觉得难受。",
+      "chunks": [
+        "I don't feel well."
+      ],
+      "hints": [
+        "我觉得不舒服。"
+      ],
+      "cid": "44cf5580",
+      "sentenceAudio": {
+        "text": "I don't feel well.",
+        "audio": {
+          "url": "assets/oral-44cf5580-17e74e3b16e878714745.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "64d6355c5929fe614a5ce9b46ed9b802ec42fa2f06ed6dda25ee0d52a74377d1",
+          "bytes": 4232
+        }
+      }
+    },
+    {
+      "sentence": "You don't look well.",
+      "translation": "你好像不太舒服。",
+      "chunks": [
+        "You don't look",
+        "well."
+      ],
+      "hints": [
+        "你看起来不太",
+        "舒服"
+      ],
+      "cid": "e60f961b",
+      "sentenceAudio": {
+        "text": "You don't look well.",
+        "audio": {
+          "url": "assets/oral-e60f961b-a3bd4aa48c078dedba0c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "538615bf3b0c1aee44f2bf9f4fe75d552f71465646f363e8038d23b00a374e59",
+          "bytes": 4244
+        }
+      }
+    },
+    {
+      "sentence": "She passed out.",
+      "translation": "她昏过去了。",
+      "chunks": [
+        "She",
+        "passed out."
+      ],
+      "hints": [
+        "她",
+        "昏过去了。"
+      ],
+      "cid": "d11f5933",
+      "sentenceAudio": {
+        "text": "She passed out.",
+        "audio": {
+          "url": "assets/oral-d11f5933-066fbfcf0bb611c33686.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dc575f0fe49a85dde97c64dca68f1bbbcc17cfd8a4199b522956b1a832213bc1",
+          "bytes": 4276
+        }
+      }
+    },
+    {
+      "sentence": "I feel sick.",
+      "translation": "我觉得难受。",
+      "chunks": [
+        "I feel",
+        "sick."
+      ],
+      "hints": [
+        "我觉得",
+        "难受。"
+      ],
+      "cid": "01ce8728",
+      "sentenceAudio": {
+        "text": "I feel sick.",
+        "audio": {
+          "url": "assets/oral-01ce8728-1788c3dc2b28b7fc654a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b10b0f6b4e5119ce8ba70c525f2823acd9e120e3ea27b8d27bb4a2ff7300b222",
+          "bytes": 3973
+        }
+      }
+    },
+    {
+      "sentence": "I have a stomachache.",
+      "translation": "我肚子疼。",
+      "chunks": [
+        "I have",
+        "a stomachache."
+      ],
+      "hints": [
+        "我",
+        "肚子疼。"
+      ],
+      "cid": "bc4a65b3",
+      "sentenceAudio": {
+        "text": "I have a stomachache.",
+        "audio": {
+          "url": "assets/oral-bc4a65b3-fd9b4b90ee5dff38b79c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "338b2cdb3ce597a8dc6a4384778a4a16d828973db8456706d9b1cfb22a5ddf8f",
+          "bytes": 4689
+        }
+      }
+    },
+    {
+      "sentence": "I have a dull pain.",
+      "translation": "我有隐隐的疼痛。",
+      "chunks": [
+        "I have a",
+        "dull pain."
+      ],
+      "hints": [
+        "我有",
+        "隐隐的疼痛。"
+      ],
+      "cid": "113c93fe",
+      "sentenceAudio": {
+        "text": "I have a dull pain.",
+        "audio": {
+          "url": "assets/oral-113c93fe-c2564bc4e8939016cbfd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7048b84d661a7f04d62ac07b7fd4081cc697fe15fef099cc63892966db38e11b",
+          "bytes": 4774
+        }
+      }
+    },
+    {
+      "sentence": "I have a sharp pain.",
+      "translation": "我感到剧烈疼痛。",
+      "chunks": [
+        "I have",
+        "a sharp pain."
+      ],
+      "hints": [
+        "我感到",
+        "剧烈疼痛。"
+      ],
+      "cid": "5f21789f",
+      "sentenceAudio": {
+        "text": "I have a sharp pain.",
+        "audio": {
+          "url": "assets/oral-5f21789f-5f2cc5c5c62a105da654.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3fb46df6c9330511e8665c291ee9eaf5ae576bbc887d4346bc9c195b87979159",
+          "bytes": 4928
+        }
+      }
+    },
+    {
+      "sentence": "I have a throbbing pain.",
+      "translation": "一跳一跳地疼。",
+      "chunks": [
+        "I have",
+        "a throbbing pain."
+      ],
+      "hints": [
+        "我感到",
+        "一跳一跳地疼。"
+      ],
+      "cid": "5d0ac20a",
+      "sentenceAudio": {
+        "text": "I have a throbbing pain.",
+        "audio": {
+          "url": "assets/oral-5d0ac20a-749d9c6ba89abe5a9a2b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "26376a269f8f481b88863ed120f2873c6c0e1afc3c4e2250984ad28e19825e2d",
+          "bytes": 5301
+        }
+      }
+    },
+    {
+      "sentence": "I have a piercing pain.",
+      "translation": "我感到巨痛。",
+      "chunks": [
+        "I have",
+        "a piercing pain."
+      ],
+      "hints": [
+        "我感到",
+        "剧烈疼痛。"
+      ],
+      "cid": "428ea54a",
+      "sentenceAudio": {
+        "text": "I have a piercing pain.",
+        "audio": {
+          "url": "assets/oral-428ea54a-f2e050f5ae5d088fa986.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "17b4d058b502a9ff3a1e94486ac4e6bb00e3d8772602dd9e53c1864e1c842573",
+          "bytes": 5219
+        }
+      }
+    },
+    {
+      "sentence": "I have a stabbing pain.",
+      "translation": "像针扎似地疼。",
+      "chunks": [
+        "I have",
+        "a stabbing pain."
+      ],
+      "hints": [
+        "我感到",
+        "像针扎一样的疼痛。"
+      ],
+      "cid": "e410dc6f",
+      "sentenceAudio": {
+        "text": "I have a stabbing pain.",
+        "audio": {
+          "url": "assets/oral-e410dc6f-0fbc3c0c6d0a3a15d42a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "93b61c1c12b696c7d04bc56800fddbd0c2b2bf6e3e3cc6c708004c8c7f1c1217",
+          "bytes": 4991
+        }
+      }
+    },
+    {
+      "sentence": "I have diarrhea.",
+      "translation": "我拉肚子了。",
+      "chunks": [
+        "I have",
+        "diarrhea."
+      ],
+      "hints": [
+        "我",
+        "拉肚子了。"
+      ],
+      "cid": "ff7aa0b4",
+      "sentenceAudio": {
+        "text": "I have diarrhea.",
+        "audio": {
+          "url": "assets/oral-ff7aa0b4-6288d67406cef00a4f82.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4bac1b7bcab5a53bace39d8a33b8290edae6836145289ef190218ca0ac97d348",
+          "bytes": 4496
+        }
+      }
+    },
+    {
+      "sentence": "I have food poisoning.",
+      "translation": "我食物中毒了。",
+      "chunks": [
+        "I have",
+        "food poisoning."
+      ],
+      "hints": [
+        "我",
+        "食物中毒了。"
+      ],
+      "cid": "5a94bf18",
+      "sentenceAudio": {
+        "text": "I have food poisoning.",
+        "audio": {
+          "url": "assets/oral-5a94bf18-cb43cbb6e1a3317ec58b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f4b669b4b5ffd1561c24aed94b414bbf6ced41b912aeb6ad99e548ed75c0c4fe",
+          "bytes": 5098
+        }
+      }
+    },
+    {
+      "sentence": "I have high blood pressure.",
+      "translation": "血压高。",
+      "chunks": [
+        "I have",
+        "high blood pressure."
+      ],
+      "hints": [
+        "我有",
+        "高血压。"
+      ],
+      "cid": "8e48ff3d",
+      "sentenceAudio": {
+        "text": "I have high blood pressure.",
+        "audio": {
+          "url": "assets/oral-8e48ff3d-0e5734938a844f99c6a7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3ae979768ab1bb28952d00472dc0fef34e75482ec18a0cd6983e1202dd0383d4",
+          "bytes": 5528
+        }
+      }
+    },
+    {
+      "sentence": "I have low blood pressure.",
+      "translation": "血压低。",
+      "chunks": [
+        "I have",
+        "low blood pressure."
+      ],
+      "hints": [
+        "我有",
+        "低血压。"
+      ],
+      "cid": "2de1074b",
+      "sentenceAudio": {
+        "text": "I have low blood pressure.",
+        "audio": {
+          "url": "assets/oral-2de1074b-5fab6e932cde7e41f2b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f48604857df6c511cc2bae73f4c3acf68028d605caabf9f7f769b4b810987422",
+          "bytes": 5625
+        }
+      }
+    },
+    {
+      "sentence": "I have a headache.",
+      "translation": "我头疼。",
+      "chunks": [
+        "I have",
+        "a headache."
+      ],
+      "hints": [
+        "我",
+        "头疼。"
+      ],
+      "cid": "d0d1a6f0",
+      "sentenceAudio": {
+        "text": "I have a headache.",
+        "audio": {
+          "url": "assets/oral-d0d1a6f0-623908bf4488adbae0f3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "305e27f1a02ce0088443dc9414bce489c7f8e5adc5735dd4c8f4f8ad0a9759bc",
+          "bytes": 4283
+        }
+      }
+    },
+    {
+      "sentence": "I have a toothache.",
+      "translation": "我牙疼。",
+      "chunks": [
+        "I have",
+        "a toothache."
+      ],
+      "hints": [
+        "我",
+        "牙疼。"
+      ],
+      "cid": "05627472",
+      "sentenceAudio": {
+        "text": "I have a toothache.",
+        "audio": {
+          "url": "assets/oral-05627472-8dd86e60e32cb3c8150f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dc6302c19d397366525849737f79e72c26bd3646df6781f6a9483601374dd8ac",
+          "bytes": 4724
+        }
+      }
+    },
+    {
+      "sentence": "I feel dizzy.",
+      "cid": "0307af34",
+      "translation": "我头晕目眩。",
+      "chunks": [
+        "I feel",
+        "dizzy."
+      ],
+      "hints": [
+        "我",
+        "头晕目眩。"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/fiːl/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我觉得"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈdɪzi/"
+          ],
+          "pos": "形容词",
+          "meaning": "头晕的"
+        }
+      ],
+      "explanations": [
+        "`feel` 是系动词，后面接形容词。常见错误：\n• \"I **feeling** dizzy\" → 一般现在时用 feel\n• \"I feel **dizziness**\" → 要说感觉晕用形容词 dizzy，名词 dizziness 是「眩晕症」",
+        "同类表达：I feel light-headed.（我觉得头晕）"
+      ],
+      "distractors": [
+        [
+          "I feeling",
+          "I'm feel",
+          "I feels"
+        ],
+        [
+          "dizzily.",
+          "dizziness.",
+          "dizzying."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I feel dizzy.",
+        "audio": {
+          "url": "assets/oral-0307af34-3a346b431cf2d7c01079.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0786a801b0aa62ee7e72428308b7ae8d6a7a1a2404a24f1d230cd10c17314871",
+          "bytes": 4103
+        }
+      }
+    },
+    {
+      "sentence": "I feel sluggish.",
+      "translation": "我浑身没劲。",
+      "chunks": [
+        "I feel",
+        "sluggish."
+      ],
+      "hints": [
+        "我",
+        "浑身没劲。"
+      ],
+      "cid": "d5647b56",
+      "sentenceAudio": {
+        "text": "I feel sluggish.",
+        "audio": {
+          "url": "assets/oral-d5647b56-6e8e4cbfbb362e30e263.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0932a8f6f5ae426685aacc230ac09e2e86cb5e1ba36f787158a0a1644e23445d",
+          "bytes": 4354
+        }
+      }
+    },
+    {
+      "sentence": "I don't have any appetite.",
+      "translation": "我没有一点儿食欲。",
+      "chunks": [
+        "I don't have",
+        "any appetite."
+      ],
+      "hints": [
+        "我没有",
+        "一点儿食欲。"
+      ],
+      "cid": "d78462b6",
+      "sentenceAudio": {
+        "text": "I don't have any appetite.",
+        "audio": {
+          "url": "assets/oral-d78462b6-390248845d941c780c83.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e4bcebc4ee08751c8bb176ec161da7c64ee46fbdef0c552d90a36c248744f89a",
+          "bytes": 5331
+        }
+      }
+    },
+    {
+      "sentence": "I have a slight cold.",
+      "translation": "我有点儿感冒。",
+      "chunks": [
+        "I have a slight",
+        "cold."
+      ],
+      "hints": [
+        "我有点儿",
+        "感冒。"
+      ],
+      "cid": "8061adc4",
+      "sentenceAudio": {
+        "text": "I have a slight cold.",
+        "audio": {
+          "url": "assets/oral-8061adc4-cb5caeda66bf6233602b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ba926d6b52682fa3c4e7ecb7e8e007f760a88f951494ca7f8d1c037688327200",
+          "bytes": 4883
+        }
+      }
+    },
+    {
+      "sentence": "I feel chilly.",
+      "translation": "我浑身发冷。",
+      "chunks": [
+        "I feel",
+        "chilly."
+      ],
+      "hints": [
+        "我",
+        "浑身发冷。"
+      ],
+      "cid": "88a93221",
+      "sentenceAudio": {
+        "text": "I feel chilly.",
+        "audio": {
+          "url": "assets/oral-88a93221-200f07c6c6b97efb1dc2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "95366ea09b852c63286aac31b66439d9fef1ff9b42adb8e03deeeef5868dbb39",
+          "bytes": 4101
+        }
+      }
+    },
+    {
+      "sentence": "I have a bad cold.",
+      "translation": "我得了重感冒。",
+      "chunks": [
+        "I have",
+        "a bad cold."
+      ],
+      "hints": [
+        "我得了",
+        "重感冒。"
+      ],
+      "cid": "48a2901a",
+      "sentenceAudio": {
+        "text": "I have a bad cold.",
+        "audio": {
+          "url": "assets/oral-48a2901a-d2fd739f094307e7894f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ed014adc851da81b65bc83ac271d96b165795351671057ebc9b0af7db92f844",
+          "bytes": 4780
+        }
+      }
+    },
+    {
+      "sentence": "I have a stuffy nose.",
+      "translation": "鼻子堵了。",
+      "chunks": [
+        "I have",
+        "a stuffy nose."
+      ],
+      "hints": [
+        "我",
+        "鼻子堵了。"
+      ],
+      "cid": "d2355f09",
+      "sentenceAudio": {
+        "text": "I have a stuffy nose.",
+        "audio": {
+          "url": "assets/oral-d2355f09-7714eea662f8a5cc8e40.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0c3a335c96518db813b0d54d321aa7c2a477356ba9b0832925fd35f96cf8ecb0",
+          "bytes": 5041
+        }
+      }
+    },
+    {
+      "sentence": "I have a runny nose.",
+      "translation": "我在流鼻涕。",
+      "chunks": [
+        "I have",
+        "a runny nose."
+      ],
+      "hints": [
+        "我",
+        "在流鼻涕。"
+      ],
+      "cid": "c608c316",
+      "sentenceAudio": {
+        "text": "I have a runny nose.",
+        "audio": {
+          "url": "assets/oral-c608c316-e460a56ca6fb0b6494cb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "533e007f812486da13a19faea12733bd4aa262ae0c3c6d1c577a587aa65afb92",
+          "bytes": 4774
+        }
+      }
+    },
+    {
+      "sentence": "I have a bit of a fever.",
+      "translation": "我有点儿发烧。",
+      "chunks": [
+        "I have a bit of a",
+        "fever."
+      ],
+      "hints": [
+        "我有点儿",
+        "发烧。"
+      ],
+      "cid": "ceae4888",
+      "sentenceAudio": {
+        "text": "I have a bit of a fever.",
+        "audio": {
+          "url": "assets/oral-ceae4888-d8ea2f4181f198a0d480.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fb30e32ff11e56fd085813df6efad581589076b054fb9c8970ba30258022b0b8",
+          "bytes": 5214
+        }
+      }
+    },
+    {
+      "sentence": "I think I have a fever.",
+      "translation": "我好像发烧了。",
+      "chunks": [
+        "I think",
+        "I have a fever."
+      ],
+      "hints": [
+        "我好像",
+        "发烧了。"
+      ],
+      "cid": "256ddcd4",
+      "sentenceAudio": {
+        "text": "I think I have a fever.",
+        "audio": {
+          "url": "assets/oral-256ddcd4-2316c52c4bc60f01e1c8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06218e9e7c5412314844f71d9490846cfbd10e66d2d9ef9ab41a22cd6963a7cb",
+          "bytes": 5284
+        }
+      }
+    },
+    {
+      "sentence": "I have a high temperature.",
+      "translation": "我在发高烧。",
+      "chunks": [
+        "I have",
+        "a high temperature."
+      ],
+      "hints": [
+        "我",
+        "在发高烧。"
+      ],
+      "cid": "8ae964c5",
+      "sentenceAudio": {
+        "text": "I have a high temperature.",
+        "audio": {
+          "url": "assets/oral-8ae964c5-479b2eb5a2e11a8838d9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "462d9a313458722acf27d1068ef67af5eb9058292eb8aec13d89990f95e1416b",
+          "bytes": 5434
+        }
+      }
+    },
+    {
+      "sentence": "I feel like throwing up.",
+      "translation": "我想吐。",
+      "chunks": [
+        "I feel like",
+        "throwing up."
+      ],
+      "hints": [
+        "我想",
+        "吐。"
+      ],
+      "cid": "23f2fc5c",
+      "sentenceAudio": {
+        "text": "I feel like throwing up.",
+        "audio": {
+          "url": "assets/oral-23f2fc5c-cbd9aab8df172390906e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5f8779122d4482c7a43ec50c7173e0a33609ad1dfeb94dc1355e642a19c0ffad",
+          "bytes": 5078
+        }
+      }
+    },
+    {
+      "sentence": "Ouch!",
+      "translation": "好疼!/好烫!",
+      "chunks": [
+        "Ouch!"
+      ],
+      "hints": [
+        "好疼！/好烫！"
+      ],
+      "cid": "81522481",
+      "sentenceAudio": {
+        "text": "Ouch!",
+        "audio": {
+          "url": "assets/oral-81522481-aa858892e0894c8d905b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8111de3b8fdb3c2d660b66dade5ac2f6f3a357765939f3d1e22d1269374b4a77",
+          "bytes": 3097
+        }
+      }
+    },
+    {
+      "sentence": "It's itchy.",
+      "translation": "这里发痒。",
+      "chunks": [
+        "It's",
+        "itchy."
+      ],
+      "hints": [
+        "这里",
+        "发痒。"
+      ],
+      "cid": "7f611e4f",
+      "sentenceAudio": {
+        "text": "It's itchy.",
+        "audio": {
+          "url": "assets/oral-7f611e4f-51c4accb48f37cc765b2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "494ddd9532fcd8be6cfcdf3f2c40b13e4454dd7ba91e4218519b5c76afbc80a8",
+          "bytes": 3776
+        }
+      }
+    },
+    {
+      "sentence": "Ahchoo!",
+      "translation": "啊嚏!",
+      "chunks": [
+        "Ahchoo!"
+      ],
+      "hints": [
+        "啊嚏！"
+      ],
+      "cid": "c50f3894",
+      "sentenceAudio": {
+        "text": "Ahchoo!",
+        "audio": {
+          "url": "assets/oral-c50f3894-b747ece77d800be7533d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "854de802a429f5c6546f166a4620f7325f67cf48643f7ff76a1ef8a6808fd65d",
+          "bytes": 3487
+        }
+      }
+    },
+    {
+      "sentence": "I broke my leg.",
+      "translation": "我腿骨折了。",
+      "chunks": [
+        "I broke",
+        "my leg."
+      ],
+      "hints": [
+        "我摔断了",
+        "我的腿。"
+      ],
+      "cid": "5d1c22b5",
+      "sentenceAudio": {
+        "text": "I broke my leg.",
+        "audio": {
+          "url": "assets/oral-5d1c22b5-69e67604596af79cc6fe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bdd5d1add8d42d75fe496122ac2b3c8b28c7ca755082ef94145d54e07545fdde",
+          "bytes": 4622
+        }
+      }
+    },
+    {
+      "sentence": "How long will the cast be on?",
+      "translation": "要打多长时间石膏?",
+      "chunks": [
+        "How long will the cast be on?"
+      ],
+      "hints": [
+        "石膏要打多久？"
+      ],
+      "cid": "bffdf646",
+      "sentenceAudio": {
+        "text": "How long will the cast be on?",
+        "audio": {
+          "url": "assets/oral-bffdf646-5e04b8aee07b54eb3203.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f71541672aff579dd2cd398a82cef5056b265c44a9e69a321ea8f1de9bf0af2c",
+          "bytes": 5620
+        }
+      }
+    },
+    {
+      "sentence": "I burned my hand.",
+      "translation": "我把手给烫了。",
+      "chunks": [
+        "I burned",
+        "my hand."
+      ],
+      "hints": [
+        "我烫伤了",
+        "我的手。"
+      ],
+      "cid": "b63e8207",
+      "sentenceAudio": {
+        "text": "I burned my hand.",
+        "audio": {
+          "url": "assets/oral-b63e8207-1ace0da2aac451203658.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f5361ff08718816df041193babc06068ad9f89cc310915daed2fce2cdb082cc0",
+          "bytes": 4657
+        }
+      }
+    },
+    {
+      "sentence": "I sprained my ankle.",
+      "translation": "我崴脚了。",
+      "chunks": [
+        "I sprained",
+        "my ankle."
+      ],
+      "hints": [
+        "我扭伤了",
+        "我的脚踝。"
+      ],
+      "cid": "47f376c1",
+      "sentenceAudio": {
+        "text": "I sprained my ankle.",
+        "audio": {
+          "url": "assets/oral-47f376c1-4c777ae33210f444bbfd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e1d73c18cf20467e2a367f1f3bdcf1cb5c11651613ff917f4647f23243785a9b",
+          "bytes": 4942
+        }
+      }
+    },
+    {
+      "sentence": "I caught a cold from you.",
+      "translation": "你把感冒传染给我了。",
+      "chunks": [
+        "I caught a cold",
+        "from you."
+      ],
+      "hints": [
+        "我感冒了",
+        "是你传染的。"
+      ],
+      "cid": "1d70eaf4",
+      "sentenceAudio": {
+        "text": "I caught a cold from you.",
+        "audio": {
+          "url": "assets/oral-1d70eaf4-c16475f2fec60c511f80.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ff0aa43efe9d6083efc522b311b0e743142edeef49de98764b69ded80ae97903",
+          "bytes": 5122
+        }
+      }
+    },
+    {
+      "sentence": "I must stay in bed.",
+      "translation": "我必须静养。",
+      "chunks": [
+        "I must",
+        "stay in bed."
+      ],
+      "hints": [
+        "我必须",
+        "静养。"
+      ],
+      "cid": "f1f76bc8",
+      "sentenceAudio": {
+        "text": "I must stay in bed.",
+        "audio": {
+          "url": "assets/oral-f1f76bc8-3c2a1b1c6400e7f0fe02.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8baa56c7bdc82ea1dea4ea602c92a7d658f57ae5baa0da302363fb7e7a17c75c",
+          "bytes": 4680
+        }
+      }
+    },
+    {
+      "sentence": "I have stiff shoulders.",
+      "translation": "我肩膀酸痛。",
+      "chunks": [
+        "I have",
+        "stiff shoulders."
+      ],
+      "hints": [
+        "我",
+        "肩膀僵硬酸痛。"
+      ],
+      "cid": "d091a5e9",
+      "sentenceAudio": {
+        "text": "I have stiff shoulders.",
+        "audio": {
+          "url": "assets/oral-d091a5e9-9c6e01d419f9bf365e39.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8cb094f7516843611f92c81fd5ed0da35df4853101cce718edbf5b747fb1bdb4",
+          "bytes": 5001
+        }
+      }
+    },
+    {
+      "sentence": "My eyes are tired.",
+      "translation": "我眼睛发酸。",
+      "chunks": [
+        "My eyes",
+        "are tired."
+      ],
+      "hints": [
+        "我眼睛",
+        "发酸。"
+      ],
+      "cid": "4ea76643",
+      "sentenceAudio": {
+        "text": "My eyes are tired.",
+        "audio": {
+          "url": "assets/oral-4ea76643-9096d02e5a62affc39b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "095d25c373fc3116c7a94ebf645193e38626d5bb308ed9c18d91c3238f1e948f",
+          "bytes": 4772
+        }
+      }
+    },
+    {
+      "sentence": "Is somebody hurt?",
+      "translation": "有谁受伤了?",
+      "chunks": [
+        "Is somebody",
+        "hurt?"
+      ],
+      "hints": [
+        "有谁",
+        "受伤了？"
+      ],
+      "cid": "9299f5a1",
+      "sentenceAudio": {
+        "text": "Is somebody hurt?",
+        "audio": {
+          "url": "assets/oral-9299f5a1-20449d9ea4b3811ef5a7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f635beea567b28ed60bffc70f1d222b96736f551346a3a67dcfe40b3dd6b798b",
+          "bytes": 4448
+        }
+      }
+    },
+    {
+      "sentence": "My fever has gone down.",
+      "translation": "我退烧了。",
+      "chunks": [
+        "My fever",
+        "has gone down."
+      ],
+      "hints": [
+        "我的烧",
+        "退了。"
+      ],
+      "cid": "0f226f9a",
+      "sentenceAudio": {
+        "text": "My fever has gone down.",
+        "audio": {
+          "url": "assets/oral-0f226f9a-b84b1145a2d188a80ac8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "36c3490e43585c329be85cce2b5463a4faf6e63de49ecf2fb283fab3b457584c",
+          "bytes": 5549
+        }
+      }
+    },
+    {
+      "sentence": "I can't stop coughing.",
+      "translation": "我咳嗽不止。",
+      "chunks": [
+        "I can't stop",
+        "coughing."
+      ],
+      "hints": [
+        "我止不住",
+        "咳嗽。"
+      ],
+      "cid": "2b3489eb",
+      "sentenceAudio": {
+        "text": "I can't stop coughing.",
+        "audio": {
+          "url": "assets/oral-2b3489eb-9a55bd5ee0d266ee8cfe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9f5762a9a17e1763327e63f1f964d3be5fa6ef3cb1689002838380e1b89fa04c",
+          "bytes": 5104
+        }
+      }
+    },
+    {
+      "sentence": "My throat's sore.",
+      "translation": "我嗓子疼。",
+      "chunks": [
+        "My throat's",
+        "sore."
+      ],
+      "hints": [
+        "我嗓子",
+        "疼。"
+      ],
+      "cid": "796fab06",
+      "sentenceAudio": {
+        "text": "My throat's sore.",
+        "audio": {
+          "url": "assets/oral-796fab06-53cfb937370c8916d185.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f044f7eb393b4146627592d2c15eb34bf9f94ca8b02529c23cfcbe40f38cf4e9",
+          "bytes": 4449
+        }
+      }
+    },
+    {
+      "sentence": "It's bleeding.",
+      "translation": "我流血了。",
+      "chunks": [
+        "It's",
+        "bleeding."
+      ],
+      "hints": [
+        "伤口",
+        "在流血。"
+      ],
+      "cid": "ef13bfe4",
+      "sentenceAudio": {
+        "text": "It's bleeding.",
+        "audio": {
+          "url": "assets/oral-ef13bfe4-61659b28fab4c12c6ad2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5fff7da65176d0988e6b315cc43f4570c0a1a787b506c3c690d8afbabb29b85f",
+          "bytes": 3967
+        }
+      }
+    },
+    {
+      "sentence": "I've got a cut here.",
+      "translation": "我这儿有道伤口。",
+      "chunks": [
+        "I've got a cut",
+        "here."
+      ],
+      "hints": [
+        "我有道伤口",
+        "在这儿。"
+      ],
+      "cid": "6d8d6b41",
+      "sentenceAudio": {
+        "text": "I've got a cut here.",
+        "audio": {
+          "url": "assets/oral-6d8d6b41-4f33fc193310c3317bd3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c6438a9aca9ad1992067b2b46402627632b98dfec406c09835f5e4bb63f51699",
+          "bytes": 4509
+        }
+      }
+    },
+    {
+      "sentence": "It hurts.",
+      "translation": "好疼。",
+      "chunks": [
+        "It hurts."
+      ],
+      "hints": [
+        "好疼。"
+      ],
+      "cid": "4b3ed608",
+      "sentenceAudio": {
+        "text": "It hurts.",
+        "audio": {
+          "url": "assets/oral-4b3ed608-901d04412c900a695b93.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1f1001890bfa43086e90f2c2bfe4ed814f38b12a1077cd7d02de0b2abbe316ef",
+          "bytes": 3567
+        }
+      }
+    },
+    {
+      "sentence": "I got stung by a bee.",
+      "translation": "我被蜜蜂蜇了。",
+      "chunks": [
+        "I got stung by a bee."
+      ],
+      "hints": [
+        "我被蜜蜂蜇了。"
+      ],
+      "cid": "5511244f",
+      "sentenceAudio": {
+        "text": "I got stung by a bee.",
+        "audio": {
+          "url": "assets/oral-5511244f-a7fd3020cfc8597c0ed7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b2242c5bf30e18eef57a16b339c3d0d24d01df0ae34951628f428e592a5f799a",
+          "bytes": 5088
+        }
+      }
+    },
+    {
+      "sentence": "Do I need an operation?",
+      "translation": "我需要动手术吗?",
+      "chunks": [
+        "Do I need",
+        "an operation?"
+      ],
+      "hints": [
+        "我需要",
+        "动手术吗？"
+      ],
+      "cid": "3536bb46",
+      "sentenceAudio": {
+        "text": "Do I need an operation?",
+        "audio": {
+          "url": "assets/oral-3536bb46-0ddfc6e2fe61a5c67d6f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "45637915a7b85217c887066e7116fd2cfda5be52ca09fcea45ca437679b2addc",
+          "bytes": 5496
+        }
+      }
+    },
+    {
+      "sentence": "Will it take long?",
+      "translation": "要花很长时间吗?",
+      "chunks": [
+        "Will it take",
+        "long?"
+      ],
+      "hints": [
+        "要花",
+        "很长时间吗？"
+      ],
+      "cid": "4155fd92",
+      "sentenceAudio": {
+        "text": "Will it take long?",
+        "audio": {
+          "url": "assets/oral-4155fd92-23f5e09ce05d01a85493.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9a77d74acd83685d0c5fdabeceb38fcf0b0b258d8a755cf41d6662014c16ec82",
+          "bytes": 4401
+        }
+      }
+    },
+    {
+      "sentence": "Can I take a bath?",
+      "translation": "我可以洗澡吗?",
+      "chunks": [
+        "Can I",
+        "take a bath?"
+      ],
+      "hints": [
+        "我可以",
+        "洗个澡吗？"
+      ],
+      "cid": "cf6ded74",
+      "sentenceAudio": {
+        "text": "Can I take a bath?",
+        "audio": {
+          "url": "assets/oral-cf6ded74-a69a8a07f90eaa11f2eb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "27b179ba5c456ae0cbf3213d37e8c13b6b81d137b27b118c8bc2b6079f958647",
+          "bytes": 4657
+        }
+      }
+    },
+    {
+      "sentence": "Is it okay to drink?",
+      "translation": "可以喝酒吗？",
+      "chunks": [
+        "Is it okay",
+        "to drink?"
+      ],
+      "hints": [
+        "可以",
+        "喝酒吗？"
+      ],
+      "cid": "29b59cc2",
+      "sentenceAudio": {
+        "text": "Is it okay to drink?",
+        "audio": {
+          "url": "assets/oral-29b59cc2-6a1ab3bb286df1325d7c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ad10818784b02d04a0c894e838a181e14daae51bb1929c072c302f324eeb5013",
+          "bytes": 5140
+        }
+      }
+    },
+    {
+      "sentence": "Should I be hospitalized?",
+      "translation": "我一定要住院吗?",
+      "chunks": [
+        "Should I",
+        "be hospitalized?"
+      ],
+      "hints": [
+        "我一定要",
+        "住院吗？"
+      ],
+      "cid": "8554499f",
+      "sentenceAudio": {
+        "text": "Should I be hospitalized?",
+        "audio": {
+          "url": "assets/oral-8554499f-1e3df7559a67d6c7340c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "73248e8cb7ac88a4a7f0712df068d2921195de99e5be19fe5074512da0c07ff5",
+          "bytes": 5466
+        }
+      }
+    },
+    {
+      "sentence": "Do you have a fever?",
+      "translation": "你发烧吗?",
+      "chunks": [
+        "Do you have",
+        "a fever?"
+      ],
+      "hints": [
+        "你",
+        "发烧吗？"
+      ],
+      "cid": "038fc0ef",
+      "sentenceAudio": {
+        "text": "Do you have a fever?",
+        "audio": {
+          "url": "assets/oral-038fc0ef-9486bd85fa507578c55f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e0731ba6d222b0fc7bac018e4c81f670ce5e67ab7d971777b2bae8cce106dd23",
+          "bytes": 4466
+        }
+      }
+    },
+    {
+      "sentence": "I feel better.",
+      "translation": "我觉得好多了。",
+      "chunks": [
+        "I feel",
+        "better."
+      ],
+      "hints": [
+        "我觉得",
+        "好多了。"
+      ],
+      "cid": "bb38e214",
+      "sentenceAudio": {
+        "text": "I feel better.",
+        "audio": {
+          "url": "assets/oral-bb38e214-1948e3c191e0a7bbe35a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "02b88328a2489d56b75befabc8cd1a37f38327b7eeb3d2093730feb490e4d1c2",
+          "bytes": 4188
+        }
+      }
+    },
+    {
+      "sentence": "I don't feel any better.",
+      "translation": "我觉得没什么好转。",
+      "chunks": [
+        "I",
+        "don't feel any better."
+      ],
+      "hints": [
+        "我",
+        "觉得没什么好转。"
+      ],
+      "cid": "9ff5bfd0",
+      "sentenceAudio": {
+        "text": "I don't feel any better.",
+        "audio": {
+          "url": "assets/oral-9ff5bfd0-19e94a2651af7783e2eb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1954e4854d57f2871674c42557da382404d2fff53f02b30bc4a467472ed63577",
+          "bytes": 4843
+        }
+      }
+    },
+    {
+      "sentence": "Are you alright again?",
+      "translation": "你的病好了吗?",
+      "chunks": [
+        "Are you",
+        "alright again?"
+      ],
+      "hints": [
+        "你",
+        "病好了吗？"
+      ],
+      "cid": "3e0e6a2c",
+      "sentenceAudio": {
+        "text": "Are you alright again?",
+        "audio": {
+          "url": "assets/oral-3e0e6a2c-2f27c5391b15f85ee559.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0a097b913d874b621dccf2c16738225575b26580ed5cac9255c1d88b7ee1ac48",
+          "bytes": 4431
+        }
+      }
+    },
+    {
+      "sentence": "He passed away.",
+      "translation": "他去世了。",
+      "chunks": [
+        "He",
+        "passed away."
+      ],
+      "hints": [
+        "他",
+        "去世了。"
+      ],
+      "cid": "01d972ee",
+      "sentenceAudio": {
+        "text": "He passed away.",
+        "audio": {
+          "url": "assets/oral-01d972ee-916efb9c5cd3b5787083.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "35ee08256ecf1c7d991c4d5467b2bd72e82c76ab7c443a45789b806b59080b38",
+          "bytes": 4311
+        }
+      }
+    },
+    {
+      "sentence": "I'm not feeling myself today.",
+      "cid": "edcf60c8",
+      "translation": "我今天状态不太好（身体不适）。",
+      "chunks": [
+        "I'm not feeling myself",
+        "today."
+      ],
+      "hints": [
+        "我状态不太好",
+        "今天"
+      ],
+      "grammar": [
+        {
+          "role": "主谓表（习语）",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/nɒt/",
+            "/ˈfiːlɪŋ/",
+            "/maɪˈself/"
+          ],
+          "pos": "习语（≠字面义）",
+          "meaning": "状态不佳"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈdeɪ/"
+          ],
+          "pos": "副词",
+          "meaning": "今天"
+        }
+      ],
+      "explanations": [
+        "`not feeling myself` 是地道说法，指「不在状态/身体或精神不佳」，并非字面「感觉不到自己」。常见错误：\n• \"I'm not feeling **me**\" → 要用反身代词 myself\n• \"I don't **feel** myself\" → 也可用一般现在时",
+        "比直接说 `I'm sick` 更委婉，常用于日常寒暄中解释为何没精神。"
+      ],
+      "distractors": [
+        [
+          "I'm not feeling me",
+          "I'm not feel myself",
+          "I don't feeling myself"
+        ],
+        [
+          "this day.",
+          "todays.",
+          "the today."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm not feeling myself today.",
+        "audio": {
+          "url": "assets/oral-edcf60c8-ce053bfe4ede1b1e2ce6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6cfc1c4bb9bb2d4ed88cd3afdd62d64345486539b0467bb956247deeb205e4ac",
+          "bytes": 6012
+        }
+      }
+    },
+    {
+      "sentence": "I've got a terrible headache and a sore throat.",
+      "cid": "35fcfee6",
+      "translation": "我头疼得厉害，嗓子也疼。",
+      "chunks": [
+        "I've got",
+        "a terrible headache",
+        "and a sore throat."
+      ],
+      "hints": [
+        "我得了",
+        "剧烈的头痛",
+        "和嗓子疼"
+      ],
+      "grammar": [
+        {
+          "role": "主谓结构",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/ɡɒt/"
+          ],
+          "pos": "现在完成",
+          "meaning": "我得了"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈterəbl/",
+            "/ˈhedeɪk/"
+          ],
+          "pos": "宾语",
+          "meaning": "剧烈的头痛"
+        },
+        {
+          "role": "并列宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ænd/",
+            "/ə/",
+            "/sɔːr/",
+            "/θrəʊt/"
+          ],
+          "pos": "名词短语",
+          "meaning": "和嗓子疼"
+        }
+      ],
+      "explanations": [
+        "`I've got + 病症` = 我得了…病，比 I have 更口语。常见错误：\n• \"I **have got** headache\" → headache 是可数名词，需 a terrible headache\n• \"I got a headache\" → 口语可以，但 have got 表状态更准",
+        "`terrible` 表「极其严重的」，口语常用来形容疼痛程度。同义：awful / really bad.",
+        "`a sore throat` = 嗓子疼（sore 表酸痛）。固定搭配：have a sore throat / a runny nose（流鼻涕）。"
+      ],
+      "distractors": [
+        [
+          "I'm got",
+          "I has got",
+          "I've gotten"
+        ],
+        [
+          "a terrible headsick",
+          "terrible headache",
+          "the terrible headache"
+        ],
+        [
+          "and sore throat.",
+          "and a sour throat.",
+          "and a throat sore."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I've got a terrible headache and a sore throat.",
+        "audio": {
+          "url": "assets/oral-35fcfee6-b92d971b92998d4a65ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b8d6107b6b754ebda5445dc26d2aba21bf06624d48e378edb1b599e580d7bb69",
+          "bytes": 8348
+        }
+      }
+    },
+    {
+      "sentence": "My stomach has been hurting since this morning.",
+      "cid": "df0d93d3",
+      "translation": "我从早上起胃就一直疼。",
+      "chunks": [
+        "My stomach",
+        "has been hurting",
+        "since this morning."
+      ],
+      "hints": [
+        "我的胃",
+        "一直在疼",
+        "自从今天早上"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/maɪ/",
+            "/ˈstʌmək/"
+          ],
+          "pos": "名词短语",
+          "meaning": "我的胃"
+        },
+        {
+          "role": "现在完成进行",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæz/",
+            "/bɪn/",
+            "/ˈhɜːtɪŋ/"
+          ],
+          "pos": "完成进行时",
+          "meaning": "一直在疼"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/sɪns/",
+            "/ðɪs/",
+            "/ˈmɔːnɪŋ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "自从今早"
+        }
+      ],
+      "explanations": [
+        "`has been hurting` 现在完成进行时表「从过去持续到现在还在疼」。常见错误：\n• \"has been **hurt**\" → 主动持续用 hurting，被动受伤才是 hurt\n• \"is hurting since morning\" → 有 since 的时间段用完成进行时",
+        "`since this morning` 表起点。注意：since + 时间点，for + 时间段（for two hours）。"
+      ],
+      "distractors": [
+        [
+          "My stomachs",
+          "The my stomach",
+          "Mine stomach"
+        ],
+        [
+          "has been hurt",
+          "have been hurting",
+          "has hurting"
+        ],
+        [
+          "for this morning.",
+          "since morning ago.",
+          "after this morning."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "My stomach has been hurting since this morning.",
+        "audio": {
+          "url": "assets/oral-df0d93d3-b6d552b5f7da3c745f82.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "54bdafee43a15a3c140e00465a5ca5e5fb452fb415a5dfc62e77a9b476a01137",
+          "bytes": 8295
+        }
+      }
+    },
+    {
+      "sentence": "I have a bump.",
+      "cid": "1834c3f7",
+      "translation": "我长了个包。",
+      "chunks": [
+        "I have",
+        "a bump."
+      ],
+      "hints": [
+        "我长了",
+        "一个包"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我有、我长了"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/bʌmp/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一个包"
+        }
+      ],
+      "explanations": [
+        "描述身体的包/肿起用 `have`。常见错误：\n• \"I have a bump on my head\" → 说位置更清楚，on 表表面\n• \"I am a bump\" → be 与 have 混淆",
+        "`bump` 多指撞出来的肿包。同义：I got a bump. / There's a bump on my head."
+      ],
+      "distractors": [
+        [
+          "I has",
+          "I had a",
+          "I have got"
+        ],
+        [
+          "bumps.",
+          "the bump.",
+          "a bumb."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I have a bump.",
+        "audio": {
+          "url": "assets/oral-1834c3f7-fc79b0ee39337f0e3f64.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9114f953be2992df8a56631049283a289d1f3cb656daec9b044382a14eb10595",
+          "bytes": 4013
+        }
+      }
+    },
+    {
+      "sentence": "It's a pimple.",
+      "cid": "9b596270",
+      "translation": "是个痘痘。",
+      "chunks": [
+        "It's a",
+        "pimple."
+      ],
+      "hints": [
+        "它是一个",
+        "痘痘"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ə/"
+          ],
+          "pos": "it + is + a",
+          "meaning": "它是一个"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈpɪmpl/"
+          ],
+          "pos": "名词",
+          "meaning": "痘痘"
+        }
+      ],
+      "explanations": [
+        "`It's a` 后面接可数名词单数。常见错误：\n• \"It's an pimple\" → p 是辅音音素，用 a\n• \"It's pimple\" → 可数名词单数前要加冠词",
+        "`pimple` 指脸上的痘痘。口语也叫 zit。粉刺/痤疮是 acne。"
+      ],
+      "distractors": [
+        [
+          "It's an",
+          "It a",
+          "It's a the"
+        ],
+        [
+          "pimples.",
+          "a pimple.",
+          "pimpl."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It's a pimple.",
+        "audio": {
+          "url": "assets/oral-9b596270-9612b984b08db95b7e50.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "902b0cddac0973107e26b16ca878b9218482c39bcb80251ce820aabe6ff2156c",
+          "bytes": 3989
+        }
+      }
+    },
+    {
+      "sentence": "I might have a fever.",
+      "cid": "3a50b844",
+      "translation": "我可能发烧了。",
+      "chunks": [
+        "I might",
+        "have a fever."
+      ],
+      "hints": [
+        "我可能",
+        "发烧"
+      ],
+      "grammar": [
+        {
+          "role": "情态+主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/maɪt/"
+          ],
+          "pos": "情态动词 might",
+          "meaning": "我可能"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/ə/",
+            "/ˈfiːvər/"
+          ],
+          "pos": "have + 名词短语",
+          "meaning": "发烧"
+        }
+      ],
+      "explanations": [
+        "`might` 表「有可能」，比 may 更不确定，后面接动词原形。常见错误：\n• \"I might to have\" → 情态动词后不加 to\n• \"I might has\" → 用原形 have",
+        "`have a fever` 是固定搭配，fever 前要加 a。常见错误：\n• \"have fever\" → 少了冠词"
+      ],
+      "distractors": [
+        [
+          "I may to",
+          "I might to",
+          "I mights"
+        ],
+        [
+          "have fever.",
+          "has a fever.",
+          "have a fevers."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I might have a fever.",
+        "audio": {
+          "url": "assets/oral-3a50b844-a73be30c1bcbec196c6b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "99b4b9b144ee989cbd564e7e9ea2b37d84fdfb36ff61ba30dd4b588c5d7f7c82",
+          "bytes": 4605
+        }
+      }
+    },
+    {
+      "sentence": "I sneezed.",
+      "cid": "ad88d5dc",
+      "translation": "我打了个喷嚏。",
+      "chunks": [
+        "I",
+        "sneezed."
+      ],
+      "hints": [
+        "我",
+        "打了喷嚏"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/"
+          ],
+          "pos": "第一人称代词",
+          "meaning": "我"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/sniːzd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "打了喷嚏"
+        }
+      ],
+      "explanations": [
+        "打喷嚏的动词是 `sneeze`，过去式读 /sniːzd/。常见错误：\n• \"I sneeze\" → 刚打过要用过去式\n• 拼写别漏 e：snee**ze**，不是 snez",
+        "别人打喷嚏后说 Bless you!，回一句 Thank you. 就行。"
+      ],
+      "distractors": [
+        [
+          "Me",
+          "My",
+          "I've"
+        ],
+        [
+          "sneezes.",
+          "sneezing.",
+          "sneeze."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I sneezed.",
+        "audio": {
+          "url": "assets/oral-ad88d5dc-49150ec10089a5d62569.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "56e6e080886fd5252146e74cb4ee9c1a5bad7726f6c6ed23e72ff7a9a58f5a91",
+          "bytes": 3726
+        }
+      }
+    },
+    {
+      "sentence": "Your fever broke.",
+      "cid": "978cb905",
+      "translation": "你的烧退了。",
+      "chunks": [
+        "Your fever",
+        "broke."
+      ],
+      "hints": [
+        "你的烧",
+        "退了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈfiːvər/"
+          ],
+          "pos": "名词短语",
+          "meaning": "你的烧"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/broʊk/"
+          ],
+          "pos": "break 的过去式（此处指退烧）",
+          "meaning": "退了"
+        }
+      ],
+      "explanations": [
+        "`break` 用于发烧指「退烧」，非常地道。常见错误：\n• break 的过去式是 broke，不是 breaked\n• \"Your fever went down\" 也对，但 break 更地道",
+        "退烧药是 a fever reducer；量体温是 take your temperature。"
+      ],
+      "distractors": [
+        [
+          "You fever",
+          "Your fevers",
+          "Your fever is"
+        ],
+        [
+          "breaks.",
+          "breaked.",
+          "broken."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Your fever broke.",
+        "audio": {
+          "url": "assets/oral-978cb905-d8c6485f5be790c03c7a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b336d5e5746c9c94224dc412e9d48be945e5ba1655abf666439cb41379615593",
+          "bytes": 4459
+        }
+      }
+    },
+    {
+      "sentence": "I still have a little cough.",
+      "cid": "381f72db",
+      "translation": "我还有点咳嗽。",
+      "chunks": [
+        "I still have",
+        "a little cough."
+      ],
+      "hints": [
+        "我还有",
+        "一点咳嗽"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/stɪl/",
+            "/hæv/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我还有"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/ˈlɪtl/",
+            "/kɔːf/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一点咳嗽"
+        }
+      ],
+      "explanations": [
+        "描述症状用 `have a + 症状`。常见错误：\n• \"I still have little cough\" → 少了 a\n• cough 读 /kɔːf/，词尾是 /f/ 不是 /k/",
+        "相关：have a cold（感冒）/ have a runny nose（流鼻涕）/ have a sore throat（嗓子疼）"
+      ],
+      "distractors": [
+        [
+          "I still has",
+          "I have still",
+          "I'm still have"
+        ],
+        [
+          "a little coughs.",
+          "little cough.",
+          "a cough little."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I still have a little cough.",
+        "audio": {
+          "url": "assets/oral-381f72db-92641f979f9a16aca89e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a4df6887c3d41f0322504504b48802252cfe6c7729fa66255c176914d4dbf136",
+          "bytes": 5262
+        }
+      }
+    }
+  ]
+}

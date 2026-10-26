@@ -1,0 +1,2079 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Well...",
+      "translation": "嗯……",
+      "chunks": [
+        "Well..."
+      ],
+      "hints": [
+        "嗯……"
+      ],
+      "cid": "e511244d",
+      "sentenceAudio": {
+        "text": "Well...",
+        "audio": {
+          "url": "assets/oral-e511244d-d39e8b85d3527f71fc80.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "35d2ff474921587d67419541ff80d3c65adcf8ba3eee0456545df84e71c974bc",
+          "bytes": 3051
+        }
+      }
+    },
+    {
+      "sentence": "Let me see.",
+      "translation": "让我想想。",
+      "chunks": [
+        "Let me",
+        "see."
+      ],
+      "hints": [
+        "让我",
+        "想想。"
+      ],
+      "cid": "5835969b",
+      "sentenceAudio": {
+        "text": "Let me see.",
+        "audio": {
+          "url": "assets/oral-5835969b-168a39bee22acfb87410.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "af19d86bcae2bba712a2e69de32909b74945ba3e152e5c9703d7e249bacc074b",
+          "bytes": 3828
+        }
+      }
+    },
+    {
+      "sentence": "I mean...",
+      "translation": "我是说……",
+      "chunks": [
+        "I",
+        "mean..."
+      ],
+      "hints": [
+        "我",
+        "是说……"
+      ],
+      "cid": "07beb7e9",
+      "sentenceAudio": {
+        "text": "I mean...",
+        "audio": {
+          "url": "assets/oral-07beb7e9-d2ea5cf5b559f25ee189.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee7b2026b85ce1f00701d89c211948173be3ebf4f2575cb910bd11244c453e3a",
+          "bytes": 3529
+        }
+      }
+    },
+    {
+      "sentence": "It's on the tip of my tongue.",
+      "translation": "话就在嘴边上。",
+      "chunks": [
+        "It's on the tip of my tongue."
+      ],
+      "hints": [
+        "话到嘴边了，我一时想不起来。"
+      ],
+      "cid": "e684353a",
+      "sentenceAudio": {
+        "text": "It's on the tip of my tongue.",
+        "audio": {
+          "url": "assets/oral-e684353a-220a9d12a021d92ce7d0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "50574c4f1c3f282fb45ae55ef99788787529c910547733420926efd6f8927497",
+          "bytes": 5306
+        }
+      }
+    },
+    {
+      "sentence": "What should I say...",
+      "translation": "说什么好呢?",
+      "chunks": [
+        "What should I say..."
+      ],
+      "hints": [
+        "说什么好呢？"
+      ],
+      "cid": "97a797f8",
+      "sentenceAudio": {
+        "text": "What should I say...",
+        "audio": {
+          "url": "assets/oral-97a797f8-f481dead122acce2dfd7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b7817f2acd7f246b7d62600d874ddbce1d39810f0b26119187f8cfb5b219a87b",
+          "bytes": 4341
+        }
+      }
+    },
+    {
+      "sentence": "I don't know quite how to put this.",
+      "translation": "我真不知道该说什么好……",
+      "chunks": [
+        "I don't know quite",
+        "how to put this."
+      ],
+      "hints": [
+        "我真不知道",
+        "该怎么说。"
+      ],
+      "cid": "bddd32e5",
+      "sentenceAudio": {
+        "text": "I don't know quite how to put this.",
+        "audio": {
+          "url": "assets/oral-bddd32e5-28672b51ea798d180d98.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "873a4248d2e680d35ab7b32f664579569b9de3d4d38a0acf52ff30042e74a45b",
+          "bytes": 5899
+        }
+      }
+    },
+    {
+      "sentence": "Beats me.",
+      "translation": "这可让你问着了。",
+      "chunks": [
+        "Beats me."
+      ],
+      "hints": [
+        "这可难住我了，我也不知道。"
+      ],
+      "cid": "58445136",
+      "sentenceAudio": {
+        "text": "Beats me.",
+        "audio": {
+          "url": "assets/oral-58445136-8765d07aadb070ae9ae9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "972420494c28f752ea37bf82e8aca58b2093bf803a49dee037aa40223d178800",
+          "bytes": 3638
+        }
+      }
+    },
+    {
+      "sentence": "What do you call it?",
+      "translation": "叫什么来着?",
+      "chunks": [
+        "What do you call it?"
+      ],
+      "hints": [
+        "这叫什么来着？"
+      ],
+      "cid": "c699a7eb",
+      "sentenceAudio": {
+        "text": "What do you call it?",
+        "audio": {
+          "url": "assets/oral-c699a7eb-e0ca0b5402f1a0ba925a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1546849f923d89b086ea53075e9a399eb44646f5817072213ee78f992abb070a",
+          "bytes": 4085
+        }
+      }
+    },
+    {
+      "sentence": "You've got me.",
+      "translation": "你把我问住了。",
+      "chunks": [
+        "You've",
+        "got me."
+      ],
+      "hints": [
+        "你",
+        "把我问住了。"
+      ],
+      "cid": "48f2f6ca",
+      "sentenceAudio": {
+        "text": "You've got me.",
+        "audio": {
+          "url": "assets/oral-48f2f6ca-6775eea39c2489ea967e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5b29409ea6994363a76b64c438d459c396c7c7827a46e94c50b1c06d0eec0906",
+          "bytes": 4078
+        }
+      }
+    },
+    {
+      "sentence": "Say something.",
+      "translation": "你说点什么吧!",
+      "chunks": [
+        "Say",
+        "something."
+      ],
+      "hints": [
+        "说",
+        "点什么吧！"
+      ],
+      "cid": "49bf2a2e",
+      "sentenceAudio": {
+        "text": "Say something.",
+        "audio": {
+          "url": "assets/oral-49bf2a2e-d807c5a2c417d660c322.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6f2220b2a65b68c25961a04d7c86424409c2f45ffde69a12493f2fcfa67b2371",
+          "bytes": 3973
+        }
+      }
+    },
+    {
+      "sentence": "Tell me more about it.",
+      "translation": "我想知道得详细一些。",
+      "chunks": [
+        "Tell me more",
+        "about it."
+      ],
+      "hints": [
+        "多告诉我一些",
+        "那件事吧。"
+      ],
+      "cid": "17bb54bd",
+      "sentenceAudio": {
+        "text": "Tell me more about it.",
+        "audio": {
+          "url": "assets/oral-17bb54bd-0cc57a955be2ba501262.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "05a790685137b208d20d0d8ccef0938e026aca25947e17a6f18c6c7b724c6083",
+          "bytes": 4377
+        }
+      }
+    },
+    {
+      "sentence": "How was your trip?",
+      "translation": "你的旅行怎么样?",
+      "chunks": [
+        "How was your trip?"
+      ],
+      "hints": [
+        "你的旅行怎么样？"
+      ],
+      "cid": "a5af70a3",
+      "sentenceAudio": {
+        "text": "How was your trip?",
+        "audio": {
+          "url": "assets/oral-a5af70a3-ec475f2e0465322dd4cf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8e5dd1dc32c331915c7b3d78be0dd2b5d5e144eee1c3d04c1da2e4e4cc011812",
+          "bytes": 4321
+        }
+      }
+    },
+    {
+      "sentence": "I'm all ears.",
+      "translation": "我在认真地听呢。",
+      "chunks": [
+        "I'm all ears."
+      ],
+      "hints": [
+        "我洗耳恭听。"
+      ],
+      "cid": "8818b3c2",
+      "sentenceAudio": {
+        "text": "I'm all ears.",
+        "audio": {
+          "url": "assets/oral-8818b3c2-1aae21d49b588704a107.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b1fa95f797567e9832c44d817a4bb0ab1df8eeeeb1cc396c5129c23356c91a87",
+          "bytes": 4025
+        }
+      }
+    },
+    {
+      "sentence": "How was the meeting?",
+      "translation": "会开得怎么样?",
+      "chunks": [
+        "How was the meeting?"
+      ],
+      "hints": [
+        "会议开得怎么样？"
+      ],
+      "cid": "eb460a73",
+      "sentenceAudio": {
+        "text": "How was the meeting?",
+        "audio": {
+          "url": "assets/oral-eb460a73-2eb39f1538353167bb9d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cc7a52722f98d797ed3fba46c8a36bd053f58462e388b2b0c066e55346acf876",
+          "bytes": 4396
+        }
+      }
+    },
+    {
+      "sentence": "I'm listening.",
+      "translation": "我在听。",
+      "chunks": [
+        "I'm",
+        "listening."
+      ],
+      "hints": [
+        "我",
+        "在听，继续说。"
+      ],
+      "cid": "2e1079e5",
+      "sentenceAudio": {
+        "text": "I'm listening.",
+        "audio": {
+          "url": "assets/oral-2e1079e5-e9350cf17e079d9c1668.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "924e34e3a28d7e614adfacc79357db5b86bb8903388d652257fded0fcc8cc06a",
+          "bytes": 3955
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to hear the story.",
+      "translation": "我很想听听那件事。",
+      "chunks": [
+        "I'd like",
+        "to hear the story."
+      ],
+      "hints": [
+        "我想",
+        "听听那件事。"
+      ],
+      "cid": "3a23321f",
+      "sentenceAudio": {
+        "text": "I'd like to hear the story.",
+        "audio": {
+          "url": "assets/oral-3a23321f-32caa048afabf2e9d3d4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f6820bc1524a5beb2458c04ecdceb9af3e7c0651e850c15e43a2b36d5996d2fd",
+          "bytes": 5205
+        }
+      }
+    },
+    {
+      "sentence": "We had small talk.",
+      "translation": "我们只是闲聊一会儿。",
+      "chunks": [
+        "We had",
+        "small talk."
+      ],
+      "hints": [
+        "我们",
+        "闲聊了几句。"
+      ],
+      "cid": "c49d9c17",
+      "sentenceAudio": {
+        "text": "We had small talk.",
+        "audio": {
+          "url": "assets/oral-c49d9c17-d42881eea92ad34999c7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "31504b391adfd32a45e69ef3222b41948f47e43b43f01cf84ef2ab48279f812d",
+          "bytes": 4418
+        }
+      }
+    },
+    {
+      "sentence": "How was the movie?",
+      "translation": "电影怎么样?",
+      "chunks": [
+        "How was the movie?"
+      ],
+      "hints": [
+        "那部电影怎么样？"
+      ],
+      "cid": "6ef89d44",
+      "sentenceAudio": {
+        "text": "How was the movie?",
+        "audio": {
+          "url": "assets/oral-6ef89d44-97bf4881e51d4fe42b57.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7fd4c52112bfed76525b1ce819daf9347e92c3c1a5b002ad4cc219a77c2bca68",
+          "bytes": 4361
+        }
+      }
+    },
+    {
+      "sentence": "Did you enjoy the play?",
+      "translation": "那部戏有意思吗?",
+      "chunks": [
+        "Did you enjoy",
+        "the play?"
+      ],
+      "hints": [
+        "你喜欢",
+        "那部戏吗？"
+      ],
+      "cid": "1c4e59ea",
+      "sentenceAudio": {
+        "text": "Did you enjoy the play?",
+        "audio": {
+          "url": "assets/oral-1c4e59ea-1cae3093320ee0683322.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e6256f793be2858579504f400e736e3c56bbcb006bd9a63207aa72c48e501b9c",
+          "bytes": 4984
+        }
+      }
+    },
+    {
+      "sentence": "I want to talk about it now.",
+      "translation": "我想现在就谈谈那件事。",
+      "chunks": [
+        "I want to talk about it",
+        "now."
+      ],
+      "hints": [
+        "我想谈谈那件事",
+        "现在"
+      ],
+      "cid": "bcd9f5f7",
+      "sentenceAudio": {
+        "text": "I want to talk about it now.",
+        "audio": {
+          "url": "assets/oral-bcd9f5f7-3c9aec96dd9ad09b1e94.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "418c5bfea2489d5126472fdd3edf7d7e7d2ec7947968374a1909163286900720",
+          "bytes": 5658
+        }
+      }
+    },
+    {
+      "sentence": "Shoot!",
+      "translation": "说吧，说吧。",
+      "chunks": [
+        "Shoot!"
+      ],
+      "hints": [
+        "说吧，说吧。"
+      ],
+      "cid": "950fe523",
+      "sentenceAudio": {
+        "text": "Shoot!",
+        "audio": {
+          "url": "assets/oral-950fe523-b6ea5a62b3880536f1f0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "02e4c11b7239a9499bdd3dcbf6699296fb77544458f1f349261f07271701cfec",
+          "bytes": 3074
+        }
+      }
+    },
+    {
+      "sentence": "Let's talk in English.",
+      "translation": "咱们说英语吧。",
+      "chunks": [
+        "Let's talk",
+        "in English."
+      ],
+      "hints": [
+        "咱们",
+        "说英语吧。"
+      ],
+      "cid": "9e257ff5",
+      "sentenceAudio": {
+        "text": "Let's talk in English.",
+        "audio": {
+          "url": "assets/oral-9e257ff5-f714704d74cdb0ecfd25.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1959686020dafb162f10d5f023f27b08205bf235e364cc4c88891652b0006803",
+          "bytes": 4995
+        }
+      }
+    },
+    {
+      "sentence": "Let's have a chat.",
+      "translation": "咱们聊会儿天吧!",
+      "chunks": [
+        "Let's have",
+        "a chat."
+      ],
+      "hints": [
+        "咱们",
+        "聊会儿天吧！"
+      ],
+      "cid": "bc5c08b5",
+      "sentenceAudio": {
+        "text": "Let's have a chat.",
+        "audio": {
+          "url": "assets/oral-bc5c08b5-898c3da582ad2f4f7cfa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "de74fbbfd6a05c6dbbf2e7d4d41ce7ddedf8efe7b5fa0414b46016d4b82b3f46",
+          "bytes": 4371
+        }
+      }
+    },
+    {
+      "sentence": "To the point, please.",
+      "translation": "请说重点。",
+      "chunks": [
+        "To the point,",
+        "please."
+      ],
+      "hints": [
+        "说重点，",
+        "请。"
+      ],
+      "cid": "51ee2b7f",
+      "sentenceAudio": {
+        "text": "To the point, please.",
+        "audio": {
+          "url": "assets/oral-51ee2b7f-30dd7a7a32db8250658f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "896a0bc72ab6670d2307e62db5d8354d2fcee2525c0515a11518db6983a1e48b",
+          "bytes": 4871
+        }
+      }
+    },
+    {
+      "sentence": "How was your day?",
+      "translation": "今天过得怎么样?",
+      "chunks": [
+        "How was your day?"
+      ],
+      "hints": [
+        "你今天过得怎么样？"
+      ],
+      "cid": "11c84232",
+      "sentenceAudio": {
+        "text": "How was your day?",
+        "audio": {
+          "url": "assets/oral-11c84232-509d9a29dbc6b17ae4a4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "61814d87d27111129665635f2c70bd952235729eab9faa6c73f837ff8de21a32",
+          "bytes": 4201
+        }
+      }
+    },
+    {
+      "sentence": "Let's change the subject.",
+      "translation": "我们换个话题吧!",
+      "chunks": [
+        "Let's change",
+        "the subject."
+      ],
+      "hints": [
+        "我们",
+        "换个话题吧！"
+      ],
+      "cid": "bd1edf1b",
+      "sentenceAudio": {
+        "text": "Let's change the subject.",
+        "audio": {
+          "url": "assets/oral-bd1edf1b-c63f6a402d8f423cf039.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8cda0fc0810bbe582eae05c6d7fb628c093c9fa67b9e0fa7d6b524b4d7271b00",
+          "bytes": 5259
+        }
+      }
+    },
+    {
+      "sentence": "Let's get back to the subject.",
+      "translation": "言归正传。",
+      "chunks": [
+        "Let's get back",
+        "to the subject."
+      ],
+      "hints": [
+        "让我们回到",
+        "正题。"
+      ],
+      "cid": "14eee15f",
+      "sentenceAudio": {
+        "text": "Let's get back to the subject.",
+        "audio": {
+          "url": "assets/oral-14eee15f-ece787d9aa2389e4acbc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2d66bc23142aba42f99cf4de4a40677617e7a35b90180a22799fcf052dc6190f",
+          "bytes": 6045
+        }
+      }
+    },
+    {
+      "sentence": "I don't want to talk about it now.",
+      "translation": "我现在不想谈那件事。",
+      "chunks": [
+        "I don't want to talk about it",
+        "now."
+      ],
+      "hints": [
+        "我不想谈那件事",
+        "现在"
+      ],
+      "cid": "1120ad09",
+      "sentenceAudio": {
+        "text": "I don't want to talk about it now.",
+        "audio": {
+          "url": "assets/oral-1120ad09-35cce6f6acf968b150c4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "074fa3468ee551f8d4c6d08f532f02bb5de0ab43d1cf973b6c863d871fa8530f",
+          "bytes": 6118
+        }
+      }
+    },
+    {
+      "sentence": "Let's talk about it later.",
+      "translation": "那事儿以后再说吧。",
+      "chunks": [
+        "Let's talk about it",
+        "later."
+      ],
+      "hints": [
+        "那事",
+        "以后再说吧。"
+      ],
+      "cid": "5508cd34",
+      "sentenceAudio": {
+        "text": "Let's talk about it later.",
+        "audio": {
+          "url": "assets/oral-5508cd34-d900f2488ae1a3a32096.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f7e898ff760f5e5220e40cfc3525285c1e4a4d221e32cf4f2f6a130bf29844cd",
+          "bytes": 5305
+        }
+      }
+    },
+    {
+      "sentence": "To change the subject...",
+      "translation": "另外我们说说……",
+      "chunks": [
+        "To change the subject..."
+      ],
+      "hints": [
+        "换个话题说说……"
+      ],
+      "cid": "cb8e20ab",
+      "sentenceAudio": {
+        "text": "To change the subject...",
+        "audio": {
+          "url": "assets/oral-cb8e20ab-11a3ef0962187517d50d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0ee71eb19ca2b11843c95839cb68814f7d7619a0e2996ccf0a95365dfaf08b83",
+          "bytes": 5190
+        }
+      }
+    },
+    {
+      "sentence": "Well, all joking aside,...",
+      "translation": "好了，玩笑就到此……",
+      "chunks": [
+        "Well,",
+        "all joking aside,..."
+      ],
+      "hints": [
+        "好了，",
+        "玩笑就到此……"
+      ],
+      "cid": "afb0301e",
+      "sentenceAudio": {
+        "text": "Well, all joking aside,...",
+        "audio": {
+          "url": "assets/oral-afb0301e-d1104d1d0fa68524a981.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "faffeb5e88ff6edcbfc22195cac7a52e8655d9647704cb1104d5c7cc2bf35b11",
+          "bytes": 5979
+        }
+      }
+    },
+    {
+      "sentence": "By the way,...",
+      "translation": "顺便提一下……",
+      "chunks": [
+        "By the way,..."
+      ],
+      "hints": [
+        "顺便提一下……"
+      ],
+      "cid": "472a55d6",
+      "sentenceAudio": {
+        "text": "By the way,...",
+        "audio": {
+          "url": "assets/oral-472a55d6-1ebad0888629ebe0cc20.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b4d01b209e3d1df0d18a1dc3b51961f7862755c5515a551b12b9e73d830ddf2f",
+          "bytes": 3741
+        }
+      }
+    },
+    {
+      "sentence": "You were saying?",
+      "translation": "你刚才说什么来着?",
+      "chunks": [
+        "You were",
+        "saying?"
+      ],
+      "hints": [
+        "你刚才",
+        "说什么来着？"
+      ],
+      "cid": "ad51ec73",
+      "sentenceAudio": {
+        "text": "You were saying?",
+        "audio": {
+          "url": "assets/oral-ad51ec73-beb7e22e082c71cd0dd3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e031ec9aa4430a020ff9e9cef4d484a3a7a5ab7b88a863525bae3ad6c2fb207e",
+          "bytes": 3931
+        }
+      }
+    },
+    {
+      "sentence": "That reminds me.",
+      "translation": "这让我想起来了。",
+      "chunks": [
+        "That",
+        "reminds me."
+      ],
+      "hints": [
+        "这",
+        "让我想起来了。"
+      ],
+      "cid": "72e47c6a",
+      "sentenceAudio": {
+        "text": "That reminds me.",
+        "audio": {
+          "url": "assets/oral-72e47c6a-0ec0e67be205b25445e8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a4af195aa2157c401f7a28d8675f18c20fbd2db86cefdd1aafa0122ee2ab743a",
+          "bytes": 4465
+        }
+      }
+    },
+    {
+      "sentence": "Let's stop talking.",
+      "translation": "别说了。",
+      "chunks": [
+        "Let's",
+        "stop talking."
+      ],
+      "hints": [
+        "我们",
+        "别说了。"
+      ],
+      "cid": "76a83900",
+      "sentenceAudio": {
+        "text": "Let's stop talking.",
+        "audio": {
+          "url": "assets/oral-76a83900-9f0bfae370eaefc06a8e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4cb547b7817cc24f003d14512a64d63b9eaaf7a64247f4642ebe936fafe57877",
+          "bytes": 4779
+        }
+      }
+    },
+    {
+      "sentence": "I've heard the story before.",
+      "translation": "那事儿我听过了。",
+      "chunks": [
+        "I've heard",
+        "the story before."
+      ],
+      "hints": [
+        "我听过",
+        "那个故事。"
+      ],
+      "cid": "c1a74ed5",
+      "sentenceAudio": {
+        "text": "I've heard the story before.",
+        "audio": {
+          "url": "assets/oral-c1a74ed5-f671a245169991975c5a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fb0e8570cbbc735e8de20b0214bce40257dfaee9a8e9e5abef4355730d60af02",
+          "bytes": 5702
+        }
+      }
+    },
+    {
+      "sentence": "Let's drop the subject.",
+      "translation": "我们别再谈这个话题了。",
+      "chunks": [
+        "Let's",
+        "drop the subject."
+      ],
+      "hints": [
+        "我们",
+        "别再谈这个话题。"
+      ],
+      "cid": "6e006988",
+      "sentenceAudio": {
+        "text": "Let's drop the subject.",
+        "audio": {
+          "url": "assets/oral-6e006988-79c8a95bcc517b5f29b1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "aac984647e4358535212e36214f1f5e556a555cefe0b409ab7ab1062a59fa874",
+          "bytes": 5277
+        }
+      }
+    },
+    {
+      "sentence": "Don't say it so loud.",
+      "translation": "别那么大声说。",
+      "chunks": [
+        "Don't say it",
+        "so loud."
+      ],
+      "hints": [
+        "别说得",
+        "那么大声。"
+      ],
+      "cid": "f666e55d",
+      "sentenceAudio": {
+        "text": "Don't say it so loud.",
+        "audio": {
+          "url": "assets/oral-f666e55d-aff67b6c2dd5468e2f3d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "85662c867a98d2c9af774b8d4912244c09bf98045e7a019696b8ab0f5c88f1a0",
+          "bytes": 4757
+        }
+      }
+    },
+    {
+      "sentence": "I've decided.",
+      "translation": "我已经决定了。",
+      "chunks": [
+        "I've",
+        "decided."
+      ],
+      "hints": [
+        "我",
+        "已经决定了。"
+      ],
+      "cid": "9238d6be",
+      "sentenceAudio": {
+        "text": "I've decided.",
+        "audio": {
+          "url": "assets/oral-9238d6be-44a7ed58bfebfe773934.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c80d49b67c823c88b40d0fc64faa433dcc2a73f0c4ee7eeb8f10bce0ba2921c9",
+          "bytes": 4155
+        }
+      }
+    },
+    {
+      "sentence": "It's up to you.",
+      "cid": "fb54ce6f",
+      "translation": "一切都看你的了。",
+      "chunks": [
+        "It's up to you."
+      ],
+      "hints": [
+        "一切由你决定。"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/ʌp/",
+            "/tuː/",
+            "/juː/"
+          ],
+          "pos": "固定结构",
+          "meaning": "一切由你决定"
+        }
+      ],
+      "explanations": [
+        "**It's up to you.** = 由你决定/你说了算，把选择权交给对方。点餐、约时间的高频句。",
+        "扩展：**It's up to sb to do sth** = 由某人负责做某事。问句 **What's up?**（怎么了）与本句无关，注意区分。"
+      ],
+      "distractors": [
+        [
+          "It's up for you.",
+          "It's upon you.",
+          "It up to you."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It's up to you.",
+        "audio": {
+          "url": "assets/oral-fb54ce6f-ef0aa073b294b7b0d847.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6ec98a9312962b3af682ed52ad3cb20371b5e582c6acc4dcecc76c3ebcbfd07b",
+          "bytes": 4014
+        }
+      }
+    },
+    {
+      "sentence": "You decide.",
+      "translation": "你决定吧!",
+      "chunks": [
+        "You",
+        "decide."
+      ],
+      "hints": [
+        "你",
+        "决定吧！"
+      ],
+      "cid": "6a8ac1fe",
+      "sentenceAudio": {
+        "text": "You decide.",
+        "audio": {
+          "url": "assets/oral-6a8ac1fe-6c3580f037982e54e278.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "13f48108dc47ed6f5d5714519b347a6ec3ddba9f3f62534aedcbf1afbf9494d8",
+          "bytes": 4009
+        }
+      }
+    },
+    {
+      "sentence": "This is the important point.",
+      "translation": "这是关键性的一点。",
+      "chunks": [
+        "This is",
+        "the important point."
+      ],
+      "hints": [
+        "这是",
+        "关键性的一点。"
+      ],
+      "cid": "7b9089f2",
+      "sentenceAudio": {
+        "text": "This is the important point.",
+        "audio": {
+          "url": "assets/oral-7b9089f2-350e24072a5a355da711.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d40581c1aae6b3cd8684f1daa090bfe800ed6c18cb7007fae020f56a10cffe2c",
+          "bytes": 5914
+        }
+      }
+    },
+    {
+      "sentence": "This is my personal problem.",
+      "translation": "这是我个人的问题。",
+      "chunks": [
+        "This is",
+        "my personal problem."
+      ],
+      "hints": [
+        "这是",
+        "我个人的问题。"
+      ],
+      "cid": "44c77204",
+      "sentenceAudio": {
+        "text": "This is my personal problem.",
+        "audio": {
+          "url": "assets/oral-44c77204-1304626a3026a8191238.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "742e2cc865e3edc2eedea9e3cacf4f46d720359c0d984e5a579a08c0638410d7",
+          "bytes": 6443
+        }
+      }
+    },
+    {
+      "sentence": "It's a matter of life and death.",
+      "translation": "这是生死攸关的大事。",
+      "chunks": [
+        "It's a matter of",
+        "life and death."
+      ],
+      "hints": [
+        "这是",
+        "生死攸关的大事。"
+      ],
+      "cid": "841d39d6",
+      "sentenceAudio": {
+        "text": "It's a matter of life and death.",
+        "audio": {
+          "url": "assets/oral-841d39d6-fb8cf9f7f8cbef8dbd51.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8d30e7babefa0af88bfb78545fa93b6249655983d9a9ca2529d8ae837edc7893",
+          "bytes": 6129
+        }
+      }
+    },
+    {
+      "sentence": "You're free to go or stay.",
+      "translation": "是去是留，随你。",
+      "chunks": [
+        "You're free",
+        "to go or stay."
+      ],
+      "hints": [
+        "你可以自由选择",
+        "是去是留"
+      ],
+      "cid": "5d9803c1",
+      "sentenceAudio": {
+        "text": "You're free to go or stay.",
+        "audio": {
+          "url": "assets/oral-5d9803c1-12a6a428669053389518.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0284b406a64ca6bb8f04731ade2f9e8a20011c954e5a30694af61cdb98ff8ace",
+          "bytes": 5296
+        }
+      }
+    },
+    {
+      "sentence": "There's no turning back.",
+      "translation": "已经无可挽回了。",
+      "chunks": [
+        "There's no",
+        "turning back."
+      ],
+      "hints": [
+        "已经没有",
+        "回头路了"
+      ],
+      "cid": "70474b40",
+      "sentenceAudio": {
+        "text": "There's no turning back.",
+        "audio": {
+          "url": "assets/oral-70474b40-bffae6f4e4bf45245995.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "02b3a3706b959e9c047418e92143929c20583bf584dbdcc21b5f0196e86c7b7a",
+          "bytes": 4886
+        }
+      }
+    },
+    {
+      "sentence": "Let's play it by ear.",
+      "translation": "走一步看一步吧!",
+      "chunks": [
+        "Let's",
+        "play it by ear."
+      ],
+      "hints": [
+        "我们",
+        "走一步看一步吧！"
+      ],
+      "cid": "cd689cae",
+      "sentenceAudio": {
+        "text": "Let's play it by ear.",
+        "audio": {
+          "url": "assets/oral-cd689cae-b762e0982017ff8c2c09.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ab6fb67b00cbe63a1b5f1b9a88f7074dfc6faa3d1c316f8a462ae4e450cb22e2",
+          "bytes": 4970
+        }
+      }
+    },
+    {
+      "sentence": "I'm sure I can do it.",
+      "translation": "我确信我能做好。",
+      "chunks": [
+        "I'm sure",
+        "I can do it."
+      ],
+      "hints": [
+        "我确信",
+        "我能做好。"
+      ],
+      "cid": "a8d43e80",
+      "sentenceAudio": {
+        "text": "I'm sure I can do it.",
+        "audio": {
+          "url": "assets/oral-a8d43e80-4269326edd570abd4583.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5f9225fd64d5513d91b2c05ddf3ac7d46b7b014c9b0a8814f95fa73cf7241632",
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "sentence": "I'm still unable to decide what to do.",
+      "translation": "我仍然无法决定我该做什么。",
+      "chunks": [
+        "I'm still unable",
+        "to decide what to do."
+      ],
+      "hints": [
+        "我仍然无法",
+        "决定该做什么。"
+      ],
+      "cid": "075cd628",
+      "sentenceAudio": {
+        "text": "I'm still unable to decide what to do.",
+        "audio": {
+          "url": "assets/oral-075cd628-3d8fcfa75f5608743aba.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "42c2f0bd54fd1181039c7c7abdfa35ebe9e56b0d8c1cfa7c34d3c8202b36b20a",
+          "bytes": 7810
+        }
+      }
+    },
+    {
+      "sentence": "I'll follow her.",
+      "translation": "我跟着她。",
+      "chunks": [
+        "I'll",
+        "follow her."
+      ],
+      "hints": [
+        "我",
+        "跟着她。"
+      ],
+      "cid": "804615cd",
+      "sentenceAudio": {
+        "text": "I'll follow her.",
+        "audio": {
+          "url": "assets/oral-804615cd-d268708682458de321dc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dc9639908a6824061ef14dde7b5dbb57e816754bb60724a55ce0e9a593ad25df",
+          "bytes": 4174
+        }
+      }
+    },
+    {
+      "sentence": "Let's all get together and act as one.",
+      "translation": "我们拧成一股绳地去干。",
+      "chunks": [
+        "Let's all get together",
+        "and act as one."
+      ],
+      "hints": [
+        "我们拧成一股绳",
+        "一起去干。"
+      ],
+      "cid": "2b9ee56c",
+      "sentenceAudio": {
+        "text": "Let's all get together and act as one.",
+        "audio": {
+          "url": "assets/oral-2b9ee56c-6c1b7a71b04dc6ded461.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "56a48d2bd47f6aa4c155d07a01d396bc236efa3536aa1060755030daa187b0e3",
+          "bytes": 7580
+        }
+      }
+    },
+    {
+      "sentence": "I have to do it anyhow.",
+      "translation": "我反正也得做。",
+      "chunks": [
+        "I have to do it",
+        "anyhow."
+      ],
+      "hints": [
+        "我也得做",
+        "反正。"
+      ],
+      "cid": "a0c32177",
+      "sentenceAudio": {
+        "text": "I have to do it anyhow.",
+        "audio": {
+          "url": "assets/oral-a0c32177-8d0c47f1f8cc851b11d2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ca27d295b347d736b486b29ced97bc1ec5596c0854060f9138b87881cb824636",
+          "bytes": 5095
+        }
+      }
+    },
+    {
+      "sentence": "It's now or never.",
+      "translation": "机不可失，时不再来。",
+      "chunks": [
+        "It's now",
+        "or never."
+      ],
+      "hints": [
+        "机不可失",
+        "时不再来。"
+      ],
+      "cid": "f20c2b8d",
+      "sentenceAudio": {
+        "text": "It's now or never.",
+        "audio": {
+          "url": "assets/oral-f20c2b8d-c28a3f913794bd3c775a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d478b33f50e2cc5d7f9d1bf0a62e27b18e0646841a81f5c26e9216e9e82d2fbb",
+          "bytes": 4646
+        }
+      }
+    },
+    {
+      "sentence": "The sooner, the better.",
+      "translation": "越早越好。",
+      "chunks": [
+        "The sooner,",
+        "the better."
+      ],
+      "hints": [
+        "越早",
+        "越好。"
+      ],
+      "cid": "09bcfc5f",
+      "sentenceAudio": {
+        "text": "The sooner, the better.",
+        "audio": {
+          "url": "assets/oral-09bcfc5f-628af5137ecb075ab02b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "53b65bf87dd171f96ad286b356d104a6ac285e2cf5bf77aaab0ef7af8df5b452",
+          "bytes": 4898
+        }
+      }
+    },
+    {
+      "sentence": "I'll take a chance.",
+      "translation": "碰碰运气看。",
+      "chunks": [
+        "I'll",
+        "take a chance."
+      ],
+      "hints": [
+        "我",
+        "碰碰运气看。"
+      ],
+      "cid": "6f829e39",
+      "sentenceAudio": {
+        "text": "I'll take a chance.",
+        "audio": {
+          "url": "assets/oral-6f829e39-8636bf73a2aaa1e602fd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2cb7cccc852a858a420915125ba60eeaf55734e5f1715bd5310b5b0492e99751",
+          "bytes": 4451
+        }
+      }
+    },
+    {
+      "sentence": "Have more guts!",
+      "translation": "再拿出点勇气来。",
+      "chunks": [
+        "Have more",
+        "guts!"
+      ],
+      "hints": [
+        "再拿出点",
+        "勇气来！"
+      ],
+      "cid": "6ddd4d10",
+      "sentenceAudio": {
+        "text": "Have more guts!",
+        "audio": {
+          "url": "assets/oral-6ddd4d10-c4376cba54a3d9217fad.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e47b610a833c5aa67d325f403e67da4d7fc05998009d4136b915323e01e59715",
+          "bytes": 4035
+        }
+      }
+    },
+    {
+      "sentence": "Let's finish it somehow.",
+      "translation": "我们想办法完成。",
+      "chunks": [
+        "Let's",
+        "finish it somehow."
+      ],
+      "hints": [
+        "我们",
+        "想办法完成。"
+      ],
+      "cid": "519e5c04",
+      "sentenceAudio": {
+        "text": "Let's finish it somehow.",
+        "audio": {
+          "url": "assets/oral-519e5c04-0a8219aad18e8a7b824b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8a3edcd21a38a48932679a28885be33717b5cca0a842527e4c39cd542bb3886e",
+          "bytes": 5290
+        }
+      }
+    },
+    {
+      "sentence": "It's worth a try.",
+      "translation": "值得一试。",
+      "chunks": [
+        "It's worth",
+        "a try."
+      ],
+      "hints": [
+        "值得",
+        "一试。"
+      ],
+      "cid": "b668e02e",
+      "sentenceAudio": {
+        "text": "It's worth a try.",
+        "audio": {
+          "url": "assets/oral-b668e02e-3ae8788913d07a04c278.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b7b8a7a7dda4a5cf78989214d8b70004eadb645b168fae2cc4176f440da6cddf",
+          "bytes": 4543
+        }
+      }
+    },
+    {
+      "sentence": "We must function as one mind and one body.",
+      "translation": "我们必须同心同德。",
+      "chunks": [
+        "We must function",
+        "as one mind and one body."
+      ],
+      "hints": [
+        "我们必须",
+        "同心同德。"
+      ],
+      "cid": "e3681795",
+      "sentenceAudio": {
+        "text": "We must function as one mind and one body.",
+        "audio": {
+          "url": "assets/oral-e3681795-c2ec08302bd1abefbb48.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "91ee5815e306923289e0afea4ab8704b1e46b123cc2e1bf17757f54e2ebbb820",
+          "bytes": 8915
+        }
+      }
+    },
+    {
+      "sentence": "You just wait.",
+      "translation": "你等着瞧吧。",
+      "chunks": [
+        "You just",
+        "wait."
+      ],
+      "hints": [
+        "你",
+        "等着瞧吧。"
+      ],
+      "cid": "a377deb7",
+      "sentenceAudio": {
+        "text": "You just wait.",
+        "audio": {
+          "url": "assets/oral-a377deb7-eaf0845a1afe5f349035.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a3ea693d3118be5e6b7ecbe522a0d34fbf1e183f3000a92c2e97c1955e3ccafd",
+          "bytes": 4039
+        }
+      }
+    },
+    {
+      "sentence": "It's all or nothing.",
+      "translation": "豁出去了。",
+      "chunks": [
+        "It's all or nothing."
+      ],
+      "hints": [
+        "豁出去了。"
+      ],
+      "cid": "4d18241f",
+      "sentenceAudio": {
+        "text": "It's all or nothing.",
+        "audio": {
+          "url": "assets/oral-4d18241f-8b97dfcb21ebb3f26fc8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "94cabbf8ec49079e8cd39e07a0353ca5747fcf190875ae07034492002af69a3b",
+          "bytes": 4589
+        }
+      }
+    },
+    {
+      "sentence": "Guess what happened to me today!",
+      "cid": "f40f7098",
+      "translation": "你猜我今天发生了什么！",
+      "chunks": [
+        "Guess what happened",
+        "to me today!"
+      ],
+      "hints": [
+        "猜猜发生了什么",
+        "我今天遇到的事！"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句+宾语从句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡes/",
+            "/wɒt/",
+            "/ˈhæpənd/"
+          ],
+          "pos": "Guess what happened",
+          "meaning": "猜猜发生了什么"
+        },
+        {
+          "role": "介词短语+时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/miː/",
+            "/təˈdeɪ/"
+          ],
+          "pos": "happen to me + today",
+          "meaning": "我今天遇到的事"
+        }
+      ],
+      "explanations": [
+        "分享新闻的开场白。`Guess what` = 你猜怎么着。常见错误：\n• \"Guess **that** what\" → what 引导从句，不加 that\n• \"Guessing what\" → 祈使用动词原形 Guess",
+        "`happened to me` = 发生在我身上。happen 是不及物动词，接人用 happen to sb。"
+      ],
+      "distractors": [
+        [
+          "Guess that happened",
+          "Guessing what happened",
+          "Guess who happened"
+        ],
+        [
+          "to you today!",
+          "to me yesterday!",
+          "for me today!"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Guess what happened to me today!",
+        "audio": {
+          "url": "assets/oral-f40f7098-c7592e77650a57f70c02.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "44d854b3d2233188ba38d260020ccf5cb7e75e833b37c97b92cc62f832b51314",
+          "bytes": 5925
+        }
+      }
+    },
+    {
+      "sentence": "To be honest, I didn't expect it to be so good.",
+      "cid": "841bd042",
+      "translation": "说实话，我没料到会这么好。",
+      "chunks": [
+        "To be honest,",
+        "I didn't expect it",
+        "to be so good."
+      ],
+      "hints": [
+        "说实话",
+        "我没料到它",
+        "会这么好"
+      ],
+      "grammar": [
+        {
+          "role": "插入语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tuː/",
+            "/biː/",
+            "/ˈɒnɪst/"
+          ],
+          "pos": "固定短语",
+          "meaning": "说实话"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈdɪdnt/",
+            "/ɪkˈspekt/",
+            "/ɪt/"
+          ],
+          "pos": "过去时否定",
+          "meaning": "我没料到它"
+        },
+        {
+          "role": "不定式",
+          "color": "#3358e0",
+          "phonetic": [
+            "/tuː/",
+            "/biː/",
+            "/səʊ/",
+            "/ɡʊd/"
+          ],
+          "pos": "结果补语",
+          "meaning": "会这么好"
+        }
+      ],
+      "explanations": [
+        "`To be honest` = 说实话（坦率开场）。常见错误：\n• \"To be **honesty**\" → honest 是形容词，honesty 是名词\n• \"Honest\" → 单独说太生硬，用 to be honest",
+        "`didn't expect it` = 没料到它。expect 后接不定式 it to be…。常见错误：\n• \"didn't **expected**\" → didn't 后接原形 expect",
+        "`to be so good` = 会这么好。so 修饰形容词表程度。"
+      ],
+      "distractors": [
+        [
+          "To be honesty,",
+          "Being honest,",
+          "To be honestly,"
+        ],
+        [
+          "I didn't expected it",
+          "I don't expect it",
+          "I didn't expect that"
+        ],
+        [
+          "to being so good.",
+          "to be very good.",
+          "so good to be."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "To be honest, I didn't expect it to be so good.",
+        "audio": {
+          "url": "assets/oral-841bd042-422d1a1bd01555f5ae7a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "09f361e88801807a48c243e638ae1dd050578524cf7c049202646c448f68ec84",
+          "bytes": 9177
+        }
+      }
+    },
+    {
+      "sentence": "You're not going to believe this.",
+      "cid": "9d0c16ea",
+      "translation": "你不会相信这个的。",
+      "chunks": [
+        "You're not going to",
+        "believe this."
+      ],
+      "hints": [
+        "你不会",
+        "相信这个。"
+      ],
+      "grammar": [
+        {
+          "role": "将来时否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jʊər/",
+            "/nɒt/",
+            "/ˈɡəʊɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "be going to",
+          "meaning": "你不会"
+        },
+        {
+          "role": "动词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/bɪˈliːv/",
+            "/ðɪs/"
+          ],
+          "pos": "谓语",
+          "meaning": "相信这个"
+        }
+      ],
+      "explanations": [
+        "预告惊人消息的口语开场。`be going to` 表将来。常见错误：\n• \"You're not **go** to believe\" → going to 结构：be + going to\n• \"You won't believe\" → 同义，但 you're not going to 更口语",
+        "`believe this` = 相信这件事。this 指代即将讲述的消息。"
+      ],
+      "distractors": [
+        [
+          "You not going to",
+          "You're not going",
+          "You're no going to"
+        ],
+        [
+          "believes this.",
+          "believed this.",
+          "believe it."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "You're not going to believe this.",
+        "audio": {
+          "url": "assets/oral-9d0c16ea-9d9fd4b2a3c6f198cfc6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "86075e3f2b2b7759ab4321ffaf60f209bf39ac428b7b16b06f0f53e207b2632e",
+          "bytes": 5885
+        }
+      }
+    },
+    {
+      "sentence": "I bet he's already left for work.",
+      "cid": "03cbee2b",
+      "translation": "我打赌他已经去上班了。",
+      "chunks": [
+        "I bet",
+        "he's already left",
+        "for work."
+      ],
+      "hints": [
+        "我敢打赌",
+        "他已经离开了",
+        "去上班"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/bet/"
+          ],
+          "pos": "I bet",
+          "meaning": "我敢打赌"
+        },
+        {
+          "role": "现在完成",
+          "color": "#3358e0",
+          "phonetic": [
+            "/hiːz/",
+            "/ɔːlˈredi/",
+            "/left/"
+          ],
+          "pos": "have done",
+          "meaning": "他已经离开"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/wɜːrk/"
+          ],
+          "pos": "介词短语",
+          "meaning": "去上班"
+        }
+      ],
+      "explanations": [
+        "`I bet` = 我敢打赌/我肯定（口语）。常见错误：\n• \"I bet **on**\" → 表断言不加 on\n• \"I'm bet\" → bet 是动词不加 be",
+        "`leave for + 目的地` = 动身去……。常见错误：\n• \"leave to work\" → 搭配 leave for\n• \"left to work\" → 离开去某地用 for"
+      ],
+      "distractors": [
+        [
+          "I'm bet",
+          "I bet on",
+          "I better"
+        ],
+        [
+          "he has already leave",
+          "he already left",
+          "he's left already for"
+        ],
+        [
+          "to work.",
+          "work.",
+          "for the work."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I bet he's already left for work.",
+        "audio": {
+          "url": "assets/oral-03cbee2b-6d280e7dc4530811d03f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "31c70d6704d0c757a44be2e61a51e1a3ff6840dd117955fdd5aeb38dfdbf4f44",
+          "bytes": 6373
+        }
+      }
+    },
+    {
+      "sentence": "Who's that woman you were talking to?",
+      "cid": "46893aac",
+      "translation": "跟你说话的那个女人是谁？",
+      "chunks": [
+        "Who's that woman",
+        "you were talking to?"
+      ],
+      "hints": [
+        "那个女人是谁",
+        "你在跟她说话的"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/huːz/",
+            "/ðæt/",
+            "/ˈwʊmən/"
+          ],
+          "pos": "特殊疑问句",
+          "meaning": "那个女人是谁"
+        },
+        {
+          "role": "定语从句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/juː/",
+            "/wɜːr/",
+            "/ˈtɔːkɪŋ/",
+            "/tuː/"
+          ],
+          "pos": "定语从句",
+          "meaning": "你刚才在跟她说话的"
+        }
+      ],
+      "explanations": [
+        "`talk to sb` 是「跟某人说话」，用介词 to。常见错误：\n• \"Who **that** woman\" → 缺 be 动词，应为 Who's\n• \"Who's that **women**\" → 单数用 woman，复数才是 women",
+        "定语从句里介词 to 留在句尾：the woman (that) you were talking to。"
+      ],
+      "distractors": [
+        [
+          "Who that woman",
+          "Who's that women",
+          "Whose that woman"
+        ],
+        [
+          "you was talking to?",
+          "you were talked to?",
+          "you talking to?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Who's that woman you were talking to?",
+        "audio": {
+          "url": "assets/oral-46893aac-f76ce55ac5cb6804757d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "76ed05fce47ce9b34b01a6978fc9078188be080f699451cf0215d49d60e24919",
+          "bytes": 6562
+        }
+      }
+    },
+    {
+      "sentence": "Why would I need that?",
+      "cid": "18e9ee1b",
+      "translation": "我要那个干嘛？",
+      "chunks": [
+        "Why would",
+        "I need that?"
+      ],
+      "hints": [
+        "为什么会",
+        "我需要那个"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/waɪ/",
+            "/wʊd/"
+          ],
+          "pos": "情态疑问",
+          "meaning": "为什么会"
+        },
+        {
+          "role": "主谓宾",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/niːd/",
+            "/ðæt/"
+          ],
+          "pos": "主语+动词+宾语",
+          "meaning": "我需要那个"
+        }
+      ],
+      "explanations": [
+        "`Why would I ...?` 用虚拟语气反问，暗含「我没理由需要」。常见错误：\n• \"Why **will** I need\" → 反问用 would 更自然\n• \"Why would **me** need\" → 主语用主格 I",
+        "这类 would 用于表达「假设/反问」，不是将来时。"
+      ],
+      "distractors": [
+        [
+          "Why will",
+          "Why are",
+          "Why would me"
+        ],
+        [
+          "I needed that?",
+          "I need this?",
+          "me need that?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Why would I need that?",
+        "audio": {
+          "url": "assets/oral-18e9ee1b-e162af99d5da2aa94b1e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6132aeb10194f08e6978647bdd46acc4c1425ff326de67cd10917433eb94fb1d",
+          "bytes": 4635
+        }
+      }
+    },
+    {
+      "sentence": "I'm not gonna talk about Judy.",
+      "cid": "7bec57ab",
+      "translation": "我不想聊朱迪。",
+      "chunks": [
+        "I'm not gonna",
+        "talk about Judy."
+      ],
+      "hints": [
+        "我不会",
+        "谈朱迪"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/nɑːt/",
+            "/ˈɡənə/"
+          ],
+          "pos": "be going to 否定",
+          "meaning": "我不打算"
+        },
+        {
+          "role": "动词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tɔːk/",
+            "/əˈbaʊt/",
+            "/ˈdʒuːdi/"
+          ],
+          "pos": "短语动词",
+          "meaning": "谈（关于）"
+        }
+      ],
+      "explanations": [
+        "`gonna` 是 going to 的口语缩略，用于非正式场合。常见错误：\n• \"I'm not **going talk**\" → 口语 gonna 对应 going to + 动词原形\n• \"talk **with** Judy\" → 谈及某事用 talk about",
+        "`talk about sth` 谈某事；`talk to sb` 跟某人说话。"
+      ],
+      "distractors": [
+        [
+          "I not gonna",
+          "I'm not going talk",
+          "I'm no gonna"
+        ],
+        [
+          "talking about Judy.",
+          "talk about Judys.",
+          "talked about Judy."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm not gonna talk about Judy.",
+        "audio": {
+          "url": "assets/oral-7bec57ab-911cf15b98ab897a8e78.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4f0585adeb19a92fce050de4fc5987a85d71645de0f6a30240b0498e38d0acce",
+          "bytes": 6162
+        }
+      }
+    },
+    {
+      "sentence": "I think you do.",
+      "cid": "efcd6d0e",
+      "translation": "我觉着你有（你不承认而已）。",
+      "chunks": [
+        "I think",
+        "you do."
+      ],
+      "hints": [
+        "我觉得",
+        "你是的"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/θɪŋk/"
+          ],
+          "pos": "一般现在时",
+          "meaning": "我觉得"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/juː/",
+            "/duː/"
+          ],
+          "pos": "宾语从句",
+          "meaning": "你确实（有/是）"
+        }
+      ],
+      "explanations": [
+        "`you do` 是替代式肯定，用 do 代指上文动词，起强调作用。常见错误：\n• \"I **thinking**\" → 一般现在时用 think\n• \"you **does**\" → 主语 you 配 do",
+        "这种 `do` 叫代动词（pro-verb），避免重复上文动词：I think you do = I think you do have it."
+      ],
+      "distractors": [
+        [
+          "I thinking",
+          "I thinks",
+          "I am think"
+        ],
+        [
+          "you does.",
+          "you doing.",
+          "you will."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I think you do.",
+        "audio": {
+          "url": "assets/oral-efcd6d0e-a546eaeef8aa87a5c280.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "91ce185cca769f19c1059272ca8b1d2f2f40465f19bb72287efc7e2000beec7a",
+          "bytes": 4222
+        }
+      }
+    },
+    {
+      "sentence": "I was sitting next to her on the plane.",
+      "cid": "3aa31e0a",
+      "translation": "在飞机上我坐她旁边。",
+      "chunks": [
+        "I was sitting next to her",
+        "on the plane."
+      ],
+      "hints": [
+        "我当时坐在她旁边",
+        "在飞机上"
+      ],
+      "grammar": [
+        {
+          "role": "过去进行时",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/wʌz/",
+            "/ˈsɪtɪŋ/",
+            "/nekst/"
+          ],
+          "pos": "过去进行时",
+          "meaning": "我当时坐在她旁边"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɒn/",
+            "/ðə/",
+            "/pleɪn/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在飞机上"
+        }
+      ],
+      "explanations": [
+        "`next to` 是「在……旁边」的固定搭配。常见错误：\n• \"next **her**\" → 必须带 to：next to her\n• \"I **were** sitting\" → 主语 I 配 was",
+        "`on the plane` 指在飞机上；注意 train/bus 也用 on。"
+      ],
+      "distractors": [
+        [
+          "I was sitting next her",
+          "I was sat next to her",
+          "I were sitting next to her"
+        ],
+        [
+          "in the plane.",
+          "on plane.",
+          "at the plane."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I was sitting next to her on the plane.",
+        "audio": {
+          "url": "assets/oral-3aa31e0a-c7672b3fd70dcdb4030f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c495b5350d956456dc185bb8a5619f5e35624c903f257c86b8f73502ea77aebf",
+          "bytes": 6826
+        }
+      }
+    },
+    {
+      "sentence": "I thought she said something to me.",
+      "cid": "307d29b1",
+      "translation": "我以为她在跟我搭话。",
+      "chunks": [
+        "I thought",
+        "she said something",
+        "to me."
+      ],
+      "hints": [
+        "我以为",
+        "她说了什么",
+        "对我"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/θɔːt/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我以为"
+        },
+        {
+          "role": "宾语从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ʃiː/",
+            "/sed/",
+            "/ˈsʌmθɪŋ/"
+          ],
+          "pos": "宾语从句",
+          "meaning": "她说了些什么"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/tə/",
+            "/miː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "对我"
+        }
+      ],
+      "explanations": [
+        "`say sth to sb` 是「对某人说某事」的固定搭配。常见错误：\n• \"say something **for** me\" → 对某人说用 to\n• \"she **says** something\" → 与主句时态一致，用过去式 said",
+        "注意 say 后面直接接内容，tell 需接人：say to me = tell me。",
+        "`I thought ...` 用过去时表示「我（原）以为」，常暗含事实上并非如此。"
+      ],
+      "distractors": [
+        [
+          "I think",
+          "I was thought",
+          "I thought that"
+        ],
+        [
+          "she says something",
+          "she say something",
+          "she said anything"
+        ],
+        [
+          "for me.",
+          "on me.",
+          "in me."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I thought she said something to me.",
+        "audio": {
+          "url": "assets/oral-307d29b1-bd3ec4884e54c19e72b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "764ea7700c17efd785b2753fcd259b83ccc3e65f6618ab1a226a07a0b6ee152a",
+          "bytes": 5773
+        }
+      }
+    },
+    {
+      "sentence": "Yeah, maybe run into her at the gym.",
+      "cid": "c1caeb1d",
+      "translation": "也许能在健身房和她偶遇。",
+      "chunks": [
+        "Yeah, maybe run into her",
+        "at the gym."
+      ],
+      "hints": [
+        "也许碰到她",
+        "在健身房"
+      ],
+      "grammar": [
+        {
+          "role": "省略句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/jæ/",
+            "/ˈmeɪbi/",
+            "/rʌn/",
+            "/ˈɪntuː/"
+          ],
+          "pos": "省略主语的口语句",
+          "meaning": "嗯，也许（我）会遇到她"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æt/",
+            "/ðə/",
+            "/dʒɪm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在健身房"
+        }
+      ],
+      "explanations": [
+        "`run into sb` 是「偶然遇到某人」的固定搭配。常见错误：\n• \"run **to** her\" → 偶遇用 run into，不是 run to\n• \"maybe **running**\" → maybe 后面接动词原形（省略了 I might）",
+        "对比 `run into`（偶遇）/ `bump into`（同义）/ `meet`（约见或相遇）。"
+      ],
+      "distractors": [
+        [
+          "Yeah, maybe run to her",
+          "Yeah, maybe running into her",
+          "Yeah, maybe ran into her"
+        ],
+        [
+          "on the gym.",
+          "at gym.",
+          "to the gym."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Yeah, maybe run into her at the gym.",
+        "audio": {
+          "url": "assets/oral-c1caeb1d-e0bd2efa53931db70fcd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3770e682c15231c30182b6be2d8c7a62754c77b3645c9ddafd797a1102c58413",
+          "bytes": 7216
+        }
+      }
+    }
+  ]
+}

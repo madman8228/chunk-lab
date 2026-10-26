@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "John, apologize to her.",
+      "translation": "约翰，向她道歉。",
+      "chunks": [
+        "John,",
+        "apologize to her."
+      ],
+      "hints": [
+        "约翰，",
+        "向她道歉。"
+      ],
+      "cid": "a30603da",
+      "sentenceAudio": {
+        "text": "John, apologize to her.",
+        "audio": {
+          "url": "assets/oral-a30603da-edf732f1c6da4260fe77.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "617450443dc9ee932b9c86c85c28ac179df42ce24e0f0e2cacbbc2fbf2ad7482",
+          "bytes": 6485
+        }
+      }
+    },
+    {
+      "sentence": "John, you listen to me!",
+      "translation": "约翰，你听我说!",
+      "chunks": [
+        "John,",
+        "you listen to me!"
+      ],
+      "hints": [
+        "约翰，",
+        "你听我说！"
+      ],
+      "cid": "7178fbb6",
+      "sentenceAudio": {
+        "text": "John, you listen to me!",
+        "audio": {
+          "url": "assets/oral-7178fbb6-084e8b1d3bf8e6fb3dc4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4cc8823565febcca4afe9cce2d1ee2bced4e4562f0f01affb16d3c8463b32979",
+          "bytes": 5593
+        }
+      }
+    },
+    {
+      "sentence": "Watch out! Don't play with that thing.",
+      "translation": "当心！别玩那个东西。",
+      "chunks": [
+        "Watch out!",
+        "Don't play with that thing."
+      ],
+      "hints": [
+        "当心！",
+        "别玩那个东西。"
+      ],
+      "cid": "d5d8430a",
+      "sentenceAudio": {
+        "text": "Watch out! Don't play with that thing.",
+        "audio": {
+          "url": "assets/oral-d5d8430a-af25eca97c0b4780e435.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "88269b2d01eda540c2c17afc3f42fad560a1d53b4093860d5a66da652be275e3",
+          "bytes": 6980
+        }
+      }
+    },
+    {
+      "sentence": "Do it yourself.",
+      "translation": "自己的事情自己做。",
+      "chunks": [
+        "Do it",
+        "yourself."
+      ],
+      "hints": [
+        "做这件事，",
+        "你自己。"
+      ],
+      "cid": "f92c16ac",
+      "sentenceAudio": {
+        "text": "Do it yourself.",
+        "audio": {
+          "url": "assets/oral-f92c16ac-643df35143f02d571186.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "70c960666c1eea59be0db20491997283e3a26f7a5cbbbc86d6ec87e9ca5cc57a",
+          "bytes": 4023
+        }
+      }
+    },
+    {
+      "sentence": "You should finish what you start.",
+      "translation": "做事要有始有终。",
+      "chunks": [
+        "You should",
+        "finish what you start."
+      ],
+      "hints": [
+        "你应该",
+        "有始有终。"
+      ],
+      "cid": "b43380fb",
+      "sentenceAudio": {
+        "text": "You should finish what you start.",
+        "audio": {
+          "url": "assets/oral-b43380fb-8149ec4d63b9f066d6fe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1318999e421a8033ddc2801c3ce203fdedec1f49e09465650e7c2546c7447f7e",
+          "bytes": 5620
+        }
+      }
+    },
+    {
+      "sentence": "I'm ready to throw in the towel.",
+      "translation": "我准备认输了。",
+      "chunks": [
+        "I'm ready",
+        "to throw in the towel."
+      ],
+      "hints": [
+        "我准备好",
+        "认输。"
+      ],
+      "cid": "25536be3",
+      "sentenceAudio": {
+        "text": "I'm ready to throw in the towel.",
+        "audio": {
+          "url": "assets/oral-25536be3-d153d3029b34a67b4690.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e999847489661339f59d53b7562aec5060e4f16560d09b7fa6f249fa4f302f1a",
+          "bytes": 6030
+        }
+      }
+    },
+    {
+      "sentence": "It's your duty to do that.",
+      "translation": "这是你(应尽)的责任。",
+      "chunks": [
+        "It's your duty",
+        "to do that."
+      ],
+      "hints": [
+        "这是你的责任，",
+        "你该做的。"
+      ],
+      "cid": "0128f318",
+      "sentenceAudio": {
+        "text": "It's your duty to do that.",
+        "audio": {
+          "url": "assets/oral-0128f318-300cf84ff74d2da2b5d4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "349a4727ca8022e9c734d2afa997eed2c041264c2be7bcff473c22abf04b0c48",
+          "bytes": 5461
+        }
+      }
+    },
+    {
+      "sentence": "Be good to others.",
+      "translation": "要善待他人。",
+      "chunks": [
+        "Be good",
+        "to others."
+      ],
+      "hints": [
+        "要善待",
+        "他人。"
+      ],
+      "cid": "8de537d9",
+      "sentenceAudio": {
+        "text": "Be good to others.",
+        "audio": {
+          "url": "assets/oral-8de537d9-528a201c313e8b779579.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f96c51e86f7af62766599154f04be56b6641ad16d1a282791e7c076313d294aa",
+          "bytes": 4467
+        }
+      }
+    },
+    {
+      "sentence": "You can't be too careful.",
+      "translation": "你再小心也不为过。",
+      "chunks": [
+        "You",
+        "can't be too careful."
+      ],
+      "hints": [
+        "你",
+        "再小心也不为过"
+      ],
+      "cid": "5134cad6",
+      "sentenceAudio": {
+        "text": "You can't be too careful.",
+        "audio": {
+          "url": "assets/oral-5134cad6-ddc7ab57eb45f881a299.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d75244b5b603cb0f25102bcee476f7416bc856e9e4f202f8d3fa71ef9216620c",
+          "bytes": 4943
+        }
+      }
+    },
+    {
+      "sentence": "Make up your mind after thinking it over carefully.",
+      "translation": "三思而后行。",
+      "chunks": [
+        "Make up your mind",
+        "after thinking it over carefully."
+      ],
+      "hints": [
+        "下定决心",
+        "仔细考虑之后"
+      ],
+      "cid": "48e72423",
+      "sentenceAudio": {
+        "text": "Make up your mind after thinking it over carefully.",
+        "audio": {
+          "url": "assets/oral-48e72423-2e771418cc719f02f45c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c90dc4cc727e4b2d124cbd455fdbacfcc1558b7193ee7968c60fb411d3541fda",
+          "bytes": 9357
+        }
+      }
+    },
+    {
+      "sentence": "I'm counting on you.",
+      "translation": "我全靠你了。",
+      "chunks": [
+        "I'm",
+        "counting on you."
+      ],
+      "hints": [
+        "我",
+        "全靠你了。"
+      ],
+      "cid": "88996c55",
+      "sentenceAudio": {
+        "text": "I'm counting on you.",
+        "audio": {
+          "url": "assets/oral-88996c55-b809d7777c7f75bacec5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "671940bfbca1d16a74a5995e659beb1fff1eda804c16c9574f6752874780dccb",
+          "bytes": 4629
+        }
+      }
+    },
+    {
+      "sentence": "You'll see.",
+      "translation": "你会明白的。",
+      "chunks": [
+        "You'll",
+        "see."
+      ],
+      "hints": [
+        "你会",
+        "明白的。"
+      ],
+      "cid": "828399e0",
+      "sentenceAudio": {
+        "text": "You'll see.",
+        "audio": {
+          "url": "assets/oral-828399e0-be1d568380f9c8e08e64.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8c70769bc214cbda0fce6491b12276e0e32db85f4e01d3564c3b456f6c60bb16",
+          "bytes": 3625
+        }
+      }
+    },
+    {
+      "sentence": "Calm down and think carefully.",
+      "translation": "冷静下来好好想想。",
+      "chunks": [
+        "Calm down",
+        "and think carefully."
+      ],
+      "hints": [
+        "冷静下来",
+        "好好想想。"
+      ],
+      "cid": "0f64660e",
+      "sentenceAudio": {
+        "text": "Calm down and think carefully.",
+        "audio": {
+          "url": "assets/oral-0f64660e-aebd0c8484f7e053c7eb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb506d370a8079e3f8305b1b874a7af16f96274d60e9ac1fe3c037aea08c78e8",
+          "bytes": 5811
+        }
+      }
+    },
+    {
+      "sentence": "That's the most important thing.",
+      "translation": "这是最重要的事情。",
+      "chunks": [
+        "That's the most",
+        "important thing."
+      ],
+      "hints": [
+        "这是最",
+        "重要的事情。"
+      ],
+      "cid": "1a5e57ec",
+      "sentenceAudio": {
+        "text": "That's the most important thing.",
+        "audio": {
+          "url": "assets/oral-1a5e57ec-23e6dab61b640ede0c08.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bdf921fcfc71ddfe40f42e8d0bca4b8776c466e10bb87d5be845e3db6af16db5",
+          "bytes": 5941
+        }
+      }
+    },
+    {
+      "sentence": "Don't bite off more than you can chew.",
+      "translation": "人要有自知之明。",
+      "chunks": [
+        "Don't bite off more",
+        "than you can chew."
+      ],
+      "hints": [
+        "别贪多",
+        "嚼不烂。"
+      ],
+      "cid": "5be9a602",
+      "sentenceAudio": {
+        "text": "Don't bite off more than you can chew.",
+        "audio": {
+          "url": "assets/oral-5be9a602-7dfc4a50b2bb2ff6fd7f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3055b541e135bcc893eb1c15bde9db5daadcb37d6da1601c47023099a4561782",
+          "bytes": 6510
+        }
+      }
+    },
+    {
+      "sentence": "There isn't much merit in doing so.",
+      "translation": "这事做起来没有太大价值。",
+      "chunks": [
+        "There isn't much merit",
+        "in doing so."
+      ],
+      "hints": [
+        "没多大价值",
+        "这么做。"
+      ],
+      "cid": "aa72c5d8",
+      "sentenceAudio": {
+        "text": "There isn't much merit in doing so.",
+        "audio": {
+          "url": "assets/oral-aa72c5d8-3b598d7a2a659dd757ec.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8dc6151e2aabfc5f1d7fbe987f32a77cd5ed6a8d270f53e0f1519be21326eb54",
+          "bytes": 6676
+        }
+      }
+    },
+    {
+      "sentence": "What you need is a little more effort.",
+      "translation": "你还得再加把劲儿。",
+      "chunks": [
+        "What you need is",
+        "a little more effort."
+      ],
+      "hints": [
+        "你需要的是",
+        "再加把劲儿。"
+      ],
+      "cid": "295b0176",
+      "sentenceAudio": {
+        "text": "What you need is a little more effort.",
+        "audio": {
+          "url": "assets/oral-295b0176-4560b1595c76973cb4f5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e3f30dbfca0a4dc8bfd42ab3aecf1461ea3926ae473645ec254d04e5148a94ae",
+          "bytes": 6944
+        }
+      }
+    },
+    {
+      "sentence": "Respect yourself.",
+      "translation": "尊重你自己。",
+      "chunks": [
+        "Respect",
+        "yourself."
+      ],
+      "hints": [
+        "尊重",
+        "你自己。"
+      ],
+      "cid": "a9e585c8",
+      "sentenceAudio": {
+        "text": "Respect yourself.",
+        "audio": {
+          "url": "assets/oral-a9e585c8-245281512e12239ae6e6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "83b35d8c353f8835fa8a33869dd3ffe2fbcffb0d81ee536adbdcf89afa7241aa",
+          "bytes": 4583
+        }
+      }
+    },
+    {
+      "sentence": "I hope you'll be more positive overall.",
+      "translation": "我希望你事事要积极。",
+      "chunks": [
+        "I hope you'll be",
+        "more positive overall."
+      ],
+      "hints": [
+        "我希望你",
+        "事事都更积极些。"
+      ],
+      "cid": "c899d2f4",
+      "sentenceAudio": {
+        "text": "I hope you'll be more positive overall.",
+        "audio": {
+          "url": "assets/oral-c899d2f4-a4fc9bde147c0cf51e28.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "74125be46972854165ee435b77d717b0a076dcc6376bd628eabbb959a71c0321",
+          "bytes": 7325
+        }
+      }
+    },
+    {
+      "sentence": "That's easy for you to say.",
+      "translation": "你说得容易。",
+      "chunks": [
+        "That's easy for you to say."
+      ],
+      "hints": [
+        "你说得容易。"
+      ],
+      "cid": "a14f8458",
+      "sentenceAudio": {
+        "text": "That's easy for you to say.",
+        "audio": {
+          "url": "assets/oral-a14f8458-c232d5cb3baefd9cc0ff.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9dce7dac98dce2729ee66a696676a9dc40eee51234546108f2f130d21a8bf7ea",
+          "bytes": 5426
+        }
+      }
+    },
+    {
+      "sentence": "There's no reason for complaints.",
+      "translation": "没理由抱怨。",
+      "chunks": [
+        "There's no reason",
+        "for complaints."
+      ],
+      "hints": [
+        "没理由",
+        "抱怨。"
+      ],
+      "cid": "6c7d2809",
+      "sentenceAudio": {
+        "text": "There's no reason for complaints.",
+        "audio": {
+          "url": "assets/oral-6c7d2809-3608b6fe27cc1cf0ecff.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e7a7c461a3922a73134ed314d2a15e1ed77ac38cfc947909edc4d61b78246e3f",
+          "bytes": 6499
+        }
+      }
+    },
+    {
+      "sentence": "It's written all over your face.",
+      "translation": "你脸上都写着呢呀!",
+      "chunks": [
+        "It's written all over",
+        "your face."
+      ],
+      "hints": [
+        "全都写在",
+        "你脸上了！"
+      ],
+      "cid": "04b4807e",
+      "sentenceAudio": {
+        "text": "It's written all over your face.",
+        "audio": {
+          "url": "assets/oral-04b4807e-a7939f2184fbe2b167de.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "47b5bb52c57e0b1a3906475231c75259f237ca272d0e94f39947f8a855db1b00",
+          "bytes": 6016
+        }
+      }
+    },
+    {
+      "sentence": "It's natural for me to get angry.",
+      "translation": "我生气是理所当然的。",
+      "chunks": [
+        "It's natural",
+        "for me to get angry."
+      ],
+      "hints": [
+        "这很正常",
+        "我生气。"
+      ],
+      "cid": "7d4a8564",
+      "sentenceAudio": {
+        "text": "It's natural for me to get angry.",
+        "audio": {
+          "url": "assets/oral-7d4a8564-fcd6b9eda13ea23bca31.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee4b393cf353c61a27fde2a7540580c66276753a1940c379f08dc85323afd530",
+          "bytes": 6535
+        }
+      }
+    },
+    {
+      "sentence": "I'm telling you this from my experience.",
+      "translation": "我这是根据自己的经验告诉你的。",
+      "chunks": [
+        "I'm telling you this",
+        "from my experience."
+      ],
+      "hints": [
+        "我把这件事告诉你",
+        "根据自己的经验。"
+      ],
+      "cid": "aaf06ad2",
+      "sentenceAudio": {
+        "text": "I'm telling you this from my experience.",
+        "audio": {
+          "url": "assets/oral-aaf06ad2-64bae56f39f4df1089ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1cc5077fd410274c8c1597a4c8683276a8d8ffbcdb0f81f834e43b4f2051477f",
+          "bytes": 7105
+        }
+      }
+    },
+    {
+      "sentence": "Can't you think of it differently?",
+      "translation": "你不能换个角度想吗?",
+      "chunks": [
+        "Can't you",
+        "think of it differently?"
+      ],
+      "hints": [
+        "你不能",
+        "换个角度想吗？"
+      ],
+      "cid": "74ae1dba",
+      "sentenceAudio": {
+        "text": "Can't you think of it differently?",
+        "audio": {
+          "url": "assets/oral-74ae1dba-25cf12299f6075330746.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e2236e65b81af763a464322f2dc7cd6a9b23ba7d7286a625d17c4015a225d2f",
+          "bytes": 5659
+        }
+      }
+    },
+    {
+      "sentence": "Just think of it!",
+      "translation": "就想想这件事！",
+      "chunks": [
+        "Just",
+        "think of it!"
+      ],
+      "hints": [
+        "就",
+        "想想这件事！"
+      ],
+      "cid": "136c1498",
+      "sentenceAudio": {
+        "text": "Just think of it!",
+        "audio": {
+          "url": "assets/oral-136c1498-d5d9d072bbd435883f44.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "274a597501d95819e41c62791c180db6357f0792952e1767cfaaf672dfcafd16",
+          "bytes": 4083
+        }
+      }
+    },
+    {
+      "sentence": "Don't trust it.",
+      "translation": "不要轻信。",
+      "chunks": [
+        "Don't",
+        "trust it."
+      ],
+      "hints": [
+        "别",
+        "轻信。"
+      ],
+      "cid": "4a2b9b9e",
+      "sentenceAudio": {
+        "text": "Don't trust it.",
+        "audio": {
+          "url": "assets/oral-4a2b9b9e-a8be2e052ee0ddefc4f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9c3f480632030da2b74dce2e98058d7af61f5162b708986c4729dded1397a219",
+          "bytes": 4066
+        }
+      }
+    },
+    {
+      "sentence": "I'm so gullible.",
+      "translation": "我是个容易上当的人。",
+      "chunks": [
+        "I'm so",
+        "gullible."
+      ],
+      "hints": [
+        "我太",
+        "容易上当了。"
+      ],
+      "cid": "6129d4a4",
+      "sentenceAudio": {
+        "text": "I'm so gullible.",
+        "audio": {
+          "url": "assets/oral-6129d4a4-94b9643d47f0a57edd76.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "889deb90506b2f5e874d40354d81f29b5ef0ba067493b9314e4eee1f342165ac",
+          "bytes": 4420
+        }
+      }
+    },
+    {
+      "sentence": "Don't underestimate him.",
+      "translation": "别小看他。",
+      "chunks": [
+        "Don't underestimate",
+        "him."
+      ],
+      "hints": [
+        "别小看",
+        "他。"
+      ],
+      "cid": "1facc4d3",
+      "sentenceAudio": {
+        "text": "Don't underestimate him.",
+        "audio": {
+          "url": "assets/oral-1facc4d3-c965baff788d5b11632d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f992548094a61a236869678481302228f7ccbc77a17f5ba936c19686f1cd2300",
+          "bytes": 5582
+        }
+      }
+    },
+    {
+      "sentence": "That's the name of the game.",
+      "translation": "这才是关键所在。",
+      "chunks": [
+        "That's the name of the game."
+      ],
+      "hints": [
+        "这才是关键所在。"
+      ],
+      "cid": "b6eb4a72",
+      "sentenceAudio": {
+        "text": "That's the name of the game.",
+        "audio": {
+          "url": "assets/oral-b6eb4a72-aa895ae2a6939bdc27e6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "20d4e0d4974a4917fd872544ed4f7f69943ab535fbfd1a2c0989071561a77247",
+          "bytes": 5013
+        }
+      }
+    },
+    {
+      "sentence": "I can't make any exceptions for you.",
+      "translation": "我不能为你破例。",
+      "chunks": [
+        "I can't make",
+        "any exceptions for you."
+      ],
+      "hints": [
+        "我不能",
+        "为你破例。"
+      ],
+      "cid": "68e8722f",
+      "sentenceAudio": {
+        "text": "I can't make any exceptions for you.",
+        "audio": {
+          "url": "assets/oral-68e8722f-a81a09d4a4fd2f873515.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "53de8825f254f0884357918f6587b6d0008773b5c2380dbb6b38c08b9121dfe4",
+          "bytes": 6769
+        }
+      }
+    },
+    {
+      "sentence": "Use your head!",
+      "translation": "动动脑子。",
+      "chunks": [
+        "Use your",
+        "head!"
+      ],
+      "hints": [
+        "动动",
+        "脑子！"
+      ],
+      "cid": "7b26aeb6",
+      "sentenceAudio": {
+        "text": "Use your head!",
+        "audio": {
+          "url": "assets/oral-7b26aeb6-7d5d15cf9d97d7a1dd6e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f59b1132e3ae41135599231428b876bdb2a724091517091932d62e3268378118",
+          "bytes": 3959
+        }
+      }
+    },
+    {
+      "sentence": "You asked for it!",
+      "translation": "自作自受。",
+      "chunks": [
+        "You asked for it!"
+      ],
+      "hints": [
+        "自作自受！"
+      ],
+      "cid": "33dc36c7",
+      "sentenceAudio": {
+        "text": "You asked for it!",
+        "audio": {
+          "url": "assets/oral-33dc36c7-e8be01d20dffc390ac9e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b60db655da673bf656be0c254c186ea07d6972901263aad44b426b732e83c668",
+          "bytes": 4281
+        }
+      }
+    },
+    {
+      "sentence": "If the shoe fits, wear it.",
+      "translation": "如果批评得对，你就接受吧。",
+      "chunks": [
+        "If the shoe fits,",
+        "wear it."
+      ],
+      "hints": [
+        "批评得对，",
+        "你就接受吧。"
+      ],
+      "cid": "1aa3b83e",
+      "sentenceAudio": {
+        "text": "If the shoe fits, wear it.",
+        "audio": {
+          "url": "assets/oral-1aa3b83e-5e6a32ce55f893e47d54.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c2f9943c1904bb9e8b895fe4871251366b9cc1c0b0b3de9ba323a880720030a7",
+          "bytes": 5383
+        }
+      }
+    },
+    {
+      "sentence": "Give it a shot.",
+      "cid": "890b2dc4",
+      "translation": "试试看吧。",
+      "chunks": [
+        "Give it a shot."
+      ],
+      "hints": [
+        "试试看吧。"
+      ],
+      "grammar": [
+        {
+          "role": "固定祈使表达",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡɪv/",
+            "/ɪt/",
+            "/ə/",
+            "/ʃɒt/"
+          ],
+          "pos": "固定习语",
+          "meaning": "试试看"
+        }
+      ],
+      "explanations": [
+        "**give it a shot** = 尝试一下（shot 本义射击，此处引申为尝试）。",
+        "同义：give it a try / have a go。鼓励别人尝试新事物很常用：Come on, just give it a shot!"
+      ],
+      "distractors": [
+        [
+          "Give it a try.",
+          "Take a chance.",
+          "Give it shots."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Give it a shot.",
+        "audio": {
+          "url": "assets/oral-890b2dc4-977d9f6470138dd6cf59.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "61b1af7d72b08875a61905fc6f06cb6c51f4109e729157d6227b215638d994d2",
+          "bytes": 3879
+        }
+      }
+    },
+    {
+      "sentence": "You should take a break now.",
+      "cid": "abfe8204",
+      "translation": "你现在该休息一下了。",
+      "chunks": [
+        "You should take a break",
+        "now."
+      ],
+      "hints": [
+        "你该休息一下",
+        "现在"
+      ],
+      "grammar": [
+        {
+          "role": "情态建议",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/juː/",
+            "/ʃʊd/",
+            "/teɪk/",
+            "/ə/",
+            "/breɪk/"
+          ],
+          "pos": "should+动词",
+          "meaning": "你该休息一下"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/naʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "现在"
+        }
+      ],
+      "explanations": [
+        "`should + 动词原形` 表建议。常见错误：\n• \"You should **to take**\" → 情态动词后不接 to\n• \"You **shoulds** take\" → should 无第三人称变化",
+        "`take a break` = 休息一下，固定搭配。同义：have a rest / take a breather（口语稍作喘息）。"
+      ],
+      "distractors": [
+        [
+          "You should take break",
+          "You should takes a break",
+          "You should to take a break"
+        ],
+        [
+          "just now.",
+          "for now.",
+          "nows."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "You should take a break now.",
+        "audio": {
+          "url": "assets/oral-abfe8204-8bdb3c9870a706264673.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "364e62c5efcb9bc4802c2ec05039f72c6f047b294838162c367181d367c358ae",
+          "bytes": 5307
+        }
+      }
+    },
+    {
+      "sentence": "There's no point in waiting any longer.",
+      "cid": "725fe013",
+      "translation": "再等下去没有意义了。",
+      "chunks": [
+        "There's no point in",
+        "waiting",
+        "any longer."
+      ],
+      "hints": [
+        "没有意义",
+        "等待",
+        "再继续"
+      ],
+      "grammar": [
+        {
+          "role": "存在句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðerz/",
+            "/noʊ/",
+            "/pɔɪnt/",
+            "/ɪn/"
+          ],
+          "pos": "there's no point in",
+          "meaning": "……没有意义"
+        },
+        {
+          "role": "动名词",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈweɪtɪŋ/"
+          ],
+          "pos": "动名词",
+          "meaning": "等待"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ˈeni/",
+            "/ˈlɔːŋɡər/"
+          ],
+          "pos": "短语",
+          "meaning": "再继续下去"
+        }
+      ],
+      "explanations": [
+        "`There's no point in doing` = 做……没意义。常见错误：\n• \"no point to wait\" → in 后接动名词\n• \"It's no point\" → 固定 There's no point",
+        "`any longer` = 再（用于否定）。同义 no more。"
+      ],
+      "distractors": [
+        [
+          "It's no point in",
+          "There's no point to",
+          "There're no point in"
+        ],
+        [
+          "to wait",
+          "waited",
+          "wait"
+        ],
+        [
+          "any more longer.",
+          "no longer.",
+          "any long."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "There's no point in waiting any longer.",
+        "audio": {
+          "url": "assets/oral-725fe013-efa659b5179ad9d26808.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d4be1505b7fa65abcdc36e104731b6581b9d7b425e0340f5af9033da18346845",
+          "bytes": 7164
+        }
+      }
+    },
+    {
+      "sentence": "It's worth trying one more time.",
+      "cid": "59f78fc3",
+      "translation": "值得再试一次。",
+      "chunks": [
+        "It's worth trying one more time."
+      ],
+      "hints": [
+        "值得再试一次。"
+      ],
+      "grammar": [
+        {
+          "role": "完整谓语结构",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɪts/",
+            "/wɜːrθ/",
+            "/ˈtraɪɪŋ/",
+            "/wʌn/",
+            "/mɔːr/",
+            "/taɪm/"
+          ],
+          "pos": "be worth doing + one more time",
+          "meaning": "值得再试一次"
+        }
+      ],
+      "explanations": [
+        "`be worth doing` = 值得做，主动形式表被动。常见错误：\n• \"worth to try\" → worth 后接动名词\n• \"worth **of** trying\" → 多 of\n• \"It's worthy trying\" → worth/worthy 不同搭配",
+        "`one more time` = 再一次。"
+      ],
+      "distractors": [
+        [
+          "It's worth to try one more time.",
+          "It's worthy trying one more time.",
+          "It worth trying once again."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It's worth trying one more time.",
+        "audio": {
+          "url": "assets/oral-59f78fc3-96bb092781060b446edf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0e8589cc81c277403cfea75b687b1985c1cc4de05f9ccd127f9aaa57bfb9e47b",
+          "bytes": 6103
+        }
+      }
+    },
+    {
+      "sentence": "Just keep going.",
+      "cid": "de2d0d34",
+      "translation": "继续坚持。",
+      "chunks": [
+        "Just",
+        "keep going."
+      ],
+      "hints": [
+        "只管",
+        "继续走下去"
+      ],
+      "grammar": [
+        {
+          "role": "程度/语气词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/dʒʌst/"
+          ],
+          "pos": "副词（弱化语气）",
+          "meaning": "只管、就"
+        },
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/kiːp/",
+            "/ˈɡoʊɪŋ/"
+          ],
+          "pos": "keep doing 固定结构",
+          "meaning": "继续走"
+        }
+      ],
+      "explanations": [
+        "`just` 在此弱化语气，表「就这样、只管」，不是「刚刚」。常见错误：\n• \"Only keep going\" → Only 表「只有」，语气不对",
+        "`keep doing sth` 表「持续做某事」，固定接动名词。常见错误：\n• \"keep to go\" → 不能接不定式\n• \"keep go\" → 少了 -ing"
+      ],
+      "distractors": [
+        [
+          "Only",
+          "Justly",
+          "Just to"
+        ],
+        [
+          "keep to go.",
+          "keep go.",
+          "keep going to."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Just keep going.",
+        "audio": {
+          "url": "assets/oral-de2d0d34-91966183350aac9ef248.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d8762a848700829b3194e43e35b901a6f28e83af5b17cf37097819c1c4ba95ef",
+          "bytes": 4393
+        }
+      }
+    }
+  ]
+}

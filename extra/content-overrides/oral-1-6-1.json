@@ -1,0 +1,1884 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-6-1",
+    "name": "口语3000句 · 电话 · 打电话～留言、接受留言",
+    "short": "打电话～留言、接受留言",
+    "desc": "打电话～留言、接受留言",
+    "chapter": 1,
+    "section": "1.6",
+    "sectionTitle": "电话",
+    "topic": "打电话～留言、接受留言",
+    "baseCount": 0,
+    "totalCount": 74,
+    "items": [
+      {
+        "sentence": "This is Dennis Smith.",
+        "translation": "我是丹尼斯·史密斯。",
+        "chunks": [
+          "This is",
+          "Dennis Smith."
+        ],
+        "hints": [
+          "我是",
+          "丹尼斯·史密斯。"
+        ],
+        "cid": "7e18d185",
+        "sentenceAudio": {
+          "text": "This is Dennis Smith.",
+          "audio": {
+            "url": "assets/oral-7e18d185-fa6cd80b3e9d0abe9fa8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da12c323b18953a846ed370376cf565db219f8a3d234113386bb782a1ffb813c",
+            "bytes": 4839
+          }
+        }
+      },
+      {
+        "sentence": "Hello, John?",
+        "translation": "是约翰吗?",
+        "chunks": [
+          "Hello,",
+          "John?"
+        ],
+        "hints": [
+          "喂，",
+          "是约翰吗？"
+        ],
+        "cid": "6ff6c987",
+        "sentenceAudio": {
+          "text": "Hello, John?",
+          "audio": {
+            "url": "assets/oral-6ff6c987-64f5aa314c1531012e03.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9af0997fe6734da67225ccc01da8a230409e9b75f430fb7f2809acf4b9a037c1",
+            "bytes": 4280
+          }
+        }
+      },
+      {
+        "sentence": "Is this Mr. Dennis Smith?",
+        "translation": "喂， 请问是丹尼斯·史密斯先生吗?",
+        "chunks": [
+          "Is this",
+          "Mr. Dennis Smith?"
+        ],
+        "hints": [
+          "请问是",
+          "丹尼斯·史密斯先生吗？"
+        ],
+        "cid": "8bbfac15",
+        "sentenceAudio": {
+          "text": "Is this Mr. Dennis Smith?",
+          "audio": {
+            "url": "assets/oral-8bbfac15-2d424601b4335749e8a3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d875d4bddd251a5946cf1c9939924f80ed21d98c6bec2e8da96db404f7759344",
+            "bytes": 6517
+          }
+        }
+      },
+      {
+        "sentence": "Is this the finance department?",
+        "translation": "请问是财务科吗?",
+        "chunks": [
+          "Is this",
+          "the finance department?"
+        ],
+        "hints": [
+          "请问是",
+          "财务科吗？"
+        ],
+        "cid": "3e7ffbc9",
+        "sentenceAudio": {
+          "text": "Is this the finance department?",
+          "audio": {
+            "url": "assets/oral-3e7ffbc9-7ef5d49555f385c4c94e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "512278ea5ebe661ca0364b7c5aaebe2e60f60a12c11d2b9a5e9827e08c3f1630",
+            "bytes": 6418
+          }
+        }
+      },
+      {
+        "sentence": "Is this Dr. Jim Baker's office?",
+        "translation": "请问是吉姆·贝克医生的办公室吗?",
+        "chunks": [
+          "Is this",
+          "Dr. Jim Baker's office?"
+        ],
+        "hints": [
+          "请问是",
+          "吉姆·贝克医生的办公室吗？"
+        ],
+        "cid": "1f86a459",
+        "sentenceAudio": {
+          "text": "Is this Dr. Jim Baker's office?",
+          "audio": {
+            "url": "assets/oral-1f86a459-a8797e6a4bcb7e05796e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9dce3de9b327762fedd1e424abd836f9ffb66dddf40a96cf1c19832b51a6585f",
+            "bytes": 8384
+          }
+        }
+      },
+      {
+        "sentence": "Do you mind if I use your phone?",
+        "translation": "我能借用一下您的电话吗?",
+        "chunks": [
+          "Do you mind",
+          "if I use your phone?"
+        ],
+        "hints": [
+          "您介意吗？",
+          "如果我借用一下您的电话"
+        ],
+        "cid": "71b5c82c",
+        "sentenceAudio": {
+          "text": "Do you mind if I use your phone?",
+          "audio": {
+            "url": "assets/oral-71b5c82c-f0c794e5972b362dbfa5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1590f60e059d2e0e6b9f27367d5ab01360d3306a200bbe3cd8fa317621da49b6",
+            "bytes": 6390
+          }
+        }
+      },
+      {
+        "sentence": "May I speak to Mr. Sato?",
+        "translation": "我想找佐藤先生。",
+        "chunks": [
+          "May I speak",
+          "to Mr. Sato?"
+        ],
+        "hints": [
+          "我想找",
+          "佐藤先生。"
+        ],
+        "cid": "cc194a71",
+        "sentenceAudio": {
+          "text": "May I speak to Mr. Sato?",
+          "audio": {
+            "url": "assets/oral-cc194a71-c36a9f0a90046bb03d75.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3f6931dca7c4992413dffdb7c0cccb62647798312b3b25101f3635f05060221e",
+            "bytes": 6594
+          }
+        }
+      },
+      {
+        "sentence": "Is Mark there?",
+        "translation": "马克在吗?",
+        "chunks": [
+          "Is Mark",
+          "there?"
+        ],
+        "hints": [
+          "马克",
+          "在吗？"
+        ],
+        "cid": "469d6e6d",
+        "sentenceAudio": {
+          "text": "Is Mark there?",
+          "audio": {
+            "url": "assets/oral-469d6e6d-c9c8e80e5868cfedf9f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c8f27b64dda7eb108ddfaf67c39d47f4c899da109364659c810252b1612e939",
+            "bytes": 4069
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry for calling you this late.",
+        "translation": "很抱歉这么晚还给您打电话。",
+        "chunks": [
+          "I'm sorry",
+          "for calling you this late."
+        ],
+        "hints": [
+          "很抱歉",
+          "这么晚还给您打电话。"
+        ],
+        "cid": "0fb09491",
+        "sentenceAudio": {
+          "text": "I'm sorry for calling you this late.",
+          "audio": {
+            "url": "assets/oral-0fb09491-f1144e7bd7743b156766.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e4d6bc4087307a7b7cae42ca0396a3aea8784d45b794afb27d99b2751d5c0a6",
+            "bytes": 6508
+          }
+        }
+      },
+      {
+        "sentence": "I hope I'm not disturbing you.",
+        "translation": "我希望我没打扰您。",
+        "chunks": [
+          "I hope",
+          "I'm not disturbing you."
+        ],
+        "hints": [
+          "我希望",
+          "我没打扰您。"
+        ],
+        "cid": "c462d7d0",
+        "sentenceAudio": {
+          "text": "I hope I'm not disturbing you.",
+          "audio": {
+            "url": "assets/oral-c462d7d0-d3fdb0254619be5c8f11.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "25f21b4f8d4e3fbc123d5721d8c00a1237d97dee2196dab1c850706b158bb224",
+            "bytes": 5997
+          }
+        }
+      },
+      {
+        "sentence": "I hope I didn't wake you up.",
+        "translation": "但愿没吵醒您。",
+        "chunks": [
+          "I hope",
+          "I didn't wake you up."
+        ],
+        "hints": [
+          "但愿",
+          "没吵醒您。"
+        ],
+        "cid": "b1d560f5",
+        "sentenceAudio": {
+          "text": "I hope I didn't wake you up.",
+          "audio": {
+            "url": "assets/oral-b1d560f5-06da49f176689586cc24.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6c60bbf753a13d79b751e91b1688393deee87a19b37283e3625b010a73e40173",
+            "bytes": 5255
+          }
+        }
+      },
+      {
+        "sentence": "It is urgent I talk to Mr. Barr now.",
+        "translation": "我有急事要找巴尔先生。",
+        "chunks": [
+          "It is urgent",
+          "I talk to Mr. Barr now."
+        ],
+        "hints": [
+          "我有急事",
+          "要找巴尔先生。"
+        ],
+        "cid": "20bc518b",
+        "sentenceAudio": {
+          "text": "It is urgent I talk to Mr. Barr now.",
+          "audio": {
+            "url": "assets/oral-20bc518b-6927d5257c0eaa293a07.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4a12b96521c93b2194954ffa5e9bbd1b71bc067e976098a6092fc45afe0a098f",
+            "bytes": 8985
+          }
+        }
+      },
+      {
+        "sentence": "I'm calling about tomorrow's meeting.",
+        "translation": "我打电话是想谈明天的会议。",
+        "chunks": [
+          "I'm calling about",
+          "tomorrow's meeting."
+        ],
+        "hints": [
+          "我打电话是想谈",
+          "明天的会议"
+        ],
+        "cid": "35f2b103",
+        "sentenceAudio": {
+          "text": "I'm calling about tomorrow's meeting.",
+          "audio": {
+            "url": "assets/oral-35f2b103-48e00651be30b8d8920d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "87ac9a890799cda340026c810b326db9849d85e8ee2d3efcbf0937b4bfe3a04f",
+            "bytes": 6488
+          }
+        }
+      },
+      {
+        "sentence": "I'm returning your call.",
+        "translation": "我给您回电话。",
+        "chunks": [
+          "I'm returning",
+          "your call."
+        ],
+        "hints": [
+          "我回拨",
+          "您的电话"
+        ],
+        "cid": "cc2bde6b",
+        "sentenceAudio": {
+          "text": "I'm returning your call.",
+          "audio": {
+            "url": "assets/oral-cc2bde6b-3ed9b87e3f36f1b943ea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b975189f8f81eaf8fcb1afa2c3383281f249602fe3169d94855d1173bcd7a356",
+            "bytes": 4969
+          }
+        }
+      },
+      {
+        "sentence": "Hello.",
+        "translation": "喂!",
+        "chunks": [
+          "Hello."
+        ],
+        "hints": [
+          "喂！"
+        ],
+        "cid": "a521c1ff",
+        "sentenceAudio": {
+          "text": "Hello.",
+          "audio": {
+            "url": "assets/oral-a521c1ff-9345770744ca9a05c043.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b6f43d4614b90ddc87d8a7fc4be252b0817401fb0f19888ddcff45c1ffc880d8",
+            "bytes": 3282
+          }
+        }
+      },
+      {
+        "sentence": "Speaking.",
+        "translation": "对，我就是。",
+        "chunks": [
+          "Speaking."
+        ],
+        "hints": [
+          "对，我就是。"
+        ],
+        "cid": "2434b19b",
+        "sentenceAudio": {
+          "text": "Speaking.",
+          "audio": {
+            "url": "assets/oral-2434b19b-f4a68b7bfb4c2d146cec.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "99fc34df7a569b77623f7e81d00acf41ebf33e821f274f8b760ac04b6339a2de",
+            "bytes": 3586
+          }
+        }
+      },
+      {
+        "sentence": "It's me.",
+        "translation": "是我呀。",
+        "chunks": [
+          "It's",
+          "me."
+        ],
+        "hints": [
+          "是",
+          "我呀。"
+        ],
+        "cid": "51242cc6",
+        "sentenceAudio": {
+          "text": "It's me.",
+          "audio": {
+            "url": "assets/oral-51242cc6-0eb33c94865e5d4bb3bf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1887f858dfdf5d3a77d95606fc18b4a3e3af87e3e792f969ffee565e3b2b54bc",
+            "bytes": 3392
+          }
+        }
+      },
+      {
+        "sentence": "ABC Business College, may I help you?",
+        "translation": "ABC商务学院。您有什么事?",
+        "chunks": [
+          "ABC Business College,",
+          "may I help you?"
+        ],
+        "hints": [
+          "ABC商务学院。",
+          "您有什么事？"
+        ],
+        "cid": "de59203d",
+        "sentenceAudio": {
+          "text": "ABC Business College, may I help you?",
+          "audio": {
+            "url": "assets/oral-de59203d-4ed11d31ad5ba70e46bb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4caccdb697adc1539eee48486323eadee70bcacb818701a2cdd8bf6836972769",
+            "bytes": 8554
+          }
+        }
+      },
+      {
+        "sentence": "Who's calling, please?",
+        "translation": "您是哪位?",
+        "chunks": [
+          "Who's calling, please?"
+        ],
+        "hints": [
+          "请问您是哪位？"
+        ],
+        "cid": "ca8315a8",
+        "sentenceAudio": {
+          "text": "Who's calling, please?",
+          "audio": {
+            "url": "assets/oral-ca8315a8-57e18db35deb528a748f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "48d1916dcda37c4031fcb37bdcfac5b34154b2eddc450a8421792769fac3cdaf",
+            "bytes": 4830
+          }
+        }
+      },
+      {
+        "sentence": "Who in particular would you like to talk to?",
+        "translation": "您想找哪位接电话?",
+        "chunks": [
+          "Who in particular would you like",
+          "to talk to?"
+        ],
+        "hints": [
+          "您想找哪位",
+          "接电话？"
+        ],
+        "cid": "b1320535",
+        "sentenceAudio": {
+          "text": "Who in particular would you like to talk to?",
+          "audio": {
+            "url": "assets/oral-b1320535-2f080e2dc943a930e0a6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3ae6c3a6aaccbca132b1ace9ef1ae3f6b8a30173ca1bd721da7f25f00e62a85d",
+            "bytes": 8093
+          }
+        }
+      },
+      {
+        "sentence": "He's been expecting your call.",
+        "translation": "他一直在等您的电话。",
+        "chunks": [
+          "He's been expecting",
+          "your call."
+        ],
+        "hints": [
+          "他一直在等",
+          "您的电话。"
+        ],
+        "cid": "bdd7f8a2",
+        "sentenceAudio": {
+          "text": "He's been expecting your call.",
+          "audio": {
+            "url": "assets/oral-bdd7f8a2-ea5c06fed3716d197c71.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "78b9cb9e3d8cf5f6dab1a39fd75af4ac5ff7e7675d65fffcb89eabe27193f044",
+            "bytes": 5728
+          }
+        }
+      },
+      {
+        "sentence": "Which Suzuki do you want to talk to?",
+        "translation": "您想找哪位铃木先生？",
+        "chunks": [
+          "Which Suzuki do you want to talk to?"
+        ],
+        "hints": [
+          "您想找哪位铃木先生？"
+        ],
+        "cid": "cfa71368",
+        "sentenceAudio": {
+          "text": "Which Suzuki do you want to talk to?",
+          "audio": {
+            "url": "assets/oral-cfa71368-6bbd72a4040a45cf1374.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "75b0ae0e8d44d748be43842e3028f454ef436408739c0096ea7a04b3b6b6ba7f",
+            "bytes": 7102
+          }
+        }
+      },
+      {
+        "sentence": "There are three Suzukis here.",
+        "translation": "这儿有三位姓铃木的。",
+        "chunks": [
+          "There are three Suzukis",
+          "here."
+        ],
+        "hints": [
+          "有三位姓铃木的",
+          "在这儿。"
+        ],
+        "cid": "f08273fd",
+        "sentenceAudio": {
+          "text": "There are three Suzukis here.",
+          "audio": {
+            "url": "assets/oral-f08273fd-bdb31a8734e9efe32c62.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7fab9a099fa3205028b3074a26f8fa92b9b9e1061b21e67b72d2ed021a5e4081",
+            "bytes": 5819
+          }
+        }
+      },
+      {
+        "sentence": "Would you mind calling back later?",
+        "translation": "您介意稍后再打回来吗？",
+        "chunks": [
+          "Would you mind",
+          "calling back later?"
+        ],
+        "hints": [
+          "您介意",
+          "稍后再打回来吗？"
+        ],
+        "cid": "3df49259",
+        "sentenceAudio": {
+          "text": "Would you mind calling back later?",
+          "audio": {
+            "url": "assets/oral-3df49259-2acefe133b34dc84f9d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ffa521298cfbbb447363289719fce57fb8b7f68b32b533ec3f8aa447f8fc2d1d",
+            "bytes": 6419
+          }
+        }
+      },
+      {
+        "sentence": "Extension 103, please.",
+        "translation": "请转103分机。",
+        "chunks": [
+          "Extension 103, please."
+        ],
+        "hints": [
+          "请转103分机。"
+        ],
+        "cid": "4cb7df20",
+        "sentenceAudio": {
+          "text": "Extension 103, please.",
+          "audio": {
+            "url": "assets/oral-4cb7df20-0565b618554885f54279.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a11ce3614bbecc4a049d073c1b449247363dd04cc165d84921667d2634b9ec3c",
+            "bytes": 7426
+          }
+        }
+      },
+      {
+        "sentence": "I'll connect you to extension 103.",
+        "translation": "我给您接103分机。",
+        "chunks": [
+          "I'll connect you",
+          "to extension 103."
+        ],
+        "hints": [
+          "我给您接",
+          "103分机。"
+        ],
+        "cid": "ec84dfe8",
+        "sentenceAudio": {
+          "text": "I'll connect you to extension 103.",
+          "audio": {
+            "url": "assets/oral-ec84dfe8-eaf1125da38913192560.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0a06c27863b77970c89f7e823eb464de9bd5875e049371fbc6c21dd238105758",
+            "bytes": 8542
+          }
+        }
+      },
+      {
+        "sentence": "Hold on, please.",
+        "translation": "请稍等一下。",
+        "chunks": [
+          "Hold on,",
+          "please."
+        ],
+        "hints": [
+          "稍等",
+          "请"
+        ],
+        "cid": "7ddd8a37",
+        "sentenceAudio": {
+          "text": "Hold on, please.",
+          "audio": {
+            "url": "assets/oral-7ddd8a37-3216a993ab91901ea91d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cbf4fb67fb4519ac2834b1b924d151ab777f27e8f9416abab831f2021738d2a7",
+            "bytes": 4529
+          }
+        }
+      },
+      {
+        "sentence": "I'll put him on.",
+        "translation": "我让他接电话。",
+        "chunks": [
+          "I'll",
+          "put him on."
+        ],
+        "hints": [
+          "我",
+          "让他接电话。"
+        ],
+        "cid": "4e413b03",
+        "sentenceAudio": {
+          "text": "I'll put him on.",
+          "audio": {
+            "url": "assets/oral-4e413b03-2b4eefce087f0d370c01.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3d81f8652d6dc3318928aa8fdf2055133311d4d03936036f1084bc110fd6c52b",
+            "bytes": 4208
+          }
+        }
+      },
+      {
+        "sentence": "I'll transfer your call.",
+        "translation": "我把电话给您接过去。",
+        "chunks": [
+          "I'll transfer",
+          "your call."
+        ],
+        "hints": [
+          "我把电话",
+          "给您接过去。"
+        ],
+        "cid": "58680ba1",
+        "sentenceAudio": {
+          "text": "I'll transfer your call.",
+          "audio": {
+            "url": "assets/oral-58680ba1-a5ad031e6bee8af62d80.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cf8b6100df2e1bd7278cfca235a6f81b4731a98b8f9f9b0ec04b0c2b4040e579",
+            "bytes": 4851
+          }
+        }
+      },
+      {
+        "sentence": "I'll get your party for you.",
+        "translation": "我帮您接通对方。",
+        "chunks": [
+          "I'll get your party for you."
+        ],
+        "hints": [
+          "我帮您接通对方。"
+        ],
+        "cid": "ea3d2986",
+        "sentenceAudio": {
+          "text": "I'll get your party for you.",
+          "audio": {
+            "url": "assets/oral-ea3d2986-668d4becc3b8447a4b6c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "94d4377fd6af0dcfef84eeafcdfb8a7f158eb72ff77d26f61435b40f0eabc754",
+            "bytes": 5049
+          }
+        }
+      },
+      {
+        "sentence": "I'm transferring your call to the sales department.",
+        "translation": "我把您的电话接到营业部去。",
+        "chunks": [
+          "I'm transferring your call",
+          "to the sales department."
+        ],
+        "hints": [
+          "我把您的电话",
+          "接到营业部去。"
+        ],
+        "cid": "1b2718f2",
+        "sentenceAudio": {
+          "text": "I'm transferring your call to the sales department.",
+          "audio": {
+            "url": "assets/oral-1b2718f2-43896dbe391e481b0a6b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "022c626f296ba9b3ed21f3e7a440f6909c24e86e0aea5b6123953207369bd383",
+            "bytes": 8915
+          }
+        }
+      },
+      {
+        "sentence": "Mr. Peck is on line one.",
+        "translation": "是贝克打来的，请接1号线。",
+        "chunks": [
+          "Mr. Peck is",
+          "on line one."
+        ],
+        "hints": [
+          "是贝克打来的，",
+          "请接1号线。"
+        ],
+        "cid": "7bef7cec",
+        "sentenceAudio": {
+          "text": "Mr. Peck is on line one.",
+          "audio": {
+            "url": "assets/oral-7bef7cec-ae178379e27b6fcb9e86.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0c21b0b460056622416e44e297555bc2a8ecbb4b5a3a89a68614b8c8abc1d1a8",
+            "bytes": 6340
+          }
+        }
+      },
+      {
+        "sentence": "You have a call from Mr. Miller of ABC.",
+        "translation": "ABC公司的米勒先生来电话了。",
+        "chunks": [
+          "You have a call",
+          "from Mr. Miller of ABC."
+        ],
+        "hints": [
+          "您有电话",
+          "是ABC公司的米勒先生打来的。"
+        ],
+        "cid": "149884f6",
+        "sentenceAudio": {
+          "text": "You have a call from Mr. Miller of ABC.",
+          "audio": {
+            "url": "assets/oral-149884f6-957ff405fdd2c6cbbf5c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d1b6884c2feec865f2f2e26f577c4d227b008765014f3c6739181dc3036054d",
+            "bytes": 8846
+          }
+        }
+      },
+      {
+        "sentence": "Your party is on the line.",
+        "translation": "您要找的人来接电话了。",
+        "chunks": [
+          "Your party is",
+          "on the line."
+        ],
+        "hints": [
+          "您要找的人",
+          "来接电话了。"
+        ],
+        "cid": "409bbcd0",
+        "sentenceAudio": {
+          "text": "Your party is on the line.",
+          "audio": {
+            "url": "assets/oral-409bbcd0-6b0ff373a61bd55b5cf1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d38fa76a9290a9568cb8d0a3b78d130f5715a7c1a399599b237bc018123c972b",
+            "bytes": 5615
+          }
+        }
+      },
+      {
+        "sentence": "Her line is busy now.",
+        "translation": "她的电话现在占线。",
+        "chunks": [
+          "Her line",
+          "is busy now."
+        ],
+        "hints": [
+          "她的电话",
+          "现在占线。"
+        ],
+        "cid": "94847dbb",
+        "sentenceAudio": {
+          "text": "Her line is busy now.",
+          "audio": {
+            "url": "assets/oral-94847dbb-bc5425a9e87ddb89014e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5f7963645ae11a65d91059e526599eaf12df951d69b9c4ce37322070e79dca0e",
+            "bytes": 5137
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry, she's tied up at the moment.",
+        "translation": "对不起，她现在脱不开身。",
+        "chunks": [
+          "I'm sorry, she's tied up",
+          "at the moment."
+        ],
+        "hints": [
+          "对不起，她脱不开身",
+          "目前。"
+        ],
+        "cid": "42f18f10",
+        "sentenceAudio": {
+          "text": "I'm sorry, she's tied up at the moment.",
+          "audio": {
+            "url": "assets/oral-42f18f10-f01b237a2871aa0f6d89.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32fb81f316590c68e46264661ad595e664be5be872b3ac2b0909d86aacfb227d",
+            "bytes": 7625
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry, she has company at this time.",
+        "translation": "对不起，她现在有客人。",
+        "chunks": [
+          "I'm sorry, she has company",
+          "at this time."
+        ],
+        "hints": [
+          "对不起，她有客人",
+          "现在。"
+        ],
+        "cid": "16933018",
+        "sentenceAudio": {
+          "text": "I'm sorry, she has company at this time.",
+          "audio": {
+            "url": "assets/oral-16933018-956586b2aefaebfba2d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "30748296030f0ecb86470b61c8e5230e038d88047e0eea60f8b978cfb4643ae8",
+            "bytes": 7909
+          }
+        }
+      },
+      {
+        "sentence": "Would you like to hold?",
+        "translation": "您愿意稍等吗？",
+        "chunks": [
+          "Would you like",
+          "to hold?"
+        ],
+        "hints": [
+          "您愿意",
+          "稍等吗？"
+        ],
+        "cid": "ee7f6957",
+        "sentenceAudio": {
+          "text": "Would you like to hold?",
+          "audio": {
+            "url": "assets/oral-ee7f6957-1ed2eba0c94616ed8ee7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e4dd6ad12c4c69a10352430bea947ea32da28bc1326152e82d1d452a355ea2a",
+            "bytes": 4659
+          }
+        }
+      },
+      {
+        "sentence": "He's away from his desk now.",
+        "translation": "他现在不在座位上。",
+        "chunks": [
+          "He's away from his desk",
+          "now."
+        ],
+        "hints": [
+          "他不在座位上",
+          "现在"
+        ],
+        "cid": "572d8097",
+        "sentenceAudio": {
+          "text": "He's away from his desk now.",
+          "audio": {
+            "url": "assets/oral-572d8097-10e7451f0f9c569cdda2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a44c2a0be05f0b348f82a09df491c188343c37ac33aeee9cbd39ead2103e122",
+            "bytes": 5995
+          }
+        }
+      },
+      {
+        "sentence": "He's in but he's not at his desk right now.",
+        "translation": "他在公司，但现在不在座位上。",
+        "chunks": [
+          "He's in but",
+          "he's not at his desk",
+          "right now."
+        ],
+        "hints": [
+          "他在公司，但",
+          "他不在办公桌旁",
+          "现在"
+        ],
+        "cid": "c94cf3b6",
+        "sentenceAudio": {
+          "text": "He's in but he's not at his desk right now.",
+          "audio": {
+            "url": "assets/oral-c94cf3b6-00781a4f9eea680ef9e4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f5a4543809c5b2c21ccd833d3c3c83dd8d1353163af30c1901ae6291c69e7df2",
+            "bytes": 8274
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry, he's not in right now.",
+        "translation": "抱歉，他现在不在。",
+        "chunks": [
+          "I'm sorry, he's not in",
+          "right now."
+        ],
+        "hints": [
+          "抱歉，他不在",
+          "现在。"
+        ],
+        "cid": "a4a9a928",
+        "sentenceAudio": {
+          "text": "I'm sorry, he's not in right now.",
+          "audio": {
+            "url": "assets/oral-a4a9a928-98c1973817cd97317b68.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2bf369b6142068aca52b3af55ec9cb6558ba94b248d0ad8948c4537e3b52d094",
+            "bytes": 6898
+          }
+        }
+      },
+      {
+        "sentence": "When is he coming back?",
+        "translation": "他什么时候能回来?",
+        "chunks": [
+          "When is he",
+          "coming back?"
+        ],
+        "hints": [
+          "他什么时候",
+          "能回来？"
+        ],
+        "cid": "c2edc3a5",
+        "sentenceAudio": {
+          "text": "When is he coming back?",
+          "audio": {
+            "url": "assets/oral-c2edc3a5-2f0c90cdb72e6c7148a5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "313405cd376f2c72ec3bcf71c2fccfbf0d29741aa0d55f6fef41294b6496f7c0",
+            "bytes": 4673
+          }
+        }
+      },
+      {
+        "sentence": "He should be back in ten minutes.",
+        "translation": "他大概10分钟后回来。",
+        "chunks": [
+          "He should be back",
+          "in ten minutes."
+        ],
+        "hints": [
+          "他应该会回来",
+          "十分钟后。"
+        ],
+        "cid": "0a45b888",
+        "sentenceAudio": {
+          "text": "He should be back in ten minutes.",
+          "audio": {
+            "url": "assets/oral-0a45b888-b30a9dedd1dff9a3d20b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "62363c3d4181d8258dd0e149e95fc206fdd78331197a32748f709e6f230dc8e7",
+            "bytes": 5939
+          }
+        }
+      },
+      {
+        "sentence": "He should be back in the office next week.",
+        "translation": "他应该下周回办公室上班。",
+        "chunks": [
+          "He should be back",
+          "in the office next week."
+        ],
+        "hints": [
+          "他应该会回来",
+          "下周回办公室上班。"
+        ],
+        "cid": "b5f38e60",
+        "sentenceAudio": {
+          "text": "He should be back in the office next week.",
+          "audio": {
+            "url": "assets/oral-b5f38e60-2616fbd80a15e7b42aa8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b4cbabae774e8ac22cfd285cf18bdc359aee09038cacf00484d590b8705a9728",
+            "bytes": 7158
+          }
+        }
+      },
+      {
+        "sentence": "He's on vacation until next week.",
+        "translation": "他休假到下个星期。",
+        "chunks": [
+          "He's on vacation",
+          "until next week."
+        ],
+        "hints": [
+          "他休假",
+          "到下个星期。"
+        ],
+        "cid": "0adde007",
+        "sentenceAudio": {
+          "text": "He's on vacation until next week.",
+          "audio": {
+            "url": "assets/oral-0adde007-9c51e3dd4431a60b88b4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "81b6183bb50be12002080bb1873cbb87fd89918c0f989d7166422d597c70022d",
+            "bytes": 7409
+          }
+        }
+      },
+      {
+        "sentence": "He called in sick today.",
+        "translation": "他今天打电话请病假了。",
+        "chunks": [
+          "He called in sick",
+          "today."
+        ],
+        "hints": [
+          "他打电话请病假",
+          "今天。"
+        ],
+        "cid": "265e4821",
+        "sentenceAudio": {
+          "text": "He called in sick today.",
+          "audio": {
+            "url": "assets/oral-265e4821-ce9179d41308897650c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4215da537b38865cfa9bf838ada53d3cf3479e37f2286c9b149d612c36452da7",
+            "bytes": 5415
+          }
+        }
+      },
+      {
+        "sentence": "He's out of town now.",
+        "translation": "他现在不在城里。",
+        "chunks": [
+          "He's out of town",
+          "now."
+        ],
+        "hints": [
+          "他不在城里",
+          "现在"
+        ],
+        "cid": "a4875eaf",
+        "sentenceAudio": {
+          "text": "He's out of town now.",
+          "audio": {
+            "url": "assets/oral-a4875eaf-e367959a3ef66886393e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e878a02757bfe108fb884d86393e8101aaf3319449e464de37ea4629cd7b8e8",
+            "bytes": 4642
+          }
+        }
+      },
+      {
+        "sentence": "He's out to lunch now.",
+        "translation": "他现在出去吃午饭了。",
+        "chunks": [
+          "He's out to lunch",
+          "now."
+        ],
+        "hints": [
+          "他出去吃午饭了",
+          "现在"
+        ],
+        "cid": "47e32e9d",
+        "sentenceAudio": {
+          "text": "He's out to lunch now.",
+          "audio": {
+            "url": "assets/oral-47e32e9d-bc73a4ff9a354228c65f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "febbf2034a1dc8523cebc9491af1c1ba92be4edad4acc117f2133f0cff8939c2",
+            "bytes": 5263
+          }
+        }
+      },
+      {
+        "sentence": "He's in a meeting right now.",
+        "translation": "他现在正在开会。",
+        "chunks": [
+          "He's in a meeting",
+          "right now."
+        ],
+        "hints": [
+          "他正在开会",
+          "现在"
+        ],
+        "cid": "62f47057",
+        "sentenceAudio": {
+          "text": "He's in a meeting right now.",
+          "audio": {
+            "url": "assets/oral-62f47057-0dc18ed997556e2098a3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d424ef99430243bcdce772e8c42154dbdec19fc922118b8c5c076333343a6da5",
+            "bytes": 5601
+          }
+        }
+      },
+      {
+        "sentence": "He's off today.",
+        "translation": "他今天休息。",
+        "chunks": [
+          "He's off",
+          "today."
+        ],
+        "hints": [
+          "他在休息",
+          "今天"
+        ],
+        "cid": "b584ca62",
+        "sentenceAudio": {
+          "text": "He's off today.",
+          "audio": {
+            "url": "assets/oral-b584ca62-b4212e6e94d411da2aac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "691710f6520978fce74a487731a5626822fe67bae78c325dad47905ad7fcbf56",
+            "bytes": 4246
+          }
+        }
+      },
+      {
+        "sentence": "Could you call back later?",
+        "translation": "您能过会儿再打来吗?",
+        "chunks": [
+          "Could you",
+          "call back later?"
+        ],
+        "hints": [
+          "您能",
+          "过会儿再打来吗？"
+        ],
+        "cid": "c0891d4d",
+        "sentenceAudio": {
+          "text": "Could you call back later?",
+          "audio": {
+            "url": "assets/oral-c0891d4d-3d08c4508705addae385.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ad1676d0cef66f481853984fddda2960654c1135064ad3113dde6dbe935f3ba2",
+            "bytes": 5001
+          }
+        }
+      },
+      {
+        "sentence": "Please call me back in ten minutes.",
+        "translation": "请10分钟后再打。",
+        "chunks": [
+          "Please call me back",
+          "in ten minutes."
+        ],
+        "hints": [
+          "请回电",
+          "十分钟后。"
+        ],
+        "cid": "af8f9b4d",
+        "sentenceAudio": {
+          "text": "Please call me back in ten minutes.",
+          "audio": {
+            "url": "assets/oral-af8f9b4d-c819e501e1c1d7f249e1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "256ca89171f1c4728e68f696acb783366808dd21c44cb3011217a840f157446a",
+            "bytes": 6443
+          }
+        }
+      },
+      {
+        "sentence": "May I take a message?",
+        "translation": "我可以记下您的留言吗？",
+        "chunks": [
+          "May I take",
+          "a message?"
+        ],
+        "hints": [
+          "我可以记下",
+          "您的留言吗？"
+        ],
+        "cid": "b063366d",
+        "sentenceAudio": {
+          "text": "May I take a message?",
+          "audio": {
+            "url": "assets/oral-b063366d-3d22290cc2274eafd8b1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "719df57365f774396784abe1cf627d039837257f91f98aa9927a4c6703c80d2f",
+            "bytes": 5324
+          }
+        }
+      },
+      {
+        "sentence": "I'll try again later.",
+        "translation": "过会儿我再打。",
+        "chunks": [
+          "I'll try again",
+          "later."
+        ],
+        "hints": [
+          "我再打一次",
+          "稍后"
+        ],
+        "cid": "1abf34f4",
+        "sentenceAudio": {
+          "text": "I'll try again later.",
+          "audio": {
+            "url": "assets/oral-1abf34f4-4a4fd4cbe559b5b2b134.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fca16170c16ab0b6cb2ae65f26e3c1bd3ab32b310cf24879b0d438bc1edb5923",
+            "bytes": 4980
+          }
+        }
+      },
+      {
+        "sentence": "Can I leave a message?",
+        "translation": "能留个口信吗?",
+        "chunks": [
+          "Can I leave",
+          "a message?"
+        ],
+        "hints": [
+          "能留个",
+          "口信吗？"
+        ],
+        "cid": "58a52996",
+        "sentenceAudio": {
+          "text": "Can I leave a message?",
+          "audio": {
+            "url": "assets/oral-58a52996-fa91eaef69d266f28f87.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d26a49fdedefcef2d6d4d74bb0b19ca23e63931c5f091c831b14fc63ad4e6b41",
+            "bytes": 5005
+          }
+        }
+      },
+      {
+        "sentence": "I called but your line was busy.",
+        "translation": "我给你打电话了，可是占线。",
+        "chunks": [
+          "I called",
+          "but your line was busy."
+        ],
+        "hints": [
+          "我给你打电话了",
+          "可是你的电话占线。"
+        ],
+        "cid": "b6d7ce31",
+        "sentenceAudio": {
+          "text": "I called but your line was busy.",
+          "audio": {
+            "url": "assets/oral-b6d7ce31-b56c55032c94a7665a07.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "95373035b175cc1be4144a03532abbd4c58a4387585aee778f322a0d91236e96",
+            "bytes": 6274
+          }
+        }
+      },
+      {
+        "sentence": "Would you tell him that Lynn Kane called?",
+        "translation": "请告诉他林恩·凯恩给他打过电话。",
+        "chunks": [
+          "Would you tell him",
+          "that Lynn Kane called?"
+        ],
+        "hints": [
+          "请告诉他",
+          "林恩·凯恩给他打过电话。"
+        ],
+        "cid": "757ddc01",
+        "sentenceAudio": {
+          "text": "Would you tell him that Lynn Kane called?",
+          "audio": {
+            "url": "assets/oral-757ddc01-a39f29f5f66d7446f973.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cce508ccfc1b4ef2a4ab50e03d43bcdd8325d04c9a9aa71464b5a124ec48d509",
+            "bytes": 6621
+          }
+        }
+      },
+      {
+        "sentence": "Please tell him to call me.",
+        "translation": "请转告他让他给我回个电话。",
+        "chunks": [
+          "Please tell him",
+          "to call me."
+        ],
+        "hints": [
+          "请转告他",
+          "让他给我回个电话。"
+        ],
+        "cid": "f5c079cf",
+        "sentenceAudio": {
+          "text": "Please tell him to call me.",
+          "audio": {
+            "url": "assets/oral-f5c079cf-681020cdb642bd42d1c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "526f2c2d45fd5a9cb1d831048842701b700f06514a3cf92487101eb05a47af10",
+            "bytes": 5537
+          }
+        }
+      },
+      {
+        "sentence": "How can he get a hold of you?",
+        "translation": "他怎么跟您联系呢?",
+        "chunks": [
+          "How can he",
+          "get a hold of you?"
+        ],
+        "hints": [
+          "他怎么",
+          "跟您联系呢？"
+        ],
+        "cid": "976c3f4d",
+        "sentenceAudio": {
+          "text": "How can he get a hold of you?",
+          "audio": {
+            "url": "assets/oral-976c3f4d-3c027a42828c1cd1d314.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3a2600ee1814155ef38a6abc2aaf41f784ee411b40b3114ef7f57f6b7beba583",
+            "bytes": 5214
+          }
+        }
+      },
+      {
+        "sentence": "Your number, please?",
+        "translation": "请问您的电话号码是多少？",
+        "chunks": [
+          "Your number, please?"
+        ],
+        "hints": [
+          "请问您的电话号码是多少？"
+        ],
+        "cid": "0f651aaa",
+        "sentenceAudio": {
+          "text": "Your number, please?",
+          "audio": {
+            "url": "assets/oral-0f651aaa-2ccd6a4e23c7b11e6bac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2bbfd1245a102bb55535283eae39e2af2ddc02655b1bc4711822623fad6708c1",
+            "bytes": 4481
+          }
+        }
+      },
+      {
+        "sentence": "My number is 1234-1234.",
+        "translation": "我的电话号码是1234-1234。",
+        "chunks": [
+          "My number is",
+          "1234-1234."
+        ],
+        "hints": [
+          "我的电话号码是",
+          "1234-1234。"
+        ],
+        "cid": "a9f7145b",
+        "sentenceAudio": {
+          "text": "My number is 1234-1234.",
+          "audio": {
+            "url": "assets/oral-a9f7145b-68045d3fa14a53d07307.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "722ef23fe7f9b21a0dfccf58e1e8fcbb78bd22e8482158ac587d197e79e959e9",
+            "bytes": 16400
+          }
+        }
+      },
+      {
+        "sentence": "You can reach me at 1234-1234 until six o'clock.",
+        "translation": "请在6点前拨打1234-1234联系我。",
+        "chunks": [
+          "You can reach me at 1234-1234",
+          "until six o'clock."
+        ],
+        "hints": [
+          "请拨打1234-1234联系我",
+          "直到6点"
+        ],
+        "cid": "fb8f455d",
+        "sentenceAudio": {
+          "text": "You can reach me at 1234-1234 until six o'clock.",
+          "audio": {
+            "url": "assets/oral-fb8f455d-32c12ba3bb2bf80bd393.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d20d8555eb80ee9a17894d0a0e48d935c4c9e6d559bf67e3f048cee1d9bf0530",
+            "bytes": 21916
+          }
+        }
+      },
+      {
+        "sentence": "Let me repeat the number. That's 1234-1234.",
+        "translation": "我再重复一下号码：1234-1234。",
+        "chunks": [
+          "Let me repeat",
+          "the number. That's 1234-1234."
+        ],
+        "hints": [
+          "我再重复一下",
+          "号码：1234-1234。"
+        ],
+        "cid": "4a72ffd7",
+        "sentenceAudio": {
+          "text": "Let me repeat the number. That's 1234-1234.",
+          "audio": {
+            "url": "assets/oral-4a72ffd7-63ce89516b6a709fdf4f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ef95b17cc075f8ce788431fc66a76111dc5e64fa73fee7889a50c7ae2e7bd2d",
+            "bytes": 19350
+          }
+        }
+      },
+      {
+        "sentence": "OK. I'll tell him that you called.",
+        "translation": "好的，我转告他您来电话了。",
+        "chunks": [
+          "OK. I'll tell him",
+          "that you called."
+        ],
+        "hints": [
+          "好的，我转告他",
+          "您来电话了。"
+        ],
+        "cid": "7566017d",
+        "sentenceAudio": {
+          "text": "OK. I'll tell him that you called.",
+          "audio": {
+            "url": "assets/oral-7566017d-7fa790b9a1ecfecf1faf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa6c6c1052c15c57677396fd3d610e377a445d3d75f2bf9113b7f96c83850064",
+            "bytes": 7184
+          }
+        }
+      },
+      {
+        "sentence": "How do you spell your name?",
+        "translation": "您的名字怎么拼？",
+        "chunks": [
+          "How do you spell your name?"
+        ],
+        "hints": [
+          "您的名字怎么拼？"
+        ],
+        "cid": "c75defa6",
+        "sentenceAudio": {
+          "text": "How do you spell your name?",
+          "audio": {
+            "url": "assets/oral-c75defa6-aac1d069fc6624ac88f0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f651b11f560f0011a5ceaba86e98a72c637956c5c5509e91b2ce2c23d9c9fdc5",
+            "bytes": 4783
+          }
+        }
+      },
+      {
+        "sentence": "Mr. Smith called you during the meeting.",
+        "translation": "您开会的时候史密斯先生给您来电话了。",
+        "chunks": [
+          "Mr. Smith called you",
+          "during the meeting."
+        ],
+        "hints": [
+          "史密斯先生给您打电话了",
+          "您开会的时候。"
+        ],
+        "cid": "b11557f8",
+        "sentenceAudio": {
+          "text": "Mr. Smith called you during the meeting.",
+          "audio": {
+            "url": "assets/oral-b11557f8-a4fca9e12cc968a526d5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "abf7cc43f2a4c0ccc6b70bbe0a14d21fa870d1023147eb5b7169bc6991a7abd0",
+            "bytes": 7566
+          }
+        }
+      },
+      {
+        "sentence": "I'll have him call you back.",
+        "translation": "我让他给您回电话好了。",
+        "chunks": [
+          "I'll have him",
+          "call you back."
+        ],
+        "hints": [
+          "我让他",
+          "给您回电话好了。"
+        ],
+        "cid": "3babf655",
+        "sentenceAudio": {
+          "text": "I'll have him call you back.",
+          "audio": {
+            "url": "assets/oral-3babf655-ab8b6112da9133d56ec6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e4600f28381cf8139d320b3ebc5a981b5780ceb9444e1ea59d94aacde956585c",
+            "bytes": 5131
+          }
+        }
+      },
+      {
+        "sentence": "Shall I have him call you back?",
+        "translation": "是不是让他给您回电话呀?",
+        "chunks": [
+          "Shall I have him",
+          "call you back?"
+        ],
+        "hints": [
+          "是不是让他",
+          "给您回电话呀？"
+        ],
+        "cid": "d7cf7e59",
+        "sentenceAudio": {
+          "text": "Shall I have him call you back?",
+          "audio": {
+            "url": "assets/oral-d7cf7e59-a4a5c9629cf0a1922fa4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "389d2f4a6f8762ac4a7fe6c9effb6c5081563955330671ad53227b107ea131bb",
+            "bytes": 5438
+          }
+        }
+      },
+      {
+        "sentence": "Can I take a message for you?",
+        "cid": "a82159aa",
+        "translation": "要我帮你留言吗？",
+        "chunks": [
+          "Can I",
+          "take a message",
+          "for you?"
+        ],
+        "hints": [
+          "我能",
+          "记下留言",
+          "替你"
+        ],
+        "grammar": [
+          {
+            "role": "情态+主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kæn/",
+              "/aɪ/"
+            ],
+            "pos": "委婉提议",
+            "meaning": "我能"
+          },
+          {
+            "role": "谓语+宾语（固定搭配）",
+            "color": "#3358e0",
+            "phonetic": [
+              "/teɪk/",
+              "/ə/",
+              "/ˈmesɪdʒ/"
+            ],
+            "pos": "动词短语",
+            "meaning": "记下留言"
+          },
+          {
+            "role": "对象状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/juː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "替你"
+          }
+        ],
+        "explanations": [
+          "`take a message` 是「记下留言」固定搭配。常见错误：\n• \"take **the** message\" → 泛指一条留言用 a\n• \"write a message **to** you\" → 也可以，但 take a message for you 更地道",
+          "电话场景中，对方要找的人不在时，常用这句主动提议帮忙留言。"
+        ],
+        "distractors": [
+          [
+            "Can me",
+            "Can I to",
+            "Am I"
+          ],
+          [
+            "leave a message",
+            "write a message",
+            "send a message"
+          ],
+          [
+            "to you?",
+            "from you?",
+            "with you?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Can I take a message for you?",
+          "audio": {
+            "url": "assets/oral-a82159aa-90c426827130931c83fc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "818d342eaa5947e674550d744633ffb4e5eab1f3f8a4c23912fe7d011e9f787c",
+            "bytes": 5724
+          }
+        }
+      },
+      {
+        "sentence": "Is that Mr. Chen speaking?",
+        "cid": "e138468c",
+        "translation": "请问是陈先生在说话吗？",
+        "chunks": [
+          "Is that",
+          "Mr. Chen",
+          "speaking?"
+        ],
+        "hints": [
+          "请问是",
+          "陈先生",
+          "本人吗？"
+        ],
+        "grammar": [
+          {
+            "role": "系动词+指示代词",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪz/",
+              "/ðæt/"
+            ],
+            "pos": "确认疑问",
+            "meaning": "那是"
+          },
+          {
+            "role": "称呼",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈmɪstər/",
+              "/tʃen/"
+            ],
+            "pos": "称谓短语",
+            "meaning": "陈先生"
+          },
+          {
+            "role": "现在分词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈspiːkɪŋ/"
+            ],
+            "pos": "进行时谓语",
+            "meaning": "在讲话"
+          }
+        ],
+        "explanations": [
+          "打电话确认对方身份的经典句式。常见错误：\n• \"Is that **speak** Mr. Chen\" → 词序混乱，正确为 Is that + 人名 + speaking\n• \"Are you Mr. Chen **speaking**\" → Are you 用于面对面，电话里用 Is that",
+          "`Mr. Chen` 姓氏前加 Mr./Ms. 表尊称。注意 Mr. 的缩写点不是句号，不影响断句。",
+          "`speaking?` 是进行时的省略（Is that Mr. Chen **who is** speaking?）。口语中 who is 常省略。"
+        ],
+        "distractors": [
+          [
+            "Is this",
+            "Was that",
+            "Is there"
+          ],
+          [
+            "Mr. Smith",
+            "the Mr. Chen",
+            "Mr. Chen's"
+          ],
+          [
+            "talk?",
+            "speaks?",
+            "spoke?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Is that Mr. Chen speaking?",
+          "audio": {
+            "url": "assets/oral-e138468c-cfdfb1396246c74b678b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e48d2360e2dc90fd1dc592377d4617df0746783246ce235b09d761d87242483",
+            "bytes": 6653
+          }
+        }
+      },
+      {
+        "sentence": "He's not in the office at the moment.",
+        "cid": "9c89ba9b",
+        "translation": "他现在不在办公室。",
+        "chunks": [
+          "He's not in the office",
+          "at the moment."
+        ],
+        "hints": [
+          "他不在办公室",
+          "此刻"
+        ],
+        "grammar": [
+          {
+            "role": "主系表+地点",
+            "color": "#c87033",
+            "phonetic": [
+              "/hiːz/",
+              "/nɒt/",
+              "/ɪn/",
+              "/ði/",
+              "/ˈɒfɪs/"
+            ],
+            "pos": "否定陈述",
+            "meaning": "他不在办公室"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/ðə/",
+              "/ˈməʊmənt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "此刻"
+          }
+        ],
+        "explanations": [
+          "`not in the office` 表「不在办公室」，是 in 表地点的否定。常见错误：\n• \"He's not **at** the office\" → at/office 搭配也对，但 in the office 更常用\n• \"He doesn't in the office\" → be 动词否定用 isn't，不是 doesn't",
+          "`at the moment` = right now（此刻），常用于电话里说明现状。同义表达：right now / at present。"
+        ],
+        "distractors": [
+          [
+            "He doesn't in the office",
+            "He's not on the office",
+            "He not in the office"
+          ],
+          [
+            "at the minute.",
+            "in the moment.",
+            "for the moment."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "He's not in the office at the moment.",
+          "audio": {
+            "url": "assets/oral-9c89ba9b-55910480d2801e63c08a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c6a2bd9078e3aee73da029e6d165f9debaa0e334903b12ab608421d3b3a5000",
+            "bytes": 6615
+          }
+        }
+      },
+      {
+        "sentence": "Could you tell him I called?",
+        "cid": "5893e7b7",
+        "translation": "你能告诉他我打过电话吗？",
+        "chunks": [
+          "Could you tell him",
+          "I called?"
+        ],
+        "hints": [
+          "你能告诉他",
+          "我打过电话"
+        ],
+        "grammar": [
+          {
+            "role": "情态+谓语+宾语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/tel/",
+              "/hɪm/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能告诉他"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/aɪ/",
+              "/kɔːld/"
+            ],
+            "pos": "过去时从句",
+            "meaning": "我打过电话"
+          }
+        ],
+        "explanations": [
+          "留言常用句式。`tell him + 从句` 结构。常见错误：\n• \"tell **to** him\" → tell 是双宾动词，直接接人（tell him / tell me）\n• \"tell him I **call**\" → 电话已打完要用过去式 called",
+          "`I called` 过去式表「刚才打过电话」。接电话的人回来说：He called earlier.（他之前来过电话）。"
+        ],
+        "distractors": [
+          [
+            "Can you told him",
+            "Could you tell to him",
+            "Could your tell him"
+          ],
+          [
+            "I call?",
+            "I calling?",
+            "I calls?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you tell him I called?",
+          "audio": {
+            "url": "assets/oral-5893e7b7-c0ac7bec463438d26daa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a68dfb5d647927def11e9e71d32045b350ce854beb1d5a11d536b98c703faf15",
+            "bytes": 5072
+          }
+        }
+      },
+      {
+        "sentence": "What's your number?",
+        "cid": "cd3e07aa",
+        "translation": "你的电话号码是多少？",
+        "chunks": [
+          "What's your number?"
+        ],
+        "hints": [
+          "你的电话号码是多少？"
+        ],
+        "grammar": [
+          {
+            "role": "疑问句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wʌts/",
+              "/jʊr/",
+              "/ˈnʌmbər/"
+            ],
+            "pos": "询问电话号码",
+            "meaning": "你的电话号码是多少"
+          }
+        ],
+        "explanations": [
+          "问电话号码、房号都用这句。常见错误：\n• \"What your number?\" → 漏了 's\n• 口语里 What's 的 /ts/ 与后面的 your 连读\n更礼貌：Could I get your number?"
+        ],
+        "distractors": [
+          [
+            "What are your number?",
+            "What your number?",
+            "How's your number?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What's your number?",
+          "audio": {
+            "url": "assets/oral-cd3e07aa-ce1c874db1d470a034dc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9217ce18d6603d7edfc8c887964990c58b5d4d095f28025c1c682dadea77adf4",
+            "bytes": 4144
+          }
+        }
+      },
+      {
+        "sentence": "Pick up the phone.",
+        "cid": "31d5d360",
+        "translation": "接电话。",
+        "chunks": [
+          "Pick up",
+          "the phone."
+        ],
+        "hints": [
+          "拿起、接起",
+          "电话"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/pɪk/",
+              "/ʌp/"
+            ],
+            "pos": "短语动词 pick up",
+            "meaning": "拿起、接起"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/foʊn/"
+            ],
+            "pos": "名词短语",
+            "meaning": "电话"
+          }
+        ],
+        "explanations": [
+          "`pick up the phone` = 接电话，也可说 answer the phone。常见错误：\n• \"Pick up phone\" → phone 前要加 the\n• 代词宾语要夹中间：pick it up",
+          "相关：hang up（挂电话）/ put the phone down（放下电话）"
+        ],
+        "distractors": [
+          [
+            "Pick on",
+            "Picking up",
+            "Pick of"
+          ],
+          [
+            "the phones.",
+            "a phone.",
+            "the phone up."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Pick up the phone.",
+          "audio": {
+            "url": "assets/oral-31d5d360-93b5b8c7d9dcab694bef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "890ab1e2d4825c6822918fd0857bdbe55e040beb8a6ed8b2c455f4a361379ddb",
+            "bytes": 4098
+          }
+        }
+      }
+    ]
+  }
+}

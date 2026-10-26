@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I don't care.",
+      "cid": "85fb293b",
+      "translation": "我不在乎。",
+      "chunks": [
+        "I",
+        "don't care."
+      ],
+      "hints": [
+        "我",
+        "不在乎"
+      ],
+      "grammar": [
+        {
+          "role": "主语+否定",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪ/",
+            "/doʊnt/"
+          ],
+          "pos": "主语+助动词否定",
+          "meaning": "我不"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ker/"
+          ],
+          "pos": "动词原形",
+          "meaning": "在乎"
+        }
+      ],
+      "explanations": [
+        "**I don't care.** 表示「我不在乎」，语气偏直接，朋友间随便用，正式场合慎用。",
+        "易混三句：**I don't mind.** = 我不介意（答应请求）；**It doesn't matter.** = 没关系（回应道歉）；**I don't care.** = 我不在乎。care 后可接 about：I don't care about it."
+      ],
+      "distractors": [
+        [
+          "I doesn't",
+          "I am not",
+          "Doesn't I"
+        ],
+        [
+          "cares.",
+          "to care.",
+          "care about."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I don't care.",
+        "audio": {
+          "url": "assets/oral-85fb293b-64fe06beeb54b5e8fe58.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2969e71823c53971641a6749be93eec180ccf99cb49e6fd0f4dc3fadcf2a431f",
+          "bytes": 3713
+        }
+      }
+    },
+    {
+      "sentence": "Who cares?",
+      "translation": "谁在乎啊？",
+      "chunks": [
+        "Who",
+        "cares?"
+      ],
+      "hints": [
+        "谁",
+        "在乎？"
+      ],
+      "cid": "52a79fbe",
+      "sentenceAudio": {
+        "text": "Who cares?",
+        "audio": {
+          "url": "assets/oral-52a79fbe-dec9783a107751ccbaa3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "aeb1bdb14eee85166b4a55cffb26fb4916609b415a0a12d0b68748ba4e2a2938",
+          "bytes": 3645
+        }
+      }
+    },
+    {
+      "sentence": "Whatever you want.",
+      "translation": "随便你!",
+      "chunks": [
+        "Whatever you want."
+      ],
+      "hints": [
+        "随你；你想要什么都行。"
+      ],
+      "cid": "3708901c",
+      "sentenceAudio": {
+        "text": "Whatever you want.",
+        "audio": {
+          "url": "assets/oral-3708901c-436950957414c906c12d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "90e087d6b1e1bc426c660f771e5a378376e4123ba84e27ccfd53fd3d8903350c",
+          "bytes": 4379
+        }
+      }
+    },
+    {
+      "sentence": "Nobody knows.",
+      "translation": "谁知道呢。",
+      "chunks": [
+        "Nobody",
+        "knows."
+      ],
+      "hints": [
+        "谁也不",
+        "知道"
+      ],
+      "cid": "c264779c",
+      "sentenceAudio": {
+        "text": "Nobody knows.",
+        "audio": {
+          "url": "assets/oral-c264779c-96914f5b0f9c516422a0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f7eee16297d789ec12749826e63069c1dfa4f43af3db507e7e39662dc9d37c3c",
+          "bytes": 4374
+        }
+      }
+    },
+    {
+      "sentence": "It has nothing to do with me.",
+      "translation": "这跟我没关系。",
+      "chunks": [
+        "It",
+        "has nothing to do with me."
+      ],
+      "hints": [
+        "这件事",
+        "跟我没关系。"
+      ],
+      "cid": "9c06951d",
+      "sentenceAudio": {
+        "text": "It has nothing to do with me.",
+        "audio": {
+          "url": "assets/oral-9c06951d-439cef0581718c32f84c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "917f3a8964ea8fed0c27392d39a16d25ad76c67d7417fc5be14b61aa0916129a",
+          "bytes": 5734
+        }
+      }
+    },
+    {
+      "sentence": "I couldn't care less.",
+      "translation": "我才不在乎呢。",
+      "chunks": [
+        "I",
+        "couldn't care less."
+      ],
+      "hints": [
+        "我",
+        "一点都不在乎"
+      ],
+      "cid": "8e1a1b06",
+      "sentenceAudio": {
+        "text": "I couldn't care less.",
+        "audio": {
+          "url": "assets/oral-8e1a1b06-6da550e2f752dc169874.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8058942eaabfaab97f4382293de20c1fbfbe01ef9d4454fb23dbe6667be85270",
+          "bytes": 4546
+        }
+      }
+    },
+    {
+      "sentence": "Nobody cares.",
+      "translation": "没人关心。",
+      "chunks": [
+        "Nobody",
+        "cares."
+      ],
+      "hints": [
+        "没人",
+        "会在乎"
+      ],
+      "cid": "52147c1a",
+      "sentenceAudio": {
+        "text": "Nobody cares.",
+        "audio": {
+          "url": "assets/oral-52147c1a-99fd73961088fe6c7ea2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "af893dc54c1625a7675275d78bc70375a9f23b7f006d90d5c40a7ddda814fe7e",
+          "bytes": 4494
+        }
+      }
+    },
+    {
+      "sentence": "Let it be.",
+      "translation": "顺其自然吧。",
+      "chunks": [
+        "Let it be."
+      ],
+      "hints": [
+        "顺其自然吧。/别管它。"
+      ],
+      "cid": "8524be46",
+      "sentenceAudio": {
+        "text": "Let it be.",
+        "audio": {
+          "url": "assets/oral-8524be46-fd8ed6c1b8d0d1d948c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7612eb64771b1b0890222d584bbbf911642606d5a38a5eacdae9f152e5ab3ebe",
+          "bytes": 3721
+        }
+      }
+    },
+    {
+      "sentence": "I don't care what they say.",
+      "translation": "我才不在乎他们说什么呢。",
+      "chunks": [
+        "I don't care",
+        "what they say."
+      ],
+      "hints": [
+        "我才不管",
+        "他们说什么"
+      ],
+      "cid": "ead4afca",
+      "sentenceAudio": {
+        "text": "I don't care what they say.",
+        "audio": {
+          "url": "assets/oral-ead4afca-e3057121eeeb3eae8e2b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "aedf46c24513e7f3f5965cde8cfd1cef57fc681de925b7dd22e8810d3e0c7d99",
+          "bytes": 5098
+        }
+      }
+    },
+    {
+      "sentence": "Anyone will do.",
+      "translation": "哪个都行。",
+      "chunks": [
+        "Anyone",
+        "will do."
+      ],
+      "hints": [
+        "哪个",
+        "都行"
+      ],
+      "cid": "eea03ed4",
+      "sentenceAudio": {
+        "text": "Anyone will do.",
+        "audio": {
+          "url": "assets/oral-eea03ed4-0ccfa51a82fc5c2256ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e205b4689b03ef5f8b0ae2726bd72466ad7de9862827ac1e11dde6e274c285ff",
+          "bytes": 4305
+        }
+      }
+    },
+    {
+      "sentence": "We can do without him.",
+      "translation": "没有他我们也能应付。",
+      "chunks": [
+        "We can",
+        "do without him."
+      ],
+      "hints": [
+        "我们可以",
+        "没有他也能应付。"
+      ],
+      "cid": "73db16dc",
+      "sentenceAudio": {
+        "text": "We can do without him.",
+        "audio": {
+          "url": "assets/oral-73db16dc-517a34c5b8014043dde7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d420aca8e4d8daca65cb4070656a5efd232c05371450bf33cf9eebc6a8f300d9",
+          "bytes": 4802
+        }
+      }
+    },
+    {
+      "sentence": "I've got nothing special to talk about.",
+      "translation": "我没什么特别要说的。",
+      "chunks": [
+        "I've got nothing special",
+        "to talk about."
+      ],
+      "hints": [
+        "我没什么特别的",
+        "要说的。"
+      ],
+      "cid": "44e7247e",
+      "sentenceAudio": {
+        "text": "I've got nothing special to talk about.",
+        "audio": {
+          "url": "assets/oral-44e7247e-c6cac3746b0a1c8da14d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cb5e21e0bf3c9a5559b36a7fbc591a8a89ecb4cf4ad65bc37d555f4db1e9586c",
+          "bytes": 7159
+        }
+      }
+    },
+    {
+      "sentence": "It doesn't matter.",
+      "cid": "c427a713",
+      "translation": "无所谓。",
+      "chunks": [
+        "It doesn't matter."
+      ],
+      "hints": [
+        "没关系；无所谓。"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪt/",
+            "/ˈdʌznt/",
+            "/ˈmætər/"
+          ],
+          "pos": "固定回应",
+          "meaning": "没关系；无所谓"
+        }
+      ],
+      "explanations": [
+        "**It doesn't matter.** 安慰别人或表示自己不在意时的常用语。",
+        "类似表达：**No worries.**（更随意）/**That's OK.**（更温和）/**Forget it.**（算了，别提了）"
+      ],
+      "distractors": [
+        [
+          "It doesn't make a difference.",
+          "It is important.",
+          "No problem."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It doesn't matter.",
+        "audio": {
+          "url": "assets/oral-c427a713-f9b97df5d1d79c566def.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee71f53b17c5c050e44dade85687460e1c870a1cd32b2229990fdf8835d5209b",
+          "bytes": 4075
+        }
+      }
+    },
+    {
+      "sentence": "It's the same old story.",
+      "translation": "这又不是什么新鲜事。",
+      "chunks": [
+        "It's",
+        "the same old story."
+      ],
+      "hints": [
+        "这",
+        "还是老一套。"
+      ],
+      "cid": "b5318ca5",
+      "sentenceAudio": {
+        "text": "It's the same old story.",
+        "audio": {
+          "url": "assets/oral-b5318ca5-d99265b9d810262c1dcb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d59ad08e29633044f81fc8151595706e57d3b4736337a4a84f6ef9bd92358ece",
+          "bytes": 5478
+        }
+      }
+    },
+    {
+      "sentence": "I don't give a shit.",
+      "cid": "96d9409c",
+      "translation": "我才不在乎（粗俗，比 I don't care 语气强烈得多）。",
+      "chunks": [
+        "I don't",
+        "give a shit."
+      ],
+      "hints": [
+        "我一点也不",
+        "在乎"
+      ],
+      "grammar": [
+        {
+          "role": "主谓否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/doʊnt/"
+          ],
+          "pos": "一般现在时否定",
+          "meaning": "我不"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɡɪv/",
+            "/ə/",
+            "/ʃɪt/"
+          ],
+          "pos": "固定俚语",
+          "meaning": "（表示）毫不在乎"
+        }
+      ],
+      "explanations": [
+        "`not give a shit` 是粗俗表达，意为「一点都不在乎」。常见错误：\n• \"give a **damn**\" 是同级替代说法，不是错误形式\n• \"I don't give a shit\" 中间不加 the",
+        "语域警告：这是粗话，正式场合与陌生人勿用；礼貌说法是 I don't care. / It doesn't bother me."
+      ],
+      "distractors": [
+        [
+          "I doesn't",
+          "I not",
+          "I don't gives"
+        ],
+        [
+          "care a shit.",
+          "give the shit.",
+          "giving a shit."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I don't give a shit.",
+        "audio": {
+          "url": "assets/oral-96d9409c-aa235bf460cdd6305252.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0450dc881c855accfc43d4d90c549486ec1625f80b348e5c5aa783ace2cc8387",
+          "bytes": 4329
+        }
+      }
+    }
+  ]
+}

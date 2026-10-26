@@ -1,0 +1,3021 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-5-1",
+    "name": "口语3000句 · 在工作单位 · 在办公室",
+    "short": "在办公室",
+    "desc": "在办公室",
+    "chapter": 1,
+    "section": "1.5",
+    "sectionTitle": "在工作单位",
+    "topic": "在办公室",
+    "baseCount": 0,
+    "totalCount": 99,
+    "items": [
+      {
+        "sentence": "I made it!",
+        "translation": "我赶上了!",
+        "chunks": [
+          "I",
+          "made it!"
+        ],
+        "hints": [
+          "我",
+          "赶上了"
+        ],
+        "cid": "ec1f2115",
+        "sentenceAudio": {
+          "text": "I made it!",
+          "audio": {
+            "url": "assets/oral-ec1f2115-780cec4f0631ba368e5d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fac059aa711ee05e48fdce9b6bcd105b40d95a1667f40d765fcef19269048462",
+            "bytes": 3573
+          }
+        }
+      },
+      {
+        "sentence": "Be punctual!",
+        "translation": "要严格遵守时间。",
+        "chunks": [
+          "Be",
+          "punctual!"
+        ],
+        "hints": [
+          "要",
+          "严格遵守时间"
+        ],
+        "cid": "7fddf895",
+        "sentenceAudio": {
+          "text": "Be punctual!",
+          "audio": {
+            "url": "assets/oral-7fddf895-eb79b6fbb4a8e724d160.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a5320c4cfb000d7f53797db8c747d1c58e0f6a741031038d6ee787ef3c279ce3",
+            "bytes": 4100
+          }
+        }
+      },
+      {
+        "sentence": "You are late again.",
+        "translation": "你又迟到了。",
+        "chunks": [
+          "You are",
+          "late again."
+        ],
+        "hints": [
+          "你",
+          "又迟到了"
+        ],
+        "cid": "9632e6ac",
+        "sentenceAudio": {
+          "text": "You are late again.",
+          "audio": {
+            "url": "assets/oral-9632e6ac-4f18354d56cc7d4b2b39.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "843ac0dc66aaf6d7bf054a2608c38c209340ff7715703f39f36a2aef000b580c",
+            "bytes": 4445
+          }
+        }
+      },
+      {
+        "sentence": "I was only late by five minutes.",
+        "translation": "我只迟到了5分钟。",
+        "chunks": [
+          "I was only late",
+          "by five minutes."
+        ],
+        "hints": [
+          "我只迟到了",
+          "五分钟"
+        ],
+        "cid": "ffbfaec5",
+        "sentenceAudio": {
+          "text": "I was only late by five minutes.",
+          "audio": {
+            "url": "assets/oral-ffbfaec5-8e1227c7ef2994b6f9b4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3d0970adb62c9adebb2d9f3b0796720153dd858a5ce6a0d1aa5ef567224db9d2",
+            "bytes": 6510
+          }
+        }
+      },
+      {
+        "sentence": "Did you punch in?",
+        "translation": "你上班打卡了吗？",
+        "chunks": [
+          "Did you",
+          "punch in?"
+        ],
+        "hints": [
+          "你",
+          "上班打卡了吗？"
+        ],
+        "cid": "51df1ffd",
+        "sentenceAudio": {
+          "text": "Did you punch in?",
+          "audio": {
+            "url": "assets/oral-51df1ffd-28708433f1bf50997007.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a1d08735acb76fedc64996af950700ca99976918feac0c05c77c6b17820e2284",
+            "bytes": 4270
+          }
+        }
+      },
+      {
+        "sentence": "Did you punch out?",
+        "translation": "你下班打卡了吗？",
+        "chunks": [
+          "Did you",
+          "punch out?"
+        ],
+        "hints": [
+          "你",
+          "下班打卡了吗？"
+        ],
+        "cid": "873cfa3e",
+        "sentenceAudio": {
+          "text": "Did you punch out?",
+          "audio": {
+            "url": "assets/oral-873cfa3e-be5ce1b4925236ce2c37.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b6c867225ba0fa32d5efce92f4c82ee4033926d60f8e5b5246028eb5747c5366",
+            "bytes": 4242
+          }
+        }
+      },
+      {
+        "sentence": "Let me check my schedule.",
+        "translation": "让我看看我的日程安排。",
+        "chunks": [
+          "Let me check",
+          "my schedule."
+        ],
+        "hints": [
+          "让我看看",
+          "我的日程安排"
+        ],
+        "cid": "acee3473",
+        "sentenceAudio": {
+          "text": "Let me check my schedule.",
+          "audio": {
+            "url": "assets/oral-acee3473-36a34da3293504618af4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e2f688fb088511849da26f8e78113875184a1eae70b8fedbeef08090721b8deb",
+            "bytes": 5442
+          }
+        }
+      },
+      {
+        "sentence": "I've got so much to do.",
+        "translation": "我有好多事要干。",
+        "chunks": [
+          "I've got",
+          "so much to do."
+        ],
+        "hints": [
+          "我有",
+          "好多事要干"
+        ],
+        "cid": "c118a103",
+        "sentenceAudio": {
+          "text": "I've got so much to do.",
+          "audio": {
+            "url": "assets/oral-c118a103-43abde1995f17a2d2fbc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3dd5ea44909ff825dc5748fa82bb25b3ef8b0d4defea1e78734217d3726a5115",
+            "bytes": 5202
+          }
+        }
+      },
+      {
+        "sentence": "I'm pressed for time.",
+        "translation": "我时间很紧。",
+        "chunks": [
+          "I'm",
+          "pressed for time."
+        ],
+        "hints": [
+          "我",
+          "时间很紧"
+        ],
+        "cid": "68b9fb50",
+        "sentenceAudio": {
+          "text": "I'm pressed for time.",
+          "audio": {
+            "url": "assets/oral-68b9fb50-f8ca9709a0c606bb3d22.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "462bf122977ede57c19f9ebafa717df052ae2f9eee19199a2977ebc29b4e29e4",
+            "bytes": 4675
+          }
+        }
+      },
+      {
+        "sentence": "I'm an ordinary office worker.",
+        "translation": "我是个普通的公司职员。",
+        "chunks": [
+          "I'm an ordinary",
+          "office worker."
+        ],
+        "hints": [
+          "我是个普通的",
+          "公司职员"
+        ],
+        "cid": "66b27ffd",
+        "sentenceAudio": {
+          "text": "I'm an ordinary office worker.",
+          "audio": {
+            "url": "assets/oral-66b27ffd-e23fba9e464be1b081be.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6a0d2a91f75ac5cfa476502ddae94ef6a1c056fa08be5a8469ea94b7f648b3d0",
+            "bytes": 6456
+          }
+        }
+      },
+      {
+        "sentence": "The work doesn't need much effort.",
+        "translation": "这工作不太费事。",
+        "chunks": [
+          "The work",
+          "doesn't need much effort."
+        ],
+        "hints": [
+          "这工作",
+          "不太费事"
+        ],
+        "cid": "ae926e9a",
+        "sentenceAudio": {
+          "text": "The work doesn't need much effort.",
+          "audio": {
+            "url": "assets/oral-ae926e9a-7de8bf487a4c2409f1e1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f0aeeba11ac34bc75af0de361216a8997830c94d5f5d3e603b6f9c2ee12cfdf9",
+            "bytes": 6152
+          }
+        }
+      },
+      {
+        "sentence": "Don't neglect your duties!",
+        "translation": "别疏忽你的职责！",
+        "chunks": [
+          "Don't neglect",
+          "your duties!"
+        ],
+        "hints": [
+          "别疏忽",
+          "你的职责"
+        ],
+        "cid": "a62fa405",
+        "sentenceAudio": {
+          "text": "Don't neglect your duties!",
+          "audio": {
+            "url": "assets/oral-a62fa405-5e1f79756233b4d02dce.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "72167e55cd214aeee397626e8f31c97f363addba3847c6682ecd309cc8dda849",
+            "bytes": 5292
+          }
+        }
+      },
+      {
+        "sentence": "I take charge of the west side.",
+        "translation": "西区由我负责。",
+        "chunks": [
+          "I take charge",
+          "of the west side."
+        ],
+        "hints": [
+          "我负责",
+          "西区"
+        ],
+        "cid": "94a8f5a3",
+        "sentenceAudio": {
+          "text": "I take charge of the west side.",
+          "audio": {
+            "url": "assets/oral-94a8f5a3-5830a0b9f11fce146830.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "af79be818e91d1c8c2f66df9d2c98c62aaccc17dc2bf612da7bd29f8235361d2",
+            "bytes": 6245
+          }
+        }
+      },
+      {
+        "sentence": "I'm done with the work.",
+        "translation": "我已结束那项工作了。",
+        "chunks": [
+          "I'm done",
+          "with the work."
+        ],
+        "hints": [
+          "我已结束",
+          "那项工作"
+        ],
+        "cid": "63dd9cc2",
+        "sentenceAudio": {
+          "text": "I'm done with the work.",
+          "audio": {
+            "url": "assets/oral-63dd9cc2-e04f7662f8cada8562f8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2aecae3186b62c05979772dddefb8bd61fc1483dffa09567ef5528f25ee2d8a7",
+            "bytes": 4820
+          }
+        }
+      },
+      {
+        "sentence": "I can still work for a long time.",
+        "translation": "我还能工作好长时间呢。",
+        "chunks": [
+          "I can still",
+          "work for a long time."
+        ],
+        "hints": [
+          "我还能",
+          "工作很长时间"
+        ],
+        "cid": "f8ddc168",
+        "sentenceAudio": {
+          "text": "I can still work for a long time.",
+          "audio": {
+            "url": "assets/oral-f8ddc168-ca5b19e23dc506a3d6af.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "81c187971697f0f0ac94ab38378691b13cf0050f89693c7e1f49e1d2007f334b",
+            "bytes": 6631
+          }
+        }
+      },
+      {
+        "sentence": "Our boss has been fired.",
+        "translation": "我们的上司被解雇了。",
+        "chunks": [
+          "Our boss",
+          "has been fired."
+        ],
+        "hints": [
+          "我们的上司",
+          "被解雇了"
+        ],
+        "cid": "e3bfc522",
+        "sentenceAudio": {
+          "text": "Our boss has been fired.",
+          "audio": {
+            "url": "assets/oral-e3bfc522-fa57c2e94e8b083adece.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bbc08a6033197d201bfa333bb3c6e398168ceb9aa8c5917bc2c27947330e9331",
+            "bytes": 5289
+          }
+        }
+      },
+      {
+        "sentence": "Please staple these together.",
+        "translation": "请把这些订在一起。",
+        "chunks": [
+          "Please",
+          "staple these together."
+        ],
+        "hints": [
+          "请",
+          "把这些订在一起。"
+        ],
+        "cid": "7a6fcbff",
+        "sentenceAudio": {
+          "text": "Please staple these together.",
+          "audio": {
+            "url": "assets/oral-7a6fcbff-2705f34f0caea92a2830.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "721ecf2cc3d6db4cab4aa70b383e714e3336b222e9a145f94a609f3f2fe82849",
+            "bytes": 5725
+          }
+        }
+      },
+      {
+        "sentence": "Would you copy these papers?",
+        "translation": "能帮我复印一下这份材料吗?",
+        "chunks": [
+          "Would you copy",
+          "these papers?"
+        ],
+        "hints": [
+          "能帮我复印",
+          "这份材料吗"
+        ],
+        "cid": "c8624b8d",
+        "sentenceAudio": {
+          "text": "Would you copy these papers?",
+          "audio": {
+            "url": "assets/oral-c8624b8d-64dc11c52039286d3dd3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8018b688a536c9c9a4e026c6f3d5923d7c35456ecd3a43e3c00eef0f1847d073",
+            "bytes": 5776
+          }
+        }
+      },
+      {
+        "sentence": "This copy machine doesn't work.",
+        "translation": "复印机有毛病了。",
+        "chunks": [
+          "This copy machine",
+          "doesn't work."
+        ],
+        "hints": [
+          "这台复印机",
+          "有毛病了"
+        ],
+        "cid": "63726b88",
+        "sentenceAudio": {
+          "text": "This copy machine doesn't work.",
+          "audio": {
+            "url": "assets/oral-63726b88-5668e2d776788c1a14ea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "caf8ed301bcf8a4410902b0770891e39a3c2eb5dd5723a1385df10c21ab87b22",
+            "bytes": 5946
+          }
+        }
+      },
+      {
+        "sentence": "I think it ran out of paper.",
+        "translation": "我想复印机是没纸了。",
+        "chunks": [
+          "I think it",
+          "ran out of paper."
+        ],
+        "hints": [
+          "我想它是",
+          "没纸了"
+        ],
+        "cid": "8d129c97",
+        "sentenceAudio": {
+          "text": "I think it ran out of paper.",
+          "audio": {
+            "url": "assets/oral-8d129c97-2b092875fefaeeb356b0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2179097dbd5fa106375b1cac193855f04bdd1666035997c1ab3fa9e045435822",
+            "bytes": 5814
+          }
+        }
+      },
+      {
+        "sentence": "Let's take a break.",
+        "translation": "我们休息一会儿吧。",
+        "chunks": [
+          "Let's take",
+          "a break."
+        ],
+        "hints": [
+          "我们",
+          "休息一会儿吧"
+        ],
+        "cid": "a2742647",
+        "sentenceAudio": {
+          "text": "Let's take a break.",
+          "audio": {
+            "url": "assets/oral-a2742647-305dc25900840c76b9c8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "616a48b18d0238f6509041e3f760b5b23e96e4b65c6ad39cbf09d2cc8aa30627",
+            "bytes": 4569
+          }
+        }
+      },
+      {
+        "sentence": "Get me a cup of coffee, will you?",
+        "translation": "能帮我倒杯咖啡吗?",
+        "chunks": [
+          "Get me a cup of coffee,",
+          "will you?"
+        ],
+        "hints": [
+          "帮我倒杯咖啡",
+          "好吗"
+        ],
+        "cid": "4cfc8999",
+        "sentenceAudio": {
+          "text": "Get me a cup of coffee, will you?",
+          "audio": {
+            "url": "assets/oral-4cfc8999-58f000cbfbcf4da3716f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dad64b337e1739b4d406b5b8d17e89a971b13cb61b1a242c692cca3e7320b0d4",
+            "bytes": 5986
+          }
+        }
+      },
+      {
+        "sentence": "Would you like some coffee?",
+        "translation": "您想喝杯咖啡吗?",
+        "chunks": [
+          "Would you like",
+          "some coffee?"
+        ],
+        "hints": [
+          "你想来点",
+          "咖啡吗"
+        ],
+        "cid": "78864d39",
+        "sentenceAudio": {
+          "text": "Would you like some coffee?",
+          "audio": {
+            "url": "assets/oral-78864d39-75af49d23f252a80ca99.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0cac9b84b0f2d44674b2b952dfccfd446a3369bd7333e4e6a5aec59ced8c184b",
+            "bytes": 5111
+          }
+        }
+      },
+      {
+        "sentence": "That would be great.",
+        "translation": "那真是太好了。",
+        "chunks": [
+          "That would",
+          "be great."
+        ],
+        "hints": [
+          "那真是",
+          "太好了"
+        ],
+        "cid": "699f68bf",
+        "sentenceAudio": {
+          "text": "That would be great.",
+          "audio": {
+            "url": "assets/oral-699f68bf-fffda7b51f09ab1667c9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "11f576a823f8a8275c60bffb71f624215d627655ce1aeaae7d85b954215c0c59",
+            "bytes": 4288
+          }
+        }
+      },
+      {
+        "sentence": "It's almost lunchtime.",
+        "translation": "快到午饭时间了。",
+        "chunks": [
+          "It's almost",
+          "lunchtime."
+        ],
+        "hints": [
+          "快到",
+          "午饭时间了"
+        ],
+        "cid": "3c28ea21",
+        "sentenceAudio": {
+          "text": "It's almost lunchtime.",
+          "audio": {
+            "url": "assets/oral-3c28ea21-be69b736d25f1bfc837a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "993771a66f7d524639c3a9b6333457de2c2d8427131d03188c070f3620a184b7",
+            "bytes": 5094
+          }
+        }
+      },
+      {
+        "sentence": "We took an hour lunch break.",
+        "translation": "我们午休了一小时。",
+        "chunks": [
+          "We took",
+          "an hour lunch break."
+        ],
+        "hints": [
+          "我们休了",
+          "一小时的午休。"
+        ],
+        "cid": "0adc8892",
+        "sentenceAudio": {
+          "text": "We took an hour lunch break.",
+          "audio": {
+            "url": "assets/oral-0adc8892-748fde6babc26a70aced.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1516850a6e6cf5a40e98ed0f8d2f470ff91bd35e2d56e8e08450c4aa3dfa2951",
+            "bytes": 5611
+          }
+        }
+      },
+      {
+        "sentence": "Let's get started.",
+        "translation": "我们开始吧。",
+        "chunks": [
+          "Let's get",
+          "started."
+        ],
+        "hints": [
+          "我们",
+          "开始吧"
+        ],
+        "cid": "d951b2e9",
+        "sentenceAudio": {
+          "text": "Let's get started.",
+          "audio": {
+            "url": "assets/oral-d951b2e9-9c82455666be05f7efc7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d525f118277b85aebe267840370ee332b61106e017c475a93d359e75508a409",
+            "bytes": 4789
+          }
+        }
+      },
+      {
+        "sentence": "I can't leave this job at the moment.",
+        "translation": "我目前还不能辞掉这份工作。",
+        "chunks": [
+          "I can't leave this job",
+          "at the moment."
+        ],
+        "hints": [
+          "我还不能辞掉这份工作",
+          "目前。"
+        ],
+        "cid": "26dbed9b",
+        "sentenceAudio": {
+          "text": "I can't leave this job at the moment.",
+          "audio": {
+            "url": "assets/oral-26dbed9b-43ce7cabb9bb8a2f2fbd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1a3ee7ee4fb4ff81081a47849887e8f96b52cd21560e6bf6333047864119cd5b",
+            "bytes": 6833
+          }
+        }
+      },
+      {
+        "sentence": "I'm too busy to bother with such details.",
+        "translation": "我太忙了，顾不上那么琐碎的事。",
+        "chunks": [
+          "I'm too busy",
+          "to bother with such details."
+        ],
+        "hints": [
+          "我太忙了",
+          "顾不上这些琐事"
+        ],
+        "cid": "c2dd30e1",
+        "sentenceAudio": {
+          "text": "I'm too busy to bother with such details.",
+          "audio": {
+            "url": "assets/oral-c2dd30e1-7016c490a7bd1f823791.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e9c2b015cf65dff219e1eac3a16fce2e2fd9b7b48c615b1d7e3abe6cac3e5b6f",
+            "bytes": 8111
+          }
+        }
+      },
+      {
+        "sentence": "I'm so busy, I'd really appreciate any help I could get.",
+        "translation": "我忙得不可开交，如果有人能帮帮我，我会非常感激。",
+        "chunks": [
+          "I'm so busy,",
+          "I'd really appreciate any help I could get."
+        ],
+        "hints": [
+          "我忙得不可开交，",
+          "如果有人能帮帮我，我会非常感激。"
+        ],
+        "cid": "1522a3a1",
+        "sentenceAudio": {
+          "text": "I'm so busy, I'd really appreciate any help I could get.",
+          "audio": {
+            "url": "assets/oral-1522a3a1-fda7dd646aed7bc251ef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cdd184e98ad8e1d49461d668f5a4b53e5eb3885a4aeaae9f384052d9da9541c5",
+            "bytes": 10971
+          }
+        }
+      },
+      {
+        "sentence": "Don't slack off!",
+        "translation": "别偷懒!",
+        "chunks": [
+          "Don't",
+          "slack off!"
+        ],
+        "hints": [
+          "别",
+          "偷懒"
+        ],
+        "cid": "5d3a3983",
+        "sentenceAudio": {
+          "text": "Don't slack off!",
+          "audio": {
+            "url": "assets/oral-5d3a3983-a2a6c2ab1b35ef4fb493.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5755eb7f1d6fbc6d787262b68b0164cf56b70c87715884c9540d4b4020f1da33",
+            "bytes": 4224
+          }
+        }
+      },
+      {
+        "sentence": "Do your best!",
+        "translation": "尽你的全力!",
+        "chunks": [
+          "Do your",
+          "best!"
+        ],
+        "hints": [
+          "尽你的",
+          "全力"
+        ],
+        "cid": "9e63f7a2",
+        "sentenceAudio": {
+          "text": "Do your best!",
+          "audio": {
+            "url": "assets/oral-9e63f7a2-8622cf135c69c004ea69.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1ac9cdfc117b5fedf3043a85ea5fe32f4d4f4081d218f5fe9992f7a05767caf5",
+            "bytes": 3618
+          }
+        }
+      },
+      {
+        "sentence": "Don't work too hard.",
+        "translation": "别工作得太拼命。",
+        "chunks": [
+          "Don't work",
+          "too hard."
+        ],
+        "hints": [
+          "别工作",
+          "太拼命"
+        ],
+        "cid": "a2b8b2d5",
+        "sentenceAudio": {
+          "text": "Don't work too hard.",
+          "audio": {
+            "url": "assets/oral-a2b8b2d5-ceafde57da4240f54a5c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "33267f2ebf447b9c3132368ccf39faf3d6d509170eb5a2545fbf52b07fdf7c41",
+            "bytes": 4809
+          }
+        }
+      },
+      {
+        "sentence": "Pull yourself together.",
+        "translation": "打起精神来。",
+        "chunks": [
+          "Pull yourself together."
+        ],
+        "hints": [
+          "打起精神来。"
+        ],
+        "cid": "6576ae63",
+        "sentenceAudio": {
+          "text": "Pull yourself together.",
+          "audio": {
+            "url": "assets/oral-6576ae63-c55bc6f8f34b85a93882.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "60f5b8829a6d331861aad695b741e9e8368f88ca89c7c001fc96363b8e2239df",
+            "bytes": 4865
+          }
+        }
+      },
+      {
+        "sentence": "You can count on me.",
+        "translation": "你可以依靠我。",
+        "chunks": [
+          "You can",
+          "count on me."
+        ],
+        "hints": [
+          "你可以",
+          "依靠我"
+        ],
+        "cid": "8f00cb22",
+        "sentenceAudio": {
+          "text": "You can count on me.",
+          "audio": {
+            "url": "assets/oral-8f00cb22-81e85ac8120a45223758.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6a1447ff1ca853280a9eb27ea20fc41eeb9c00c65d5e111578d085e0cad93b27",
+            "bytes": 4755
+          }
+        }
+      },
+      {
+        "sentence": "I don't even have time to catch my breath.",
+        "translation": "连喘口气的工夫都没有。",
+        "chunks": [
+          "I don't even have time",
+          "to catch my breath."
+        ],
+        "hints": [
+          "我连时间都没有",
+          "喘口气的工夫"
+        ],
+        "cid": "e8d2634d",
+        "sentenceAudio": {
+          "text": "I don't even have time to catch my breath.",
+          "audio": {
+            "url": "assets/oral-e8d2634d-d2311736b7885be198c1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fe5b5300bdfba2b044ab1ea3e0f949125a90197a2ef76dc6de7ea078f32a8fca",
+            "bytes": 7413
+          }
+        }
+      },
+      {
+        "sentence": "What's keeping you?",
+        "translation": "什么事耽搁你了？",
+        "chunks": [
+          "What's keeping you?"
+        ],
+        "hints": [
+          "什么事耽搁你了？"
+        ],
+        "cid": "be405ede",
+        "sentenceAudio": {
+          "text": "What's keeping you?",
+          "audio": {
+            "url": "assets/oral-be405ede-4a592d0bffa6ef8a4fe7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0bd8b8821ce3ea29de78e7f7d29ac1318ce60d77aab8013314c5f257e12709d3",
+            "bytes": 4422
+          }
+        }
+      },
+      {
+        "sentence": "Changing jobs is the only way out.",
+        "translation": "换个工作是惟一的解决办法。",
+        "chunks": [
+          "Changing jobs",
+          "is the only way out."
+        ],
+        "hints": [
+          "换个工作",
+          "是唯一的出路"
+        ],
+        "cid": "4956bbd4",
+        "sentenceAudio": {
+          "text": "Changing jobs is the only way out.",
+          "audio": {
+            "url": "assets/oral-4956bbd4-8e531b0dfd0be88d0936.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "10ead3daa44677a650234d10531795cf09b8fe098470d24f46d42f55698438ea",
+            "bytes": 7930
+          }
+        }
+      },
+      {
+        "sentence": "You'd better work harder.",
+        "translation": "你应该更加努力工作。",
+        "chunks": [
+          "You'd better",
+          "work harder."
+        ],
+        "hints": [
+          "你最好",
+          "更努力些"
+        ],
+        "cid": "a78b0190",
+        "sentenceAudio": {
+          "text": "You'd better work harder.",
+          "audio": {
+            "url": "assets/oral-a78b0190-07ce44322986e11ca9aa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "114139143cfd00e1e11204215f1e58c66eb57a01f6b7e56de0ff41fc3175180e",
+            "bytes": 5085
+          }
+        }
+      },
+      {
+        "sentence": "I'm a workaholic.",
+        "translation": "我是个工作狂。",
+        "chunks": [
+          "I'm a",
+          "workaholic."
+        ],
+        "hints": [
+          "我是个",
+          "工作狂"
+        ],
+        "cid": "a3f381d0",
+        "sentenceAudio": {
+          "text": "I'm a workaholic.",
+          "audio": {
+            "url": "assets/oral-a3f381d0-88a69fd018d8c1c64c17.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cfbfb81e160f2af0e55a4c1ada96a488c92b213bf761f9d8ec1707eeeb3bb953",
+            "bytes": 4716
+          }
+        }
+      },
+      {
+        "sentence": "I don't know how to fill out this form.",
+        "translation": "我不知道这张表怎么填。",
+        "chunks": [
+          "I don't know",
+          "how to fill out this form."
+        ],
+        "hints": [
+          "我不知道",
+          "这张表该怎么填。"
+        ],
+        "cid": "fcf64dcf",
+        "sentenceAudio": {
+          "text": "I don't know how to fill out this form.",
+          "audio": {
+            "url": "assets/oral-fcf64dcf-8e23502e316c9643e36e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "16431c114f94223159bbdecaa3e002ca7ef683b9cb0b2a6840f99034244b5615",
+            "bytes": 6516
+          }
+        }
+      },
+      {
+        "sentence": "How do I fill out this form?",
+        "translation": "这张表怎么填?",
+        "chunks": [
+          "How do I",
+          "fill out this form?"
+        ],
+        "hints": [
+          "我该怎么",
+          "填这张表"
+        ],
+        "cid": "66f5dd55",
+        "sentenceAudio": {
+          "text": "How do I fill out this form?",
+          "audio": {
+            "url": "assets/oral-66f5dd55-6deb84c5f13f67940cd9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "400cbc9bad64ab26d3dcd2f27e7ce8b693788375c5d83852426014836112f17f",
+            "bytes": 5710
+          }
+        }
+      },
+      {
+        "sentence": "Can you help me with this form?",
+        "translation": "您能帮我填一下这张表吗?",
+        "chunks": [
+          "Can you",
+          "help me with this form?"
+        ],
+        "hints": [
+          "你能不能",
+          "帮我填一下这张表？"
+        ],
+        "cid": "fde31956",
+        "sentenceAudio": {
+          "text": "Can you help me with this form?",
+          "audio": {
+            "url": "assets/oral-fde31956-c455e82dc5c343f69a7d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d57ea562168ed30a0434c8b5041c7c4646832ce17162e7315b402bcc5254e14",
+            "bytes": 5612
+          }
+        }
+      },
+      {
+        "sentence": "It looks like it's going to be a long meeting, doesn't it?",
+        "translation": "看来会议要开长时间了，是吧?",
+        "chunks": [
+          "It looks like",
+          "it's going to be a long meeting, doesn't it?"
+        ],
+        "hints": [
+          "看来",
+          "会议要开很长时间，是吧"
+        ],
+        "cid": "8dbfabbc",
+        "sentenceAudio": {
+          "text": "It looks like it's going to be a long meeting, doesn't it?",
+          "audio": {
+            "url": "assets/oral-8dbfabbc-071e8eec1f40cce7b19e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bbd32ef6231e3a43264d893f9d405211a6793bfca93cb313f38177f265abee0f",
+            "bytes": 8940
+          }
+        }
+      },
+      {
+        "sentence": "The meeting went well.",
+        "translation": "会议开得很成功。",
+        "chunks": [
+          "The meeting",
+          "went well."
+        ],
+        "hints": [
+          "会议",
+          "开得很成功"
+        ],
+        "cid": "7709f28b",
+        "sentenceAudio": {
+          "text": "The meeting went well.",
+          "audio": {
+            "url": "assets/oral-7709f28b-2140c915b69c6ab8d6fc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "db25bbbcf9e368ab7de33cf69009c14f4a98296ffe6a6035974fe04a7e9d105d",
+            "bytes": 4655
+          }
+        }
+      },
+      {
+        "sentence": "I did all I could do.",
+        "translation": "我已经尽了最大的努力了。",
+        "chunks": [
+          "I did",
+          "all I could do."
+        ],
+        "hints": [
+          "我已经",
+          "尽了最大的努力"
+        ],
+        "cid": "6328e4e9",
+        "sentenceAudio": {
+          "text": "I did all I could do.",
+          "audio": {
+            "url": "assets/oral-6328e4e9-94cf547a9d73906aee5b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6a4d5f46e83ff75741899b5839e83d84d4b64e9aae8c82183e6e90af745bf8b9",
+            "bytes": 4877
+          }
+        }
+      },
+      {
+        "sentence": "Are you impressed?",
+        "translation": "你觉得印象深刻吗?",
+        "chunks": [
+          "Are you",
+          "impressed?"
+        ],
+        "hints": [
+          "你觉得",
+          "印象深刻吗"
+        ],
+        "cid": "077dc857",
+        "sentenceAudio": {
+          "text": "Are you impressed?",
+          "audio": {
+            "url": "assets/oral-077dc857-f0f01758701d7b3e8b9d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2005c4dc6e352b6f4188db4a7abda7066e52699a096c676af4a2f3b859d68b46",
+            "bytes": 4130
+          }
+        }
+      },
+      {
+        "sentence": "Please underline the important items.",
+        "translation": "请给重要事项划线。",
+        "chunks": [
+          "Please underline",
+          "the important items."
+        ],
+        "hints": [
+          "请划线",
+          "重要事项。"
+        ],
+        "cid": "026dbe80",
+        "sentenceAudio": {
+          "text": "Please underline the important items.",
+          "audio": {
+            "url": "assets/oral-026dbe80-6cdad894ab748b0f16ce.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "25b1f9d3ca1d4220e0a612e3ffaa16241aa830888c92edeb85d98880605d3372",
+            "bytes": 7716
+          }
+        }
+      },
+      {
+        "sentence": "Check.",
+        "translation": "好，没问题!",
+        "chunks": [
+          "Check."
+        ],
+        "hints": [
+          "好，没问题"
+        ],
+        "cid": "2a23336b",
+        "sentenceAudio": {
+          "text": "Check.",
+          "audio": {
+            "url": "assets/oral-2a23336b-d8708f3678bc58da6775.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "81f9a100c3e74967d4c982b8f11970dae1f805ea4bf50080e0a9e695c52391fa",
+            "bytes": 3003
+          }
+        }
+      },
+      {
+        "sentence": "Would you get to the point?",
+        "translation": "你能把要点说得再清楚点儿吗?",
+        "chunks": [
+          "Would you",
+          "get to the point?"
+        ],
+        "hints": [
+          "你能",
+          "说到点子上吗"
+        ],
+        "cid": "2446e728",
+        "sentenceAudio": {
+          "text": "Would you get to the point?",
+          "audio": {
+            "url": "assets/oral-2446e728-5332d7b97f7835fabddd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b5f1f3f0700e053aa8ef8c6403fa8c31a0738dfb87099f8a7d824952b0ea7773",
+            "bytes": 4814
+          }
+        }
+      },
+      {
+        "sentence": "Please do it all over again.",
+        "translation": "请从头到尾再做一遍。",
+        "chunks": [
+          "Please",
+          "do it all over again."
+        ],
+        "hints": [
+          "请",
+          "从头到尾再做一遍。"
+        ],
+        "cid": "7572409a",
+        "sentenceAudio": {
+          "text": "Please do it all over again.",
+          "audio": {
+            "url": "assets/oral-7572409a-5d3748ac37d694a7aa5f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "faa605d3f0b1f7b90b26015136ddb9da4aab143e47088c0dc920b2098ca8545a",
+            "bytes": 6000
+          }
+        }
+      },
+      {
+        "sentence": "Fax this paper to Mr. Tanaka.",
+        "translation": "请把这份文件传真给田中先生。",
+        "chunks": [
+          "Fax this paper",
+          "to Mr. Tanaka."
+        ],
+        "hints": [
+          "把这份文件传真",
+          "给田中先生"
+        ],
+        "cid": "7cde5024",
+        "sentenceAudio": {
+          "text": "Fax this paper to Mr. Tanaka.",
+          "audio": {
+            "url": "assets/oral-7cde5024-13012884e9dd8d38079c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6dbc7d604c4eddf2aab5293d36b0c11008cd44786ab5f6848bbf95733d0dd1e5",
+            "bytes": 7966
+          }
+        }
+      },
+      {
+        "sentence": "Please hand the document in to me.",
+        "translation": "请把那份文件交给我。",
+        "chunks": [
+          "Please",
+          "hand the document in to me."
+        ],
+        "hints": [
+          "请",
+          "把那份文件交给我。"
+        ],
+        "cid": "ef02e9b8",
+        "sentenceAudio": {
+          "text": "Please hand the document in to me.",
+          "audio": {
+            "url": "assets/oral-ef02e9b8-682141b5c9da40325ea1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cfe91cc3aa6bafd91838b36133e7e7eb5982165b4f809cae16d13c825b9620e1",
+            "bytes": 6964
+          }
+        }
+      },
+      {
+        "sentence": "This is a piece of work I can be proud of.",
+        "translation": "这是我引以为傲的作品。",
+        "chunks": [
+          "This is",
+          "a piece of work I can be proud of."
+        ],
+        "hints": [
+          "这是",
+          "我引以为傲的作品"
+        ],
+        "cid": "75e5c215",
+        "sentenceAudio": {
+          "text": "This is a piece of work I can be proud of.",
+          "audio": {
+            "url": "assets/oral-75e5c215-e00bd059fbc4688aa93f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "95eb606a2b78d27f28cb75a909fb1bca9c45cc2b2634cfd35a9931bc24f04ebd",
+            "bytes": 7751
+          }
+        }
+      },
+      {
+        "sentence": "I can't find my white-out.",
+        "translation": "我找不到我的涂改液了。",
+        "chunks": [
+          "I can't find",
+          "my white-out."
+        ],
+        "hints": [
+          "我找不到",
+          "我的涂改液了"
+        ],
+        "cid": "09c5ab7c",
+        "sentenceAudio": {
+          "text": "I can't find my white-out.",
+          "audio": {
+            "url": "assets/oral-09c5ab7c-98e4c50fdf6bda3f978d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "38b10f225d005ba87b176e3a277e310f9ce7b0b0ac33ca03a385525386a74a85",
+            "bytes": 5638
+          }
+        }
+      },
+      {
+        "sentence": "Are you working overtime tonight?",
+        "translation": "今晚你加班吗?",
+        "chunks": [
+          "Are you",
+          "working overtime tonight?"
+        ],
+        "hints": [
+          "你",
+          "今晚加班吗？"
+        ],
+        "cid": "e473d13e",
+        "sentenceAudio": {
+          "text": "Are you working overtime tonight?",
+          "audio": {
+            "url": "assets/oral-e473d13e-3f279545e50cca0ee580.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d90c89542186c74604dfe89b80186c3345a6b8db5b7e45b1ee748f4d9dbd2f61",
+            "bytes": 6416
+          }
+        }
+      },
+      {
+        "sentence": "Business is business.",
+        "translation": "公事归公事，不能讲私情。",
+        "chunks": [
+          "Business is business."
+        ],
+        "hints": [
+          "公事归公事，不能讲私情。"
+        ],
+        "cid": "1b6ced71",
+        "sentenceAudio": {
+          "text": "Business is business.",
+          "audio": {
+            "url": "assets/oral-1b6ced71-8933ba38b372e58bdd1b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d193ed67f7b25cc05f1de33028afad4920cedbe042c6c0f01ad5cb130e9c0202",
+            "bytes": 4898
+          }
+        }
+      },
+      {
+        "sentence": "He's a hard worker.",
+        "translation": "他是个努力工作的人。",
+        "chunks": [
+          "He's a",
+          "hard worker."
+        ],
+        "hints": [
+          "他是个",
+          "努力工作的人"
+        ],
+        "cid": "3264ce08",
+        "sentenceAudio": {
+          "text": "He's a hard worker.",
+          "audio": {
+            "url": "assets/oral-3264ce08-e84d6004b74dd3da92cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d1bd514f006bcccb2a010a027af5e4e528e4a910946c6ada695ba659d4bcce51",
+            "bytes": 4812
+          }
+        }
+      },
+      {
+        "sentence": "You're overworking.",
+        "translation": "你超负荷工作了。",
+        "chunks": [
+          "You're",
+          "overworking."
+        ],
+        "hints": [
+          "你",
+          "超负荷工作了"
+        ],
+        "cid": "5f439671",
+        "sentenceAudio": {
+          "text": "You're overworking.",
+          "audio": {
+            "url": "assets/oral-5f439671-d43f8645d4b3cfd338bd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e0bdc1bdb2b5b8384ea8ff5dbe8936a7ffa68cdaa4a828bf5d55df1c41058fa",
+            "bytes": 4651
+          }
+        }
+      },
+      {
+        "sentence": "Finish this report today!",
+        "translation": "今天必须完成这份报告。",
+        "chunks": [
+          "Finish this report",
+          "today!"
+        ],
+        "hints": [
+          "完成这份报告",
+          "今天"
+        ],
+        "cid": "1d5002a0",
+        "sentenceAudio": {
+          "text": "Finish this report today!",
+          "audio": {
+            "url": "assets/oral-1d5002a0-8a327090c10458fbf315.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "878f245c0960e4593b65f01898df0a0ea05771b3967851dd8f875a64b8aea227",
+            "bytes": 5718
+          }
+        }
+      },
+      {
+        "sentence": "When is the paper due?",
+        "translation": "报告截止到几号?",
+        "chunks": [
+          "When",
+          "is the paper due?"
+        ],
+        "hints": [
+          "什么时候",
+          "报告截止？"
+        ],
+        "cid": "babbeff5",
+        "sentenceAudio": {
+          "text": "When is the paper due?",
+          "audio": {
+            "url": "assets/oral-babbeff5-89c5d3d4bad2b7734b03.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "10201bc95a7a93a105242297bdc931936c565ef03da48030537c1531c700854a",
+            "bytes": 4989
+          }
+        }
+      },
+      {
+        "sentence": "There's a lot of work piled up on my desk.",
+        "translation": "瞧我桌上堆了一堆的事儿。",
+        "chunks": [
+          "There's a lot of work",
+          "piled up on my desk."
+        ],
+        "hints": [
+          "有很多工作",
+          "堆在我桌上"
+        ],
+        "cid": "f02cf586",
+        "sentenceAudio": {
+          "text": "There's a lot of work piled up on my desk.",
+          "audio": {
+            "url": "assets/oral-f02cf586-041f7999910d1c3e559f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0a78a7539d6245343618fe8b6c12bc7909c4188d19eed6ea28f79d50bfbfa19d",
+            "bytes": 7857
+          }
+        }
+      },
+      {
+        "sentence": "We'll fake it.",
+        "translation": "我们就装作会做吧。",
+        "chunks": [
+          "We'll",
+          "fake it."
+        ],
+        "hints": [
+          "我们就",
+          "装作会做。"
+        ],
+        "cid": "443c1682",
+        "sentenceAudio": {
+          "text": "We'll fake it.",
+          "audio": {
+            "url": "assets/oral-443c1682-7ceb66fddd17378449c4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "928f1c22b39d2af0da3d7c2d7f9c71548770f3e3acfd23853dbfb6cd584b4da3",
+            "bytes": 3827
+          }
+        }
+      },
+      {
+        "sentence": "All done!",
+        "translation": "全都做完了。",
+        "chunks": [
+          "All",
+          "done!"
+        ],
+        "hints": [
+          "全都",
+          "做完了"
+        ],
+        "cid": "224233b7",
+        "sentenceAudio": {
+          "text": "All done!",
+          "audio": {
+            "url": "assets/oral-224233b7-cb78f288f1e820d645aa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "36f926d1c7bf7d26ce4a68d4af3c56d3c7f1f1361ddbac4af9a1e58eddedde4f",
+            "bytes": 3539
+          }
+        }
+      },
+      {
+        "sentence": "It's been a long day.",
+        "translation": "今天忙了一天。",
+        "chunks": [
+          "It's been",
+          "a long day."
+        ],
+        "hints": [
+          "今天",
+          "忙了一天"
+        ],
+        "cid": "f4b8e915",
+        "sentenceAudio": {
+          "text": "It's been a long day.",
+          "audio": {
+            "url": "assets/oral-f4b8e915-1a8f0677bc21a2a56190.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f6cf754f03f275d9a58ef27c2c9abcc3e167ca0e5c1a912cb73732e88a49700b",
+            "bytes": 4698
+          }
+        }
+      },
+      {
+        "sentence": "I can't make an exception for you.",
+        "translation": "我不能为你破例。",
+        "chunks": [
+          "I can't make",
+          "an exception for you."
+        ],
+        "hints": [
+          "我不能",
+          "为你破例"
+        ],
+        "cid": "a49f5dfd",
+        "sentenceAudio": {
+          "text": "I can't make an exception for you.",
+          "audio": {
+            "url": "assets/oral-a49f5dfd-8f31fc6218b85ff2d955.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "af1414ecf07c2bf9e7eb9e9699f24916d1dfc3cf8c466888971da568437f90f7",
+            "bytes": 6353
+          }
+        }
+      },
+      {
+        "sentence": "It's dark outside already.",
+        "translation": "外面天都黑了。",
+        "chunks": [
+          "It's dark outside already."
+        ],
+        "hints": [
+          "外面天都黑了。"
+        ],
+        "cid": "3b35cd69",
+        "sentenceAudio": {
+          "text": "It's dark outside already.",
+          "audio": {
+            "url": "assets/oral-3b35cd69-3aea653292e57af3e711.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2b93de4af51ac788554d8a30e4e83c1ddbac3c19a456c8864b3906084f30c274",
+            "bytes": 5638
+          }
+        }
+      },
+      {
+        "sentence": "Let's finish up.",
+        "translation": "就干到这儿吧。",
+        "chunks": [
+          "Let's",
+          "finish up."
+        ],
+        "hints": [
+          "就",
+          "干到这儿吧"
+        ],
+        "cid": "27df0bf6",
+        "sentenceAudio": {
+          "text": "Let's finish up.",
+          "audio": {
+            "url": "assets/oral-27df0bf6-615bf9bb8f8dbf39cf06.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aea7f028f6f32827b11dca1baa17e8a1040fb1cf538487f25b130497a59cebf8",
+            "bytes": 4254
+          }
+        }
+      },
+      {
+        "sentence": "I've just finished work.",
+        "translation": "我刚下班。",
+        "chunks": [
+          "I've just",
+          "finished work."
+        ],
+        "hints": [
+          "我刚刚",
+          "下班。"
+        ],
+        "cid": "95d1d6ed",
+        "sentenceAudio": {
+          "text": "I've just finished work.",
+          "audio": {
+            "url": "assets/oral-95d1d6ed-14a3cf1fef45faaee535.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c98d234bdba68283999d8f88b91ddbfa8e17511363bf0812580e5935863af459",
+            "bytes": 4741
+          }
+        }
+      },
+      {
+        "sentence": "Today's payday!",
+        "translation": "今天发工资。",
+        "chunks": [
+          "Today's",
+          "payday!"
+        ],
+        "hints": [
+          "今天",
+          "发工资"
+        ],
+        "cid": "5b11c57f",
+        "sentenceAudio": {
+          "text": "Today's payday!",
+          "audio": {
+            "url": "assets/oral-5b11c57f-64151bed6a91397673cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c55ff903a2d41aa04bc5b18312eeefb5570da995334d45d219bab5d5743896b0",
+            "bytes": 4342
+          }
+        }
+      },
+      {
+        "sentence": "Let's have a drink.",
+        "translation": "我们一起去喝一杯吧。",
+        "chunks": [
+          "Let's have",
+          "a drink."
+        ],
+        "hints": [
+          "我们",
+          "一起去喝一杯吧"
+        ],
+        "cid": "548acc6f",
+        "sentenceAudio": {
+          "text": "Let's have a drink.",
+          "audio": {
+            "url": "assets/oral-548acc6f-6d8dedc31e09514f608d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2d39310471f2517964c395faf06691a274ce19fa3d805d401213f9034dc3e98f",
+            "bytes": 4430
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for your hard work.",
+        "translation": "谢谢你的辛苦付出。",
+        "chunks": [
+          "Thanks for your",
+          "hard work."
+        ],
+        "hints": [
+          "谢谢你",
+          "辛苦了"
+        ],
+        "cid": "6dcfa5da",
+        "sentenceAudio": {
+          "text": "Thanks for your hard work.",
+          "audio": {
+            "url": "assets/oral-6dcfa5da-5e2c727cd29aedaa3ce1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c6a44467ab7a9548ad1f14c2b359b9455e0e3652722ad1a346e336c3c318110",
+            "bytes": 5065
+          }
+        }
+      },
+      {
+        "sentence": "I hope you don't mind my leaving now.",
+        "translation": "希望你不介意我现在先走。",
+        "chunks": [
+          "I hope you don't mind",
+          "my leaving now."
+        ],
+        "hints": [
+          "我希望你不介意",
+          "我先走了"
+        ],
+        "cid": "4f874ff5",
+        "sentenceAudio": {
+          "text": "I hope you don't mind my leaving now.",
+          "audio": {
+            "url": "assets/oral-4f874ff5-31dded5c6e17de1576af.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "00b22b87221c3a583c22dd577d648b98a25b63bf4fcc95c35b4bc8000b175583",
+            "bytes": 6888
+          }
+        }
+      },
+      {
+        "sentence": "Sorry for interrupting.",
+        "translation": "对不起，打断一下。",
+        "chunks": [
+          "Sorry for",
+          "interrupting."
+        ],
+        "hints": [
+          "对不起",
+          "打断一下"
+        ],
+        "cid": "546ff738",
+        "sentenceAudio": {
+          "text": "Sorry for interrupting.",
+          "audio": {
+            "url": "assets/oral-546ff738-5cc3c085f8af6615581d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3a4e2eb446225fcd64348cc9ee1843d3e5c65f88846b08bfc215d7659d3402fc",
+            "bytes": 5343
+          }
+        }
+      },
+      {
+        "sentence": "May I interrupt you?",
+        "translation": "我可以打断您一下吗？",
+        "chunks": [
+          "May I",
+          "interrupt you?"
+        ],
+        "hints": [
+          "我可以",
+          "打断您一下吗？"
+        ],
+        "cid": "ae7d10ce",
+        "sentenceAudio": {
+          "text": "May I interrupt you?",
+          "audio": {
+            "url": "assets/oral-ae7d10ce-6e8a7c305ae1c291fc62.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c532d958c34c2b6f2650e07a9502353d2f7a150eb2a7e7e75a8fb2eec69734ce",
+            "bytes": 4733
+          }
+        }
+      },
+      {
+        "sentence": "Mr. Smith is on line one.",
+        "translation": "史密斯先生在1号线听电话。",
+        "chunks": [
+          "Mr. Smith",
+          "is on line one."
+        ],
+        "hints": [
+          "史密斯先生",
+          "在一号线听电话"
+        ],
+        "cid": "09571966",
+        "sentenceAudio": {
+          "text": "Mr. Smith is on line one.",
+          "audio": {
+            "url": "assets/oral-09571966-3448f23a2097aea50b08.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c1dfb98926a743e516fdd1c142b186f8a32e9e6b4503c7eeae7b94a1507f1439",
+            "bytes": 6405
+          }
+        }
+      },
+      {
+        "sentence": "I have an appointment with Mr. Aoki.",
+        "translation": "我已经和青木先生约好了。",
+        "chunks": [
+          "I",
+          "have an appointment with Mr. Aoki."
+        ],
+        "hints": [
+          "我",
+          "和青木先生约好了"
+        ],
+        "cid": "e1671ff5",
+        "sentenceAudio": {
+          "text": "I have an appointment with Mr. Aoki.",
+          "audio": {
+            "url": "assets/oral-e1671ff5-ba542b929f928f5ab82a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "85ed9c064f7f162fa59b599e3745fb01c5e59ab5dfbb54fdce7e994526411cc7",
+            "bytes": 8403
+          }
+        }
+      },
+      {
+        "sentence": "What floor is ABC on?",
+        "translation": "ABC公司在几楼？",
+        "chunks": [
+          "What floor is ABC on?"
+        ],
+        "hints": [
+          "ABC公司在几楼？"
+        ],
+        "cid": "9334c14d",
+        "sentenceAudio": {
+          "text": "What floor is ABC on?",
+          "audio": {
+            "url": "assets/oral-9334c14d-a35c82e178e9bd666f79.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6c1280068db78dc681b65d70cfe4c90ae5419ddb3c2fd8a8d8f0d27f62837c3e",
+            "bytes": 5768
+          }
+        }
+      },
+      {
+        "sentence": "Where are the elevators?",
+        "translation": "电梯在哪儿？",
+        "chunks": [
+          "Where are the elevators?"
+        ],
+        "hints": [
+          "电梯在哪儿？"
+        ],
+        "cid": "10e6543f",
+        "sentenceAudio": {
+          "text": "Where are the elevators?",
+          "audio": {
+            "url": "assets/oral-10e6543f-e75858e71ab9deb770cf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "760f65249bd33ced44e795f5149ceeec8c757792db7a3584253d56cc8badfcc0",
+            "bytes": 4985
+          }
+        }
+      },
+      {
+        "sentence": "What time do you get off work?",
+        "cid": "5cac61f5",
+        "translation": "你几点下班？",
+        "chunks": [
+          "What time",
+          "do you get off work?"
+        ],
+        "hints": [
+          "几点",
+          "你下班"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɒt/",
+              "/taɪm/"
+            ],
+            "pos": "特殊疑问词",
+            "meaning": "几点"
+          },
+          {
+            "role": "谓语",
+            "color": "#c87033",
+            "phonetic": [
+              "/duː/",
+              "/juː/",
+              "/ɡet/",
+              "/ɒf/",
+              "/wɜːrk/"
+            ],
+            "pos": "get off 搭配",
+            "meaning": "你下班"
+          }
+        ],
+        "explanations": [
+          "**get off work** = 下班（get off 表示「结束工作」）。常见错误：\n• \"get out of work\" → 不是下班，是「逃避工作/被解雇（口）」\n• \"leave the work\" → leave work 可以，但 get off work 更口语",
+          "相关表达：go to work 上班 / knock off (work) 收工（口语）/ be off duty 下班（值班人员）。"
+        ],
+        "distractors": [
+          [
+            "When time",
+            "How time",
+            "What times"
+          ],
+          [
+            "are you get off work?",
+            "do you gets off work?",
+            "do you get off the work?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What time do you get off work?",
+          "audio": {
+            "url": "assets/oral-5cac61f5-69c67cebdbe51391d7ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d850544f5961b3c644dfe959829805d08c55b0f6cdb68161a6fc1c4efa6797da",
+            "bytes": 5480
+          }
+        }
+      },
+      {
+        "sentence": "I have a meeting at three this afternoon.",
+        "cid": "99c40243",
+        "translation": "我今天下午三点有个会。",
+        "chunks": [
+          "I have a meeting",
+          "at three",
+          "this afternoon."
+        ],
+        "hints": [
+          "我有个会",
+          "在三点",
+          "今天下午"
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/hæv/",
+              "/ə/",
+              "/ˈmiːtɪŋ/"
+            ],
+            "pos": "主谓宾",
+            "meaning": "我有个会"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/θriː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在三点"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðɪs/",
+              "/ˌæftərˈnuːn/"
+            ],
+            "pos": "名词短语",
+            "meaning": "今天下午"
+          }
+        ],
+        "explanations": [
+          "`have a meeting` 表示「开会」，have 表「有」。常见错误：\n• \"I **do** a meeting\" → 错，开会用 have，不是 do\n• \"I **am** a meeting\" → 错，meeting 不是状态",
+          "具体时刻前用 `at`（at three）；泛指下午用 `this afternoon`，前不加 in/on（口语习惯）。"
+        ],
+        "distractors": [
+          [
+            "I have meeting",
+            "I has a meeting",
+            "I having a meeting"
+          ],
+          [
+            "on three",
+            "at threes",
+            "at the three"
+          ],
+          [
+            "today afternoon.",
+            "that afternoon.",
+            "in the afternoon."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I have a meeting at three this afternoon.",
+          "audio": {
+            "url": "assets/oral-99c40243-9427e787ea79c1bb38cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a86ee7f079a16fbcf0fc8edafac7c00ac09f65cf4fdb706b59a7d46cd3d3cc19",
+            "bytes": 7210
+          }
+        }
+      },
+      {
+        "sentence": "Is the meeting still on for tomorrow?",
+        "cid": "bd1383e5",
+        "translation": "明天的会还照常开吗？",
+        "chunks": [
+          "Is the meeting",
+          "still on",
+          "for tomorrow?"
+        ],
+        "hints": [
+          "会议是",
+          "仍按计划",
+          "明天"
+        ],
+        "grammar": [
+          {
+            "role": "主系",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪz/",
+              "/ðə/",
+              "/ˈmiːtɪŋ/"
+            ],
+            "pos": "主系结构",
+            "meaning": "会议是"
+          },
+          {
+            "role": "表语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/stɪl/",
+              "/ɒn/"
+            ],
+            "pos": "be on 进行中",
+            "meaning": "仍按计划"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/təˈmɒroʊ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "明天"
+          }
+        ],
+        "explanations": [
+          "`be on` = 按计划进行/上演中。常见错误：\n• \"Is the meeting still **open**\" → open 表开始报名，不表照常举行\n• \"Will the meeting **is** on\" → will 后接动词原形 be",
+          "确认会议是否照常的办公口语。也可说：\"Is the meeting still happening tomorrow?\""
+        ],
+        "distractors": [
+          [
+            "Are the meeting",
+            "Is a meeting",
+            "The meeting is"
+          ],
+          [
+            "still in",
+            "still be on",
+            "on still"
+          ],
+          [
+            "on tomorrow?",
+            "to tomorrow?",
+            "in tomorrow?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Is the meeting still on for tomorrow?",
+          "audio": {
+            "url": "assets/oral-bd1383e5-1030e9de897ded459ab7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "70a84d4583a092bc3d5db40d14815b54d5fe72a092d18276ed9e42a5bf2f0169",
+            "bytes": 6866
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid I have to ask for a day off.",
+        "cid": "13fee10d",
+        "translation": "恐怕我得请一天假。",
+        "chunks": [
+          "I'm afraid",
+          "I have to ask for",
+          "a day off."
+        ],
+        "hints": [
+          "恐怕",
+          "我得请求",
+          "一天假"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/əˈfreɪd/"
+            ],
+            "pos": "委婉表达",
+            "meaning": "恐怕"
+          },
+          {
+            "role": "主谓结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/hæv/",
+              "/tuː/",
+              "/ɑːsk/",
+              "/fɔːr/"
+            ],
+            "pos": "have to 结构",
+            "meaning": "我得请求"
+          },
+          {
+            "role": "名词短语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/deɪ/",
+              "/ɒf/"
+            ],
+            "pos": "宾语",
+            "meaning": "一天假"
+          }
+        ],
+        "explanations": [
+          "`I'm afraid` 委婉开头，软化请求的唐突感。常见错误：\n• \"I'm afraid **of** I have to\" → afraid 接从句不加 of\n• \"I afraid\" → 缺 be 动词，要 I'm afraid",
+          "`have to ask for` = 不得不请求。have to 表客观必须。",
+          "`a day off` = 一天假（off 表休假）。常见错误：\n• \"a **off** day\" → 顺序颠倒，是 a day off\n• \"ask for day off\" → 可数，要 a day off"
+        ],
+        "distractors": [
+          [
+            "I afraid",
+            "I'm afraid of",
+            "I'm feared"
+          ],
+          [
+            "I has to ask for",
+            "I have to asking for",
+            "I must to ask for"
+          ],
+          [
+            "a off day.",
+            "one day offs.",
+            "a day of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm afraid I have to ask for a day off.",
+          "audio": {
+            "url": "assets/oral-13fee10d-aeff13185f9ae86c77f0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9c559fde53a715a3bfd30c667f4602cdd02ab190b9766d460d28d00f8f09defa",
+            "bytes": 7060
+          }
+        }
+      },
+      {
+        "sentence": "Could we reschedule the meeting to Friday?",
+        "cid": "4d2656c9",
+        "translation": "我们能把会议改到周五吗？",
+        "chunks": [
+          "Could we reschedule",
+          "the meeting",
+          "to Friday?"
+        ],
+        "hints": [
+          "我们能重新安排",
+          "会议",
+          "改到周五"
+        ],
+        "grammar": [
+          {
+            "role": "情态疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/wiː/",
+              "/riːˈʃedjuːl/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "我们能重排"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈmiːtɪŋ/"
+            ],
+            "pos": "名词短语",
+            "meaning": "会议"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tuː/",
+              "/ˈfraɪdeɪ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "改到周五"
+          }
+        ],
+        "explanations": [
+          "改期用语。`reschedule` = 重新安排时间。常见错误：\n• \"reschedule the meeting **for** Friday\" → for 也可以，但 to 强调改到的目标\n• \"re-schedule\" → 不加连字符更常见",
+          "`the meeting` 特指已知的那场会议。",
+          "`to Friday` = 改到周五。星期几前不加 on（改期到某日用 to/for + 星期）。"
+        ],
+        "distractors": [
+          [
+            "Could we reschedules",
+            "Can we to reschedule",
+            "Could us reschedule"
+          ],
+          [
+            "a meeting",
+            "meetings",
+            "the meeting's"
+          ],
+          [
+            "at Friday?",
+            "on Friday?",
+            "to the Friday?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could we reschedule the meeting to Friday?",
+          "audio": {
+            "url": "assets/oral-4d2656c9-20e959de0a64f12c7f1a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cba1dace93b87c79e2eff7c61c006b82311198e4887f18fe2c3ed7374aab4b45",
+            "bytes": 7623
+          }
+        }
+      },
+      {
+        "sentence": "I'll get back to you by the end of the day.",
+        "cid": "ddff4543",
+        "translation": "我今天之内会回复你。",
+        "chunks": [
+          "I'll get back to you",
+          "by the end of the day."
+        ],
+        "hints": [
+          "我会回复你",
+          "在今天结束前"
+        ],
+        "grammar": [
+          {
+            "role": "主谓结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/",
+              "/ɡet/",
+              "/bæk/",
+              "/tuː/",
+              "/juː/"
+            ],
+            "pos": "将来时",
+            "meaning": "我会回复你"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/baɪ/",
+              "/ði/",
+              "/end/",
+              "/əv/",
+              "/ðə/",
+              "/deɪ/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在今日结束前"
+          }
+        ],
+        "explanations": [
+          "商务跟进用语。`get back to someone` = 回复/再联系某人。常见错误：\n• \"get back **you**\" → 要带 to：get back to you\n• \"reply you\" → 同样漏了 to（reply to you）",
+          "`by the end of the day` = 今天之内（截止）。by + 时间点表「不迟于」。注意不是 at the end。"
+        ],
+        "distractors": [
+          [
+            "I get back to you",
+            "I'll get you back",
+            "I'll back to you"
+          ],
+          [
+            "at the end of the day.",
+            "until the end of the day.",
+            "by end of day."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll get back to you by the end of the day.",
+          "audio": {
+            "url": "assets/oral-ddff4543-cf87edc1fcae77d9a564.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "408a3832b42d60c2988e4912108b26307bf215c98e3d4bab64c0f88563d8bf2a",
+            "bytes": 7344
+          }
+        }
+      },
+      {
+        "sentence": "I took that job.",
+        "cid": "4cb79c53",
+        "translation": "我接受了那份工作。",
+        "chunks": [
+          "I took",
+          "that job."
+        ],
+        "hints": [
+          "我接了",
+          "那份工作"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/tʊk/"
+            ],
+            "pos": "take 的过去式",
+            "meaning": "我接了"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðæt/",
+              "/dʒɑːb/"
+            ],
+            "pos": "名词短语",
+            "meaning": "那份工作"
+          }
+        ],
+        "explanations": [
+          "`take a job` 表「接受一份工作」。常见错误：\n• \"I taked\" → take 是不规则动词，过去式是 took\n• \"took that job\" 与 \"got that job\" → got 强调「得到」，took 强调「接受」",
+          "`job` 是可数名词，特指某份工作时用 that / the。常见错误：\n• \"that works\" → job 指职位，work 是不可数名词"
+        ],
+        "distractors": [
+          [
+            "I take",
+            "I taked",
+            "I taken"
+          ],
+          [
+            "that jobs.",
+            "this job.",
+            "that work."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I took that job.",
+          "audio": {
+            "url": "assets/oral-4cb79c53-30b7de32dc7952698c4f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d355cf752c521f048d94bf6a7ba46a34f1fb42827e267c6a563b768411b085b7",
+            "bytes": 4674
+          }
+        }
+      },
+      {
+        "sentence": "It's close to me.",
+        "cid": "b45ed857",
+        "translation": "离我很近。",
+        "chunks": [
+          "It's close to me."
+        ],
+        "hints": [
+          "离我很近。"
+        ],
+        "grammar": [
+          {
+            "role": "固定搭配",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/kloʊs/",
+              "/tə/",
+              "/miː/"
+            ],
+            "pos": "it + be + close to + 人/地点",
+            "meaning": "离我很近"
+          }
+        ],
+        "explanations": [
+          "`close to me` 表示「离我近」，整句 `It's close to me` 就是「离我很近」。常见错误：\n• \"It's closed\" → closed 读 /kloʊzd/，是「关门的」，意思完全不同\n• \"close me\" → 缺少介词 to"
+        ],
+        "distractors": [
+          [
+            "It's near me.",
+            "It's far from me.",
+            "It's closed."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's close to me.",
+          "audio": {
+            "url": "assets/oral-b45ed857-80024d0c38dde81de4fc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "287c025408e925d01382aeb728469bcdc1921ab59e60bfa2e89c26c017257271",
+            "bytes": 4193
+          }
+        }
+      },
+      {
+        "sentence": "The pay is good.",
+        "cid": "4eb3eb33",
+        "translation": "薪水不错。",
+        "chunks": [
+          "The pay",
+          "is good."
+        ],
+        "hints": [
+          "薪水",
+          "不错"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðə/",
+              "/peɪ/"
+            ],
+            "pos": "不可数名词",
+            "meaning": "薪水"
+          },
+          {
+            "role": "主系表",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɪz/",
+              "/ɡʊd/"
+            ],
+            "pos": "is + 形容词",
+            "meaning": "不错"
+          }
+        ],
+        "explanations": [
+          "`pay` 表薪水时不可数，不加 s。常见错误：\n• \"the pays\" → 不可数名词\n• \"the salary is good\" → salary 指固定月薪，pay 更泛",
+          "表语用形容词 good。常见错误：\n• \"is well\" → well 表身体好"
+        ],
+        "distractors": [
+          [
+            "The pay's",
+            "A pay",
+            "The paying"
+          ],
+          [
+            "are good.",
+            "is well.",
+            "is good at."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The pay is good.",
+          "audio": {
+            "url": "assets/oral-4eb3eb33-0e3accb7b94c9f7f1563.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5ce583a55a93b7b03f643df50b0ca25965fb7a55241da1c9529d7df0f63e1887",
+            "bytes": 4273
+          }
+        }
+      },
+      {
+        "sentence": "You got a minute?",
+        "cid": "bc810920",
+        "translation": "你有空吗？",
+        "chunks": [
+          "You got",
+          "a minute?"
+        ],
+        "hints": [
+          "你有",
+          "一分钟（时间）"
+        ],
+        "alts": [
+          null,
+          [
+            "a second?",
+            "a moment?"
+          ]
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/juː/",
+              "/ɡɑːt/"
+            ],
+            "pos": "Do you have 的口语省略",
+            "meaning": "你有"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/ˈmɪnɪt/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一分钟（时间）"
+          }
+        ],
+        "explanations": [
+          "口语省略 Do，用 got 代替 have：You got a minute? = Do you have a minute?。常见错误：\n• \"You got a minute.\" 降调 → 变陈述句\n• \"Have you got a minute?\" → 英式更常这么说",
+          "`a minute` 在口语里泛指「一点时间」，不是真的六十秒。常见错误：\n• \"a minutes\" → 前面有 a 要用单数"
+        ],
+        "distractors": [
+          [
+            "You have got",
+            "You get",
+            "You got to"
+          ],
+          [
+            "a minutes?",
+            "the minute?",
+            "a minit?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You got a minute?",
+          "audio": {
+            "url": "assets/oral-bc810920-5ef5e17643547d055e65.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6f24733bc738c7111b9636f246bdfeb7d7539a53fa43f9ee40bb820d07788b46",
+            "bytes": 4084
+          }
+        }
+      },
+      {
+        "sentence": "Sure, what's up?",
+        "cid": "ddab755e",
+        "translation": "有，怎么了？",
+        "chunks": [
+          "Sure,",
+          "what's up?"
+        ],
+        "hints": [
+          "当然、有",
+          "怎么了"
+        ],
+        "grammar": [
+          {
+            "role": "应答词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʃʊr/"
+            ],
+            "pos": "口语肯定词",
+            "meaning": "当然、有"
+          },
+          {
+            "role": "疑问句",
+            "color": "#c87033",
+            "phonetic": [
+              "/wʌts/",
+              "/ʌp/"
+            ],
+            "pos": "what is up 缩写",
+            "meaning": "怎么了"
+          }
+        ],
+        "explanations": [
+          "`Sure` 在回应请求时等于「当然可以」。常见错误：\n• \"Surely\" → 那是「确实、无疑」，语气不对\n• \"Of course\" → 更正式，也可以",
+          "`What's up?` 是极常用的口语问候/询问，等于「怎么了／最近怎么样」。常见错误：\n• \"What up?\" → 少 is，非常随意\n• \"What's up.\" 降调读 → 语气会显得敷衍"
+        ],
+        "distractors": [
+          [
+            "OK,",
+            "Yep,",
+            "Yeah,"
+          ],
+          [
+            "what's on?",
+            "what up?",
+            "what's new?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sure, what's up?",
+          "audio": {
+            "url": "assets/oral-ddab755e-08839606d88563396f9c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "28a1f111b0c2caca5b456cbbc875fbbfdd5b1eb664c28fc0494509a094d9387b",
+            "bytes": 3834
+          }
+        }
+      },
+      {
+        "sentence": "I'm not on today.",
+        "cid": "a732da43",
+        "translation": "我今天不上班。",
+        "chunks": [
+          "I'm not on",
+          "today."
+        ],
+        "hints": [
+          "我不上班",
+          "今天"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/nɑːt/",
+              "/ɑːn/"
+            ],
+            "pos": "be + not + on",
+            "meaning": "我不在班"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/təˈdeɪ/"
+            ],
+            "pos": "时间副词",
+            "meaning": "今天"
+          }
+        ],
+        "explanations": [
+          "`be on` 在排班语境里表「上班/值班」，否定就是 I'm not on。常见错误：\n• \"I'm not work today\" → 要说 I'm not working today\n• \"I'm not in today\" → 也可以，但 on 更常用于班表",
+          "`today` 作时间状语放句末。常见错误：\n• \"on today\" → today 前不加介词"
+        ],
+        "distractors": [
+          [
+            "I'm not in",
+            "I'm no on",
+            "I'm not at"
+          ],
+          [
+            "todays.",
+            "the today.",
+            "in today."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm not on today.",
+          "audio": {
+            "url": "assets/oral-a732da43-6518905c2452ab6dd5c1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1a1ba1813503bf890ed2a70aec3ab54c3d6cff16bb2a949e070198e8b4673514",
+            "bytes": 4600
+          }
+        }
+      },
+      {
+        "sentence": "It's my day off.",
+        "cid": "1da8e217",
+        "translation": "我今天休息。",
+        "chunks": [
+          "It's my",
+          "day off."
+        ],
+        "hints": [
+          "这是我的",
+          "休息日"
+        ],
+        "grammar": [
+          {
+            "role": "主语+系动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/maɪ/"
+            ],
+            "pos": "it + is + 所有格",
+            "meaning": "这是我的"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/deɪ/",
+              "/ɔːf/"
+            ],
+            "pos": "名词短语",
+            "meaning": "休息日"
+          }
+        ],
+        "explanations": [
+          "`It's my` 注意 Its（它的）与 It's（它是）的区别。常见错误：\n• \"Its my day off\" → 少了撇号\n• \"It's mine day off\" → 有名词时用 my",
+          "`day off` 是固定搭配，表「休息日」。常见错误：\n• \"day of\" → 少一个 f，意思变「……的一天」\n• \"off day\" → 那是「状态不好的一天」，语序不同"
+        ],
+        "distractors": [
+          [
+            "It's mine",
+            "It's me",
+            "It's my the"
+          ],
+          [
+            "day of.",
+            "day offs.",
+            "days off."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's my day off.",
+          "audio": {
+            "url": "assets/oral-1da8e217-42a7f7d4308500a24bde.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "762ac70f705705878f2836f8af8eff2e016390a64a298a45f80ba2eb6656a40f",
+            "bytes": 4421
+          }
+        }
+      },
+      {
+        "sentence": "Are you off tomorrow?",
+        "cid": "f2c5b8eb",
+        "translation": "你明天休息吗？",
+        "chunks": [
+          "Are you",
+          "off tomorrow?"
+        ],
+        "hints": [
+          "你是",
+          "明天休息吗"
+        ],
+        "grammar": [
+          {
+            "role": "系动词+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɑːr/",
+              "/juː/"
+            ],
+            "pos": "倒装疑问",
+            "meaning": "你是"
+          },
+          {
+            "role": "表语+时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɔːf/",
+              "/təˈmɑːroʊ/"
+            ],
+            "pos": "off + 副词",
+            "meaning": "明天休息"
+          }
+        ],
+        "explanations": [
+          "`be off` 在排班语境里表「休息」。常见错误：\n• \"Do you off tomorrow?\" → off 是形容词，要用 be 动词\n• \"Are you off work?\" → 更完整的说法，也对",
+          "`tomorrow` 作时间状语不加介词。常见错误：\n• \"on tomorrow\" → 错，tomorrow 前不加介词"
+        ],
+        "distractors": [
+          [
+            "Do you",
+            "Are your",
+            "Is you"
+          ],
+          [
+            "of tomorrow?",
+            "off tomorow?",
+            "on tomorrow?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Are you off tomorrow?",
+          "audio": {
+            "url": "assets/oral-f2c5b8eb-575b8a6edc7bb14c5276.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c968c9e5163ac7a63df8f674beec029d57102805e84cab5bfb45fe25e1d35f6",
+            "bytes": 4563
+          }
+        }
+      },
+      {
+        "sentence": "I don't work Friday.",
+        "cid": "dfcf2e40",
+        "translation": "我周五不上班。",
+        "chunks": [
+          "I don't",
+          "work Friday."
+        ],
+        "hints": [
+          "我不",
+          "周五上班"
+        ],
+        "grammar": [
+          {
+            "role": "主语+助动词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/doʊnt/"
+            ],
+            "pos": "do not 缩写",
+            "meaning": "我不"
+          },
+          {
+            "role": "谓语+时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wɜːrk/",
+              "/ˈfraɪdeɪ/"
+            ],
+            "pos": "动词原形 + 星期",
+            "meaning": "周五上班"
+          }
+        ],
+        "explanations": [
+          "一般现在时否定用 don't + 动词原形。常见错误：\n• \"I not work\" → 缺助动词\n• \"I doesn't work\" → I 配 don't",
+          "口语里星期前的 on 常省略：work Friday = work on Friday。常见错误：\n• \"work in Friday\" → 用 on 或省略"
+        ],
+        "distractors": [
+          [
+            "I doesn't",
+            "I not",
+            "I don't works"
+          ],
+          [
+            "works Friday.",
+            "working Friday.",
+            "worked Friday."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I don't work Friday.",
+          "audio": {
+            "url": "assets/oral-dfcf2e40-7e0ad9a806a995d7dcbb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "11ac41f06e48357868fd403778b2ce5ee6767320b9d25a8beac28b54317f7821",
+            "bytes": 4754
+          }
+        }
+      },
+      {
+        "sentence": "I've been so busy.",
+        "cid": "2e8d5895",
+        "translation": "我最近太忙了。",
+        "chunks": [
+          "I've been",
+          "so busy."
+        ],
+        "hints": [
+          "我一直",
+          "这么忙"
+        ],
+        "grammar": [
+          {
+            "role": "主语+助动词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪv/",
+              "/bɪn/"
+            ],
+            "pos": "现在完成时",
+            "meaning": "我一直（是）"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/soʊ/",
+              "/ˈbɪzi/"
+            ],
+            "pos": "副词 + 形容词",
+            "meaning": "这么忙"
+          }
+        ],
+        "explanations": [
+          "`I've been + 形容词` 表「（从过去到现在）一直处于某状态」。常见错误：\n• \"I been so busy\" → 少了 've\n• \"I've being busy\" → being 用错，be 的过去分词是 been",
+          "`so` 表「这么、那么」，加强语气。同义：I've been super busy. / I've been swamped."
+        ],
+        "distractors": [
+          [
+            "I been",
+            "I've being",
+            "I've be"
+          ],
+          [
+            "so busily.",
+            "such busy.",
+            "so busier."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I've been so busy.",
+          "audio": {
+            "url": "assets/oral-2e8d5895-1a44ae401e5e5fd6b8d9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e95fe2142c98d4ddcac7aab8c5a162db05f8365f52855279a2f6e2b244521e4e",
+            "bytes": 4616
+          }
+        }
+      },
+      {
+        "sentence": "Sometimes I forget.",
+        "cid": "5010e8ef",
+        "translation": "有时候会忘。",
+        "chunks": [
+          "Sometimes",
+          "I forget."
+        ],
+        "hints": [
+          "有时候",
+          "我会忘"
+        ],
+        "grammar": [
+          {
+            "role": "频度状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈsʌmtaɪmz/"
+            ],
+            "pos": "频度副词",
+            "meaning": "有时候"
+          },
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/fərˈɡet/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "我会忘"
+          }
+        ],
+        "explanations": [
+          "`sometimes` 写成一个词，表「有时候」。常见错误：\n• \"sometime\" → 那是「某个时候」，指不确定的一个时间点\n• \"some times\" → 那是「几次」，指次数",
+          "频度副词可放句首或句中。常见错误：\n• \"I sometimes forget\" → 也同样正确"
+        ],
+        "distractors": [
+          [
+            "Sometime",
+            "Some times",
+            "Sometimes's"
+          ],
+          [
+            "I forgets.",
+            "I forgetting.",
+            "I forgotten."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sometimes I forget.",
+          "audio": {
+            "url": "assets/oral-5010e8ef-2bde0c7bdab4938a9b52.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "58edc68c6b283560a6e29cd5147bcd91a279005a7b4453ffa65625c2c22551ad",
+            "bytes": 4941
+          }
+        }
+      },
+      {
+        "sentence": "Can I go home early?",
+        "cid": "475674ed",
+        "translation": "我能早点回家吗？",
+        "chunks": [
+          "Can I",
+          "go home early?"
+        ],
+        "hints": [
+          "我能",
+          "早点回家吗"
+        ],
+        "grammar": [
+          {
+            "role": "情态+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/kæn/",
+              "/aɪ/"
+            ],
+            "pos": "can 引导疑问",
+            "meaning": "我能"
+          },
+          {
+            "role": "谓语+状语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡoʊ/",
+              "/hoʊm/",
+              "/ˈɜːrli/"
+            ],
+            "pos": "go home + 副词",
+            "meaning": "早点回家"
+          }
+        ],
+        "explanations": [
+          "`Can I ...?` 是请求许可的常用句型。常见错误：\n• \"Do I can go\" → 情态动词直接提前，不用 do\n• \"Can me go\" → 主语用主格 I",
+          "`go home` 固定不加 to（home 作副词）。常见错误：\n• \"go to home\" → 错，go home 才是对的\n• \"early\" 是副词，修饰 go"
+        ],
+        "distractors": [
+          [
+            "Can me",
+            "Do I can",
+            "Can I to"
+          ],
+          [
+            "go to home early?",
+            "go home earlily?",
+            "go home earlies?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Can I go home early?",
+          "audio": {
+            "url": "assets/oral-475674ed-f15378aa0f84bdf49d71.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "abebf3f422d38e9effc11050c577a10fec62174388fea6b02e9ebfc9dd61e481",
+            "bytes": 4895
+          }
+        }
+      },
+      {
+        "sentence": "What time will you finish?",
+        "cid": "b4cd5f6b",
+        "translation": "你什么时候结束？",
+        "chunks": [
+          "What time",
+          "will you finish?"
+        ],
+        "hints": [
+          "什么时间",
+          "你会结束"
+        ],
+        "grammar": [
+          {
+            "role": "疑问短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wʌt/",
+              "/taɪm/"
+            ],
+            "pos": "疑问词 + 名词",
+            "meaning": "什么时候"
+          },
+          {
+            "role": "助动词 + 主语 + 谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɪl/",
+              "/juː/",
+              "/ˈfɪnɪʃ/"
+            ],
+            "pos": "一般将来时疑问句",
+            "meaning": "你会结束"
+          }
+        ],
+        "explanations": [
+          "问具体几点结束用 `What time...?` 比 When 更聚焦。常见错误：\n• \"What time you will finish?\" → 语序应是 will you finish\n• 也可换说法：What time will you be done?",
+          "回答模板：I'll finish at two.（我两点结束）"
+        ],
+        "distractors": [
+          [
+            "What times",
+            "Which time",
+            "How time"
+          ],
+          [
+            "you will finish?",
+            "will you finishes?",
+            "do you will finish?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What time will you finish?",
+          "audio": {
+            "url": "assets/oral-b4cd5f6b-bcd936e5235951a4f152.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d12dfefa210d75390c9a1610e3146cbbac31ee12d8a5597a788adc6e3483827a",
+            "bytes": 5080
+          }
+        }
+      },
+      {
+        "sentence": "I'll finish at two.",
+        "cid": "9a127097",
+        "translation": "我两点结束。",
+        "chunks": [
+          "I'll finish",
+          "at two."
+        ],
+        "hints": [
+          "我会结束",
+          "在两点"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/",
+              "/ˈfɪnɪʃ/"
+            ],
+            "pos": "will + 动词原形",
+            "meaning": "我会结束"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/æt/",
+              "/tuː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在两点"
+          }
+        ],
+        "explanations": [
+          "具体钟点前用介词 `at`。常见错误：\n• \"I'll finish in two\" → in two 会被听成「两小时后」\n• \"I'll finish on two\" → 钟点前不用 on",
+          "相关：at noon（中午）/ at half past two（两点半）"
+        ],
+        "distractors": [
+          [
+            "I finish",
+            "I'll finishing",
+            "I will finished"
+          ],
+          [
+            "in two.",
+            "on two.",
+            "at the two."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll finish at two.",
+          "audio": {
+            "url": "assets/oral-9a127097-590961e7699032b61137.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eee7d02d47367704805fd70ef71839cfe6759e0192db86412ac6810e87900b40",
+            "bytes": 4618
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,824 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-6-2",
+    "name": "口语3000句 · 电话 · 挂断电话～打电话遇到困难时",
+    "short": "挂断电话～打电话遇到困难时",
+    "desc": "挂断电话～打电话遇到困难时",
+    "chapter": 1,
+    "section": "1.6",
+    "sectionTitle": "电话",
+    "topic": "挂断电话～打电话遇到困难时",
+    "baseCount": 0,
+    "totalCount": 31,
+    "items": [
+      {
+        "sentence": "Thanks for calling.",
+        "translation": "谢谢您打来电话。",
+        "chunks": [
+          "Thanks",
+          "for calling."
+        ],
+        "hints": [
+          "谢谢您",
+          "打来电话。"
+        ],
+        "cid": "43b6d293",
+        "sentenceAudio": {
+          "text": "Thanks for calling.",
+          "audio": {
+            "url": "assets/oral-43b6d293-61974dcf07b267e9e806.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6304bcd9c29f332c9e9b5c52faab130689bffe7b38ca49799f8a9c950fadee7f",
+            "bytes": 4370
+          }
+        }
+      },
+      {
+        "sentence": "Please call again anytime.",
+        "translation": "欢迎您随时再打电话。",
+        "chunks": [
+          "Please call again anytime."
+        ],
+        "hints": [
+          "欢迎您随时再打电话。"
+        ],
+        "cid": "34e68690",
+        "sentenceAudio": {
+          "text": "Please call again anytime.",
+          "audio": {
+            "url": "assets/oral-34e68690-6c85e94242c917ea947a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "097ad9fa22dd57c69a7924223c1471e6020585b91c37b170189984d4983fe106",
+            "bytes": 5775
+          }
+        }
+      },
+      {
+        "sentence": "I'd better get off the phone.",
+        "translation": "我得挂电话了。",
+        "chunks": [
+          "I'd better",
+          "get off the phone."
+        ],
+        "hints": [
+          "我得",
+          "挂电话了。"
+        ],
+        "cid": "f6cae0b1",
+        "sentenceAudio": {
+          "text": "I'd better get off the phone.",
+          "audio": {
+            "url": "assets/oral-f6cae0b1-389a1866bd34e7eeb717.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "55eb0a78de6fc210c2594f99c322c83535ffe3716a64a3f297210d63321eda81",
+            "bytes": 5383
+          }
+        }
+      },
+      {
+        "sentence": "I have to go now.",
+        "translation": "我现在得走了。",
+        "chunks": [
+          "I have to",
+          "go now."
+        ],
+        "hints": [
+          "我得",
+          "现在走了。"
+        ],
+        "cid": "eebcffdb",
+        "sentenceAudio": {
+          "text": "I have to go now.",
+          "audio": {
+            "url": "assets/oral-eebcffdb-290788e6001d1c282e60.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a6d32410930993d200b7adc27d76acb8f30136c95ec21992ef41cc34a36c8b24",
+            "bytes": 4503
+          }
+        }
+      },
+      {
+        "sentence": "I guess I'd better get going.",
+        "translation": "我想我该走了。",
+        "chunks": [
+          "I guess I'd better",
+          "get going."
+        ],
+        "hints": [
+          "我想我该",
+          "走了。"
+        ],
+        "cid": "9405e71f",
+        "sentenceAudio": {
+          "text": "I guess I'd better get going.",
+          "audio": {
+            "url": "assets/oral-9405e71f-c8d86f619de3da9346dc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2b5f7b7b0d3cc2e352bfb930c36983e2858ae9878efc993d2adc0360007f626",
+            "bytes": 5691
+          }
+        }
+      },
+      {
+        "sentence": "Nice talking to you. Bye.",
+        "translation": "能跟您通上话，我非常高兴，再见。",
+        "chunks": [
+          "Nice talking to you.",
+          "Bye."
+        ],
+        "hints": [
+          "很高兴和您通话。",
+          "再见。"
+        ],
+        "cid": "8152f654",
+        "sentenceAudio": {
+          "text": "Nice talking to you. Bye.",
+          "audio": {
+            "url": "assets/oral-8152f654-33d8f1983ced260937d0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "252662ea64c3c04e61b2a339a0969fa7c4818354aa4dffc6e27ba1e22aefb9ea",
+            "bytes": 6250
+          }
+        }
+      },
+      {
+        "sentence": "Please hang up the phone.",
+        "translation": "请挂电话吧。",
+        "chunks": [
+          "Please",
+          "hang up the phone."
+        ],
+        "hints": [
+          "请",
+          "挂电话吧。"
+        ],
+        "cid": "89bd6f41",
+        "sentenceAudio": {
+          "text": "Please hang up the phone.",
+          "audio": {
+            "url": "assets/oral-89bd6f41-a9783d6e25ba22cd76c1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d50e352043ed947e5aebc9d91364afffbadcd431e586016481366011c515ae99",
+            "bytes": 4862
+          }
+        }
+      },
+      {
+        "sentence": "I was cut off.",
+        "translation": "电话断了。",
+        "chunks": [
+          "I was cut off."
+        ],
+        "hints": [
+          "电话断了。"
+        ],
+        "cid": "4cdf8062",
+        "sentenceAudio": {
+          "text": "I was cut off.",
+          "audio": {
+            "url": "assets/oral-4cdf8062-01148cf84a8fdfb52b62.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c5d68ef9437617efc63daaaff1d7699666ec54e966ed2411a8bcc9d4dd0f2f5f",
+            "bytes": 3984
+          }
+        }
+      },
+      {
+        "sentence": "She hung up on me.",
+        "translation": "她没等我说完就挂了电话。",
+        "chunks": [
+          "She",
+          "hung up on me."
+        ],
+        "hints": [
+          "她",
+          "没等我说完就挂了电话"
+        ],
+        "cid": "01218c3d",
+        "sentenceAudio": {
+          "text": "She hung up on me.",
+          "audio": {
+            "url": "assets/oral-01218c3d-eea8f4139d225f705588.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b6c63147a0a99130622f5c5b7f7cbf18b7239c70eb4aed1bc8bd47c74a02e8f6",
+            "bytes": 4398
+          }
+        }
+      },
+      {
+        "sentence": "The phone went dead.",
+        "translation": "电话不通。",
+        "chunks": [
+          "The phone",
+          "went dead."
+        ],
+        "hints": [
+          "电话",
+          "不通。"
+        ],
+        "cid": "b543e946",
+        "sentenceAudio": {
+          "text": "The phone went dead.",
+          "audio": {
+            "url": "assets/oral-b543e946-93f2939f188b8b1a6592.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84bff279c4282ab47b6a9bddd42f9b7ec9312264a47ef79ca6994e90ef30edd6",
+            "bytes": 4609
+          }
+        }
+      },
+      {
+        "sentence": "Thank you for returning my call.",
+        "translation": "谢谢你给我回电话。",
+        "chunks": [
+          "Thank you",
+          "for returning my call."
+        ],
+        "hints": [
+          "谢谢你",
+          "给我回电话。"
+        ],
+        "cid": "f41870e7",
+        "sentenceAudio": {
+          "text": "Thank you for returning my call.",
+          "audio": {
+            "url": "assets/oral-f41870e7-4b4c4bce83c6c7e863e1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cc1a2ad09ff7ff98dab9f94309a6fac104a7acc3ef04031bad51a783fc74064c",
+            "bytes": 6300
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid you have the wrong number.",
+        "translation": "您好像打错电话了。",
+        "chunks": [
+          "I'm afraid you have",
+          "the wrong number."
+        ],
+        "hints": [
+          "您好像",
+          "打错电话了。"
+        ],
+        "cid": "7c35e7d9",
+        "sentenceAudio": {
+          "text": "I'm afraid you have the wrong number.",
+          "audio": {
+            "url": "assets/oral-7c35e7d9-431aeb2cbddbd369f687.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "06ea10cceee43a4165ee337cb795f1c476677297fa145b84163a2338ed1022af",
+            "bytes": 6345
+          }
+        }
+      },
+      {
+        "sentence": "What number are you calling?",
+        "translation": "您拨打的是什么号码？",
+        "chunks": [
+          "What number are you calling?"
+        ],
+        "hints": [
+          "您拨打的是什么号码？"
+        ],
+        "cid": "c2e843de",
+        "sentenceAudio": {
+          "text": "What number are you calling?",
+          "audio": {
+            "url": "assets/oral-c2e843de-7a89e0eb514fa26f8a1f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "840120a2493b57e49a2000747bf25ce43bfbc3b606612e52283dda541620a055",
+            "bytes": 5032
+          }
+        }
+      },
+      {
+        "sentence": "Who would you like to talk to?",
+        "translation": "您找哪位呀?",
+        "chunks": [
+          "Who would you like to talk to?"
+        ],
+        "hints": [
+          "您找哪位呀?"
+        ],
+        "cid": "d80536eb",
+        "sentenceAudio": {
+          "text": "Who would you like to talk to?",
+          "audio": {
+            "url": "assets/oral-d80536eb-33129069bb051166fb1b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f10b9e321a2a8450c5c93ee5616c4196caa3b8eae9e71f4c5767b2648fd7e98b",
+            "bytes": 5301
+          }
+        }
+      },
+      {
+        "sentence": "There's no one here by that name.",
+        "translation": "这儿没有您说的这个人。",
+        "chunks": [
+          "There's no one here",
+          "by that name."
+        ],
+        "hints": [
+          "这儿没有",
+          "您说的这个人。"
+        ],
+        "cid": "1e1c9af9",
+        "sentenceAudio": {
+          "text": "There's no one here by that name.",
+          "audio": {
+            "url": "assets/oral-1e1c9af9-92e4d2eb63d754bc165a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4dc529e115a4d1ae5c5224f11e2265c9b671b1c5932865f012fb2b7098ec9260",
+            "bytes": 6114
+          }
+        }
+      },
+      {
+        "sentence": "There's no Bob Hope in this office.",
+        "translation": "这间办公室里没有叫鲍勃·霍普的人。",
+        "chunks": [
+          "There's no Bob Hope in this office."
+        ],
+        "hints": [
+          "这间办公室里没有叫鲍勃·霍普的人。"
+        ],
+        "cid": "9a23585e",
+        "sentenceAudio": {
+          "text": "There's no Bob Hope in this office.",
+          "audio": {
+            "url": "assets/oral-9a23585e-aa6ef70480fd344f3c1a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c44520bd0bb0a165ed3f30e16c2962908e03ca4c392dee4117fa88f5d6bbb5fc",
+            "bytes": 6638
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry. I must have misdialed.",
+        "translation": "对不起，我一定是打错电话了。",
+        "chunks": [
+          "I'm sorry.",
+          "I must have misdialed."
+        ],
+        "hints": [
+          "对不起。",
+          "我一定是打错电话了。"
+        ],
+        "cid": "42f2129f",
+        "sentenceAudio": {
+          "text": "I'm sorry. I must have misdialed.",
+          "audio": {
+            "url": "assets/oral-42f2129f-e4b00683218cdf5b0a6b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b52cc97887207581a4b6c504b9e64e9ec0b68cbc5cd1234abce6bd3129b3a8f6",
+            "bytes": 7436
+          }
+        }
+      },
+      {
+        "sentence": "This is Gary Mills calling. Please call me as soon as possible.",
+        "translation": "我是加里·米尔斯，请尽快跟我联络。",
+        "chunks": [
+          "This is Gary Mills calling.",
+          "Please call me as soon as possible."
+        ],
+        "hints": [
+          "我是加里·米尔斯。",
+          "请尽快跟我联络。"
+        ],
+        "cid": "95a9dd6d",
+        "sentenceAudio": {
+          "text": "This is Gary Mills calling. Please call me as soon as possible.",
+          "audio": {
+            "url": "assets/oral-95a9dd6d-3414b89a1d675b9ef6a3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6e59df13b1b95da0a82af9ec66eb574a7105f8e292df90a3d706c5e522c0fa5d",
+            "bytes": 11797
+          }
+        }
+      },
+      {
+        "sentence": "This is Gary Mills of ABC. Please call me when you get home. My number is 1234-1234.",
+        "translation": "我是ABC公司的加里·米尔斯。您到家后请给我回电话，我的号码是1234-1234。",
+        "chunks": [
+          "This is Gary Mills of ABC.",
+          "Please call me when you get home.",
+          "My number is 1234-1234."
+        ],
+        "hints": [
+          "我是ABC公司的加里·米尔斯。",
+          "您到家后请给我回电话。",
+          "我的号码是1234-1234。"
+        ],
+        "cid": "0df52b4a",
+        "sentenceAudio": {
+          "text": "This is Gary Mills of ABC. Please call me when you get home. My number is 1234-1234.",
+          "audio": {
+            "url": "assets/oral-0df52b4a-6202d7dab3d1e65de9b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "383cc6b2296c81c1254f0c515e8df54eb04fa2f27f4a3184c2359303b21a705b",
+            "bytes": 29334
+          }
+        }
+      },
+      {
+        "sentence": "This is a recording.",
+        "translation": "这是电话录音。",
+        "chunks": [
+          "This is",
+          "a recording."
+        ],
+        "hints": [
+          "这是",
+          "电话录音。"
+        ],
+        "cid": "4c284ad3",
+        "sentenceAudio": {
+          "text": "This is a recording.",
+          "audio": {
+            "url": "assets/oral-4c284ad3-65e42a64f7655a755851.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1066f779a005b9ea93d660e4ea3c37c5699e8a20f262fb1e407583d5f2567ab4",
+            "bytes": 4715
+          }
+        }
+      },
+      {
+        "sentence": "Please speak a little more slowly.",
+        "translation": "您能说慢一点儿吗?",
+        "chunks": [
+          "Please speak",
+          "a little more slowly."
+        ],
+        "hints": [
+          "您能说",
+          "慢一点儿吗？"
+        ],
+        "cid": "ab72202b",
+        "sentenceAudio": {
+          "text": "Please speak a little more slowly.",
+          "audio": {
+            "url": "assets/oral-ab72202b-e5abadbf49924824bf60.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7d20db6467362aa2004a30fb3d26259e8b01c7864056b0b478f94d671cc63329",
+            "bytes": 6153
+          }
+        }
+      },
+      {
+        "sentence": "I can't hear you very well.",
+        "translation": "我听不清楚。",
+        "chunks": [
+          "I",
+          "can't hear you very well."
+        ],
+        "hints": [
+          "我",
+          "听不太清楚"
+        ],
+        "cid": "4a52d2fe",
+        "sentenceAudio": {
+          "text": "I can't hear you very well.",
+          "audio": {
+            "url": "assets/oral-4a52d2fe-856a61e9d3d95d3d52e3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6c952352fb8aea9abbc4c7e03734bdffac442f15ab1e13ad6211c20801e6263b",
+            "bytes": 5380
+          }
+        }
+      },
+      {
+        "sentence": "We have a bad connection.",
+        "translation": "我们的电话线路不太好。",
+        "chunks": [
+          "We have",
+          "a bad connection."
+        ],
+        "hints": [
+          "我们的",
+          "电话线路不太好。"
+        ],
+        "cid": "9aaf3caf",
+        "sentenceAudio": {
+          "text": "We have a bad connection.",
+          "audio": {
+            "url": "assets/oral-9aaf3caf-48fe3499af2253f04dc3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ed4c627d0d171554b4133b32d1f85763290015ae63d8528404426b538af41d33",
+            "bytes": 5260
+          }
+        }
+      },
+      {
+        "sentence": "Could you speak up, please?",
+        "translation": "您能再大声一点吗？",
+        "chunks": [
+          "Could you",
+          "speak up, please?"
+        ],
+        "hints": [
+          "您能不能",
+          "再大声一点？"
+        ],
+        "cid": "6acd2caf",
+        "sentenceAudio": {
+          "text": "Could you speak up, please?",
+          "audio": {
+            "url": "assets/oral-6acd2caf-b222f6809a9bd0abdaab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "acc31de81b7dbf7bba0ef56b5951f2a2388eba351b3d359f93b7a6b9f41de4d7",
+            "bytes": 5126
+          }
+        }
+      },
+      {
+        "sentence": "The lines are crossed.",
+        "translation": "电话串线了。",
+        "chunks": [
+          "The lines",
+          "are crossed."
+        ],
+        "hints": [
+          "电话线路",
+          "串线了。"
+        ],
+        "cid": "e0952ece",
+        "sentenceAudio": {
+          "text": "The lines are crossed.",
+          "audio": {
+            "url": "assets/oral-e0952ece-510de2190214717c124c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d92769106ad60bc31f40dac4099164e462e30a35ac58cc316a2c97ea0f021742",
+            "bytes": 4676
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry to have kept you waiting.",
+        "translation": "对不起，让您久等了。",
+        "chunks": [
+          "I'm sorry",
+          "to have kept you waiting."
+        ],
+        "hints": [
+          "对不起",
+          "让您久等了。"
+        ],
+        "cid": "6a24a332",
+        "sentenceAudio": {
+          "text": "I'm sorry to have kept you waiting.",
+          "audio": {
+            "url": "assets/oral-6a24a332-aeeeddc7ecc07199ee9b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "436e0a869f1b4ee3b7e2d94c69370b991d357dd6a745095a36ccf7884a5a43b8",
+            "bytes": 6359
+          }
+        }
+      },
+      {
+        "sentence": "Thank you for waiting.",
+        "translation": "谢谢您耐心等候。",
+        "chunks": [
+          "Thank you",
+          "for waiting."
+        ],
+        "hints": [
+          "谢谢您",
+          "耐心等候。"
+        ],
+        "cid": "42c44942",
+        "sentenceAudio": {
+          "text": "Thank you for waiting.",
+          "audio": {
+            "url": "assets/oral-42c44942-88116bfffd23110d262e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4ae20dcbcb97858e6927099e6929c8d914a1bf7c4cc94c2653ef0408972f9ecd",
+            "bytes": 4670
+          }
+        }
+      },
+      {
+        "sentence": "You gave me the wrong number.",
+        "translation": "你给我的电话号码是错的。",
+        "chunks": [
+          "You gave me",
+          "the wrong number."
+        ],
+        "hints": [
+          "你给我的",
+          "电话号码是错的。"
+        ],
+        "cid": "8a8f88f2",
+        "sentenceAudio": {
+          "text": "You gave me the wrong number.",
+          "audio": {
+            "url": "assets/oral-8a8f88f2-ca75957f19512d67962e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dbd8b732a2a5678b34ce65301db0e5397b403d139b09c5b32e305f9d5d8a6622",
+            "bytes": 5175
+          }
+        }
+      },
+      {
+        "sentence": "Sorry, you must have the wrong number.",
+        "cid": "00d6253f",
+        "translation": "抱歉，你一定是打错电话了。",
+        "chunks": [
+          "Sorry,",
+          "you must have",
+          "the wrong number."
+        ],
+        "hints": [
+          "抱歉",
+          "你一定是",
+          "拨错了号码"
+        ],
+        "grammar": [
+          {
+            "role": "致歉词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈsɒri/"
+            ],
+            "pos": "礼貌用语",
+            "meaning": "抱歉"
+          },
+          {
+            "role": "情态+完成式",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/juː/",
+              "/mʌst/",
+              "/hæv/"
+            ],
+            "pos": "推测结构",
+            "meaning": "你一定是"
+          },
+          {
+            "role": "名词短语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/rɒŋ/",
+              "/ˈnʌmbər/"
+            ],
+            "pos": "宾语",
+            "meaning": "错误的号码"
+          }
+        ],
+        "explanations": [
+          "`Sorry,` 开头加逗号表道歉语气。注意是 sorry 不是 apologize（口语更自然）。",
+          "`must have + 名词` = 一定是（对现在的推测）。这里 must have the wrong number = 一定是拿错号码了。常见错误：\n• \"you must **has**\" → must 后接动词原形 have\n• \"you **must to** have\" → 情态动词后不加 to",
+          "`the wrong number` 固定说法 = 错误号码/打错电话。完整句常接：Sorry, wrong number.（打错了）。"
+        ],
+        "distractors": [
+          [
+            "Apology,",
+            "Sorry,please",
+            "Excuse me,"
+          ],
+          [
+            "you must has",
+            "you must to have",
+            "you have must"
+          ],
+          [
+            "the wrong call.",
+            "a wrong number.",
+            "the wrongly number."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sorry, you must have the wrong number.",
+          "audio": {
+            "url": "assets/oral-00d6253f-935ac60f07fa59500ce8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4622da2c618250045760f6e6d3971cd171ff44411f61cd73ed86f2a98746d4ea",
+            "bytes": 6688
+          }
+        }
+      },
+      {
+        "sentence": "Stop calling me.",
+        "cid": "2a729d81",
+        "translation": "别再给我打电话。",
+        "chunks": [
+          "Stop",
+          "calling me."
+        ],
+        "hints": [
+          "别再",
+          "给我打电话"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/stɑːp/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "停止"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈkɔːlɪŋ/",
+              "/miː/"
+            ],
+            "pos": "动名词短语",
+            "meaning": "给我打电话"
+          }
+        ],
+        "explanations": [
+          "`stop doing` 表停止正在做的事，动词要用 -ing。常见错误：\n• \"Stop to call me\" → stop to do 是「停下来去打电话」，意思正好相反\n• \"Stop call me\" → 少了 -ing",
+          "想更坚决：Don't call me again."
+        ],
+        "distractors": [
+          [
+            "Stops",
+            "Stopping",
+            "Stop to"
+          ],
+          [
+            "call me.",
+            "to call me.",
+            "calling my."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Stop calling me.",
+          "audio": {
+            "url": "assets/oral-2a729d81-c01fdc0f8b5381cf889f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0c37516db32321f3ad4c10a79f9c7d23e970875b247572ff87718e4692e87b63",
+            "bytes": 4186
+          }
+        }
+      },
+      {
+        "sentence": "Ma'am, you called us.",
+        "cid": "6592bb2c",
+        "translation": "女士，是你打给我们的。",
+        "chunks": [
+          "Ma'am,",
+          "you called us."
+        ],
+        "hints": [
+          "女士",
+          "你打给我们了"
+        ],
+        "grammar": [
+          {
+            "role": "称呼语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/mæm/"
+            ],
+            "pos": "名词（尊称）",
+            "meaning": "女士"
+          },
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/juː/",
+              "/kɔːld/",
+              "/ʌs/"
+            ],
+            "pos": "一般过去时",
+            "meaning": "你打给我们"
+          }
+        ],
+        "explanations": [
+          "`Ma'am` 是对女性的礼貌称呼，读 /mæm/。常见错误：\n• 拼写别写成 Mam / Maam，标准写法是 Ma'am\n• 称呼语后面要加逗号：Ma'am, ...",
+          "男性对应 Sir；服务场景常见：Sir, you dropped your card."
+        ],
+        "distractors": [
+          [
+            "Mam,",
+            "Maams,",
+            "Mister,"
+          ],
+          [
+            "you call us.",
+            "you called we.",
+            "you called ours."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Ma'am, you called us.",
+          "audio": {
+            "url": "assets/oral-6592bb2c-b66aa23481d5013ee91c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e64f93c9649cc677ad508e7f39a3f5b64880d3b371954e559a0b9eea2740abed",
+            "bytes": 4836
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1739 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-3-13-1",
+    "name": "口语3000句 · 提出要求 · 请求帮助～提议",
+    "short": "请求帮助～提议",
+    "desc": "请求帮助～提议",
+    "chapter": 3,
+    "section": "3.13",
+    "sectionTitle": "提出要求",
+    "topic": "请求帮助～提议",
+    "baseCount": 0,
+    "totalCount": 67,
+    "items": [
+      {
+        "sentence": "Do you mind if I ask you a favor?",
+        "translation": "我可以请您帮个忙吗?",
+        "chunks": [
+          "Do you mind",
+          "if I ask you a favor?"
+        ],
+        "hints": [
+          "你介意吗",
+          "如果我请你帮个忙"
+        ],
+        "cid": "584dc1a3",
+        "sentenceAudio": {
+          "text": "Do you mind if I ask you a favor?",
+          "audio": {
+            "url": "assets/oral-584dc1a3-e0c5770c771a5a7c81b2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d3779873d9341cad006418fde426d1b98094bfd0c9cecdca99c1e08551bcae00",
+            "bytes": 6468
+          }
+        }
+      },
+      {
+        "sentence": "Would you give me a hand?",
+        "translation": "你能帮我一把吗？",
+        "chunks": [
+          "Would you",
+          "give me a hand?"
+        ],
+        "hints": [
+          "你能",
+          "帮我一把吗？"
+        ],
+        "cid": "57288de5",
+        "sentenceAudio": {
+          "text": "Would you give me a hand?",
+          "audio": {
+            "url": "assets/oral-57288de5-846112199c4e7c026481.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b315b0cb2ac4bca3254b3199bd840159843cc8dde2735ad0505b929cbc628c32",
+            "bytes": 4786
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry to bother you,...",
+        "translation": "对不起……",
+        "chunks": [
+          "I'm sorry",
+          "to bother you,..."
+        ],
+        "hints": [
+          "对不起",
+          "打扰你了"
+        ],
+        "cid": "9705ac23",
+        "sentenceAudio": {
+          "text": "I'm sorry to bother you,...",
+          "audio": {
+            "url": "assets/oral-9705ac23-50298543851d8946b0e8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d8aff4502e73058d0a89415939d7f7f92829a975df75c2280d116e874d6fc5af",
+            "bytes": 5407
+          }
+        }
+      },
+      {
+        "sentence": "I'll be glad to.",
+        "translation": "乐意为您效劳。",
+        "chunks": [
+          "I'll be",
+          "glad to."
+        ],
+        "hints": [
+          "我很",
+          "乐意"
+        ],
+        "cid": "20f090fd",
+        "sentenceAudio": {
+          "text": "I'll be glad to.",
+          "audio": {
+            "url": "assets/oral-20f090fd-12a0905bd7ef2515baaf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ecae1776bed843c2f0e67d91109addb6ed9885835a24da7f589ce0b9d119ef1d",
+            "bytes": 4407
+          }
+        }
+      },
+      {
+        "sentence": "Could I possibly...?",
+        "translation": "我可不可以……/可不可以让我……",
+        "chunks": [
+          "Could I",
+          "possibly...?"
+        ],
+        "hints": [
+          "我可以",
+          "……吗"
+        ],
+        "cid": "4d6864d7",
+        "sentenceAudio": {
+          "text": "Could I possibly...?",
+          "audio": {
+            "url": "assets/oral-4d6864d7-a0738f267d8810ba1adc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dda08fb97b7cf068347015fffe0a56e4b9b9a0e05cf6c6a696419f1fc45d58ff",
+            "bytes": 4759
+          }
+        }
+      },
+      {
+        "sentence": "If you'd like,...",
+        "translation": "如果可以的话，……",
+        "chunks": [
+          "If you'd",
+          "like,..."
+        ],
+        "hints": [
+          "如果你",
+          "愿意的话"
+        ],
+        "cid": "3b347863",
+        "sentenceAudio": {
+          "text": "If you'd like,...",
+          "audio": {
+            "url": "assets/oral-3b347863-2555245280ad8a0a0bb3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6b92c0043734e123fb13d480dd6c0d83397e6052a8594543112d5e7a7e141dab",
+            "bytes": 3999
+          }
+        }
+      },
+      {
+        "sentence": "Could you pass the sugar, please?",
+        "translation": "请您把糖拿过来行吗?",
+        "chunks": [
+          "Could you",
+          "pass the sugar,",
+          "please?"
+        ],
+        "hints": [
+          "你能不能",
+          "把糖递过来",
+          "好吗？"
+        ],
+        "cid": "0e829cd6",
+        "sentenceAudio": {
+          "text": "Could you pass the sugar, please?",
+          "audio": {
+            "url": "assets/oral-0e829cd6-26261d68baa2f7e7a6d8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "69c4bc70fa971795b2af0e40ca052055e2f071dad60c6b6fcd4432dec26b30bc",
+            "bytes": 5975
+          }
+        }
+      },
+      {
+        "sentence": "Here you are.",
+        "translation": "给你。",
+        "chunks": [
+          "Here you are."
+        ],
+        "hints": [
+          "给你。"
+        ],
+        "cid": "41201124",
+        "sentenceAudio": {
+          "text": "Here you are.",
+          "audio": {
+            "url": "assets/oral-41201124-15edc44e3bd2d9fc0721.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "79167af62b1fbbd13a0dfd134c99c92132a5750e7858bcf48a06a543ee06433e",
+            "bytes": 3701
+          }
+        }
+      },
+      {
+        "sentence": "Please do this.",
+        "translation": "请做这个。",
+        "chunks": [
+          "Please",
+          "do this."
+        ],
+        "hints": [
+          "请",
+          "做这个"
+        ],
+        "cid": "3b12afb6",
+        "sentenceAudio": {
+          "text": "Please do this.",
+          "audio": {
+            "url": "assets/oral-3b12afb6-d9454e85854cca2d1406.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eae36bf4c0b848335e77150786a8519f6deabec77e7ce76a836939e5791b0fbd",
+            "bytes": 3990
+          }
+        }
+      },
+      {
+        "sentence": "Would you drive me to the store?",
+        "translation": "您能开车送我到那家店吗?",
+        "chunks": [
+          "Would you drive me",
+          "to the store?"
+        ],
+        "hints": [
+          "你能开车送我",
+          "到那家店吗"
+        ],
+        "cid": "3dd6d29d",
+        "sentenceAudio": {
+          "text": "Would you drive me to the store?",
+          "audio": {
+            "url": "assets/oral-3dd6d29d-5f68a1baa5a472bf05d2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "df13fe91d282357a5830ca7564608039707f27e1eeb17c46eb52689f0cb12b68",
+            "bytes": 5674
+          }
+        }
+      },
+      {
+        "sentence": "Would you help me find the number for the ABC Hotel?",
+        "translation": "您能帮我找到ABC饭店的电话号码吗?",
+        "chunks": [
+          "Would you help me find",
+          "the number for the ABC Hotel?"
+        ],
+        "hints": [
+          "你能帮我找到",
+          "ABC饭店的电话号码吗"
+        ],
+        "cid": "4e88bbba",
+        "sentenceAudio": {
+          "text": "Would you help me find the number for the ABC Hotel?",
+          "audio": {
+            "url": "assets/oral-4e88bbba-54ba2328686dc8a50441.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "08528c1d10054f4ffa52910dc374f6350d56cc3f40a456ac925e5e5fb4db8f67",
+            "bytes": 10133
+          }
+        }
+      },
+      {
+        "sentence": "May I borrow your pen?",
+        "translation": "能借用一下你的钢笔吗?",
+        "chunks": [
+          "May I borrow",
+          "your pen?"
+        ],
+        "hints": [
+          "我可以借",
+          "你的钢笔吗"
+        ],
+        "cid": "fa523767",
+        "sentenceAudio": {
+          "text": "May I borrow your pen?",
+          "audio": {
+            "url": "assets/oral-fa523767-c2105c1f715624348ace.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "28c307969fe01a64e58caa9074f6266e21d30c292d88ffaf77b46e2cb8b31eb7",
+            "bytes": 5264
+          }
+        }
+      },
+      {
+        "sentence": "Do you have a pen?",
+        "translation": "有笔吗?",
+        "chunks": [
+          "Do you",
+          "have a pen?"
+        ],
+        "hints": [
+          "你有",
+          "笔吗"
+        ],
+        "cid": "31c1b2ac",
+        "sentenceAudio": {
+          "text": "Do you have a pen?",
+          "audio": {
+            "url": "assets/oral-31c1b2ac-21de595000eaa070540d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e53df75f156edae1e7566ee8b2b13dd9ae38778f07eb6fe3dfee99ebe124b9f3",
+            "bytes": 4249
+          }
+        }
+      },
+      {
+        "sentence": "Can you lend me ten dollars?",
+        "translation": "能借给我10美元吗?",
+        "chunks": [
+          "Can you lend me",
+          "ten dollars?"
+        ],
+        "hints": [
+          "你能借给我",
+          "10美元吗"
+        ],
+        "cid": "2a1d5c8c",
+        "sentenceAudio": {
+          "text": "Can you lend me ten dollars?",
+          "audio": {
+            "url": "assets/oral-2a1d5c8c-9833050c5c0c226b1f89.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "90c65ce277cbbca23ea08c099ee2e46192c650e86d57e287b67f2aedcd71f24b",
+            "bytes": 5662
+          }
+        }
+      },
+      {
+        "sentence": "Would you give me a call?",
+        "translation": "你能给我打个电话吗?",
+        "chunks": [
+          "Would you",
+          "give me a call?"
+        ],
+        "hints": [
+          "你能",
+          "给我打个电话吗"
+        ],
+        "cid": "a66ef75a",
+        "sentenceAudio": {
+          "text": "Would you give me a call?",
+          "audio": {
+            "url": "assets/oral-a66ef75a-2058966626f744837aaa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3f1b93ff0bff3c22322a97fe9e76d7050b5367ee3e7e132305c39e86c8004fa8",
+            "bytes": 4847
+          }
+        }
+      },
+      {
+        "sentence": "I'd appreciate it if you could call me tonight.",
+        "translation": "你今天晚上如果能给我打个电话的话，我将非常感激。",
+        "chunks": [
+          "I'd appreciate it",
+          "if you could call me tonight."
+        ],
+        "hints": [
+          "我会非常感激",
+          "如果你今晚能给我打电话的话"
+        ],
+        "cid": "cfcfc094",
+        "sentenceAudio": {
+          "text": "I'd appreciate it if you could call me tonight.",
+          "audio": {
+            "url": "assets/oral-cfcfc094-ae30504c737598301bae.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7cf2776533f2efec5d7f55463dc9aa17f00ea48277f33548a7d894a18cb9d4a6",
+            "bytes": 8307
+          }
+        }
+      },
+      {
+        "sentence": "Please turn it down.",
+        "translation": "请关小点儿声。",
+        "chunks": [
+          "Please",
+          "turn it down."
+        ],
+        "hints": [
+          "请",
+          "把声音关小点。"
+        ],
+        "cid": "3b6aef29",
+        "sentenceAudio": {
+          "text": "Please turn it down.",
+          "audio": {
+            "url": "assets/oral-3b6aef29-f62569f507fd416bc7ac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a6fd4b7a11438c5581160392c13d4631418eda13a34251d513e852b47cbb2eee",
+            "bytes": 4705
+          }
+        }
+      },
+      {
+        "sentence": "Wait here until I get back.",
+        "translation": "在这儿等我回来。",
+        "chunks": [
+          "Wait here",
+          "until I get back."
+        ],
+        "hints": [
+          "在这儿等着",
+          "直到我回来"
+        ],
+        "cid": "e0950cd6",
+        "sentenceAudio": {
+          "text": "Wait here until I get back.",
+          "audio": {
+            "url": "assets/oral-e0950cd6-840d8545774bc5a39ba6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fb052280efcfd61dbba1722dab8078c8f5a37a2fa10d1baea02c4a1df8c6226c",
+            "bytes": 5636
+          }
+        }
+      },
+      {
+        "sentence": "Hello, there!",
+        "translation": "你好！",
+        "chunks": [
+          "Hello, there!"
+        ],
+        "hints": [
+          "你好！"
+        ],
+        "cid": "4c6b7772",
+        "sentenceAudio": {
+          "text": "Hello, there!",
+          "audio": {
+            "url": "assets/oral-4c6b7772-1bce43a8250d8427301a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4351ffdbcf92e4fde572d9f0433bc01f73fb90451ff6058a4c8ee4acdc448e8",
+            "bytes": 3709
+          }
+        }
+      },
+      {
+        "sentence": "Hey!",
+        "translation": "喂!",
+        "chunks": [
+          "Hey!"
+        ],
+        "hints": [
+          "喂"
+        ],
+        "cid": "058292d4",
+        "sentenceAudio": {
+          "text": "Hey!",
+          "audio": {
+            "url": "assets/oral-058292d4-a493b2f38b23a0c51d55.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6f6122a3fc2a142bb8321e217ac4ada59bade74c8574ca59a76ec8bf21d28ecb",
+            "bytes": 2822
+          }
+        }
+      },
+      {
+        "sentence": "Do you have time?",
+        "translation": "你有空吗?",
+        "chunks": [
+          "Do you",
+          "have time?"
+        ],
+        "hints": [
+          "你有",
+          "空吗"
+        ],
+        "cid": "8a34f44d",
+        "sentenceAudio": {
+          "text": "Do you have time?",
+          "audio": {
+            "url": "assets/oral-8a34f44d-8556747fc5511ed0f4f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0ff26973431759a736690e1da2e41b46644c1ab4e67b03c187899912ed3926de",
+            "bytes": 4195
+          }
+        }
+      },
+      {
+        "sentence": "Can I ask you a favor?",
+        "translation": "我想求你件事行吗?",
+        "chunks": [
+          "Can I ask you",
+          "a favor?"
+        ],
+        "hints": [
+          "我能求你",
+          "帮个忙吗"
+        ],
+        "cid": "db584c0c",
+        "sentenceAudio": {
+          "text": "Can I ask you a favor?",
+          "audio": {
+            "url": "assets/oral-db584c0c-6892ca601be6e09477f4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ca2e2d0fb6ff2c5f910b4f07186feaf816f088726237407829b7aee9a5c92b41",
+            "bytes": 5096
+          }
+        }
+      },
+      {
+        "sentence": "May I ask you something?",
+        "translation": "我想打听点儿事。",
+        "chunks": [
+          "May I ask you",
+          "something?"
+        ],
+        "hints": [
+          "我可以问你",
+          "点事吗"
+        ],
+        "cid": "70dd88dc",
+        "sentenceAudio": {
+          "text": "May I ask you something?",
+          "audio": {
+            "url": "assets/oral-70dd88dc-59cb651a4ddeeedc7a1c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b6e057d9c39531e5b49cfa7e5af3c4f4c358b56f7b509ddb8f4a6d088a558137",
+            "bytes": 5204
+          }
+        }
+      },
+      {
+        "sentence": "Guess what?",
+        "translation": "你猜怎么着?",
+        "chunks": [
+          "Guess",
+          "what?"
+        ],
+        "hints": [
+          "你猜",
+          "怎么着"
+        ],
+        "cid": "5ba92df9",
+        "sentenceAudio": {
+          "text": "Guess what?",
+          "audio": {
+            "url": "assets/oral-5ba92df9-ab427158ea80c1aea17a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b992631f2e7bf0c612bc10fd0fa65ed57de0fefd94ae454c87953fd1fe152225",
+            "bytes": 3596
+          }
+        }
+      },
+      {
+        "sentence": "Sorry, I mistook you for someone else.",
+        "translation": "对不起，我认错人了。",
+        "chunks": [
+          "Sorry,",
+          "I mistook you",
+          "for someone else."
+        ],
+        "hints": [
+          "对不起",
+          "我把你认成了",
+          "别人"
+        ],
+        "cid": "4d14acbc",
+        "sentenceAudio": {
+          "text": "Sorry, I mistook you for someone else.",
+          "audio": {
+            "url": "assets/oral-4d14acbc-8dfaec1c8fbbbc1f811b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "744cb0b02662e6e172f483eee8f68f4e1b5bd21e135fd914cf6dab7020e813a1",
+            "bytes": 6903
+          }
+        }
+      },
+      {
+        "sentence": "How should I do it?",
+        "translation": "我该怎么做呢?",
+        "chunks": [
+          "How should I",
+          "do it?"
+        ],
+        "hints": [
+          "我该怎么",
+          "做这件事？"
+        ],
+        "cid": "2a4e8042",
+        "sentenceAudio": {
+          "text": "How should I do it?",
+          "audio": {
+            "url": "assets/oral-2a4e8042-1bd7d16e28b192179e65.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0add9222eb48c2917418a67f41118d862aed16aad40cc610ab0d441afb32422c",
+            "bytes": 4307
+          }
+        }
+      },
+      {
+        "sentence": "This is the way you should do it.",
+        "translation": "你该这么做。",
+        "chunks": [
+          "This is the way",
+          "you should do it."
+        ],
+        "hints": [
+          "就是这样",
+          "你该这么做"
+        ],
+        "cid": "2cfabe71",
+        "sentenceAudio": {
+          "text": "This is the way you should do it.",
+          "audio": {
+            "url": "assets/oral-2cfabe71-029c6cbbda21375abce0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a3588eabca3ba4269be26b534fd96517909519289b9a5d313dfad24e4d14fa76",
+            "bytes": 5671
+          }
+        }
+      },
+      {
+        "sentence": "It'll do the trick.",
+        "translation": "这样就能奏效。",
+        "chunks": [
+          "It'll",
+          "do the trick."
+        ],
+        "hints": [
+          "这样就能",
+          "奏效。"
+        ],
+        "cid": "3fdae928",
+        "sentenceAudio": {
+          "text": "It'll do the trick.",
+          "audio": {
+            "url": "assets/oral-3fdae928-74e8f63ae91ed623b557.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c9ef4bbd831581a6c495ea08cc899d8e560e0c55a5596ac21ffdb8b632878c36",
+            "bytes": 4359
+          }
+        }
+      },
+      {
+        "sentence": "This looks better.",
+        "translation": "这样看上去好一些。",
+        "chunks": [
+          "This looks",
+          "better."
+        ],
+        "hints": [
+          "这样看起来",
+          "更好一些"
+        ],
+        "cid": "5b325f49",
+        "sentenceAudio": {
+          "text": "This looks better.",
+          "audio": {
+            "url": "assets/oral-5b325f49-20bd85ac3f9f5cc39654.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d1ffb0eb3955145293ad448540cc06f54515ca2edeed6252bc2997fcc95e91a1",
+            "bytes": 4302
+          }
+        }
+      },
+      {
+        "sentence": "I'll do it my own way.",
+        "translation": "我用我自己的办法。",
+        "chunks": [
+          "I'll do it",
+          "my own way."
+        ],
+        "hints": [
+          "我会这么做",
+          "用我自己的办法。"
+        ],
+        "cid": "be1ace8a",
+        "sentenceAudio": {
+          "text": "I'll do it my own way.",
+          "audio": {
+            "url": "assets/oral-be1ace8a-0b4f920032688dac311c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ce913399242c041f7a25ea97773ebb74399200c7f3134b62cfd9fc3541b6543",
+            "bytes": 4882
+          }
+        }
+      },
+      {
+        "sentence": "Like this?",
+        "translation": "像这样?",
+        "chunks": [
+          "Like",
+          "this?"
+        ],
+        "hints": [
+          "像",
+          "这样吗"
+        ],
+        "cid": "bb0166d7",
+        "sentenceAudio": {
+          "text": "Like this?",
+          "audio": {
+            "url": "assets/oral-bb0166d7-3da4099673d42dff69a7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5a8a8c98a59ca3f07d4ceaf9e07522c9b234b1b265536fd752489c876373a7b6",
+            "bytes": 3659
+          }
+        }
+      },
+      {
+        "sentence": "Like what?",
+        "translation": "像什么?",
+        "chunks": [
+          "Like",
+          "what?"
+        ],
+        "hints": [
+          "像",
+          "什么"
+        ],
+        "cid": "d18ff455",
+        "sentenceAudio": {
+          "text": "Like what?",
+          "audio": {
+            "url": "assets/oral-d18ff455-9dbb28797930359ed895.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7b55da2b6121b0eb9f305ee86027cece200b39af7ecae85b345e730b78dd0a1c",
+            "bytes": 3688
+          }
+        }
+      },
+      {
+        "sentence": "It's easy.",
+        "translation": "很简单。",
+        "chunks": [
+          "It's",
+          "easy."
+        ],
+        "hints": [
+          "这很",
+          "简单"
+        ],
+        "cid": "6f69b362",
+        "sentenceAudio": {
+          "text": "It's easy.",
+          "audio": {
+            "url": "assets/oral-6f69b362-d093daba80e614329d0a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "08ead97c2bdc539600581e542b2d4abde55b4847b82b915b023703ec7946a6fc",
+            "bytes": 3619
+          }
+        }
+      },
+      {
+        "sentence": "Just like that!",
+        "translation": "就那样！",
+        "chunks": [
+          "Just",
+          "like that!"
+        ],
+        "hints": [
+          "就",
+          "那样！"
+        ],
+        "cid": "02554296",
+        "sentenceAudio": {
+          "text": "Just like that!",
+          "audio": {
+            "url": "assets/oral-02554296-5dd41898d8dfca2042fd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a39fb55cb8e7b65ea5ab419469bb4c21087b20e66dc4875f92bc1e0ce909fb25",
+            "bytes": 4035
+          }
+        }
+      },
+      {
+        "sentence": "It's a little hard.",
+        "translation": "有点儿难哦。",
+        "chunks": [
+          "It's a little",
+          "hard."
+        ],
+        "hints": [
+          "有一点",
+          "难"
+        ],
+        "cid": "9857b1ba",
+        "sentenceAudio": {
+          "text": "It's a little hard.",
+          "audio": {
+            "url": "assets/oral-9857b1ba-352493ac8f54e67a7f01.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c0b41903f1c56be7d5d314595ecf9db4891242fb404c00ca7f8add68afe82c92",
+            "bytes": 4239
+          }
+        }
+      },
+      {
+        "sentence": "It's complicated.",
+        "translation": "很复杂哦。",
+        "chunks": [
+          "It's",
+          "complicated."
+        ],
+        "hints": [
+          "这很",
+          "复杂"
+        ],
+        "cid": "642f82cf",
+        "sentenceAudio": {
+          "text": "It's complicated.",
+          "audio": {
+            "url": "assets/oral-642f82cf-c95bb4f08af55c93227d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "acaefad2af3c240813805b3a715e7c8c6b13ea04635b1d72216a2ddf96b3039d",
+            "bytes": 4547
+          }
+        }
+      },
+      {
+        "sentence": "This is the first thing to do.",
+        "translation": "首先应该做这个。",
+        "chunks": [
+          "This is the first thing",
+          "to do."
+        ],
+        "hints": [
+          "这是第一件事",
+          "要做的。"
+        ],
+        "cid": "6e4ea586",
+        "sentenceAudio": {
+          "text": "This is the first thing to do.",
+          "audio": {
+            "url": "assets/oral-6e4ea586-df6fd08b1aee16bd1b65.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4294e6f12707b93261218f2538d5e2f830b2cb88a4d75e0f2af6917b5c168fc9",
+            "bytes": 6112
+          }
+        }
+      },
+      {
+        "sentence": "You dropped this.",
+        "translation": "你掉了这个。",
+        "chunks": [
+          "You",
+          "dropped this."
+        ],
+        "hints": [
+          "你",
+          "掉了这个"
+        ],
+        "cid": "cb059180",
+        "sentenceAudio": {
+          "text": "You dropped this.",
+          "audio": {
+            "url": "assets/oral-cb059180-e14e0593bd0d86e12ec0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c315dd9bbf17c6255d782d4cd1ca11061643a181d1717bfbc40943e35d3b58a9",
+            "bytes": 4092
+          }
+        }
+      },
+      {
+        "sentence": "I think you dropped this.",
+        "translation": "我想这是你丢的吧!",
+        "chunks": [
+          "I think",
+          "you dropped this."
+        ],
+        "hints": [
+          "我想",
+          "这是你掉的吧"
+        ],
+        "cid": "494227a3",
+        "sentenceAudio": {
+          "text": "I think you dropped this.",
+          "audio": {
+            "url": "assets/oral-494227a3-19ec091831fe2343372b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "75e3f6ca10b5d16adc5e67c6f9d4a161283a3a36121d7608edaa6e7a4fe4d302",
+            "bytes": 4888
+          }
+        }
+      },
+      {
+        "sentence": "Is this yours?",
+        "translation": "这是你的吗?",
+        "chunks": [
+          "Is this",
+          "yours?"
+        ],
+        "hints": [
+          "这是",
+          "你的吗"
+        ],
+        "cid": "06397cd4",
+        "sentenceAudio": {
+          "text": "Is this yours?",
+          "audio": {
+            "url": "assets/oral-06397cd4-bcd74793fd20aae504f8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "046fc2d9d288a2873fa773063546e85cfe7e2333636f0bab7208a2ee812fdb9e",
+            "bytes": 4359
+          }
+        }
+      },
+      {
+        "sentence": "Isn't this yours?",
+        "translation": "这不是你的吗?",
+        "chunks": [
+          "Isn't this",
+          "yours?"
+        ],
+        "hints": [
+          "这不是",
+          "你的吗"
+        ],
+        "cid": "927a5ea7",
+        "sentenceAudio": {
+          "text": "Isn't this yours?",
+          "audio": {
+            "url": "assets/oral-927a5ea7-6421a25c70efb18cdad2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cc39b16721a236c86742bb13796c0fc1b416f747940f08f0cf487f8badcbf745",
+            "bytes": 4422
+          }
+        }
+      },
+      {
+        "sentence": "It's mine.",
+        "translation": "是我的。",
+        "chunks": [
+          "It's",
+          "mine."
+        ],
+        "hints": [
+          "它是",
+          "我的"
+        ],
+        "cid": "18091091",
+        "sentenceAudio": {
+          "text": "It's mine.",
+          "audio": {
+            "url": "assets/oral-18091091-5a904f3e19fcac40039b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8bb6949b6b68edd93e46331fc9ebb7876f0c14703d8488aee742d19205d52e1b",
+            "bytes": 3661
+          }
+        }
+      },
+      {
+        "sentence": "I've lost my wallet.",
+        "translation": "我的钱包丢了。",
+        "chunks": [
+          "I've lost",
+          "my wallet."
+        ],
+        "hints": [
+          "我丢了",
+          "我的钱包"
+        ],
+        "cid": "01d78d95",
+        "sentenceAudio": {
+          "text": "I've lost my wallet.",
+          "audio": {
+            "url": "assets/oral-01d78d95-15ce32868b86b4330316.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fc6f4d3e2bc570583814fac5a72789dd4bf0e6d18d41daa2c67030392a2a5d13",
+            "bytes": 5029
+          }
+        }
+      },
+      {
+        "sentence": "I'm in trouble!",
+        "translation": "这下可麻烦了。。。",
+        "chunks": [
+          "I'm in",
+          "trouble!"
+        ],
+        "hints": [
+          "我有",
+          "麻烦了"
+        ],
+        "cid": "428b28ff",
+        "sentenceAudio": {
+          "text": "I'm in trouble!",
+          "audio": {
+            "url": "assets/oral-428b28ff-eef8c3939671c7d936db.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc8464f30edeaebafa466f060a8949171496f310b0a39c11bf873fdda86d8071",
+            "bytes": 4029
+          }
+        }
+      },
+      {
+        "sentence": "May I help?",
+        "translation": "要我帮忙吗?/要我帮你拿吗?",
+        "chunks": [
+          "May I",
+          "help?"
+        ],
+        "hints": [
+          "要我",
+          "帮忙吗"
+        ],
+        "cid": "75857a9d",
+        "sentenceAudio": {
+          "text": "May I help?",
+          "audio": {
+            "url": "assets/oral-75857a9d-590780f0caaa1e5cd3bb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b2195bbb2ca241f4f9c382a456e6a17b9b525635a4e2c202e5ca7804fb8c2e0b",
+            "bytes": 3942
+          }
+        }
+      },
+      {
+        "sentence": "Think twice before you decide.",
+        "translation": "决定之前再好好考虑考虑。",
+        "chunks": [
+          "Think twice",
+          "before you decide."
+        ],
+        "hints": [
+          "多想两次",
+          "再决定"
+        ],
+        "cid": "0f1ea513",
+        "sentenceAudio": {
+          "text": "Think twice before you decide.",
+          "audio": {
+            "url": "assets/oral-0f1ea513-72ce0d90cb1857c86c2d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6516836c764685c9135a2acd34034fc642f5a4ef4bb9141447c9f3603ba1b383",
+            "bytes": 6228
+          }
+        }
+      },
+      {
+        "sentence": "How about this one?",
+        "translation": "这个怎么样?",
+        "chunks": [
+          "How about",
+          "this one?"
+        ],
+        "hints": [
+          "怎么样？",
+          "这个"
+        ],
+        "cid": "ed66ca29",
+        "sentenceAudio": {
+          "text": "How about this one?",
+          "audio": {
+            "url": "assets/oral-ed66ca29-6a5817357ba6ea615aa8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1d488f554b90a2a577b4b4ba9015b24a7096b1b3464a5b1ab0041fd5917134df",
+            "bytes": 4450
+          }
+        }
+      },
+      {
+        "sentence": "I want to make a suggestion.",
+        "translation": "我提个建议。",
+        "chunks": [
+          "I want to make",
+          "a suggestion."
+        ],
+        "hints": [
+          "我想提",
+          "个建议"
+        ],
+        "cid": "0a396236",
+        "sentenceAudio": {
+          "text": "I want to make a suggestion.",
+          "audio": {
+            "url": "assets/oral-0a396236-3285858a06a8a9c28c4b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e1045ddfd08987e5054606ddd83658a71a3dd32531e33340aa7919f8961b032d",
+            "bytes": 5596
+          }
+        }
+      },
+      {
+        "sentence": "Let's take a short cut.",
+        "translation": "我们走近道吧!",
+        "chunks": [
+          "Let's take",
+          "a short cut."
+        ],
+        "hints": [
+          "我们走",
+          "近道吧"
+        ],
+        "cid": "0ce7578c",
+        "sentenceAudio": {
+          "text": "Let's take a short cut.",
+          "audio": {
+            "url": "assets/oral-0ce7578c-f5c54730c8274f1aacf1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fa708809dfc317a96bfbcd4a01dc8c3b8f625e1c8c625b5ae43d94a382d563ba",
+            "bytes": 5104
+          }
+        }
+      },
+      {
+        "sentence": "Let's play hooky!",
+        "translation": "咱们逃学吧!",
+        "chunks": [
+          "Let's play hooky!"
+        ],
+        "hints": [
+          "咱们逃课去吧！"
+        ],
+        "cid": "45dabaff",
+        "sentenceAudio": {
+          "text": "Let's play hooky!",
+          "audio": {
+            "url": "assets/oral-45dabaff-ecfb72a66bdbddcaa0f9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d84518915651b8371d39044bd0080e9b60dc4bc575fcb312889a1a5432bdc5ff",
+            "bytes": 4680
+          }
+        }
+      },
+      {
+        "sentence": "Let's call in sick.",
+        "translation": "我们打电话请个病假吧!",
+        "chunks": [
+          "Let's",
+          "call in sick."
+        ],
+        "hints": [
+          "我们",
+          "打电话请病假。"
+        ],
+        "cid": "1c1145af",
+        "sentenceAudio": {
+          "text": "Let's call in sick.",
+          "audio": {
+            "url": "assets/oral-1c1145af-8ac00b5ae3c81d170137.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "74b6e0b2a11a62b8bd52de3547a2ec571e5383198616626b218bfb0f2528f50f",
+            "bytes": 4473
+          }
+        }
+      },
+      {
+        "sentence": "Let's play cards!",
+        "translation": "玩扑克吧!",
+        "chunks": [
+          "Let's play",
+          "cards!"
+        ],
+        "hints": [
+          "我们来",
+          "玩牌吧"
+        ],
+        "cid": "cce92168",
+        "sentenceAudio": {
+          "text": "Let's play cards!",
+          "audio": {
+            "url": "assets/oral-cce92168-cb829f01e930378908c2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "08b996f2a54f270dbcd1bb58888a91b31c1fce938efa48a84985b0dc18718364",
+            "bytes": 4633
+          }
+        }
+      },
+      {
+        "sentence": "I have an idea.",
+        "translation": "我有个主意。",
+        "chunks": [
+          "I have",
+          "an idea."
+        ],
+        "hints": [
+          "我有",
+          "个主意"
+        ],
+        "cid": "1f99d5da",
+        "sentenceAudio": {
+          "text": "I have an idea.",
+          "audio": {
+            "url": "assets/oral-1f99d5da-c0a0d7f01f2e2247534a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "82075e5785a90b893fdfa1cb9260d2fcb093399546a9aeab84c548a5d2d72373",
+            "bytes": 4367
+          }
+        }
+      },
+      {
+        "sentence": "Tell you what.",
+        "translation": "这样怎么样?",
+        "chunks": [
+          "Tell you",
+          "what."
+        ],
+        "hints": [
+          "我跟你说",
+          "这样吧"
+        ],
+        "cid": "8583075d",
+        "sentenceAudio": {
+          "text": "Tell you what.",
+          "audio": {
+            "url": "assets/oral-8583075d-c76a076ab6367d2d476f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3f43441b79bbdff50cbc3ccd1ec3527b5aaeaa6289e3d0ce254857f8efcad2c1",
+            "bytes": 3775
+          }
+        }
+      },
+      {
+        "sentence": "Let me think for a moment.",
+        "translation": "让我考虑一下。",
+        "chunks": [
+          "Let me think",
+          "for a moment."
+        ],
+        "hints": [
+          "让我想",
+          "一会儿"
+        ],
+        "cid": "621a5b36",
+        "sentenceAudio": {
+          "text": "Let me think for a moment.",
+          "audio": {
+            "url": "assets/oral-621a5b36-010c4c380a24dcc21ab0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "69f08e13c5b17e353414bb70125367f3b7937b05ef731594e4a1fe7e02a77a51",
+            "bytes": 5116
+          }
+        }
+      },
+      {
+        "sentence": "Just think about it.",
+        "translation": "你好好想想看。",
+        "chunks": [
+          "Just",
+          "think about it."
+        ],
+        "hints": [
+          "好好地",
+          "想一想。"
+        ],
+        "cid": "cec19e0f",
+        "sentenceAudio": {
+          "text": "Just think about it.",
+          "audio": {
+            "url": "assets/oral-cec19e0f-e746a93eb2d803361282.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "17c419943d0440e1bb880ab12e2e62b20f790d7a280b2c67765c952e321a7b08",
+            "bytes": 4462
+          }
+        }
+      },
+      {
+        "sentence": "You should get a haircut.",
+        "translation": "你该剪剪你的头发了。",
+        "chunks": [
+          "You should get",
+          "a haircut."
+        ],
+        "hints": [
+          "你该去",
+          "理个发"
+        ],
+        "cid": "272cc2a2",
+        "sentenceAudio": {
+          "text": "You should get a haircut.",
+          "audio": {
+            "url": "assets/oral-272cc2a2-7ab6987cc9727cc4a03e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3778fc00994dcab100eeb160dbe11648b5bffc9857fb4c72c3b7b88a7b59481d",
+            "bytes": 4596
+          }
+        }
+      },
+      {
+        "sentence": "Won't you join us?",
+        "translation": "你要不要加入我们？",
+        "chunks": [
+          "Won't you",
+          "join us?"
+        ],
+        "hints": [
+          "你要不要",
+          "加入我们？"
+        ],
+        "cid": "48387ff4",
+        "sentenceAudio": {
+          "text": "Won't you join us?",
+          "audio": {
+            "url": "assets/oral-48387ff4-c49b05d70d5088ff3c2e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f1f5c704bdeec5c7e70aa578d35b569a6e058b56664040a0297a71591db5216e",
+            "bytes": 4472
+          }
+        }
+      },
+      {
+        "sentence": "What do you suggest?",
+        "translation": "你有什么建议吗?",
+        "chunks": [
+          "What do you",
+          "suggest?"
+        ],
+        "hints": [
+          "你有什么",
+          "建议吗"
+        ],
+        "cid": "0c75c62e",
+        "sentenceAudio": {
+          "text": "What do you suggest?",
+          "audio": {
+            "url": "assets/oral-0c75c62e-2dd1526f3f33b849cd24.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9d87fc9cbe35c362c995b7a7e8b91f473a433181f1cc77981cf3adea4a717ee5",
+            "bytes": 4247
+          }
+        }
+      },
+      {
+        "sentence": "Wanna make a bet?",
+        "translation": "打赌?",
+        "chunks": [
+          "Wanna make",
+          "a bet?"
+        ],
+        "hints": [
+          "想不想",
+          "打个赌"
+        ],
+        "cid": "e9893d2f",
+        "sentenceAudio": {
+          "text": "Wanna make a bet?",
+          "audio": {
+            "url": "assets/oral-e9893d2f-1ed539fb563001c307e2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0aff7c73898ccd641be11ddcabf69bbf9573067b48f145ee6d2406875dc8c446",
+            "bytes": 4400
+          }
+        }
+      },
+      {
+        "sentence": "I suggest you take a taxi.",
+        "translation": "我建议你坐出租车去。",
+        "chunks": [
+          "I suggest",
+          "you take a taxi."
+        ],
+        "hints": [
+          "我建议",
+          "你坐出租车去"
+        ],
+        "cid": "2e8aa9e5",
+        "sentenceAudio": {
+          "text": "I suggest you take a taxi.",
+          "audio": {
+            "url": "assets/oral-2e8aa9e5-06441897c16d6bfbd039.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ac2cbcebfb21f06f8135e50796c25e04365cf088d5596a71a0e76dc00c29ece1",
+            "bytes": 6258
+          }
+        }
+      },
+      {
+        "sentence": "Can you give me a hand?",
+        "cid": "a71c1752",
+        "translation": "能帮我一下吗？",
+        "chunks": [
+          "Can you",
+          "give me a hand?"
+        ],
+        "hints": [
+          "你能",
+          "帮我一把吗？"
+        ],
+        "grammar": [
+          {
+            "role": "情态+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/kæn/",
+              "/juː/"
+            ],
+            "pos": "情态动词+主语",
+            "meaning": "你能"
+          },
+          {
+            "role": "动词短语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɡɪv/",
+              "/miː/",
+              "/ə/",
+              "/hænd/"
+            ],
+            "pos": "固定搭配（习语）",
+            "meaning": "帮我一把"
+          }
+        ],
+        "explanations": [
+          "**give someone a hand** = 帮某人忙，是固定搭配（习语），不是真的要一只手。",
+          "其他求助说法：**Could you help me out?**（更正式）/ **Do me a favor?**（更亲密）"
+        ],
+        "distractors": [
+          [
+            "Could you",
+            "Can I",
+            "Do you"
+          ],
+          [
+            "give me a help?",
+            "give a hand me?",
+            "to give me a hand?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Can you give me a hand?",
+          "audio": {
+            "url": "assets/oral-a71c1752-e76513ee2c762fde526a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a7803699adf8f6fb98e0db0f44569c9b0606a48ee2160039162d64f2e1be136e",
+            "bytes": 4719
+          }
+        }
+      },
+      {
+        "sentence": "Could you do me a favor?",
+        "cid": "534483e8",
+        "translation": "你能帮我个忙吗？",
+        "chunks": [
+          "Could you",
+          "do me a favor?"
+        ],
+        "hints": [
+          "你能",
+          "帮我个忙"
+        ],
+        "grammar": [
+          {
+            "role": "情态动词+主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能"
+          },
+          {
+            "role": "宾语+宾语补",
+            "color": "#3358e0",
+            "phonetic": [
+              "/duː/",
+              "/miː/",
+              "/ə/",
+              "/ˈfeɪvər/"
+            ],
+            "pos": "动词短语",
+            "meaning": "帮我个忙"
+          }
+        ],
+        "explanations": [
+          "`Could you...` 比 `Can you...` 更礼貌委婉。常见错误：\n• \"Can you **to** do me a favor\" → 情态动词后接动词原形，不要 to\n• \"Could you **doing**\" → 同样要用原形",
+          "`do someone a favor` 是固定搭配，中间用 a，不是 the。常见错误：\n• \"do me **the** favor\" → 泛指帮忙用 a\n• \"give me a favor\" → 搭配是 do，不是 give"
+        ],
+        "distractors": [
+          [
+            "Could your",
+            "Could you to",
+            "Do you could"
+          ],
+          [
+            "do me the favor?",
+            "does me a favor?",
+            "doing me a favor?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you do me a favor?",
+          "audio": {
+            "url": "assets/oral-534483e8-11f4cd7e2c2e333cb366.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2acc3e138987160d9496df5d432a29c55a3d973ee34d3e57df3ac28413aa8688",
+            "bytes": 4899
+          }
+        }
+      },
+      {
+        "sentence": "Could you give me a hand with this box?",
+        "cid": "10dca05a",
+        "translation": "你能帮我搬一下这个箱子吗？",
+        "chunks": [
+          "Could you give me",
+          "a hand",
+          "with this box?"
+        ],
+        "hints": [
+          "你能给我",
+          "帮个忙",
+          "搬这个箱子"
+        ],
+        "grammar": [
+          {
+            "role": "委婉请求",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/ɡɪv/",
+              "/miː/"
+            ],
+            "pos": "give sb a hand",
+            "meaning": "你能帮我"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/hænd/"
+            ],
+            "pos": "固定搭配",
+            "meaning": "一个忙"
+          },
+          {
+            "role": "对象状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wɪð/",
+              "/ðɪs/",
+              "/bɑːks/"
+            ],
+            "pos": "介词短语",
+            "meaning": "搬这个箱子"
+          }
+        ],
+        "explanations": [
+          "`give sb a hand with sth` = 帮某人做某事。常见错误：\n• \"give me hand\" → 缺 a\n• \"give a hand to me with\" → 搭配混乱，give me a hand 已含宾语",
+          "同义：help me with...（更直接）。"
+        ],
+        "distractors": [
+          [
+            "Can you give me",
+            "Could you give",
+            "Could you to give me"
+          ],
+          [
+            "hands",
+            "a hands",
+            "the hand"
+          ],
+          [
+            "to this box?",
+            "for this box?",
+            "with these box?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you give me a hand with this box?",
+          "audio": {
+            "url": "assets/oral-10dca05a-1eb06382006b16b1ca1a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4252ff721f91da4754afdeb40f4453533dec7aa0d2b4ca84ca6a2498adbb3c75",
+            "bytes": 6663
+          }
+        }
+      },
+      {
+        "sentence": "I need help.",
+        "cid": "1792dc97",
+        "translation": "我需要帮助。",
+        "chunks": [
+          "I need",
+          "help."
+        ],
+        "hints": [
+          "我需要",
+          "帮助"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪ/",
+              "/niːd/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "我需要"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/help/"
+            ],
+            "pos": "不可数名词",
+            "meaning": "帮助"
+          }
+        ],
+        "explanations": [
+          "求助最直接的表达，`help` 不可数。常见错误：\n• \"I need a help\" → help 不可数，不加 a\n• \"I need helps\" → 也不加 s",
+          "更礼貌：Could you help me? / I need some assistance."
+        ],
+        "distractors": [
+          [
+            "I wants",
+            "I am need",
+            "I needs"
+          ],
+          [
+            "helps.",
+            "a help.",
+            "helper."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I need help.",
+          "audio": {
+            "url": "assets/oral-1792dc97-967035aaa92ce29af3cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "acfdacc977c801d40c825a8c6cd822e9239a9a0936d48e4baca1466dc54b9ab2",
+            "bytes": 3785
+          }
+        }
+      },
+      {
+        "sentence": "Lend me 10 bucks.",
+        "cid": "9187c8c7",
+        "translation": "借我10块钱。",
+        "chunks": [
+          "Lend me",
+          "10 bucks."
+        ],
+        "hints": [
+          "借给我",
+          "十块钱"
+        ],
+        "grammar": [
+          {
+            "role": "谓语 + 宾语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lend/",
+              "/miː/"
+            ],
+            "pos": "动词 + 间接宾语",
+            "meaning": "借给我"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ten/",
+              "/bʌks/"
+            ],
+            "pos": "数量 + 名词",
+            "meaning": "十块钱"
+          }
+        ],
+        "explanations": [
+          "`lend` 是「借出」（我借给你），`borrow` 是「借入」（我向你借）。常见错误：\n• \"Borrow me 10 bucks\" → 想说「借我钱」要用 lend me\n• bucks 是口语的「美元」，正式说法 10 dollars",
+          "还钱时说：I'll pay you back."
+        ],
+        "distractors": [
+          [
+            "Borrow me",
+            "Lends me",
+            "Lend to me"
+          ],
+          [
+            "10 buck.",
+            "ten bucks of.",
+            "10 bucks to."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Lend me 10 bucks.",
+          "audio": {
+            "url": "assets/oral-9187c8c7-d04438109abc718398e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "176b41531309143eee71062c97958fd39ccd6014896541883bd9f5dad1ee942d",
+            "bytes": 4625
+          }
+        }
+      },
+      {
+        "sentence": "I want my money.",
+        "cid": "fc023e5e",
+        "translation": "我要我的钱。",
+        "chunks": [
+          "I want",
+          "my money."
+        ],
+        "hints": [
+          "我要",
+          "我的钱"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪ/",
+              "/wɑːnt/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "我要"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/maɪ/",
+              "/ˈmʌni/"
+            ],
+            "pos": "名词短语",
+            "meaning": "我的钱"
+          }
+        ],
+        "explanations": [
+          "催人还钱最直接的表达；`money` 不可数。常见错误：\n• \"I want my moneys\" → money 没有复数\n• 想客气一点：Could you pay me back?",
+          "相关：I need it back.（我得把钱要回来）"
+        ],
+        "distractors": [
+          [
+            "I wants",
+            "I wanting",
+            "Me want"
+          ],
+          [
+            "my moneys.",
+            "mine money.",
+            "my monies."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I want my money.",
+          "audio": {
+            "url": "assets/oral-fc023e5e-10617b9eda41dd283b44.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cca25ed3283e8a5ea09f71db0b3a73719b131d6bb680e0af0dca71daa15c53cb",
+            "bytes": 4504
+          }
+        }
+      }
+    ]
+  }
+}

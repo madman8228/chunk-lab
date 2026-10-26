@@ -1,0 +1,490 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "We would appreciate an early reply.",
+      "translation": "如能尽早回复，我们将不胜感激。",
+      "chunks": [
+        "We would appreciate",
+        "an early reply."
+      ],
+      "hints": [
+        "我们将不胜感激",
+        "尽早回复。"
+      ],
+      "cid": "e028b350",
+      "sentenceAudio": {
+        "text": "We would appreciate an early reply.",
+        "audio": {
+          "url": "assets/oral-e028b350-4c239eb7314dce075cb3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3f59a843a31199356d12e1e1a4c38c411930699859cab73a3cfc6c63c57ca46e",
+          "bytes": 6801
+        }
+      }
+    },
+    {
+      "sentence": "We look forward to your favorable reply.",
+      "translation": "我们期待着您满意的回答。",
+      "chunks": [
+        "We look forward",
+        "to your favorable reply."
+      ],
+      "hints": [
+        "我们期待",
+        "您的满意答复。"
+      ],
+      "cid": "3ce85a31",
+      "sentenceAudio": {
+        "text": "We look forward to your favorable reply.",
+        "audio": {
+          "url": "assets/oral-3ce85a31-5acdf088d4b607f69702.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "db7c4f9fda46e51755cb8f34e8b9647fc857bf4842e41a9c51fb0b83de4a8e7e",
+          "bytes": 7918
+        }
+      }
+    },
+    {
+      "sentence": "We look forward to hearing from you soon.",
+      "translation": "我们盼望着不久能听到您的回音。",
+      "chunks": [
+        "We look forward",
+        "to hearing from you soon."
+      ],
+      "hints": [
+        "我们期待",
+        "不久能收到您的回音。"
+      ],
+      "cid": "28eb7b5e",
+      "sentenceAudio": {
+        "text": "We look forward to hearing from you soon.",
+        "audio": {
+          "url": "assets/oral-28eb7b5e-102618eddecb2575fac4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "75de534673ec0ba1aeb52adac88a8a5877dc588704581bb35dbbefadc86fbbc3",
+          "bytes": 7315
+        }
+      }
+    },
+    {
+      "sentence": "Your prompt attention to this matter will be appreciated.",
+      "translation": "如您能尽快处理此事，我们将不胜感激。",
+      "chunks": [
+        "Your prompt attention to this matter",
+        "will be appreciated."
+      ],
+      "hints": [
+        "您尽快处理此事",
+        "我们将不胜感激。"
+      ],
+      "cid": "aa3b30f5",
+      "sentenceAudio": {
+        "text": "Your prompt attention to this matter will be appreciated.",
+        "audio": {
+          "url": "assets/oral-aa3b30f5-0f6ed9f7db9b1029fc44.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "578c9766fb686f8f83df3cdf431e075e39a5033ba8b2d652171e56635fc8023f",
+          "bytes": 10242
+        }
+      }
+    },
+    {
+      "sentence": "Please write us at the above address.",
+      "translation": "请按上述地址给我们写信。",
+      "chunks": [
+        "Please write us",
+        "at the above address."
+      ],
+      "hints": [
+        "请写信给我们",
+        "寄至上述地址。"
+      ],
+      "cid": "83b97d13",
+      "sentenceAudio": {
+        "text": "Please write us at the above address.",
+        "audio": {
+          "url": "assets/oral-83b97d13-6b5a735c3fe3c86e733d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "313936b4df90c7465ad0706f0eea1e4e57d689933aca83771579f067417b7177",
+          "bytes": 7072
+        }
+      }
+    },
+    {
+      "sentence": "Your kind cooperation in this respect is greatly appreciated.",
+      "translation": "非常感谢您在这方面的配合。",
+      "chunks": [
+        "Your kind cooperation",
+        "in this respect is greatly appreciated."
+      ],
+      "hints": [
+        "您的热心合作",
+        "在这方面我们非常感谢。"
+      ],
+      "cid": "0f8dda7a",
+      "sentenceAudio": {
+        "text": "Your kind cooperation in this respect is greatly appreciated.",
+        "audio": {
+          "url": "assets/oral-0f8dda7a-3979e8a268da5bb5abb1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "95088b69384b568df0eceee2891cc7235f0ae8aa9e771f7323046304e6a74f44",
+          "bytes": 12545
+        }
+      }
+    },
+    {
+      "sentence": "We hope we can count on your continued cooperation and support.",
+      "translation": "我们希望能够继续得到你们的合作和支持。",
+      "chunks": [
+        "We hope we can count on",
+        "your continued cooperation and support."
+      ],
+      "hints": [
+        "我们希望可以依靠",
+        "你们持续的合作与支持。"
+      ],
+      "cid": "12eab826",
+      "sentenceAudio": {
+        "text": "We hope we can count on your continued cooperation and support.",
+        "audio": {
+          "url": "assets/oral-12eab826-684d955cb705a999293c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c36a217388973dcb57bc5f8b7c3cc842b6b5ea0966108f4c7df86cef91e840d2",
+          "bytes": 12100
+        }
+      }
+    },
+    {
+      "sentence": "We look forward to your...",
+      "translation": "我们期待着您的……",
+      "chunks": [
+        "We look forward",
+        "to your..."
+      ],
+      "hints": [
+        "我们期待",
+        "您的……"
+      ],
+      "cid": "4788065d",
+      "sentenceAudio": {
+        "text": "We look forward to your...",
+        "audio": {
+          "url": "assets/oral-4788065d-33bad27aaf76bc6f52ee.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7513aec52a36222807d2140e33055bf9373e0f4b094ee1d14bcd9f36b59ab0f4",
+          "bytes": 4775
+        }
+      }
+    },
+    {
+      "sentence": "We trust our request will...",
+      "translation": "我们确信我们的请求将……",
+      "chunks": [
+        "We trust",
+        "our request will..."
+      ],
+      "hints": [
+        "我们相信",
+        "我们的请求将……"
+      ],
+      "cid": "0645634e",
+      "sentenceAudio": {
+        "text": "We trust our request will...",
+        "audio": {
+          "url": "assets/oral-0645634e-11a6cf9d64e11028d53f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b0071109abb4deaf6ee9bb8b8a66920edbb76f8e316cc73aca1517c7f73cfbbd",
+          "bytes": 5796
+        }
+      }
+    },
+    {
+      "sentence": "We are looking forward to the time when...",
+      "translation": "我们期待着当……的那一刻。",
+      "chunks": [
+        "We are looking forward",
+        "to the time when..."
+      ],
+      "hints": [
+        "我们期待着",
+        "……的那一天"
+      ],
+      "cid": "b05999fa",
+      "sentenceAudio": {
+        "text": "We are looking forward to the time when...",
+        "audio": {
+          "url": "assets/oral-b05999fa-891c22629065de85053f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e9f3f3649e954a60fbf3596e8c6dd8925a7868628058af0a9d434bf354d1f864",
+          "bytes": 6935
+        }
+      }
+    },
+    {
+      "sentence": "Please do not hesitate to contact us.",
+      "translation": "请您不必客气，尽管与我们联系。",
+      "chunks": [
+        "Please do not hesitate",
+        "to contact us."
+      ],
+      "hints": [
+        "请不必犹豫",
+        "与我们联系。"
+      ],
+      "cid": "af158803",
+      "sentenceAudio": {
+        "text": "Please do not hesitate to contact us.",
+        "audio": {
+          "url": "assets/oral-af158803-7b5db9f6d626ce3d42af.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e8d0d6ec23a734041fbc61b0a041678e3ba266261ee4a9c56e4cbc7b112729c7",
+          "bytes": 7609
+        }
+      }
+    },
+    {
+      "sentence": "We are always anxious to assist you in...",
+      "translation": "我们随时乐意在……方面为您提供帮助。",
+      "chunks": [
+        "We are always anxious",
+        "to assist you in..."
+      ],
+      "hints": [
+        "我们一直乐于",
+        "在……方面协助您"
+      ],
+      "cid": "823c3345",
+      "sentenceAudio": {
+        "text": "We are always anxious to assist you in...",
+        "audio": {
+          "url": "assets/oral-823c3345-e509bb77e05ac4cc099a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3ec267bc0ceaffeeaddcd0be1d5426976a9585c20ccd73e3fdb433d23b81946a",
+          "bytes": 7362
+        }
+      }
+    },
+    {
+      "sentence": "Should you have any questions, please do not hesitate to contact us.",
+      "translation": "如果您有什么问题的话，请不必客气，尽管与我们联系。",
+      "chunks": [
+        "Should you have any questions,",
+        "please do not hesitate to contact us."
+      ],
+      "hints": [
+        "如果您有任何问题，",
+        "请不必客气与我们联系。"
+      ],
+      "cid": "60273e06",
+      "sentenceAudio": {
+        "text": "Should you have any questions, please do not hesitate to contact us.",
+        "audio": {
+          "url": "assets/oral-60273e06-1cf59ea7ba60ead61d4f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3036d29464cbfa0c735823d5ccd927fe5caf21ec5fb9125f40d9b46392f482b9",
+          "bytes": 11997
+        }
+      }
+    },
+    {
+      "sentence": "Thank you for calling this matter to our attention.",
+      "translation": "谢谢您提醒我们注意此事。",
+      "chunks": [
+        "Thank you for",
+        "calling this matter to our attention."
+      ],
+      "hints": [
+        "感谢您",
+        "提醒我们注意此事。"
+      ],
+      "cid": "05fc95d7",
+      "sentenceAudio": {
+        "text": "Thank you for calling this matter to our attention.",
+        "audio": {
+          "url": "assets/oral-05fc95d7-4d817d5b31b66811dd8c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "14266c05780130ea15b4831ab1b556d01bcfea6345545dd799f3422822985e67",
+          "bytes": 8356
+        }
+      }
+    },
+    {
+      "sentence": "Thank you very much for your cooperation.",
+      "translation": "非常感谢您给予我们的合作。",
+      "chunks": [
+        "Thank you very much",
+        "for your cooperation."
+      ],
+      "hints": [
+        "非常感谢",
+        "您的合作。"
+      ],
+      "cid": "7e8c0004",
+      "sentenceAudio": {
+        "text": "Thank you very much for your cooperation.",
+        "audio": {
+          "url": "assets/oral-7e8c0004-9a9b49108bfce4d66b89.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "718b564ac6618a972e8dbafaddd777680194690379089b16d5ae51eed08f7396",
+          "bytes": 7626
+        }
+      }
+    },
+    {
+      "sentence": "Thank you for the opportunity to be of service.",
+      "translation": "感谢您给我们这个为您服务的机会。",
+      "chunks": [
+        "Thank you for",
+        "the opportunity to be of service."
+      ],
+      "hints": [
+        "感谢您",
+        "给我们这个为您服务的机会。"
+      ],
+      "cid": "4a62301f",
+      "sentenceAudio": {
+        "text": "Thank you for the opportunity to be of service.",
+        "audio": {
+          "url": "assets/oral-4a62301f-69aa35d237e3db13f70b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "89d63bbeda6993029351beb7eaa0db473c5f59bb5c25abddaf811688bea3b2e9",
+          "bytes": 8476
+        }
+      }
+    },
+    {
+      "sentence": "We appreciate this opportunity to...",
+      "translation": "我们感谢能有这样的机会去……",
+      "chunks": [
+        "We appreciate",
+        "this opportunity to..."
+      ],
+      "hints": [
+        "我们感谢",
+        "这次……的机会"
+      ],
+      "cid": "4896d77b",
+      "sentenceAudio": {
+        "text": "We appreciate this opportunity to...",
+        "audio": {
+          "url": "assets/oral-4896d77b-7281c9a49ca7d0c8a279.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "052734e91a35b3d8a7d681d9fba751caee129653fdf9b8ce32eb4fe881aa7294",
+          "bytes": 7241
+        }
+      }
+    },
+    {
+      "sentence": "It is always a pleasure doing business with you.",
+      "translation": "与您合作一直很愉快。",
+      "chunks": [
+        "It is always a pleasure",
+        "doing business with you."
+      ],
+      "hints": [
+        "很荣幸",
+        "与您做生意。"
+      ],
+      "cid": "a81839b3",
+      "sentenceAudio": {
+        "text": "It is always a pleasure doing business with you.",
+        "audio": {
+          "url": "assets/oral-a81839b3-9d6d5e810a272d3c8a5f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bcf27e39590e2b79e2e69f77d778107d2027cfd259c943f4a93427640b01d48c",
+          "bytes": 7910
+        }
+      }
+    },
+    {
+      "sentence": "Please accept our sincere apologies.",
+      "translation": "请接受我们诚挚的歉意。",
+      "chunks": [
+        "Please accept",
+        "our sincere apologies."
+      ],
+      "hints": [
+        "请接受",
+        "我们诚挚的歉意。"
+      ],
+      "cid": "a1794297",
+      "sentenceAudio": {
+        "text": "Please accept our sincere apologies.",
+        "audio": {
+          "url": "assets/oral-a1794297-86cd9268eef96331f02a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e765306542e47080f5edc76eb6219f7116a785837b5a1dd21f496746f131cb4c",
+          "bytes": 7569
+        }
+      }
+    },
+    {
+      "sentence": "I want to extend my personal apologies for...",
+      "translation": "我以我个人的身份为……向您赔礼道歉。",
+      "chunks": [
+        "I want to extend",
+        "my personal apologies for..."
+      ],
+      "hints": [
+        "我想表达",
+        "我个人的歉意，为……"
+      ],
+      "cid": "50c95653",
+      "sentenceAudio": {
+        "text": "I want to extend my personal apologies for...",
+        "audio": {
+          "url": "assets/oral-50c95653-8409b65bd2c50ab2debd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "70a40e6ae7bed61afee9e7d4a769c657effe13393f8559bf3485d8c8a2bcef69",
+          "bytes": 8861
+        }
+      }
+    },
+    {
+      "sentence": "We wish you a bright and successful New Year.",
+      "translation": "我们预祝您在新的一年里将更加辉煌和成功。",
+      "chunks": [
+        "We wish you a bright",
+        "and successful New Year."
+      ],
+      "hints": [
+        "祝您有一个光明",
+        "而成功的新年。"
+      ],
+      "cid": "b041689a",
+      "sentenceAudio": {
+        "text": "We wish you a bright and successful New Year.",
+        "audio": {
+          "url": "assets/oral-b041689a-44d746032e62040e71ea.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0147f41bc2a8c8e14f9128f2a6592290ff203712088893f2b06bc367a1dc0afc",
+          "bytes": 7877
+        }
+      }
+    },
+    {
+      "sentence": "We trust that an increase in ... will continue in the future.",
+      "translation": "我们相信……会继续增长。",
+      "chunks": [
+        "We trust that an increase",
+        "in ... will continue in the future."
+      ],
+      "hints": [
+        "我们相信……会增长",
+        "这种增长今后将持续。"
+      ],
+      "cid": "80ab916e",
+      "sentenceAudio": {
+        "text": "We trust that an increase in ... will continue in the future.",
+        "audio": {
+          "url": "assets/oral-80ab916e-a37a909ba8530081040a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c344c7e8ff9953550d8542593e067f07a4b0c02408111591ee678c35bb8314a6",
+          "bytes": 10679
+        }
+      }
+    }
+  ]
+}

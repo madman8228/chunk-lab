@@ -1,0 +1,2446 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Are you okay?",
+      "translation": "你没事吧?",
+      "chunks": [
+        "Are you",
+        "okay?"
+      ],
+      "hints": [
+        "你",
+        "没事吧？"
+      ],
+      "cid": "6d709def",
+      "sentenceAudio": {
+        "text": "Are you okay?",
+        "audio": {
+          "url": "assets/oral-6d709def-da824a3270d704915778.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2ec290a53579b12bc8c932c550bd466f5e97711e766677e5b7f9c654973e78ed",
+          "bytes": 3989
+        }
+      }
+    },
+    {
+      "sentence": "What's going on?",
+      "translation": "到底怎么回事?",
+      "chunks": [
+        "What's going on?"
+      ],
+      "hints": [
+        "到底怎么回事？"
+      ],
+      "cid": "2ea696dd",
+      "sentenceAudio": {
+        "text": "What's going on?",
+        "audio": {
+          "url": "assets/oral-2ea696dd-dd56e669fa04a5a5562d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "57c8ea015f6985ce1fbc6dede161c422560121684debbacf96610e20a6ed5dd7",
+          "bytes": 4333
+        }
+      }
+    },
+    {
+      "sentence": "Is something on your mind?",
+      "translation": "你有什么心事吗?",
+      "chunks": [
+        "Is something on your mind?"
+      ],
+      "hints": [
+        "你有什么心事吗？"
+      ],
+      "cid": "d07d86d8",
+      "sentenceAudio": {
+        "text": "Is something on your mind?",
+        "audio": {
+          "url": "assets/oral-d07d86d8-1a0f7428b3a98b942419.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4787495067eafe0c2f69d24e8002ed6eb57cedc90f2cdfafbb941c97d343d236",
+          "bytes": 5185
+        }
+      }
+    },
+    {
+      "sentence": "I was worried about you.",
+      "translation": "我担心你。",
+      "chunks": [
+        "I was",
+        "worried about you."
+      ],
+      "hints": [
+        "我",
+        "很担心你。"
+      ],
+      "cid": "420f6e47",
+      "sentenceAudio": {
+        "text": "I was worried about you.",
+        "audio": {
+          "url": "assets/oral-420f6e47-fc8dcddf7adf3fcdfb8b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "16d34524a36bc3c6438d6efc0efc1ca59d98ba993d1e63b2cd1c3cb533f45222",
+          "bytes": 5204
+        }
+      }
+    },
+    {
+      "sentence": "Please don't go out of your way.",
+      "translation": "请不要特地为我(而麻烦您吧)。",
+      "chunks": [
+        "Please don't go out of your way."
+      ],
+      "hints": [
+        "请别特地为我费心。"
+      ],
+      "cid": "5f351754",
+      "sentenceAudio": {
+        "text": "Please don't go out of your way.",
+        "audio": {
+          "url": "assets/oral-5f351754-36023524e02070160408.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f3adb79b6a7134a833e0018306d7a0e270cb0026081b5f29d798dbcc06380170",
+          "bytes": 5719
+        }
+      }
+    },
+    {
+      "sentence": "You look serious.",
+      "translation": "你看起来很严肃。",
+      "chunks": [
+        "You look",
+        "serious."
+      ],
+      "hints": [
+        "你看起来",
+        "很严肃。"
+      ],
+      "cid": "6b8e5a11",
+      "sentenceAudio": {
+        "text": "You look serious.",
+        "audio": {
+          "url": "assets/oral-6b8e5a11-2dc07b0142b17d66d972.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "41053b5eb182255eee33f6acfb9b1b34be9a6c5487a084b8acc8f158e563e430",
+          "bytes": 4221
+        }
+      }
+    },
+    {
+      "sentence": "You look sad today.",
+      "translation": "你今天看上去很悲伤。",
+      "chunks": [
+        "You look",
+        "sad today."
+      ],
+      "hints": [
+        "你看起来",
+        "今天很难过。"
+      ],
+      "cid": "c4efbb98",
+      "sentenceAudio": {
+        "text": "You look sad today.",
+        "audio": {
+          "url": "assets/oral-c4efbb98-4a69c41397bf009b7314.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "372f1501fe2a64c983791615c0dffbe712cbbf1e2d316031a91cf9d274988fc1",
+          "bytes": 4681
+        }
+      }
+    },
+    {
+      "sentence": "You don't look very happy today.",
+      "translation": "你今天怎么满脸的不高兴。",
+      "chunks": [
+        "You don't look very happy today."
+      ],
+      "hints": [
+        "你今天看起来不太高兴。"
+      ],
+      "cid": "26def8ba",
+      "sentenceAudio": {
+        "text": "You don't look very happy today.",
+        "audio": {
+          "url": "assets/oral-26def8ba-a3fefa7440424bde4c1f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9db454752c18d8f53d4bcfc98a49674866d531697bf6d49bfa3003a12293c46c",
+          "bytes": 6246
+        }
+      }
+    },
+    {
+      "sentence": "Why are you so glum?",
+      "translation": "你怎么闷闷不乐的呀?",
+      "chunks": [
+        "Why are you",
+        "so glum?"
+      ],
+      "hints": [
+        "你怎么",
+        "闷闷不乐的呀？"
+      ],
+      "cid": "fdbfd3d8",
+      "sentenceAudio": {
+        "text": "Why are you so glum?",
+        "audio": {
+          "url": "assets/oral-fdbfd3d8-fde5edf91aeb61383ae9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "15b6dbe5de31974429a829efbd42d1d7961484e5426eae1970bd0ccdda7805ec",
+          "bytes": 4809
+        }
+      }
+    },
+    {
+      "sentence": "You look exhausted.",
+      "translation": "你看起来很疲惫。",
+      "chunks": [
+        "You look",
+        "exhausted."
+      ],
+      "hints": [
+        "你看起来",
+        "很疲惫。"
+      ],
+      "cid": "72104fee",
+      "sentenceAudio": {
+        "text": "You look exhausted.",
+        "audio": {
+          "url": "assets/oral-72104fee-c691c1a16b8f66679874.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e33dd45c9f67d6b0983de376d84d970818bd36984261d4bee6868839b5fb98fa",
+          "bytes": 4686
+        }
+      }
+    },
+    {
+      "sentence": "You need a break.",
+      "translation": "你该休息一会儿。",
+      "chunks": [
+        "You need",
+        "a break."
+      ],
+      "hints": [
+        "你该",
+        "休息一会儿。"
+      ],
+      "cid": "72997dde",
+      "sentenceAudio": {
+        "text": "You need a break.",
+        "audio": {
+          "url": "assets/oral-72997dde-4d2c5e519faf8c9633ba.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c50ded74d5a90443a4f9f3329896d8b16ef1fb085c9825e7ec0a1f0ef572f914",
+          "bytes": 4149
+        }
+      }
+    },
+    {
+      "sentence": "Something is wrong with you today.",
+      "translation": "你今天有点儿不大对劲。",
+      "chunks": [
+        "Something is wrong with you today."
+      ],
+      "hints": [
+        "你今天有点不对劲。"
+      ],
+      "cid": "e39b9260",
+      "sentenceAudio": {
+        "text": "Something is wrong with you today.",
+        "audio": {
+          "url": "assets/oral-e39b9260-0cda502464ce20b5fc1c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bf9ca3b49beb1fbc0bf43d281feb55edfab9686526d9c3ea67a86b64db98569b",
+          "bytes": 6360
+        }
+      }
+    },
+    {
+      "sentence": "Who are you irritated with?",
+      "translation": "谁让你烦躁了?",
+      "chunks": [
+        "Who are you",
+        "irritated with?"
+      ],
+      "hints": [
+        "谁让你",
+        "烦躁了？"
+      ],
+      "cid": "f59455dd",
+      "sentenceAudio": {
+        "text": "Who are you irritated with?",
+        "audio": {
+          "url": "assets/oral-f59455dd-6adc312bab2b4a5e2913.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3ca8d8d564d17e5ab6f43dff620f68ddd77b0fdd88b363742c4da091be52691c",
+          "bytes": 5553
+        }
+      }
+    },
+    {
+      "sentence": "You're nervous.",
+      "translation": "你太紧张。",
+      "chunks": [
+        "You're",
+        "nervous."
+      ],
+      "hints": [
+        "你",
+        "太紧张。"
+      ],
+      "cid": "50de5378",
+      "sentenceAudio": {
+        "text": "You're nervous.",
+        "audio": {
+          "url": "assets/oral-50de5378-93d3450f039f9dbd7032.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f9aaf04f36a3b28f784c8395d1cb081d9c3e1486516c78c632811e640ebb2c54",
+          "bytes": 3845
+        }
+      }
+    },
+    {
+      "sentence": "I'm sorry to hear that.",
+      "translation": "听到这事我很难过。",
+      "chunks": [
+        "I'm sorry",
+        "to hear that."
+      ],
+      "hints": [
+        "我很难过",
+        "听到这件事"
+      ],
+      "cid": "1540d3b7",
+      "sentenceAudio": {
+        "text": "I'm sorry to hear that.",
+        "audio": {
+          "url": "assets/oral-1540d3b7-73e5a64c0b8ed726cabc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e7dbea6389d5ce17e6c5e522f0ace98cfbf32b16ab7fa3001e59c0cdaed6d3af",
+          "bytes": 5058
+        }
+      }
+    },
+    {
+      "sentence": "That's unfortunate.",
+      "translation": "真不走运!",
+      "chunks": [
+        "That's",
+        "unfortunate."
+      ],
+      "hints": [
+        "真不",
+        "走运！"
+      ],
+      "cid": "c673cd15",
+      "sentenceAudio": {
+        "text": "That's unfortunate.",
+        "audio": {
+          "url": "assets/oral-c673cd15-512e54e98c24f5997a62.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "62a2fd754a24b1ca56eb641b51697c7924490fe2a59ac5de099ca9d200c5ab2c",
+          "bytes": 4742
+        }
+      }
+    },
+    {
+      "sentence": "It happens!",
+      "translation": "常有的事。",
+      "chunks": [
+        "It happens!"
+      ],
+      "hints": [
+        "这种事难免；很常见。"
+      ],
+      "cid": "161015ac",
+      "sentenceAudio": {
+        "text": "It happens!",
+        "audio": {
+          "url": "assets/oral-161015ac-b091c57adb9238b27cf6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7f247e71eec8e9cdb6efe22477c220bf5cd55beab4054e8694d8cecf55694cab",
+          "bytes": 3851
+        }
+      }
+    },
+    {
+      "sentence": "It's a common mistake.",
+      "translation": "这是常见的错误。",
+      "chunks": [
+        "It's a common",
+        "mistake."
+      ],
+      "hints": [
+        "这是常见的",
+        "错误。"
+      ],
+      "cid": "29387c50",
+      "sentenceAudio": {
+        "text": "It's a common mistake.",
+        "audio": {
+          "url": "assets/oral-29387c50-3c96831c2820768a9bbc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "57bcd940d1b285280c543120c47ac3475c18b657ecc55bcbada1d23a14c64902",
+          "bytes": 4909
+        }
+      }
+    },
+    {
+      "sentence": "It must be tough for you.",
+      "translation": "那你肯定很难受吧。",
+      "chunks": [
+        "It must be",
+        "tough for you."
+      ],
+      "hints": [
+        "一定",
+        "对你来说很难熬。"
+      ],
+      "cid": "362e25a5",
+      "sentenceAudio": {
+        "text": "It must be tough for you.",
+        "audio": {
+          "url": "assets/oral-362e25a5-d672696fbd2cebde4190.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d29f4da283959c12f061b5ce7fa5937fdb07a3e4b5350afe41529dc35c2936cd",
+          "bytes": 4721
+        }
+      }
+    },
+    {
+      "sentence": "Oh, poor thing!",
+      "translation": "啊，真可怜!",
+      "chunks": [
+        "Oh,",
+        "poor thing!"
+      ],
+      "hints": [
+        "啊，",
+        "真可怜！"
+      ],
+      "cid": "fc6a1959",
+      "sentenceAudio": {
+        "text": "Oh, poor thing!",
+        "audio": {
+          "url": "assets/oral-fc6a1959-197b3274487082e4da40.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b5da006f2e1aed78ef1ef4c5240f337e5f477e838c7a3cbaee84b81ea184493",
+          "bytes": 4253
+        }
+      }
+    },
+    {
+      "sentence": "I know how you feel.",
+      "translation": "我理解你的心情。",
+      "chunks": [
+        "I know",
+        "how you feel."
+      ],
+      "hints": [
+        "我理解",
+        "你的心情。"
+      ],
+      "cid": "2d901bac",
+      "sentenceAudio": {
+        "text": "I know how you feel.",
+        "audio": {
+          "url": "assets/oral-2d901bac-1bc1b0738c47bc062843.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6ad06b7acc8d13a8d7ab570d66178b9b10b51edb2a107df14fb91b28a38b7979",
+          "bytes": 4583
+        }
+      }
+    },
+    {
+      "sentence": "Never mind.",
+      "translation": "别在意。",
+      "chunks": [
+        "Never mind."
+      ],
+      "hints": [
+        "别在意；没关系。"
+      ],
+      "cid": "923df2af",
+      "sentenceAudio": {
+        "text": "Never mind.",
+        "audio": {
+          "url": "assets/oral-923df2af-d115684ca3992ee653d2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c08117ac5be167d5c45f1056a4265f1808dbdadcc233b8798ac8c717e59e82df",
+          "bytes": 4080
+        }
+      }
+    },
+    {
+      "sentence": "What bad luck.",
+      "translation": "真不走运！",
+      "chunks": [
+        "What",
+        "bad luck."
+      ],
+      "hints": [
+        "真是",
+        "不走运！"
+      ],
+      "cid": "c762df0d",
+      "sentenceAudio": {
+        "text": "What bad luck.",
+        "audio": {
+          "url": "assets/oral-c762df0d-8d817ddf87421198ff01.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5d5bc371d4e003bbfbb6154f8e662a6e020dfcff076ff61374fabb35d39543e0",
+          "bytes": 4213
+        }
+      }
+    },
+    {
+      "sentence": "Don't blame yourself.",
+      "translation": "别责备自己了。",
+      "chunks": [
+        "Don't",
+        "blame yourself."
+      ],
+      "hints": [
+        "别",
+        "责怪自己。"
+      ],
+      "cid": "dd4f0c8b",
+      "sentenceAudio": {
+        "text": "Don't blame yourself.",
+        "audio": {
+          "url": "assets/oral-dd4f0c8b-3e7be1d00f014d634251.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b7e4a573b3ec6517042977df5af9791cc39968ac5b7b4e69df0ab13a8accf74d",
+          "bytes": 4668
+        }
+      }
+    },
+    {
+      "sentence": "It's not your fault.",
+      "translation": "这不是你的错。",
+      "chunks": [
+        "It's not",
+        "your fault."
+      ],
+      "hints": [
+        "这不是",
+        "你的错。"
+      ],
+      "cid": "d42d3248",
+      "sentenceAudio": {
+        "text": "It's not your fault.",
+        "audio": {
+          "url": "assets/oral-d42d3248-a7d302f181a9fe5193d3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d9e48d788c6a5ab761518419d2780ac05e69e29b4cdbcb4b101460906e5887bf",
+          "bytes": 4454
+        }
+      }
+    },
+    {
+      "sentence": "It happens to the best of us.",
+      "translation": "这种事谁都会遇到。",
+      "chunks": [
+        "It happens",
+        "to the best of us."
+      ],
+      "hints": [
+        "这种事",
+        "谁都会遇到。"
+      ],
+      "cid": "92646d84",
+      "sentenceAudio": {
+        "text": "It happens to the best of us.",
+        "audio": {
+          "url": "assets/oral-92646d84-2066841af09795262275.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b39a68baf0fba08d56d1d98a13a158bc72aaf13bee04fe1f17202f47c65f660d",
+          "bytes": 5648
+        }
+      }
+    },
+    {
+      "sentence": "There's no need to worry about it.",
+      "translation": "不必为那事烦恼。",
+      "chunks": [
+        "There's no need",
+        "to worry about it."
+      ],
+      "hints": [
+        "不必",
+        "为那事烦恼。"
+      ],
+      "cid": "32862c36",
+      "sentenceAudio": {
+        "text": "There's no need to worry about it.",
+        "audio": {
+          "url": "assets/oral-32862c36-d80cb7485f0dac0956e8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9cf828e1403e67a954812194eb0bada0bf000f089bd3e70cf156806eaa8a9eb4",
+          "bytes": 6319
+        }
+      }
+    },
+    {
+      "sentence": "Don't give it another thought.",
+      "translation": "别再想这件事了。",
+      "chunks": [
+        "Don't give it another thought."
+      ],
+      "hints": [
+        "别再想这件事了。/别放在心上。"
+      ],
+      "cid": "94e19475",
+      "sentenceAudio": {
+        "text": "Don't give it another thought.",
+        "audio": {
+          "url": "assets/oral-94e19475-79cfa034c49129f0ff71.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ecd2d36f992fe3c9563962118d68593b424372d0d4ab38a84acdd3d815ea180e",
+          "bytes": 5567
+        }
+      }
+    },
+    {
+      "sentence": "I don't want to put you out.",
+      "translation": "我不想给您添麻烦。",
+      "chunks": [
+        "I don't want",
+        "to put you out."
+      ],
+      "hints": [
+        "我不想",
+        "给您添麻烦。"
+      ],
+      "cid": "21fcd62b",
+      "sentenceAudio": {
+        "text": "I don't want to put you out.",
+        "audio": {
+          "url": "assets/oral-21fcd62b-3d838cfd102650101bd3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "65be3b794fdcc973933bc783b88e6693d09a1cfe15b5e499cde7a517b5b6089f",
+          "bytes": 5027
+        }
+      }
+    },
+    {
+      "sentence": "This is nothing.",
+      "translation": "这算什么呀。",
+      "chunks": [
+        "This is",
+        "nothing."
+      ],
+      "hints": [
+        "这",
+        "算什么呀。"
+      ],
+      "cid": "ba8edb8c",
+      "sentenceAudio": {
+        "text": "This is nothing.",
+        "audio": {
+          "url": "assets/oral-ba8edb8c-6ffb98e583cda74bedb4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bf64318c1f5f7d38e241f696f8da7bb1d2c367f6ae5bc2357f0ea61c98849f94",
+          "bytes": 4198
+        }
+      }
+    },
+    {
+      "sentence": "How terrible!",
+      "translation": "多糟糕呀!",
+      "chunks": [
+        "How",
+        "terrible!"
+      ],
+      "hints": [
+        "多",
+        "糟糕呀！"
+      ],
+      "cid": "528fca93",
+      "sentenceAudio": {
+        "text": "How terrible!",
+        "audio": {
+          "url": "assets/oral-528fca93-56eefc98cf9a470ca45a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a588be9051f5f1407ae01965157fb4e915286d00187efe1714636db970c0c227",
+          "bytes": 4080
+        }
+      }
+    },
+    {
+      "sentence": "No big deal.",
+      "translation": "别小题大作。",
+      "chunks": [
+        "No big deal."
+      ],
+      "hints": [
+        "没什么大不了。/别小题大作。"
+      ],
+      "cid": "658ab018",
+      "sentenceAudio": {
+        "text": "No big deal.",
+        "audio": {
+          "url": "assets/oral-658ab018-6989b7503efe2fefe601.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c9c3064ba1683349bd53a92cf7abbfd1b32586d0a14640ec083468218d17e152",
+          "bytes": 4292
+        }
+      }
+    },
+    {
+      "sentence": "I've seen worse.",
+      "translation": "我见过更糟的。",
+      "chunks": [
+        "I've seen",
+        "worse."
+      ],
+      "hints": [
+        "我见过",
+        "更糟的。"
+      ],
+      "cid": "b0695d53",
+      "sentenceAudio": {
+        "text": "I've seen worse.",
+        "audio": {
+          "url": "assets/oral-b0695d53-9dff8cc68e834811d3fa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "043b43f5b5b2ce821846debda46b84367a29ffebf2e27967b989671759b517e0",
+          "bytes": 4256
+        }
+      }
+    },
+    {
+      "sentence": "Don't feel so bad about yourself.",
+      "translation": "别因为自己而这么难过。",
+      "chunks": [
+        "Don't feel so bad",
+        "about yourself."
+      ],
+      "hints": [
+        "别太难过",
+        "因为自己。"
+      ],
+      "cid": "be78558c",
+      "sentenceAudio": {
+        "text": "Don't feel so bad about yourself.",
+        "audio": {
+          "url": "assets/oral-be78558c-db887e1bad787b5f4587.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6c34aab465dfa3cb2c764f168fdc3355d83d8f0a476f176a8d8b545edf3cbd13",
+          "bytes": 6364
+        }
+      }
+    },
+    {
+      "sentence": "It'll work out.",
+      "translation": "一切会好起来的。",
+      "chunks": [
+        "It'll",
+        "work out."
+      ],
+      "hints": [
+        "一切会",
+        "好起来的。"
+      ],
+      "cid": "10e21874",
+      "sentenceAudio": {
+        "text": "It'll work out.",
+        "audio": {
+          "url": "assets/oral-10e21874-bbe21542a255dbccf6e6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e616c9415ad1a691512d64b1b7ce97ef3c8b600346af7290bede829ad611a0b5",
+          "bytes": 4038
+        }
+      }
+    },
+    {
+      "sentence": "She's just upset.",
+      "translation": "她只是有点心烦。",
+      "chunks": [
+        "She's just",
+        "upset."
+      ],
+      "hints": [
+        "她只是",
+        "有点心烦。"
+      ],
+      "cid": "e6d8699e",
+      "sentenceAudio": {
+        "text": "She's just upset.",
+        "audio": {
+          "url": "assets/oral-e6d8699e-660b297465638973033c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "84e237c95bc5ce33da011963ea9f78809ab731d157f3942bb42aa0e531e652be",
+          "bytes": 4642
+        }
+      }
+    },
+    {
+      "sentence": "Don't cry.",
+      "translation": "别哭了。",
+      "chunks": [
+        "Don't",
+        "cry."
+      ],
+      "hints": [
+        "别",
+        "哭了。"
+      ],
+      "cid": "75388b45",
+      "sentenceAudio": {
+        "text": "Don't cry.",
+        "audio": {
+          "url": "assets/oral-75388b45-b0925f5deaad7eba0742.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "321e2cc1bda0c33cedf3211e9fc5c805b439219271c7c48fc1d14e234fb7e4a1",
+          "bytes": 3755
+        }
+      }
+    },
+    {
+      "sentence": "Wipe your tears.",
+      "translation": "擦擦眼泪。",
+      "chunks": [
+        "Wipe",
+        "your tears."
+      ],
+      "hints": [
+        "擦擦",
+        "眼泪。"
+      ],
+      "cid": "e921cb86",
+      "sentenceAudio": {
+        "text": "Wipe your tears.",
+        "audio": {
+          "url": "assets/oral-e921cb86-b682b0b5cc67c28ca0b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a21c1a1d0068996717efd27bb215f37bced86e56c6cf514e007c9a81c7b579df",
+          "bytes": 4365
+        }
+      }
+    },
+    {
+      "sentence": "Cheer up!",
+      "translation": "振作起来!",
+      "chunks": [
+        "Cheer up!"
+      ],
+      "hints": [
+        "振作起来！"
+      ],
+      "cid": "7114cd16",
+      "sentenceAudio": {
+        "text": "Cheer up!",
+        "audio": {
+          "url": "assets/oral-7114cd16-992ed3249f25222c65be.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "42790524390301537fbe7c0017eaf81cf5d9138c4484e9dab5dd419b58b686c2",
+          "bytes": 3359
+        }
+      }
+    },
+    {
+      "sentence": "We'll cheer for your team.",
+      "translation": "我们会给你们队助威的。",
+      "chunks": [
+        "We'll cheer",
+        "for your team."
+      ],
+      "hints": [
+        "我们会",
+        "给你们队助威的。"
+      ],
+      "cid": "46923862",
+      "sentenceAudio": {
+        "text": "We'll cheer for your team.",
+        "audio": {
+          "url": "assets/oral-46923862-0569266c3ae4d8c332a5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b588fe2857b4e62481d1f2585a9ef8c4c21155bf6c5045e05b7297e613f8975f",
+          "bytes": 5086
+        }
+      }
+    },
+    {
+      "sentence": "Try harder next time.",
+      "translation": "下次再努力吧。",
+      "chunks": [
+        "Try harder next time."
+      ],
+      "hints": [
+        "下次再努力吧。"
+      ],
+      "cid": "70d3237c",
+      "sentenceAudio": {
+        "text": "Try harder next time.",
+        "audio": {
+          "url": "assets/oral-70d3237c-37e8ebbca21999ab21a1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c807fccc61d26a5caee8af4675b348ad6d6f71e44e1f78fe75d575fda6cc1841",
+          "bytes": 5258
+        }
+      }
+    },
+    {
+      "sentence": "Hang in there!",
+      "translation": "别松劲!",
+      "chunks": [
+        "Hang in there!"
+      ],
+      "hints": [
+        "坚持住！/别放弃！"
+      ],
+      "cid": "c038ca39",
+      "sentenceAudio": {
+        "text": "Hang in there!",
+        "audio": {
+          "url": "assets/oral-c038ca39-c1ca78a9fa1352e810d0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e73730da2de5437492915bf9eeef237920cffb4f1f676515f7092a87bd02a62e",
+          "bytes": 3957
+        }
+      }
+    },
+    {
+      "sentence": "Don't give up!",
+      "translation": "别认输!/别放弃!",
+      "chunks": [
+        "Don't give up!"
+      ],
+      "hints": [
+        "别放弃！/别认输！"
+      ],
+      "cid": "839ac17a",
+      "sentenceAudio": {
+        "text": "Don't give up!",
+        "audio": {
+          "url": "assets/oral-839ac17a-7558660627e363ef2f62.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dddd244b425e9975459d3a5c1cf7db316ce40fcb09fba1490803c9b9f9ad0415",
+          "bytes": 3699
+        }
+      }
+    },
+    {
+      "sentence": "You can do it!",
+      "translation": "你可以的!",
+      "chunks": [
+        "You can do it!"
+      ],
+      "hints": [
+        "你一定做得到！"
+      ],
+      "cid": "714dcaa3",
+      "sentenceAudio": {
+        "text": "You can do it!",
+        "audio": {
+          "url": "assets/oral-714dcaa3-da61fc7eb204021b4525.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2675c02141b1999f93769f5c6c01810caa36a9e53502b6ab5daf48268778f556",
+          "bytes": 3909
+        }
+      }
+    },
+    {
+      "sentence": "Look on the bright side.",
+      "translation": "你得看到事情好的一面。",
+      "chunks": [
+        "Look on the bright side."
+      ],
+      "hints": [
+        "往好的一面想。"
+      ],
+      "cid": "2d1689b3",
+      "sentenceAudio": {
+        "text": "Look on the bright side.",
+        "audio": {
+          "url": "assets/oral-2d1689b3-de1a0bf559f6fb7eb91e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2e4c839f63edc2bec79e0a2448b1d06a6a55a17fe945468fc4203e26dc5a57e6",
+          "bytes": 5172
+        }
+      }
+    },
+    {
+      "sentence": "Don't take it too seriously!",
+      "translation": "别看得那么严重!",
+      "chunks": [
+        "Don't take it",
+        "too seriously!"
+      ],
+      "hints": [
+        "别看得",
+        "那么严重！"
+      ],
+      "cid": "e1038261",
+      "sentenceAudio": {
+        "text": "Don't take it too seriously!",
+        "audio": {
+          "url": "assets/oral-e1038261-472c31fc84b4e6cf3ff8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9851e78719a8e75a4a8de811dc316dc1b9ee894beffab3c90cda9eeb3a2830dd",
+          "bytes": 5730
+        }
+      }
+    },
+    {
+      "sentence": "Keep your chin up!",
+      "translation": "别灰心!",
+      "chunks": [
+        "Keep your chin up!"
+      ],
+      "hints": [
+        "别灰心！/振作起来！"
+      ],
+      "cid": "8e0d8f99",
+      "sentenceAudio": {
+        "text": "Keep your chin up!",
+        "audio": {
+          "url": "assets/oral-8e0d8f99-ca471dd419e2b7d127f9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8d849ebf6c771f07d8bcf5e528351ce2db544cd6c128b5fd45f54b3641c418ec",
+          "bytes": 4209
+        }
+      }
+    },
+    {
+      "sentence": "You can do anything if you really want to.",
+      "translation": "只要你真的想做，什么都做得到。",
+      "chunks": [
+        "You can do anything",
+        "if you really want to."
+      ],
+      "hints": [
+        "你什么都做得到，",
+        "只要你真的想做。"
+      ],
+      "cid": "50881daf",
+      "sentenceAudio": {
+        "text": "You can do anything if you really want to.",
+        "audio": {
+          "url": "assets/oral-50881daf-9bdcccc556aa60e940d0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ca737e768601af0ba5dad390610457b386f0a620ab3bf71bf73aab938ba3efaf",
+          "bytes": 8206
+        }
+      }
+    },
+    {
+      "sentence": "There's a chance.",
+      "translation": "这是一个机会。",
+      "chunks": [
+        "There's",
+        "a chance."
+      ],
+      "hints": [
+        "这是一个",
+        "机会。"
+      ],
+      "cid": "f04792ea",
+      "sentenceAudio": {
+        "text": "There's a chance.",
+        "audio": {
+          "url": "assets/oral-f04792ea-44139782cefa7a6e8eea.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2d34fe6b3baf211951d3ca00adfe0483fd8543218a410ceae4b050b376217ad2",
+          "bytes": 3993
+        }
+      }
+    },
+    {
+      "sentence": "Worrying about it won't solve anything.",
+      "translation": "担心解决不了任何问题。",
+      "chunks": [
+        "Worrying about it",
+        "won't solve anything."
+      ],
+      "hints": [
+        "担心",
+        "解决不了任何问题。"
+      ],
+      "cid": "4026dbb0",
+      "sentenceAudio": {
+        "text": "Worrying about it won't solve anything.",
+        "audio": {
+          "url": "assets/oral-4026dbb0-a0a7e877be8818d03f52.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1800fcee7496c5e0b1b92a12f94086d6923308ea4abf0aca84ffc7570f8822f7",
+          "bytes": 6898
+        }
+      }
+    },
+    {
+      "sentence": "Get it together, Jack!",
+      "translation": "振作起来!杰克。",
+      "chunks": [
+        "Get it together,",
+        "Jack!"
+      ],
+      "hints": [
+        "振作起来！",
+        "杰克。"
+      ],
+      "cid": "e78104fc",
+      "sentenceAudio": {
+        "text": "Get it together, Jack!",
+        "audio": {
+          "url": "assets/oral-e78104fc-fb4fa9a7a8e1b345cf00.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "147644926ca95c16b38f15c8a0a1ef25d3fc452b64e80db269d37da4da282817",
+          "bytes": 4651
+        }
+      }
+    },
+    {
+      "sentence": "Just try it.",
+      "translation": "试试看。",
+      "chunks": [
+        "Just",
+        "try it."
+      ],
+      "hints": [
+        "就",
+        "试试看。"
+      ],
+      "cid": "fe8cb4e3",
+      "sentenceAudio": {
+        "text": "Just try it.",
+        "audio": {
+          "url": "assets/oral-fe8cb4e3-285b3334e189aaa494f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c993ae013155008ca4cdb73e8fbaefd51f4bc30da98489b945a037a7c285143c",
+          "bytes": 3945
+        }
+      }
+    },
+    {
+      "sentence": "Try and do it.",
+      "translation": "试着做做。",
+      "chunks": [
+        "Try and",
+        "do it."
+      ],
+      "hints": [
+        "试着",
+        "做做。"
+      ],
+      "cid": "2cbe0679",
+      "sentenceAudio": {
+        "text": "Try and do it.",
+        "audio": {
+          "url": "assets/oral-2cbe0679-038ebb2959dd93d8085b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2fda5566756c9fc4fc5d987ecbd2227ca0e5db8f8dede5090d40428bd02a3300",
+          "bytes": 4071
+        }
+      }
+    },
+    {
+      "sentence": "Try again.",
+      "translation": "再试一遍。",
+      "chunks": [
+        "Try",
+        "again."
+      ],
+      "hints": [
+        "再试",
+        "一遍。"
+      ],
+      "cid": "297dfdbc",
+      "sentenceAudio": {
+        "text": "Try again.",
+        "audio": {
+          "url": "assets/oral-297dfdbc-b7c0add96772b5557a9f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3136ebb1cbf2e97bd4faa049cd60c90043677fe08e7f2d22eb362120130767d7",
+          "bytes": 3790
+        }
+      }
+    },
+    {
+      "sentence": "Don't be a chicken.",
+      "translation": "别当胆小鬼！/别害怕。",
+      "chunks": [
+        "Don't be a chicken."
+      ],
+      "hints": [
+        "别当胆小鬼！/别害怕。"
+      ],
+      "cid": "b67c4458",
+      "sentenceAudio": {
+        "text": "Don't be a chicken.",
+        "audio": {
+          "url": "assets/oral-b67c4458-313115053fe2c0c4aaad.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb6f78dd2a813921371aaf1f7f4a41d8ef3803de1817e3c4fed2e70bf54e231f",
+          "bytes": 4296
+        }
+      }
+    },
+    {
+      "sentence": "Let's face facts.",
+      "translation": "让我们面对现实。",
+      "chunks": [
+        "Let's",
+        "face facts."
+      ],
+      "hints": [
+        "让我们",
+        "面对现实。"
+      ],
+      "cid": "948f1970",
+      "sentenceAudio": {
+        "text": "Let's face facts.",
+        "audio": {
+          "url": "assets/oral-948f1970-cb736da7fc1843e95982.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d71fc41b774da3c47b09fe7dbf0e1dd394c49f18e74baecbed90a8be21691340",
+          "bytes": 4738
+        }
+      }
+    },
+    {
+      "sentence": "Let's cheer him up.",
+      "translation": "我们得让他振作起来。",
+      "chunks": [
+        "Let's",
+        "cheer him up."
+      ],
+      "hints": [
+        "我们来",
+        "让他振作起来。"
+      ],
+      "cid": "3b767232",
+      "sentenceAudio": {
+        "text": "Let's cheer him up.",
+        "audio": {
+          "url": "assets/oral-3b767232-704655ec87e58d33962c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "db2d48885dc55bde43908f4468b9840c936ab7987221d8f24f8cc5e12b07748d",
+          "bytes": 4339
+        }
+      }
+    },
+    {
+      "sentence": "I wish you success!",
+      "translation": "我祝你成功!",
+      "chunks": [
+        "I wish",
+        "you success!"
+      ],
+      "hints": [
+        "我祝你",
+        "成功！"
+      ],
+      "cid": "a9964d16",
+      "sentenceAudio": {
+        "text": "I wish you success!",
+        "audio": {
+          "url": "assets/oral-a9964d16-064276d207388299b82f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7e4fb09226ffc8bec155358450cbf09e0ccd176df669b2de78fa33617958a694",
+          "bytes": 4697
+        }
+      }
+    },
+    {
+      "sentence": "Tell him to his face.",
+      "translation": "当着他的面告诉他。",
+      "chunks": [
+        "Tell him",
+        "to his face."
+      ],
+      "hints": [
+        "告诉他",
+        "当着他的面"
+      ],
+      "cid": "00b1bbf0",
+      "sentenceAudio": {
+        "text": "Tell him to his face.",
+        "audio": {
+          "url": "assets/oral-00b1bbf0-1e79af9aa1c2ad90434c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f410ad84e65c3e616deb519fe47165fd4d0473cb282e2c27fb5e55ee6cd30d89",
+          "bytes": 4662
+        }
+      }
+    },
+    {
+      "sentence": "I'm serious.",
+      "translation": "我是认真的。",
+      "chunks": [
+        "I'm",
+        "serious."
+      ],
+      "hints": [
+        "我是",
+        "认真的。"
+      ],
+      "cid": "6a097be0",
+      "sentenceAudio": {
+        "text": "I'm serious.",
+        "audio": {
+          "url": "assets/oral-6a097be0-fe8f1ec69a3376d5e3a2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4b9fa887b0baf24da5fbbad9a069d64c6b720692af3d08d5107bdbd198c2b4b9",
+          "bytes": 4029
+        }
+      }
+    },
+    {
+      "sentence": "Take my word for it.",
+      "translation": "相信我，准没错。",
+      "chunks": [
+        "Take my word for it."
+      ],
+      "hints": [
+        "相信我，准没错。/这是真的。"
+      ],
+      "cid": "e4975ade",
+      "sentenceAudio": {
+        "text": "Take my word for it.",
+        "audio": {
+          "url": "assets/oral-e4975ade-b73b78eecac66a55a3ab.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "493bf5d69caf49034c4f651fd2223e26c793b59c0798014197dd06b66ff7c4ce",
+          "bytes": 4959
+        }
+      }
+    },
+    {
+      "sentence": "You'd better believe it!",
+      "translation": "你最好相信这是真的！",
+      "chunks": [
+        "You'd better believe it!"
+      ],
+      "hints": [
+        "你最好相信这是真的！"
+      ],
+      "cid": "ae7c3c5b",
+      "sentenceAudio": {
+        "text": "You'd better believe it!",
+        "audio": {
+          "url": "assets/oral-ae7c3c5b-17684461a96318d67045.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ae0ff6dce75ed90f53061432cf0002d72b4f99e446fb9176de3077228aedc68b",
+          "bytes": 4843
+        }
+      }
+    },
+    {
+      "sentence": "I'm sure of it.",
+      "translation": "我敢肯定。",
+      "chunks": [
+        "I'm",
+        "sure of it."
+      ],
+      "hints": [
+        "我",
+        "对此很肯定。"
+      ],
+      "cid": "1618921b",
+      "sentenceAudio": {
+        "text": "I'm sure of it.",
+        "audio": {
+          "url": "assets/oral-1618921b-4ef62973d2a2e050ead3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5c1a378f4cb82cba5e123d03712ab62c1b3a4c710cd7ae3246129c2bb7becfb8",
+          "bytes": 4100
+        }
+      }
+    },
+    {
+      "sentence": "It may sound strange, but it's true.",
+      "translation": "听起来也许奇怪，但它是真的。",
+      "chunks": [
+        "It may sound strange,",
+        "but it's true."
+      ],
+      "hints": [
+        "听起来也许奇怪，",
+        "但它是真的。"
+      ],
+      "cid": "efd52aaa",
+      "sentenceAudio": {
+        "text": "It may sound strange, but it's true.",
+        "audio": {
+          "url": "assets/oral-efd52aaa-5a8a0bb6754188977cbd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2afac472ccca89b2a0899d399e25177420fcb73937af5706b1851d89c706663f",
+          "bytes": 7093
+        }
+      }
+    },
+    {
+      "sentence": "I'm innocent!",
+      "translation": "我是无辜的!",
+      "chunks": [
+        "I'm",
+        "innocent!"
+      ],
+      "hints": [
+        "我是",
+        "无辜的！"
+      ],
+      "cid": "bc880e0d",
+      "sentenceAudio": {
+        "text": "I'm innocent!",
+        "audio": {
+          "url": "assets/oral-bc880e0d-ad9c44e8b5c2769fba85.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b1f58b489bebc822fcbfcaf773160a5fc6fcaa520b98388f7f7768d1cb71dde6",
+          "bytes": 3937
+        }
+      }
+    },
+    {
+      "sentence": "Don't worry about it.",
+      "cid": "ea178218",
+      "translation": "别担心/没事的。",
+      "chunks": [
+        "Don't worry",
+        "about it."
+      ],
+      "hints": [
+        "别担心",
+        "关于这件事"
+      ],
+      "grammar": [
+        {
+          "role": "祈使否定",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/ˈwɜːri/"
+          ],
+          "pos": "否定祈使句",
+          "meaning": "别担心"
+        },
+        {
+          "role": "介词短语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ɪt/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于这件事"
+        }
+      ],
+      "explanations": [
+        "**Don't worry about it.** = 别担心/没事，宽慰对方的标准说法，也可用来回应道歉（= 没关系）。",
+        "口语更短版：**No worries.**（澳洲口语最爱）/ **It's fine.** 别写成 Don't worries（worry 动词不加 s）。"
+      ],
+      "distractors": [
+        [
+          "Not worry",
+          "Don't worries",
+          "Don't worrying"
+        ],
+        [
+          "about.",
+          "about them.",
+          "of it."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Don't worry about it.",
+        "audio": {
+          "url": "assets/oral-ea178218-1e74d5deb0f19620f48c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d7318e5e7b46d07d1371e592b89cb906a8ad7859dd54e36e48ac18922e5f048",
+          "bytes": 4518
+        }
+      }
+    },
+    {
+      "sentence": "As long as you're happy, that's all that matters.",
+      "cid": "f138b191",
+      "translation": "只要你开心，其他都不重要。",
+      "chunks": [
+        "As long as you're happy,",
+        "that's all that matters."
+      ],
+      "hints": [
+        "只要你开心",
+        "其他都不重要。"
+      ],
+      "grammar": [
+        {
+          "role": "条件从句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/æz/",
+            "/lɒŋ/",
+            "/æz/",
+            "/jɔːr/",
+            "/ˈhæpi/"
+          ],
+          "pos": "as long as 从句",
+          "meaning": "只要你开心"
+        },
+        {
+          "role": "主句 + 定语从句",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðæts/",
+            "/ɔːl/",
+            "/ðæt/",
+            "/ˈmætərz/"
+          ],
+          "pos": "that's all that matters",
+          "meaning": "其他都不重要"
+        }
+      ],
+      "explanations": [
+        "`As long as` = 只要（条件连词）。常见错误：\n• \"As **long** you're happy\" → 漏第二个 as\n• \"So long as\" → 也可，但 as long as 更口语",
+        "`that's all that matters` = 其他都不重要。`that matters` 是定语从句，修饰 all；matter 在这里作动词，表示‘重要’。常见错误：\n• \"that **is** matters\" → matter 是动词，不加 is\n• \"what matters\" → 可以替换，但句式不同。"
+      ],
+      "distractors": [
+        [
+          "As long you're happy,",
+          "As far as you're happy,",
+          "As long as your happy,"
+        ],
+        [
+          "that's everything that matters.",
+          "that's all what matters.",
+          "that's all that important."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "As long as you're happy, that's all that matters.",
+        "audio": {
+          "url": "assets/oral-f138b191-d22f1c7d66ee21e681cb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f1406319b5f34d7abd4331121d7e474fc5247f9c52478c45c5d34eb83f023eca",
+          "bytes": 8122
+        }
+      }
+    },
+    {
+      "sentence": "Cheer up, it's not the end of the world.",
+      "cid": "c66af01f",
+      "translation": "打起精神来，又不是世界末日。",
+      "chunks": [
+        "Cheer up,",
+        "it's not",
+        "the end of the world."
+      ],
+      "hints": [
+        "振作起来",
+        "这不是",
+        "世界末日"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/tʃɪr/",
+            "/ʌp/"
+          ],
+          "pos": "祈使句",
+          "meaning": "打起精神"
+        },
+        {
+          "role": "主系表(否定)",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪts/",
+            "/nɑːt/"
+          ],
+          "pos": "it's not",
+          "meaning": "这不是"
+        },
+        {
+          "role": "表语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/end/",
+            "/əv/",
+            "/ðə/",
+            "/wɜːrld/"
+          ],
+          "pos": "名词短语",
+          "meaning": "世界末日"
+        }
+      ],
+      "explanations": [
+        "安慰朋友。`Cheer up!` = 振作点！常见错误：\n• \"Cheer up you\" → 祈使不加宾语\n• \"Cheer!\" → 加油欢呼，安慰用 cheer up",
+        "`It's not the end of the world.` 固定表达 = 没那么糟。"
+      ],
+      "distractors": [
+        [
+          "Cheering up,",
+          "Cheer up yourself,",
+          "Keep cheer up,"
+        ],
+        [
+          "It isn't",
+          "It not is",
+          "It's no"
+        ],
+        [
+          "an end of the world.",
+          "the end of world.",
+          "end of the world."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Cheer up, it's not the end of the world.",
+        "audio": {
+          "url": "assets/oral-c66af01f-08dde6f0a2ed2190bb41.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e6747f71510611197d1a7bc02813403f40bda1fe204a081f6a7ecc52a9252ba2",
+          "bytes": 7060
+        }
+      }
+    },
+    {
+      "sentence": "Don't worry, everything will work out fine.",
+      "cid": "b6a7287e",
+      "translation": "别担心，一切都会好起来的。",
+      "chunks": [
+        "Don't worry,",
+        "everything will",
+        "work out fine."
+      ],
+      "hints": [
+        "别担心",
+        "一切都会",
+        "顺利解决"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句(否定)",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/",
+            "/ˈwɜːri/"
+          ],
+          "pos": "don't + 动词",
+          "meaning": "别担心"
+        },
+        {
+          "role": "主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈevriθɪŋ/",
+            "/wɪl/"
+          ],
+          "pos": "不定代词+will",
+          "meaning": "一切都会"
+        },
+        {
+          "role": "谓语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/wɜːrk/",
+            "/aʊt/",
+            "/faɪn/"
+          ],
+          "pos": "短语动词",
+          "meaning": "顺利解决"
+        }
+      ],
+      "explanations": [
+        "安慰他人。`Don't worry` = 别担心。常见错误：\n• \"Not worry\" → 祈使否定用 Don't\n• \"Don't worrying\" → 祈使后原形",
+        "`work out` = 解决/进展顺利。常见错误：\n• \"work out **well**\" → 也可，fine/well 皆可\n• \"work it out\" 带宾语时放中间"
+      ],
+      "distractors": [
+        [
+          "Not worry,",
+          "Don't worrying,",
+          "Doesn't worry,"
+        ],
+        [
+          "everything is",
+          "anything will",
+          "all will"
+        ],
+        [
+          "works out fine.",
+          "working out fine.",
+          "work fine out."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Don't worry, everything will work out fine.",
+        "audio": {
+          "url": "assets/oral-b6a7287e-e6726c20cbf3f9782322.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "441ee8e39881540cdf708f05c3905b79f4d1d2d0c00ada46c09a73e2bc21d53e",
+          "bytes": 7790
+        }
+      }
+    },
+    {
+      "sentence": "No matter what happens, I'll be here for you.",
+      "cid": "79d9ff2f",
+      "translation": "无论发生什么，我都会在你身边。",
+      "chunks": [
+        "No matter what happens,",
+        "I'll be here",
+        "for you."
+      ],
+      "hints": [
+        "无论发生什么",
+        "我都会在这里",
+        "为你"
+      ],
+      "grammar": [
+        {
+          "role": "让步状语从句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/noʊ/",
+            "/ˈmætər/",
+            "/wʌt/",
+            "/ˈhæpənz/"
+          ],
+          "pos": "no matter + 疑问词",
+          "meaning": "无论发生什么"
+        },
+        {
+          "role": "主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/aɪl/",
+            "/biː/",
+            "/hɪr/"
+          ],
+          "pos": "将来时",
+          "meaning": "我会在这里"
+        },
+        {
+          "role": "目的状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "为你"
+        }
+      ],
+      "explanations": [
+        "`No matter what...` = 无论什么……（让步从句）。常见错误：\n• \"No matter **whatever**\" → no matter what 或 whatever 二选一\n• \"No matter what will happen\" → 从句用一般现在时 happens",
+        "`be here for you` = 陪着你/支持你。"
+      ],
+      "distractors": [
+        [
+          "No matter whatever happens,",
+          "Whatever no matter happens,",
+          "No matter what happen,"
+        ],
+        [
+          "I be here",
+          "I'll be there",
+          "I'll am here"
+        ],
+        [
+          "with you.",
+          "for yours.",
+          "to you."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "No matter what happens, I'll be here for you.",
+        "audio": {
+          "url": "assets/oral-79d9ff2f-5bfdd7a85444b3a9b5fd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5fff9b9f4a1a36b8d9f530bd91b5aeb48f79e555a58fbcd851b356078dd42d47",
+          "bytes": 8182
+        }
+      }
+    },
+    {
+      "sentence": "Take your time, there's no rush.",
+      "cid": "1417566d",
+      "translation": "慢慢来，不用急。",
+      "chunks": [
+        "Take your time,",
+        "there's no",
+        "rush."
+      ],
+      "hints": [
+        "慢慢来",
+        "没有",
+        "急的必要"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk/",
+            "/jʊr/",
+            "/taɪm/"
+          ],
+          "pos": "祈使句",
+          "meaning": "慢慢来"
+        },
+        {
+          "role": "存在句",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðerz/",
+            "/noʊ/"
+          ],
+          "pos": "there's no",
+          "meaning": "没有"
+        },
+        {
+          "role": "名词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/rʌʃ/"
+          ],
+          "pos": "名词",
+          "meaning": "匆忙的必要"
+        }
+      ],
+      "explanations": [
+        "`Take your time` = 慢慢来/别着急。常见错误：\n• \"Take time\" → 少了 your，语义变「花时间」\n• \"Take your times\" → time 此处不可数",
+        "`there's no rush` = 不赶时间。同义：No hurry."
+      ],
+      "distractors": [
+        [
+          "Take time,",
+          "Takes your time,",
+          "Take you time,"
+        ],
+        [
+          "there's not",
+          "there're no",
+          "there no"
+        ],
+        [
+          "rushing.",
+          "a rush.",
+          "hurry up."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Take your time, there's no rush.",
+        "audio": {
+          "url": "assets/oral-1417566d-2fa5da90c305eea4c899.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "849ac9a60ccfbf03ffb46711c95538d2337cdb748e895a49bd0140a5cfd2be30",
+          "bytes": 6336
+        }
+      }
+    },
+    {
+      "sentence": "What's bothering you?",
+      "cid": "b088786f",
+      "translation": "什么事烦你了？",
+      "chunks": [
+        "What's",
+        "bothering you?"
+      ],
+      "hints": [
+        "什么（是）",
+        "烦着你的"
+      ],
+      "grammar": [
+        {
+          "role": "疑问词+系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/wʌts/"
+          ],
+          "pos": "what + is 缩写",
+          "meaning": "什么（是）"
+        },
+        {
+          "role": "谓语+宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ˈbɑːðərɪŋ/",
+            "/juː/"
+          ],
+          "pos": "现在进行时",
+          "meaning": "烦着你"
+        }
+      ],
+      "explanations": [
+        "`bother` 表「打扰、使烦恼」。常见错误：\n• \"What's brother you?\" → brother 是「兄弟」，正确拼写是 bothering\n• \"What's bother you?\" → 进行时要用 -ing",
+        "现在进行时表「此刻正在」。同义：What's wrong? / What's on your mind?"
+      ],
+      "distractors": [
+        [
+          "What",
+          "What're",
+          "What was"
+        ],
+        [
+          "bother you?",
+          "bothering your?",
+          "bothers you?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "What's bothering you?",
+        "audio": {
+          "url": "assets/oral-b088786f-c755dedc060783ce0a43.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4e26cfa8ff868fcf68929aaa57b2b9a12768a544714906208979e5587c09c90c",
+          "bytes": 4499
+        }
+      }
+    },
+    {
+      "sentence": "You'll be fine.",
+      "cid": "85107210",
+      "translation": "你会没事的。",
+      "chunks": [
+        "You'll",
+        "be fine."
+      ],
+      "hints": [
+        "你会",
+        "没事"
+      ],
+      "grammar": [
+        {
+          "role": "主语+助动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/juːl/"
+          ],
+          "pos": "you will 缩写",
+          "meaning": "你会"
+        },
+        {
+          "role": "系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/bi/",
+            "/faɪn/"
+          ],
+          "pos": "will be + 形容词",
+          "meaning": "没事"
+        }
+      ],
+      "explanations": [
+        "`You'll` = you will，表安慰性的预测。常见错误：\n• \"You'll be fine.\" 写成 \"Your be fine\" → Your 是所有格\n• \"You will be fine\" → 不缩写也可以，语气更正式",
+        "`fine` 表「没问题、没事」。同义：You'll do great. / You'll be okay."
+      ],
+      "distractors": [
+        [
+          "You",
+          "You're",
+          "You will be"
+        ],
+        [
+          "be find.",
+          "being fine.",
+          "be finely."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "You'll be fine.",
+        "audio": {
+          "url": "assets/oral-85107210-8107b23866f26a5f025d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "213ee642725b3c3823fb7d12b293c2f93075e53c59e34aada77dbe014f753cf2",
+          "bytes": 4019
+        }
+      }
+    },
+    {
+      "sentence": "Don't beat yourself up.",
+      "cid": "21f94209",
+      "translation": "别太苛责自己。",
+      "chunks": [
+        "Don't",
+        "beat yourself up."
+      ],
+      "hints": [
+        "不要",
+        "责备你自己"
+      ],
+      "grammar": [
+        {
+          "role": "祈使句(否定)",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "不要"
+        },
+        {
+          "role": "固定表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/biːt/",
+            "/jərˈself/",
+            "/ʌp/"
+          ],
+          "pos": "beat oneself up 习语",
+          "meaning": "苛责自己"
+        }
+      ],
+      "explanations": [
+        "否定祈使句用 Don't + 动词原形。常见错误：\n• \"Doesn't beat\" → 祈使句用 don't\n• \"Not beat\" → 缺助动词",
+        "`beat yourself up` 是习语，表「过度自责」，与「打自己」无关。常见错误：\n• \"beat up yourself\" → 反身代词要放中间\n• \"beat yourself\" → 少了 up，习语不成立"
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Don't to",
+          "Not"
+        ],
+        [
+          "beat up yourself.",
+          "beat yourself on.",
+          "beat yours up."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Don't beat yourself up.",
+        "audio": {
+          "url": "assets/oral-21f94209-81d1fc830ffc55c15829.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2215064565091c428cf7c255ee2446e0ac4ca75af6e4534ee6df0677941bf941",
+          "bytes": 4762
+        }
+      }
+    },
+    {
+      "sentence": "I've been there.",
+      "cid": "cd379d3e",
+      "translation": "我是过来人。",
+      "chunks": [
+        "I've been",
+        "there."
+      ],
+      "hints": [
+        "我去过（经历过）",
+        "那里"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪv/",
+            "/bɪn/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "我去过"
+        },
+        {
+          "role": "地点状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðer/"
+          ],
+          "pos": "副词",
+          "meaning": "那里"
+        }
+      ],
+      "explanations": [
+        "`I've been there` 字面是「我去过那里」，引申为「我也经历过、我懂你」。常见错误：\n• \"I been there\" → 少了 've\n• \"I've gone there\" → gone 强调去了没回，表「经历过」用 been",
+        "这是安慰别人时的高频共情表达。同义：I know the feeling. / Been there."
+      ],
+      "distractors": [
+        [
+          "I been",
+          "I've being",
+          "I've be"
+        ],
+        [
+          "here.",
+          "their.",
+          "there's."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I've been there.",
+        "audio": {
+          "url": "assets/oral-cd379d3e-baa173971f57ab630b59.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4e8588cc664a79deadeb0750fce87132ba14f248b8e4b69658f717c5a7d58c37",
+          "bytes": 4021
+        }
+      }
+    },
+    {
+      "sentence": "I'm here for you.",
+      "cid": "9042ad50",
+      "translation": "我陪你。",
+      "chunks": [
+        "I'm here",
+        "for you."
+      ],
+      "hints": [
+        "我在这儿",
+        "为你"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/",
+            "/hɪr/"
+          ],
+          "pos": "be + here",
+          "meaning": "我在这儿"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/fɔːr/",
+            "/juː/"
+          ],
+          "pos": "介词短语",
+          "meaning": "为你"
+        }
+      ],
+      "explanations": [
+        "`be here for sb` 表「陪着你、支持你」。常见错误：\n• \"I'm here to you\" → 固定搭配用 for\n• \"I hear for you\" → hear 是「听见」，同音但意思完全不同",
+        "同义：I've got your back. / I'm with you."
+      ],
+      "distractors": [
+        [
+          "I here",
+          "I'm hear",
+          "I'm here to"
+        ],
+        [
+          "for your.",
+          "to you.",
+          "for yours."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm here for you.",
+        "audio": {
+          "url": "assets/oral-9042ad50-bfa5f28d681f08268790.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e948f66431e0dfab37b0b8d11af00966238f946e00677c10adb4e27bd35e0fb2",
+          "bytes": 4293
+        }
+      }
+    },
+    {
+      "sentence": "Hope you're feeling better.",
+      "cid": "d989d51c",
+      "translation": "希望你好点了。",
+      "chunks": [
+        "Hope",
+        "you're feeling",
+        "better."
+      ],
+      "hints": [
+        "希望",
+        "你感觉",
+        "好些了"
+      ],
+      "grammar": [
+        {
+          "role": "谓语（省略主语）",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hoʊp/"
+          ],
+          "pos": "省略 I 的口语",
+          "meaning": "希望"
+        },
+        {
+          "role": "主谓",
+          "color": "#c87033",
+          "phonetic": [
+            "/jʊr/",
+            "/ˈfiːlɪŋ/"
+          ],
+          "pos": "you are + 现在分词",
+          "meaning": "你感觉"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈbetər/"
+          ],
+          "pos": "形容词比较级",
+          "meaning": "好些"
+        }
+      ],
+      "explanations": [
+        "口语省略主语 I，直接以 Hope 开头。常见错误：\n• \"Hoping you're feeling better\" → 句子不能以动名词开头当谓语\n• \"I hope you feeling better\" → 从句里缺 are",
+        "`better` 是 well 的比较级，表「好一些」。常见错误：\n• \"more better\" → 比较级不叠用",
+        "同义：Hope you feel better soon."
+      ],
+      "distractors": [
+        [
+          "Hoping",
+          "Hopes",
+          "I hope"
+        ],
+        [
+          "your feeling",
+          "you feeling",
+          "you're feel"
+        ],
+        [
+          "good.",
+          "best.",
+          "weller."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Hope you're feeling better.",
+        "audio": {
+          "url": "assets/oral-d989d51c-c03ae64c552885dd0d14.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b8642039db4a56cb43a392dc33b1fa2244df1d3014b9dace5e3a023fe974346c",
+          "bytes": 4965
+        }
+      }
+    },
+    {
+      "sentence": "Just relax.",
+      "cid": "45b93a39",
+      "translation": "放松一下。",
+      "chunks": [
+        "Just",
+        "relax."
+      ],
+      "hints": [
+        "就、尽管",
+        "放松"
+      ],
+      "grammar": [
+        {
+          "role": "副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/dʒʌst/"
+          ],
+          "pos": "副词（缓和语气）",
+          "meaning": "就、只管"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/rɪˈlæks/"
+          ],
+          "pos": "祈使句动词",
+          "meaning": "放松"
+        }
+      ],
+      "explanations": [
+        "`just` 在这里缓和语气，等于「你就放松吧」。常见错误：\n• \"Just relax you\" → 祈使句不加主语\n• \"Just relaxing\" → 祈使句要用动词原形",
+        "安慰别人：Take it easy. / Relax, it's fine. / Just breathe."
+      ],
+      "distractors": [
+        [
+          "Only",
+          "Just be",
+          "Very"
+        ],
+        [
+          "relaxing.",
+          "relaxes.",
+          "relaxed."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Just relax.",
+        "audio": {
+          "url": "assets/oral-45b93a39-e5ea1b85a1f20bce6f4c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0fcb7136b67e22e15007f002b91e28a9b7ae838d21ca0b741346668188027ef5",
+          "bytes": 4102
+        }
+      }
+    },
+    {
+      "sentence": "Don't be sad.",
+      "cid": "6010cb80",
+      "translation": "别伤心。",
+      "chunks": [
+        "Don't be",
+        "sad."
+      ],
+      "hints": [
+        "别",
+        "伤心"
+      ],
+      "grammar": [
+        {
+          "role": "否定祈使",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/doʊnt/"
+          ],
+          "pos": "do not 缩写",
+          "meaning": "别"
+        },
+        {
+          "role": "表语",
+          "color": "#c87033",
+          "phonetic": [
+            "/sæd/"
+          ],
+          "pos": "形容词",
+          "meaning": "伤心的"
+        }
+      ],
+      "explanations": [
+        "`Don't be + 形容词` 是安慰别人时的固定否定式。常见错误：\n• \"Don't sad\" → 形容词前必须加 be\n• \"No be sad\" → 否定祈使用 don't",
+        "相关安慰语：Cheer up. / It's okay. / I'm here for you."
+      ],
+      "distractors": [
+        [
+          "Doesn't",
+          "Not be",
+          "No"
+        ],
+        [
+          "sadly.",
+          "sadness.",
+          "sading."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Don't be sad.",
+        "audio": {
+          "url": "assets/oral-6010cb80-96931a20a09a7741bc40.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c49f0fad80128c9326856dfdb60f4bca049f79fb18a9d38b0d42476cfc518793",
+          "bytes": 3876
+        }
+      }
+    },
+    {
+      "sentence": "Get yourself together.",
+      "cid": "ac89bfd8",
+      "translation": "振作起来。",
+      "chunks": [
+        "Get yourself",
+        "together."
+      ],
+      "hints": [
+        "把你自己",
+        "聚拢、振作"
+      ],
+      "grammar": [
+        {
+          "role": "谓语 + 反身代词",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɡet/",
+            "/jərˈself/"
+          ],
+          "pos": "动词 + 反身代词",
+          "meaning": "把你自己"
+        },
+        {
+          "role": "补足语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈɡeðər/"
+          ],
+          "pos": "副词",
+          "meaning": "聚拢、振作"
+        }
+      ],
+      "explanations": [
+        "`get yourself together` = 振作起来、把状态调回来。常见错误：\n• \"Get together yourself\" → yourself 要紧跟 get\n• \"Get you together\" → 反身代词要用 yourself",
+        "更常用：Pull yourself together. / Get a grip."
+      ],
+      "distractors": [
+        [
+          "Get you",
+          "Getting yourself",
+          "Get your"
+        ],
+        [
+          "togetherness.",
+          "togather.",
+          "to gather."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Get yourself together.",
+        "audio": {
+          "url": "assets/oral-ac89bfd8-d4fd92a141da01c230ac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7bbe1855ebd9fc2f0c2f732a54d8eed3910b516786dba97e547b6b9895689fc9",
+          "bytes": 4755
+        }
+      }
+    },
+    {
+      "sentence": "Let me hug you.",
+      "cid": "77eefd93",
+      "translation": "让我抱抱你。",
+      "chunks": [
+        "Let me",
+        "hug you."
+      ],
+      "hints": [
+        "让我",
+        "抱你"
+      ],
+      "grammar": [
+        {
+          "role": "使役动词 + 宾语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/let/",
+            "/miː/"
+          ],
+          "pos": "let + 宾格",
+          "meaning": "让我"
+        },
+        {
+          "role": "谓语 + 宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/hʌɡ/",
+            "/juː/"
+          ],
+          "pos": "动词 + 宾语",
+          "meaning": "抱你"
+        }
+      ],
+      "explanations": [
+        "`let me + 动词原形` 表请求允许自己做什么。常见错误：\n• \"Let me to hug you\" → let 后不加 to\n• \"Let I hug you\" → let 后要用宾格 me",
+        "相关：Give me a hug.（抱一下）/ Can I hug you?"
+      ],
+      "distractors": [
+        [
+          "Let I",
+          "Letting me",
+          "Let me to"
+        ],
+        [
+          "hug yours.",
+          "hugging you.",
+          "to hug you."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Let me hug you.",
+        "audio": {
+          "url": "assets/oral-77eefd93-b02545f6279a51a879b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c4f742e4c3fdc756218043b74f7517efc8f740c86b2c820fcc81e57e14aa293e",
+          "bytes": 4013
+        }
+      }
+    }
+  ]
+}

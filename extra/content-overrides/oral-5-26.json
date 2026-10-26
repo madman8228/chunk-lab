@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-5-26",
+    "name": "口语3000句 · 祝福",
+    "short": "祝福",
+    "desc": "祝福",
+    "chapter": 5,
+    "section": "5.26",
+    "sectionTitle": "祝福",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 11,
+    "items": [
+      {
+        "sentence": "Congratulations on your engagement.",
+        "translation": "恭喜你订婚。",
+        "chunks": [
+          "Congratulations on",
+          "your engagement."
+        ],
+        "hints": [
+          "恭喜你",
+          "订婚"
+        ],
+        "cid": "43217f23",
+        "sentenceAudio": {
+          "text": "Congratulations on your engagement.",
+          "audio": {
+            "url": "assets/oral-43217f23-aede7a76fbf80bf4eb6d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "114bce8303ee4ba3ccce0776ef10161ea79bc20d3358ec89ddff1c1f1a99bbd6",
+            "bytes": 7703
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations on your marriage.",
+        "translation": "恭喜你们喜结良缘。",
+        "chunks": [
+          "Congratulations on",
+          "your marriage."
+        ],
+        "hints": [
+          "恭喜你们",
+          "喜结良缘"
+        ],
+        "cid": "08a05cda",
+        "sentenceAudio": {
+          "text": "Congratulations on your marriage.",
+          "audio": {
+            "url": "assets/oral-08a05cda-1e514ce694e820878a0d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "423b54da6991d034071eca11ae37850805691fef84fd30508f2e4645a9305a0c",
+            "bytes": 6952
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations on the birth of your child.",
+        "translation": "恭喜你们迎来宝宝！",
+        "chunks": [
+          "Congratulations on",
+          "the birth of your child."
+        ],
+        "hints": [
+          "恭喜",
+          "生了小宝宝"
+        ],
+        "cid": "0d6bb2e9",
+        "sentenceAudio": {
+          "text": "Congratulations on the birth of your child.",
+          "audio": {
+            "url": "assets/oral-0d6bb2e9-c4d027661493e55d6670.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "de79613e0bcc47dcc2ae37350abb862c9dec646adae5042bd8c5c01c0ae01750",
+            "bytes": 8717
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations on entering...",
+        "translation": "恭喜你考上...大学!",
+        "chunks": [
+          "Congratulations on",
+          "entering..."
+        ],
+        "hints": [
+          "恭喜你",
+          "考上……（某所学校）"
+        ],
+        "cid": "586d0781",
+        "sentenceAudio": {
+          "text": "Congratulations on entering...",
+          "audio": {
+            "url": "assets/oral-586d0781-04feee20fafe6b115f67.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1b3edf3b7df9e71d3e076817521a79d637f4cd7c21353057b46bee82928cd9ce",
+            "bytes": 6582
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations on your promotion!",
+        "translation": "恭喜高升!",
+        "chunks": [
+          "Congratulations on",
+          "your promotion!"
+        ],
+        "hints": [
+          "恭喜",
+          "高升"
+        ],
+        "cid": "31d5538c",
+        "sentenceAudio": {
+          "text": "Congratulations on your promotion!",
+          "audio": {
+            "url": "assets/oral-31d5538c-987bbd02c7e8c9ce47c9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9661a4a6b2ddbca554897a61c630c6c90bda032d3d31d1626c5c87f444024c9c",
+            "bytes": 7468
+          }
+        }
+      },
+      {
+        "sentence": "Congratulations on your complete recovery.",
+        "translation": "祝贺你康复!",
+        "chunks": [
+          "Congratulations on",
+          "your complete recovery."
+        ],
+        "hints": [
+          "祝贺你",
+          "完全康复"
+        ],
+        "cid": "83c55db4",
+        "sentenceAudio": {
+          "text": "Congratulations on your complete recovery.",
+          "audio": {
+            "url": "assets/oral-83c55db4-3ccd73e554ad30f0cc64.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3b64c40f9e954e0e8846e127fb51ea3a55c135289e2014b98ff23c436f3ef2fe",
+            "bytes": 9261
+          }
+        }
+      },
+      {
+        "sentence": "I'm really happy for you!",
+        "translation": "我为你而高兴。",
+        "chunks": [
+          "I'm really happy for you!"
+        ],
+        "hints": [
+          "真为你高兴！"
+        ],
+        "cid": "54572924",
+        "sentenceAudio": {
+          "text": "I'm really happy for you!",
+          "audio": {
+            "url": "assets/oral-54572924-312141e0f23173e05bcf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "854f669410416a98455fd0774e769bc01cf4a3786928440ede7c651c68a82bd9",
+            "bytes": 5318
+          }
+        }
+      },
+      {
+        "sentence": "Let's make a toast!",
+        "translation": "让我们干杯!",
+        "chunks": [
+          "Let's make a toast!"
+        ],
+        "hints": [
+          "让我们干杯！"
+        ],
+        "cid": "d3adf221",
+        "sentenceAudio": {
+          "text": "Let's make a toast!",
+          "audio": {
+            "url": "assets/oral-d3adf221-cf19b6b00d707d0cc446.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "14a87794947d3786bcef68a96c756f6c09d7306491f70bfb03d58482afdf60f7",
+            "bytes": 4666
+          }
+        }
+      },
+      {
+        "sentence": "Here's to your health!",
+        "translation": "为了您的健康(干杯)!",
+        "chunks": [
+          "Here's to your health!"
+        ],
+        "hints": [
+          "为您的健康干杯！"
+        ],
+        "cid": "198b0854",
+        "sentenceAudio": {
+          "text": "Here's to your health!",
+          "audio": {
+            "url": "assets/oral-198b0854-c2854f9530a596e9dfa0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2690a6bc8d90a9fcadf8a9c991b5951bd7bd13a209c1b720d0fe1a1b05f025a",
+            "bytes": 4308
+          }
+        }
+      },
+      {
+        "sentence": "Let me propose a toast to Mr. Smith.",
+        "translation": "我提议让我们为史密斯先生干杯!",
+        "chunks": [
+          "Let me propose",
+          "a toast",
+          "to Mr. Smith."
+        ],
+        "hints": [
+          "我提议",
+          "敬一杯",
+          "给史密斯先生"
+        ],
+        "cid": "d4341ef3",
+        "sentenceAudio": {
+          "text": "Let me propose a toast to Mr. Smith.",
+          "audio": {
+            "url": "assets/oral-d4341ef3-8df9be2d7af8a599fd90.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1873e0e27001f21cfadbd7c2075f9512e33924a06035e536cb1f4d0fcc3cc736",
+            "bytes": 8241
+          }
+        }
+      },
+      {
+        "sentence": "Break a leg!",
+        "translation": "祝您成功!",
+        "chunks": [
+          "Break a leg!"
+        ],
+        "hints": [
+          "祝你成功！/演出顺利！"
+        ],
+        "cid": "5a663556",
+        "sentenceAudio": {
+          "text": "Break a leg!",
+          "audio": {
+            "url": "assets/oral-5a663556-64d65d510c70f283554c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4e08c9e9cde6ce646aa609c26cd425b76177208df74c6f01966d9a695b5248ad",
+            "bytes": 3861
+          }
+        }
+      }
+    ]
+  }
+}

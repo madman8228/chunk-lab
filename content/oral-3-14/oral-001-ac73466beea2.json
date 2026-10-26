@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "As a matter of fact, ...",
+      "translation": "说实话……",
+      "chunks": [
+        "As a matter of fact, ..."
+      ],
+      "hints": [
+        "事实上……"
+      ],
+      "cid": "a3540e30",
+      "sentenceAudio": {
+        "text": "As a matter of fact, ...",
+        "audio": {
+          "url": "assets/oral-a3540e30-dee077ab0b315a4d2d66.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0412b2d49d10f015019c734f3f454469f9020ff4c96dd30a35832d5540e2c828",
+          "bytes": 4926
+        }
+      }
+    },
+    {
+      "sentence": "Don't tell anyone.",
+      "translation": "别告诉任何人。",
+      "chunks": [
+        "Don't tell",
+        "anyone."
+      ],
+      "hints": [
+        "别告诉",
+        "任何人"
+      ],
+      "cid": "c4097778",
+      "sentenceAudio": {
+        "text": "Don't tell anyone.",
+        "audio": {
+          "url": "assets/oral-c4097778-cc4aff5ad365c455aea7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "51b9f2b9ef9028b59be57aa25a777dc056ce266c1521181cfbcc268839ce4bda",
+          "bytes": 4439
+        }
+      }
+    },
+    {
+      "sentence": "I have a confession.",
+      "translation": "我有件事要坦白。",
+      "chunks": [
+        "I have",
+        "a confession."
+      ],
+      "hints": [
+        "我有件事",
+        "要坦白"
+      ],
+      "cid": "819e73ee",
+      "sentenceAudio": {
+        "text": "I have a confession.",
+        "audio": {
+          "url": "assets/oral-819e73ee-34abac67395b5f16d346.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "65303b54322af2c227b247f89d41761fbbe07ea50aedcb4098562cbf0d3e9c17",
+          "bytes": 4822
+        }
+      }
+    },
+    {
+      "sentence": "I have a secret.",
+      "translation": "我有一个秘密。",
+      "chunks": [
+        "I have",
+        "a secret."
+      ],
+      "hints": [
+        "我",
+        "有个秘密"
+      ],
+      "cid": "e503d49b",
+      "sentenceAudio": {
+        "text": "I have a secret.",
+        "audio": {
+          "url": "assets/oral-e503d49b-78474b705cbaf4b0d02f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1f5aa4caf28e0af03a0a0075b97d03da64e84afbf810d2dc7027d538f80ce3c1",
+          "bytes": 4459
+        }
+      }
+    },
+    {
+      "sentence": "I'll fill you in.",
+      "translation": "我把一切告诉你。",
+      "chunks": [
+        "I'll",
+        "fill you in."
+      ],
+      "hints": [
+        "我会",
+        "把详情告诉你。"
+      ],
+      "cid": "2aeb5f0a",
+      "sentenceAudio": {
+        "text": "I'll fill you in.",
+        "audio": {
+          "url": "assets/oral-2aeb5f0a-68ac92105745e86c33ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "32381c721a5a4e940e79922bcb28317c6be964d8e0ed4b2f42d7e4ffaab4255b",
+          "bytes": 4214
+        }
+      }
+    },
+    {
+      "sentence": "I'll level with you.",
+      "translation": "我就直说吧。",
+      "chunks": [
+        "I'll",
+        "level with you."
+      ],
+      "hints": [
+        "我",
+        "跟你说实话。"
+      ],
+      "cid": "32e9fbf8",
+      "sentenceAudio": {
+        "text": "I'll level with you.",
+        "audio": {
+          "url": "assets/oral-32e9fbf8-54bcde5ae6add27211b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ad0fc010321aae0ee83ce4383c6d5247b76bf3f802add5be8d2b1869187eca6",
+          "bytes": 4555
+        }
+      }
+    },
+    {
+      "sentence": "That is about all I know.",
+      "translation": "我知道的大概就是这些。",
+      "chunks": [
+        "That is about",
+        "all I know."
+      ],
+      "hints": [
+        "大概就是",
+        "我知道的全部"
+      ],
+      "cid": "9c3e60a2",
+      "sentenceAudio": {
+        "text": "That is about all I know.",
+        "audio": {
+          "url": "assets/oral-9c3e60a2-3e473c911107e3ad1329.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6bc2166d2a8ee7d2d30073ff513c25d7180a3642567c42d0eb9defb985218d25",
+          "bytes": 5245
+        }
+      }
+    },
+    {
+      "sentence": "This is just between you and me.",
+      "translation": "这只是咱们俩之间的事。",
+      "chunks": [
+        "This is just",
+        "between you and me."
+      ],
+      "hints": [
+        "这只是",
+        "咱们俩之间的事。"
+      ],
+      "cid": "d94108e5",
+      "sentenceAudio": {
+        "text": "This is just between you and me.",
+        "audio": {
+          "url": "assets/oral-d94108e5-01f826a99406c64ccb26.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7b9100ec8be48545784dd78e7d6abdf4df6bc8520b207c9848b41a8e8aeaa08f",
+          "bytes": 6166
+        }
+      }
+    },
+    {
+      "sentence": "It's a secret.",
+      "translation": "这是一个秘密。",
+      "chunks": [
+        "It's",
+        "a secret."
+      ],
+      "hints": [
+        "这是个",
+        "秘密"
+      ],
+      "cid": "87d0712b",
+      "sentenceAudio": {
+        "text": "It's a secret.",
+        "audio": {
+          "url": "assets/oral-87d0712b-051d9ad8ca27afd4e9c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d91d3b98873951b0f0f8f716d01573e895f02bb55b43cb9dc53f092a23f51899",
+          "bytes": 4083
+        }
+      }
+    },
+    {
+      "sentence": "Let me tell you a secret.",
+      "translation": "我告诉你一个秘密。",
+      "chunks": [
+        "Let me tell you",
+        "a secret."
+      ],
+      "hints": [
+        "我告诉你",
+        "一个秘密"
+      ],
+      "cid": "de186925",
+      "sentenceAudio": {
+        "text": "Let me tell you a secret.",
+        "audio": {
+          "url": "assets/oral-de186925-2e2df32750546fbb10b0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7965a84d826aff83837cb78328f2f494517bb4ea3d4cb1c32b9350b496353e99",
+          "bytes": 5068
+        }
+      }
+    },
+    {
+      "sentence": "He can't keep a secret.",
+      "translation": "他不能保守秘密。",
+      "chunks": [
+        "He can't keep",
+        "a secret."
+      ],
+      "hints": [
+        "他守不住",
+        "秘密"
+      ],
+      "cid": "ad1eb1dd",
+      "sentenceAudio": {
+        "text": "He can't keep a secret.",
+        "audio": {
+          "url": "assets/oral-ad1eb1dd-4ffc6e6b6d42b393551b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "451f047709322e458c5190d3615883bd93d296780fcac3ab1bc9747c25da3c8b",
+          "bytes": 5221
+        }
+      }
+    },
+    {
+      "sentence": "You've got a big mouth!",
+      "translation": "你嘴不严。",
+      "chunks": [
+        "You've got a big mouth!"
+      ],
+      "hints": [
+        "你嘴不严。"
+      ],
+      "cid": "db791de3",
+      "sentenceAudio": {
+        "text": "You've got a big mouth!",
+        "audio": {
+          "url": "assets/oral-db791de3-d0ccdd5b47c814362122.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d699f4936885b8fa7aaeb328a7de2c6fe76343d8c172d4aad9fb8fce6436ce29",
+          "bytes": 4775
+        }
+      }
+    },
+    {
+      "sentence": "I don't have the guts to say that to my boss.",
+      "translation": "我不敢对我的老板说。",
+      "chunks": [
+        "I don't have the guts",
+        "to say that to my boss."
+      ],
+      "hints": [
+        "我不敢",
+        "对我的老板说"
+      ],
+      "cid": "383b9203",
+      "sentenceAudio": {
+        "text": "I don't have the guts to say that to my boss.",
+        "audio": {
+          "url": "assets/oral-383b9203-b9f446fb2fbb4766b2f9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d9092633f410cb11e7ef62ae304ee0c1ffc75544a19cd3e994da6b1d1506f3ed",
+          "bytes": 7862
+        }
+      }
+    },
+    {
+      "sentence": "A little bird told me.",
+      "translation": "我听小道消息说的。",
+      "chunks": [
+        "A little bird told me."
+      ],
+      "hints": [
+        "我听小道消息说的。"
+      ],
+      "cid": "be540290",
+      "sentenceAudio": {
+        "text": "A little bird told me.",
+        "audio": {
+          "url": "assets/oral-be540290-5bf69a3a8a7bd0032789.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a8c45dfc9fcc7b44c37573d358b17662e794f6d27394ecb35fd06a42d4d1969a",
+          "bytes": 5249
+        }
+      }
+    },
+    {
+      "sentence": "I didn't say anything.",
+      "translation": "我什么都没说。",
+      "chunks": [
+        "I",
+        "didn't say anything."
+      ],
+      "hints": [
+        "我",
+        "什么都没说"
+      ],
+      "cid": "c9b4c895",
+      "sentenceAudio": {
+        "text": "I didn't say anything.",
+        "audio": {
+          "url": "assets/oral-c9b4c895-b7a64d7ebf2821fe1c89.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "551b7b97cb9adeccbaaa9cab261f9c792872e046bf4abbee0ec2aadf3fe578a5",
+          "bytes": 4770
+        }
+      }
+    },
+    {
+      "sentence": "It was a slip of the tongue.",
+      "translation": "刚才是口误。",
+      "chunks": [
+        "It was",
+        "a slip of the tongue."
+      ],
+      "hints": [
+        "刚才是",
+        "口误。"
+      ],
+      "cid": "7b5507a4",
+      "sentenceAudio": {
+        "text": "It was a slip of the tongue.",
+        "audio": {
+          "url": "assets/oral-7b5507a4-dc3f1dafdf86889983d7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "65e3e2fc7a6ae9d79b16bd53ed02905dfce58cf30c45308a8c3429b88d49ed18",
+          "bytes": 5368
+        }
+      }
+    },
+    {
+      "sentence": "I won't say a word.",
+      "translation": "我一个字都不说出去。",
+      "chunks": [
+        "I won't",
+        "say a word."
+      ],
+      "hints": [
+        "我不",
+        "说一个字"
+      ],
+      "cid": "fb9cffdd",
+      "sentenceAudio": {
+        "text": "I won't say a word.",
+        "audio": {
+          "url": "assets/oral-fb9cffdd-52cae047941f533a2aa4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "591670a39c4c1e856ffe471aa4df3c604b13c245dc99e02652d096ae6a6acb65",
+          "bytes": 4683
+        }
+      }
+    },
+    {
+      "sentence": "I promise.",
+      "translation": "我保证。",
+      "chunks": [
+        "I",
+        "promise."
+      ],
+      "hints": [
+        "我",
+        "保证"
+      ],
+      "cid": "92a89581",
+      "sentenceAudio": {
+        "text": "I promise.",
+        "audio": {
+          "url": "assets/oral-92a89581-b557f897665352085a3f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e2b73621fdc7c95140e4f80a97dc6147ef238c8850b5a17efcc9697f1cb5e714",
+          "bytes": 3903
+        }
+      }
+    },
+    {
+      "sentence": "I can't promise.",
+      "translation": "我不能保证。",
+      "chunks": [
+        "I can't",
+        "promise."
+      ],
+      "hints": [
+        "我不能",
+        "保证"
+      ],
+      "cid": "98230fee",
+      "sentenceAudio": {
+        "text": "I can't promise.",
+        "audio": {
+          "url": "assets/oral-98230fee-7f106bdd3d961aea9aa3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "87703b720cdd4042717793912dba61b351a2056c595cf55c2798d838ebe6e02b",
+          "bytes": 4388
+        }
+      }
+    },
+    {
+      "sentence": "Will do.",
+      "translation": "一定做到。",
+      "chunks": [
+        "Will do."
+      ],
+      "hints": [
+        "一定做到。"
+      ],
+      "cid": "1eda82d4",
+      "sentenceAudio": {
+        "text": "Will do.",
+        "audio": {
+          "url": "assets/oral-1eda82d4-86a5acf74c164724dcaa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5089e27532db125ffa3b4c96273ef0adfd1693edbe38f287e0792376fa0d70d0",
+          "bytes": 3438
+        }
+      }
+    },
+    {
+      "sentence": "I swear.",
+      "translation": "我发誓。",
+      "chunks": [
+        "I",
+        "swear."
+      ],
+      "hints": [
+        "我",
+        "发誓"
+      ],
+      "cid": "eadbaf38",
+      "sentenceAudio": {
+        "text": "I swear.",
+        "audio": {
+          "url": "assets/oral-eadbaf38-f83a052c487fea593995.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "15ffb81b63d6219ecfb4a685453a0823d4738fc080ff62a5f0f18d20233c13cf",
+          "bytes": 3419
+        }
+      }
+    },
+    {
+      "sentence": "Trust me.",
+      "translation": "请相信我。",
+      "chunks": [
+        "Trust",
+        "me."
+      ],
+      "hints": [
+        "请相信",
+        "我。"
+      ],
+      "cid": "24d186f5",
+      "sentenceAudio": {
+        "text": "Trust me.",
+        "audio": {
+          "url": "assets/oral-24d186f5-dc8b149628dbafa16e32.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d7847a9044031ec3b96da49a524713413765c907db11a3a06322a16a14380b0a",
+          "bytes": 3544
+        }
+      }
+    },
+    {
+      "sentence": "A promise is a promise!",
+      "translation": "承诺就是承诺。",
+      "chunks": [
+        "A promise",
+        "is a promise!"
+      ],
+      "hints": [
+        "承诺",
+        "就是承诺。"
+      ],
+      "cid": "fbe0ff28",
+      "sentenceAudio": {
+        "text": "A promise is a promise!",
+        "audio": {
+          "url": "assets/oral-fbe0ff28-36b11cdec314d8f260c4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "96859455b5d734e449c553881152b283588fe74451af775cea6e272c097fac1d",
+          "bytes": 5476
+        }
+      }
+    }
+  ]
+}

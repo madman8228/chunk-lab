@@ -1,0 +1,480 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "What's that smell?",
+      "translation": "这是什么味儿?",
+      "chunks": [
+        "What's that",
+        "smell?"
+      ],
+      "hints": [
+        "这是什么",
+        "味儿"
+      ],
+      "cid": "a3c241e2",
+      "sentenceAudio": {
+        "text": "What's that smell?",
+        "audio": {
+          "url": "assets/oral-a3c241e2-7cceb63203c64d0c540e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eb9817e172adb6f6124309383e1c30ed932c3118c958027981955157fdc87ae0",
+          "bytes": 4141
+        }
+      }
+    },
+    {
+      "sentence": "What's that noise?",
+      "translation": "那是什么声音？",
+      "chunks": [
+        "What's that",
+        "noise?"
+      ],
+      "hints": [
+        "那是什么",
+        "声音？"
+      ],
+      "cid": "aae3e13d",
+      "sentenceAudio": {
+        "text": "What's that noise?",
+        "audio": {
+          "url": "assets/oral-aae3e13d-f4360eff8d9bfb06c5b1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5ab575c436fba31a3e5188b779cfecddecdf5ca6e273acc1cb0060ea3fece010",
+          "bytes": 4264
+        }
+      }
+    },
+    {
+      "sentence": "What is this line for?",
+      "translation": "这队伍是排什么的？",
+      "chunks": [
+        "What is this",
+        "line for?"
+      ],
+      "hints": [
+        "这队伍是",
+        "排什么的？"
+      ],
+      "cid": "e55865fd",
+      "sentenceAudio": {
+        "text": "What is this line for?",
+        "audio": {
+          "url": "assets/oral-e55865fd-99ff75a770f8cb6eafd9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6b29222c67f09aa10de22842373a3d6bfc958361b76dde5a000bdf09a410e8df",
+          "bytes": 4914
+        }
+      }
+    },
+    {
+      "sentence": "What are you up to?",
+      "translation": "你在打什么鬼主意？",
+      "chunks": [
+        "What are you up to?"
+      ],
+      "hints": [
+        "你在打什么鬼主意？"
+      ],
+      "cid": "2a4989a9",
+      "sentenceAudio": {
+        "text": "What are you up to?",
+        "audio": {
+          "url": "assets/oral-2a4989a9-f8692982f023f941ccba.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "10a10010a8ada28a30fa6a04ecf69d04971799989dd142caf4d15f9181269756",
+          "bytes": 4292
+        }
+      }
+    },
+    {
+      "sentence": "May I ask you a question?",
+      "translation": "我可以问一个问题吗?",
+      "chunks": [
+        "May I ask you",
+        "a question?"
+      ],
+      "hints": [
+        "我可以问",
+        "一个问题吗"
+      ],
+      "cid": "cf07a445",
+      "sentenceAudio": {
+        "text": "May I ask you a question?",
+        "audio": {
+          "url": "assets/oral-cf07a445-dfa66e56e852162218c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d7c9fc2a11239917372bc530b82f972f31cc6925535cd071f3bdfcc4259b8952",
+          "bytes": 5422
+        }
+      }
+    },
+    {
+      "sentence": "What does “drowsy” mean?",
+      "translation": "“drowsy”是什么意思?",
+      "chunks": [
+        "What does “drowsy”",
+        "mean?"
+      ],
+      "hints": [
+        "“drowsy”",
+        "是什么意思"
+      ],
+      "cid": "5b067edd",
+      "sentenceAudio": {
+        "text": "What does “drowsy” mean?",
+        "audio": {
+          "url": "assets/oral-5b067edd-35d7cabd21564650063c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3446d5913d6f7817b98d21deb2264a7060ddaa081506494fcbba750e4541f535",
+          "bytes": 5208
+        }
+      }
+    },
+    {
+      "sentence": "What's this?",
+      "translation": "这是什么?",
+      "chunks": [
+        "What's",
+        "this?"
+      ],
+      "hints": [
+        "是什么",
+        "这个"
+      ],
+      "cid": "9938b2cc",
+      "sentenceAudio": {
+        "text": "What's this?",
+        "audio": {
+          "url": "assets/oral-9938b2cc-b31311f3be127470b621.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a5c40df119377244d8b11ddc5e508d336c93bff17a6ca1bd2c4ae9faab724c30",
+          "bytes": 3666
+        }
+      }
+    },
+    {
+      "sentence": "What's that?",
+      "translation": "那是什么?",
+      "chunks": [
+        "What's",
+        "that?"
+      ],
+      "hints": [
+        "是什么",
+        "那个"
+      ],
+      "cid": "325ee5f7",
+      "sentenceAudio": {
+        "text": "What's that?",
+        "audio": {
+          "url": "assets/oral-325ee5f7-7799137706c08b5c3ccc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1bf2dc46db21e861fa4c828bbe7482402ca8af5a81883aacb181c6d2919e9183",
+          "bytes": 3632
+        }
+      }
+    },
+    {
+      "sentence": "Who does this belong to?",
+      "translation": "这是谁的?",
+      "chunks": [
+        "Who does this belong to?"
+      ],
+      "hints": [
+        "这是谁的？"
+      ],
+      "cid": "8e9bc3c5",
+      "sentenceAudio": {
+        "text": "Who does this belong to?",
+        "audio": {
+          "url": "assets/oral-8e9bc3c5-95a9f6d97bc3cd2dbc79.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5821499a5531e2ea9d2f812fe7468f30384e2a93fcfa3dc67de5f35321087e67",
+          "bytes": 5092
+        }
+      }
+    },
+    {
+      "sentence": "Which one?",
+      "translation": "哪一个?",
+      "chunks": [
+        "Which",
+        "one?"
+      ],
+      "hints": [
+        "哪",
+        "一个"
+      ],
+      "cid": "c13ba143",
+      "sentenceAudio": {
+        "text": "Which one?",
+        "audio": {
+          "url": "assets/oral-c13ba143-f0f30f9cdc1b3494b746.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1cd5b49c0cd643b2036b163987aa4c83b0241033a764e1985e64109fe36aca35",
+          "bytes": 3502
+        }
+      }
+    },
+    {
+      "sentence": "What's it called?",
+      "translation": "这叫什么?",
+      "chunks": [
+        "What's it",
+        "called?"
+      ],
+      "hints": [
+        "这",
+        "叫什么"
+      ],
+      "cid": "19955760",
+      "sentenceAudio": {
+        "text": "What's it called?",
+        "audio": {
+          "url": "assets/oral-19955760-ba0a48f8536b79791781.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a51564334b24d54fa5c1c41c345afd72f9a5a628dc4e9f4df5987ba53bd6dd9b",
+          "bytes": 3885
+        }
+      }
+    },
+    {
+      "sentence": "What did you get for me?",
+      "translation": "你给我买了什么？",
+      "chunks": [
+        "What did you get for me?"
+      ],
+      "hints": [
+        "你给我买了什么？"
+      ],
+      "cid": "d6f3ed35",
+      "sentenceAudio": {
+        "text": "What did you get for me?",
+        "audio": {
+          "url": "assets/oral-d6f3ed35-3b0957b15db1e8ddfd7d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e6fc741660a5fd7bb92aed149cb3c468d5939cd9456faf228b339cb04210592",
+          "bytes": 4757
+        }
+      }
+    },
+    {
+      "sentence": "For example?",
+      "translation": "比如说?",
+      "chunks": [
+        "For example?"
+      ],
+      "hints": [
+        "比如说？"
+      ],
+      "cid": "aab658e3",
+      "sentenceAudio": {
+        "text": "For example?",
+        "audio": {
+          "url": "assets/oral-aab658e3-cd99ebdfc3d6cfc4736d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d7ffdd72b119e4faaeeb276d0b3819c1dc28b19f210e22e2095b5945712a7de1",
+          "bytes": 3990
+        }
+      }
+    },
+    {
+      "sentence": "How often?",
+      "translation": "多久一次？",
+      "chunks": [
+        "How often?"
+      ],
+      "hints": [
+        "多久一次？"
+      ],
+      "cid": "00a87a12",
+      "sentenceAudio": {
+        "text": "How often?",
+        "audio": {
+          "url": "assets/oral-00a87a12-88b72c4ad5fc24c65eb9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3fca882ce0032e1b1f9be477293aa16b0cbfc73123e52e7778de7688be4a797a",
+          "bytes": 3902
+        }
+      }
+    },
+    {
+      "sentence": "What does USA stand for?",
+      "translation": "U.S.A.是什么的缩写?",
+      "chunks": [
+        "What does USA",
+        "stand for?"
+      ],
+      "hints": [
+        "U.S.A.是",
+        "什么的缩写"
+      ],
+      "cid": "87bb0b79",
+      "sentenceAudio": {
+        "text": "What does USA stand for?",
+        "audio": {
+          "url": "assets/oral-87bb0b79-a11de9d6354996191139.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ef1dacc17f09836e0656012d0b5a2ae0759cf38e362847b321359c38d80b8c5a",
+          "bytes": 5666
+        }
+      }
+    },
+    {
+      "sentence": "How long?",
+      "translation": "多长?",
+      "chunks": [
+        "How",
+        "long?"
+      ],
+      "hints": [
+        "多",
+        "长"
+      ],
+      "cid": "922c374a",
+      "sentenceAudio": {
+        "text": "How long?",
+        "audio": {
+          "url": "assets/oral-922c374a-fb11d281e2f319968d4b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7d38d326eb1569d9b576598302d20b35e927085e544e180d927514cfdbee58a9",
+          "bytes": 3533
+        }
+      }
+    },
+    {
+      "sentence": "How early?",
+      "translation": "多早?",
+      "chunks": [
+        "How",
+        "early?"
+      ],
+      "hints": [
+        "多",
+        "早"
+      ],
+      "cid": "fc16d84b",
+      "sentenceAudio": {
+        "text": "How early?",
+        "audio": {
+          "url": "assets/oral-fc16d84b-9655421ab33bad161c9b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9324cbbbcd3aa923326f5db0db18e18c5b94096beab8d9071af6ac1f22d42012",
+          "bytes": 3702
+        }
+      }
+    },
+    {
+      "sentence": "When does summer break start?",
+      "translation": "暑假什么时候开始?",
+      "chunks": [
+        "When does summer break",
+        "start?"
+      ],
+      "hints": [
+        "暑假什么时候",
+        "开始"
+      ],
+      "cid": "255b32d9",
+      "sentenceAudio": {
+        "text": "When does summer break start?",
+        "audio": {
+          "url": "assets/oral-255b32d9-3af035f13f7444f3d907.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "41f11b8c08e7763d438a8df9a739ab051e1513bec81b557aca0c4ca474fb5cf7",
+          "bytes": 5154
+        }
+      }
+    },
+    {
+      "sentence": "When was the opening ceremony?",
+      "translation": "开学典礼是哪天?",
+      "chunks": [
+        "When was",
+        "the opening ceremony?"
+      ],
+      "hints": [
+        "是哪天？",
+        "开学典礼"
+      ],
+      "cid": "b7f95aa2",
+      "sentenceAudio": {
+        "text": "When was the opening ceremony?",
+        "audio": {
+          "url": "assets/oral-b7f95aa2-c3f8fb3f59abf2ea7111.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "95a6d4f32a5ab0d930f694561f3327923d47b8107313e4a2f4b8e3bcdbcb518b",
+          "bytes": 6125
+        }
+      }
+    },
+    {
+      "sentence": "Do you know the meaning of this word?",
+      "translation": "你知道这个词的意思吗?",
+      "chunks": [
+        "Do you know",
+        "the meaning of this word?"
+      ],
+      "hints": [
+        "你知道",
+        "这个词的意思吗？"
+      ],
+      "cid": "bb9433fc",
+      "sentenceAudio": {
+        "text": "Do you know the meaning of this word?",
+        "audio": {
+          "url": "assets/oral-bb9433fc-83b1c9e0daed878f2823.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cb5ef2414423b1edf4745161b33f5d30fcc29b78f8ce9cf2b78c82e5241d342a",
+          "bytes": 5864
+        }
+      }
+    },
+    {
+      "sentence": "How do you pronounce this word?",
+      "translation": "这个词怎么发音?",
+      "chunks": [
+        "How do you pronounce",
+        "this word?"
+      ],
+      "hints": [
+        "怎么发音",
+        "这个词"
+      ],
+      "cid": "ebb4da0f",
+      "sentenceAudio": {
+        "text": "How do you pronounce this word?",
+        "audio": {
+          "url": "assets/oral-ebb4da0f-b627dae33fa2699dd047.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ff1bd6be3ef940363303bb4a2a23c25cf98b1506579cc18feb59d2bfcd0ee198",
+          "bytes": 5777
+        }
+      }
+    },
+    {
+      "sentence": "What's the difference between A and B?",
+      "translation": "A和B之间有什么区别?",
+      "chunks": [
+        "What's the difference",
+        "between A and B?"
+      ],
+      "hints": [
+        "有什么区别",
+        "A和B之间"
+      ],
+      "cid": "9821459e",
+      "sentenceAudio": {
+        "text": "What's the difference between A and B?",
+        "audio": {
+          "url": "assets/oral-9821459e-d432b269b4a0fa733aae.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "129f84355fef365060d70570e67540f6c2c25e6d1a38115b354b109185bafda3",
+          "bytes": 6523
+        }
+      }
+    }
+  ]
+}

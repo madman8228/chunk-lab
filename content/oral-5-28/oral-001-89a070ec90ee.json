@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Here's to the New Year!",
+      "translation": "祝贺新年!",
+      "chunks": [
+        "Here's to the New Year!"
+      ],
+      "hints": [
+        "为新年干杯！"
+      ],
+      "cid": "a16719cf",
+      "sentenceAudio": {
+        "text": "Here's to the New Year!",
+        "audio": {
+          "url": "assets/oral-a16719cf-b5a6ae21c63247106f7f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "251aa42aae9a118ed586d37cca1955e55ba7ec735e016615d9c5f86a29732908",
+          "bytes": 4407
+        }
+      }
+    },
+    {
+      "sentence": "Happy New Year!",
+      "translation": "新年快乐!",
+      "chunks": [
+        "Happy New Year!"
+      ],
+      "hints": [
+        "新年快乐！"
+      ],
+      "cid": "9d131e2b",
+      "sentenceAudio": {
+        "text": "Happy New Year!",
+        "audio": {
+          "url": "assets/oral-9d131e2b-0c8db3a5adb50f82d8f2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1279b3a47aa764e06f825f6be698a87986203db292c7f6525e40c67e77567cd9",
+          "bytes": 4065
+        }
+      }
+    },
+    {
+      "sentence": "Happy Valentine's Day!",
+      "translation": "情人节快乐。",
+      "chunks": [
+        "Happy Valentine's Day!"
+      ],
+      "hints": [
+        "情人节快乐！"
+      ],
+      "cid": "1d754876",
+      "sentenceAudio": {
+        "text": "Happy Valentine's Day!",
+        "audio": {
+          "url": "assets/oral-1d754876-1f02d5077f7a80818c3e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2552217c85edd0232724301496d224161c97c85b50f1668cad6c221a4534d190",
+          "bytes": 5649
+        }
+      }
+    },
+    {
+      "sentence": "Be my Valentine.",
+      "translation": "做我的情人吧。",
+      "chunks": [
+        "Be my",
+        "Valentine."
+      ],
+      "hints": [
+        "做我的",
+        "情人吧"
+      ],
+      "cid": "9cd0ccba",
+      "sentenceAudio": {
+        "text": "Be my Valentine.",
+        "audio": {
+          "url": "assets/oral-9cd0ccba-cf327b37d1cc57e6965e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f7db272c0a6e918ab082972ddcf62c5d84bad6c4bcf14cac99e42f6bb9844167",
+          "bytes": 4856
+        }
+      }
+    },
+    {
+      "sentence": "Happy Easter!",
+      "translation": "复活节快乐!",
+      "chunks": [
+        "Happy Easter!"
+      ],
+      "hints": [
+        "复活节快乐！"
+      ],
+      "cid": "6a0821e8",
+      "sentenceAudio": {
+        "text": "Happy Easter!",
+        "audio": {
+          "url": "assets/oral-6a0821e8-8bc684064e52e2c52fee.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "377eaf7c73e28005dad5714b6527d5736aae4507133b55c41f8fbfe090a3a87a",
+          "bytes": 4156
+        }
+      }
+    },
+    {
+      "sentence": "Happy Mother's Day!",
+      "translation": "母亲节快乐!",
+      "chunks": [
+        "Happy Mother's Day!"
+      ],
+      "hints": [
+        "母亲节快乐！"
+      ],
+      "cid": "5da16967",
+      "sentenceAudio": {
+        "text": "Happy Mother's Day!",
+        "audio": {
+          "url": "assets/oral-5da16967-1a318afed5c5ce9280fe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "66486a00cbba453646e53586a4fd3a6a9dac6f57433921164caa739f3d231ff1",
+          "bytes": 4690
+        }
+      }
+    },
+    {
+      "sentence": "Thanks for being such a good mom.",
+      "translation": "你真是我的好妈妈。",
+      "chunks": [
+        "Thanks for being",
+        "such a good mom."
+      ],
+      "hints": [
+        "谢谢你",
+        "做这么好的妈妈"
+      ],
+      "cid": "a1ba7010",
+      "sentenceAudio": {
+        "text": "Thanks for being such a good mom.",
+        "audio": {
+          "url": "assets/oral-a1ba7010-00a5e5814f1dd458a099.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2697a60c14bced6fa4e992f7557e35bceb98a00915cb4bb21c3ce8fd80a00d62",
+          "bytes": 6580
+        }
+      }
+    },
+    {
+      "sentence": "Trick or treat!",
+      "translation": "不请吃就捣蛋!",
+      "chunks": [
+        "Trick or treat!"
+      ],
+      "hints": [
+        "不给糖就捣蛋！"
+      ],
+      "cid": "b1bed8ec",
+      "sentenceAudio": {
+        "text": "Trick or treat!",
+        "audio": {
+          "url": "assets/oral-b1bed8ec-e1c9aa60fa80cbd09375.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ec319c7217e74cd6d8a7aecc66a4f9f78bdfb0e0a32d2c344eb3f494665b0e5a",
+          "bytes": 4250
+        }
+      }
+    },
+    {
+      "sentence": "Happy Thanksgiving!",
+      "translation": "感恩节快乐!",
+      "chunks": [
+        "Happy Thanksgiving!"
+      ],
+      "hints": [
+        "感恩节快乐！"
+      ],
+      "cid": "f0aa611f",
+      "sentenceAudio": {
+        "text": "Happy Thanksgiving!",
+        "audio": {
+          "url": "assets/oral-f0aa611f-db4bf16bc455e4cddb44.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6a0171b81c8482cbc4e05acf907003cae0762787504f51d50c41fa3e7a06be97",
+          "bytes": 4852
+        }
+      }
+    },
+    {
+      "sentence": "Let's have pumpkin pie.",
+      "translation": "我们吃南瓜派吧。",
+      "chunks": [
+        "Let's have",
+        "pumpkin pie."
+      ],
+      "hints": [
+        "我们来吃",
+        "南瓜派"
+      ],
+      "cid": "ddbd53a6",
+      "sentenceAudio": {
+        "text": "Let's have pumpkin pie.",
+        "audio": {
+          "url": "assets/oral-ddbd53a6-81e47dcf3a2469c8acf6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "67f3481b1f93ab27d97b7d84a6f836161b0fbabbfb5ac40687ddb6e37b36b1f9",
+          "bytes": 5544
+        }
+      }
+    },
+    {
+      "sentence": "Merry Christmas!",
+      "translation": "圣诞快乐!",
+      "chunks": [
+        "Merry Christmas!"
+      ],
+      "hints": [
+        "圣诞快乐！"
+      ],
+      "cid": "c977344d",
+      "sentenceAudio": {
+        "text": "Merry Christmas!",
+        "audio": {
+          "url": "assets/oral-c977344d-886402f2ed777071c16e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f533469fdbdbc903c747c242520add73d841df081a2b036809b670b45cf9e3c2",
+          "bytes": 4298
+        }
+      }
+    },
+    {
+      "sentence": "Have a Merry Christmas.",
+      "translation": "祝您圣诞愉快!",
+      "chunks": [
+        "Have a",
+        "Merry Christmas."
+      ],
+      "hints": [
+        "祝你过个",
+        "快乐的圣诞"
+      ],
+      "cid": "031bd919",
+      "sentenceAudio": {
+        "text": "Have a Merry Christmas.",
+        "audio": {
+          "url": "assets/oral-031bd919-79b162fd0e4471b0a5e8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "32ed838ffc5515564e97c793eced95209d1716410ccb3d515d87ab3bd0be20c1",
+          "bytes": 4825
+        }
+      }
+    },
+    {
+      "sentence": "Here's your birthday gift.",
+      "translation": "这是送给你的生日礼物。",
+      "chunks": [
+        "Here's your",
+        "birthday gift."
+      ],
+      "hints": [
+        "这是给你的",
+        "生日礼物"
+      ],
+      "cid": "59372d5d",
+      "sentenceAudio": {
+        "text": "Here's your birthday gift.",
+        "audio": {
+          "url": "assets/oral-59372d5d-7e5034597eb38e572fbc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "14687165ea85920681bdaaeac968a45e141d97913805f87ffbc38001fd8499f6",
+          "bytes": 5176
+        }
+      }
+    },
+    {
+      "sentence": "It's my birthday.",
+      "translation": "今天是我的生日。",
+      "chunks": [
+        "It's my",
+        "birthday."
+      ],
+      "hints": [
+        "今天是我的",
+        "生日"
+      ],
+      "cid": "6cd6afb5",
+      "sentenceAudio": {
+        "text": "It's my birthday.",
+        "audio": {
+          "url": "assets/oral-6cd6afb5-92840badf930cf5324da.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9062a69ba54693e4f10b8f1d1b3d5305ffc99637f80255d8649eb60122ce0f49",
+          "bytes": 4526
+        }
+      }
+    },
+    {
+      "sentence": "Happy anniversary!",
+      "translation": "纪念日快乐！",
+      "chunks": [
+        "Happy anniversary!"
+      ],
+      "hints": [
+        "纪念日快乐！"
+      ],
+      "cid": "f832cb36",
+      "sentenceAudio": {
+        "text": "Happy anniversary!",
+        "audio": {
+          "url": "assets/oral-f832cb36-b9f53e447df64471d545.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5c3152ecc0398b5c894fdac25c6b8bbbcb7882d1ea2ecad0ad688e47c3cac0a1",
+          "bytes": 4936
+        }
+      }
+    },
+    {
+      "sentence": "Thanks for being in my life.",
+      "translation": "谢谢你陪我共度人生。",
+      "chunks": [
+        "Thanks for being",
+        "in my life."
+      ],
+      "hints": [
+        "谢谢你",
+        "陪我共度人生"
+      ],
+      "cid": "0c663f17",
+      "sentenceAudio": {
+        "text": "Thanks for being in my life.",
+        "audio": {
+          "url": "assets/oral-0c663f17-7e1dd5433fabedbb7cac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "07bd0d98a5872d549c32816be07481e6c0963efd117ee071728f47ce2f270075",
+          "bytes": 5700
+        }
+      }
+    }
+  ]
+}

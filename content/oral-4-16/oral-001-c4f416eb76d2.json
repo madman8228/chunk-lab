@@ -1,0 +1,872 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm happy.",
+      "translation": "我很高兴/幸福。",
+      "chunks": [
+        "I'm",
+        "happy."
+      ],
+      "hints": [
+        "我",
+        "很高兴。"
+      ],
+      "cid": "6d43f13c",
+      "sentenceAudio": {
+        "text": "I'm happy.",
+        "audio": {
+          "url": "assets/oral-6d43f13c-a9bcdf7afdc6c8084a69.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9f237feea0258806f8a87b9af3d42a3d020f34f982fed74ca9fe37f0f5a2eb5c",
+          "bytes": 3814
+        }
+      }
+    },
+    {
+      "sentence": "I'm so happy.",
+      "translation": "我高兴极了。",
+      "chunks": [
+        "I'm",
+        "so happy."
+      ],
+      "hints": [
+        "我",
+        "高兴极了。"
+      ],
+      "cid": "5987b9a6",
+      "sentenceAudio": {
+        "text": "I'm so happy.",
+        "audio": {
+          "url": "assets/oral-5987b9a6-981f7699c804692fc747.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ac29acceef63029e9eeff31acc8fe32cda41075f986c9016d9e95ac42090696e",
+          "bytes": 4246
+        }
+      }
+    },
+    {
+      "sentence": "Yahoo!",
+      "translation": "呀嗬!",
+      "chunks": [
+        "Yahoo!"
+      ],
+      "hints": [
+        "呀嗬！"
+      ],
+      "cid": "eeb37e66",
+      "sentenceAudio": {
+        "text": "Yahoo!",
+        "audio": {
+          "url": "assets/oral-eeb37e66-d4cac4c030e08961d026.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e6d1cecab6d357b61c23161fb5bdde9af8c816f0f18c0ddcf42d2191b82364cf",
+          "bytes": 3270
+        }
+      }
+    },
+    {
+      "sentence": "Oh, boy!",
+      "translation": "哇!/太棒了!/好家伙!",
+      "chunks": [
+        "Oh, boy!"
+      ],
+      "hints": [
+        "哇！/好家伙！"
+      ],
+      "cid": "24b4d5eb",
+      "sentenceAudio": {
+        "text": "Oh, boy!",
+        "audio": {
+          "url": "assets/oral-24b4d5eb-9c05f6351dadeac90012.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d593784fb732b112f85145fc3d1ee2af6c4dff2efef88a7c1abdab8ee1572062",
+          "bytes": 3673
+        }
+      }
+    },
+    {
+      "sentence": "Wow!",
+      "translation": "哇!/呀!/棒极了!",
+      "chunks": [
+        "Wow!"
+      ],
+      "hints": [
+        "哇！"
+      ],
+      "cid": "99cd055f",
+      "sentenceAudio": {
+        "text": "Wow!",
+        "audio": {
+          "url": "assets/oral-99cd055f-fb39adbef08cdd58cfb9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "02dfd8f7b71c23e5e7b0b607ef56c34b7c973cdb0bdff9d61548563ac2a75f60",
+          "bytes": 3055
+        }
+      }
+    },
+    {
+      "sentence": "Whoopee!",
+      "translation": "哈哈!/太棒了!",
+      "chunks": [
+        "Whoopee!"
+      ],
+      "hints": [
+        "哈哈！"
+      ],
+      "cid": "2ea9338d",
+      "sentenceAudio": {
+        "text": "Whoopee!",
+        "audio": {
+          "url": "assets/oral-2ea9338d-0940f63112fe2bc4da69.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "db78331c88ecf0a09a26ea92a474e326a438301e65ad71f69cc8409143b1356f",
+          "bytes": 3406
+        }
+      }
+    },
+    {
+      "sentence": "I'm glad to hear it.",
+      "translation": "听到这消息我很高兴。",
+      "chunks": [
+        "I'm glad",
+        "to hear it."
+      ],
+      "hints": [
+        "我很高兴",
+        "听到这个消息"
+      ],
+      "cid": "bbc38870",
+      "sentenceAudio": {
+        "text": "I'm glad to hear it.",
+        "audio": {
+          "url": "assets/oral-bbc38870-de1ec713ea247c2b417b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c93278a6a0cb2075279039dd3576ad68b007bafad2ee6c0511c297182034f6e1",
+          "bytes": 4579
+        }
+      }
+    },
+    {
+      "sentence": "I'm glad that...",
+      "translation": "我很高兴……",
+      "chunks": [
+        "I'm glad",
+        "that..."
+      ],
+      "hints": [
+        "我很高兴",
+        "……"
+      ],
+      "cid": "8945c063",
+      "sentenceAudio": {
+        "text": "I'm glad that...",
+        "audio": {
+          "url": "assets/oral-8945c063-a354a950248f2b5d4863.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4380a134cbde2fece1b1c0ad6db1dcceffa12e03199b54c3d52ae0308356b308",
+          "bytes": 4294
+        }
+      }
+    },
+    {
+      "sentence": "I feel like a million dollars.",
+      "translation": "感觉好极了。",
+      "chunks": [
+        "I feel like a million dollars."
+      ],
+      "hints": [
+        "我感觉棒极了。"
+      ],
+      "cid": "65dcafb7",
+      "sentenceAudio": {
+        "text": "I feel like a million dollars.",
+        "audio": {
+          "url": "assets/oral-65dcafb7-edefa19524a491f96e05.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9ddf1a76be1254c034feabc3d4f9b7c25159ebd6c99e03a2bf24be910e31529d",
+          "bytes": 6054
+        }
+      }
+    },
+    {
+      "sentence": "I've never been this happy.",
+      "translation": "我从没有这么高兴过。",
+      "chunks": [
+        "I've never been",
+        "this happy."
+      ],
+      "hints": [
+        "我从没有",
+        "这么高兴过。"
+      ],
+      "cid": "9e3e8750",
+      "sentenceAudio": {
+        "text": "I've never been this happy.",
+        "audio": {
+          "url": "assets/oral-9e3e8750-8e0d94b2cd2738d838a6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c447899c7d293039b8197870940303ff54d17089803bed87eeb085e4e501ccb3",
+          "bytes": 5312
+        }
+      }
+    },
+    {
+      "sentence": "That's good news.",
+      "translation": "真是个好消息。",
+      "chunks": [
+        "That's",
+        "good news."
+      ],
+      "hints": [
+        "真是个",
+        "好消息。"
+      ],
+      "cid": "77b53bfc",
+      "sentenceAudio": {
+        "text": "That's good news.",
+        "audio": {
+          "url": "assets/oral-77b53bfc-edc13c0a089fc425c86f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bf6e9f9ef8e297345f6271dc1be2ffbd78b43c5b3145e288087ccf1d757524cf",
+          "bytes": 4296
+        }
+      }
+    },
+    {
+      "sentence": "What fun!",
+      "translation": "太有意思了！",
+      "chunks": [
+        "What fun!"
+      ],
+      "hints": [
+        "太有意思了！"
+      ],
+      "cid": "290dbbb5",
+      "sentenceAudio": {
+        "text": "What fun!",
+        "audio": {
+          "url": "assets/oral-290dbbb5-12a8584c6a9f3e7314d4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c4e3f763cfa5285bf790b89e7702abbf38ebe3bd1f678ce0bbe1201213ca7c36",
+          "bytes": 3669
+        }
+      }
+    },
+    {
+      "sentence": "I feel great!",
+      "translation": "舒服极了。",
+      "chunks": [
+        "I feel",
+        "great!"
+      ],
+      "hints": [
+        "舒服",
+        "极了。"
+      ],
+      "cid": "59117bdc",
+      "sentenceAudio": {
+        "text": "I feel great!",
+        "audio": {
+          "url": "assets/oral-59117bdc-218021a08b26efb9c6ef.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "14af94af738bf7c3fa52d2187709f4698a7025293debdac3b5d04175748ecb82",
+          "bytes": 4137
+        }
+      }
+    },
+    {
+      "sentence": "I'm in a good mood today.",
+      "translation": "我今天的心情很好。",
+      "chunks": [
+        "I'm in a good mood",
+        "today."
+      ],
+      "hints": [
+        "我心情很好",
+        "今天"
+      ],
+      "cid": "10919a75",
+      "sentenceAudio": {
+        "text": "I'm in a good mood today.",
+        "audio": {
+          "url": "assets/oral-10919a75-d7df42d915cb05ecf06b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3a425b87e770925aae2386da379f70e859576075c94c7d8951056a3f3e5d8ae2",
+          "bytes": 5499
+        }
+      }
+    },
+    {
+      "sentence": "I'm looking forward to this summer.",
+      "translation": "我期待着今年的夏天。",
+      "chunks": [
+        "I'm looking forward",
+        "to this summer."
+      ],
+      "hints": [
+        "我期待着",
+        "今年的夏天。"
+      ],
+      "cid": "0a8b5d72",
+      "sentenceAudio": {
+        "text": "I'm looking forward to this summer.",
+        "audio": {
+          "url": "assets/oral-0a8b5d72-04a2d98e048a36dd21a8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cbc9b0921eec3cd7b5a5a0d06cbce124df9bf9f5ad307fbb4062f3c1760c6b0a",
+          "bytes": 6315
+        }
+      }
+    },
+    {
+      "sentence": "You look happy today.",
+      "translation": "今天你看上去很高兴啊!",
+      "chunks": [
+        "You look happy",
+        "today."
+      ],
+      "hints": [
+        "你看上去很高兴",
+        "今天"
+      ],
+      "cid": "ff01bfde",
+      "sentenceAudio": {
+        "text": "You look happy today.",
+        "audio": {
+          "url": "assets/oral-ff01bfde-653c358c92ffa5c8f386.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "94f542e30661ce36b0fb07361cb12869031b34dba1ee5832d9b273439bcfe65d",
+          "bytes": 4963
+        }
+      }
+    },
+    {
+      "sentence": "I'm walking on air.",
+      "translation": "高兴得飘飘欲仙。",
+      "chunks": [
+        "I'm walking on air."
+      ],
+      "hints": [
+        "我高兴得飘飘然。"
+      ],
+      "cid": "6e66ae1a",
+      "sentenceAudio": {
+        "text": "I'm walking on air.",
+        "audio": {
+          "url": "assets/oral-6e66ae1a-5a55a2196ff3fcb3330f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ed96610fd30d4dbf8d44dd9593747c357dee835249418f91f249884ff7a7d2d6",
+          "bytes": 4860
+        }
+      }
+    },
+    {
+      "sentence": "I jumped for joy.",
+      "translation": "我高兴得跳了起来。",
+      "chunks": [
+        "I",
+        "jumped for joy."
+      ],
+      "hints": [
+        "我",
+        "高兴得跳了起来。"
+      ],
+      "cid": "196c19f6",
+      "sentenceAudio": {
+        "text": "I jumped for joy.",
+        "audio": {
+          "url": "assets/oral-196c19f6-cc110ce443a1bb585a6c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e2c9734b96e6712cc0911faf335a8f8d08e83c475d2f8808bada2dd47634d3a3",
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "sentence": "This is too good to be true.",
+      "translation": "这好得令人难以置信。",
+      "chunks": [
+        "This is",
+        "too good to be true."
+      ],
+      "hints": [
+        "这",
+        "好得令人难以置信。"
+      ],
+      "cid": "c01b8e26",
+      "sentenceAudio": {
+        "text": "This is too good to be true.",
+        "audio": {
+          "url": "assets/oral-c01b8e26-5a7a4a6a4c932e9660b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d87d7d8b4b2f610edaceb17bb225614dfda48ef308c76294537e73e9de08711e",
+          "bytes": 5626
+        }
+      }
+    },
+    {
+      "sentence": "Nothing could be more wonderful.",
+      "translation": "没有比这更让人高兴的了。",
+      "chunks": [
+        "Nothing could be",
+        "more wonderful."
+      ],
+      "hints": [
+        "没有比这",
+        "更让人高兴的了。"
+      ],
+      "cid": "0a249957",
+      "sentenceAudio": {
+        "text": "Nothing could be more wonderful.",
+        "audio": {
+          "url": "assets/oral-0a249957-fa0c4602455c63241b78.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b63bfe8d6f0f1f63057074bb9bb6aae631237c23f4c475383a00dde2a66d8880",
+          "bytes": 5865
+        }
+      }
+    },
+    {
+      "sentence": "You made me happy.",
+      "translation": "你让我感到很幸福。",
+      "chunks": [
+        "You made me",
+        "happy."
+      ],
+      "hints": [
+        "你让我",
+        "感到很幸福。"
+      ],
+      "cid": "41d5602b",
+      "sentenceAudio": {
+        "text": "You made me happy.",
+        "audio": {
+          "url": "assets/oral-41d5602b-64dbba586377165e91d7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "891510184a30b2b63044993be9cdc5ea4e516ff3c011a55daa02fc42622693e3",
+          "bytes": 4323
+        }
+      }
+    },
+    {
+      "sentence": "You did it!",
+      "translation": "你做到了！",
+      "chunks": [
+        "You did it!"
+      ],
+      "hints": [
+        "你做到了！"
+      ],
+      "cid": "92f7ec51",
+      "sentenceAudio": {
+        "text": "You did it!",
+        "audio": {
+          "url": "assets/oral-92f7ec51-cc13e254d6f2654acdfd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "93122237f3f294e29eb8644c762752fefe2871f8f0866e9146f26875086d397b",
+          "bytes": 3671
+        }
+      }
+    },
+    {
+      "sentence": "Lucky!",
+      "translation": "真运气!",
+      "chunks": [
+        "Lucky!"
+      ],
+      "hints": [
+        "真运气！"
+      ],
+      "cid": "d2fd715e",
+      "sentenceAudio": {
+        "text": "Lucky!",
+        "audio": {
+          "url": "assets/oral-d2fd715e-40e6c4db58063ef7287f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a7baa7fb4ca559cfa79fc113dee1bfa758215e0a85e50c647a9fb63adeb17bec",
+          "bytes": 3300
+        }
+      }
+    },
+    {
+      "sentence": "I lucked out today.",
+      "translation": "今天的运气真好。",
+      "chunks": [
+        "I lucked out",
+        "today."
+      ],
+      "hints": [
+        "我运气真好",
+        "今天"
+      ],
+      "cid": "99107acd",
+      "sentenceAudio": {
+        "text": "I lucked out today.",
+        "audio": {
+          "url": "assets/oral-99107acd-59f7f819be274390a4af.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7b9a6431330cbf32381c3a8ab40330612c8d8d67650136147e048f57a4b3eba0",
+          "bytes": 4761
+        }
+      }
+    },
+    {
+      "sentence": "It's your lucky day.",
+      "translation": "今天你真走运。",
+      "chunks": [
+        "It's your lucky day."
+      ],
+      "hints": [
+        "今天你真走运。"
+      ],
+      "cid": "1145b46f",
+      "sentenceAudio": {
+        "text": "It's your lucky day.",
+        "audio": {
+          "url": "assets/oral-1145b46f-56e22688d99c4eb485c7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "28ce95b5609e1cc2132fe56ad6986f4673d480e141c2e0d33defe6d58e931d18",
+          "bytes": 4495
+        }
+      }
+    },
+    {
+      "sentence": "Thank heavens!",
+      "translation": "感谢上帝!/谢天谢地。",
+      "chunks": [
+        "Thank heavens!"
+      ],
+      "hints": [
+        "谢天谢地！"
+      ],
+      "cid": "5f6c6206",
+      "sentenceAudio": {
+        "text": "Thank heavens!",
+        "audio": {
+          "url": "assets/oral-5f6c6206-7f7bf7f409c16a9ea217.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "58817d34b0e1f2ec2147a1cf870e4f0ec0c7af7cfe38b77ad682b3706fc4597d",
+          "bytes": 3982
+        }
+      }
+    },
+    {
+      "sentence": "I hit the jackpot!",
+      "translation": "我中头彩了!",
+      "chunks": [
+        "I",
+        "hit the jackpot!"
+      ],
+      "hints": [
+        "我",
+        "中头彩了！"
+      ],
+      "cid": "488378bb",
+      "sentenceAudio": {
+        "text": "I hit the jackpot!",
+        "audio": {
+          "url": "assets/oral-488378bb-e237249764ab5ed6e545.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1c07bdaa2c18d7c2f2e7200a08cd3e033c5e822e49e0edd8cebf9f82d4b42673",
+          "bytes": 4681
+        }
+      }
+    },
+    {
+      "sentence": "I was just lucky.",
+      "translation": "只是运气好。",
+      "chunks": [
+        "I was just",
+        "lucky."
+      ],
+      "hints": [
+        "我只是",
+        "运气好。"
+      ],
+      "cid": "d94756b5",
+      "sentenceAudio": {
+        "text": "I was just lucky.",
+        "audio": {
+          "url": "assets/oral-d94756b5-0c6db3a379fa6e7eb1db.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b381bf1c45bebe2098ab9181f3caa56dd8a21b49cdbec74427798a1ca7e995d6",
+          "bytes": 4652
+        }
+      }
+    },
+    {
+      "sentence": "It's a dream come true!",
+      "translation": "美梦成真!",
+      "chunks": [
+        "It's a dream",
+        "come true!"
+      ],
+      "hints": [
+        "美梦",
+        "成真！"
+      ],
+      "cid": "96847369",
+      "sentenceAudio": {
+        "text": "It's a dream come true!",
+        "audio": {
+          "url": "assets/oral-96847369-8fb862305cd65900c91e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1f37fb37e9ae2f4658e8adc4b5ab6f80e2de7727b797ca044e4442adeb214eda",
+          "bytes": 5115
+        }
+      }
+    },
+    {
+      "sentence": "Talk about luck.",
+      "translation": "真走运！",
+      "chunks": [
+        "Talk about luck."
+      ],
+      "hints": [
+        "真走运！"
+      ],
+      "cid": "13480887",
+      "sentenceAudio": {
+        "text": "Talk about luck.",
+        "audio": {
+          "url": "assets/oral-13480887-a1cfd43d5eac687b2712.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8395b46548261ca3605a5445fded336c9e109ba22649adc029076b1fe652f549",
+          "bytes": 4099
+        }
+      }
+    },
+    {
+      "sentence": "This is it!",
+      "translation": "就是这个！",
+      "chunks": [
+        "This is it!"
+      ],
+      "hints": [
+        "就是这个！"
+      ],
+      "cid": "22c95403",
+      "sentenceAudio": {
+        "text": "This is it!",
+        "audio": {
+          "url": "assets/oral-22c95403-364f039f5da221bf165d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4d584593373f2a21b29c53eda32c8d2a3ba8267831b1e8aea94f6b87cf380a34",
+          "bytes": 3665
+        }
+      }
+    },
+    {
+      "sentence": "It's settled!",
+      "translation": "就这么定了。",
+      "chunks": [
+        "It's",
+        "settled!"
+      ],
+      "hints": [
+        "就这么",
+        "定了。"
+      ],
+      "cid": "ad82acb2",
+      "sentenceAudio": {
+        "text": "It's settled!",
+        "audio": {
+          "url": "assets/oral-ad82acb2-ca49a83ba531dde9b751.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8091842afb7abf90284444eb47cc841b3495ed504240c1bf41614b999a2ced56",
+          "bytes": 3596
+        }
+      }
+    },
+    {
+      "sentence": "Sounds great!",
+      "translation": "听起来不错!",
+      "chunks": [
+        "Sounds",
+        "great!"
+      ],
+      "hints": [
+        "听起来",
+        "不错！"
+      ],
+      "cid": "830bd017",
+      "sentenceAudio": {
+        "text": "Sounds great!",
+        "audio": {
+          "url": "assets/oral-830bd017-efb6b81ef54e1488dbc1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e2058cbcd97d3ee420ddaae776712e4264ecc55985aa850a141249229138d6f",
+          "bytes": 4085
+        }
+      }
+    },
+    {
+      "sentence": "Looks great!",
+      "translation": "真不错。",
+      "chunks": [
+        "Looks",
+        "great!"
+      ],
+      "hints": [
+        "看起来",
+        "真不错！"
+      ],
+      "cid": "f9a5de05",
+      "sentenceAudio": {
+        "text": "Looks great!",
+        "audio": {
+          "url": "assets/oral-f9a5de05-e37c3dd7e012e5fd4eaf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "745a0b821797135c44e3034f5cc2ea45ce59b337818666587cf372308a177306",
+          "bytes": 3832
+        }
+      }
+    },
+    {
+      "sentence": "What a relief!",
+      "translation": "啊!可以松口气了!",
+      "chunks": [
+        "What a relief!"
+      ],
+      "hints": [
+        "真是松了一口气！"
+      ],
+      "cid": "b3f0114c",
+      "sentenceAudio": {
+        "text": "What a relief!",
+        "audio": {
+          "url": "assets/oral-b3f0114c-6b63ac4fa26d56667bd2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7aa1d3695e41812bc1c6b886df8b614feb89c695425d2af031abd8ecdd78da24",
+          "bytes": 3953
+        }
+      }
+    },
+    {
+      "sentence": "I'm surprised!",
+      "translation": "吓我一跳!",
+      "chunks": [
+        "I'm",
+        "surprised!"
+      ],
+      "hints": [
+        "我",
+        "吓了一跳！"
+      ],
+      "cid": "3d8d3288",
+      "sentenceAudio": {
+        "text": "I'm surprised!",
+        "audio": {
+          "url": "assets/oral-3d8d3288-05822de5cfd7a5031341.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dd59d8f370130b6d86ffcec017b3b806459685086836c0e30cb01bc2df0707e4",
+          "bytes": 4275
+        }
+      }
+    },
+    {
+      "sentence": "Whew!",
+      "translation": "好了!这下放心了!/唷-!",
+      "chunks": [
+        "Whew!"
+      ],
+      "hints": [
+        "好了！这下放心了！"
+      ],
+      "cid": "d9ce765d",
+      "sentenceAudio": {
+        "text": "Whew!",
+        "audio": {
+          "url": "assets/oral-d9ce765d-cb9494fb0dc2b62301d4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3f2d8bbc7d8f4be77863e76854dbeffd5a8c79f2b040613571b313c484f666e4",
+          "bytes": 3066
+        }
+      }
+    },
+    {
+      "sentence": "Aah!",
+      "translation": "啊!",
+      "chunks": [
+        "Aah!"
+      ],
+      "hints": [
+        "啊！"
+      ],
+      "cid": "a12e8de4",
+      "sentenceAudio": {
+        "text": "Aah!",
+        "audio": {
+          "url": "assets/oral-a12e8de4-e11a889ee3d32b4b08c4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bd83671e555f7e5797a9b86a20029e08a644884d16fc82c2a3778e85b24d7fff",
+          "bytes": 2796
+        }
+      }
+    },
+    {
+      "sentence": "I felt relieved to hear that.",
+      "translation": "听这么一说，我就放心了。",
+      "chunks": [
+        "I felt relieved",
+        "to hear that."
+      ],
+      "hints": [
+        "我就放心了，",
+        "听到这个消息。"
+      ],
+      "cid": "88c6f259",
+      "sentenceAudio": {
+        "text": "I felt relieved to hear that.",
+        "audio": {
+          "url": "assets/oral-88c6f259-12552c7b8b4ec043b1ec.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "165eb819a0c77673db85bb2a716a17958391d8dc7f17b16b6e5ae927f991a317",
+          "bytes": 6023
+        }
+      }
+    },
+    {
+      "sentence": "Here we are at last.",
+      "translation": "终于到了。",
+      "chunks": [
+        "Here we are at last."
+      ],
+      "hints": [
+        "终于到了。"
+      ],
+      "cid": "c26ecb52",
+      "sentenceAudio": {
+        "text": "Here we are at last.",
+        "audio": {
+          "url": "assets/oral-c26ecb52-4afe3f8f22ea0e72fdd0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e21509cf378013a88d431c01cbf3134a937bf779571638f2a62ad7f4bafa2acd",
+          "bytes": 4463
+        }
+      }
+    },
+    {
+      "sentence": "Good riddance.",
+      "translation": "可算摆脱了。",
+      "chunks": [
+        "Good riddance."
+      ],
+      "hints": [
+        "可算摆脱了。"
+      ],
+      "cid": "c71534d0",
+      "sentenceAudio": {
+        "text": "Good riddance.",
+        "audio": {
+          "url": "assets/oral-c71534d0-585c46048aec2356f6b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f2be382711f86bf11e68a327737efbd271005e12acf2edb113d3fffe0e9e9526",
+          "bytes": 3881
+        }
+      }
+    }
+  ]
+}

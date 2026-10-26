@@ -1,0 +1,820 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "We have received your letter of April 14, 1998.",
+      "translation": "我们收到了您1998年4月14日的来信。",
+      "chunks": [
+        "We have received your letter",
+        "of April 14, 1998."
+      ],
+      "hints": [
+        "我们已收到您的来信",
+        "1998年4月14日的"
+      ],
+      "cid": "f7bbd0d6",
+      "sentenceAudio": {
+        "text": "We have received your letter of April 14, 1998.",
+        "audio": {
+          "url": "assets/oral-f7bbd0d6-ee4f215f52baa48cd9f6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d59115b1bd25908fe98a2f6d24f563529a8aafca9c582c37755676c0368f596",
+          "bytes": 13394
+        }
+      }
+    },
+    {
+      "sentence": "We thank you for your inquiry.",
+      "translation": "感谢您的来信咨询。",
+      "chunks": [
+        "We thank you",
+        "for your inquiry."
+      ],
+      "hints": [
+        "我们感谢您",
+        "的来函咨询。"
+      ],
+      "cid": "18512825",
+      "sentenceAudio": {
+        "text": "We thank you for your inquiry.",
+        "audio": {
+          "url": "assets/oral-18512825-5268ca52b923149273f5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7b75c081d751c39b2ccb954c95eb148b16cfa0a3934af7eb7182a47ae3f73170",
+          "bytes": 5938
+        }
+      }
+    },
+    {
+      "sentence": "We are pleased to learn from your letter...",
+      "translation": "我们非常高兴从您的来信中获悉……",
+      "chunks": [
+        "We are pleased to learn",
+        "from your letter..."
+      ],
+      "hints": [
+        "我们很高兴地得知",
+        "从您的来信中……"
+      ],
+      "cid": "0dcc3329",
+      "sentenceAudio": {
+        "text": "We are pleased to learn from your letter...",
+        "audio": {
+          "url": "assets/oral-0dcc3329-a8209aa570f98ba8727f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7a6176b94468296076d789aa07f9d21ad34ac9df7d5276ea0402e38562f88fb5",
+          "bytes": 6459
+        }
+      }
+    },
+    {
+      "sentence": "We are grateful for your inquiry of May 23,1998.",
+      "translation": "我们收到了您1998年5月23日的来函查询，非常感激。",
+      "chunks": [
+        "We are grateful for",
+        "your inquiry of May 23,1998."
+      ],
+      "hints": [
+        "我们很感激",
+        "您1998年5月23日的来函查询。"
+      ],
+      "cid": "b6eb27ae",
+      "sentenceAudio": {
+        "text": "We are grateful for your inquiry of May 23,1998.",
+        "audio": {
+          "url": "assets/oral-b6eb27ae-43830f987ba679909879.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9bad343e3dccd546e7f519169cb091d514374fa5e9221a243671191401895fa1",
+          "bytes": 14032
+        }
+      }
+    },
+    {
+      "sentence": "This is to acknowledge your letter of June 6, 1998.",
+      "translation": "我们已经收到了您1998年6月6日的来信。",
+      "chunks": [
+        "This is to acknowledge",
+        "your letter of June 6, 1998."
+      ],
+      "hints": [
+        "此函确认收到",
+        "您1998年6月6日的来信。"
+      ],
+      "cid": "d3219877",
+      "sentenceAudio": {
+        "text": "This is to acknowledge your letter of June 6, 1998.",
+        "audio": {
+          "url": "assets/oral-d3219877-47cbd99b1fbaea8c1ff8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "98d5fa5c35ba1d2b9f6bab7ea57301cfb0e2cdb6d512d769491d6fafdd37ac1c",
+          "bytes": 13804
+        }
+      }
+    },
+    {
+      "sentence": "We are pleased to respond to your inquiry of August 18, 1998.",
+      "translation": "我们很高兴回复您1998年8月18日的来函咨询。",
+      "chunks": [
+        "We are pleased to respond",
+        "to your inquiry of August 18, 1998."
+      ],
+      "hints": [
+        "我们很乐意回复",
+        "您1998年8月18日的来函查询。"
+      ],
+      "cid": "3a846bcc",
+      "sentenceAudio": {
+        "text": "We are pleased to respond to your inquiry of August 18, 1998.",
+        "audio": {
+          "url": "assets/oral-3a846bcc-bb7f7c60b1d3184ec5e0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8aff0178b52a0b6f76ed91f7f61bad8a59a2d07f97835cfd0c6eec19f5a824da",
+          "bytes": 15418
+        }
+      }
+    },
+    {
+      "sentence": "We are writing in response to your letter of October 21, 1998.",
+      "translation": "以下是就您1998年10月21日来信的回函。",
+      "chunks": [
+        "We are writing in response",
+        "to your letter of October 21, 1998."
+      ],
+      "hints": [
+        "我们写信回复",
+        "您1998年10月21日的来信。"
+      ],
+      "cid": "caf2b7b4",
+      "sentenceAudio": {
+        "text": "We are writing in response to your letter of October 21, 1998.",
+        "audio": {
+          "url": "assets/oral-caf2b7b4-747262ad04204f4f090b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "62e3af3b2de399b142c24b62aa0b00d0e046d85d018c090cc10132f05bb0ff56",
+          "bytes": 16339
+        }
+      }
+    },
+    {
+      "sentence": "This refers to your letter of October 29, 1998.",
+      "translation": "这是对您1998年10月29日来信的复函。",
+      "chunks": [
+        "This refers to",
+        "your letter of October 29, 1998."
+      ],
+      "hints": [
+        "这是关于",
+        "您1998年10月29日的来信。"
+      ],
+      "cid": "648f1a29",
+      "sentenceAudio": {
+        "text": "This refers to your letter of October 29, 1998.",
+        "audio": {
+          "url": "assets/oral-648f1a29-9688af4506393c7fac88.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e3c179636d8c4d1a8b9233331f3be841aa370908fe66e03e01d81a376660b02c",
+          "bytes": 14160
+        }
+      }
+    },
+    {
+      "sentence": "This is in response to your letter of November 4, 1998.",
+      "translation": "这是对您1998年11月4日来信给予的答复。",
+      "chunks": [
+        "This is in response",
+        "to your letter of November 4, 1998."
+      ],
+      "hints": [
+        "这是对",
+        "您1998年11月4日来信的答复。"
+      ],
+      "cid": "fa55a789",
+      "sentenceAudio": {
+        "text": "This is in response to your letter of November 4, 1998.",
+        "audio": {
+          "url": "assets/oral-fa55a789-929c9fb981f0dfa8e135.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "75a3da5ac1cd6553fd619fee3486785c906f153746e490091dd19c2b0e60a6be",
+          "bytes": 14223
+        }
+      }
+    },
+    {
+      "sentence": "We are happy to learn from your letter that...",
+      "translation": "我们高兴地从您的来信中得知……",
+      "chunks": [
+        "We are happy to learn",
+        "from your letter that..."
+      ],
+      "hints": [
+        "我们高兴地得知",
+        "从您的来信中……"
+      ],
+      "cid": "40a7af48",
+      "sentenceAudio": {
+        "text": "We are happy to learn from your letter that...",
+        "audio": {
+          "url": "assets/oral-40a7af48-54be7908f55c12c65921.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "883d1b35303a8fe801ca684aba30032d0bd434e113018d53d5ebda69144a5e2a",
+          "bytes": 7097
+        }
+      }
+    },
+    {
+      "sentence": "We regret to learn from your letter that...",
+      "translation": "我们很遗憾地从您的信中得知……",
+      "chunks": [
+        "We regret to learn",
+        "from your letter that..."
+      ],
+      "hints": [
+        "我们遗憾地得知",
+        "从您的来信中……"
+      ],
+      "cid": "2356196f",
+      "sentenceAudio": {
+        "text": "We regret to learn from your letter that...",
+        "audio": {
+          "url": "assets/oral-2356196f-08d20c72c4ed065dd316.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8875a076475a1bc14f0c6ee2e724a925dc2c8ff1af2e916aa2bdfd6a26e7f4a7",
+          "bytes": 6884
+        }
+      }
+    },
+    {
+      "sentence": "We would like to offer our sincere apologies for the mistake.",
+      "translation": "我们为我们的差错向您表示真诚的歉意。",
+      "chunks": [
+        "We would like to offer",
+        "our sincere apologies for the mistake."
+      ],
+      "hints": [
+        "我们想表达",
+        "对此次差错的诚挚歉意。"
+      ],
+      "cid": "24c88426",
+      "sentenceAudio": {
+        "text": "We would like to offer our sincere apologies for the mistake.",
+        "audio": {
+          "url": "assets/oral-24c88426-3b3bf1f9629e737470a2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4344e21dc5d7f570052daa74ecd61e8fc4bb032a396fd3f1065e625091378144",
+          "bytes": 10434
+        }
+      }
+    },
+    {
+      "sentence": "It is nice to know that...",
+      "translation": "得知……真是太好了。",
+      "chunks": [
+        "It is nice",
+        "to know that..."
+      ],
+      "hints": [
+        "很高兴",
+        "得知……"
+      ],
+      "cid": "e1a94ecc",
+      "sentenceAudio": {
+        "text": "It is nice to know that...",
+        "audio": {
+          "url": "assets/oral-e1a94ecc-fc5e169edcefd082576c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ef4fa59c9ea7b9807a849b31b6b1880ab3559e36199cf8b9a2b3c752a852bae",
+          "bytes": 5140
+        }
+      }
+    },
+    {
+      "sentence": "It is regretted that...",
+      "translation": "为……(我们很遗憾。)",
+      "chunks": [
+        "It is regretted",
+        "that..."
+      ],
+      "hints": [
+        "很遗憾",
+        "……"
+      ],
+      "cid": "85a006df",
+      "sentenceAudio": {
+        "text": "It is regretted that...",
+        "audio": {
+          "url": "assets/oral-85a006df-c2e7d6a57f1e2e2ae20e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5bbe34fc9649df2a646443b3b5bf6fdc45e0ad6d02018a87eb1132b9dfd9edd7",
+          "bytes": 4972
+        }
+      }
+    },
+    {
+      "sentence": "We are pleased to inform you that...",
+      "translation": "我们很高兴通知您……",
+      "chunks": [
+        "We are pleased to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们很高兴地通知",
+        "您……"
+      ],
+      "cid": "69ac90e1",
+      "sentenceAudio": {
+        "text": "We are pleased to inform you that...",
+        "audio": {
+          "url": "assets/oral-69ac90e1-c84482a54fbc8a51b2a8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ac232b08e87b977d98d2f451c075869eec4a0a455feaabb0ba51b6f10fb06a62",
+          "bytes": 6110
+        }
+      }
+    },
+    {
+      "sentence": "We would like to inform you that...",
+      "translation": "我们想通知您……",
+      "chunks": [
+        "We would like to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们想通知",
+        "您……"
+      ],
+      "cid": "fd39bc0b",
+      "sentenceAudio": {
+        "text": "We would like to inform you that...",
+        "audio": {
+          "url": "assets/oral-fd39bc0b-337cb582764873a9b073.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f675e5b6018ad64e2915c7609082ad4d667a6f82387ee9f4ed7bd3d794de8faf",
+          "bytes": 5826
+        }
+      }
+    },
+    {
+      "sentence": "We take pleasure in informing you of...",
+      "translation": "我们非常荣幸地通知您……",
+      "chunks": [
+        "We take pleasure in",
+        "informing you of..."
+      ],
+      "hints": [
+        "我们很荣幸",
+        "通知您……"
+      ],
+      "cid": "f4f4cd7f",
+      "sentenceAudio": {
+        "text": "We take pleasure in informing you of...",
+        "audio": {
+          "url": "assets/oral-f4f4cd7f-919326ca69d686c06f6f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5da3e01a212e6e933a0eaa744acac280c7839904fb2493e5127f58f50294010e",
+          "bytes": 7460
+        }
+      }
+    },
+    {
+      "sentence": "We regret to inform you that...",
+      "translation": "我们很遗憾地通知您……",
+      "chunks": [
+        "We regret to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们遗憾地通知",
+        "您……"
+      ],
+      "cid": "32bc6e6e",
+      "sentenceAudio": {
+        "text": "We regret to inform you that...",
+        "audio": {
+          "url": "assets/oral-32bc6e6e-5efc1616d064789aee31.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f47203dca20f974fdefb29fedbe2c6178fffa4ff70833fdd6643b40f55d04fdc",
+          "bytes": 6203
+        }
+      }
+    },
+    {
+      "sentence": "We are sorry to inform you that...",
+      "translation": "我们抱歉地通知您……",
+      "chunks": [
+        "We are sorry to inform",
+        "you that..."
+      ],
+      "hints": [
+        "我们很抱歉地通知",
+        "您……"
+      ],
+      "cid": "8a5faaae",
+      "sentenceAudio": {
+        "text": "We are sorry to inform you that...",
+        "audio": {
+          "url": "assets/oral-8a5faaae-45f05cf5f4e8e540ad5d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "629192903ecf2d16840a78df4420255275dc643d2a0ef63cade87cfb3bc09dc1",
+          "bytes": 6476
+        }
+      }
+    },
+    {
+      "sentence": "Please be advised that...",
+      "translation": "敬请知悉：……",
+      "chunks": [
+        "Please be advised",
+        "that..."
+      ],
+      "hints": [
+        "敬请知悉",
+        "……"
+      ],
+      "cid": "509b8221",
+      "sentenceAudio": {
+        "text": "Please be advised that...",
+        "audio": {
+          "url": "assets/oral-509b8221-051bd3108a62d6027360.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "db17abd8d2db154479ba0f53a3c5e75d76c970ae7fd5ce0c2b7aba044b500160",
+          "bytes": 5281
+        }
+      }
+    },
+    {
+      "sentence": "We will enclose...",
+      "translation": "随信附上……",
+      "chunks": [
+        "We will",
+        "enclose..."
+      ],
+      "hints": [
+        "我们将",
+        "随信附上……"
+      ],
+      "cid": "d6c32634",
+      "sentenceAudio": {
+        "text": "We will enclose...",
+        "audio": {
+          "url": "assets/oral-d6c32634-6870b59328f184200a17.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7b7ce30f16b8a835d894d0a92af937275152940907acec8a5ed5d0cc08426960",
+          "bytes": 4311
+        }
+      }
+    },
+    {
+      "sentence": "We are enclosing a copy of...",
+      "translation": "随信附上……的复印件",
+      "chunks": [
+        "We are enclosing",
+        "a copy of..."
+      ],
+      "hints": [
+        "随信附上",
+        "……的复印件"
+      ],
+      "cid": "7aea43ba",
+      "sentenceAudio": {
+        "text": "We are enclosing a copy of...",
+        "audio": {
+          "url": "assets/oral-7aea43ba-376a1a9212d8dcf43084.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7699efcf459d2c0cf517b649504f8ee290dbdcc084c0f462d19d978f9ab0af3e",
+          "bytes": 5783
+        }
+      }
+    },
+    {
+      "sentence": "There is a copy of... attached to this letter.",
+      "translation": "……复印件随信一并寄上。",
+      "chunks": [
+        "There is a copy",
+        "of... attached to this letter."
+      ],
+      "hints": [
+        "有一份……的复印件",
+        "随本函附上。"
+      ],
+      "cid": "846d88c1",
+      "sentenceAudio": {
+        "text": "There is a copy of... attached to this letter.",
+        "audio": {
+          "url": "assets/oral-846d88c1-d20bf543142cd821b354.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5218e26069b075ab823f2bea8c00b9ebe47232a3260b6c4d68da9928c5158422",
+          "bytes": 8417
+        }
+      }
+    },
+    {
+      "sentence": "Attached you will find...",
+      "translation": "随函附上……",
+      "chunks": [
+        "Attached",
+        "you will find..."
+      ],
+      "hints": [
+        "随函附上",
+        "您会看到……"
+      ],
+      "cid": "3a0a8b95",
+      "sentenceAudio": {
+        "text": "Attached you will find...",
+        "audio": {
+          "url": "assets/oral-3a0a8b95-11ccb6dd53836d78b07a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d5edd147efb4a1f820225700ec9d350554622d1c202e7bf2ca087fca78964765",
+          "bytes": 4832
+        }
+      }
+    },
+    {
+      "sentence": "Enclosed is a copy of...",
+      "translation": "附寄在内的是一份……的复印件。",
+      "chunks": [
+        "Enclosed is",
+        "a copy of..."
+      ],
+      "hints": [
+        "随附的是",
+        "……的复印件"
+      ],
+      "cid": "7e2358a3",
+      "sentenceAudio": {
+        "text": "Enclosed is a copy of...",
+        "audio": {
+          "url": "assets/oral-7e2358a3-c6509d7021735a0ffecb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb84ad92b147fc549ae96a41c8f39209f3ef79328b0158cabeff4e3a602719f9",
+          "bytes": 5602
+        }
+      }
+    },
+    {
+      "sentence": "We will send you...",
+      "translation": "我们将寄给你……",
+      "chunks": [
+        "We will",
+        "send you..."
+      ],
+      "hints": [
+        "我们将",
+        "寄给您……"
+      ],
+      "cid": "6e61eb1a",
+      "sentenceAudio": {
+        "text": "We will send you...",
+        "audio": {
+          "url": "assets/oral-6e61eb1a-9856400c6cb3c3702640.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1c65a1a4c4a8c105a6c651e8f9f1be2053967b5b6c50a6c670a03949c68b46bf",
+          "bytes": 4157
+        }
+      }
+    },
+    {
+      "sentence": "We are pleased to send you...",
+      "translation": "我们很高兴寄给您……",
+      "chunks": [
+        "We are pleased to",
+        "send you..."
+      ],
+      "hints": [
+        "我们很高兴",
+        "寄给您……"
+      ],
+      "cid": "15ba3f9f",
+      "sentenceAudio": {
+        "text": "We are pleased to send you...",
+        "audio": {
+          "url": "assets/oral-15ba3f9f-9e9954488d5dcd45af82.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b72617a124109b562a3afc3b1dad519c505dcab76330faf26724525e08adc2d0",
+          "bytes": 5170
+        }
+      }
+    },
+    {
+      "sentence": "We are sending you the contract separately.",
+      "translation": "我们另外再把合同书寄给您。",
+      "chunks": [
+        "We are sending you",
+        "the contract separately."
+      ],
+      "hints": [
+        "我们正在寄给您",
+        "合同会另行寄出。"
+      ],
+      "cid": "fee7600d",
+      "sentenceAudio": {
+        "text": "We are sending you the contract separately.",
+        "audio": {
+          "url": "assets/oral-fee7600d-778a038138c7eae9678f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "921c60697d6a6729b0bb43682ad47635e42a02a864843a176efcf3995a4a4518",
+          "bytes": 7221
+        }
+      }
+    },
+    {
+      "sentence": "Would you please send us...?",
+      "translation": "您能将……寄给我们吗?",
+      "chunks": [
+        "Would you please",
+        "send us...?"
+      ],
+      "hints": [
+        "能否请您",
+        "把……寄给我们？"
+      ],
+      "cid": "d8511ff8",
+      "sentenceAudio": {
+        "text": "Would you please send us...?",
+        "audio": {
+          "url": "assets/oral-d8511ff8-b7520e6393770300193d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7bd78e4c486ab0cfc6c1b0a61cf79bc2a84396e84aff21846f30d761f58c9d30",
+          "bytes": 4943
+        }
+      }
+    },
+    {
+      "sentence": "We would appreciate it if you would send us...",
+      "translation": "如果您能把……寄给我们，我们将不胜感激。",
+      "chunks": [
+        "We would appreciate it",
+        "if you would send us..."
+      ],
+      "hints": [
+        "我们将不胜感激",
+        "如果您能把……寄给我们"
+      ],
+      "cid": "507af060",
+      "sentenceAudio": {
+        "text": "We would appreciate it if you would send us...",
+        "audio": {
+          "url": "assets/oral-507af060-6e4be6a76265738e3b5c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d6d88a6fd50868eeb7489acbd6addd292f07c07c4a262f4ebcb111562a5857ea",
+          "bytes": 7313
+        }
+      }
+    },
+    {
+      "sentence": "Some months ago we wrote you regarding...",
+      "translation": "几个月前，我们曾就……事给您写了一封信。",
+      "chunks": [
+        "Some months ago we wrote you",
+        "regarding..."
+      ],
+      "hints": [
+        "几个月前我们写信给您",
+        "关于……"
+      ],
+      "cid": "c9b5047e",
+      "sentenceAudio": {
+        "text": "Some months ago we wrote you regarding...",
+        "audio": {
+          "url": "assets/oral-c9b5047e-c9bbe37dde47b81dcaa9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ed1575da481615d5ac5c5fb70f11b0395780f4805e6ed9e99b906243c72712fa",
+          "bytes": 7687
+        }
+      }
+    },
+    {
+      "sentence": "So far, we do not seem to have received word from you...",
+      "translation": "到目前为止，我们似乎还没有收到您的回音……",
+      "chunks": [
+        "So far,",
+        "we do not seem to have received word from you..."
+      ],
+      "hints": [
+        "到目前为止，",
+        "我们似乎还没有收到您的回音……"
+      ],
+      "cid": "34902e63",
+      "sentenceAudio": {
+        "text": "So far, we do not seem to have received word from you...",
+        "audio": {
+          "url": "assets/oral-34902e63-bd3165adbae56ac19f1d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fc7c02451e1e58021315e3ceb0f24e876b3b62fb3437491851cb7e95de000daa",
+          "bytes": 9395
+        }
+      }
+    },
+    {
+      "sentence": "If we do not hear from you by December 1, 1998...",
+      "translation": "如果在1998年12月1日前还得不到您的回音的话，……",
+      "chunks": [
+        "If we do not hear from you",
+        "by December 1, 1998..."
+      ],
+      "hints": [
+        "如果我们收不到您的回音",
+        "在1998年12月1日前……"
+      ],
+      "cid": "e102aabd",
+      "sentenceAudio": {
+        "text": "If we do not hear from you by December 1, 1998...",
+        "audio": {
+          "url": "assets/oral-e102aabd-9cb3d502b8967adb5829.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8a5bf70fef38612f95c5eddedbafd6064fc03db60954e9f407e6baed6bd0bc24",
+          "bytes": 12520
+        }
+      }
+    },
+    {
+      "sentence": "So far, we have not received word from you...",
+      "translation": "有关……事，我们还未收到您的任何回音。",
+      "chunks": [
+        "So far, we have not",
+        "received word from you..."
+      ],
+      "hints": [
+        "到目前为止，我们还没有",
+        "收到您的回音……"
+      ],
+      "cid": "447f01cf",
+      "sentenceAudio": {
+        "text": "So far, we have not received word from you...",
+        "audio": {
+          "url": "assets/oral-447f01cf-e62af58b7b90a4bbf455.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6e628847ef2359d5d7d3e3c21094e3a2907e47f147e778659b4183b0527aac2c",
+          "bytes": 8255
+        }
+      }
+    },
+    {
+      "sentence": "We apologize for not replying to you earlier.",
+      "translation": "很抱歉未能尽早给您回信。",
+      "chunks": [
+        "We apologize",
+        "for not replying to you earlier."
+      ],
+      "hints": [
+        "我们道歉",
+        "未能更早回复您。"
+      ],
+      "cid": "c5124d7b",
+      "sentenceAudio": {
+        "text": "We apologize for not replying to you earlier.",
+        "audio": {
+          "url": "assets/oral-c5124d7b-8f3623b8ac4b05826a36.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "616dd282ab61a2147fdfd8a4fc6f17539c34adb5626cb9c65bb8c69bfafcb1a1",
+          "bytes": 9166
+        }
+      }
+    },
+    {
+      "sentence": "We are sorry for not answering your letter sooner.",
+      "translation": "未能及时给您回信，我们深表歉意。",
+      "chunks": [
+        "We are sorry",
+        "for not answering your letter sooner."
+      ],
+      "hints": [
+        "我们很抱歉",
+        "未能更早回您的信。"
+      ],
+      "cid": "e6509599",
+      "sentenceAudio": {
+        "text": "We are sorry for not answering your letter sooner.",
+        "audio": {
+          "url": "assets/oral-e6509599-cb7c84af3a38138296a7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb2bb39a21d06184b21d7bb42a2775790187ace0c79649d2087519abf92ca907",
+          "bytes": 9097
+        }
+      }
+    },
+    {
+      "sentence": "Thank you for your patience.",
+      "translation": "感谢您的耐心等待。",
+      "chunks": [
+        "Thank you",
+        "for your patience."
+      ],
+      "hints": [
+        "谢谢您",
+        "的耐心等待。"
+      ],
+      "cid": "ae0bbdb5",
+      "sentenceAudio": {
+        "text": "Thank you for your patience.",
+        "audio": {
+          "url": "assets/oral-ae0bbdb5-b807d1cb73d936af4171.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6862497ca2ae6f27c2badc06a31d1d7c6b08674e7123ca8b516e44d91c4a79a1",
+          "bytes": 5238
+        }
+      }
+    }
+  ]
+}

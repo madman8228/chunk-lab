@@ -1,0 +1,5204 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-1-2",
+    "name": "口语3000句 · 在家中 · 从回家到就寝",
+    "short": "从回家到就寝",
+    "desc": "从回家到就寝",
+    "chapter": 1,
+    "section": "1.1",
+    "sectionTitle": "在家中",
+    "topic": "从回家到就寝",
+    "baseCount": 0,
+    "totalCount": 125,
+    "items": [
+      {
+        "sentence": "I'm home.",
+        "translation": "我回来了。",
+        "chunks": [
+          "I'm",
+          "home."
+        ],
+        "hints": [
+          "我",
+          "回来了。"
+        ],
+        "cid": "a9fb3927",
+        "sentenceAudio": {
+          "text": "I'm home.",
+          "audio": {
+            "url": "assets/oral-a9fb3927-ea28267e6fbc495643cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c51da6583887f33921493aacd44358cffc3246e28752ae8fed9dbc7eff72a4b5",
+            "bytes": 3672
+          }
+        }
+      },
+      {
+        "sentence": "Welcome home!",
+        "translation": "欢迎回家！",
+        "chunks": [
+          "Welcome",
+          "home!"
+        ],
+        "hints": [
+          "欢迎",
+          "回家！"
+        ],
+        "cid": "317d6281",
+        "sentenceAudio": {
+          "text": "Welcome home!",
+          "audio": {
+            "url": "assets/oral-317d6281-497487cb57cbace48e3c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2ab00f42474cf002367bb15ea3c3b89b8631a247286a91607bca9a3db0a7163e",
+            "bytes": 4253
+          }
+        }
+      },
+      {
+        "sentence": "Did you have a good time?",
+        "translation": "玩得愉快吗？",
+        "chunks": [
+          "Did you have",
+          "a good time?"
+        ],
+        "hints": [
+          "你玩得",
+          "愉快吗？"
+        ],
+        "cid": "4d2b6285",
+        "sentenceAudio": {
+          "text": "Did you have a good time?",
+          "audio": {
+            "url": "assets/oral-4d2b6285-b7419682c46f9e13eaf9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4ca2a27e9c48d164600358ecc6d08c5a8410f1a1894978d3c5b6f666b8e7b22a",
+            "bytes": 4875
+          }
+        }
+      },
+      {
+        "sentence": "How did it go today?",
+        "translation": "今天过得怎么样？",
+        "chunks": [
+          "How did it go",
+          "today?"
+        ],
+        "hints": [
+          "过得怎么样",
+          "今天？"
+        ],
+        "cid": "fdeaebc9",
+        "sentenceAudio": {
+          "text": "How did it go today?",
+          "audio": {
+            "url": "assets/oral-fdeaebc9-3ea909616515c93cc58a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5010125031e67b44418ac0cf877d5494b170c75d106e40cd65007f67668dcdb3",
+            "bytes": 4860
+          }
+        }
+      },
+      {
+        "sentence": "Can I go out to play?",
+        "translation": "我可以出去玩儿会儿吗?",
+        "chunks": [
+          "Can I go out",
+          "to play?"
+        ],
+        "hints": [
+          "我可以出去",
+          "玩儿会儿吗？"
+        ],
+        "cid": "8c3c197a",
+        "sentenceAudio": {
+          "text": "Can I go out to play?",
+          "audio": {
+            "url": "assets/oral-8c3c197a-8794970095575ed86ec9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7e73b79ea26276d5b3e2e20761eee0ee82f6bef43b14c1361c875af837420c8d",
+            "bytes": 4745
+          }
+        }
+      },
+      {
+        "sentence": "I'm hungry.",
+        "translation": "我饿了。",
+        "chunks": [
+          "I'm",
+          "hungry."
+        ],
+        "hints": [
+          "我",
+          "饿了。"
+        ],
+        "cid": "b889eaa9",
+        "sentenceAudio": {
+          "text": "I'm hungry.",
+          "audio": {
+            "url": "assets/oral-b889eaa9-950756e2d7dfbf5d5dbd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "81f08cb8122d8c0ac9aa063339443cb2d5228dcb1f4529591907b03381f13fc6",
+            "bytes": 3898
+          }
+        }
+      },
+      {
+        "sentence": "Where are the snacks?",
+        "translation": "点心在哪儿?",
+        "chunks": [
+          "Where are",
+          "the snacks?"
+        ],
+        "hints": [
+          "在哪儿？",
+          "点心"
+        ],
+        "cid": "942e60dd",
+        "sentenceAudio": {
+          "text": "Where are the snacks?",
+          "audio": {
+            "url": "assets/oral-942e60dd-56ecf6de7eeb82c5e59b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c31c9b4aefcab1471532547666a92fe4ce9b020792d687e420181603e491d93",
+            "bytes": 4409
+          }
+        }
+      },
+      {
+        "sentence": "I'm going to cram school now.",
+        "translation": "我现在要去补习学校。",
+        "chunks": [
+          "I'm going to cram school",
+          "now."
+        ],
+        "hints": [
+          "我要去补习学校",
+          "现在。"
+        ],
+        "cid": "ed4acbb8",
+        "sentenceAudio": {
+          "text": "I'm going to cram school now.",
+          "audio": {
+            "url": "assets/oral-ed4acbb8-b11906f7cec4c34274c5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9a085b921eba20e24855175798ae30107cc0a5f63daedfcd0c053fda3e9e0627",
+            "bytes": 5984
+          }
+        }
+      },
+      {
+        "sentence": "May I have my allowance?",
+        "translation": "能给我点儿零花钱吗?",
+        "chunks": [
+          "May I have",
+          "my allowance?"
+        ],
+        "hints": [
+          "能给我点儿",
+          "零花钱吗？"
+        ],
+        "cid": "64db5bfc",
+        "sentenceAudio": {
+          "text": "May I have my allowance?",
+          "audio": {
+            "url": "assets/oral-64db5bfc-f1a2519fede152bb0da0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "076876b93369291288f7126b3be90157306bbbcf309ef0da21b419bf80f54273",
+            "bytes": 5058
+          }
+        }
+      },
+      {
+        "sentence": "I'm tired.",
+        "translation": "真累啊!",
+        "chunks": [
+          "I'm",
+          "tired."
+        ],
+        "hints": [
+          "真",
+          "累啊！"
+        ],
+        "cid": "4630dfdc",
+        "sentenceAudio": {
+          "text": "I'm tired.",
+          "audio": {
+            "url": "assets/oral-4630dfdc-a8f52fad0f8d523cc2a7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "78e99808a89093b5b730c3085106296e60086fd271349f2ca68ccf160d4609d0",
+            "bytes": 3848
+          }
+        }
+      },
+      {
+        "sentence": "What would you like for dinner?",
+        "translation": "晚饭你想吃什么?",
+        "chunks": [
+          "What would you like",
+          "for dinner?"
+        ],
+        "hints": [
+          "你想吃什么？",
+          "晚饭"
+        ],
+        "cid": "d642e7de",
+        "sentenceAudio": {
+          "text": "What would you like for dinner?",
+          "audio": {
+            "url": "assets/oral-d642e7de-77a280a16f383115ad56.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5f6bd4f062f7411ba1e3e1db01f422d2a0b1b9c9d8af061f5c578e3cdf708aab",
+            "bytes": 5018
+          }
+        }
+      },
+      {
+        "sentence": "Would you help me set the table?",
+        "translation": "你能帮我准备餐具吗?",
+        "chunks": [
+          "Would you help me",
+          "set the table?"
+        ],
+        "hints": [
+          "你能帮我",
+          "准备餐具吗？"
+        ],
+        "cid": "ff4ff47a",
+        "sentenceAudio": {
+          "text": "Would you help me set the table?",
+          "audio": {
+            "url": "assets/oral-ff4ff47a-c177728f7e9bcf6d5163.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "90c8b2eb32171651a7c8ba8c9a6926adf089a59314f4b89213472f8139432b85",
+            "bytes": 5533
+          }
+        }
+      },
+      {
+        "sentence": "What should I make for dinner?",
+        "translation": "晚饭做什么好呢?",
+        "chunks": [
+          "What should I make",
+          "for dinner?"
+        ],
+        "hints": [
+          "我该做什么？",
+          "晚饭"
+        ],
+        "cid": "7edf2b33",
+        "sentenceAudio": {
+          "text": "What should I make for dinner?",
+          "audio": {
+            "url": "assets/oral-7edf2b33-5ec686b6115f7d0da07f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e3a47c7593a4dcdfb465047b4d87f7b0244bea143f241ff591a56e99260627cc",
+            "bytes": 5453
+          }
+        }
+      },
+      {
+        "sentence": "It's good to be home.",
+        "translation": "到家真好。",
+        "chunks": [
+          "It's good",
+          "to be home."
+        ],
+        "hints": [
+          "真好",
+          "到家。"
+        ],
+        "cid": "22305d7e",
+        "sentenceAudio": {
+          "text": "It's good to be home.",
+          "audio": {
+            "url": "assets/oral-22305d7e-7afe54917e6b6080bdcf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "62561710963fe4a1fee8da161a6d851017b00319ce1fe2a51b88b2544122f314",
+            "bytes": 4774
+          }
+        }
+      },
+      {
+        "sentence": "Would you run to the store?",
+        "translation": "你能不能跑一趟商店？",
+        "chunks": [
+          "Would you",
+          "run to the store?"
+        ],
+        "hints": [
+          "你能不能",
+          "跑一趟商店？"
+        ],
+        "cid": "10e78ae8",
+        "sentenceAudio": {
+          "text": "Would you run to the store?",
+          "audio": {
+            "url": "assets/oral-10e78ae8-1d153aca5a32da7b9d25.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13cf97bcebc9f5a376edb8eb5d304b8141e70c22959d6e29493d18b5fa113f92",
+            "bytes": 5078
+          }
+        }
+      },
+      {
+        "sentence": "The bath is ready.",
+        "translation": "洗澡水烧好了。",
+        "chunks": [
+          "The bath",
+          "is ready."
+        ],
+        "hints": [
+          "洗澡水",
+          "烧好了。"
+        ],
+        "cid": "e9798442",
+        "sentenceAudio": {
+          "text": "The bath is ready.",
+          "audio": {
+            "url": "assets/oral-e9798442-0b19d2e26a70976cf832.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "853321b0f6aa66e6e80c9fcade37958f1835b3a59cfcf71eb44c1bd6175b377f",
+            "bytes": 4529
+          }
+        }
+      },
+      {
+        "sentence": "I'm taking a shower.",
+        "translation": "我要冲个澡。",
+        "chunks": [
+          "I'm taking",
+          "a shower."
+        ],
+        "hints": [
+          "我要",
+          "冲个澡。"
+        ],
+        "cid": "1530bc8b",
+        "sentenceAudio": {
+          "text": "I'm taking a shower.",
+          "audio": {
+            "url": "assets/oral-1530bc8b-fe139dd92f0d2b3a00c6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ea44b1f046c53e4c5949bb3874e0f4ede68183ec935469aca60af1d6f166d0dd",
+            "bytes": 4752
+          }
+        }
+      },
+      {
+        "sentence": "Is dinner ready?",
+        "translation": "晚饭好了吗?",
+        "chunks": [
+          "Is dinner",
+          "ready?"
+        ],
+        "hints": [
+          "晚饭",
+          "好了吗？"
+        ],
+        "cid": "4ddd2ecd",
+        "sentenceAudio": {
+          "text": "Is dinner ready?",
+          "audio": {
+            "url": "assets/oral-4ddd2ecd-d747b89cd60467d9b274.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "59135de52430b7bb7035feb327222d0d81dbfd1846734dfde9a632d8e76e746b",
+            "bytes": 4173
+          }
+        }
+      },
+      {
+        "sentence": "Mom, what's for dinner tonight?",
+        "translation": "妈妈，今天晚饭吃什么?",
+        "chunks": [
+          "Mom, what's",
+          "for dinner tonight?"
+        ],
+        "hints": [
+          "妈妈，吃什么",
+          "今天晚饭？"
+        ],
+        "cid": "16b2a249",
+        "sentenceAudio": {
+          "text": "Mom, what's for dinner tonight?",
+          "audio": {
+            "url": "assets/oral-16b2a249-8a37913d5c0ca25bce07.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cf3a2edbdd7dd6c6711d31e0baa07fc496315a9a7465221acb449e7931cbdc1d",
+            "bytes": 6134
+          }
+        }
+      },
+      {
+        "sentence": "What's for dinner?",
+        "translation": "晚饭吃什么?",
+        "chunks": [
+          "What's",
+          "for dinner?"
+        ],
+        "hints": [
+          "吃什么",
+          "晚饭？"
+        ],
+        "cid": "0bdb90f7",
+        "sentenceAudio": {
+          "text": "What's for dinner?",
+          "audio": {
+            "url": "assets/oral-0bdb90f7-af9c65e74570691acc87.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "66b9f3b49c8eec92b1b55747c7988f352543073a94abc391263124a5c24a36f2",
+            "bytes": 4137
+          }
+        }
+      },
+      {
+        "sentence": "Today, we're having curry.",
+        "translation": "今天吃咖哩饭。",
+        "chunks": [
+          "Today, we're having",
+          "curry."
+        ],
+        "hints": [
+          "今天吃",
+          "咖哩饭。"
+        ],
+        "cid": "7c64be12",
+        "sentenceAudio": {
+          "text": "Today, we're having curry.",
+          "audio": {
+            "url": "assets/oral-7c64be12-8018be3dc097f3f39ae1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c780762b850588ec747f49ab015310fce8835b48cbc85d4a0452cbf36928318",
+            "bytes": 5694
+          }
+        }
+      },
+      {
+        "sentence": "How soon can you get it ready?",
+        "translation": "还要多久才能做好呀?",
+        "chunks": [
+          "How soon",
+          "can you get it ready?"
+        ],
+        "hints": [
+          "还要多久",
+          "你才能把它准备好？"
+        ],
+        "cid": "61038372",
+        "sentenceAudio": {
+          "text": "How soon can you get it ready?",
+          "audio": {
+            "url": "assets/oral-61038372-1d6458a8629e8101e5ec.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "95095a968fe1715f4886ff65cb73ee8cd507f089a4f0bc891a267e04be76cc2d",
+            "bytes": 5836
+          }
+        }
+      },
+      {
+        "sentence": "Let's eat.",
+        "translation": "咱们开吃吧。",
+        "chunks": [
+          "Let's",
+          "eat."
+        ],
+        "hints": [
+          "咱们",
+          "开吃吧。"
+        ],
+        "cid": "e83e2088",
+        "sentenceAudio": {
+          "text": "Let's eat.",
+          "audio": {
+            "url": "assets/oral-e83e2088-2772406a569cdc4f2c35.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13e41554b152b35ad47ed6a4428ca8f3897fca8bb0435d9f891c1285a132c198",
+            "bytes": 3704
+          }
+        }
+      },
+      {
+        "sentence": "Please go ahead.",
+        "translation": "请先吃吧。",
+        "chunks": [
+          "Please",
+          "go ahead."
+        ],
+        "hints": [
+          "请",
+          "先吃吧。"
+        ],
+        "cid": "f034e8d8",
+        "sentenceAudio": {
+          "text": "Please go ahead.",
+          "audio": {
+            "url": "assets/oral-f034e8d8-ab34cc81719566823561.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "579f20f0853cf18ad35220323f59e57088a276a068cede4aede03a38517cc793",
+            "bytes": 4177
+          }
+        }
+      },
+      {
+        "sentence": "This knife cuts well, doesn't it?",
+        "translation": "这刀挺好使的，是不是?",
+        "chunks": [
+          "This knife cuts well,",
+          "doesn't it?"
+        ],
+        "hints": [
+          "这刀挺好使的，",
+          "是不是？"
+        ],
+        "cid": "ccaadcfd",
+        "sentenceAudio": {
+          "text": "This knife cuts well, doesn't it?",
+          "audio": {
+            "url": "assets/oral-ccaadcfd-03795ee8dc5b74d6a30d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cbd7ddb96ca434b27981ae04f52c46dd272ade45aeb762e67837fd2ac9afd2fd",
+            "bytes": 6463
+          }
+        }
+      },
+      {
+        "sentence": "The water is boiling!",
+        "translation": "水开啦!",
+        "chunks": [
+          "The water",
+          "is boiling!"
+        ],
+        "hints": [
+          "水",
+          "开啦！"
+        ],
+        "cid": "30f3a772",
+        "sentenceAudio": {
+          "text": "The water is boiling!",
+          "audio": {
+            "url": "assets/oral-30f3a772-3fc1b282e3d5fa6cc176.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6711659a351ba046419faea65a409333c2bfd2be2e627372a4ea3e17b65b16ce",
+            "bytes": 4948
+          }
+        }
+      },
+      {
+        "sentence": "Come and get it!",
+        "translation": "开饭啦!",
+        "chunks": [
+          "Come and get it!"
+        ],
+        "hints": [
+          "过来吃饭啦！"
+        ],
+        "cid": "594b6c4c",
+        "sentenceAudio": {
+          "text": "Come and get it!",
+          "audio": {
+            "url": "assets/oral-594b6c4c-c7f97fb0f7d73f515b27.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "704a3c157a0a024d4c466ddb96050fb65b8af654cf96accaf748ac7e17e56e95",
+            "bytes": 3913
+          }
+        }
+      },
+      {
+        "sentence": "It's time to eat.",
+        "translation": "该吃饭啦!",
+        "chunks": [
+          "It's time",
+          "to eat."
+        ],
+        "hints": [
+          "该",
+          "吃饭啦！"
+        ],
+        "cid": "371fdef8",
+        "sentenceAudio": {
+          "text": "It's time to eat.",
+          "audio": {
+            "url": "assets/oral-371fdef8-5c2c8b67c2b18a9306a4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f52b95d212eae0cee6d35f71c1bc10d98c906036ce7ce016a3ac09b10b8aa29d",
+            "bytes": 4503
+          }
+        }
+      },
+      {
+        "sentence": "I'm coming.",
+        "translation": "这就来啦!",
+        "chunks": [
+          "I'm",
+          "coming."
+        ],
+        "hints": [
+          "这就",
+          "来啦！"
+        ],
+        "cid": "28dbdd8b",
+        "sentenceAudio": {
+          "text": "I'm coming.",
+          "audio": {
+            "url": "assets/oral-28dbdd8b-32dc0092dcab885b781b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fa129d7d1971c4f05c6fa3dd134f6bf392d8f5d14092014c5989fe923803c111",
+            "bytes": 3683
+          }
+        }
+      },
+      {
+        "sentence": "Did you wash your hands well?",
+        "translation": "手洗干净了吗?",
+        "chunks": [
+          "Did you wash",
+          "your hands well?"
+        ],
+        "hints": [
+          "你洗",
+          "手干净了吗？"
+        ],
+        "cid": "f4e7aaf0",
+        "sentenceAudio": {
+          "text": "Did you wash your hands well?",
+          "audio": {
+            "url": "assets/oral-f4e7aaf0-4c7db27da8c3d4805e06.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "824cf99c74682a97fbb74f78252a3d908f427c297cac92f3987b8ba26109c736",
+            "bytes": 5593
+          }
+        }
+      },
+      {
+        "sentence": "Don't spill it!",
+        "translation": "别弄洒了。",
+        "chunks": [
+          "Don't",
+          "spill it!"
+        ],
+        "hints": [
+          "别",
+          "弄洒了。"
+        ],
+        "cid": "54b3afe3",
+        "sentenceAudio": {
+          "text": "Don't spill it!",
+          "audio": {
+            "url": "assets/oral-54b3afe3-2d7dade4c167261da814.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e0ee221716c530e9e186cb21d73bde9498c2521b8e57a58906bc2f512a617c34",
+            "bytes": 3997
+          }
+        }
+      },
+      {
+        "sentence": "Eat all of your vegetables.",
+        "translation": "把碗里的菜吃光。",
+        "chunks": [
+          "Eat all of",
+          "your vegetables."
+        ],
+        "hints": [
+          "吃光",
+          "碗里的菜。"
+        ],
+        "cid": "fd38da20",
+        "sentenceAudio": {
+          "text": "Eat all of your vegetables.",
+          "audio": {
+            "url": "assets/oral-fd38da20-14cf9841161d871eb110.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb16ff67a0b3635aad297aaa6f34c74c0a56cd0aaf71f79a501684c9fd90cb05",
+            "bytes": 5844
+          }
+        }
+      },
+      {
+        "sentence": "Finish up your plate.",
+        "translation": "把碗里的饭吃干净。",
+        "chunks": [
+          "Finish up",
+          "your plate."
+        ],
+        "hints": [
+          "吃干净",
+          "碗里的饭。"
+        ],
+        "cid": "94e6b14c",
+        "sentenceAudio": {
+          "text": "Finish up your plate.",
+          "audio": {
+            "url": "assets/oral-94e6b14c-87b2c0ce540d3f764920.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2a217a8366a5c10abb07619aa3a74dfd892cf2d087c65ed28c8a5b631d1c07b4",
+            "bytes": 4514
+          }
+        }
+      },
+      {
+        "sentence": "I don't like asparagus.",
+        "translation": "我不喜欢吃芦笋。",
+        "chunks": [
+          "I don't like",
+          "asparagus."
+        ],
+        "hints": [
+          "我不喜欢",
+          "芦笋。"
+        ],
+        "cid": "8d9f12c8",
+        "sentenceAudio": {
+          "text": "I don't like asparagus.",
+          "audio": {
+            "url": "assets/oral-8d9f12c8-456c9c2bcc4fb68d5088.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7b050538040e6f57ea7e5f5980d010cf10def2bcc9ed6394a5653a9c6c30d847",
+            "bytes": 5041
+          }
+        }
+      },
+      {
+        "sentence": "It was very delicious. Thank you.",
+        "translation": "味道非常好，谢谢您的款待。",
+        "chunks": [
+          "It was very delicious.",
+          "Thank you."
+        ],
+        "hints": [
+          "味道非常好。",
+          "谢谢您的款待。"
+        ],
+        "cid": "92166e03",
+        "sentenceAudio": {
+          "text": "It was very delicious. Thank you.",
+          "audio": {
+            "url": "assets/oral-92166e03-5c3a9fdc2d15f1557c10.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9aa9dac6bcd5be65fb4f1759c12e2a40c2f2729357a07ec302d2947c2d2d355a",
+            "bytes": 7188
+          }
+        }
+      },
+      {
+        "sentence": "Would you clear the table?",
+        "translation": "能帮我收拾盘子吗?",
+        "chunks": [
+          "Would you clear",
+          "the table?"
+        ],
+        "hints": [
+          "能帮我",
+          "收拾盘子吗？"
+        ],
+        "cid": "a9919458",
+        "sentenceAudio": {
+          "text": "Would you clear the table?",
+          "audio": {
+            "url": "assets/oral-a9919458-8b80bf4a5a6f144fe8fe.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c47a9405eac57ebd94717c8a763bf5914c9787e78c3bfea292802b52bee2ce5b",
+            "bytes": 4836
+          }
+        }
+      },
+      {
+        "sentence": "Do the dishes!",
+        "cid": "70c23bb5",
+        "translation": "把盘子洗了。",
+        "chunks": [
+          "Do the dishes!"
+        ],
+        "hints": [
+          "把盘子洗了。"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/duː/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "做（某事）"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈdɪʃɪz/"
+            ],
+            "pos": "名词短语",
+            "meaning": "碗碟"
+          }
+        ],
+        "explanations": [
+          "`do the dishes` = 洗碗，是固定搭配。常见错误：\n• \"Do the dish\" → 用复数 dishes\n• 英式也常说 wash up，意思一样",
+          "相关：do the laundry（洗衣服）/ do the cooking（做饭）"
+        ],
+        "distractors": [
+          [
+            "Do the dish!",
+            "Make the dishes!",
+            "Wash a dishes!"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Do the dishes!",
+          "audio": {
+            "url": "assets/oral-70c23bb5-437e4106adbc2e6fa7dc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7fa33a9f147ca3c4b056e5424385e7a1101c1a95acfbeb19631f07d87d68e4f3",
+            "bytes": 4007
+          }
+        }
+      },
+      {
+        "sentence": "I'll dry the dishes.",
+        "translation": "我擦盘子。",
+        "chunks": [
+          "I'll",
+          "dry the dishes."
+        ],
+        "hints": [
+          "我",
+          "把盘子擦干。"
+        ],
+        "cid": "28709edd",
+        "sentenceAudio": {
+          "text": "I'll dry the dishes.",
+          "audio": {
+            "url": "assets/oral-28709edd-a96d203278d90234d426.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "079d4f77e0dffbcde527828a8ef2a3817276a6036d2cd59ce08b32729bfc2d1e",
+            "bytes": 4953
+          }
+        }
+      },
+      {
+        "sentence": "What are you doing?",
+        "translation": "你干什么呢?",
+        "chunks": [
+          "What are you",
+          "doing?"
+        ],
+        "hints": [
+          "你在",
+          "做什么？"
+        ],
+        "cid": "f21e1b5a",
+        "sentenceAudio": {
+          "text": "What are you doing?",
+          "audio": {
+            "url": "assets/oral-f21e1b5a-e7dce2ae1967ecbc464c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ec8275f731be02971571adc094bc020a57422082d652b3270eff9783bae56bed",
+            "bytes": 4108
+          }
+        }
+      },
+      {
+        "sentence": "I'm watching TV.",
+        "translation": "我看电视呢。",
+        "chunks": [
+          "I'm",
+          "watching TV."
+        ],
+        "hints": [
+          "我",
+          "在看电视。"
+        ],
+        "cid": "38b48495",
+        "sentenceAudio": {
+          "text": "I'm watching TV.",
+          "audio": {
+            "url": "assets/oral-38b48495-3e9c2ca6d62db5791b44.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "503c198bc30b96f9bf24bd00c702f045be41534ab31262c2c5cdc266a7d18739",
+            "bytes": 4984
+          }
+        }
+      },
+      {
+        "sentence": "Are there any good programs on TV?",
+        "translation": "有什么好看的节目吗?",
+        "chunks": [
+          "Are there any",
+          "good programs on TV?"
+        ],
+        "hints": [
+          "有没有",
+          "好看的电视节目？"
+        ],
+        "cid": "51f79667",
+        "sentenceAudio": {
+          "text": "Are there any good programs on TV?",
+          "audio": {
+            "url": "assets/oral-51f79667-0314918044f0d79f8c26.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ad9cd3b07da9cd1be538437cc88b5dfd6c76d2b23d42ea57dd87f743c60ff01e",
+            "bytes": 7185
+          }
+        }
+      },
+      {
+        "sentence": "Nomo is on TV.",
+        "translation": "野茂上电视了。",
+        "chunks": [
+          "Nomo is",
+          "on TV."
+        ],
+        "hints": [
+          "野茂",
+          "上电视了。"
+        ],
+        "cid": "91bf7697",
+        "sentenceAudio": {
+          "text": "Nomo is on TV.",
+          "audio": {
+            "url": "assets/oral-91bf7697-f9b72f9f15a43a823fe6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e2b2aa2ea3338e5b176e6fa943f953765d729fcb31891660d6e6a0988e8612de",
+            "bytes": 5317
+          }
+        }
+      },
+      {
+        "sentence": "What's on Channel 8?",
+        "translation": "8频道演什么呢?",
+        "chunks": [
+          "What's on",
+          "Channel 8?"
+        ],
+        "hints": [
+          "演什么",
+          "8频道？"
+        ],
+        "cid": "939c4aa6",
+        "sentenceAudio": {
+          "text": "What's on Channel 8?",
+          "audio": {
+            "url": "assets/oral-939c4aa6-fe9460c318f05879019d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "365fbc5cd6f44101824911f3079fed36f0f75f872740625b1160bb66f7b70e01",
+            "bytes": 4973
+          }
+        }
+      },
+      {
+        "sentence": "Would you change the channel?",
+        "translation": "能不能帮我换个台?",
+        "chunks": [
+          "Would you change",
+          "the channel?"
+        ],
+        "hints": [
+          "能不能帮我",
+          "换个台？"
+        ],
+        "cid": "c7037ea0",
+        "sentenceAudio": {
+          "text": "Would you change the channel?",
+          "audio": {
+            "url": "assets/oral-c7037ea0-c3018a3fdb8d66b23f0c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9711a199ed433c6ba3ca8c62534f244116ab9a864dd97d5ba47a7c041311ab9c",
+            "bytes": 5077
+          }
+        }
+      },
+      {
+        "sentence": "I want to watch more TV.",
+        "translation": "我还想看电视。",
+        "chunks": [
+          "I want",
+          "to watch more TV."
+        ],
+        "hints": [
+          "我想",
+          "再看会儿电视。"
+        ],
+        "cid": "7001e3c1",
+        "sentenceAudio": {
+          "text": "I want to watch more TV.",
+          "audio": {
+            "url": "assets/oral-7001e3c1-e1f8112623d229307c2c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13da8d366c314cef19b66253063df8e8051fa2951152ec6609fe46795daf012b",
+            "bytes": 6035
+          }
+        }
+      },
+      {
+        "sentence": "Let's spread out the futon.",
+        "translation": "铺床吧。",
+        "chunks": [
+          "Let's",
+          "spread out the futon."
+        ],
+        "hints": [
+          "我们",
+          "把被褥铺开。"
+        ],
+        "cid": "6e76dc28",
+        "sentenceAudio": {
+          "text": "Let's spread out the futon.",
+          "audio": {
+            "url": "assets/oral-6e76dc28-1748b9908a17154c4cd3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0bda5e7170e92b0487f40ab56b4b078d01b2c6f5bc73541900c2d1d882e71134",
+            "bytes": 5571
+          }
+        }
+      },
+      {
+        "sentence": "I'm sleepy.",
+        "translation": "我困了。",
+        "chunks": [
+          "I'm",
+          "sleepy."
+        ],
+        "hints": [
+          "我",
+          "困了。"
+        ],
+        "cid": "5fa9ab2c",
+        "sentenceAudio": {
+          "text": "I'm sleepy.",
+          "audio": {
+            "url": "assets/oral-5fa9ab2c-22ff2908a06edf231f7f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da48d109a50bc65d14194eb42e3f7bc3607b0790729fa0b92e8c5c0bd1bc1942",
+            "bytes": 3916
+          }
+        }
+      },
+      {
+        "sentence": "Did you do your homework?",
+        "translation": "作业做了吗?",
+        "chunks": [
+          "Did you do",
+          "your homework?"
+        ],
+        "hints": [
+          "做了吗",
+          "作业？"
+        ],
+        "cid": "eae4719e",
+        "sentenceAudio": {
+          "text": "Did you do your homework?",
+          "audio": {
+            "url": "assets/oral-eae4719e-7a495d8ff0cc49007473.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e4021037ee3546245cc0cf9f67b6a27acdda4831df7e6f644250d9343fd9aad8",
+            "bytes": 4661
+          }
+        }
+      },
+      {
+        "sentence": "Study hard.",
+        "translation": "好好学习。",
+        "chunks": [
+          "Study",
+          "hard."
+        ],
+        "hints": [
+          "学习",
+          "努力地。"
+        ],
+        "cid": "5df24c37",
+        "sentenceAudio": {
+          "text": "Study hard.",
+          "audio": {
+            "url": "assets/oral-5df24c37-04cac2ab1eb09adf889d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2b5b821f0c57becc6b2b0514fcf6fc71546b8bfb9dce195af33753159e553b85",
+            "bytes": 3856
+          }
+        }
+      },
+      {
+        "sentence": "Hurry up and go to sleep.",
+        "translation": "快点睡觉。",
+        "chunks": [
+          "Hurry up",
+          "and go to sleep."
+        ],
+        "hints": [
+          "快点",
+          "睡觉。"
+        ],
+        "cid": "55711453",
+        "sentenceAudio": {
+          "text": "Hurry up and go to sleep.",
+          "audio": {
+            "url": "assets/oral-55711453-c0ad0a73b50790e0ac44.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c3e7be94922aba06e6827485a8f68cc0c4b05d6c84b9ddd4b388465d12877f23",
+            "bytes": 5495
+          }
+        }
+      },
+      {
+        "sentence": "Enough with your video games.",
+        "translation": "游戏玩够了吧。",
+        "chunks": [
+          "Enough with",
+          "your video games."
+        ],
+        "hints": [
+          "别再",
+          "玩游戏了。"
+        ],
+        "cid": "0f5e7d28",
+        "sentenceAudio": {
+          "text": "Enough with your video games.",
+          "audio": {
+            "url": "assets/oral-0f5e7d28-86cbf302029f9736da7f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "07326dc22cba682a8968ae169882e2771c0fab0c17db1dcc87833a46f3b94ac9",
+            "bytes": 5675
+          }
+        }
+      },
+      {
+        "sentence": "Make sure you brush your teeth.",
+        "translation": "一定要刷牙噢。",
+        "chunks": [
+          "Make sure you",
+          "brush your teeth."
+        ],
+        "hints": [
+          "一定要",
+          "刷牙噢。"
+        ],
+        "cid": "f13893fa",
+        "sentenceAudio": {
+          "text": "Make sure you brush your teeth.",
+          "audio": {
+            "url": "assets/oral-f13893fa-56b2c326ebbdae03c08c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2d969f08e0b3f4cbbe8d0d07e42783a6918960d1dffa09b4d428f5b51a0b4087",
+            "bytes": 5424
+          }
+        }
+      },
+      {
+        "sentence": "Are you ready for tomorrow?",
+        "translation": "明天的东西都准备好了吗?",
+        "chunks": [
+          "Are you ready",
+          "for tomorrow?"
+        ],
+        "hints": [
+          "准备好了吗",
+          "明天要用的东西？"
+        ],
+        "cid": "7fdae9f2",
+        "sentenceAudio": {
+          "text": "Are you ready for tomorrow?",
+          "audio": {
+            "url": "assets/oral-7fdae9f2-d6df826085d3cd3d43fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c2714d77f2f7ef99066296a3a6ef34d7bac02aabbd5ab6acf94bf79d0fb64de8",
+            "bytes": 5293
+          }
+        }
+      },
+      {
+        "sentence": "I'm going to take a bath.",
+        "translation": "我去洗个澡。",
+        "chunks": [
+          "I'm going to",
+          "take a bath."
+        ],
+        "hints": [
+          "我去",
+          "洗个澡。"
+        ],
+        "cid": "3326421c",
+        "sentenceAudio": {
+          "text": "I'm going to take a bath.",
+          "audio": {
+            "url": "assets/oral-3326421c-5fbd501d9d71a45b08e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9e9caeaac94fcab8c40d572e0adee0d183cdb6b1af506fa27620b7f23af52c7b",
+            "bytes": 5558
+          }
+        }
+      },
+      {
+        "sentence": "Time to go to sleep.",
+        "translation": "该睡觉了。",
+        "chunks": [
+          "Time to go",
+          "to sleep."
+        ],
+        "hints": [
+          "该",
+          "睡觉了。"
+        ],
+        "cid": "505d984d",
+        "sentenceAudio": {
+          "text": "Time to go to sleep.",
+          "audio": {
+            "url": "assets/oral-505d984d-b6ff86e1b21f1af1ee88.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c756a7d00544c96c82dc15bb012729c2406359db5ec6022fba82f35ea523dbc",
+            "bytes": 4717
+          }
+        }
+      },
+      {
+        "sentence": "You left the TV on.",
+        "translation": "电视还开着呢。",
+        "chunks": [
+          "You left",
+          "the TV on."
+        ],
+        "hints": [
+          "你让",
+          "电视一直开着。"
+        ],
+        "cid": "d4aeb80d",
+        "sentenceAudio": {
+          "text": "You left the TV on.",
+          "audio": {
+            "url": "assets/oral-d4aeb80d-197dcff986b764538479.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e29df7fec755f21c951d1744198776c4e66e9a85a1825d6b9b65ae74026e54d6",
+            "bytes": 5038
+          }
+        }
+      },
+      {
+        "sentence": "Don't leave your stuff here.",
+        "translation": "别把你的东西都摊在这儿。",
+        "chunks": [
+          "Don't leave your stuff",
+          "here."
+        ],
+        "hints": [
+          "别把你的东西留在",
+          "这里"
+        ],
+        "cid": "8e910883",
+        "sentenceAudio": {
+          "text": "Don't leave your stuff here.",
+          "audio": {
+            "url": "assets/oral-8e910883-222d93338c1ad5fa923c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "de711c14af1c83296fba0e8c337279f8cf993250cff98f8f696cd11b2c48f8ac",
+            "bytes": 4954
+          }
+        }
+      },
+      {
+        "sentence": "I set the alarm clock for 8:00.",
+        "translation": "把闹钟定在8点了。",
+        "chunks": [
+          "I set the alarm clock",
+          "for 8:00."
+        ],
+        "hints": [
+          "把闹钟",
+          "定在8点了。"
+        ],
+        "cid": "8ddcbec3",
+        "sentenceAudio": {
+          "text": "I set the alarm clock for 8:00.",
+          "audio": {
+            "url": "assets/oral-8ddcbec3-faa556e7d855d9a8b676.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "143cdf102b800a7a3426a4fddf1ee60109a1160201855616238783aa149c95e2",
+            "bytes": 9339
+          }
+        }
+      },
+      {
+        "sentence": "Wake me up at seven tomorrow.",
+        "translation": "明天7点叫醒我。",
+        "chunks": [
+          "Wake me up",
+          "at seven tomorrow."
+        ],
+        "hints": [
+          "叫醒我",
+          "明天7点。"
+        ],
+        "cid": "5c4f0d3d",
+        "sentenceAudio": {
+          "text": "Wake me up at seven tomorrow.",
+          "audio": {
+            "url": "assets/oral-5c4f0d3d-66ec8e1b84f15ac2d80e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8c52065e52a26474f142105e7d8218b33c85245cbbcdc247f8c92b4aeddcb411",
+            "bytes": 6298
+          }
+        }
+      },
+      {
+        "sentence": "Good night.",
+        "translation": "晚安。",
+        "chunks": [
+          "Good night."
+        ],
+        "hints": [
+          "晚安。"
+        ],
+        "cid": "b4bc6200",
+        "sentenceAudio": {
+          "text": "Good night.",
+          "audio": {
+            "url": "assets/oral-b4bc6200-e2361bbc919defc77a65.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ea4db73b8a4781499915f256a1fc2a24bc056aa10ace363ddb69c50abb7b600a",
+            "bytes": 3676
+          }
+        }
+      },
+      {
+        "sentence": "Sweet dreams.",
+        "translation": "做个好梦。",
+        "chunks": [
+          "Sweet dreams."
+        ],
+        "hints": [
+          "做个好梦。"
+        ],
+        "cid": "cb1fdbb1",
+        "sentenceAudio": {
+          "text": "Sweet dreams.",
+          "audio": {
+            "url": "assets/oral-cb1fdbb1-2cc21be6486b44114d98.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4e73de979d252d54a12fd3d6126b22c168ea6adc5188b1aa155e3dbaa8fc75e0",
+            "bytes": 4279
+          }
+        }
+      },
+      {
+        "sentence": "I'll take out the trash after dinner.",
+        "cid": "3d052989",
+        "translation": "晚饭后我会把垃圾拿出去。",
+        "chunks": [
+          "I'll take out",
+          "the trash",
+          "after dinner."
+        ],
+        "hints": [
+          "我会拿出",
+          "垃圾",
+          "晚饭后"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/",
+              "/teɪk/",
+              "/aʊt/"
+            ],
+            "pos": "一般将来时",
+            "meaning": "我会拿出去"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/træʃ/"
+            ],
+            "pos": "名词(不可数)",
+            "meaning": "垃圾"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈæftər/",
+              "/ˈdɪnər/"
+            ],
+            "pos": "介词短语",
+            "meaning": "晚饭后"
+          }
+        ],
+        "explanations": [
+          "家务用语。`take out the trash` = 倒垃圾（英式 take out the rubbish）。常见错误：\n• \"take the trash **off**\" → 搭配 take out\n• \"throw the trash\" → 扔进垃圾桶是 throw away；拿到屋外是 take out",
+          "`trash` 不可数，不加 s。"
+        ],
+        "distractors": [
+          [
+            "I take out",
+            "I'll take off",
+            "I'll taking out"
+          ],
+          [
+            "the trashes",
+            "a trash",
+            "trash"
+          ],
+          [
+            "after the dinner.",
+            "before dinner.",
+            "after dinner now."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll take out the trash after dinner.",
+          "audio": {
+            "url": "assets/oral-3d052989-24412827a44acf2f6fed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2428c77f17a2c16d2dcacf1b2a7581e3b4e1cfa3d1ea0a2dbba1f493286becc8",
+            "bytes": 6617
+          }
+        }
+      },
+      {
+        "sentence": "The laundry is almost dry now.",
+        "cid": "1ea989e8",
+        "translation": "洗的衣服现在差不多干了。",
+        "chunks": [
+          "The laundry",
+          "is almost dry",
+          "now."
+        ],
+        "hints": [
+          "洗好的衣物",
+          "差不多干了",
+          "现在"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ðə/",
+              "/ˈlɔːndri/"
+            ],
+            "pos": "名词(不可数)",
+            "meaning": "洗好的衣物"
+          },
+          {
+            "role": "系表",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɪz/",
+              "/ˈɔːlmoʊst/",
+              "/draɪ/"
+            ],
+            "pos": "be + 形容词",
+            "meaning": "差不多干"
+          },
+          {
+            "role": "时间副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/naʊ/"
+            ],
+            "pos": "副词",
+            "meaning": "现在"
+          }
+        ],
+        "explanations": [
+          "家务用语。`laundry` = 待洗/洗好的衣物，不可数。常见错误：\n• \"the laundries\" → 不可数\n• \"wash laundry\" → 常说 do the laundry",
+          "`almost` = 差不多/几乎。"
+        ],
+        "distractors": [
+          [
+            "Laundry",
+            "A laundry",
+            "The laundries"
+          ],
+          [
+            "is dry almost",
+            "almost is dry",
+            "is almost dried"
+          ],
+          [
+            "yet.",
+            "right now.",
+            "now already."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The laundry is almost dry now.",
+          "audio": {
+            "url": "assets/oral-1ea989e8-9f821b7dadfbc98b9909.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e368ef74ea4c974d0116ef5993e8f14c61e1e2c8fd06df406e5437ea06b71b5",
+            "bytes": 6776
+          }
+        }
+      },
+      {
+        "sentence": "You want some?",
+        "cid": "e520881b",
+        "translation": "你要来点吗？",
+        "chunks": [
+          "You want",
+          "some?"
+        ],
+        "hints": [
+          "你想要",
+          "一些"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː/",
+              "/wɑːnt/"
+            ],
+            "pos": "省略 Do 的口语问句",
+            "meaning": "你想要"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/sʌm/"
+            ],
+            "pos": "不定代词",
+            "meaning": "一些"
+          }
+        ],
+        "explanations": [
+          "口语里 `Do you want some?` 常省略句首的 Do，只靠语气表疑问。常见错误：\n• 用降调读成 \"You want some.\" → 变成陈述句（你要一些），问答语气完全变了\n• \"You want any?\" → 期待对方接受时用 some，any 多用于不确定的场合",
+          "`some` 在提议/邀请里带「来一点吧」的期待。同义：Want some? / Would you like some?"
+        ],
+        "distractors": [
+          [
+            "You wants",
+            "You wanting",
+            "You want to"
+          ],
+          [
+            "any?",
+            "anything?",
+            "some of?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You want some?",
+          "audio": {
+            "url": "assets/oral-e520881b-fb3e75621559d1603764.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be2d3d97d5294ce55d531a315f5bd0b7c474748c24e518dae480f2c4d4687561",
+            "bytes": 4001
+          }
+        }
+      },
+      {
+        "sentence": "I got it here.",
+        "cid": "61133093",
+        "translation": "我是在这儿拿到的。",
+        "chunks": [
+          "I got it",
+          "here."
+        ],
+        "hints": [
+          "我拿到了",
+          "在这儿"
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/ɡɑːt/",
+              "/ɪt/"
+            ],
+            "pos": "一般过去时",
+            "meaning": "我拿到了"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/hɪr/"
+            ],
+            "pos": "副词",
+            "meaning": "在这儿"
+          }
+        ],
+        "explanations": [
+          "`got` 是 get 的过去式，口语里常表「已经拿到/有了」。常见错误：\n• \"I get it here.\" → 一般现在时表习惯，说这一次要用 got\n• 升调读 \"I got it here?\" → 才成疑问句",
+          "`here` 放句末表地点。同义：I have some here. / I already got one."
+        ],
+        "distractors": [
+          [
+            "I get it",
+            "I got them",
+            "I am got it"
+          ],
+          [
+            "there.",
+            "in here.",
+            "here are."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I got it here.",
+          "audio": {
+            "url": "assets/oral-61133093-22d272b49c2d3c51ec48.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "781a7c27e63e3b484ba0fd4850a2f5726772d03a9b4cfe90a0048dc05c1219ad",
+            "bytes": 4057
+          }
+        }
+      },
+      {
+        "sentence": "Veggies are good.",
+        "cid": "7036eef2",
+        "translation": "蔬菜挺好的。",
+        "chunks": [
+          "Veggies",
+          "are good."
+        ],
+        "hints": [
+          "蔬菜",
+          "挺好的"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈvedʒiz/"
+            ],
+            "pos": "名词（veggie 复数）",
+            "meaning": "蔬菜"
+          },
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɑːr/",
+              "/ɡʊd/"
+            ],
+            "pos": "系动词+形容词",
+            "meaning": "很好"
+          }
+        ],
+        "explanations": [
+          "`veggies` 是 vegetables 的口语简称，日常对话更常用。常见错误：\n• \"Veggies is good\" → 复数主语要用 are\n• \"Veggie are good\" → 复数别忘加 s",
+          "`be good` 表「有好处/不错」。常见错误：\n• \"are well\" → well 指身体好，说食物好要用 good"
+        ],
+        "distractors": [
+          [
+            "Veggie",
+            "Veggies's",
+            "The veggies"
+          ],
+          [
+            "is good.",
+            "are well.",
+            "are good at."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Veggies are good.",
+          "audio": {
+            "url": "assets/oral-7036eef2-754020a9ee36db404fdd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "53c39778c6ea121b3a30a4458d78f78f4ff98e408238c0e1862800c361fd8655",
+            "bytes": 4585
+          }
+        }
+      },
+      {
+        "sentence": "They have nutrients.",
+        "cid": "2836375b",
+        "translation": "它们有营养。",
+        "chunks": [
+          "They have",
+          "nutrients."
+        ],
+        "hints": [
+          "它们含有",
+          "营养"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ðeɪ/",
+              "/hæv/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "它们含有"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈnuːtriənts/"
+            ],
+            "pos": "名词复数",
+            "meaning": "营养"
+          }
+        ],
+        "explanations": [
+          "`have` 在这里表「含有」。常见错误：\n• \"They has\" → 第三人称复数用 have\n• \"They are have\" → be 和 have 不能叠用",
+          "`nutrient` 是可数名词，泛指营养时用复数。常见错误：\n• \"They have nutrient\" → 泛指要复数才自然"
+        ],
+        "distractors": [
+          [
+            "They has",
+            "They having",
+            "Them have"
+          ],
+          [
+            "nutrient.",
+            "nutritions.",
+            "a nutrients."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "They have nutrients.",
+          "audio": {
+            "url": "assets/oral-2836375b-583d863411633ec050b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4737e74fcaf6637ac0dd541e832799f8f3a1fa82531835fabb29ea261ae9160a",
+            "bytes": 4773
+          }
+        }
+      },
+      {
+        "sentence": "What did you eat?",
+        "cid": "3fcc4d24",
+        "translation": "你吃了什么？",
+        "chunks": [
+          "What",
+          "did you eat?"
+        ],
+        "hints": [
+          "什么",
+          "你吃了？"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词",
+            "color": "#c87033",
+            "phonetic": [
+              "/wʌt/"
+            ],
+            "pos": "疑问代词",
+            "meaning": "什么"
+          },
+          {
+            "role": "疑问句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/dɪd/",
+              "/juː/",
+              "/iːt/"
+            ],
+            "pos": "did + 主语 + 动词原形",
+            "meaning": "你吃了"
+          }
+        ],
+        "explanations": [
+          "疑问句里 did 之后动词必须用原形，时态已经由 did 承担。常见错误：\n• \"What did you ate?\" → did 后不能用过去式\n• \"What you ate?\" → 缺助动词 did",
+          "`eat` 用原形与 did 搭配；对应的陈述句是 You ate ..."
+        ],
+        "distractors": [
+          [
+            "When",
+            "Where",
+            "Who"
+          ],
+          [
+            "did you ate?",
+            "did you eats?",
+            "do you ate?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What did you eat?",
+          "audio": {
+            "url": "assets/oral-3fcc4d24-43069db2e95be466c3b0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2644966ba59f65d37800adff6228f8744b8d1582dd7a41a76454f04901da0165",
+            "bytes": 3933
+          }
+        }
+      },
+      {
+        "sentence": "Leftover pizza.",
+        "cid": "1dcd6542",
+        "translation": "吃剩的披萨。",
+        "chunks": [
+          "Leftover",
+          "pizza."
+        ],
+        "hints": [
+          "剩下的",
+          "披萨"
+        ],
+        "grammar": [
+          {
+            "role": "定语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ˈleftoʊvər/"
+            ],
+            "pos": "形容词",
+            "meaning": "剩下的"
+          },
+          {
+            "role": "主语/表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈpiːtsə/"
+            ],
+            "pos": "名词",
+            "meaning": "披萨"
+          }
+        ],
+        "explanations": [
+          "`leftover` 写成一个词，作形容词表「吃剩的」。常见错误：\n• \"left over pizza\" → 写成两个词会被读成「留在……上面」\n• \"leftovers pizza\" → leftovers 是名词（剩菜），修饰名词要用单数形式 leftover",
+          "这是省略主语的答句（It's leftover pizza.）。同义：Pizza from last night."
+        ],
+        "distractors": [
+          [
+            "Left over",
+            "Leftovers",
+            "Left"
+          ],
+          [
+            "pizzas.",
+            "the pizza.",
+            "pizza pie."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Leftover pizza.",
+          "audio": {
+            "url": "assets/oral-1dcd6542-e49d1bbbada7b5ec0744.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "565cfcb44960b663373b5317d1baeb0de88bbe90e82e801a21f5aee509680c6f",
+            "bytes": 4870
+          }
+        }
+      },
+      {
+        "sentence": "It's homemade.",
+        "cid": "7849de8e",
+        "translation": "自己做的。",
+        "chunks": [
+          "It's",
+          "homemade."
+        ],
+        "hints": [
+          "它是",
+          "自家做的"
+        ],
+        "alts": [
+          [
+            "It is"
+          ],
+          null
+        ],
+        "grammar": [
+          {
+            "role": "主语+系动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/"
+            ],
+            "pos": "it + is 缩写",
+            "meaning": "它是"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˌhoʊmˈmeɪd/"
+            ],
+            "pos": "形容词",
+            "meaning": "自家做的"
+          }
+        ],
+        "explanations": [
+          "`It's` = It is，缩写必须带撇号。常见错误：\n• \"Its homemade.\" → Its 是「它的」，句首位置放不下\n• \"It homemade.\" → 缺 be 动词",
+          "`homemade` 写成一个词，表「家里做的」。常见错误：\n• \"home made\" → 作形容词时连写"
+        ],
+        "distractors": [
+          [
+            "It has",
+            "It was",
+            "It were"
+          ],
+          [
+            "home made.",
+            "made home.",
+            "homemade it."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's homemade.",
+          "audio": {
+            "url": "assets/oral-7849de8e-75ee31f85637e31d257d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8e06e182aaa4042339cc388ddd8b0e62bb41b999d9ae4b7e83ed90dd8a118209",
+            "bytes": 3985
+          }
+        }
+      },
+      {
+        "sentence": "Pretty good.",
+        "cid": "382f5358",
+        "translation": "挺好吃的。",
+        "chunks": [
+          "Pretty",
+          "good."
+        ],
+        "hints": [
+          "挺、相当",
+          "好"
+        ],
+        "grammar": [
+          {
+            "role": "程度状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈprɪti/"
+            ],
+            "pos": "副词（口语）",
+            "meaning": "挺、相当"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɡʊd/"
+            ],
+            "pos": "形容词",
+            "meaning": "好"
+          }
+        ],
+        "explanations": [
+          "口语里 `pretty` 作副词 = 挺、相当，比 very 轻。常见错误：\n• \"pretty well\" → well 形容状态，说东西好要用 good\n• \"prettily\" → 那是「漂亮地」，日常几乎不用",
+          "省略了主语（It's pretty good.）。同义：Not bad. / Pretty decent."
+        ],
+        "distractors": [
+          [
+            "Pretty much",
+            "Prettier",
+            "Pretty well"
+          ],
+          [
+            "better.",
+            "good at.",
+            "goodly."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Pretty good.",
+          "audio": {
+            "url": "assets/oral-382f5358-8edc5dfc8f17978ca5ea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fc3ad19bae1600c475a5409bad06f329273f62dbc4fe1b3dc6e68d36224f4936",
+            "bytes": 3683
+          }
+        }
+      },
+      {
+        "sentence": "Let's go eat.",
+        "cid": "17386a3e",
+        "translation": "我们去吃吧。",
+        "chunks": [
+          "Let's",
+          "go eat."
+        ],
+        "hints": [
+          "我们（一起）",
+          "去吃"
+        ],
+        "grammar": [
+          {
+            "role": "祈使提议",
+            "color": "#c87033",
+            "phonetic": [
+              "/lets/"
+            ],
+            "pos": "Let us 的缩写",
+            "meaning": "我们（一起）"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡoʊ/",
+              "/iːt/"
+            ],
+            "pos": "go + 动词原形",
+            "meaning": "去吃"
+          }
+        ],
+        "explanations": [
+          "`Let's` = Let us，表提议，后接动词原形。常见错误：\n• \"Let's to go\" → 不能加 to\n• \"Lets go\" → 少了撇号就变成「让（某人）」的第三人称单数",
+          "口语里 `go + 动词原形` 表示「去做某事」，中间省略 and。常见错误：\n• \"go to eat\" → 也可以，但 go eat 更口语\n• \"go eating\" → 错了，-ing 不用于这个结构"
+        ],
+        "distractors": [
+          [
+            "Let us",
+            "Let",
+            "Let's to"
+          ],
+          [
+            "go to eat.",
+            "going eat.",
+            "go eating."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let's go eat.",
+          "audio": {
+            "url": "assets/oral-17386a3e-d57b021cb2bfded6d02f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e0a3dbb4ac1a74875b2024e16728b654977a19d1509a69e6007792dc300c076f",
+            "bytes": 4248
+          }
+        }
+      },
+      {
+        "sentence": "Kay, burgers?",
+        "cid": "d917bc1b",
+        "translation": "好，汉堡吗？",
+        "chunks": [
+          "Kay,",
+          "burgers?"
+        ],
+        "hints": [
+          "好（口语）",
+          "汉堡"
+        ],
+        "grammar": [
+          {
+            "role": "应答词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/keɪ/"
+            ],
+            "pos": "OK 的口语变体",
+            "meaning": "好、行"
+          },
+          {
+            "role": "名词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈbɜːrɡərz/"
+            ],
+            "pos": "名词复数",
+            "meaning": "汉堡"
+          }
+        ],
+        "explanations": [
+          "`Kay` 是 OK 的口语简读，常出现在轻松的对话里。常见错误：\n• 正式场合要用 OK / All right\n• 升调读 Kay? 是「行吗？」",
+          "`burgers?` 是省略句（Do you want burgers? / How about burgers?）。常见错误：\n• 泛指一类食物要用复数 burgers"
+        ],
+        "distractors": [
+          [
+            "OK,",
+            "Hey,",
+            "K,"
+          ],
+          [
+            "burger?",
+            "a burgers?",
+            "a burger."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Kay, burgers?",
+          "audio": {
+            "url": "assets/oral-d917bc1b-05a0f4fbbb8c6f2f3677.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f209a2a478ea303fa789f89557c363d338a3cc7db5b5200d5c961b2be0db1297",
+            "bytes": 4039
+          }
+        }
+      },
+      {
+        "sentence": "It's okay with Mom.",
+        "cid": "db783c1d",
+        "translation": "妈妈同意了。",
+        "chunks": [
+          "It's okay",
+          "with Mom."
+        ],
+        "hints": [
+          "（这件事）可以",
+          "妈妈同意"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/ˌoʊˈkeɪ/"
+            ],
+            "pos": "it + is + 形容词",
+            "meaning": "可以"
+          },
+          {
+            "role": "对象状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wɪð/",
+              "/mɑːm/"
+            ],
+            "pos": "固定搭配",
+            "meaning": "妈妈同意"
+          }
+        ],
+        "explanations": [
+          "`It's okay with sb` 表「某人没意见、某人同意」。常见错误：\n• \"It's okay for Mom\" → for 表「对……有好处」，表「同意」要用 with\n• 家庭称呼 Mom 首字母大写，作专有名词",
+          "同义：Mom's fine with it. / Mom said it's fine."
+        ],
+        "distractors": [
+          [
+            "It's ok to",
+            "It's okay for",
+            "It's okay to"
+          ],
+          [
+            "for Mom.",
+            "with my Mom.",
+            "with mom's."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's okay with Mom.",
+          "audio": {
+            "url": "assets/oral-db783c1d-47dbe320e6c2128be0ea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6586a73d3e5091d805c25028bd56f056e45ecafe681184377edc6354c0c51dbf",
+            "bytes": 4950
+          }
+        }
+      },
+      {
+        "sentence": "It's dark in here.",
+        "cid": "b9aa8c19",
+        "translation": "这里很黑。",
+        "chunks": [
+          "It's dark",
+          "in here."
+        ],
+        "hints": [
+          "很黑",
+          "在这里面"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/dɑːrk/"
+            ],
+            "pos": "it + is + 形容词",
+            "meaning": "很黑"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪn/",
+              "/hɪr/"
+            ],
+            "pos": "介词短语",
+            "meaning": "在这里面"
+          }
+        ],
+        "explanations": [
+          "`It's dark` 用 it 指环境（天气/光线/时间）。常见错误：\n• \"Here is dark\" → 英语习惯用 it 作形式主语\n• \"It's darkness\" → 形容词 dark 才对，darkness 是名词",
+          "`in here` 强调「在里面」，与泛指的 here 有区别。常见错误：\n• \"in there\" → 那是「在那里面」，空间不同"
+        ],
+        "distractors": [
+          [
+            "It's darker",
+            "It's darkly",
+            "It's dark in"
+          ],
+          [
+            "in there.",
+            "here.",
+            "in the here."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's dark in here.",
+          "audio": {
+            "url": "assets/oral-b9aa8c19-9f000cfcd1cfb28ab817.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a407a25c5f350d4288172cd690ffcbe6a512f1a9d0930be004fc65761182f8d9",
+            "bytes": 4371
+          }
+        }
+      },
+      {
+        "sentence": "Your room's a mess.",
+        "cid": "7bf57efa",
+        "translation": "你房间很乱。",
+        "chunks": [
+          "Your room's",
+          "a mess."
+        ],
+        "hints": [
+          "你的房间是",
+          "一团乱"
+        ],
+        "grammar": [
+          {
+            "role": "主语+系动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/jʊr/",
+              "/ruːmz/"
+            ],
+            "pos": "your room + is 缩写",
+            "meaning": "你的房间是"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/mes/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一团乱"
+          }
+        ],
+        "explanations": [
+          "`Your room's` = Your room is，缩写带撇号。常见错误：\n• \"Your rooms\" → 少了撇号就成复数「你的房间们」\n• \"You room's\" → 所有格要用 your",
+          "`a mess` 是固定说法，表「一团糟」。常见错误：\n• \"a mess room\" → 语序错了，要说 This room is a mess."
+        ],
+        "distractors": [
+          [
+            "Your room is",
+            "You room's",
+            "Your rooms are"
+          ],
+          [
+            "mess.",
+            "in a mess.",
+            "a messes."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Your room's a mess.",
+          "audio": {
+            "url": "assets/oral-7bf57efa-d3e249044d3a3a39b0cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c8a15bf26989871831b7683b87d26ac2d6b250f5b3d850f5cf131ed3a96b55a",
+            "bytes": 4506
+          }
+        }
+      },
+      {
+        "sentence": "Mom, it's already clean.",
+        "cid": "e8165154",
+        "translation": "妈，已经很干净了。",
+        "chunks": [
+          "Mom,",
+          "it's already clean."
+        ],
+        "hints": [
+          "妈",
+          "已经很干净了"
+        ],
+        "grammar": [
+          {
+            "role": "称呼",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/mɑːm/"
+            ],
+            "pos": "呼语",
+            "meaning": "妈"
+          },
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/ɔːlˈredi/",
+              "/kliːn/"
+            ],
+            "pos": "it + is + 副词 + 形容词",
+            "meaning": "已经很干净"
+          }
+        ],
+        "explanations": [
+          "呼语放句首，后面用逗号隔开。常见错误：\n• \"Mom it's already clean\" → 少逗号，读起来像从句\n• 呼语后不要再加 you，英语不像中文说「妈你」",
+          "`already` 放 be 动词之后、实义动词之前。常见错误：\n• \"It's clean already\" → 口语可以，但书面更常放中间\n• \"already it's clean\" → 语序错"
+        ],
+        "distractors": [
+          [
+            "Mommy,",
+            "Ma,",
+            "Mama,"
+          ],
+          [
+            "it's ready clean.",
+            "it's already cleaned.",
+            "it's already clear."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Mom, it's already clean.",
+          "audio": {
+            "url": "assets/oral-e8165154-2851510c5bdea916641f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4fa45a1544d9dfbdd028e3b79eb34c6ae974221c2473afa7564af9449d9c5541",
+            "bytes": 5668
+          }
+        }
+      },
+      {
+        "sentence": "Stop nagging me.",
+        "cid": "3243ebfc",
+        "translation": "别唠叨我了。",
+        "chunks": [
+          "Stop",
+          "nagging me."
+        ],
+        "hints": [
+          "停止",
+          "唠叨我"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/stɑːp/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "停止"
+          },
+          {
+            "role": "动名词宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈnæɡɪŋ/",
+              "/miː/"
+            ],
+            "pos": "stop + doing",
+            "meaning": "唠叨我"
+          }
+        ],
+        "explanations": [
+          "`stop doing sth` 表「停止做某事」，固定接动名词。常见错误：\n• \"Stop to nag me\" → stop to do 是「停下来去做另一件事」，意思完全变了\n• \"Stop nag me\" → 少了 -ing",
+          "`nag` 指不停唠叨、抱怨。同义：Quit bugging me. / Cut it out."
+        ],
+        "distractors": [
+          [
+            "Stopping",
+            "Stops",
+            "Stopped"
+          ],
+          [
+            "nag me.",
+            "to nag me.",
+            "nagging at me."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Stop nagging me.",
+          "audio": {
+            "url": "assets/oral-3243ebfc-ecf029ea90b132f47aee.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32c30514c5ab5e352c6546b17393d6c4eac1c51954355f3b465be6e4c9dc7968",
+            "bytes": 4385
+          }
+        }
+      },
+      {
+        "sentence": "I'll do it soon.",
+        "cid": "54010f3c",
+        "translation": "我很快做。",
+        "chunks": [
+          "I'll",
+          "do it soon."
+        ],
+        "hints": [
+          "我会",
+          "很快把它做完。"
+        ],
+        "grammar": [
+          {
+            "role": "主语+助动词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪl/"
+            ],
+            "pos": "I will 缩写",
+            "meaning": "我会"
+          },
+          {
+            "role": "谓语+宾语+时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/duː/",
+              "/ɪt/",
+              "/suːn/"
+            ],
+            "pos": "动词短语",
+            "meaning": "很快把它做完"
+          }
+        ],
+        "explanations": [
+          "`I'll` = I will，表将来的承诺，后接动词原形。常见错误：\n• \"I'll doing\" → will 后接原形\n• \"I'll did\" → 不能接过去式",
+          "`soon` 表「不久之后」，多与将来时连用。常见错误：\n• \"soonly\" → 不存在这个副词\n• \"quick\" → 那是形容词，时间上要用 soon"
+        ],
+        "distractors": [
+          [
+            "I will",
+            "I may",
+            "I can"
+          ],
+          [
+            "do it soonly.",
+            "do it quick.",
+            "do them soon."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'll do it soon.",
+          "audio": {
+            "url": "assets/oral-54010f3c-e32826e45cdd52e868cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2481121bf1f1e32600842eab87f6c2a700154d1c07f6cbd8f4418891a1052543",
+            "bytes": 4237
+          }
+        }
+      },
+      {
+        "sentence": "I like those pants.",
+        "cid": "3a4b732a",
+        "translation": "我喜欢那条裤子。",
+        "chunks": [
+          "I like",
+          "those pants."
+        ],
+        "hints": [
+          "我喜欢",
+          "那条裤子"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/laɪk/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "我喜欢"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðoʊz/",
+              "/pænts/"
+            ],
+            "pos": "指示代词+名词",
+            "meaning": "那条裤子"
+          }
+        ],
+        "explanations": [
+          "`like` 表喜好时是静态动词，一般不用进行时。常见错误：\n• \"I'm liking those pants\" → 一般现在时就好\n• \"I likes\" → I 后面不加 s",
+          "`pants` 在英语里固定用复数，一条裤子也是 pants。常见错误：\n• \"this pants\" → 要用 these / those\n• \"a pant\" → 单数形式基本不用"
+        ],
+        "distractors": [
+          [
+            "I likes",
+            "I like to",
+            "I'm like"
+          ],
+          [
+            "those pant.",
+            "that pants.",
+            "those pans."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I like those pants.",
+          "audio": {
+            "url": "assets/oral-3a4b732a-b1146c1c61a60991384e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5ba0db2684fee033f698f7fc6606a87894a750cb35437eacb3aecb3d8ce8acbf",
+            "bytes": 4643
+          }
+        }
+      },
+      {
+        "sentence": "Try them on.",
+        "cid": "84f32999",
+        "translation": "穿上试试。",
+        "chunks": [
+          "Try",
+          "them on."
+        ],
+        "hints": [
+          "试",
+          "把它们（穿上）"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/traɪ/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "试"
+          },
+          {
+            "role": "宾语+副词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðem/",
+              "/ɑːn/"
+            ],
+            "pos": "代词 + 副词小品词",
+            "meaning": "把它们穿上"
+          }
+        ],
+        "explanations": [
+          "`try sth on` = 试穿。代词作宾语时必须放中间。常见错误：\n• \"Try on them\" → 代词只能用 try them on\n• \"Try them\" → 少了 on，意思变「试一下」不一定是试穿",
+          "名词可以放两边：try on the shoes / try the shoes on；代词只能放中间。"
+        ],
+        "distractors": [
+          [
+            "Trying",
+            "Tries",
+            "Try to"
+          ],
+          [
+            "on them.",
+            "them in.",
+            "they on."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Try them on.",
+          "audio": {
+            "url": "assets/oral-84f32999-430aca60ae96f6533161.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "21c2db0ec95bbe841c45e4cfae455e3d09453bbb030c5c07b64f3b5e17ecb68d",
+            "bytes": 3750
+          }
+        }
+      },
+      {
+        "sentence": "Do I look fat?",
+        "cid": "b6567a0a",
+        "translation": "我看起来胖吗？",
+        "chunks": [
+          "Do I",
+          "look fat?"
+        ],
+        "hints": [
+          "我（是不是）",
+          "看着胖"
+        ],
+        "grammar": [
+          {
+            "role": "助动词+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/duː/",
+              "/aɪ/"
+            ],
+            "pos": "一般现在时疑问",
+            "meaning": "我（是不是）"
+          },
+          {
+            "role": "主系表",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lʊk/",
+              "/fæt/"
+            ],
+            "pos": "系动词 look + 形容词",
+            "meaning": "看着胖"
+          }
+        ],
+        "explanations": [
+          "一般现在时疑问句用 do/does + 主语。常见错误：\n• \"Am I look fat?\" → look 是实义动词，不用 am\n• \"Do me look fat?\" → 主语用主格 I",
+          "`look + 形容词` 表「看起来……」。常见错误：\n• \"look fatly\" → 表语用形容词\n• \"look like fat\" → look like 后面要接名词"
+        ],
+        "distractors": [
+          [
+            "Am I",
+            "Does I",
+            "Do me"
+          ],
+          [
+            "looks fat?",
+            "look fatter?",
+            "looking fat?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Do I look fat?",
+          "audio": {
+            "url": "assets/oral-b6567a0a-296b79f72b1dce4065e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3b6bfe141fb658d8bfbeb3f8c32cb0b9aa4c2cc2d38690301dcd5216d77b993b",
+            "bytes": 3884
+          }
+        }
+      },
+      {
+        "sentence": "You look perfect.",
+        "cid": "13020328",
+        "translation": "你看起来很完美。",
+        "chunks": [
+          "You look",
+          "perfect."
+        ],
+        "hints": [
+          "你看起来",
+          "完美"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː/",
+              "/lʊk/"
+            ],
+            "pos": "系动词 look",
+            "meaning": "你看起来"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈpɜːrfɪkt/"
+            ],
+            "pos": "形容词",
+            "meaning": "完美"
+          }
+        ],
+        "explanations": [
+          "`perfect` 本身已含「最」的意思，不再用 more/most 修饰。常见错误：\n• \"more perfect\" → 语义重复\n• \"perfectly\" → 那是副词，表「完美地」",
+          "`look` 作系动词后接形容词，同义结构：You look great. / You look amazing."
+        ],
+        "distractors": [
+          [
+            "You looks",
+            "You looking",
+            "Your look"
+          ],
+          [
+            "perfectly.",
+            "perfection.",
+            "more perfect."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You look perfect.",
+          "audio": {
+            "url": "assets/oral-13020328-5ee79d5a3c46e4d9cdbc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8f789869844ea93528bbe57581fb9fe9cae1f4f19784a88fe3abe4d3e78238f1",
+            "bytes": 4240
+          }
+        }
+      },
+      {
+        "sentence": "I couldn't sleep.",
+        "cid": "81537529",
+        "translation": "我没睡着。",
+        "chunks": [
+          "I couldn't",
+          "sleep."
+        ],
+        "hints": [
+          "我没能",
+          "睡着"
+        ],
+        "grammar": [
+          {
+            "role": "主语+情态",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪ/",
+              "/ˈkʊdnt/"
+            ],
+            "pos": "could not 缩写",
+            "meaning": "我没能"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/sliːp/"
+            ],
+            "pos": "动词原形",
+            "meaning": "睡着"
+          }
+        ],
+        "explanations": [
+          "`couldn't` = could not，注意拼写是 couldn't，不是 could'nt。常见错误：\n• \"I could't sleep\" → 漏了 n\n• \"I couldn't to sleep\" → 情态动词后不加 to",
+          "`sleep` 在此表「入睡」。常见错误：\n• \"I couldn't sleeping\" → 情态动词后接原形\n同义：I couldn't fall asleep."
+        ],
+        "distractors": [
+          [
+            "I couldn't to",
+            "I can't",
+            "I didn't could"
+          ],
+          [
+            "sleeping.",
+            "slept.",
+            "sleepy."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I couldn't sleep.",
+          "audio": {
+            "url": "assets/oral-81537529-09392b6b27d5569505d8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da7b5dc28581835349f244f131b551d283773c76a5df6784785539f4e8cb9e96",
+            "bytes": 4181
+          }
+        }
+      },
+      {
+        "sentence": "I was up till one.",
+        "cid": "e72891e5",
+        "translation": "我熬到一点。",
+        "chunks": [
+          "I was up",
+          "till one."
+        ],
+        "hints": [
+          "我还没睡",
+          "一直到一点"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪ/",
+              "/wʌz/",
+              "/ʌp/"
+            ],
+            "pos": "be up 表醒着",
+            "meaning": "我还没睡"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tɪl/",
+              "/wʌn/"
+            ],
+            "pos": "介词短语",
+            "meaning": "一直到一点"
+          }
+        ],
+        "explanations": [
+          "`be up` 表「还没睡、醒着」。常见错误：\n• \"I was up to one\" → 加 to 后意思变「我能做……」，这里 till 表一直到\n• \"I up till one\" → 缺 was",
+          "`till` = until 的口语形式，接时间点。常见错误：\n• \"till to one\" → till 后面不加 to\n• one 表示「一点钟」，读 /wʌn/"
+        ],
+        "distractors": [
+          [
+            "I up",
+            "I was up to",
+            "I were up"
+          ],
+          [
+            "till on.",
+            "till ones.",
+            "till once."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I was up till one.",
+          "audio": {
+            "url": "assets/oral-e72891e5-6715ace6930751ece386.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fcb2385682643e73714a414ee4cd653887f293dad63340b9756963890b98af17",
+            "bytes": 4559
+          }
+        }
+      },
+      {
+        "sentence": "I went to bed early.",
+        "cid": "4231de9f",
+        "translation": "我睡得早。",
+        "chunks": [
+          "I went",
+          "to bed early."
+        ],
+        "hints": [
+          "我去了",
+          "早睡"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/went/"
+            ],
+            "pos": "go 的过去式",
+            "meaning": "我去了"
+          },
+          {
+            "role": "状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tə/",
+              "/bed/",
+              "/ˈɜːrli/"
+            ],
+            "pos": "go to bed + 副词",
+            "meaning": "上床睡觉（早）"
+          }
+        ],
+        "explanations": [
+          "`go` 的过去式是 went。常见错误：\n• \"I gone to bed\" → gone 要配 have\n• \"I was went\" → 两个过去形式不能叠用",
+          "`go to bed` 是固定搭配，指「上床睡觉」，不加冠词。常见错误：\n• \"go to the bed\" → 那是「走到那张床旁边」\n• \"early\" 是副词，修饰整个动作"
+        ],
+        "distractors": [
+          [
+            "I go",
+            "I gone",
+            "I was went"
+          ],
+          [
+            "to the bed early.",
+            "to bed earlily.",
+            "to bed late."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I went to bed early.",
+          "audio": {
+            "url": "assets/oral-4231de9f-1e746179d2d03153a82b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4098829473797119671c27a3f2e5694f232225a16c06e8cac47a47f1241ef285",
+            "bytes": 4747
+          }
+        }
+      },
+      {
+        "sentence": "Get some more rest.",
+        "cid": "c093035a",
+        "translation": "多休息一下。",
+        "chunks": [
+          "Get some",
+          "more rest."
+        ],
+        "hints": [
+          "获得一些",
+          "更多的休息"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡet/",
+              "/sʌm/"
+            ],
+            "pos": "祈使句 + 限定词",
+            "meaning": "获得一些"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/mɔːr/",
+              "/rest/"
+            ],
+            "pos": "比较级 + 不可数名词",
+            "meaning": "更多的休息"
+          }
+        ],
+        "explanations": [
+          "`get some rest` 是固定说法，表「休息一下」。常见错误：\n• \"Get any rest\" → 劝人时用 some，any 多用于疑问/否定\n• \"Take some rest\" → 也可以，但 get some rest 更口语",
+          "`rest` 在此不可数，用 more 修饰。常见错误：\n• \"more rests\" → 不可数不加 s\n• \"much rest\" → 这是「很多休息」，而这里要「再多一点」"
+        ],
+        "distractors": [
+          [
+            "Get any",
+            "Got some",
+            "Get some more"
+          ],
+          [
+            "more rests.",
+            "much rest.",
+            "more resting."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Get some more rest.",
+          "audio": {
+            "url": "assets/oral-c093035a-845d95707a01fa437b7b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c1116e922c30ba534e5b2434620cd826775034567b29346678c0d9ae3044dbb",
+            "bytes": 4399
+          }
+        }
+      },
+      {
+        "sentence": "Sleep is important.",
+        "cid": "b134e4b0",
+        "translation": "睡眠很重要。",
+        "chunks": [
+          "Sleep",
+          "is important."
+        ],
+        "hints": [
+          "睡眠",
+          "是重要的"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/sliːp/"
+            ],
+            "pos": "不可数名词作主语",
+            "meaning": "睡眠"
+          },
+          {
+            "role": "主系表",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɪz/",
+              "/ɪmˈpɔːrtnt/"
+            ],
+            "pos": "is + 形容词",
+            "meaning": "是重要的"
+          }
+        ],
+        "explanations": [
+          "`sleep` 作名词时不可数，单独作主语用单数谓语。常见错误：\n• \"The sleep\" → 泛指睡眠不加冠词\n• \"Sleeping is important\" → 动名词也可以，但名词 sleep 更简洁",
+          "表语用形容词 important。常见错误：\n• \"is importance\" → importance 是名词\n• \"is importantly\" → 那是副词，表语位置用形容词"
+        ],
+        "distractors": [
+          [
+            "Sleeping",
+            "Sleeps",
+            "The sleep"
+          ],
+          [
+            "is importance.",
+            "are important.",
+            "is importantly."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sleep is important.",
+          "audio": {
+            "url": "assets/oral-b134e4b0-8aa1951d1bc1fe88ced9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6981190e629a8d9080fea9a1a2b4149cb60c2f26efabe0d016ad6f92190ef221",
+            "bytes": 4984
+          }
+        }
+      },
+      {
+        "sentence": "Have some tea.",
+        "cid": "edb7eb4b",
+        "translation": "喝点茶。",
+        "chunks": [
+          "Have some",
+          "tea."
+        ],
+        "hints": [
+          "喝点",
+          "茶"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/hæv/",
+              "/sʌm/"
+            ],
+            "pos": "动词 + 限定词",
+            "meaning": "喝点"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/tiː/"
+            ],
+            "pos": "不可数名词",
+            "meaning": "茶"
+          }
+        ],
+        "explanations": [
+          "招待、建议喝什么时用 `have` 比 `drink` 更自然。常见错误：\n• \"Eat some tea\" → 喝用 have / drink，不跟 eat\n• \"Have some teas\" → tea 指饮料时不可数，不加 s",
+          "同类：have some coffee / have some juice；「来杯茶」也可说 have a cup of tea。"
+        ],
+        "distractors": [
+          [
+            "Have any",
+            "Eat some",
+            "Having some"
+          ],
+          [
+            "teas.",
+            "tea is.",
+            "the tea of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Have some tea.",
+          "audio": {
+            "url": "assets/oral-edb7eb4b-1c8feec526e03a8f9881.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c465d39beda024c0e9a2b012dca84b9b501b77d7ab423d6dc0a8e0542ac11299",
+            "bytes": 4224
+          }
+        }
+      },
+      {
+        "sentence": "Come to dinner.",
+        "cid": "8c2306cc",
+        "translation": "来吃晚饭。",
+        "chunks": [
+          "Come to",
+          "dinner."
+        ],
+        "hints": [
+          "来参加",
+          "晚饭"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʌm/",
+              "/tuː/"
+            ],
+            "pos": "动词短语",
+            "meaning": "来（参加）"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈdɪnər/"
+            ],
+            "pos": "名词（三餐不加冠词）",
+            "meaning": "晚饭"
+          }
+        ],
+        "explanations": [
+          "三餐名词前一般不加冠词：come to dinner / have dinner。常见错误：\n• \"Come to a dinner\" → 三餐前通常不加 a\n• \"Come at dinner\" → 表「来吃饭」用 to，at 表时间点",
+          "同类：come to lunch / come to breakfast；请客说 come for dinner 也常见。"
+        ],
+        "distractors": [
+          [
+            "Come in",
+            "Come at",
+            "Come for to"
+          ],
+          [
+            "the dinner.",
+            "a dinner.",
+            "dinners."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Come to dinner.",
+          "audio": {
+            "url": "assets/oral-8c2306cc-dc4300a08917862106b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fc2996adc2dc7a63b70147d09b276397e49e036fd42273f0fe9049fe5a23f3c6",
+            "bytes": 3975
+          }
+        }
+      },
+      {
+        "sentence": "Get off your phone.",
+        "cid": "0f6c6eb5",
+        "translation": "别看手机了。",
+        "chunks": [
+          "Get off",
+          "your phone."
+        ],
+        "hints": [
+          "离开、放下",
+          "你的手机"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡet/",
+              "/ɔːf/"
+            ],
+            "pos": "短语动词 get off",
+            "meaning": "离开、放下"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jʊr/",
+              "/foʊn/"
+            ],
+            "pos": "名词短语",
+            "meaning": "你的手机"
+          }
+        ],
+        "explanations": [
+          "`get off your phone` 字面是「从手机上离开」，口语里就是「别老盯着手机」。常见错误：\n• \"Get off from your phone\" → get off 后面直接接宾语\n• \"Get out your phone\" → 那是「把手机拿出来」，意思正好相反",
+          "同类说法：Put your phone down. / Get off the screen."
+        ],
+        "distractors": [
+          [
+            "Get out",
+            "Get on",
+            "Get from"
+          ],
+          [
+            "you phone.",
+            "your phones.",
+            "your phone of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Get off your phone.",
+          "audio": {
+            "url": "assets/oral-0f6c6eb5-f956b86a08078a6d080a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "08544ea8a29d77541a094a46e3227f9b105fd388a4770ea7448b0491628d9cd5",
+            "bytes": 4343
+          }
+        }
+      },
+      {
+        "sentence": "It's getting cold.",
+        "cid": "9425b8e6",
+        "translation": "（饭）要凉了。",
+        "chunks": [
+          "It's getting",
+          "cold."
+        ],
+        "hints": [
+          "它正在变得",
+          "冷"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈɡetɪŋ/"
+            ],
+            "pos": "get + 形容词（进行时）",
+            "meaning": "它正在变得"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/koʊld/"
+            ],
+            "pos": "形容词",
+            "meaning": "凉的、冷的"
+          }
+        ],
+        "explanations": [
+          "`get + 形容词` 表「逐渐变得」，比 be 更有变化感。常见错误：\n• \"It's get cold\" → 进行时要用 getting\n• \"It gets cold\" → 一般现在时表习惯，指眼下要变了用进行时",
+          "指饭菜或天气都用 it：It's getting cold. Let's eat.（要凉了，吃吧）"
+        ],
+        "distractors": [
+          [
+            "It's get",
+            "It getting",
+            "It's got"
+          ],
+          [
+            "colder of.",
+            "coldly.",
+            "the cold."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's getting cold.",
+          "audio": {
+            "url": "assets/oral-9425b8e6-1538bd0ffc2d85465f62.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d5174e5029297d589348b68515012a7ece880bf2b46b85416b2a554a4899cf58",
+            "bytes": 4566
+          }
+        }
+      },
+      {
+        "sentence": "Warm it up first.",
+        "cid": "39241d16",
+        "translation": "先热一下。",
+        "chunks": [
+          "Warm it up",
+          "first."
+        ],
+        "hints": [
+          "把它热一下",
+          "先"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɔːrm/",
+              "/ɪt/",
+              "/ʌp/"
+            ],
+            "pos": "短语动词 warm up（代词夹中）",
+            "meaning": "把它加热"
+          },
+          {
+            "role": "状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɜːrst/"
+            ],
+            "pos": "副词",
+            "meaning": "先"
+          }
+        ],
+        "explanations": [
+          "`warm up` 加热；宾语是代词时必须夹在中间：warm **it** up。常见错误：\n• \"Warm up it first\" → 代词不能放后面\n• \"Warm it up first\" 与 \"Warm it first\" 都对，加 up 更强调热透",
+          "同类：heat it up / pop it in the microwave。"
+        ],
+        "distractors": [
+          [
+            "Warm up it",
+            "Warmer it up",
+            "Warm it from"
+          ],
+          [
+            "the first.",
+            "firstly.",
+            "at first."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Warm it up first.",
+          "audio": {
+            "url": "assets/oral-39241d16-44b79201ac4cff5e2894.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "16c0e3785d40a0b30af2b81e9341210640818758c6ba21632d9b574b03335260",
+            "bytes": 4517
+          }
+        }
+      },
+      {
+        "sentence": "Order some food.",
+        "cid": "f82f8fcf",
+        "translation": "点东西吃。",
+        "chunks": [
+          "Order some",
+          "food."
+        ],
+        "hints": [
+          "点一些",
+          "食物"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈɔːrdər/",
+              "/sʌm/"
+            ],
+            "pos": "动词 + 限定词",
+            "meaning": "点一些"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/fuːd/"
+            ],
+            "pos": "不可数名词",
+            "meaning": "食物"
+          }
+        ],
+        "explanations": [
+          "`order` 指在餐厅点餐或叫外卖。常见错误：\n• \"Order some foods\" → 泛指食物时 food 不可数\n• \"Order for some food\" → order 是及物动词，直接接宾语",
+          "外卖：order in / order takeout；堂食点餐：order from the menu。"
+        ],
+        "distractors": [
+          [
+            "Order a",
+            "Order any",
+            "Buy for some"
+          ],
+          [
+            "foods.",
+            "the food of.",
+            "feed."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Order some food.",
+          "audio": {
+            "url": "assets/oral-f82f8fcf-0813c9f216bf1af47bd1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ad1bb911f92c7a97e906347bfce27b1920344a88923ba8c0f438692f70545eb",
+            "bytes": 4302
+          }
+        }
+      },
+      {
+        "sentence": "Set the table.",
+        "cid": "14713e06",
+        "translation": "布置桌子（摆餐具）。",
+        "chunks": [
+          "Set",
+          "the table."
+        ],
+        "hints": [
+          "摆放",
+          "桌子"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/set/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "摆放"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈteɪbl/"
+            ],
+            "pos": "名词短语",
+            "meaning": "餐桌"
+          }
+        ],
+        "explanations": [
+          "`set the table` 专指「摆好餐具、布置餐桌」。常见错误：\n• \"Put the table\" → put 不能表布置桌面\n• \"Set up the table\" → set up 是「组装」，摆餐具只用 set",
+          "相关：clear the table（收拾桌子）/ do the dishes（洗碗）。"
+        ],
+        "distractors": [
+          [
+            "Sets",
+            "Sit",
+            "Setting"
+          ],
+          [
+            "the tables.",
+            "a table.",
+            "the table up."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Set the table.",
+          "audio": {
+            "url": "assets/oral-14713e06-94a46e9763242f710571.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0cebf3956ae9841f3d1c3dfd7167f9c55f3dca5b092ff2be29a18e585ed3452b",
+            "bytes": 3896
+          }
+        }
+      },
+      {
+        "sentence": "Stand up.",
+        "cid": "de31c7f6",
+        "translation": "起来（站起来）。",
+        "chunks": [
+          "Stand",
+          "up."
+        ],
+        "hints": [
+          "站",
+          "起来"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/stænd/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "站立"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʌp/"
+            ],
+            "pos": "副词（表方向）",
+            "meaning": "起来"
+          }
+        ],
+        "explanations": [
+          "`stand up` 指从坐、躺到站起来。常见错误：\n• \"Stand up you\" → 祈使句不重复主语\n• \"Stand on\" → 意思变成「站在……上面」，需接宾语",
+          "对比 `get up`：get up 还能表起床，stand up 只指站起来。"
+        ],
+        "distractors": [
+          [
+            "Stands",
+            "Sit",
+            "Standing"
+          ],
+          [
+            "upstairs.",
+            "down.",
+            "over."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Stand up.",
+          "audio": {
+            "url": "assets/oral-de31c7f6-d74f85ddfd49bd70c854.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d9d97fd0c97dfa73664615a4a5ab76e172246f64b5214e14ab401379556df2c8",
+            "bytes": 3561
+          }
+        }
+      },
+      {
+        "sentence": "Sit down.",
+        "cid": "25f410a9",
+        "translation": "坐下。",
+        "chunks": [
+          "Sit",
+          "down."
+        ],
+        "hints": [
+          "坐",
+          "下"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/sɪt/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "坐"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/daʊn/"
+            ],
+            "pos": "副词（表方向）",
+            "meaning": "下"
+          }
+        ],
+        "explanations": [
+          "`sit down` 是「坐下」的固定表达，与 stand up 相对。常见错误：\n• \"Sit down you\" → 祈使句不加主语\n• \"Sit on\" → 必须接宾语（sit on the chair）",
+          "更客气：Have a seat. / Please, take a seat."
+        ],
+        "distractors": [
+          [
+            "Sits",
+            "Stand",
+            "Sitting"
+          ],
+          [
+            "upstairs.",
+            "up.",
+            "over."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sit down.",
+          "audio": {
+            "url": "assets/oral-25f410a9-243f20a5e5c298e17ea1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5797648c443ebea4828f14871468952e75f6ced7e279e8418b820cb976a77a69",
+            "bytes": 3818
+          }
+        }
+      },
+      {
+        "sentence": "Let go.",
+        "cid": "2d1e7fe6",
+        "translation": "松手。",
+        "chunks": [
+          "Let go."
+        ],
+        "hints": [
+          "松手。"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/let/",
+              "/ɡoʊ/"
+            ],
+            "pos": "固定短语",
+            "meaning": "松手、放手"
+          }
+        ],
+        "distractors": [
+          [
+            "Let it go.",
+            "Let me go.",
+            "Let go of it."
+          ]
+        ],
+        "explanations": [
+          "`let go` = 松手、放手，是固定搭配，中间不加 to。常见错误：\n• \"Let to go\" → let 后接动词原形\n• \"Let go it\" → 要说 let it go，代词夹在中间",
+          "引申义：Let it go.（放下吧、别纠结了）"
+        ],
+        "sentenceAudio": {
+          "text": "Let go.",
+          "audio": {
+            "url": "assets/oral-2d1e7fe6-a8789724d751100c1c55.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "639df931e8e6fa5eb8726c3f3343d0d02c50b4d633ff4a2cae3093d5867ddfcb",
+            "bytes": 3519
+          }
+        }
+      },
+      {
+        "sentence": "Turn around.",
+        "cid": "f090a897",
+        "translation": "转过来、转过去。",
+        "chunks": [
+          "Turn",
+          "around."
+        ],
+        "hints": [
+          "转",
+          "过来（转身）"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/tɜːrn/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "转"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əˈraʊnd/"
+            ],
+            "pos": "副词",
+            "meaning": "转身、转一圈"
+          }
+        ],
+        "explanations": [
+          "`turn around` 既表「转过来」也表「转过去」，靠语境。常见错误：\n• \"Turn around of\" → around 后面不加介词\n• 英式常说 turn round，美式说 around",
+          "相关：turn left / turn right（转弯）；turn back（往回走）。"
+        ],
+        "distractors": [
+          [
+            "Turns",
+            "Turning",
+            "Turn to"
+          ],
+          [
+            "around of.",
+            "round of.",
+            "arounds."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Turn around.",
+          "audio": {
+            "url": "assets/oral-f090a897-eb22258465ec8a2ebafc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e72d6453837c809eee6c21ebaf525b998fc1ad7c0f4b6a39a72e8ac086960c2f",
+            "bytes": 4008
+          }
+        }
+      },
+      {
+        "sentence": "Close your eyes.",
+        "cid": "a11e56c2",
+        "translation": "闭上眼睛。",
+        "chunks": [
+          "Close",
+          "your eyes."
+        ],
+        "hints": [
+          "闭上",
+          "你的眼睛"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kloʊz/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "闭上"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jʊr/",
+              "/aɪz/"
+            ],
+            "pos": "名词短语",
+            "meaning": "你的眼睛"
+          }
+        ],
+        "explanations": [
+          "作动词的 `close` 读 /kloʊz/，不读 /kloʊs/。常见错误：\n• \"Close your eye\" → 两只眼睛用复数 eyes\n• \"Shut your eyes\" 也对，但 close 更通用",
+          "相关：open your eyes（睁开眼）/ cover your eyes（捂住眼睛）"
+        ],
+        "distractors": [
+          [
+            "Closes",
+            "Closing",
+            "Open"
+          ],
+          [
+            "your eye.",
+            "you eyes.",
+            "your eyes of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Close your eyes.",
+          "audio": {
+            "url": "assets/oral-a11e56c2-14e4bc4179ae150774e3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4de43ec3cc6f74bfd2b3e7454a709e261a1b689745ef8cea3364dc888af68c9",
+            "bytes": 4109
+          }
+        }
+      },
+      {
+        "sentence": "Your room's messy.",
+        "cid": "0e10399e",
+        "translation": "你的房间很乱。",
+        "chunks": [
+          "Your room's",
+          "messy."
+        ],
+        "hints": [
+          "你的房间",
+          "很乱"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/jʊr/",
+              "/ruːmz/"
+            ],
+            "pos": "名词 + is 缩写",
+            "meaning": "你的房间（是）"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈmesi/"
+            ],
+            "pos": "形容词",
+            "meaning": "乱的"
+          }
+        ],
+        "explanations": [
+          "`messy` = 乱七八糟的，很口语。常见错误：\n• \"Your room's mess\" → mess 是名词，这里要形容词 messy\n• \"Your room is a mess\" 也常用，两种说法都对",
+          "相关：tidy up your room（把房间收拾整齐）/ a mess（一团乱）"
+        ],
+        "distractors": [
+          [
+            "Your rooming",
+            "You room's",
+            "Your room is of"
+          ],
+          [
+            "mess.",
+            "messily.",
+            "messes."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Your room's messy.",
+          "audio": {
+            "url": "assets/oral-0e10399e-9349f4c1b2014eee41ef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "116b1a759cdd1555fd7d0224f2c1b4c765d767b380d4b3f1700498d72a86b925",
+            "bytes": 4723
+          }
+        }
+      },
+      {
+        "sentence": "Clean your room.",
+        "cid": "e808c2e2",
+        "translation": "打扫你的房间。",
+        "chunks": [
+          "Clean",
+          "your room."
+        ],
+        "hints": [
+          "打扫",
+          "你的房间"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kliːn/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "打扫"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jʊr/",
+              "/ruːm/"
+            ],
+            "pos": "名词短语",
+            "meaning": "你的房间"
+          }
+        ],
+        "explanations": [
+          "`clean` 可作动词，指打扫干净。常见错误：\n• \"Clean up your room\" 也行，但 clean your room 就够\n• 宾语是代词时必须夹中间：clean it up",
+          "相关：tidy up（收拾整齐）/ do the cleaning（打扫卫生）"
+        ],
+        "distractors": [
+          [
+            "Cleans",
+            "Cleaning",
+            "Cleaner"
+          ],
+          [
+            "your rooms.",
+            "you room.",
+            "your room is."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Clean your room.",
+          "audio": {
+            "url": "assets/oral-e808c2e2-7ee83b11b1d7cdfd3457.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ba38427999ed87fcf39b18ba07d90e1d8496390961266c6eae1a58a3576c87fa",
+            "bytes": 3918
+          }
+        }
+      },
+      {
+        "sentence": "Lock the door.",
+        "cid": "d403abf3",
+        "translation": "把门锁上。",
+        "chunks": [
+          "Lock",
+          "the door."
+        ],
+        "hints": [
+          "锁上",
+          "门"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/lɑːk/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "锁"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/dɔːr/"
+            ],
+            "pos": "名词短语",
+            "meaning": "门"
+          }
+        ],
+        "explanations": [
+          "`lock` 既是名词（锁）也是动词（锁上）。常见错误：\n• door 前要加 the\n• \"Close the door\" 只是关门，lock 才是上锁",
+          "相关：lock up（把门窗锁好再走）/ unlock the door（开锁）"
+        ],
+        "distractors": [
+          [
+            "Locks",
+            "Locking",
+            "Locker"
+          ],
+          [
+            "the doors.",
+            "a door.",
+            "the door of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Lock the door.",
+          "audio": {
+            "url": "assets/oral-d403abf3-059d821a34048264e4da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dd67d6e3ba4e3f0308bf58ef62cd1402df1649fc86a92b476d040f00be20d4f1",
+            "bytes": 4161
+          }
+        }
+      },
+      {
+        "sentence": "Don't mix them up.",
+        "cid": "34b89c56",
+        "translation": "别把它们搞混了。",
+        "chunks": [
+          "Don't mix",
+          "them up."
+        ],
+        "hints": [
+          "别弄混",
+          "它们"
+        ],
+        "grammar": [
+          {
+            "role": "否定祈使",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/doʊnt/",
+              "/mɪks/"
+            ],
+            "pos": "don't + 动词原形",
+            "meaning": "别弄混"
+          },
+          {
+            "role": "宾语 + 副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðem/",
+              "/ʌp/"
+            ],
+            "pos": "短语动词 mix up（代词夹中）",
+            "meaning": "把它们搞混"
+          }
+        ],
+        "explanations": [
+          "`mix up` = 弄混，代词宾语夹中间：mix **them** up。常见错误：\n• \"Don't mix up them\" → 代词要放中间\n• \"Don't mix them\" → 不加 up 会变成「别把它们搅在一起」",
+          "相关：I always mix them up.（我总分不清）/ tell them apart（把它们区分开）"
+        ],
+        "distractors": [
+          [
+            "Doesn't mix",
+            "Don't mix up",
+            "No mix"
+          ],
+          [
+            "they up.",
+            "them on.",
+            "ups them."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Don't mix them up.",
+          "audio": {
+            "url": "assets/oral-34b89c56-5227e45a252123872da0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "97032cb93abcfc8c59b23e7ddb345330e15ec2df92efeea844ea0d29ba14859b",
+            "bytes": 4143
+          }
+        }
+      },
+      {
+        "sentence": "Sort them out.",
+        "cid": "f15b18c1",
+        "translation": "把它们分清楚。",
+        "chunks": [
+          "Sort",
+          "them out."
+        ],
+        "hints": [
+          "分类、理清",
+          "它们"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/sɔːrt/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "分类、理清"
+          },
+          {
+            "role": "宾语 + 副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ðem/",
+              "/aʊt/"
+            ],
+            "pos": "短语动词 sort out（代词夹中）",
+            "meaning": "把它们理清楚"
+          }
+        ],
+        "explanations": [
+          "`sort out` = 整理、理清、分清，代词夹中间：sort **them** out。常见错误：\n• \"Sort out them\" → 代词要放中间\n• \"Sort them\" 单说意思不完整",
+          "相关：figure it out（弄明白）/ work it out（解决）"
+        ],
+        "distractors": [
+          [
+            "Sorts",
+            "Sorting",
+            "Sorted"
+          ],
+          [
+            "they out.",
+            "them off.",
+            "out them."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sort them out.",
+          "audio": {
+            "url": "assets/oral-f15b18c1-f3b870713049ad0db11b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d78e5d238f76f05088f07861fa39455696f6e3c05598d6f8f6e706a57f8cace0",
+            "bytes": 3748
+          }
+        }
+      },
+      {
+        "sentence": "Keep it.",
+        "cid": "bbb7bec1",
+        "translation": "你留着吧。",
+        "chunks": [
+          "Keep",
+          "it."
+        ],
+        "hints": [
+          "留着、收下",
+          "它"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kiːp/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "留着、收下"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɪt/"
+            ],
+            "pos": "人称代词宾格",
+            "meaning": "它"
+          }
+        ],
+        "explanations": [
+          "`Keep it.` = 收下吧、你留着，送东西时最常说。常见错误：\n• \"Take it\" 语气更硬，像命令，不是送礼口吻\n• \"Keep it for you\" → 应为 keep it for yourself",
+          "相关：It's yours.（给你了）/ Keep the change.（零钱不用找了）"
+        ],
+        "distractors": [
+          [
+            "Keeps",
+            "Keeping",
+            "Keep of"
+          ],
+          [
+            "them.",
+            "its.",
+            "it is."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Keep it.",
+          "audio": {
+            "url": "assets/oral-bbb7bec1-244adae63a9f7e543aa5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ed693a954d2a683aaa242530f46e2f945b8dc7c4cda17263b361d4389d76ddec",
+            "bytes": 3158
+          }
+        }
+      },
+      {
+        "sentence": "Throw it out.",
+        "cid": "b2294826",
+        "translation": "把它扔了。",
+        "chunks": [
+          "Throw it",
+          "out."
+        ],
+        "hints": [
+          "把它扔",
+          "出去"
+        ],
+        "grammar": [
+          {
+            "role": "谓语 + 宾语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/θroʊ/",
+              "/ɪt/"
+            ],
+            "pos": "短语动词 throw out（代词夹中）",
+            "meaning": "把它扔掉"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/aʊt/"
+            ],
+            "pos": "副词",
+            "meaning": "出去"
+          }
+        ],
+        "explanations": [
+          "`throw out` = 扔掉，代词宾语夹中间：throw **it** out。常见错误：\n• \"Throw out it\" → 代词要放中间\n• \"Throw it away\" 也常用，意思相同",
+          "相关：take out the trash（倒垃圾）/ get rid of it（处理掉它）"
+        ],
+        "distractors": [
+          [
+            "Throw out it",
+            "Throwing it out",
+            "Throw it of"
+          ],
+          [
+            "of.",
+            "out to.",
+            "out off."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Throw it out.",
+          "audio": {
+            "url": "assets/oral-b2294826-f5b638e89152cc2c0c81.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4ec6960b2fd3dff67431550def264aa5fecf3389872b6569e8d147d6554b585a",
+            "bytes": 4200
+          }
+        }
+      },
+      {
+        "sentence": "Turn on the lights.",
+        "cid": "c7ea95cd",
+        "translation": "打开灯。",
+        "chunks": [
+          "Turn on",
+          "the lights."
+        ],
+        "hints": [
+          "打开",
+          "灯"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/tɜːrn/",
+              "/ɑːn/"
+            ],
+            "pos": "短语动词 turn on",
+            "meaning": "打开"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/laɪts/"
+            ],
+            "pos": "名词短语",
+            "meaning": "灯"
+          }
+        ],
+        "explanations": [
+          "电器、水龙头、灯的「开」都用 `turn on`。常见错误：\n• \"Open the lights\" → 中文说开灯，英文用 turn on\n• 宾语是代词时要夹中间：turn them on",
+          "相关：turn off the lights（关灯）/ switch on（偏英式）"
+        ],
+        "distractors": [
+          [
+            "Turn in",
+            "Turning on",
+            "Turn of"
+          ],
+          [
+            "the lights of.",
+            "a lights.",
+            "the lights on."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Turn on the lights.",
+          "audio": {
+            "url": "assets/oral-c7ea95cd-cdd63cfbbaaa593f8e10.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2fe4b8a98fde7200a19304ed571cac579bcd7f28570a54470bcee091d4d995f0",
+            "bytes": 4387
+          }
+        }
+      },
+      {
+        "sentence": "The power's out.",
+        "cid": "78e4af03",
+        "translation": "停电了。",
+        "chunks": [
+          "The power's",
+          "out."
+        ],
+        "hints": [
+          "电力",
+          "断了、没了"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðə/",
+              "/ˈpaʊərz/"
+            ],
+            "pos": "名词 + is 缩写",
+            "meaning": "电（是）"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/aʊt/"
+            ],
+            "pos": "副词作表语",
+            "meaning": "断了、没了"
+          }
+        ],
+        "explanations": [
+          "`The power's out.` = 停电了，out 表「断了」。常见错误：\n• \"The power is off\" 指「关着的」，停电用 out 更地道\n• \"The electricity's out\" 也行，但 power 更口语",
+          "相关：a power outage（停电）/ The lights went out.（灯灭了）"
+        ],
+        "distractors": [
+          [
+            "The power",
+            "The powers is",
+            "The power is of"
+          ],
+          [
+            "off.",
+            "down.",
+            "over."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The power's out.",
+          "audio": {
+            "url": "assets/oral-78e4af03-1d820c25b95ce2e13a19.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "74534bac84897d5a737456ff3141e88b510e4f92d87531b93ba7f843691ddc64",
+            "bytes": 4226
+          }
+        }
+      },
+      {
+        "sentence": "Mop the floor.",
+        "cid": "fb98228c",
+        "translation": "拖地（擦地板）。",
+        "chunks": [
+          "Mop",
+          "the floor."
+        ],
+        "hints": [
+          "用拖把擦",
+          "地板"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/mɑːp/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "拖（地）"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/flɔːr/"
+            ],
+            "pos": "名词短语",
+            "meaning": "地板"
+          }
+        ],
+        "explanations": [
+          "`mop` 专指用拖把擦地。常见错误：\n• \"Wipe the floor\" 是用抹布擦，工具不同\n• mop 也可作名词：a mop（拖把）",
+          "相关：sweep the floor（扫地）/ vacuum the carpet（吸地毯）"
+        ],
+        "distractors": [
+          [
+            "Mops",
+            "Mopping",
+            "Map"
+          ],
+          [
+            "the floors.",
+            "a floor.",
+            "the floor of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Mop the floor.",
+          "audio": {
+            "url": "assets/oral-fb98228c-5b1d96ee49834b3d7f58.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9b57bf6b4869243589c4350a8114d4a9c32fb4ca2d2d305072e7398fec1e0fd3",
+            "bytes": 4129
+          }
+        }
+      },
+      {
+        "sentence": "Put it up.",
+        "cid": "fab59b9a",
+        "translation": "挂上去。",
+        "chunks": [
+          "Put it",
+          "up."
+        ],
+        "hints": [
+          "把它",
+          "挂上"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/pʊt/",
+              "/ɪt/"
+            ],
+            "pos": "短语动词 put up（代词夹中）",
+            "meaning": "把它挂起"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʌp/"
+            ],
+            "pos": "副词",
+            "meaning": "上（挂）"
+          }
+        ],
+        "explanations": [
+          "`put up` = 挂上去、张贴，代词夹中间：put **it** up。常见错误：\n• \"Put up it\" → 代词要放中间\n• put up 还能表「提高」（put up the price），靠语境区分",
+          "反义：take it down（拿下来）。"
+        ],
+        "distractors": [
+          [
+            "Put up it",
+            "Putting it up",
+            "Put it of"
+          ],
+          [
+            "in.",
+            "on.",
+            "over."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Put it up.",
+          "audio": {
+            "url": "assets/oral-fab59b9a-3cc3eeba580b9ab2f82d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e937183d9b7fa0983d6b10e093745d00bf10a7ea43d7b3a85689386df34866a",
+            "bytes": 3369
+          }
+        }
+      },
+      {
+        "sentence": "Take it down.",
+        "cid": "7389fce9",
+        "translation": "拿下来。",
+        "chunks": [
+          "Take it",
+          "down."
+        ],
+        "hints": [
+          "把它",
+          "取下"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/teɪk/",
+              "/ɪt/"
+            ],
+            "pos": "短语动词 take down（代词夹中）",
+            "meaning": "把它取下"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/daʊn/"
+            ],
+            "pos": "副词",
+            "meaning": "下（取下）"
+          }
+        ],
+        "explanations": [
+          "`take down` = 拿下来、取下，代词夹中间：take **it** down。常见错误：\n• \"Take down it\" → 代词要放中间\n• take down 还能表「记下」（take down notes）",
+          "反义：put it up（挂上去）。"
+        ],
+        "distractors": [
+          [
+            "Take down it",
+            "Taking it down",
+            "Take it of"
+          ],
+          [
+            "up.",
+            "over.",
+            "aside."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Take it down.",
+          "audio": {
+            "url": "assets/oral-7389fce9-e8b7302e68e989667112.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1952293ab50222b6aa9f6d56093af47c12a1df1ad951dfa30f8ec5c52fc9b777",
+            "bytes": 3865
+          }
+        }
+      },
+      {
+        "sentence": "Climb up.",
+        "cid": "b070daa7",
+        "translation": "爬上去。",
+        "chunks": [
+          "Climb",
+          "up."
+        ],
+        "hints": [
+          "爬",
+          "上去"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/klaɪm/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "爬"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʌp/"
+            ],
+            "pos": "副词（表方向）",
+            "meaning": "上去"
+          }
+        ],
+        "explanations": [
+          "`climb up` 强调往上爬，反义 climb down。常见错误：\n• b 不发音，读 /klaɪm/\n• 后面接宾语时是「爬到……上」：climb up the tree",
+          "相关：climb over（爬过去）/ climb in（爬进来）"
+        ],
+        "distractors": [
+          [
+            "Climbs",
+            "Climbing",
+            "Climbed"
+          ],
+          [
+            "upstairs.",
+            "over.",
+            "down the."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Climb up.",
+          "audio": {
+            "url": "assets/oral-b070daa7-8876a6fcd9fcfdc28fd1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da4af3ac9dd7259331d27ab0261652d1a89650cb06e824c8970815d426023318",
+            "bytes": 3484
+          }
+        }
+      },
+      {
+        "sentence": "Climb down.",
+        "cid": "b0bc4558",
+        "translation": "爬下来。",
+        "chunks": [
+          "Climb",
+          "down."
+        ],
+        "hints": [
+          "爬",
+          "下来"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/klaɪm/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "爬"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/daʊn/"
+            ],
+            "pos": "副词（表方向）",
+            "meaning": "下来"
+          }
+        ],
+        "explanations": [
+          "`climb down` = 爬下来，也引申为「让步、认错」。常见错误：\n• b 不发音，读 /klaɪm/\n• 接宾语时是「从……下来」：climb down the ladder",
+          "相关：get down（下来）/ come down（下来）"
+        ],
+        "distractors": [
+          [
+            "Climbs",
+            "Climbing",
+            "Climbed"
+          ],
+          [
+            "upstairs.",
+            "over.",
+            "up the."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Climb down.",
+          "audio": {
+            "url": "assets/oral-b0bc4558-39c91b6cdcc0aa5b473d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c5ec1a50a0bea36c9db9c58aa84e6f11575d78207bdd1097649f22725afc3a7d",
+            "bytes": 3999
+          }
+        }
+      },
+      {
+        "sentence": "Do the laundry.",
+        "cid": "83eb9b90",
+        "translation": "洗衣服。",
+        "chunks": [
+          "Do",
+          "the laundry."
+        ],
+        "hints": [
+          "做（这件事）",
+          "要洗的衣物"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/duː/"
+            ],
+            "pos": "祈使句动词",
+            "meaning": "做（某事）"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈlɔːndri/"
+            ],
+            "pos": "名词短语",
+            "meaning": "要洗的衣物"
+          }
+        ],
+        "explanations": [
+          "`do the laundry` = 洗衣服，固定搭配。常见错误：\n• 拼写：lau**n**dry，容易错写成 launday\n• \"Wash the laundry\" 不地道，动词用 do",
+          "相关：do the dishes（洗碗）/ hang the laundry（晾衣服）"
+        ],
+        "distractors": [
+          [
+            "Does",
+            "Doing",
+            "Done"
+          ],
+          [
+            "the laundrys.",
+            "a laundry.",
+            "the laundry of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Do the laundry.",
+          "audio": {
+            "url": "assets/oral-83eb9b90-16ab42e6ec55f3f49eab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "837b4e10a464afdc7f27ac733b8bef08a1267507f77a4fb879280c549d340fde",
+            "bytes": 3983
+          }
+        }
+      },
+      {
+        "sentence": "Water the plants.",
+        "cid": "f1c0fcfb",
+        "translation": "给花浇水。",
+        "chunks": [
+          "Water",
+          "the plants."
+        ],
+        "hints": [
+          "浇水",
+          "植物"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈwɔːtər/"
+            ],
+            "pos": "动词（浇水）",
+            "meaning": "浇"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/plænts/"
+            ],
+            "pos": "名词短语",
+            "meaning": "植物"
+          }
+        ],
+        "explanations": [
+          "`water` 作动词就是「浇水」。常见错误：\n• \"Give water the plants\" → 直接 water the plants 就行\n• plant 与 plan 容易听混，注意词尾 /t/",
+          "相关：feed the dog（喂狗）/ walk the dog（遛狗）"
+        ],
+        "distractors": [
+          [
+            "Waters",
+            "Watering",
+            "Watered"
+          ],
+          [
+            "the plants of.",
+            "a plants.",
+            "plans."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Water the plants.",
+          "audio": {
+            "url": "assets/oral-f1c0fcfb-5d0e64619d7456a488bc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09b5bd582f4afe13aa79f1db941abec60e9529182b7072b1c33abc67c33ce462",
+            "bytes": 4251
+          }
+        }
+      },
+      {
+        "sentence": "Take it out.",
+        "cid": "a36e08cb",
+        "translation": "拿出来。",
+        "chunks": [
+          "Take it",
+          "out."
+        ],
+        "hints": [
+          "把它",
+          "取出"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/teɪk/",
+              "/ɪt/"
+            ],
+            "pos": "短语动词 take out（代词夹中）",
+            "meaning": "把它取出"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/aʊt/"
+            ],
+            "pos": "副词",
+            "meaning": "出来"
+          }
+        ],
+        "explanations": [
+          "`take out` = 拿出来、取出来，代词夹中间：take **it** out。常见错误：\n• \"Take out it\" → 代词要放中间\n• takeout（一个词）作名词时指「外卖」",
+          "反义：put it back（放回去）。"
+        ],
+        "distractors": [
+          [
+            "Take out it",
+            "Taking it out",
+            "Take it of"
+          ],
+          [
+            "in.",
+            "up.",
+            "off."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Take it out.",
+          "audio": {
+            "url": "assets/oral-a36e08cb-62886e000e6796ef448f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2206d115a997443b972cdc0ff860fe8f4217de823111d49eeec56500b2aae363",
+            "bytes": 3883
+          }
+        }
+      },
+      {
+        "sentence": "Put it back.",
+        "cid": "a73bf6b4",
+        "translation": "放回去。",
+        "chunks": [
+          "Put it",
+          "back."
+        ],
+        "hints": [
+          "把它",
+          "放回"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/pʊt/",
+              "/ɪt/"
+            ],
+            "pos": "短语动词 put back（代词夹中）",
+            "meaning": "把它放回"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/bæk/"
+            ],
+            "pos": "副词",
+            "meaning": "回去"
+          }
+        ],
+        "explanations": [
+          "`put it back` = 放回原处，代词夹中间。常见错误：\n• \"Put back it\" → 代词要放中间\n• \"Put it back to\" → back 后面一般不加 to",
+          "相关：put it away（收起来）/ return it（归还）"
+        ],
+        "distractors": [
+          [
+            "Put back it",
+            "Putting it back",
+            "Put it of"
+          ],
+          [
+            "front.",
+            "down.",
+            "of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Put it back.",
+          "audio": {
+            "url": "assets/oral-a73bf6b4-dd03a42df8004133ffa1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "89124db0b75805b2ac95d657011b120e31f94d35f1b72765628789fad1619a12",
+            "bytes": 3490
+          }
+        }
+      },
+      {
+        "sentence": "Don't fall asleep.",
+        "cid": "97500516",
+        "translation": "别睡着了。",
+        "chunks": [
+          "Don't fall",
+          "asleep."
+        ],
+        "hints": [
+          "别",
+          "睡着的"
+        ],
+        "grammar": [
+          {
+            "role": "否定祈使",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/doʊnt/",
+              "/fɔːl/"
+            ],
+            "pos": "don't + 动词原形",
+            "meaning": "别"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/əˈsliːp/"
+            ],
+            "pos": "形容词（表状态）",
+            "meaning": "睡着的"
+          }
+        ],
+        "explanations": [
+          "`fall asleep` = 睡着，指进入睡眠状态。常见错误：\n• \"Don't fall sleep\" → 形容词是 asleep，不是 sleep\n• \"Don't sleep\" 只是「别睡」，fall asleep 更强调整个人睡过去",
+          "相关：stay awake（保持清醒）/ I nodded off.（我打瞌睡了）"
+        ],
+        "distractors": [
+          [
+            "Doesn't fall",
+            "Don't fall to",
+            "No fall"
+          ],
+          [
+            "sleep.",
+            "sleeping.",
+            "sleepy."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Don't fall asleep.",
+          "audio": {
+            "url": "assets/oral-97500516-6f3afda23fb49df66fce.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "caabe0c288a7183650b0ecf350c7814160a7e1d3f329acc453af091acdde6034",
+            "bytes": 4401
+          }
+        }
+      },
+      {
+        "sentence": "Don't stay up.",
+        "cid": "0da18463",
+        "translation": "别熬夜。",
+        "chunks": [
+          "Don't stay",
+          "up."
+        ],
+        "hints": [
+          "别",
+          "熬夜、不睡"
+        ],
+        "grammar": [
+          {
+            "role": "否定祈使",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/doʊnt/",
+              "/steɪ/"
+            ],
+            "pos": "don't + 动词原形",
+            "meaning": "别"
+          },
+          {
+            "role": "副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ʌp/"
+            ],
+            "pos": "副词（固定搭配 stay up）",
+            "meaning": "熬夜、不睡"
+          }
+        ],
+        "explanations": [
+          "`stay up` = 熬夜不睡，up 是固定成分。常见错误：\n• \"Don't stay wake\" → 想说不睡应该用 stay up / stay awake\n• 常说 \"Don't stay up late\"，指别熬到很晚",
+          "相关：pull an all-nighter（通宵）/ get an early night（早点睡）"
+        ],
+        "distractors": [
+          [
+            "Doesn't stay",
+            "Don't stay to",
+            "No stay"
+          ],
+          [
+            "out.",
+            "in.",
+            "down."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Don't stay up.",
+          "audio": {
+            "url": "assets/oral-0da18463-616a0bc85d5f0aa0e30f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dce2ad0658a217a16cc2281ef156136aed7b8b5d2c79409999449e89cd771498",
+            "bytes": 3952
+          }
+        }
+      },
+      {
+        "sentence": "Go to bed early.",
+        "cid": "95169b06",
+        "translation": "早点睡。",
+        "chunks": [
+          "Go to bed",
+          "early."
+        ],
+        "hints": [
+          "上床睡觉",
+          "早"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡoʊ/",
+              "/tuː/",
+              "/bed/"
+            ],
+            "pos": "动词短语 go to bed",
+            "meaning": "上床睡觉"
+          },
+          {
+            "role": "状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈɜːrli/"
+            ],
+            "pos": "副词",
+            "meaning": "早"
+          }
+        ],
+        "explanations": [
+          "`go to bed` 指「去睡觉」，bed 前不加冠词。常见错误：\n• \"Go to the bed\" → 那是「走到那张床边去」\n• \"Go to sleep early\" 也可，但 go to bed 更强调上床这个动作",
+          "相关：get an early night（早点睡）/ stay up late（熬夜）"
+        ],
+        "distractors": [
+          [
+            "Go to the bed",
+            "Go to bed to",
+            "Going to bed"
+          ],
+          [
+            "late.",
+            "earlier.",
+            "earliest."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Go to bed early.",
+          "audio": {
+            "url": "assets/oral-95169b06-d76392e7b6df4a928f38.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a6d20cf6db1807957c7653bfc430aea14f12df9c09372b7cdafa8feca1a5c43b",
+            "bytes": 4311
+          }
+        }
+      },
+      {
+        "sentence": "I've been dreaming all night.",
+        "cid": "7d234a10",
+        "translation": "我一直在做梦。",
+        "chunks": [
+          "I've been dreaming",
+          "all night."
+        ],
+        "hints": [
+          "我一直在做梦",
+          "一整晚"
+        ],
+        "grammar": [
+          {
+            "role": "现在完成进行",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪv/",
+              "/bɪn/",
+              "/ˈdriːmɪŋ/"
+            ],
+            "pos": "现在完成进行时",
+            "meaning": "我一直在做梦"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɔːl/",
+              "/naɪt/"
+            ],
+            "pos": "名词短语作状语",
+            "meaning": "整晚"
+          }
+        ],
+        "explanations": [
+          "`have been doing` 表示从过去持续到现在的动作。常见错误：\n• \"I've been **dreamed**\" → 进行时用 dreaming\n• \"all **the** night\" → 地道说法是 all night（不加 the）",
+          "`all night` 指整晚；想说「熬夜」是 stay up all night。"
+        ],
+        "distractors": [
+          [
+            "I've been dreamed",
+            "I've dreaming",
+            "I was been dreaming"
+          ],
+          [
+            "all the night.",
+            "all nights.",
+            "whole night."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I've been dreaming all night.",
+          "audio": {
+            "url": "assets/oral-7d234a10-fa5bd80aec40517d8d4b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b7bec53c28b72b820bd0fa4ea8fe68e67b9791d74cbdf65d7dbd71e721989645",
+            "bytes": 5269
+          }
+        }
+      },
+      {
+        "sentence": "When did you go to bed last night?",
+        "cid": "2bb9dcf0",
+        "translation": "你昨晚几点睡的？",
+        "chunks": [
+          "When did you go to bed",
+          "last night?"
+        ],
+        "hints": [
+          "你几点上床睡觉",
+          "昨晚"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词+助动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/wen/",
+              "/dɪd/",
+              "/juː/",
+              "/ɡoʊ/"
+            ],
+            "pos": "过去时疑问",
+            "meaning": "你什么时候上床"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/læst/",
+              "/naɪt/"
+            ],
+            "pos": "名词短语作状语",
+            "meaning": "昨晚"
+          }
+        ],
+        "explanations": [
+          "`go to bed` 是「上床睡觉」，强调去睡这个动作。常见错误：\n• \"When **you did** go to bed\" → 疑问句助动词提前\n• \"go to bed **last night**\" 位置没问题，但注意 last night 前面不加介词",
+          "对比 `go to sleep`（入睡）：go to bed 是上床，go to sleep 是睡着。"
+        ],
+        "distractors": [
+          [
+            "When you did go to bed",
+            "When did you went to bed",
+            "When did you go to the bed"
+          ],
+          [
+            "in last night?",
+            "on last night?",
+            "at last night?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "When did you go to bed last night?",
+          "audio": {
+            "url": "assets/oral-2bb9dcf0-f373daefc75a11fc156f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1261195a0ac4e38686dc179dd8d3f0e4c65f1862510ac8d2e76cd6052e11d9ef",
+            "bytes": 6032
+          }
+        }
+      },
+      {
+        "sentence": "When did you fall asleep?",
+        "cid": "5c36ca37",
+        "translation": "你几点睡着的？",
+        "chunks": [
+          "When did you",
+          "fall asleep?"
+        ],
+        "hints": [
+          "你什么时候",
+          "睡着"
+        ],
+        "grammar": [
+          {
+            "role": "疑问词+助动词",
+            "color": "#c87033",
+            "phonetic": [
+              "/wen/",
+              "/dɪd/",
+              "/juː/"
+            ],
+            "pos": "过去时疑问",
+            "meaning": "你什么时候"
+          },
+          {
+            "role": "动词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːl/",
+              "/əˈsliːp/"
+            ],
+            "pos": "短语动词",
+            "meaning": "睡着"
+          }
+        ],
+        "explanations": [
+          "`fall asleep` 是「入睡」的固定搭配，fall 的过去式是 fell。常见错误：\n• \"**fell** asleep\" → 助动词 did 后面用原形 fall\n• \"fall **sleep**\" → sleep 是名词/动词，入睡是 fall asleep",
+          "对比 `fall asleep`（睡着）/ `be asleep`（处于睡眠状态）。"
+        ],
+        "distractors": [
+          [
+            "When you did",
+            "When does you",
+            "When did your"
+          ],
+          [
+            "fell asleep?",
+            "fall sleep?",
+            "fall a sleep?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "When did you fall asleep?",
+          "audio": {
+            "url": "assets/oral-5c36ca37-2e068716bbbfbc82aa9b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f341dfec29ad0bac0697db6cdb2f80a7659054aaf851ec9413a19251dd6ad693",
+            "bytes": 5059
+          }
+        }
+      },
+      {
+        "sentence": "Fold up your bedding.",
+        "cid": "4af03e2d",
+        "translation": "把被子叠好。",
+        "chunks": [
+          "Fold up",
+          "your bedding."
+        ],
+        "hints": [
+          "叠好",
+          "你的被褥"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/foʊld/",
+              "/ʌp/"
+            ],
+            "pos": "短语动词祈使",
+            "meaning": "叠起来"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jʊr/",
+              "/ˈbedɪŋ/"
+            ],
+            "pos": "名词短语",
+            "meaning": "你的被褥"
+          }
+        ],
+        "explanations": [
+          "`fold up` 意为「折叠起来、叠好」。常见错误：\n• \"Fold **on**\" → 折叠用 up\n• \"Folding up your bedding\" → 祈使句用动词原形",
+          "`bedding` 是不可数名词，指「被褥床品」，不加 -s。"
+        ],
+        "distractors": [
+          [
+            "Fold on",
+            "Folding up",
+            "Folded up"
+          ],
+          [
+            "you bedding.",
+            "your beddings.",
+            "your beding."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Fold up your bedding.",
+          "audio": {
+            "url": "assets/oral-4af03e2d-05380154eaf898d9a193.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7ae167ec1b5db6e4f75c9dbea3466ac7b1485bc8f4c3a1e7d3ba7fc486283b34",
+            "bytes": 4486
+          }
+        }
+      }
+    ]
+  }
+}

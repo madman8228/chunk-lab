@@ -1,0 +1,834 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Will you marry me?",
+      "translation": "愿意和我结婚吗?",
+      "chunks": [
+        "Will you",
+        "marry me?"
+      ],
+      "hints": [
+        "你愿意",
+        "嫁给我吗"
+      ],
+      "cid": "a5a2f9cc",
+      "sentenceAudio": {
+        "text": "Will you marry me?",
+        "audio": {
+          "url": "assets/oral-a5a2f9cc-027f656cc3d1cc287651.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8650df5e050ac03115149ece229266a2068314d10247d3b339905dbe94710311",
+          "bytes": 4103
+        }
+      }
+    },
+    {
+      "sentence": "I don't want to get engaged yet.",
+      "translation": "我还不想订婚。",
+      "chunks": [
+        "I don't want",
+        "to get engaged yet."
+      ],
+      "hints": [
+        "我还不想",
+        "订婚"
+      ],
+      "cid": "d6a36ed8",
+      "sentenceAudio": {
+        "text": "I don't want to get engaged yet.",
+        "audio": {
+          "url": "assets/oral-d6a36ed8-be73369bfa944436e373.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bd50674747f0c7a94966c97870b8c1247116c401cd704715564c943fb92934c6",
+          "bytes": 6145
+        }
+      }
+    },
+    {
+      "sentence": "I don't want to get married yet.",
+      "translation": "我还不想结婚。",
+      "chunks": [
+        "I don't want",
+        "to get married yet."
+      ],
+      "hints": [
+        "我还不想",
+        "结婚"
+      ],
+      "cid": "98fb73d3",
+      "sentenceAudio": {
+        "text": "I don't want to get married yet.",
+        "audio": {
+          "url": "assets/oral-98fb73d3-3e323ad5a11f40881bcc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "00ad9571c23d9400c51b9d7732f5575422a7bea421aea9e6e6dc18288ccccbe8",
+          "bytes": 5817
+        }
+      }
+    },
+    {
+      "sentence": "I haven't thought about marriage yet.",
+      "translation": "结婚，我还没想过呢。",
+      "chunks": [
+        "I haven't thought",
+        "about marriage yet."
+      ],
+      "hints": [
+        "我还没想过",
+        "结婚的事"
+      ],
+      "cid": "49de12a3",
+      "sentenceAudio": {
+        "text": "I haven't thought about marriage yet.",
+        "audio": {
+          "url": "assets/oral-49de12a3-3a94eb23c6ce98976663.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "34ce569ce143e4148c54659d7d1310676fa51d32f99b69b74b19917d8d0210cc",
+          "bytes": 6426
+        }
+      }
+    },
+    {
+      "sentence": "I love you but I can't marry you.",
+      "translation": "我爱你，可是不能和你结婚。",
+      "chunks": [
+        "I love you",
+        "but I can't marry you."
+      ],
+      "hints": [
+        "我爱你",
+        "可是不能和你结婚"
+      ],
+      "cid": "39ea312a",
+      "sentenceAudio": {
+        "text": "I love you but I can't marry you.",
+        "audio": {
+          "url": "assets/oral-39ea312a-33ca270ee5edba85a3f0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "39a5c87df9c4744852f80140e48386fb3c5ca7ad74ed7104fbe833e697a29428",
+          "bytes": 6505
+        }
+      }
+    },
+    {
+      "sentence": "I hesitate to marry her.",
+      "translation": "我还下不了决心和她结婚。",
+      "chunks": [
+        "I hesitate",
+        "to marry her."
+      ],
+      "hints": [
+        "我下不了决心",
+        "和她结婚"
+      ],
+      "cid": "c5dedc14",
+      "sentenceAudio": {
+        "text": "I hesitate to marry her.",
+        "audio": {
+          "url": "assets/oral-c5dedc14-8bd4521b008101554580.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a8cecfbb9f097b07c861eaa5d3e45bb4aa7972653dbf5ab95dd77dd83c4b8106",
+          "bytes": 5635
+        }
+      }
+    },
+    {
+      "sentence": "He's a newlywed.",
+      "translation": "他刚刚结婚。",
+      "chunks": [
+        "He's",
+        "a newlywed."
+      ],
+      "hints": [
+        "他",
+        "刚结婚"
+      ],
+      "cid": "dc11e094",
+      "sentenceAudio": {
+        "text": "He's a newlywed.",
+        "audio": {
+          "url": "assets/oral-dc11e094-8e24255d40f93dc55504.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eda88b7afd3af1076eff2964148da07e87c93f81139bd227db40448d3c8c8bb8",
+          "bytes": 4364
+        }
+      }
+    },
+    {
+      "sentence": "How's your married life?",
+      "translation": "婚后生活怎么样?",
+      "chunks": [
+        "How's your married life?"
+      ],
+      "hints": [
+        "你的婚后生活怎么样？"
+      ],
+      "cid": "f28619f5",
+      "sentenceAudio": {
+        "text": "How's your married life?",
+        "audio": {
+          "url": "assets/oral-f28619f5-03d0dffa0cb5bb56052e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e15af85b45f39065eec9dbfdfefe078ed0c5a912dd6091774670323759e7da3e",
+          "bytes": 5032
+        }
+      }
+    },
+    {
+      "sentence": "We're happy together now.",
+      "translation": "我们现在在一起很幸福。",
+      "chunks": [
+        "We're",
+        "happy together now."
+      ],
+      "hints": [
+        "我们俩",
+        "现在在一起很幸福"
+      ],
+      "cid": "d643a6b9",
+      "sentenceAudio": {
+        "text": "We're happy together now.",
+        "audio": {
+          "url": "assets/oral-d643a6b9-5981adf07bf244f61f4e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7359696de589f6b855e70a9875adc23c2cc6cb0a2edf14ff8b699922b3589940",
+          "bytes": 5322
+        }
+      }
+    },
+    {
+      "sentence": "I love my wife.",
+      "translation": "我很爱我的妻子。",
+      "chunks": [
+        "I love",
+        "my wife."
+      ],
+      "hints": [
+        "我很爱",
+        "我的妻子"
+      ],
+      "cid": "d9bd2bdf",
+      "sentenceAudio": {
+        "text": "I love my wife.",
+        "audio": {
+          "url": "assets/oral-d9bd2bdf-2998a4835ca4add17eb4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "19e73bcf3c8951cf85232889160f4e7e7699a96892a4e510edf40b7449792979",
+          "bytes": 4639
+        }
+      }
+    },
+    {
+      "sentence": "We're two of a kind.",
+      "translation": "我们夫妻俩性格相似。",
+      "chunks": [
+        "We're",
+        "two of a kind."
+      ],
+      "hints": [
+        "我们俩",
+        "性格相似"
+      ],
+      "cid": "c23de3a5",
+      "sentenceAudio": {
+        "text": "We're two of a kind.",
+        "audio": {
+          "url": "assets/oral-c23de3a5-84d39ea1245e694d4fd2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fab700365c9c509b1c0deeae6fc15b4f906242be7688ed66bef8d24c5538050f",
+          "bytes": 4694
+        }
+      }
+    },
+    {
+      "sentence": "We're a well-matched couple.",
+      "translation": "我们俩很般配。",
+      "chunks": [
+        "We're",
+        "a well-matched couple."
+      ],
+      "hints": [
+        "我们是",
+        "很般配的一对"
+      ],
+      "cid": "001d3c9b",
+      "sentenceAudio": {
+        "text": "We're a well-matched couple.",
+        "audio": {
+          "url": "assets/oral-001d3c9b-fe363495866e09daa872.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fef193231a0e19d48906c0776195fd3ed5e54a155f476567e960abe867cf58c8",
+          "bytes": 5063
+        }
+      }
+    },
+    {
+      "sentence": "I'm a family-centered person.",
+      "translation": "我是个顾家的人。",
+      "chunks": [
+        "I'm a",
+        "family-centered person."
+      ],
+      "hints": [
+        "我是个",
+        "顾家的人"
+      ],
+      "cid": "dff3d3a5",
+      "sentenceAudio": {
+        "text": "I'm a family-centered person.",
+        "audio": {
+          "url": "assets/oral-dff3d3a5-cfc4dc1756eee238d861.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fbc3dc8a4817c7dd4e0114b1b1e11182b083185bacebb7dc59f39429646cfb83",
+          "bytes": 6164
+        }
+      }
+    },
+    {
+      "sentence": "She wants to start a family.",
+      "translation": "她想要个孩子。",
+      "chunks": [
+        "She wants",
+        "to start a family."
+      ],
+      "hints": [
+        "她想要",
+        "个孩子"
+      ],
+      "cid": "a78bb49a",
+      "sentenceAudio": {
+        "text": "She wants to start a family.",
+        "audio": {
+          "url": "assets/oral-a78bb49a-81aefd89acfc3b89fc10.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f4e6e35f840fa3c361e54a0e8020cfdc01a4127bfc2f4b315192155418f46e41",
+          "bytes": 5780
+        }
+      }
+    },
+    {
+      "sentence": "I'm pregnant.",
+      "translation": "我怀孕了。",
+      "chunks": [
+        "I'm",
+        "pregnant."
+      ],
+      "hints": [
+        "我",
+        "怀孕了"
+      ],
+      "cid": "060e83f5",
+      "sentenceAudio": {
+        "text": "I'm pregnant.",
+        "audio": {
+          "url": "assets/oral-060e83f5-d22d9b39ee7ee8f788a7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9312333105301beb012274893d2f41047e5d02b321ae9d82e76d43e96217b709",
+          "bytes": 3978
+        }
+      }
+    },
+    {
+      "sentence": "What did she have?",
+      "translation": "她生的是男孩还是女孩？",
+      "chunks": [
+        "What did she have?"
+      ],
+      "hints": [
+        "她生的是男孩还是女孩？"
+      ],
+      "cid": "6ef2b67f",
+      "sentenceAudio": {
+        "text": "What did she have?",
+        "audio": {
+          "url": "assets/oral-6ef2b67f-ad60085af043463a5f93.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "949b49bbb3e39ad7ce1db0b0f64e16ddadc1f4c91d9982f42a9fa3374eac72da",
+          "bytes": 4156
+        }
+      }
+    },
+    {
+      "sentence": "We can work it out.",
+      "translation": "我们能把问题解决。",
+      "chunks": [
+        "We can",
+        "work it out."
+      ],
+      "hints": [
+        "我们能",
+        "把问题解决。"
+      ],
+      "cid": "6e5e708d",
+      "sentenceAudio": {
+        "text": "We can work it out.",
+        "audio": {
+          "url": "assets/oral-6e5e708d-7686c3a413155b45d3ca.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "29ffba0ef91190da9ddd88eeec680a2e75085f65874113594c4432b2d74d6142",
+          "bytes": 4476
+        }
+      }
+    },
+    {
+      "sentence": "I think of my wife first.",
+      "translation": "我首先想到的是我妻子。",
+      "chunks": [
+        "I think of my wife",
+        "first."
+      ],
+      "hints": [
+        "我想到我妻子",
+        "排在第一位。"
+      ],
+      "cid": "de0b23c2",
+      "sentenceAudio": {
+        "text": "I think of my wife first.",
+        "audio": {
+          "url": "assets/oral-de0b23c2-97bbef5a209037c6be53.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b9250195135f409eee3fcb9031dfaa866bb485b4096ea9c662fb4e4fc3c2759",
+          "bytes": 5745
+        }
+      }
+    },
+    {
+      "sentence": "We as a husband and a wife don't have any fights.",
+      "translation": "我们夫妻从不吵架。",
+      "chunks": [
+        "We as a husband and a wife",
+        "don't have any fights."
+      ],
+      "hints": [
+        "我们夫妻俩",
+        "从不吵架"
+      ],
+      "cid": "3c55698b",
+      "sentenceAudio": {
+        "text": "We as a husband and a wife don't have any fights.",
+        "audio": {
+          "url": "assets/oral-3c55698b-7606db2e69baedf15b23.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d1be4dbde14896e60255658a4e49117c390c1931e2a16f404a68b19293bef998",
+          "bytes": 9097
+        }
+      }
+    },
+    {
+      "sentence": "Family man.",
+      "translation": "顾家的男人。",
+      "chunks": [
+        "Family man."
+      ],
+      "hints": [
+        "顾家的男人。"
+      ],
+      "cid": "7a961d91",
+      "sentenceAudio": {
+        "text": "Family man.",
+        "audio": {
+          "url": "assets/oral-7a961d91-5875096d6ee4c06e66f9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a33255de0ec4d31ee3240cedc3f7a37c8641e4c2cfbd3b7e2c7b055faf6731c7",
+          "bytes": 4115
+        }
+      }
+    },
+    {
+      "sentence": "We fight a lot.",
+      "translation": "我们经常吵架。",
+      "chunks": [
+        "We",
+        "fight a lot."
+      ],
+      "hints": [
+        "我们",
+        "经常吵架。"
+      ],
+      "cid": "3f7ea1d3",
+      "sentenceAudio": {
+        "text": "We fight a lot.",
+        "audio": {
+          "url": "assets/oral-3f7ea1d3-cb091492f3c8e89b0f0b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6f0fb0db1190098237c607ee829b76c41396640733dc9deb31f46a25393f33f2",
+          "bytes": 4332
+        }
+      }
+    },
+    {
+      "sentence": "I don't love my wife any more.",
+      "translation": "我不再爱我的妻子了。",
+      "chunks": [
+        "I don't love",
+        "my wife any more."
+      ],
+      "hints": [
+        "我不再爱",
+        "我的妻子了"
+      ],
+      "cid": "88953dfa",
+      "sentenceAudio": {
+        "text": "I don't love my wife any more.",
+        "audio": {
+          "url": "assets/oral-88953dfa-484fc1c4e9d47c04bf50.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cd5577b4cf6e49325756a48487bd03b990af7e7dd21869f584327fb876c0b58e",
+          "bytes": 6122
+        }
+      }
+    },
+    {
+      "sentence": "My wife's cheating on me.",
+      "translation": "我老婆有外遇。",
+      "chunks": [
+        "My wife's",
+        "cheating on me."
+      ],
+      "hints": [
+        "我老婆",
+        "有外遇"
+      ],
+      "cid": "f7f71cb4",
+      "sentenceAudio": {
+        "text": "My wife's cheating on me.",
+        "audio": {
+          "url": "assets/oral-f7f71cb4-aa1d81225a40c30f377b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee2f10bdd73cbe653b3b4565ade2124b0936464a6ec20d22a128f94da04e2d60",
+          "bytes": 5328
+        }
+      }
+    },
+    {
+      "sentence": "We had a falling-out.",
+      "translation": "我们感情不和。",
+      "chunks": [
+        "We had",
+        "a falling-out."
+      ],
+      "hints": [
+        "我们",
+        "感情不和"
+      ],
+      "cid": "1e55aebd",
+      "sentenceAudio": {
+        "text": "We had a falling-out.",
+        "audio": {
+          "url": "assets/oral-1e55aebd-a6e95681db634861d7ce.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9678389b108c787e697951794d8898430d4486aee08e7b416540394997d0d666",
+          "bytes": 4477
+        }
+      }
+    },
+    {
+      "sentence": "I've changed my mind.",
+      "translation": "我已经改变心意了。",
+      "chunks": [
+        "I've changed",
+        "my mind."
+      ],
+      "hints": [
+        "我已经改变了",
+        "主意"
+      ],
+      "cid": "7cdb4218",
+      "sentenceAudio": {
+        "text": "I've changed my mind.",
+        "audio": {
+          "url": "assets/oral-7cdb4218-da8cb2060d5ef4ace67a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "35f6dfadee96a0bf08b49d6331b6cf9d7ef7ccd9af47aaafc78c26c2c63355b1",
+          "bytes": 5012
+        }
+      }
+    },
+    {
+      "sentence": "You have changed.",
+      "translation": "你变了。",
+      "chunks": [
+        "You have",
+        "changed."
+      ],
+      "hints": [
+        "你",
+        "变了"
+      ],
+      "cid": "4091ff7c",
+      "sentenceAudio": {
+        "text": "You have changed.",
+        "audio": {
+          "url": "assets/oral-4091ff7c-c22dc220eec5e2b59c06.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e1e590d99a06da38d68fe96312b5dacede66b0c38706f0fb42b36ec9184f83a4",
+          "bytes": 4253
+        }
+      }
+    },
+    {
+      "sentence": "Are you seeing someone now?",
+      "translation": "你现在有交往对象吗？",
+      "chunks": [
+        "Are you seeing someone now?"
+      ],
+      "hints": [
+        "你现在有交往对象吗？"
+      ],
+      "cid": "61dfc8e8",
+      "sentenceAudio": {
+        "text": "Are you seeing someone now?",
+        "audio": {
+          "url": "assets/oral-61dfc8e8-3f5f10241ee7358ff0ff.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b2616738a8ba67f7d4bf81440dd4b60dd4b4fbdfa03b956146b425f05ef30d17",
+          "bytes": 5137
+        }
+      }
+    },
+    {
+      "sentence": "I don't see eye to eye with my wife.",
+      "translation": "我和妻子意见不合。",
+      "chunks": [
+        "I",
+        "don't see eye to eye with my wife."
+      ],
+      "hints": [
+        "我",
+        "和我妻子意见不合"
+      ],
+      "cid": "0a1bf683",
+      "sentenceAudio": {
+        "text": "I don't see eye to eye with my wife.",
+        "audio": {
+          "url": "assets/oral-0a1bf683-3de6097386c2d29e64da.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f52a3b8026867d7403e33248f0789f20419287c81fba08faea60647e2b371f1e",
+          "bytes": 6735
+        }
+      }
+    },
+    {
+      "sentence": "We just don't get along.",
+      "translation": "我们俩合不来了。",
+      "chunks": [
+        "We just",
+        "don't get along."
+      ],
+      "hints": [
+        "我们俩",
+        "合不来"
+      ],
+      "cid": "7ca24be4",
+      "sentenceAudio": {
+        "text": "We just don't get along.",
+        "audio": {
+          "url": "assets/oral-7ca24be4-9b68891a60256d722c40.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "244ccfc4b5d600bc97b37eae739d495298a66fa8f0231771dc129b5c3bb135fc",
+          "bytes": 4846
+        }
+      }
+    },
+    {
+      "sentence": "I thought I knew you.",
+      "translation": "我想我很了解你。",
+      "chunks": [
+        "I thought",
+        "I knew you."
+      ],
+      "hints": [
+        "我以为",
+        "我了解你"
+      ],
+      "cid": "cd2b6952",
+      "sentenceAudio": {
+        "text": "I thought I knew you.",
+        "audio": {
+          "url": "assets/oral-cd2b6952-cda8de000ff1693ca42d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fb15afd01a8d2030c2bb6c80167d4a0dd85d2b4f33c5e8183c07a7baadca6882",
+          "bytes": 4443
+        }
+      }
+    },
+    {
+      "sentence": "I had an affair with my secretary.",
+      "translation": "我和我的秘书有了婚外情。",
+      "chunks": [
+        "I had an affair",
+        "with my secretary."
+      ],
+      "hints": [
+        "我有了婚外情",
+        "和我的秘书"
+      ],
+      "cid": "e4e57bed",
+      "sentenceAudio": {
+        "text": "I had an affair with my secretary.",
+        "audio": {
+          "url": "assets/oral-e4e57bed-310f53f29a87e022d258.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "be11dafef61b4a4c19c4a39178263028708e002c14b626d92b055a4cc8521918",
+          "bytes": 6953
+        }
+      }
+    },
+    {
+      "sentence": "I don't enjoy being with you.",
+      "translation": "和你在一起没意思。",
+      "chunks": [
+        "I don't enjoy",
+        "being with you."
+      ],
+      "hints": [
+        "我不喜欢",
+        "和你在一起"
+      ],
+      "cid": "a7ac79e5",
+      "sentenceAudio": {
+        "text": "I don't enjoy being with you.",
+        "audio": {
+          "url": "assets/oral-a7ac79e5-9d9f0752158dfaa58628.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "73accc26ba74aa6ea0e6b23da58966d8d7aca2c1472c3f8e4bfdcdde52a8f36a",
+          "bytes": 5551
+        }
+      }
+    },
+    {
+      "sentence": "Let's get divorced.",
+      "translation": "我们离婚吧。",
+      "chunks": [
+        "Let's get",
+        "divorced."
+      ],
+      "hints": [
+        "我们",
+        "离婚吧"
+      ],
+      "cid": "368558ec",
+      "sentenceAudio": {
+        "text": "Let's get divorced.",
+        "audio": {
+          "url": "assets/oral-368558ec-50ca29d61ac158698ede.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "df08b39cd3bd304f19f798f50a805a07a7452518dbef512d68190ec15c554d23",
+          "bytes": 4891
+        }
+      }
+    },
+    {
+      "sentence": "I'm separated from my wife.",
+      "translation": "现在我和我妻子分居了。",
+      "chunks": [
+        "I'm separated",
+        "from my wife."
+      ],
+      "hints": [
+        "我现在分居了",
+        "和我妻子"
+      ],
+      "cid": "af4053b8",
+      "sentenceAudio": {
+        "text": "I'm separated from my wife.",
+        "audio": {
+          "url": "assets/oral-af4053b8-41c2f213b50bd7cf20b1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f4c28d438a1fc20e05b871514acc5e9ac1b8e5e94fb326f60d85fd60e829d08a",
+          "bytes": 5831
+        }
+      }
+    },
+    {
+      "sentence": "I can't get over losing you.",
+      "translation": "我没法接受失去你。",
+      "chunks": [
+        "I can't get over",
+        "losing you."
+      ],
+      "hints": [
+        "我没法接受",
+        "失去你"
+      ],
+      "cid": "730cddfc",
+      "sentenceAudio": {
+        "text": "I can't get over losing you.",
+        "audio": {
+          "url": "assets/oral-730cddfc-4bbf1190e73b92f678d0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f38b4e32bf27050f31b21c789dbb23921a9c1713bba3d1cf6cb6ca027963e1c4",
+          "bytes": 5701
+        }
+      }
+    },
+    {
+      "sentence": "Breaking up is hard to do.",
+      "translation": "分手真的很难。",
+      "chunks": [
+        "Breaking up",
+        "is hard to do."
+      ],
+      "hints": [
+        "分手",
+        "是很难的"
+      ],
+      "cid": "14208828",
+      "sentenceAudio": {
+        "text": "Breaking up is hard to do.",
+        "audio": {
+          "url": "assets/oral-14208828-3dc5dab2b2b1a770af63.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a1c9ed3c0e00838d0058180948d4a52978ab4bb44adc399f8e0bd20a39b6471b",
+          "bytes": 5865
+        }
+      }
+    },
+    {
+      "sentence": "Don't break my heart.",
+      "translation": "请不要伤我的心。",
+      "chunks": [
+        "Don't break",
+        "my heart."
+      ],
+      "hints": [
+        "请别伤",
+        "我的心"
+      ],
+      "cid": "8ff6ee26",
+      "sentenceAudio": {
+        "text": "Don't break my heart.",
+        "audio": {
+          "url": "assets/oral-8ff6ee26-77d45913911e43231f66.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c0ed9a9307e29775334332569772961fa40b3da4e0d00c3e5ace7ad8af950080",
+          "bytes": 4618
+        }
+      }
+    },
+    {
+      "sentence": "We argued for hours.",
+      "translation": "我们争论了好几个小时。",
+      "chunks": [
+        "We argued",
+        "for hours."
+      ],
+      "hints": [
+        "我们争论了",
+        "好几个小时"
+      ],
+      "cid": "e8dbcb19",
+      "sentenceAudio": {
+        "text": "We argued for hours.",
+        "audio": {
+          "url": "assets/oral-e8dbcb19-4db00c34e943076833f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c166ecbcbc0b606bb0de784009495be893c817c5806249af74fa77a5b9b508f8",
+          "bytes": 5200
+        }
+      }
+    }
+  ]
+}

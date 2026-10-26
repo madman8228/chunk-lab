@@ -1,0 +1,1070 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I get along well with him.",
+      "translation": "我和他很合得来。",
+      "chunks": [
+        "I",
+        "get along well with him."
+      ],
+      "hints": [
+        "我",
+        "和他很合得来"
+      ],
+      "cid": "21149afb",
+      "sentenceAudio": {
+        "text": "I get along well with him.",
+        "audio": {
+          "url": "assets/oral-21149afb-35cb5a10dc270f397bb2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "924e097104fdd3d7dd3797870218e5630691c4588f1fbb6cb3c5bad4cf0697ad",
+          "bytes": 5125
+        }
+      }
+    },
+    {
+      "sentence": "I don't get along well with her.",
+      "translation": "我跟她合不来。",
+      "chunks": [
+        "I",
+        "don't get along well with her."
+      ],
+      "hints": [
+        "我",
+        "跟她合不来"
+      ],
+      "cid": "e130013e",
+      "sentenceAudio": {
+        "text": "I don't get along well with her.",
+        "audio": {
+          "url": "assets/oral-e130013e-c4d5d32c9b75bda05471.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c41b6eb477f51b861c420378aa025b31274e74987851b7f8c07f0cdd499b2fbf",
+          "bytes": 5483
+        }
+      }
+    },
+    {
+      "sentence": "I respect him.",
+      "translation": "我很尊敬他。",
+      "chunks": [
+        "I",
+        "respect him."
+      ],
+      "hints": [
+        "我",
+        "尊敬他"
+      ],
+      "cid": "24756192",
+      "sentenceAudio": {
+        "text": "I respect him.",
+        "audio": {
+          "url": "assets/oral-24756192-f0aba30b5952177466fe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fc87db4225e05a710841c09e94fcfe76042a89474cade6604343f2b918053b03",
+          "bytes": 4436
+        }
+      }
+    },
+    {
+      "sentence": "I despise him.",
+      "translation": "我瞧不起他。",
+      "chunks": [
+        "I",
+        "despise him."
+      ],
+      "hints": [
+        "我",
+        "瞧不起他"
+      ],
+      "cid": "e450bb7d",
+      "sentenceAudio": {
+        "text": "I despise him.",
+        "audio": {
+          "url": "assets/oral-e450bb7d-dc9b0bd0f0463918b216.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "69108465048926b4a6c532ee28f4bb3ad67c1b9abf8940c601de63d0895a848b",
+          "bytes": 4447
+        }
+      }
+    },
+    {
+      "sentence": "I want to get along with everyone.",
+      "translation": "我想和大家和睦相处。",
+      "chunks": [
+        "I want to",
+        "get along with everyone."
+      ],
+      "hints": [
+        "我想",
+        "和大家和睦相处。"
+      ],
+      "cid": "b2e41adf",
+      "sentenceAudio": {
+        "text": "I want to get along with everyone.",
+        "audio": {
+          "url": "assets/oral-b2e41adf-dc6e798e3c133ad50e32.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f15581183cdde05f8421ab30e9c05afb5945bd4aa00f29c06bc44af4a0078afa",
+          "bytes": 6211
+        }
+      }
+    },
+    {
+      "sentence": "Are you getting along with her?",
+      "translation": "你跟她合得来吗?",
+      "chunks": [
+        "Are you",
+        "getting along with her?"
+      ],
+      "hints": [
+        "你",
+        "跟她合得来吗？"
+      ],
+      "cid": "4f2583bb",
+      "sentenceAudio": {
+        "text": "Are you getting along with her?",
+        "audio": {
+          "url": "assets/oral-4f2583bb-75b7cf7e609caf4e9c02.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c40fab4df48aa576a935dfd15ccafbc4ef6cdc9da771bd17003d8c2c1b87eac3",
+          "bytes": 5104
+        }
+      }
+    },
+    {
+      "sentence": "She ignored me.",
+      "translation": "她根本不搭理我。",
+      "chunks": [
+        "She",
+        "ignored me."
+      ],
+      "hints": [
+        "她",
+        "根本不搭理我"
+      ],
+      "cid": "3782994b",
+      "sentenceAudio": {
+        "text": "She ignored me.",
+        "audio": {
+          "url": "assets/oral-3782994b-8d380f7dffb41468ea05.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "070151e921bbda8a7661c7ac67b831d4f3028e4e52f909c86909ed0ac3ee7598",
+          "bytes": 4275
+        }
+      }
+    },
+    {
+      "sentence": "I don't know what he's really thinking.",
+      "translation": "我不知道他在想什么。",
+      "chunks": [
+        "I don't know",
+        "what he's really thinking."
+      ],
+      "hints": [
+        "我不知道",
+        "他到底在想什么"
+      ],
+      "cid": "2c8a9a3f",
+      "sentenceAudio": {
+        "text": "I don't know what he's really thinking.",
+        "audio": {
+          "url": "assets/oral-2c8a9a3f-bc82089df2c1f8904cc1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6e954be30c0dfd5d1bb7757ab4e0b73870c65175505bdbc5c9e277f7c960d655",
+          "bytes": 6104
+        }
+      }
+    },
+    {
+      "sentence": "I have no reason to be envied.",
+      "translation": "我没有理由让人嫉妒。",
+      "chunks": [
+        "I have no reason",
+        "to be envied."
+      ],
+      "hints": [
+        "我没有理由",
+        "让人嫉妒"
+      ],
+      "cid": "aefee696",
+      "sentenceAudio": {
+        "text": "I have no reason to be envied.",
+        "audio": {
+          "url": "assets/oral-aefee696-27c7cac5a4a476d7846c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ff6da7ac81d06c2b3d0d7e56cac44fd27f50ba9cb5ab101e980c0f2bc2dd50d0",
+          "bytes": 6325
+        }
+      }
+    },
+    {
+      "sentence": "I don't like brownnosers.",
+      "translation": "我不喜欢拍马屁的人。",
+      "chunks": [
+        "I don't like",
+        "brownnosers."
+      ],
+      "hints": [
+        "我不喜欢",
+        "拍马屁的人"
+      ],
+      "cid": "895798c9",
+      "sentenceAudio": {
+        "text": "I don't like brownnosers.",
+        "audio": {
+          "url": "assets/oral-895798c9-41166ddeac9f6b3277c5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1b676a0b897c50d1c4528042edc18a8eaa4594832b5d06d477f6eb2ee2ba60bd",
+          "bytes": 5423
+        }
+      }
+    },
+    {
+      "sentence": "I'm neglecting my family.",
+      "translation": "我忽视了自己的家人。",
+      "chunks": [
+        "I'm neglecting",
+        "my family."
+      ],
+      "hints": [
+        "我忽视了",
+        "自己的家人"
+      ],
+      "cid": "d86fd686",
+      "sentenceAudio": {
+        "text": "I'm neglecting my family.",
+        "audio": {
+          "url": "assets/oral-d86fd686-f4e9c39da4452ef14c32.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "15e883ef7602953cada771f5793e0047bdaf4873e69c200a22c3aa4f35c67b2d",
+          "bytes": 5965
+        }
+      }
+    },
+    {
+      "sentence": "Which side are you?",
+      "translation": "你站在哪一方?",
+      "chunks": [
+        "Which side are you?"
+      ],
+      "hints": [
+        "你站在哪一方？"
+      ],
+      "cid": "c518adf9",
+      "sentenceAudio": {
+        "text": "Which side are you?",
+        "audio": {
+          "url": "assets/oral-c518adf9-6f535a74eb4662e40532.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "569a5f5e0145657ce4d0e293eed32ab1e8177e38bcaa370b1ee873133a01599f",
+          "bytes": 4319
+        }
+      }
+    },
+    {
+      "sentence": "I'm on your side.",
+      "translation": "我是站在你这边的。",
+      "chunks": [
+        "I'm",
+        "on your side."
+      ],
+      "hints": [
+        "我",
+        "站在你这边"
+      ],
+      "cid": "02f4f27b",
+      "sentenceAudio": {
+        "text": "I'm on your side.",
+        "audio": {
+          "url": "assets/oral-02f4f27b-d0209515563dbe05c416.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bd5fe40f27aa1d0de84690bd7a75dff9117773ed40833c4fbc3835196fc621a0",
+          "bytes": 4305
+        }
+      }
+    },
+    {
+      "sentence": "He's very hard on me.",
+      "translation": "他对我很不客气的。",
+      "chunks": [
+        "He's very",
+        "hard on me."
+      ],
+      "hints": [
+        "他非常",
+        "对我很不客气"
+      ],
+      "cid": "2bc89c1a",
+      "sentenceAudio": {
+        "text": "He's very hard on me.",
+        "audio": {
+          "url": "assets/oral-2bc89c1a-69eac59082e618b4085d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8356e10c373a9bbf3d427c7d8b076640183205c4366cd748cd1c1e61f522f4c8",
+          "bytes": 5207
+        }
+      }
+    },
+    {
+      "sentence": "He always treats me like an enemy.",
+      "translation": "他总把我当作眼中钉。",
+      "chunks": [
+        "He always treats me",
+        "like an enemy."
+      ],
+      "hints": [
+        "他总把我",
+        "当作眼中钉"
+      ],
+      "cid": "d3a9f6ca",
+      "sentenceAudio": {
+        "text": "He always treats me like an enemy.",
+        "audio": {
+          "url": "assets/oral-d3a9f6ca-eeb2456837e7d5565685.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7a2c1f7ff56216aa1111c5a6a661782dc9569885d85a2e3f36351a7e31115dcc",
+          "bytes": 6325
+        }
+      }
+    },
+    {
+      "sentence": "He treated me badly.",
+      "translation": "他对我很蛮横。",
+      "chunks": [
+        "He treated me",
+        "badly."
+      ],
+      "hints": [
+        "他对我",
+        "很蛮横"
+      ],
+      "cid": "3db8648f",
+      "sentenceAudio": {
+        "text": "He treated me badly.",
+        "audio": {
+          "url": "assets/oral-3db8648f-f294c1f3bea440d80906.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9635cb06ab96dc2ed56ff0a0ee548035b2b56feda2c6278b2cdbac698fe5db82",
+          "bytes": 4896
+        }
+      }
+    },
+    {
+      "sentence": "I'm obligated to him.",
+      "translation": "我欠他的情。",
+      "chunks": [
+        "I'm",
+        "obligated to him."
+      ],
+      "hints": [
+        "我",
+        "欠他的情"
+      ],
+      "cid": "aded363c",
+      "sentenceAudio": {
+        "text": "I'm obligated to him.",
+        "audio": {
+          "url": "assets/oral-aded363c-d1837e76a04b0c556921.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "09599539d5c3c973658bd23e81cd1eecfa51bf4878238591ed8dc94833535a32",
+          "bytes": 5377
+        }
+      }
+    },
+    {
+      "sentence": "We're on a first name basis.",
+      "translation": "我们很熟，互相直呼其名。",
+      "chunks": [
+        "We're",
+        "on a first name basis."
+      ],
+      "hints": [
+        "我们",
+        "熟到互相直呼其名"
+      ],
+      "cid": "3fe16fec",
+      "sentenceAudio": {
+        "text": "We're on a first name basis.",
+        "audio": {
+          "url": "assets/oral-3fe16fec-c41246730e5ab03062fa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "efd2778049aba7978840a59408a01642af71f93385fb365293c4256a1279e283",
+          "bytes": 5630
+        }
+      }
+    },
+    {
+      "sentence": "He's quick on the uptake.",
+      "translation": "他的理解力很强。",
+      "chunks": [
+        "He's",
+        "quick on the uptake."
+      ],
+      "hints": [
+        "他",
+        "理解力很强"
+      ],
+      "cid": "a4a90ceb",
+      "sentenceAudio": {
+        "text": "He's quick on the uptake.",
+        "audio": {
+          "url": "assets/oral-a4a90ceb-0d01592e01af99b090a4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b5b95235885c70402712ed039709e74adde36c19a3a3b99f9b0e4504a43034f5",
+          "bytes": 5041
+        }
+      }
+    },
+    {
+      "sentence": "He'll never let you down.",
+      "translation": "他不会让你失望的。",
+      "chunks": [
+        "He'll never",
+        "let you down."
+      ],
+      "hints": [
+        "他不会",
+        "让你失望"
+      ],
+      "cid": "d333b04d",
+      "sentenceAudio": {
+        "text": "He'll never let you down.",
+        "audio": {
+          "url": "assets/oral-d333b04d-9d27be2d9513039bd454.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7c63a5639f04ab67e216c63e47e1040e4f1b8b242a71bf95f3cdb27ad0f25a96",
+          "bytes": 5113
+        }
+      }
+    },
+    {
+      "sentence": "He's efficient.",
+      "translation": "他很能干。",
+      "chunks": [
+        "He's",
+        "efficient."
+      ],
+      "hints": [
+        "他很",
+        "能干"
+      ],
+      "cid": "758f4b57",
+      "sentenceAudio": {
+        "text": "He's efficient.",
+        "audio": {
+          "url": "assets/oral-758f4b57-1b66f1a3d6872fd9cfd8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0992c569bb0eb654991afa3c6c1147f34e42ecfdddf583bc6c34550bd2aaefa0",
+          "bytes": 4038
+        }
+      }
+    },
+    {
+      "sentence": "He's a good guy.",
+      "translation": "他是个好人。",
+      "chunks": [
+        "He's a",
+        "good guy."
+      ],
+      "hints": [
+        "他是个",
+        "好人"
+      ],
+      "cid": "90d67c2b",
+      "sentenceAudio": {
+        "text": "He's a good guy.",
+        "audio": {
+          "url": "assets/oral-90d67c2b-2d450f1f9439d9980c5b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a6cdfc156620e0badd8c356d7e8ed6a91b0e1b08c75f65a99f8878794b714b5b",
+          "bytes": 4339
+        }
+      }
+    },
+    {
+      "sentence": "He looks old for his age.",
+      "translation": "他看起来比实际年龄老。",
+      "chunks": [
+        "He looks",
+        "old for his age."
+      ],
+      "hints": [
+        "他看起来",
+        "比实际年龄老"
+      ],
+      "cid": "5b057fd7",
+      "sentenceAudio": {
+        "text": "He looks old for his age.",
+        "audio": {
+          "url": "assets/oral-5b057fd7-65e9da4c6b6efe2f9a77.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "64d433942e9d30d5e4b3c0497b02f9f78f1576576bb41df908a8649a12db0ee1",
+          "bytes": 5663
+        }
+      }
+    },
+    {
+      "sentence": "You look younger than me.",
+      "translation": "你看上去比我年轻。",
+      "chunks": [
+        "You look",
+        "younger than me."
+      ],
+      "hints": [
+        "你看上去",
+        "比我年轻"
+      ],
+      "cid": "6d17501f",
+      "sentenceAudio": {
+        "text": "You look younger than me.",
+        "audio": {
+          "url": "assets/oral-6d17501f-663ef30ce07c4cffc0d2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "71641f9d3f56dec112a754d197b03946af9413e97fd7314ed324db6ed8c3ba53",
+          "bytes": 4991
+        }
+      }
+    },
+    {
+      "sentence": "That's the way he is.",
+      "translation": "他就是那种人。",
+      "chunks": [
+        "That's the way he is."
+      ],
+      "hints": [
+        "他就是那种人。"
+      ],
+      "cid": "6668a8e7",
+      "sentenceAudio": {
+        "text": "That's the way he is.",
+        "audio": {
+          "url": "assets/oral-6668a8e7-3faaebd089d5c1a10348.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eb254480b89a9159a2abed7b1b59dbefdf71759d2301b0f046ad7625a5b9737e",
+          "bytes": 4633
+        }
+      }
+    },
+    {
+      "sentence": "Who is he like?",
+      "translation": "他长得像谁?",
+      "chunks": [
+        "Who is he like?"
+      ],
+      "hints": [
+        "他长得像谁？"
+      ],
+      "cid": "ed7c339c",
+      "sentenceAudio": {
+        "text": "Who is he like?",
+        "audio": {
+          "url": "assets/oral-ed7c339c-a10b5230391a453e023f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "14a5dfc0ec617638d3b7a11c085189e4481b4c9f03f9dd46e5074bad6331966c",
+          "bytes": 3903
+        }
+      }
+    },
+    {
+      "sentence": "He has a lot of common sense.",
+      "translation": "他有丰富的常识。",
+      "chunks": [
+        "He has a lot of",
+        "common sense."
+      ],
+      "hints": [
+        "他有丰富的",
+        "常识"
+      ],
+      "cid": "eb0efd2c",
+      "sentenceAudio": {
+        "text": "He has a lot of common sense.",
+        "audio": {
+          "url": "assets/oral-eb0efd2c-4719107a4389e0c73d0b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3914dcfdf5ec2a0156af8908259d7ab521fb738b64deafc89630600b20338b9f",
+          "bytes": 5971
+        }
+      }
+    },
+    {
+      "sentence": "He's wise for his age.",
+      "translation": "就他的年龄而言，他很有智慧。",
+      "chunks": [
+        "He's wise for his age."
+      ],
+      "hints": [
+        "就他的年龄而言，他很有智慧。"
+      ],
+      "cid": "df047ab2",
+      "sentenceAudio": {
+        "text": "He's wise for his age.",
+        "audio": {
+          "url": "assets/oral-df047ab2-b2b710cd9c7f8fb27f70.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0490ee38261076b716295914d50b4ceb9ceb8493446efe17c40ee2fbf9d132d1",
+          "bytes": 5389
+        }
+      }
+    },
+    {
+      "sentence": "He knows a lot of people.",
+      "translation": "他认识很多人。",
+      "chunks": [
+        "He knows",
+        "a lot of people."
+      ],
+      "hints": [
+        "他认识",
+        "很多人"
+      ],
+      "cid": "d1b58b60",
+      "sentenceAudio": {
+        "text": "He knows a lot of people.",
+        "audio": {
+          "url": "assets/oral-d1b58b60-663c6c766cdc3ed4cee8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a75da3db1bdb7c26a76359650b0c81efaa272381f2b0afeb27d4a9f8e3286078",
+          "bytes": 5211
+        }
+      }
+    },
+    {
+      "sentence": "He's a go-getter.",
+      "translation": "他是个有才干的人。",
+      "chunks": [
+        "He's a",
+        "go-getter."
+      ],
+      "hints": [
+        "他是个",
+        "有才干的人"
+      ],
+      "cid": "76b1f601",
+      "sentenceAudio": {
+        "text": "He's a go-getter.",
+        "audio": {
+          "url": "assets/oral-76b1f601-7b02b995cff78b101664.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5337294c61f7c8469138e11b0495adc870fd03b18888d4c03ee172b1f8e282bb",
+          "bytes": 4313
+        }
+      }
+    },
+    {
+      "sentence": "You're so sympathetic.",
+      "translation": "你真体谅人。",
+      "chunks": [
+        "You're so",
+        "sympathetic."
+      ],
+      "hints": [
+        "你真",
+        "体谅人"
+      ],
+      "cid": "b65ef75b",
+      "sentenceAudio": {
+        "text": "You're so sympathetic.",
+        "audio": {
+          "url": "assets/oral-b65ef75b-cad921346e3b3e137876.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ac24bd6f9087fb0f4af95a66fce91c3a1d57170c784ae74655e46b928d03d713",
+          "bytes": 4992
+        }
+      }
+    },
+    {
+      "sentence": "He's faithful.",
+      "translation": "他是守信用的人。",
+      "chunks": [
+        "He's",
+        "faithful."
+      ],
+      "hints": [
+        "他是",
+        "守信用的人"
+      ],
+      "cid": "609d300b",
+      "sentenceAudio": {
+        "text": "He's faithful.",
+        "audio": {
+          "url": "assets/oral-609d300b-fbd2d9a7ad10ed260aa7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d7f1e5735e2b9c7758142020f34a8ed59e3c61b9d313ef05f8e484932df12a38",
+          "bytes": 4030
+        }
+      }
+    },
+    {
+      "sentence": "He has a deep voice.",
+      "translation": "他有低沉的嗓音。",
+      "chunks": [
+        "He has",
+        "a deep voice."
+      ],
+      "hints": [
+        "他有",
+        "低沉的嗓音"
+      ],
+      "cid": "cf38e723",
+      "sentenceAudio": {
+        "text": "He has a deep voice.",
+        "audio": {
+          "url": "assets/oral-cf38e723-84aab6ef2f0bf23a9e49.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "312395c9970ff9fcf0536caee61c6fae43428452cb34dc76a351f28a9af1e0f2",
+          "bytes": 4711
+        }
+      }
+    },
+    {
+      "sentence": "He has put on weight.",
+      "translation": "他发福了。",
+      "chunks": [
+        "He has",
+        "put on weight."
+      ],
+      "hints": [
+        "他",
+        "发福了"
+      ],
+      "cid": "6b2ad1be",
+      "sentenceAudio": {
+        "text": "He has put on weight.",
+        "audio": {
+          "url": "assets/oral-6b2ad1be-8ab32b2877703d49dc5e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "df20ccbe40c4435a13347f246d40a721b2219bc2a320b0944992a9197db4d448",
+          "bytes": 4560
+        }
+      }
+    },
+    {
+      "sentence": "He's overweight.",
+      "translation": "他太胖了。",
+      "chunks": [
+        "He's",
+        "overweight."
+      ],
+      "hints": [
+        "他",
+        "太胖了"
+      ],
+      "cid": "abf64f84",
+      "sentenceAudio": {
+        "text": "He's overweight.",
+        "audio": {
+          "url": "assets/oral-abf64f84-0ba2a95b3fc672df9a29.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c760baf5469cca068a57cb5b87a73e367a2b4bd3dd4ba58626da847321672f4c",
+          "bytes": 4176
+        }
+      }
+    },
+    {
+      "sentence": "You have a lot of nerve.",
+      "translation": "你可真敢啊。",
+      "chunks": [
+        "You have a lot of nerve."
+      ],
+      "hints": [
+        "你可真敢啊。"
+      ],
+      "cid": "9d2b921f",
+      "sentenceAudio": {
+        "text": "You have a lot of nerve.",
+        "audio": {
+          "url": "assets/oral-9d2b921f-ab48b3fdba1194de25a2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e7019d91e008bc74d02c5c4fc5bae22f5c416887af7e93e5dc7d10d46e1a5dda",
+          "bytes": 4882
+        }
+      }
+    },
+    {
+      "sentence": "He's a very modest man.",
+      "translation": "他是个很谦虚的人。",
+      "chunks": [
+        "He's a very",
+        "modest man."
+      ],
+      "hints": [
+        "他是个很",
+        "谦虚的人"
+      ],
+      "cid": "89d4d21b",
+      "sentenceAudio": {
+        "text": "He's a very modest man.",
+        "audio": {
+          "url": "assets/oral-89d4d21b-d7e6a31c7a7fcba207aa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "984f3706ccfc3249966eed75f43d0f1e8d7144391db660369338c18d2e6f2e15",
+          "bytes": 5835
+        }
+      }
+    },
+    {
+      "sentence": "He has a good temper.",
+      "translation": "他有个好脾气。",
+      "chunks": [
+        "He has",
+        "a good temper."
+      ],
+      "hints": [
+        "他有个",
+        "好脾气"
+      ],
+      "cid": "610c4073",
+      "sentenceAudio": {
+        "text": "He has a good temper.",
+        "audio": {
+          "url": "assets/oral-610c4073-1ed162bbf83e113037a3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cc30e4ada1979623e5cf191f7257ed7fed1cdf5818af409459d0a1e1b7eb5d14",
+          "bytes": 4933
+        }
+      }
+    },
+    {
+      "sentence": "He has a bad temper.",
+      "translation": "他这个人脾气暴躁。",
+      "chunks": [
+        "He has",
+        "a bad temper."
+      ],
+      "hints": [
+        "他这个人",
+        "脾气暴躁"
+      ],
+      "cid": "34b6f00f",
+      "sentenceAudio": {
+        "text": "He has a bad temper.",
+        "audio": {
+          "url": "assets/oral-34b6f00f-e4c640d36c9f895897a3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0ba446c9207f1d8614dc5ed381f36e4ab58420e2cfe47bd342a4d212a4c973f0",
+          "bytes": 5011
+        }
+      }
+    },
+    {
+      "sentence": "There's something strange about her.",
+      "translation": "她身上有些奇怪之处。",
+      "chunks": [
+        "There's something strange about her."
+      ],
+      "hints": [
+        "她身上有些奇怪之处。"
+      ],
+      "cid": "bb912209",
+      "sentenceAudio": {
+        "text": "There's something strange about her.",
+        "audio": {
+          "url": "assets/oral-bb912209-e1710a60b6f7412c210b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c998f233e36e28c64adbeb149535bf87919333f5f92f0405d1255601b45c7540",
+          "bytes": 6225
+        }
+      }
+    },
+    {
+      "sentence": "She's not herself.",
+      "translation": "她有点不太对劲儿。",
+      "chunks": [
+        "She's",
+        "not herself."
+      ],
+      "hints": [
+        "她",
+        "有点不太对劲儿"
+      ],
+      "cid": "0b47504f",
+      "sentenceAudio": {
+        "text": "She's not herself.",
+        "audio": {
+          "url": "assets/oral-0b47504f-c2e91cf860f44dc24f75.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "725a1f24f2ef775d25d9a8d04127b9b3c5dbecf61e66b3a48c4afefc81c4a4c9",
+          "bytes": 4494
+        }
+      }
+    },
+    {
+      "sentence": "She's so weird.",
+      "translation": "她真古怪。",
+      "chunks": [
+        "She's so",
+        "weird."
+      ],
+      "hints": [
+        "她真",
+        "古怪"
+      ],
+      "cid": "5de715dc",
+      "sentenceAudio": {
+        "text": "She's so weird.",
+        "audio": {
+          "url": "assets/oral-5de715dc-182715f43f137dfe4090.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "248c4dd7ee35bee714a7a1b984ce1c7f2857df5192b67629e8bced7f4545fb92",
+          "bytes": 4118
+        }
+      }
+    },
+    {
+      "sentence": "Tammy eats like a bird.",
+      "translation": "塔米饭量很小。",
+      "chunks": [
+        "Tammy",
+        "eats like a bird."
+      ],
+      "hints": [
+        "塔米",
+        "饭量很小"
+      ],
+      "cid": "a6507135",
+      "sentenceAudio": {
+        "text": "Tammy eats like a bird.",
+        "audio": {
+          "url": "assets/oral-a6507135-72f6dc3eefa741d6397c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ed96acefc95bae060176fc770c1a0faffdc808a6d7f7972e98c88e1702814285",
+          "bytes": 5143
+        }
+      }
+    },
+    {
+      "sentence": "She has a nice figure.",
+      "translation": "她的身材很好。",
+      "chunks": [
+        "She has",
+        "a nice figure."
+      ],
+      "hints": [
+        "她的身材",
+        "很好"
+      ],
+      "cid": "8785e2a9",
+      "sentenceAudio": {
+        "text": "She has a nice figure.",
+        "audio": {
+          "url": "assets/oral-8785e2a9-f972170346618bd0cc7d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2e4bf02009e1037492d25a646f5f4ac6852b8e5fd7c80d7a57bdaad601397b46",
+          "bytes": 5059
+        }
+      }
+    },
+    {
+      "sentence": "His best days are gone.",
+      "translation": "他的巅峰时期已经过去了。",
+      "chunks": [
+        "His best days",
+        "are gone."
+      ],
+      "hints": [
+        "他的巅峰时期",
+        "已经过去了"
+      ],
+      "cid": "00551fb7",
+      "sentenceAudio": {
+        "text": "His best days are gone.",
+        "audio": {
+          "url": "assets/oral-00551fb7-e9229326dce8755bce3a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "73be46d45f7a9ac557848f96b644f21eb49fc043cbe833935b2f4bd70b84fc10",
+          "bytes": 5273
+        }
+      }
+    },
+    {
+      "sentence": "My father's getting on in years.",
+      "translation": "我父亲上年纪了。",
+      "chunks": [
+        "My father's",
+        "getting on in years."
+      ],
+      "hints": [
+        "我父亲",
+        "上年纪了"
+      ],
+      "cid": "e599b7db",
+      "sentenceAudio": {
+        "text": "My father's getting on in years.",
+        "audio": {
+          "url": "assets/oral-e599b7db-b0bf52b7116756abb34a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dd49d91a61f968b813b51cde1fc4d6166937db74dda99660e01e9e90eef721d6",
+          "bytes": 6556
+        }
+      }
+    },
+    {
+      "sentence": "What does he look like?",
+      "translation": "他长得什么样?",
+      "chunks": [
+        "What does he look like?"
+      ],
+      "hints": [
+        "他长什么样？"
+      ],
+      "cid": "665fce4a",
+      "sentenceAudio": {
+        "text": "What does he look like?",
+        "audio": {
+          "url": "assets/oral-665fce4a-ba94a7be97b1944e10e7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4f5bcb220a0428c070f7efa1714961e4b7363b3e148ba7448129d9f2d4dc7754",
+          "bytes": 4306
+        }
+      }
+    },
+    {
+      "sentence": "They're making a big fuss.",
+      "translation": "他们闹得天翻地覆。",
+      "chunks": [
+        "They're making",
+        "a big fuss."
+      ],
+      "hints": [
+        "他们闹得",
+        "天翻地覆"
+      ],
+      "cid": "702c4a44",
+      "sentenceAudio": {
+        "text": "They're making a big fuss.",
+        "audio": {
+          "url": "assets/oral-702c4a44-f0ee660852a07b938f08.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "07c1d2be7a4c764a4fb663673ef658de03c401df570754a327caaf9a138ce74e",
+          "bytes": 5057
+        }
+      }
+    },
+    {
+      "sentence": "He's a chain smoker.",
+      "translation": "他抽烟抽得没完没了。",
+      "chunks": [
+        "He's",
+        "a chain smoker."
+      ],
+      "hints": [
+        "他",
+        "烟瘾很大"
+      ],
+      "cid": "d9a0bec3",
+      "sentenceAudio": {
+        "text": "He's a chain smoker.",
+        "audio": {
+          "url": "assets/oral-d9a0bec3-97979af2d5fafcc14fa7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "211952b2e65dfe83c9d2c4fcc4572bb55cfdbced7bc19ff912ae4b220e364d02",
+          "bytes": 4962
+        }
+      }
+    }
+  ]
+}

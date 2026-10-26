@@ -1,0 +1,820 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-5-3",
+    "name": "口语3000句 · 在工作单位 · 贬低别人～自我评价",
+    "short": "贬低别人～自我评价",
+    "desc": "贬低别人～自我评价",
+    "chapter": 1,
+    "section": "1.5",
+    "sectionTitle": "在工作单位",
+    "topic": "贬低别人～自我评价",
+    "baseCount": 0,
+    "totalCount": 37,
+    "items": [
+      {
+        "sentence": "He's selfish.",
+        "translation": "他很自私。",
+        "chunks": [
+          "He's",
+          "selfish."
+        ],
+        "hints": [
+          "他",
+          "很自私"
+        ],
+        "cid": "02919b84",
+        "sentenceAudio": {
+          "text": "He's selfish.",
+          "audio": {
+            "url": "assets/oral-02919b84-3f8747968166890ba532.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1ee794591aa8543a5731ba42a3bcc154594f5c2b84118e25808e3199d7630068",
+            "bytes": 4041
+          }
+        }
+      },
+      {
+        "sentence": "He takes things too seriously.",
+        "translation": "他总把问题想得过于严重。",
+        "chunks": [
+          "He takes things",
+          "too seriously."
+        ],
+        "hints": [
+          "他总把问题",
+          "想得过于严重"
+        ],
+        "cid": "60fc7a3e",
+        "sentenceAudio": {
+          "text": "He takes things too seriously.",
+          "audio": {
+            "url": "assets/oral-60fc7a3e-fb09f020f9b60209e416.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "86d179cb546be86604c9f42ef22721dbc9aeaa4cb8508598182b562849c4b87f",
+            "bytes": 5994
+          }
+        }
+      },
+      {
+        "sentence": "He's simpleminded.",
+        "translation": "他头脑简单。",
+        "chunks": [
+          "He's",
+          "simpleminded."
+        ],
+        "hints": [
+          "他",
+          "头脑简单"
+        ],
+        "cid": "cf37cc83",
+        "sentenceAudio": {
+          "text": "He's simpleminded.",
+          "audio": {
+            "url": "assets/oral-cf37cc83-e2b642af5817821b260c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "04a8a0068e2b8701d3171a15b4ac4371ed6bd44b9a081075a28061af721dafd8",
+            "bytes": 4684
+          }
+        }
+      },
+      {
+        "sentence": "He's on edge today.",
+        "translation": "他今天情绪很烦躁。",
+        "chunks": [
+          "He's",
+          "on edge today."
+        ],
+        "hints": [
+          "他",
+          "今天情绪很烦躁"
+        ],
+        "cid": "8c961137",
+        "sentenceAudio": {
+          "text": "He's on edge today.",
+          "audio": {
+            "url": "assets/oral-8c961137-47122e1771e8ed5848de.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d80dbf682669b89a41c3647dadd30b3add05f4fd2286835377dac578419ac383",
+            "bytes": 4954
+          }
+        }
+      },
+      {
+        "sentence": "He's talkative.",
+        "translation": "他真是个多嘴多舌的人。",
+        "chunks": [
+          "He's",
+          "talkative."
+        ],
+        "hints": [
+          "他真是个",
+          "多嘴多舌的人"
+        ],
+        "cid": "3ce3c2a3",
+        "sentenceAudio": {
+          "text": "He's talkative.",
+          "audio": {
+            "url": "assets/oral-3ce3c2a3-1135d4fb71070559e72f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "07979d3c8832d8e94569b7566d7d841a241d48aca7e2a1a4efc6d8f723fca4fc",
+            "bytes": 4328
+          }
+        }
+      },
+      {
+        "sentence": "He's quite well off.",
+        "translation": "他经济上相当宽裕。",
+        "chunks": [
+          "He's",
+          "quite well off."
+        ],
+        "hints": [
+          "他",
+          "相当富裕"
+        ],
+        "cid": "565b3b93",
+        "sentenceAudio": {
+          "text": "He's quite well off.",
+          "audio": {
+            "url": "assets/oral-565b3b93-d0893daecb8f16f4e9f7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "78eecdf5286291e03bc5008e3b501a58df0b89a326e6757cbc271a1088b7a399",
+            "bytes": 4369
+          }
+        }
+      },
+      {
+        "sentence": "He's fresh.",
+        "translation": "他很没礼貌。",
+        "chunks": [
+          "He's",
+          "fresh."
+        ],
+        "hints": [
+          "他",
+          "很没礼貌"
+        ],
+        "cid": "c4d979ce",
+        "sentenceAudio": {
+          "text": "He's fresh.",
+          "audio": {
+            "url": "assets/oral-c4d979ce-1ea246fb96fd1b75395d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fa843604d2d3336fae9b7d19573225097df836f7476369287211968f44901a05",
+            "bytes": 3835
+          }
+        }
+      },
+      {
+        "sentence": "He's a smooth talker.",
+        "translation": "他很会说好听话。",
+        "chunks": [
+          "He's",
+          "a smooth talker."
+        ],
+        "hints": [
+          "他",
+          "很会说好听话的人"
+        ],
+        "cid": "caf3bc4a",
+        "sentenceAudio": {
+          "text": "He's a smooth talker.",
+          "audio": {
+            "url": "assets/oral-caf3bc4a-8bd9b90e28506a687d97.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e0ef0b7b7b8e1f601bcd06efa0836da359fb6b74c0506b6de08410fd12044b3",
+            "bytes": 4967
+          }
+        }
+      },
+      {
+        "sentence": "He's nobody's fool.",
+        "translation": "他是个不可小看的人。",
+        "chunks": [
+          "He's",
+          "nobody's fool."
+        ],
+        "hints": [
+          "他是个",
+          "不可小看的人"
+        ],
+        "cid": "305475ff",
+        "sentenceAudio": {
+          "text": "He's nobody's fool.",
+          "audio": {
+            "url": "assets/oral-305475ff-bb41ac44a2f8dca8d13f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f992eefac373660f3727f6384e4f654135abf09943c9890ead1782a93934e7c1",
+            "bytes": 4987
+          }
+        }
+      },
+      {
+        "sentence": "He often says absurd things.",
+        "translation": "他净说些傻话。",
+        "chunks": [
+          "He often says",
+          "absurd things."
+        ],
+        "hints": [
+          "他净说些",
+          "傻话"
+        ],
+        "cid": "f385c806",
+        "sentenceAudio": {
+          "text": "He often says absurd things.",
+          "audio": {
+            "url": "assets/oral-f385c806-4eeb567a59964bfd5660.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d10e4356415252ef8cf6fe40f034e827aaa6cb25dc08393200189a2b46ca9114",
+            "bytes": 6200
+          }
+        }
+      },
+      {
+        "sentence": "He has no sense of responsibility.",
+        "translation": "他一点儿责任心都没有。",
+        "chunks": [
+          "He",
+          "has no sense of responsibility."
+        ],
+        "hints": [
+          "他",
+          "一点儿责任心都没有"
+        ],
+        "cid": "fa141e2c",
+        "sentenceAudio": {
+          "text": "He has no sense of responsibility.",
+          "audio": {
+            "url": "assets/oral-fa141e2c-f46c02a3a97e9da917b1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d6a7b8826004d8e52dbd07b65d849d70c3048b05770e98931a35e5cd35702ad3",
+            "bytes": 7180
+          }
+        }
+      },
+      {
+        "sentence": "He's very offensive.",
+        "translation": "他真是个让人讨厌的人。",
+        "chunks": [
+          "He's very",
+          "offensive."
+        ],
+        "hints": [
+          "他真是个",
+          "让人讨厌的人"
+        ],
+        "cid": "354851bf",
+        "sentenceAudio": {
+          "text": "He's very offensive.",
+          "audio": {
+            "url": "assets/oral-354851bf-7265a05611b2caea9c16.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6c497294d3142e252c76a5f17ab817c4af9ed16bb7e393352f084fa45de2c35c",
+            "bytes": 5150
+          }
+        }
+      },
+      {
+        "sentence": "He's a difficult man to deal with.",
+        "translation": "他这人很难对付。",
+        "chunks": [
+          "He's a difficult man",
+          "to deal with."
+        ],
+        "hints": [
+          "他这人",
+          "很难对付"
+        ],
+        "cid": "47f158da",
+        "sentenceAudio": {
+          "text": "He's a difficult man to deal with.",
+          "audio": {
+            "url": "assets/oral-47f158da-cb49ea73e64abb2f15be.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09f56d1a8899bb14f32d7e9e41882f7a8516682f3130b2d449f05507c2f6c72d",
+            "bytes": 6552
+          }
+        }
+      },
+      {
+        "sentence": "He's a stubborn old man.",
+        "translation": "他是个倔老头。",
+        "chunks": [
+          "He's a stubborn",
+          "old man."
+        ],
+        "hints": [
+          "他是个",
+          "倔老头"
+        ],
+        "cid": "9f55c3cf",
+        "sentenceAudio": {
+          "text": "He's a stubborn old man.",
+          "audio": {
+            "url": "assets/oral-9f55c3cf-b22499e7bd50d25be237.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8772fd19ccd6b2b28e162fd9282d387abba97b0ce5cd908f9767dbf5737bcd1a",
+            "bytes": 5312
+          }
+        }
+      },
+      {
+        "sentence": "He's aiming too high.",
+        "translation": "他总是好高骛远。",
+        "chunks": [
+          "He's aiming",
+          "too high."
+        ],
+        "hints": [
+          "他总是",
+          "好高骛远"
+        ],
+        "cid": "1ca41063",
+        "sentenceAudio": {
+          "text": "He's aiming too high.",
+          "audio": {
+            "url": "assets/oral-1ca41063-f124104adc5a5516d3db.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4fa90437079c4f0f52eddb91e176d02813af624e5d6e34003a4451c09c035728",
+            "bytes": 4942
+          }
+        }
+      },
+      {
+        "sentence": "That man never admits defeat.",
+        "translation": "他从不认输。",
+        "chunks": [
+          "That man never",
+          "admits defeat."
+        ],
+        "hints": [
+          "他从不",
+          "认输"
+        ],
+        "cid": "a48379bb",
+        "sentenceAudio": {
+          "text": "That man never admits defeat.",
+          "audio": {
+            "url": "assets/oral-a48379bb-8f24b0d45740dde02cf5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "88297b0eabb38aceb8c3730d4e3dd43f172c3393f825148c70d0041ba9443f86",
+            "bytes": 6317
+          }
+        }
+      },
+      {
+        "sentence": "He's very vague.",
+        "translation": "他是个难以捉摸的人。",
+        "chunks": [
+          "He's very",
+          "vague."
+        ],
+        "hints": [
+          "他是个",
+          "难以捉摸的人"
+        ],
+        "cid": "5d37e3d6",
+        "sentenceAudio": {
+          "text": "He's very vague.",
+          "audio": {
+            "url": "assets/oral-5d37e3d6-f9360f6d24812cdd9f42.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "62bc09ba90bc57ebe761816bc81be1e97abae7ceac7cddc233f299867727ebac",
+            "bytes": 4504
+          }
+        }
+      },
+      {
+        "sentence": "He's crooked.",
+        "translation": "他为人不正直。",
+        "chunks": [
+          "He's",
+          "crooked."
+        ],
+        "hints": [
+          "他",
+          "为人不正直"
+        ],
+        "cid": "8eaf0999",
+        "sentenceAudio": {
+          "text": "He's crooked.",
+          "audio": {
+            "url": "assets/oral-8eaf0999-69cbc6cc34d8c8a308ea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b33158c2a5823d8b90590ac0173320ce4ac90c8bd2f6cb2cac4d9c0d51ef8699",
+            "bytes": 3916
+          }
+        }
+      },
+      {
+        "sentence": "He's good for nothing.",
+        "translation": "他一无是处。",
+        "chunks": [
+          "He's good for nothing."
+        ],
+        "hints": [
+          "他一无是处。"
+        ],
+        "cid": "b09f9b4b",
+        "sentenceAudio": {
+          "text": "He's good for nothing.",
+          "audio": {
+            "url": "assets/oral-b09f9b4b-5e549bd0f6327280f918.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31e2c6ef649e139515d7285bdfedf29a4c0c387f02e71269d1ca7057773fd9a6",
+            "bytes": 4754
+          }
+        }
+      },
+      {
+        "sentence": "She's shy around strangers.",
+        "translation": "她在陌生人面前会害羞。",
+        "chunks": [
+          "She's",
+          "shy around strangers."
+        ],
+        "hints": [
+          "她",
+          "在陌生人面前会害羞"
+        ],
+        "cid": "52e1e3cd",
+        "sentenceAudio": {
+          "text": "She's shy around strangers.",
+          "audio": {
+            "url": "assets/oral-52e1e3cd-6b27d939a9e9aa82efef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d4ec4ca9ffbe4b67c1a382b7c5034b00f24725f2a7e5914728fb4d5a0518ae89",
+            "bytes": 5862
+          }
+        }
+      },
+      {
+        "sentence": "You're too timid.",
+        "translation": "你太胆小了。",
+        "chunks": [
+          "You're too timid."
+        ],
+        "hints": [
+          "你太胆小了。"
+        ],
+        "cid": "212ac0ed",
+        "sentenceAudio": {
+          "text": "You're too timid.",
+          "audio": {
+            "url": "assets/oral-212ac0ed-fea870976cfdee1a92b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "699a02bb5675306487e6c33eae01306812b1324cb4347bde0a587f2f077cfb3f",
+            "bytes": 4295
+          }
+        }
+      },
+      {
+        "sentence": "He's acting big.",
+        "translation": "他在摆架子。",
+        "chunks": [
+          "He's",
+          "acting big."
+        ],
+        "hints": [
+          "他在",
+          "摆架子"
+        ],
+        "cid": "86250d64",
+        "sentenceAudio": {
+          "text": "He's acting big.",
+          "audio": {
+            "url": "assets/oral-86250d64-f1822249e7a195dec901.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "97fb970ae737beed36349c1ad0f0fad7269dedbaa27c0ac4e62034750e2fa87e",
+            "bytes": 4560
+          }
+        }
+      },
+      {
+        "sentence": "He has a short temper.",
+        "translation": "他动不动就生气。",
+        "chunks": [
+          "He has",
+          "a short temper."
+        ],
+        "hints": [
+          "他",
+          "动不动就生气"
+        ],
+        "cid": "601d401e",
+        "sentenceAudio": {
+          "text": "He has a short temper.",
+          "audio": {
+            "url": "assets/oral-601d401e-1b2db737b0028f0202ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bf0e6f6c7c2223ab7b3e803453e72140c472b42b5a38424c317845779243fbcd",
+            "bytes": 5083
+          }
+        }
+      },
+      {
+        "sentence": "He eats like a horse.",
+        "translation": "他很能吃。",
+        "chunks": [
+          "He eats",
+          "like a horse."
+        ],
+        "hints": [
+          "他",
+          "很能吃"
+        ],
+        "cid": "74c4a2c4",
+        "sentenceAudio": {
+          "text": "He eats like a horse.",
+          "audio": {
+            "url": "assets/oral-74c4a2c4-d9d34a301b3bca38cc58.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c5f206b63230fd175f69384db1f4468265a3c1b13726041e9dccd829ffb91219",
+            "bytes": 5013
+          }
+        }
+      },
+      {
+        "sentence": "Your perfume is strong.",
+        "translation": "你的香水味很浓。",
+        "chunks": [
+          "Your perfume",
+          "is strong."
+        ],
+        "hints": [
+          "你的香水味",
+          "很浓"
+        ],
+        "cid": "c2b91a0d",
+        "sentenceAudio": {
+          "text": "Your perfume is strong.",
+          "audio": {
+            "url": "assets/oral-c2b91a0d-99855a703ed0ed649341.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3fe3afd4472f353800cc88b15f084a83f9519c1e9cabd61867d6b29cdfd3e988",
+            "bytes": 4887
+          }
+        }
+      },
+      {
+        "sentence": "I'm young in spirit.",
+        "translation": "我心态还很年轻。",
+        "chunks": [
+          "I'm",
+          "young in spirit."
+        ],
+        "hints": [
+          "我",
+          "心态还很年轻"
+        ],
+        "cid": "ceb706ce",
+        "sentenceAudio": {
+          "text": "I'm young in spirit.",
+          "audio": {
+            "url": "assets/oral-ceb706ce-d712c5f0356d176d117f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e0dac5777ce31b33c015e59def3bf652ecdba13a2a34255d6684c0c7ff9a60b3",
+            "bytes": 4862
+          }
+        }
+      },
+      {
+        "sentence": "I'm all thumbs.",
+        "translation": "我笨手笨脚的。",
+        "chunks": [
+          "I'm all thumbs."
+        ],
+        "hints": [
+          "我笨手笨脚的。"
+        ],
+        "cid": "ae396052",
+        "sentenceAudio": {
+          "text": "I'm all thumbs.",
+          "audio": {
+            "url": "assets/oral-ae396052-7676ed81ea23c7b5db99.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "229267027e241156d8e339d4c342e42010076153649b67cc0d5c2f7a47e624e6",
+            "bytes": 4194
+          }
+        }
+      },
+      {
+        "sentence": "I like being alone.",
+        "translation": "我喜欢独处。",
+        "chunks": [
+          "I",
+          "like being alone."
+        ],
+        "hints": [
+          "我",
+          "喜欢独处"
+        ],
+        "cid": "7f10618b",
+        "sentenceAudio": {
+          "text": "I like being alone.",
+          "audio": {
+            "url": "assets/oral-7f10618b-4080496ef7ec22937c04.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0f774f8c5d17c921ec2cfb0b99628fe445beb05c40b22197c84e2f8d9f553426",
+            "bytes": 4547
+          }
+        }
+      },
+      {
+        "sentence": "I'm easygoing.",
+        "translation": "我这个人比较随和。",
+        "chunks": [
+          "I'm",
+          "easygoing."
+        ],
+        "hints": [
+          "我这个人",
+          "比较随和"
+        ],
+        "cid": "663b4082",
+        "sentenceAudio": {
+          "text": "I'm easygoing.",
+          "audio": {
+            "url": "assets/oral-663b4082-2eacf1214112ec3e28ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e5c176110b681b32920928cef4d4ccb2e121921c828c14ac2cd2b2d8241daad3",
+            "bytes": 4379
+          }
+        }
+      },
+      {
+        "sentence": "I get embarrassed easily.",
+        "translation": "我很容易感到难为情。",
+        "chunks": [
+          "I get embarrassed easily."
+        ],
+        "hints": [
+          "我很容易感到难为情。"
+        ],
+        "cid": "84e95760",
+        "sentenceAudio": {
+          "text": "I get embarrassed easily.",
+          "audio": {
+            "url": "assets/oral-84e95760-97d19cbe9bf286918a75.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bf87d25760f3ec11df35186586f0cc99ac9018b17fd3c29c6930641dbe2774b5",
+            "bytes": 5529
+          }
+        }
+      },
+      {
+        "sentence": "I'm practical about everything.",
+        "translation": "我做事一向很务实。",
+        "chunks": [
+          "I'm practical about everything."
+        ],
+        "hints": [
+          "我做事一向很务实。"
+        ],
+        "cid": "0fc3e307",
+        "sentenceAudio": {
+          "text": "I'm practical about everything.",
+          "audio": {
+            "url": "assets/oral-0fc3e307-f23f186b4ed98ce3fc1e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a93828cac9044c5c0a177c639b3fca393a068d626ee14afa9a1d0b48009e8dda",
+            "bytes": 6351
+          }
+        }
+      },
+      {
+        "sentence": "I have a one-track mind.",
+        "translation": "我是一根筋。",
+        "chunks": [
+          "I have a one-track mind."
+        ],
+        "hints": [
+          "我这人一根筋。"
+        ],
+        "cid": "c99d7c25",
+        "sentenceAudio": {
+          "text": "I have a one-track mind.",
+          "audio": {
+            "url": "assets/oral-c99d7c25-a218fc416c8b01a75fd8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e34b6107cd56063de05e1ae6aee8ad3ede38d39f45134c94ad935d0b984c4b22",
+            "bytes": 5628
+          }
+        }
+      },
+      {
+        "sentence": "I'm a good judge of character.",
+        "translation": "我看人很准。",
+        "chunks": [
+          "I'm",
+          "a good judge of character."
+        ],
+        "hints": [
+          "我",
+          "看人很准"
+        ],
+        "cid": "6553f10b",
+        "sentenceAudio": {
+          "text": "I'm a good judge of character.",
+          "audio": {
+            "url": "assets/oral-6553f10b-66a9b326455f9dd3fed3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "11b2c07e3271070559d5a8fce637572ae26d79041315557d23cad91fa04d0904",
+            "bytes": 5830
+          }
+        }
+      },
+      {
+        "sentence": "I have a sweet tooth.",
+        "translation": "我爱吃甜食。",
+        "chunks": [
+          "I have",
+          "a sweet tooth."
+        ],
+        "hints": [
+          "我",
+          "爱吃甜食"
+        ],
+        "cid": "935bd23f",
+        "sentenceAudio": {
+          "text": "I have a sweet tooth.",
+          "audio": {
+            "url": "assets/oral-935bd23f-cb2554436961918ed83a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "35d1c553b17ac53fda73f28729761f1161202b1190d6e5adea1b1ee8509b7131",
+            "bytes": 4971
+          }
+        }
+      },
+      {
+        "sentence": "I prefer wine to sweets.",
+        "translation": "比起甜食，我更喜欢葡萄酒。",
+        "chunks": [
+          "I prefer",
+          "wine to sweets."
+        ],
+        "hints": [
+          "我更喜欢",
+          "葡萄酒而非甜食"
+        ],
+        "cid": "fc4254c5",
+        "sentenceAudio": {
+          "text": "I prefer wine to sweets.",
+          "audio": {
+            "url": "assets/oral-fc4254c5-84c5335bba74c6fefad3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "81388918820fac2031762a3bf3f03f0f784fd6dfe61632f99c2ffaff4bbc9e13",
+            "bytes": 5726
+          }
+        }
+      },
+      {
+        "sentence": "I have led a dog's life.",
+        "translation": "我过着悲惨的生活。",
+        "chunks": [
+          "I have led",
+          "a dog's life."
+        ],
+        "hints": [
+          "我过着",
+          "悲惨的生活"
+        ],
+        "cid": "37941864",
+        "sentenceAudio": {
+          "text": "I have led a dog's life.",
+          "audio": {
+            "url": "assets/oral-37941864-79ba9aa81ab6931d1571.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cea67266976df82a76852f0c2e0068ed282d724a27a0f713a96a0a044d4c45ca",
+            "bytes": 5484
+          }
+        }
+      },
+      {
+        "sentence": "I have poor eyesight.",
+        "translation": "我的视力不好。",
+        "chunks": [
+          "I have",
+          "poor eyesight."
+        ],
+        "hints": [
+          "我的视力",
+          "不好"
+        ],
+        "cid": "3e6f7722",
+        "sentenceAudio": {
+          "text": "I have poor eyesight.",
+          "audio": {
+            "url": "assets/oral-3e6f7722-51eacfa14ba0ba9b6db7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0a9fbc9e9478899b754431eb97488569e172cffe01369e3270a38c288f33656a",
+            "bytes": 4949
+          }
+        }
+      }
+    ]
+  }
+}

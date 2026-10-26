@@ -1,0 +1,1978 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-3-12-1",
+    "name": "口语3000句 · 商谈 · 赞成～否定",
+    "short": "赞成～否定",
+    "desc": "赞成～否定",
+    "chapter": 3,
+    "section": "3.12",
+    "sectionTitle": "商谈",
+    "topic": "赞成～否定",
+    "baseCount": 0,
+    "totalCount": 76,
+    "items": [
+      {
+        "sentence": "I agree.",
+        "translation": "赞成。",
+        "chunks": [
+          "I",
+          "agree."
+        ],
+        "hints": [
+          "我",
+          "同意。"
+        ],
+        "cid": "7cd6522e",
+        "sentenceAudio": {
+          "text": "I agree.",
+          "audio": {
+            "url": "assets/oral-7cd6522e-bb9f18b9f775f6fa0983.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa59f00c1b0db79739066c17510616ecbdbd2f356b27775491b8afd5c9db5a92",
+            "bytes": 3653
+          }
+        }
+      },
+      {
+        "sentence": "I think so, too.",
+        "translation": "我也这样认为。",
+        "chunks": [
+          "I think so, too."
+        ],
+        "hints": [
+          "我也这么认为。"
+        ],
+        "cid": "39eee8f2",
+        "sentenceAudio": {
+          "text": "I think so, too.",
+          "audio": {
+            "url": "assets/oral-39eee8f2-e0eb5489289a7b404307.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e43fe64341d4f3702f2451f04c508a0f954d32a1d78ee052f59e7b99445174f",
+            "bytes": 4415
+          }
+        }
+      },
+      {
+        "sentence": "Anything you say!",
+        "translation": "都听你的！",
+        "chunks": [
+          "Anything you say!"
+        ],
+        "hints": [
+          "都听你的！"
+        ],
+        "cid": "a7d37e3a",
+        "sentenceAudio": {
+          "text": "Anything you say!",
+          "audio": {
+            "url": "assets/oral-a7d37e3a-d45681f54d41275ead97.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "257d90634a717bd92ac54a1f47172b2f3644741fa59b035f5049d35beea7b529",
+            "bytes": 4259
+          }
+        }
+      },
+      {
+        "sentence": "No objection!",
+        "translation": "没有异议。",
+        "chunks": [
+          "No",
+          "objection!"
+        ],
+        "hints": [
+          "没有",
+          "异议。"
+        ],
+        "cid": "abef467c",
+        "sentenceAudio": {
+          "text": "No objection!",
+          "audio": {
+            "url": "assets/oral-abef467c-de16a9a7c264a1d92335.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc8ab457c6836f858ca2f3cb4e50deaf713ff60e7b6978d7f11e440179160ee3",
+            "bytes": 4521
+          }
+        }
+      },
+      {
+        "sentence": "I don't have any objection to it.",
+        "translation": "我不反对。",
+        "chunks": [
+          "I",
+          "don't have any objection to it."
+        ],
+        "hints": [
+          "我",
+          "不反对"
+        ],
+        "cid": "eba37757",
+        "sentenceAudio": {
+          "text": "I don't have any objection to it.",
+          "audio": {
+            "url": "assets/oral-eba37757-9526485bfa3d0a57012a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8666a55db36a22e14eea235f3fef522ab66c0d16199140429d49590699ce4291",
+            "bytes": 6344
+          }
+        }
+      },
+      {
+        "sentence": "That's fine with me.",
+        "translation": "我觉得那样很好。",
+        "chunks": [
+          "That's",
+          "fine with me."
+        ],
+        "hints": [
+          "那样",
+          "我觉得可以。"
+        ],
+        "cid": "ee039896",
+        "sentenceAudio": {
+          "text": "That's fine with me.",
+          "audio": {
+            "url": "assets/oral-ee039896-d3cdb8017246e5cf521c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a34bbf19b201db124e065a12cbe64c1daf409660fdcc9f29fad105adc9aca15",
+            "bytes": 4388
+          }
+        }
+      },
+      {
+        "sentence": "Fine.",
+        "translation": "很好!",
+        "chunks": [
+          "Fine."
+        ],
+        "hints": [
+          "很好！"
+        ],
+        "cid": "7d606019",
+        "sentenceAudio": {
+          "text": "Fine.",
+          "audio": {
+            "url": "assets/oral-7d606019-63fc68be2b33907a3842.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "59f8fe7387528f424da890c5720f08415d3c3a44a1353296351d6ac2e9d8d961",
+            "bytes": 3174
+          }
+        }
+      },
+      {
+        "sentence": "That's fair.",
+        "translation": "那就行了。",
+        "chunks": [
+          "That's",
+          "fair."
+        ],
+        "hints": [
+          "这样",
+          "很公平。"
+        ],
+        "cid": "1f069072",
+        "sentenceAudio": {
+          "text": "That's fair.",
+          "audio": {
+            "url": "assets/oral-1f069072-e56a987f6393d3df3612.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e48358fd994fc35ea4fe98bd3279319d68fe1e9a397ac15500aa0acd33faec3f",
+            "bytes": 3631
+          }
+        }
+      },
+      {
+        "sentence": "You can say that again.",
+        "translation": "我完全同意！",
+        "chunks": [
+          "You can say that again."
+        ],
+        "hints": [
+          "我完全同意！"
+        ],
+        "cid": "8a75b9e4",
+        "sentenceAudio": {
+          "text": "You can say that again.",
+          "audio": {
+            "url": "assets/oral-8a75b9e4-70b3ae970ca284feb2ba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f520ad020d9759c218661ec90eb890e031a22beb80c81c4f6825051ddc8eea00",
+            "bytes": 5134
+          }
+        }
+      },
+      {
+        "sentence": "Sounds like fun.",
+        "translation": "好像挺有意思。",
+        "chunks": [
+          "Sounds",
+          "like fun."
+        ],
+        "hints": [
+          "好像",
+          "挺有意思。"
+        ],
+        "cid": "ac25cf01",
+        "sentenceAudio": {
+          "text": "Sounds like fun.",
+          "audio": {
+            "url": "assets/oral-ac25cf01-c38887dcc5e59921cccf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cce282303c5081bfd99965305d2dcb46716307e3996ccbea212f62c435774542",
+            "bytes": 4459
+          }
+        }
+      },
+      {
+        "sentence": "Are you for or against his idea?",
+        "translation": "你是反对还是赞成他的主意?",
+        "chunks": [
+          "Are you for",
+          "or against his idea?"
+        ],
+        "hints": [
+          "你是赞成",
+          "还是反对他的主意？"
+        ],
+        "cid": "31590c6d",
+        "sentenceAudio": {
+          "text": "Are you for or against his idea?",
+          "audio": {
+            "url": "assets/oral-31590c6d-b332f31fa0330c967e72.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "956a67ccae6cc5381aea3e2beb69226827a211cd054f3f77d1cfbffacc29d657",
+            "bytes": 7075
+          }
+        }
+      },
+      {
+        "sentence": "Good idea.",
+        "translation": "好主意。",
+        "chunks": [
+          "Good",
+          "idea."
+        ],
+        "hints": [
+          "好",
+          "主意。"
+        ],
+        "cid": "3e77ed57",
+        "sentenceAudio": {
+          "text": "Good idea.",
+          "audio": {
+            "url": "assets/oral-3e77ed57-83a491746a3b7830089c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "03dd533f4788e98f5a6fee6b9ee9405ecf902e52a7adfb5f97deed2032a74fba",
+            "bytes": 3718
+          }
+        }
+      },
+      {
+        "sentence": "What you say is partly right.",
+        "translation": "你说的有一部分是对的。",
+        "chunks": [
+          "What you say",
+          "is partly right."
+        ],
+        "hints": [
+          "你说的",
+          "有一部分是对的。"
+        ],
+        "cid": "49238603",
+        "sentenceAudio": {
+          "text": "What you say is partly right.",
+          "audio": {
+            "url": "assets/oral-49238603-94d0f7697bf5f7fe90da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2deb0d03daac0bd284e5ca41aebb4450ef9b908cf438ff2d7388bfa796ddd294",
+            "bytes": 5710
+          }
+        }
+      },
+      {
+        "sentence": "I don't agree.",
+        "translation": "我反对。",
+        "chunks": [
+          "I",
+          "don't agree."
+        ],
+        "hints": [
+          "我",
+          "不同意。"
+        ],
+        "cid": "083bca6c",
+        "sentenceAudio": {
+          "text": "I don't agree.",
+          "audio": {
+            "url": "assets/oral-083bca6c-4bd1369f5bc09b41fcaf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a1c78d58eee22f4b2234d4543944f3ac9bc421a4377723eaa716f7be12d0b210",
+            "bytes": 3975
+          }
+        }
+      },
+      {
+        "sentence": "I can't agree.",
+        "translation": "我不能同意。",
+        "chunks": [
+          "I can't",
+          "agree."
+        ],
+        "hints": [
+          "我不能",
+          "同意。"
+        ],
+        "cid": "7a2bf8c5",
+        "sentenceAudio": {
+          "text": "I can't agree.",
+          "audio": {
+            "url": "assets/oral-7a2bf8c5-c2c2741defb908e324f3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f3a1db1336d50ee55fcb5e0a7b94ac00835ae9c35021289e9ecc6dceb62e0de1",
+            "bytes": 4078
+          }
+        }
+      },
+      {
+        "sentence": "I doubt it.",
+        "translation": "我对此表示怀疑。",
+        "chunks": [
+          "I",
+          "doubt it."
+        ],
+        "hints": [
+          "我",
+          "对此表示怀疑。"
+        ],
+        "cid": "fbb49e03",
+        "sentenceAudio": {
+          "text": "I doubt it.",
+          "audio": {
+            "url": "assets/oral-fbb49e03-28c139b21cb8b60a3dba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7d0d12288d9f9fe762296c9907235f0ad35523a7eddc361528ac1fc76b3cbed2",
+            "bytes": 3762
+          }
+        }
+      },
+      {
+        "sentence": "Objection!",
+        "translation": "我反对。",
+        "chunks": [
+          "Objection!"
+        ],
+        "hints": [
+          "我反对！"
+        ],
+        "cid": "8b3f83cf",
+        "sentenceAudio": {
+          "text": "Objection!",
+          "audio": {
+            "url": "assets/oral-8b3f83cf-db3c40bfce2800921593.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "88bad9a7a45e16b00d7df379a16303d7b2190a32a3cde061dbcbff1ae9517e28",
+            "bytes": 4026
+          }
+        }
+      },
+      {
+        "sentence": "That's not what you said.",
+        "translation": "这不是你说的内容。",
+        "chunks": [
+          "That's not",
+          "what you said."
+        ],
+        "hints": [
+          "这不是",
+          "你说的内容。"
+        ],
+        "cid": "0a9558cd",
+        "sentenceAudio": {
+          "text": "That's not what you said.",
+          "audio": {
+            "url": "assets/oral-0a9558cd-0ba3a1e2af531989471a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "888751fd2b29df31ba2f8cf9af25c6dcfa158f6822df218f65074c8826fcb2a7",
+            "bytes": 4733
+          }
+        }
+      },
+      {
+        "sentence": "I can't buy that!",
+        "translation": "我无法相信。",
+        "chunks": [
+          "I can't",
+          "buy that!"
+        ],
+        "hints": [
+          "我无法",
+          "相信！"
+        ],
+        "cid": "9963b52d",
+        "sentenceAudio": {
+          "text": "I can't buy that!",
+          "audio": {
+            "url": "assets/oral-9963b52d-f7afc80c9fa36148bae3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b8411dcafdf83bb624fa448cf8d0075b014d16a95cb5db4e89581fda4e026743",
+            "bytes": 4427
+          }
+        }
+      },
+      {
+        "sentence": "Bad idea.",
+        "translation": "馊主意。",
+        "chunks": [
+          "Bad",
+          "idea."
+        ],
+        "hints": [
+          "馊",
+          "主意。"
+        ],
+        "cid": "4703a3f7",
+        "sentenceAudio": {
+          "text": "Bad idea.",
+          "audio": {
+            "url": "assets/oral-4703a3f7-962b62655c7092c48596.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dfb25d0e7548828170498b6ef9e9f25090d28135516a43afa6c3cc0c0d96c6a9",
+            "bytes": 3835
+          }
+        }
+      },
+      {
+        "sentence": "No good.",
+        "translation": "那可不好哦!",
+        "chunks": [
+          "No",
+          "good."
+        ],
+        "hints": [
+          "不",
+          "好"
+        ],
+        "cid": "332907eb",
+        "sentenceAudio": {
+          "text": "No good.",
+          "audio": {
+            "url": "assets/oral-332907eb-381bbe437014629ca7cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fb82a52fb59a05b6ef51ef06dd5675f96ad397cac48fde5d96b484d49161b37c",
+            "bytes": 3672
+          }
+        }
+      },
+      {
+        "sentence": "Let's not.",
+        "translation": "我们还是别这样了。",
+        "chunks": [
+          "Let's",
+          "not."
+        ],
+        "hints": [
+          "我们",
+          "别这样吧。"
+        ],
+        "cid": "8113aa51",
+        "sentenceAudio": {
+          "text": "Let's not.",
+          "audio": {
+            "url": "assets/oral-8113aa51-a1da5a1a4b388855598b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6b614c6cff6ef2d9479d280d9720e1668a6f601b652ed800fa59a7ee1057783b",
+            "bytes": 3746
+          }
+        }
+      },
+      {
+        "sentence": "That's impossible.",
+        "translation": "那怎么可能。",
+        "chunks": [
+          "That's",
+          "impossible."
+        ],
+        "hints": [
+          "那",
+          "不可能。"
+        ],
+        "cid": "c80fe84f",
+        "sentenceAudio": {
+          "text": "That's impossible.",
+          "audio": {
+            "url": "assets/oral-c80fe84f-afecc95846d7e22463e6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4b6579ebf8e2e96d75ff3cb0e5af94e2a2d36afcdce6eb0315078a9bff40f066",
+            "bytes": 4613
+          }
+        }
+      },
+      {
+        "sentence": "That's absolute nonsense.",
+        "translation": "那完全是胡说八道。",
+        "chunks": [
+          "That's absolute",
+          "nonsense."
+        ],
+        "hints": [
+          "那完全是",
+          "胡说八道。"
+        ],
+        "cid": "5ea3b1a0",
+        "sentenceAudio": {
+          "text": "That's absolute nonsense.",
+          "audio": {
+            "url": "assets/oral-5ea3b1a0-720b1817cf6c40ba4f26.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa5779e5ce292a744a50c93e25e9b8e60939b7fe198839b86ac6cf6ff0b477fc",
+            "bytes": 5347
+          }
+        }
+      },
+      {
+        "sentence": "It won't work.",
+        "translation": "行不通。",
+        "chunks": [
+          "It",
+          "won't work."
+        ],
+        "hints": [
+          "这",
+          "行不通。"
+        ],
+        "cid": "c3e4935e",
+        "sentenceAudio": {
+          "text": "It won't work.",
+          "audio": {
+            "url": "assets/oral-c3e4935e-689601660af137b73e40.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d8f54382ddbf1d4d587bb8be0ee8c4cf83f852dd8ffa371ca03ce586ca238318",
+            "bytes": 4081
+          }
+        }
+      },
+      {
+        "sentence": "Not always.",
+        "translation": "不总是这样。",
+        "chunks": [
+          "Not",
+          "always."
+        ],
+        "hints": [
+          "不",
+          "总是。"
+        ],
+        "cid": "1f8ef26f",
+        "sentenceAudio": {
+          "text": "Not always.",
+          "audio": {
+            "url": "assets/oral-1f8ef26f-1c14679e03a99e7141dd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84104effe829aeedf69ae6141c93b98dc66b5fcdfc94039dc22597461702c887",
+            "bytes": 4036
+          }
+        }
+      },
+      {
+        "sentence": "Not really.",
+        "translation": "不完全是。",
+        "chunks": [
+          "Not",
+          "really."
+        ],
+        "hints": [
+          "不",
+          "完全是。"
+        ],
+        "cid": "20045ad9",
+        "sentenceAudio": {
+          "text": "Not really.",
+          "audio": {
+            "url": "assets/oral-20045ad9-cddbc048962937ff1860.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fe7938467ddbc94ea4be77c7325cc8d8f89c6175c230fb90948467d460329a74",
+            "bytes": 3787
+          }
+        }
+      },
+      {
+        "sentence": "Yes, I am.",
+        "translation": "对，是我。",
+        "chunks": [
+          "Yes,",
+          "I am."
+        ],
+        "hints": [
+          "对，",
+          "是我。"
+        ],
+        "cid": "c83137cf",
+        "sentenceAudio": {
+          "text": "Yes, I am.",
+          "audio": {
+            "url": "assets/oral-c83137cf-907a58b861815e90c38b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9aefde6a14b3869ded7375c2ac67f787993ca03eefb5997f17d289779fdc9e0e",
+            "bytes": 4283
+          }
+        }
+      },
+      {
+        "sentence": "Yeah.",
+        "translation": "嗯。",
+        "chunks": [
+          "Yeah."
+        ],
+        "hints": [
+          "嗯。"
+        ],
+        "cid": "165294ec",
+        "sentenceAudio": {
+          "text": "Yeah.",
+          "audio": {
+            "url": "assets/oral-165294ec-14f07508e8975ddc0189.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ecf714e719646371c648507a368c0609f4a3ab4069cce8c3552f9d5d5dc274b1",
+            "bytes": 2881
+          }
+        }
+      },
+      {
+        "sentence": "I think so.",
+        "translation": "我想是吧。",
+        "chunks": [
+          "I",
+          "think so."
+        ],
+        "hints": [
+          "我想",
+          "是吧。"
+        ],
+        "cid": "ce71d770",
+        "sentenceAudio": {
+          "text": "I think so.",
+          "audio": {
+            "url": "assets/oral-ce71d770-9f1f53e4728b60835b4c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a79160d76a609b371ecfcc816d261fe91222d5d66b06f21be3b4aee0c859da4b",
+            "bytes": 3887
+          }
+        }
+      },
+      {
+        "sentence": "Right.",
+        "translation": "是的。/对。",
+        "chunks": [
+          "Right."
+        ],
+        "hints": [
+          "是的。/对。"
+        ],
+        "cid": "deb55a31",
+        "sentenceAudio": {
+          "text": "Right.",
+          "audio": {
+            "url": "assets/oral-deb55a31-67e7322c3eba6cc0a17d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2ef77e8f94d511924afcd972366e242d5a65512d61507c127d3777cd0da1e2b5",
+            "bytes": 3086
+          }
+        }
+      },
+      {
+        "sentence": "Absolutely!",
+        "translation": "一点儿没错!",
+        "chunks": [
+          "Absolutely!"
+        ],
+        "hints": [
+          "一点儿没错！"
+        ],
+        "cid": "26a93bde",
+        "sentenceAudio": {
+          "text": "Absolutely!",
+          "audio": {
+            "url": "assets/oral-26a93bde-663eb67a7a15aa72704e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f028a1510d548c672392823593e97e1a818ab5ff7b8a4c38e14f56fdfac2e0c7",
+            "bytes": 4061
+          }
+        }
+      },
+      {
+        "sentence": "In a word, yes.",
+        "translation": "一句话，是。",
+        "chunks": [
+          "In a word,",
+          "yes."
+        ],
+        "hints": [
+          "一句话，",
+          "是。"
+        ],
+        "cid": "3f71b0b0",
+        "sentenceAudio": {
+          "text": "In a word, yes.",
+          "audio": {
+            "url": "assets/oral-3f71b0b0-e59c9bcf989f3b8b3a89.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "53c0a082179b007a493b2e0b8a2d236520da32fc44c54d1b6ae9e5eaab74f7bf",
+            "bytes": 4501
+          }
+        }
+      },
+      {
+        "sentence": "You're perfectly correct.",
+        "translation": "你完全正确。",
+        "chunks": [
+          "You're",
+          "perfectly correct."
+        ],
+        "hints": [
+          "你",
+          "完全正确。"
+        ],
+        "cid": "bb9d9d0e",
+        "sentenceAudio": {
+          "text": "You're perfectly correct.",
+          "audio": {
+            "url": "assets/oral-bb9d9d0e-adcd55eb55a1d7b41527.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "53841318a1927b43dd3e0a92f4a471b7ced04fab8a3d156e3ffa5d9b31651bf8",
+            "bytes": 5015
+          }
+        }
+      },
+      {
+        "sentence": "In a sense he's right.",
+        "translation": "在某种意义上，他是对的。",
+        "chunks": [
+          "In a sense",
+          "he's right."
+        ],
+        "hints": [
+          "在某种意义上，",
+          "他是对的。"
+        ],
+        "cid": "d781149c",
+        "sentenceAudio": {
+          "text": "In a sense he's right.",
+          "audio": {
+            "url": "assets/oral-d781149c-3a371f22518e970af493.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4fbae36c684e776c3507e5d25d9a38bd26c38ee3efae2032c8476df2f63c6073",
+            "bytes": 4805
+          }
+        }
+      },
+      {
+        "sentence": "That's it!",
+        "translation": "啊，对啦!",
+        "chunks": [
+          "That's it!"
+        ],
+        "hints": [
+          "就是这样！"
+        ],
+        "cid": "febf818a",
+        "sentenceAudio": {
+          "text": "That's it!",
+          "audio": {
+            "url": "assets/oral-febf818a-32a895fabcfe118b1bcc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "15a593cd68d2ffcbbd5db9775386873fbfeb628b2e833f122cad2ab9eb4d6d3c",
+            "bytes": 3574
+          }
+        }
+      },
+      {
+        "sentence": "You got it.",
+        "cid": "86ff7ccf",
+        "translation": "正是!",
+        "chunks": [
+          "You got it."
+        ],
+        "hints": [
+          "你说对了！"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː ɡɑːt ɪt/"
+            ],
+            "pos": "口语惯用语",
+            "meaning": "你说对了；也可表示“明白了/没问题”"
+          }
+        ],
+        "explanations": [
+          "`You got it` 要按语境理解：在赞同对方判断时是「你说对了」；回应请求时是「没问题/包在我身上」；表示理解时是「明白了」。这里是赞同语境。",
+          "常见搭配：You got it right.（你答对了。）回应感谢时也可说 No problem. / My pleasure."
+        ],
+        "distractors": [
+          [
+            "You got that.",
+            "You get it.",
+            "You have it."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You got it.",
+          "audio": {
+            "url": "assets/oral-86ff7ccf-d93737c156f1da5b48ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "56281b96001e696981af080777c63d7b2025ef7d9836c005a8a99886c358f90a",
+            "bytes": 3722
+          }
+        }
+      },
+      {
+        "sentence": "Your answer is to the point.",
+        "translation": "你说到点子上了。",
+        "chunks": [
+          "Your answer",
+          "is to the point."
+        ],
+        "hints": [
+          "你的回答",
+          "切中要点。"
+        ],
+        "cid": "6ffc15a6",
+        "sentenceAudio": {
+          "text": "Your answer is to the point.",
+          "audio": {
+            "url": "assets/oral-6ffc15a6-a853c1477010859cba95.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8a8b23b5d36390c5e10e645b9b87ff314c193604dd93ee53c58292bc5d9316de",
+            "bytes": 5780
+          }
+        }
+      },
+      {
+        "sentence": "I bet.",
+        "translation": "我敢肯定。",
+        "chunks": [
+          "I",
+          "bet."
+        ],
+        "hints": [
+          "我敢",
+          "肯定。"
+        ],
+        "cid": "a531b2bf",
+        "sentenceAudio": {
+          "text": "I bet.",
+          "audio": {
+            "url": "assets/oral-a531b2bf-0e8ea17d9cb3ea87da67.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dde74aefecbcdfd84e23be7d5fcf94c77a5aff4d2e03a8b8de8fb4ab5ecd5488",
+            "bytes": 3410
+          }
+        }
+      },
+      {
+        "sentence": "Why not?",
+        "translation": "为什么不呢？",
+        "chunks": [
+          "Why",
+          "not?"
+        ],
+        "hints": [
+          "为什么",
+          "不呢？"
+        ],
+        "cid": "57c59239",
+        "sentenceAudio": {
+          "text": "Why not?",
+          "audio": {
+            "url": "assets/oral-57c59239-53c436b5e2666ca57929.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0cec26e9283814c541903264368a4499627c5687dbb9489105c0963710f35962",
+            "bytes": 3654
+          }
+        }
+      },
+      {
+        "sentence": "Bingo!",
+        "translation": "对啰!",
+        "chunks": [
+          "Bingo!"
+        ],
+        "hints": [
+          "对啰！"
+        ],
+        "cid": "417a5327",
+        "sentenceAudio": {
+          "text": "Bingo!",
+          "audio": {
+            "url": "assets/oral-417a5327-3b7c7275eda4daaf2ccc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "af5080a8b694fd3b4d564fce42fe658dc3fdea36dbe647e06942ac1368ca497c",
+            "bytes": 3580
+          }
+        }
+      },
+      {
+        "sentence": "Hear, hear!",
+        "translation": "说得对!说得对!",
+        "chunks": [
+          "Hear, hear!"
+        ],
+        "hints": [
+          "说得好！我完全赞同！"
+        ],
+        "cid": "e7f8ce78",
+        "sentenceAudio": {
+          "text": "Hear, hear!",
+          "audio": {
+            "url": "assets/oral-e7f8ce78-8cd7ef64b59d768e15da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "140fed1e23e2dc562e2c77f5457022f36f8617eeee67d79d09a7eaed31753991",
+            "bytes": 3596
+          }
+        }
+      },
+      {
+        "sentence": "Yes, sir.",
+        "translation": "是，先生。 Yes, ma'am. 对女性。",
+        "chunks": [
+          "Yes,",
+          "sir."
+        ],
+        "hints": [
+          "是，",
+          "先生。"
+        ],
+        "cid": "67ab8dac",
+        "sentenceAudio": {
+          "text": "Yes, sir.",
+          "audio": {
+            "url": "assets/oral-67ab8dac-52166f17bd4b4556c4b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cf4fbb6c853d7708989e588182db2bb8bd77698f82bf10e9ff3235eaf0f5a6df",
+            "bytes": 3480
+          }
+        }
+      },
+      {
+        "sentence": "No doubt.",
+        "translation": "确实是这样。",
+        "chunks": [
+          "No doubt."
+        ],
+        "hints": [
+          "毫无疑问。"
+        ],
+        "cid": "d69d3076",
+        "sentenceAudio": {
+          "text": "No doubt.",
+          "audio": {
+            "url": "assets/oral-d69d3076-8d140e59e4bff18594a4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d454b8415f95a81e72554ae1a36bc8e5bbfa989e2618fc624fa155ee7edc8c76",
+            "bytes": 3702
+          }
+        }
+      },
+      {
+        "sentence": "Fair enough.",
+        "translation": "当然可以。",
+        "chunks": [
+          "Fair enough."
+        ],
+        "hints": [
+          "有道理，可以接受。"
+        ],
+        "cid": "3d471761",
+        "sentenceAudio": {
+          "text": "Fair enough.",
+          "audio": {
+            "url": "assets/oral-3d471761-7c7f32cf20e330195f77.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "894ce2ba57b51bc5c0407251c0384bc4830130fa5084368a7e38210ed2b20a85",
+            "bytes": 3562
+          }
+        }
+      },
+      {
+        "sentence": "I'm afraid so.",
+        "translation": "恐怕就是这样了。",
+        "chunks": [
+          "I'm",
+          "afraid so."
+        ],
+        "hints": [
+          "恐怕",
+          "就是这样了。"
+        ],
+        "cid": "4f7358a7",
+        "sentenceAudio": {
+          "text": "I'm afraid so.",
+          "audio": {
+            "url": "assets/oral-4f7358a7-f89893dbbc6e2b66df53.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ae982356d1a22a629f8a358447cdc4ed00e9164545adec09fd124593b825f965",
+            "bytes": 4303
+          }
+        }
+      },
+      {
+        "sentence": "Your opinion is reasonable.",
+        "translation": "你的意见有道理。",
+        "chunks": [
+          "Your opinion",
+          "is reasonable."
+        ],
+        "hints": [
+          "你的意见",
+          "有道理。"
+        ],
+        "cid": "4b879d52",
+        "sentenceAudio": {
+          "text": "Your opinion is reasonable.",
+          "audio": {
+            "url": "assets/oral-4b879d52-d2c0f8d17a6354d6aeba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7792cc5d7bbedf136dd0f6f4c6698c08ce3288bfc518d58d247d537e6adb4161",
+            "bytes": 6088
+          }
+        }
+      },
+      {
+        "sentence": "If you say so.",
+        "translation": "如果你说是的话，那就是吧。",
+        "chunks": [
+          "If you",
+          "say so."
+        ],
+        "hints": [
+          "如果你",
+          "这么说的话。"
+        ],
+        "cid": "25fc9c42",
+        "sentenceAudio": {
+          "text": "If you say so.",
+          "audio": {
+            "url": "assets/oral-25fc9c42-c982e3b5ae9ffb3934fd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "981990043aca92467831c109256a1443737f8c49b7cb87207b0d2b17376eac2f",
+            "bytes": 4258
+          }
+        }
+      },
+      {
+        "sentence": "Yeah, as far as I know.",
+        "translation": "据我所知，是的。",
+        "chunks": [
+          "Yeah,",
+          "as far as I know."
+        ],
+        "hints": [
+          "是的，",
+          "据我所知。"
+        ],
+        "cid": "f500b589",
+        "sentenceAudio": {
+          "text": "Yeah, as far as I know.",
+          "audio": {
+            "url": "assets/oral-f500b589-2a60b2ffcc9f99bcb1d2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6f914d5a2296eeaca9587065dc0545f7cd0fb160ad43780fd38b4d560b35be54",
+            "bytes": 5582
+          }
+        }
+      },
+      {
+        "sentence": "I'm going to.",
+        "translation": "我这就做。",
+        "chunks": [
+          "I'm",
+          "going to."
+        ],
+        "hints": [
+          "我",
+          "这就做。"
+        ],
+        "cid": "bec3dc33",
+        "sentenceAudio": {
+          "text": "I'm going to.",
+          "audio": {
+            "url": "assets/oral-bec3dc33-c934367d02bee9a03060.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6edb11dcec9d65fd41b7e6230c047ea6b0fb124c2cf217ec491dd872a8b698ba",
+            "bytes": 4266
+          }
+        }
+      },
+      {
+        "sentence": "No, I'm not.",
+        "translation": "不，我不是。",
+        "chunks": [
+          "No,",
+          "I'm not."
+        ],
+        "hints": [
+          "不，",
+          "我不是。"
+        ],
+        "cid": "5cfc2956",
+        "sentenceAudio": {
+          "text": "No, I'm not.",
+          "audio": {
+            "url": "assets/oral-5cfc2956-ba04d540c5e50bea0c30.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cd43ec56fac12248aa8798059fae26da15a09a2adb467e2021cdfe573a081b6c",
+            "bytes": 4071
+          }
+        }
+      },
+      {
+        "sentence": "Wrong.",
+        "translation": "不对。",
+        "chunks": [
+          "Wrong."
+        ],
+        "hints": [
+          "不对。"
+        ],
+        "cid": "fd9c3828",
+        "sentenceAudio": {
+          "text": "Wrong.",
+          "audio": {
+            "url": "assets/oral-fd9c3828-ff2010aff796bd0e2470.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "27ea982a6b3025c5d699f789a8183668aecc5c010d1d33d3e26f84b8e1d353f9",
+            "bytes": 3056
+          }
+        }
+      },
+      {
+        "sentence": "That's not right.",
+        "translation": "那是不对的。",
+        "chunks": [
+          "That's",
+          "not right."
+        ],
+        "hints": [
+          "那是",
+          "不对的。"
+        ],
+        "cid": "1db9f019",
+        "sentenceAudio": {
+          "text": "That's not right.",
+          "audio": {
+            "url": "assets/oral-1db9f019-c143c84b3fcbc2d765ac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be80e59caa60823baa55af5290d0940242c06d02402a553612c2d1490748a102",
+            "bytes": 4275
+          }
+        }
+      },
+      {
+        "sentence": "Your idea is fundamentally wrong.",
+        "translation": "你的想法根本上就是错误的。",
+        "chunks": [
+          "Your idea is",
+          "fundamentally wrong."
+        ],
+        "hints": [
+          "你的想法",
+          "根本上就是错误的。"
+        ],
+        "cid": "f7d9efd0",
+        "sentenceAudio": {
+          "text": "Your idea is fundamentally wrong.",
+          "audio": {
+            "url": "assets/oral-f7d9efd0-a71666a9c5f869084ea1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c6280ad79261b4cfcfab5338a867f878e9c735d9ad22ee7c047912a86ad9d454",
+            "bytes": 7320
+          }
+        }
+      },
+      {
+        "sentence": "That's not what I mean.",
+        "translation": "我不是那个意思。",
+        "chunks": [
+          "That's not",
+          "what I mean."
+        ],
+        "hints": [
+          "不是这个",
+          "我说的意思"
+        ],
+        "cid": "1ef421d1",
+        "sentenceAudio": {
+          "text": "That's not what I mean.",
+          "audio": {
+            "url": "assets/oral-1ef421d1-0564bcfddfd0a6aef5cf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2e990acc996ac497bb308f1ca9cc96dc080cb33cb946ae24e54a1ac06c5deb8",
+            "bytes": 4837
+          }
+        }
+      },
+      {
+        "sentence": "Certainly not.",
+        "translation": "哪儿有的事儿。/当然不是。",
+        "chunks": [
+          "Certainly",
+          "not."
+        ],
+        "hints": [
+          "当然",
+          "不是。"
+        ],
+        "cid": "81ae25b7",
+        "sentenceAudio": {
+          "text": "Certainly not.",
+          "audio": {
+            "url": "assets/oral-81ae25b7-a7b24627d9b221652f30.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1ea64c59acfde9d727ae4a2f9a9e06493006e28a204dd656866a1a27ea32fa27",
+            "bytes": 4214
+          }
+        }
+      },
+      {
+        "sentence": "No, never.",
+        "translation": "不，从来没有。",
+        "chunks": [
+          "No,",
+          "never."
+        ],
+        "hints": [
+          "不，",
+          "从来没有。"
+        ],
+        "cid": "bc10f6ca",
+        "sentenceAudio": {
+          "text": "No, never.",
+          "audio": {
+            "url": "assets/oral-bc10f6ca-9e271d7639e4fa30c35c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b52a2eb776a3034b525ab8263572d664165b080c668121b91917171c854f2d40",
+            "bytes": 3811
+          }
+        }
+      },
+      {
+        "sentence": "No, not a bit.",
+        "translation": "不，一点儿都不。",
+        "chunks": [
+          "No,",
+          "not a bit."
+        ],
+        "hints": [
+          "不，",
+          "一点儿都不。"
+        ],
+        "cid": "26e42927",
+        "sentenceAudio": {
+          "text": "No, not a bit.",
+          "audio": {
+            "url": "assets/oral-26e42927-916bf4966af4581f5418.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "04e870bf2d50ce5927a9d438593716f8e2152a2f45abc3df45f0ec0d314fbab1",
+            "bytes": 4300
+          }
+        }
+      },
+      {
+        "sentence": "No way!",
+        "translation": "没门！",
+        "chunks": [
+          "No way!"
+        ],
+        "hints": [
+          "没门！"
+        ],
+        "cid": "850eecbc",
+        "sentenceAudio": {
+          "text": "No way!",
+          "audio": {
+            "url": "assets/oral-850eecbc-93e7de8c47db33345273.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "71763e3930d0217931e5d8b0e97c1cddd636300c969dc8dc5cd67dca18495d82",
+            "bytes": 3605
+          }
+        }
+      },
+      {
+        "sentence": "How can that be?",
+        "translation": "怎么可能呢?",
+        "chunks": [
+          "How",
+          "can that be?"
+        ],
+        "hints": [
+          "怎么",
+          "可能会这样？"
+        ],
+        "cid": "b80984da",
+        "sentenceAudio": {
+          "text": "How can that be?",
+          "audio": {
+            "url": "assets/oral-b80984da-29f22fdcd234fd9ecd7a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2c1c2d633acbdebb10ed2b4b83fb3148e0f2ad01b778ea6eeecc6a4d82126fb",
+            "bytes": 4528
+          }
+        }
+      },
+      {
+        "sentence": "We don't agree on this point.",
+        "translation": "在这一点上我们意见分歧。",
+        "chunks": [
+          "We don't agree",
+          "on this point."
+        ],
+        "hints": [
+          "我们意见不合",
+          "在这一点上"
+        ],
+        "cid": "60cb4b6c",
+        "sentenceAudio": {
+          "text": "We don't agree on this point.",
+          "audio": {
+            "url": "assets/oral-60cb4b6c-ee98c37aed7e90a9ddc8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ca1e2e94f6ffe268b299017b374a064d86acf46adc61b3c2e5ce7f3ac2843492",
+            "bytes": 5232
+          }
+        }
+      },
+      {
+        "sentence": "I'm not talking about that.",
+        "translation": "我没说那个。",
+        "chunks": [
+          "I'm not talking",
+          "about that."
+        ],
+        "hints": [
+          "我没说",
+          "那个。"
+        ],
+        "cid": "9913b3e3",
+        "sentenceAudio": {
+          "text": "I'm not talking about that.",
+          "audio": {
+            "url": "assets/oral-9913b3e3-56493e4200b02836c0e9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2fd14f2ec5b07ad1782c96aef9420cad462a98eb3f5244f9891b74f38c2237f8",
+            "bytes": 5116
+          }
+        }
+      },
+      {
+        "sentence": "Uh-uh.",
+        "translation": "这个嘛……",
+        "chunks": [
+          "Uh-uh."
+        ],
+        "hints": [
+          "这个嘛……"
+        ],
+        "cid": "8db96364",
+        "sentenceAudio": {
+          "text": "Uh-uh.",
+          "audio": {
+            "url": "assets/oral-8db96364-6d5286985f8e3c50f3b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc387e257f7ede270085576936503185e84424dcb3f57e34bda721282eaa94a7",
+            "bytes": 3065
+          }
+        }
+      },
+      {
+        "sentence": "That won't do.",
+        "translation": "那样不行。",
+        "chunks": [
+          "That",
+          "won't do."
+        ],
+        "hints": [
+          "那样",
+          "不行。"
+        ],
+        "cid": "c77a2f8e",
+        "sentenceAudio": {
+          "text": "That won't do.",
+          "audio": {
+            "url": "assets/oral-c77a2f8e-0bcc1a77015112b4a655.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "91cabdea112ebece992426771b911819b46a8a91f148f4d1d07f0184bfee4430",
+            "bytes": 4069
+          }
+        }
+      },
+      {
+        "sentence": "He won't do.",
+        "translation": "他呀，不行。",
+        "chunks": [
+          "He",
+          "won't do."
+        ],
+        "hints": [
+          "他呀，",
+          "不行。"
+        ],
+        "cid": "7756fa58",
+        "sentenceAudio": {
+          "text": "He won't do.",
+          "audio": {
+            "url": "assets/oral-7756fa58-d3347d4ed53a5e474ef9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e3115d61563cf23ea70d8e701a34a06014f0dbb1a34b87a92a93a3f8ba7a5bf",
+            "bytes": 4035
+          }
+        }
+      },
+      {
+        "sentence": "That makes no sense.",
+        "translation": "那也太没道理了。",
+        "chunks": [
+          "That makes no sense."
+        ],
+        "hints": [
+          "这完全说不通。"
+        ],
+        "cid": "17c06966",
+        "sentenceAudio": {
+          "text": "That makes no sense.",
+          "audio": {
+            "url": "assets/oral-17c06966-416c0f46c6e057cd5334.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "545084e1f839f8e846266d05cc2ce3976a2a920b987ad25aadf0be28073b3036",
+            "bytes": 4815
+          }
+        }
+      },
+      {
+        "sentence": "Not me.",
+        "translation": "不是我。",
+        "chunks": [
+          "Not",
+          "me."
+        ],
+        "hints": [
+          "不是",
+          "我。"
+        ],
+        "cid": "1b10f63e",
+        "sentenceAudio": {
+          "text": "Not me.",
+          "audio": {
+            "url": "assets/oral-1b10f63e-b188fe37fb70c0f4712b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "837927da545613ba6561ce4ceebc0b4657128eb01dd40bec024f6f8ff5f2d468",
+            "bytes": 3533
+          }
+        }
+      },
+      {
+        "sentence": "I deny that.",
+        "translation": "我否认。",
+        "chunks": [
+          "I",
+          "deny that."
+        ],
+        "hints": [
+          "我",
+          "否认。"
+        ],
+        "cid": "c26552af",
+        "sentenceAudio": {
+          "text": "I deny that.",
+          "audio": {
+            "url": "assets/oral-c26552af-f98974e04e048980e063.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "79656e1c70266fe7393fa9090064128a617bc4749ca46d30d8cc2315ed462002",
+            "bytes": 4214
+          }
+        }
+      },
+      {
+        "sentence": "Sounds good to me.",
+        "cid": "0f83a993",
+        "translation": "我觉得可以/听起来不错。",
+        "chunks": [
+          "Sounds good",
+          "to me."
+        ],
+        "hints": [
+          "听起来好",
+          "对我来说"
+        ],
+        "grammar": [
+          {
+            "role": "主谓结构",
+            "color": "#c87033",
+            "phonetic": [
+              "/saʊndz/",
+              "/ɡʊd/"
+            ],
+            "pos": "系动词+形容词",
+            "meaning": "听起来不错"
+          },
+          {
+            "role": "介词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tuː/",
+              "/miː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "对我而言"
+          }
+        ],
+        "explanations": [
+          "**Sounds good to me.** 同意提议时最自然的表达之一。",
+          "简短版：**Sounds good.** / **Works for me.** / **I'm down with that.**（更年轻）"
+        ],
+        "distractors": [
+          [
+            "Sound good",
+            "Sounds well",
+            "Sounds goods"
+          ],
+          [
+            "for me.",
+            "with me.",
+            "me."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sounds good to me.",
+          "audio": {
+            "url": "assets/oral-0f83a993-e546505d033695782042.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "59c3c2fc84a82d2ee2a7967a7aa7d9e16e298b26e6e8e2502c5d094f339f0a3b",
+            "bytes": 4362
+          }
+        }
+      },
+      {
+        "sentence": "That makes sense.",
+        "cid": "e14abd85",
+        "translation": "有道理/说得通。",
+        "chunks": [
+          "That makes",
+          "sense."
+        ],
+        "hints": [
+          "那说得出",
+          "道理"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ðæt/",
+              "/meɪks/"
+            ],
+            "pos": "主语+谓语",
+            "meaning": "那（说）"
+          },
+          {
+            "role": "宾语（习语）",
+            "color": "#3358e0",
+            "phonetic": [
+              "/sens/"
+            ],
+            "pos": "名词",
+            "meaning": "道理"
+          }
+        ],
+        "explanations": [
+          "**make sense** = 说得通、有道理，固定搭配。**That makes sense.** 是回应他人解释时最自然的认可句。",
+          "否定：**That doesn't make sense.**（说不通）。同义替换：That's reasonable / I see what you mean."
+        ],
+        "distractors": [
+          [
+            "That make",
+            "That made",
+            "That making"
+          ],
+          [
+            "senses.",
+            "a sense.",
+            "the sense."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "That makes sense.",
+          "audio": {
+            "url": "assets/oral-e14abd85-c64d0abbf5c83472909f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c7950b485cd95dded146124fbaf5a5565e1e6356de514685d5077cfbb00d5d71",
+            "bytes": 4170
+          }
+        }
+      },
+      {
+        "sentence": "I can't agree more.",
+        "cid": "c3147310",
+        "translation": "我完全同意。",
+        "chunks": [
+          "I can't",
+          "agree more."
+        ],
+        "hints": [
+          "我不能（再）",
+          "更同意"
+        ],
+        "grammar": [
+          {
+            "role": "主语+否定",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪ/",
+              "/kænt/"
+            ],
+            "pos": "主语+助动词",
+            "meaning": "我不能（再）"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/əˈɡriː/",
+              "/mɔːr/"
+            ],
+            "pos": "动词+程度比较",
+            "meaning": "更同意"
+          }
+        ],
+        "explanations": [
+          "**I can't agree more.** 字面「不能再更同意」= 完全同意，是加强同意的惯用表达。",
+          "同义：**I couldn't agree more.** 常见错误：\"I can't agree **no** more\" → 双重否定错误；应为 can't ... more。"
+        ],
+        "distractors": [
+          [
+            "I don't",
+            "I won't",
+            "I'm not"
+          ],
+          [
+            "agree.",
+            "agrees more.",
+            "to agree more."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I can't agree more.",
+          "audio": {
+            "url": "assets/oral-c3147310-27224221e37b0f46e94c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c85f12e90a26787efaabc49565f735fa589846ce49878ea6411209c2fec3952",
+            "bytes": 4521
+          }
+        }
+      },
+      {
+        "sentence": "It's a deal.",
+        "cid": "a964fa8d",
+        "translation": "一言为定/成交。",
+        "chunks": [
+          "It's",
+          "a deal."
+        ],
+        "hints": [
+          "这是",
+          "一桩成交"
+        ],
+        "grammar": [
+          {
+            "role": "主系",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/"
+            ],
+            "pos": "主系结构",
+            "meaning": "这是"
+          },
+          {
+            "role": "表语（习语）",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/diːl/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一言为定"
+          }
+        ],
+        "explanations": [
+          "**It's a deal.** = 一言为定/成交，用来敲定双方约定。",
+          "场景：— Let's meet at three. — **It's a deal!** 更口语的单字版：**Deal!** 双方都同意也可回 **Done.**"
+        ],
+        "distractors": [
+          [
+            "It",
+            "It are"
+          ],
+          [
+            "deal.",
+            "the deal.",
+            "a deals."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's a deal.",
+          "audio": {
+            "url": "assets/oral-a964fa8d-a8fca54669fe759468e4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "17de397c86645f6c377dffffe294a6c137d18cea9ccf0bb22814da88ac6579fe",
+            "bytes": 3806
+          }
+        }
+      },
+      {
+        "sentence": "You said it.",
+        "cid": "89d8df40",
+        "translation": "你说得没错/正是我想说的。",
+        "chunks": [
+          "You said",
+          "it."
+        ],
+        "hints": [
+          "你说出了",
+          "它"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/juː/",
+              "/sed/"
+            ],
+            "pos": "一般过去时",
+            "meaning": "你说出了"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɪt/"
+            ],
+            "pos": "代词",
+            "meaning": "它（心声）"
+          }
+        ],
+        "explanations": [
+          "**You said it.** = 你说得对/深表赞同，强调对方说出了你的心声。",
+          "注意别直译为「你说了它」。语境：— This place is overpriced. — **You said it!**（可不是嘛！）"
+        ],
+        "distractors": [
+          [
+            "You say",
+            "You says",
+            "You sayed"
+          ],
+          [
+            "them.",
+            "that.",
+            "this."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You said it.",
+          "audio": {
+            "url": "assets/oral-89d8df40-696ca3a07e1cc4d562bb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "750aa3357a67472177c9226e4b9e637491ea41dffb7d2aad7dc121889bbb11fd",
+            "bytes": 3640
+          }
+        }
+      },
+      {
+        "sentence": "That sounds like a great idea.",
+        "cid": "9edbf706",
+        "translation": "那听起来是个好主意。",
+        "chunks": [
+          "That sounds like",
+          "a great idea."
+        ],
+        "hints": [
+          "那听起来像",
+          "一个好主意"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðæt/",
+              "/saʊndz/",
+              "/laɪk/"
+            ],
+            "pos": "主谓结构",
+            "meaning": "那听起来像"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/ɡreɪt/",
+              "/aɪˈdɪə/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一个好主意"
+          }
+        ],
+        "explanations": [
+          "`sound like + 名词` 表示「听起来像…」。常见错误：\n• \"That sounds **good idea**\" → 缺冠词，应为 a good idea\n• \"That **is** sound like\" → sound 已含 be 含义，不要再加 is",
+          "第三人称单数 `sounds`，that 是单数。口语中 like 后可接名词或句子。"
+        ],
+        "distractors": [
+          [
+            "That sound like",
+            "That sounds as",
+            "That sounding like"
+          ],
+          [
+            "a great ideal.",
+            "great idea.",
+            "a great ideas."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "That sounds like a great idea.",
+          "audio": {
+            "url": "assets/oral-9edbf706-1d8202ed3941861892ec.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b5227bfad1726fe96a8957bc15f4f2f788cf9fdc69dc28d1cf15807ad839383a",
+            "bytes": 6311
+          }
+        }
+      },
+      {
+        "sentence": "That's exactly what I was thinking.",
+        "cid": "aab6ad64",
+        "translation": "那正是我刚才想的。",
+        "chunks": [
+          "That's exactly",
+          "what I was thinking."
+        ],
+        "hints": [
+          "那正是",
+          "我正在想的"
+        ],
+        "grammar": [
+          {
+            "role": "主系表+副词",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðæts/",
+              "/ɪɡˈzæktli/"
+            ],
+            "pos": "强调结构",
+            "meaning": "那正是"
+          },
+          {
+            "role": "表语从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wɒt/",
+              "/aɪ/",
+              "/wɒz/",
+              "/ˈθɪŋkɪŋ/"
+            ],
+            "pos": "what 从句",
+            "meaning": "我刚才想的"
+          }
+        ],
+        "explanations": [
+          "附和对方观点的用语。`That's exactly...` = 那正是…。常见错误：\n• \"That's **exact**\" → 修饰动词用副词 exactly\n• \"Exactly that's\" → 语序：That's exactly + 从句",
+          "`what I was thinking` = 我刚才在想的事。过去进行时表「刚才那个时刻的想法」。"
+        ],
+        "distractors": [
+          [
+            "That's exact",
+            "That exactly",
+            "It's exactly"
+          ],
+          [
+            "what I thinking.",
+            "what was I thinking.",
+            "that I was thinking."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "That's exactly what I was thinking.",
+          "audio": {
+            "url": "assets/oral-aab6ad64-6b681e9041b1183fa251.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e663cea6dda3ae82484714dedb6574e6f7e8f59dd5565c538ed776322598e7fb",
+            "bytes": 6529
+          }
+        }
+      },
+      {
+        "sentence": "You're right.",
+        "cid": "0f9b4d48",
+        "translation": "你说的对。",
+        "chunks": [
+          "You're",
+          "right."
+        ],
+        "hints": [
+          "你是",
+          "对的"
+        ],
+        "grammar": [
+          {
+            "role": "主语 + be",
+            "color": "#c87033",
+            "phonetic": [
+              "/jʊr/"
+            ],
+            "pos": "you are 缩写",
+            "meaning": "你是"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/raɪt/"
+            ],
+            "pos": "形容词",
+            "meaning": "对的"
+          }
+        ],
+        "explanations": [
+          "`You're right.` = 你说得对。常见错误：\n• \"Your right\" → your 是「你的」，要说 You're\n• 说成 \"You are right\" 也没错，只是口语更常缩写",
+          "相关：That's right.（没错）/ You've got a point."
+        ],
+        "distractors": [
+          [
+            "Your",
+            "You",
+            "Yours"
+          ],
+          [
+            "wright.",
+            "rite.",
+            "rights."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You're right.",
+          "audio": {
+            "url": "assets/oral-0f9b4d48-14c94b4b7d7b0266b291.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e1e4b81424bb6aa20e1e5e83971c6ba5cd8b4d48159e805ae904c0c8c19eff4",
+            "bytes": 3591
+          }
+        }
+      }
+    ]
+  }
+}

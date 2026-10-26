@@ -1,0 +1,1508 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-1-4-1",
+    "name": "口语3000句 · 恋爱和结婚 · 喜欢、爱上……～表白",
+    "short": "喜欢、爱上……～表白",
+    "desc": "喜欢、爱上……～表白",
+    "chapter": 1,
+    "section": "1.4",
+    "sectionTitle": "恋爱和结婚",
+    "topic": "喜欢、爱上……～表白",
+    "baseCount": 0,
+    "totalCount": 68,
+    "items": [
+      {
+        "sentence": "Tom is a lady-killer.",
+        "translation": "汤姆是个美男子。",
+        "chunks": [
+          "Tom is",
+          "a lady-killer."
+        ],
+        "hints": [
+          "汤姆是",
+          "一个美男子"
+        ],
+        "cid": "f922ab2c",
+        "sentenceAudio": {
+          "text": "Tom is a lady-killer.",
+          "audio": {
+            "url": "assets/oral-f922ab2c-d48f8b913a37aca62381.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c8c98b9cfffc280b102e92cc5120ce6b48134b1d514d9c2ffe7d1382d9052fa",
+            "bytes": 5243
+          }
+        }
+      },
+      {
+        "sentence": "Tom really turns me on.",
+        "translation": "汤姆真让我神魂颠倒。",
+        "chunks": [
+          "Tom really",
+          "turns me on."
+        ],
+        "hints": [
+          "汤姆真的",
+          "让我神魂颠倒"
+        ],
+        "cid": "e6c71b91",
+        "sentenceAudio": {
+          "text": "Tom really turns me on.",
+          "audio": {
+            "url": "assets/oral-e6c71b91-2cb3960e74261eb23cff.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a318229e100b1064b24bec27e7182ab3981530b4c03c38297671919354e355f0",
+            "bytes": 5355
+          }
+        }
+      },
+      {
+        "sentence": "Chris is really a heartbreaker.",
+        "translation": "克里斯真是个让人心碎的人。",
+        "chunks": [
+          "Chris is really",
+          "a heartbreaker."
+        ],
+        "hints": [
+          "克里斯真是",
+          "个让人心碎的家伙"
+        ],
+        "cid": "a11a2126",
+        "sentenceAudio": {
+          "text": "Chris is really a heartbreaker.",
+          "audio": {
+            "url": "assets/oral-a11a2126-907f92097713504ad438.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5c5e322970e362654fd5805aefecfe744c67a3c026a539dafcbaa7573d9e571d",
+            "bytes": 6360
+          }
+        }
+      },
+      {
+        "sentence": "Janet is a knockout.",
+        "translation": "珍妮特真迷人呀。",
+        "chunks": [
+          "Janet is",
+          "a knockout."
+        ],
+        "hints": [
+          "珍妮特是",
+          "个大美人"
+        ],
+        "cid": "558283d8",
+        "sentenceAudio": {
+          "text": "Janet is a knockout.",
+          "audio": {
+            "url": "assets/oral-558283d8-94096049f40f354b8544.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9238c191421135ff40e094620b12dcee8336bfdb3aa434f28177a75ea4bee278",
+            "bytes": 5031
+          }
+        }
+      },
+      {
+        "sentence": "I think he has a crush on you.",
+        "translation": "他好像看上你了。",
+        "chunks": [
+          "I think he has",
+          "a crush on you."
+        ],
+        "hints": [
+          "我觉得他",
+          "看上你了"
+        ],
+        "cid": "12087deb",
+        "sentenceAudio": {
+          "text": "I think he has a crush on you.",
+          "audio": {
+            "url": "assets/oral-12087deb-6c68cf2f93d8d9041f6c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8ae1e1728ca1ee6213e44e0af91fba569e2a5ea65a5ca2736d71b139691b173d",
+            "bytes": 5581
+          }
+        }
+      },
+      {
+        "sentence": "Jane seems to like me.",
+        "translation": "简好像喜欢上我了。",
+        "chunks": [
+          "Jane seems",
+          "to like me."
+        ],
+        "hints": [
+          "简好像",
+          "喜欢上我了"
+        ],
+        "cid": "c36b65fa",
+        "sentenceAudio": {
+          "text": "Jane seems to like me.",
+          "audio": {
+            "url": "assets/oral-c36b65fa-f438d41537037f72d8fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1181b222a04e138bcf8e3771ec93470d88283da6ec7fa52ceb7a2aeba1719d09",
+            "bytes": 5304
+          }
+        }
+      },
+      {
+        "sentence": "Diana's been coming on to Jack.",
+        "translation": "戴安娜对杰克有意思。",
+        "chunks": [
+          "Diana's been",
+          "coming on to Jack."
+        ],
+        "hints": [
+          "戴安娜一直",
+          "对杰克有意思"
+        ],
+        "cid": "856eb9ee",
+        "sentenceAudio": {
+          "text": "Diana's been coming on to Jack.",
+          "audio": {
+            "url": "assets/oral-856eb9ee-3062a491bd191af2cefc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "de34334e90af01ff8f656533e5a0e7764732a5843624a89a893c5e3d1a6b7d41",
+            "bytes": 6641
+          }
+        }
+      },
+      {
+        "sentence": "I can't handle a girl like her.",
+        "translation": "我应付不了像她那样的姑娘。",
+        "chunks": [
+          "I can't handle",
+          "a girl like her."
+        ],
+        "hints": [
+          "我应付不了",
+          "像她那样的姑娘"
+        ],
+        "cid": "6ad2f456",
+        "sentenceAudio": {
+          "text": "I can't handle a girl like her.",
+          "audio": {
+            "url": "assets/oral-6ad2f456-00eae7f66e36c48a786c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32dce1906d028bc0195b85e328b323e84bee2e0611444c594118943996e3fda1",
+            "bytes": 5953
+          }
+        }
+      },
+      {
+        "sentence": "I'm dying to see her.",
+        "translation": "我非常想见到她。",
+        "chunks": [
+          "I'm dying",
+          "to see her."
+        ],
+        "hints": [
+          "我非常想",
+          "见到她"
+        ],
+        "cid": "917f89bc",
+        "sentenceAudio": {
+          "text": "I'm dying to see her.",
+          "audio": {
+            "url": "assets/oral-917f89bc-2edd01ef3089fdc26475.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bf85860a3eb8efb6043aa937af0178af060b37ae42e524a2f4c2e200fdf7b116",
+            "bytes": 5099
+          }
+        }
+      },
+      {
+        "sentence": "I'm trying to make a pass at her.",
+        "translation": "我想追求她。",
+        "chunks": [
+          "I'm trying to",
+          "make a pass at her."
+        ],
+        "hints": [
+          "我想",
+          "追求她"
+        ],
+        "cid": "f7f3c3ca",
+        "sentenceAudio": {
+          "text": "I'm trying to make a pass at her.",
+          "audio": {
+            "url": "assets/oral-f7f3c3ca-873b78049fe9f597f858.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "42a197420fbd36bb680666c8dd220f41d494535be8c1f8f15bcba83127ff01f8",
+            "bytes": 5889
+          }
+        }
+      },
+      {
+        "sentence": "You broke my heart.",
+        "translation": "你伤了我的心。",
+        "chunks": [
+          "You broke",
+          "my heart."
+        ],
+        "hints": [
+          "你伤了",
+          "我的心"
+        ],
+        "cid": "f51d3ef9",
+        "sentenceAudio": {
+          "text": "You broke my heart.",
+          "audio": {
+            "url": "assets/oral-f51d3ef9-58729b36a5bfe2095f5a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3fb5c9e2284b743762c0e77e9b91e3cabf2a048e43488f5c3f5b898741c56579",
+            "bytes": 4631
+          }
+        }
+      },
+      {
+        "sentence": "Are you free tonight?",
+        "translation": "今晚有空吗?",
+        "chunks": [
+          "Are you",
+          "free tonight?"
+        ],
+        "hints": [
+          "你",
+          "今晚有空吗"
+        ],
+        "cid": "08c77e0e",
+        "sentenceAudio": {
+          "text": "Are you free tonight?",
+          "audio": {
+            "url": "assets/oral-08c77e0e-ef38f1c39995fd1d6fca.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "89c84b3bb1f70189cb6be12078bbcef370438b0c114f3bd936c8f1586055ce4d",
+            "bytes": 4614
+          }
+        }
+      },
+      {
+        "sentence": "Do you want to go out with me tonight?",
+        "translation": "今晚你能和我约会吗?",
+        "chunks": [
+          "Do you want to go out",
+          "with me tonight?"
+        ],
+        "hints": [
+          "你想不想出去",
+          "今晚和我约会"
+        ],
+        "cid": "6fc15082",
+        "sentenceAudio": {
+          "text": "Do you want to go out with me tonight?",
+          "audio": {
+            "url": "assets/oral-6fc15082-83dd7ddd7fce859373ef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "58269572541db7997ac02726c2d2ce495378678fe834db43fca01c76aba55c1e",
+            "bytes": 5963
+          }
+        }
+      },
+      {
+        "sentence": "Would you like to go to the movies with me?",
+        "translation": "愿意和我一起去看电影吗?",
+        "chunks": [
+          "Would you like",
+          "to go to the movies with me?"
+        ],
+        "hints": [
+          "你愿意",
+          "和我一起去看电影吗"
+        ],
+        "cid": "8e61cff5",
+        "sentenceAudio": {
+          "text": "Would you like to go to the movies with me?",
+          "audio": {
+            "url": "assets/oral-8e61cff5-46722d0bdee74f2cec3d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "21fdc68cd44fcaf6c504eae70e0c2f415f4d5261fcdd7cbac84e5973c2850ecd",
+            "bytes": 7164
+          }
+        }
+      },
+      {
+        "sentence": "Let's have tea or something.",
+        "translation": "我们喝点茶什么的吧。",
+        "chunks": [
+          "Let's have",
+          "tea or something."
+        ],
+        "hints": [
+          "我们喝点",
+          "茶什么的吧"
+        ],
+        "cid": "48bfe7e5",
+        "sentenceAudio": {
+          "text": "Let's have tea or something.",
+          "audio": {
+            "url": "assets/oral-48bfe7e5-daeb0f4eca8560be3c7e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "254bc87c70178b049004248c0c897e96457a2bb9ba5209308921bedffd3c552e",
+            "bytes": 5378
+          }
+        }
+      },
+      {
+        "sentence": "Please keep me company for a while.",
+        "translation": "能陪陪我吗?",
+        "chunks": [
+          "Please keep me company",
+          "for a while."
+        ],
+        "hints": [
+          "请陪我",
+          "一会儿"
+        ],
+        "cid": "085a87c2",
+        "sentenceAudio": {
+          "text": "Please keep me company for a while.",
+          "audio": {
+            "url": "assets/oral-085a87c2-06a697000b95bcb29bb8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5a2b2cf7f5ee7229a06e9c4a1c6e0380d439e99ccb684b87f66b98eee8bf14ec",
+            "bytes": 6743
+          }
+        }
+      },
+      {
+        "sentence": "I'd like to invite you to a show.",
+        "translation": "我想请你去看演出。",
+        "chunks": [
+          "I'd like to invite you",
+          "to a show."
+        ],
+        "hints": [
+          "我想请你",
+          "去看演出"
+        ],
+        "cid": "426e932a",
+        "sentenceAudio": {
+          "text": "I'd like to invite you to a show.",
+          "audio": {
+            "url": "assets/oral-426e932a-e049988751908ffbb9b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "46c33c53bfec5c257a11fd1b7e8748e191f65db35c807bb7399f1bf20e9cb1ef",
+            "bytes": 6243
+          }
+        }
+      },
+      {
+        "sentence": "May I ask you out?",
+        "translation": "我能和你约会吗?",
+        "chunks": [
+          "May I",
+          "ask you out?"
+        ],
+        "hints": [
+          "我可以",
+          "和你约会吗"
+        ],
+        "cid": "cfb85740",
+        "sentenceAudio": {
+          "text": "May I ask you out?",
+          "audio": {
+            "url": "assets/oral-cfb85740-a1410e0fa5fe98e229f1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a9f7479b99b29a6149d7093c4dafd3bd5310b3476d43cb5fde6dd12ed940d794",
+            "bytes": 4579
+          }
+        }
+      },
+      {
+        "sentence": "Are you trying to pick me up?",
+        "translation": "你想搭讪我吗？",
+        "chunks": [
+          "Are you trying",
+          "to pick me up?"
+        ],
+        "hints": [
+          "你是不是想",
+          "和我搭讪"
+        ],
+        "cid": "c72a4df5",
+        "sentenceAudio": {
+          "text": "Are you trying to pick me up?",
+          "audio": {
+            "url": "assets/oral-c72a4df5-1c5750928ec0958f4fe4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c9a1dbc8d427854d2b8e046f0435a07757997bea9abc1797b18672229d4b11b",
+            "bytes": 5041
+          }
+        }
+      },
+      {
+        "sentence": "Where do you want to meet?",
+        "translation": "在哪儿见面?",
+        "chunks": [
+          "Where do you",
+          "want to meet?"
+        ],
+        "hints": [
+          "你想在哪儿",
+          "见面"
+        ],
+        "cid": "9201402d",
+        "sentenceAudio": {
+          "text": "Where do you want to meet?",
+          "audio": {
+            "url": "assets/oral-9201402d-60e92ca3255262124ab6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3017bf1fe4d8138bbb493baed9cce56ce865d1cb7dcd2b5ecde5b9f7e20890d7",
+            "bytes": 4518
+          }
+        }
+      },
+      {
+        "sentence": "What time should we meet?",
+        "translation": "我们几点见面?",
+        "chunks": [
+          "What time",
+          "should we meet?"
+        ],
+        "hints": [
+          "什么时间",
+          "我们见面"
+        ],
+        "cid": "1915bfe1",
+        "sentenceAudio": {
+          "text": "What time should we meet?",
+          "audio": {
+            "url": "assets/oral-1915bfe1-9d76707f71b9736aabec.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be0062a4f34fe7c143f2eb953f51277e49b9816fc9f7f8fa3cbcf570fee3a485",
+            "bytes": 4832
+          }
+        }
+      },
+      {
+        "sentence": "I want to talk to you.",
+        "translation": "我有话要对你说。",
+        "chunks": [
+          "I want",
+          "to talk to you."
+        ],
+        "hints": [
+          "我想",
+          "和你说说话"
+        ],
+        "cid": "75a818c7",
+        "sentenceAudio": {
+          "text": "I want to talk to you.",
+          "audio": {
+            "url": "assets/oral-75a818c7-3832eb9d8fc230154957.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "92707600f93e8ef230214bc6b58dd01e6ca44b1cc91155f973c1fc765138b52f",
+            "bytes": 4855
+          }
+        }
+      },
+      {
+        "sentence": "Are you seeing anyone now?",
+        "translation": "你现在有交往对象吗？",
+        "chunks": [
+          "Are you seeing anyone",
+          "now?"
+        ],
+        "hints": [
+          "你有交往对象吗",
+          "现在"
+        ],
+        "cid": "d5098cc4",
+        "sentenceAudio": {
+          "text": "Are you seeing anyone now?",
+          "audio": {
+            "url": "assets/oral-d5098cc4-f9636e28ebd4880786da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cc7b0951754775c90bcb99798654cb7a8dc9768762a296ef569aabecdd071e78",
+            "bytes": 5253
+          }
+        }
+      },
+      {
+        "sentence": "What do you think of me?",
+        "translation": "你觉得我怎么样?",
+        "chunks": [
+          "What do you think",
+          "of me?"
+        ],
+        "hints": [
+          "你觉得",
+          "我怎么样"
+        ],
+        "cid": "74b28be7",
+        "sentenceAudio": {
+          "text": "What do you think of me?",
+          "audio": {
+            "url": "assets/oral-74b28be7-c19b2aeab4ac75eef698.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e5e0bd2cb23cd5e39c676b75463dc2b1e135714299975fa471136f6a4905f0b4",
+            "bytes": 4536
+          }
+        }
+      },
+      {
+        "sentence": "I love you.",
+        "translation": "我爱你。",
+        "chunks": [
+          "I",
+          "love you."
+        ],
+        "hints": [
+          "我",
+          "爱你"
+        ],
+        "cid": "2cb3942b",
+        "sentenceAudio": {
+          "text": "I love you.",
+          "audio": {
+            "url": "assets/oral-2cb3942b-8a370788aa51f55e4ec8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e4dafffd40ae0593ee5d6119b234856cca4ebca1b5a9f7eb3afd819b9ccd56e",
+            "bytes": 3768
+          }
+        }
+      },
+      {
+        "sentence": "You're the most beautiful woman I've ever seen.",
+        "translation": "你是我见到过的最美的女人。",
+        "chunks": [
+          "You're",
+          "the most beautiful woman I've ever seen."
+        ],
+        "hints": [
+          "你是",
+          "我见过的最美的女人"
+        ],
+        "cid": "3338d07b",
+        "sentenceAudio": {
+          "text": "You're the most beautiful woman I've ever seen.",
+          "audio": {
+            "url": "assets/oral-3338d07b-21a89c4c53e7748aec22.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "758e0fa15980652324727ffb692a72a9b48c4e27d6aa4d5a62191fded82dbbe4",
+            "bytes": 8296
+          }
+        }
+      },
+      {
+        "sentence": "I'm crazy for you.",
+        "translation": "我为你着迷。",
+        "chunks": [
+          "I'm",
+          "crazy for you."
+        ],
+        "hints": [
+          "我",
+          "为你着迷"
+        ],
+        "cid": "c662f419",
+        "sentenceAudio": {
+          "text": "I'm crazy for you.",
+          "audio": {
+            "url": "assets/oral-c662f419-46ad19557d598e70f99b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0a46a577c640cb28aebe99856354aebc7c2a59af471b86a7b4daca9604612555",
+            "bytes": 4523
+          }
+        }
+      },
+      {
+        "sentence": "Don't play hard to get.",
+        "translation": "别装腔作势。",
+        "chunks": [
+          "Don't play",
+          "hard to get."
+        ],
+        "hints": [
+          "别",
+          "装腔作势"
+        ],
+        "cid": "b2f67baf",
+        "sentenceAudio": {
+          "text": "Don't play hard to get.",
+          "audio": {
+            "url": "assets/oral-b2f67baf-ea5687f98f9e2cf68736.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2718725293b986f7e2422231428f0dfc6b1d5292f9c9418e64f34fe59b177a7",
+            "bytes": 5169
+          }
+        }
+      },
+      {
+        "sentence": "I don't want to get serious yet.",
+        "translation": "我还不想太认真。",
+        "chunks": [
+          "I don't want",
+          "to get serious yet."
+        ],
+        "hints": [
+          "我还不想",
+          "太认真"
+        ],
+        "cid": "cbec3119",
+        "sentenceAudio": {
+          "text": "I don't want to get serious yet.",
+          "audio": {
+            "url": "assets/oral-cbec3119-96227c8a2aca10ffabfc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be3dec5560bc243320bff6c1b4a0122c825d297e593d4ffa8333072c150fe7f5",
+            "bytes": 6052
+          }
+        }
+      },
+      {
+        "sentence": "It was love at first sight.",
+        "translation": "那是一见钟情。",
+        "chunks": [
+          "It was love",
+          "at first sight."
+        ],
+        "hints": [
+          "那真是",
+          "一见钟情"
+        ],
+        "cid": "3ea73f27",
+        "sentenceAudio": {
+          "text": "It was love at first sight.",
+          "audio": {
+            "url": "assets/oral-3ea73f27-efdc581bc19ad0a81b86.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "977f7d5aba5ac91b82d1813b08eb8711939c2e0c2904d56ba9374cabe857de45",
+            "bytes": 5161
+          }
+        }
+      },
+      {
+        "sentence": "I wish I had never met you.",
+        "translation": "我真希望我从来都没遇到过你。",
+        "chunks": [
+          "I wish",
+          "I had never met you."
+        ],
+        "hints": [
+          "我真希望",
+          "从来没遇到过你"
+        ],
+        "cid": "28452198",
+        "sentenceAudio": {
+          "text": "I wish I had never met you.",
+          "audio": {
+            "url": "assets/oral-28452198-86a69ce717b0f915b73d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fc99001dcd07a6e71836179aca69433458e92a47b1322627e9d5feea82633d99",
+            "bytes": 5588
+          }
+        }
+      },
+      {
+        "sentence": "You're my type.",
+        "translation": "你是我喜欢的那种类型。",
+        "chunks": [
+          "You're",
+          "my type."
+        ],
+        "hints": [
+          "你是",
+          "我喜欢的类型"
+        ],
+        "cid": "0137ed9c",
+        "sentenceAudio": {
+          "text": "You're my type.",
+          "audio": {
+            "url": "assets/oral-0137ed9c-33903597de1c8965c838.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a0e4b02572dedbd6787d356fa134d9df810d4b673eec4dcca66c08232f1f62f8",
+            "bytes": 3849
+          }
+        }
+      },
+      {
+        "sentence": "You make me happy.",
+        "translation": "你使我感到幸福。",
+        "chunks": [
+          "You make me",
+          "happy."
+        ],
+        "hints": [
+          "你让我",
+          "感到幸福"
+        ],
+        "cid": "f12fe490",
+        "sentenceAudio": {
+          "text": "You make me happy.",
+          "audio": {
+            "url": "assets/oral-f12fe490-a27dad5d35073f5288f0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "622c893d78670d60ea77ee65403fd55a8b6caae002889f677cf7fc7c1226f281",
+            "bytes": 4477
+          }
+        }
+      },
+      {
+        "sentence": "I'm happy to have known you.",
+        "translation": "能认识你我非常幸福。",
+        "chunks": [
+          "I'm happy",
+          "to have known you."
+        ],
+        "hints": [
+          "我很高兴",
+          "能认识你"
+        ],
+        "cid": "bd5b1093",
+        "sentenceAudio": {
+          "text": "I'm happy to have known you.",
+          "audio": {
+            "url": "assets/oral-bd5b1093-cec8f073152537a4833d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d0e9aa83ba200b0f91326ca10d05e878d0bc3bbcea11d302b66d48e269a312f3",
+            "bytes": 5271
+          }
+        }
+      },
+      {
+        "sentence": "You have beautiful eyes.",
+        "translation": "你的眼睛真美。",
+        "chunks": [
+          "You have",
+          "beautiful eyes."
+        ],
+        "hints": [
+          "你有一双",
+          "美丽的眼睛"
+        ],
+        "cid": "ae20f37d",
+        "sentenceAudio": {
+          "text": "You have beautiful eyes.",
+          "audio": {
+            "url": "assets/oral-ae20f37d-0c995aa84901b635582d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09d343446513d9840f3e0ef4d148ba4c423bffbd25e05317360803ac0197fa1a",
+            "bytes": 5159
+          }
+        }
+      },
+      {
+        "sentence": "You're sweet.",
+        "translation": "你真好。",
+        "chunks": [
+          "You're",
+          "sweet."
+        ],
+        "hints": [
+          "你",
+          "真好"
+        ],
+        "cid": "b03bba02",
+        "sentenceAudio": {
+          "text": "You're sweet.",
+          "audio": {
+            "url": "assets/oral-b03bba02-f7c1df86161927a80c81.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7efe4ccbe184e201221e6ae5bfff4d1ea6e2f6848fdc9eef189751c5f5aa06a5",
+            "bytes": 3674
+          }
+        }
+      },
+      {
+        "sentence": "You're sexy.",
+        "translation": "你真性感。",
+        "chunks": [
+          "You're",
+          "sexy."
+        ],
+        "hints": [
+          "你",
+          "真性感"
+        ],
+        "cid": "e1e9ca0f",
+        "sentenceAudio": {
+          "text": "You're sexy.",
+          "audio": {
+            "url": "assets/oral-e1e9ca0f-5ff8728f65981c696250.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13ed5fc61480f231aa014f647191ddadf23a3683dd6feb8259507b494951ccdf",
+            "bytes": 3966
+          }
+        }
+      },
+      {
+        "sentence": "Let's walk hand in hand.",
+        "translation": "我们拉着手走吧。",
+        "chunks": [
+          "Let's walk",
+          "hand in hand."
+        ],
+        "hints": [
+          "我们",
+          "拉着手走吧"
+        ],
+        "cid": "3b0f5620",
+        "sentenceAudio": {
+          "text": "Let's walk hand in hand.",
+          "audio": {
+            "url": "assets/oral-3b0f5620-1ddb9fa65637e90b68f7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6dced732ac7bf1973d96e419bc56a0d119b4cefc84d98c1e39a393d1553eb6ca",
+            "bytes": 5269
+          }
+        }
+      },
+      {
+        "sentence": "May I hold your hand?",
+        "translation": "我可以牵你的手吗?",
+        "chunks": [
+          "May I",
+          "hold your hand?"
+        ],
+        "hints": [
+          "我可以",
+          "牵你的手吗"
+        ],
+        "cid": "c7e16acf",
+        "sentenceAudio": {
+          "text": "May I hold your hand?",
+          "audio": {
+            "url": "assets/oral-c7e16acf-e63da3fe1829b85e5540.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f91f1a559180ddfca3f56eb6251f00e90234eb7ca55a53301822601d38f6ed01",
+            "bytes": 4854
+          }
+        }
+      },
+      {
+        "sentence": "You're beautiful.",
+        "translation": "你真漂亮。",
+        "chunks": [
+          "You're",
+          "beautiful."
+        ],
+        "hints": [
+          "你",
+          "真漂亮"
+        ],
+        "cid": "5ecfd183",
+        "sentenceAudio": {
+          "text": "You're beautiful.",
+          "audio": {
+            "url": "assets/oral-5ecfd183-7cf489436882e771568c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "46d0b7ba6fad1b2103c58183301387cd7db12808a036d2222c59c27702d33ee3",
+            "bytes": 4120
+          }
+        }
+      },
+      {
+        "sentence": "I want to know all about you.",
+        "translation": "我想知道你的一切。",
+        "chunks": [
+          "I want to know",
+          "all about you."
+        ],
+        "hints": [
+          "我想知道",
+          "你的一切"
+        ],
+        "cid": "c2e23297",
+        "sentenceAudio": {
+          "text": "I want to know all about you.",
+          "audio": {
+            "url": "assets/oral-c2e23297-cf08ea5112ed7875569a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ea5e8ccf0e6869fa8f31fc4dd9dd43904e2da57cffb07d51e303c803ace215d9",
+            "bytes": 5429
+          }
+        }
+      },
+      {
+        "sentence": "I want you.",
+        "translation": "我想要你。",
+        "chunks": [
+          "I",
+          "want you."
+        ],
+        "hints": [
+          "我",
+          "想要你"
+        ],
+        "cid": "3b5b8dbd",
+        "sentenceAudio": {
+          "text": "I want you.",
+          "audio": {
+            "url": "assets/oral-3b5b8dbd-8f2bf41851d5b4b33a71.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "50295d5ca5f9257f7b7044c7641a6e7400b344b8058c6a9e1e80c534229a57da",
+            "bytes": 4035
+          }
+        }
+      },
+      {
+        "sentence": "I need you.",
+        "translation": "我需要你。",
+        "chunks": [
+          "I",
+          "need you."
+        ],
+        "hints": [
+          "我",
+          "需要你"
+        ],
+        "cid": "8d2028cf",
+        "sentenceAudio": {
+          "text": "I need you.",
+          "audio": {
+            "url": "assets/oral-8d2028cf-32c5a3057226f3f26393.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b2ca35489acf597194b4b4b5555cf218a22c1144af8b71802069900eb220bddc",
+            "bytes": 3998
+          }
+        }
+      },
+      {
+        "sentence": "You're everything to me.",
+        "translation": "你对我来说就是一切。",
+        "chunks": [
+          "You're everything",
+          "to me."
+        ],
+        "hints": [
+          "你就是一切",
+          "对我而言"
+        ],
+        "cid": "465cf306",
+        "sentenceAudio": {
+          "text": "You're everything to me.",
+          "audio": {
+            "url": "assets/oral-465cf306-769d00ee9b096cc54b79.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c5041089bb8a4911cac2b9a06e7d3660c8480187c0eca35e61b48ec81f1f1342",
+            "bytes": 4938
+          }
+        }
+      },
+      {
+        "sentence": "You're mine.",
+        "translation": "你是我的。",
+        "chunks": [
+          "You're",
+          "mine."
+        ],
+        "hints": [
+          "你是",
+          "我的"
+        ],
+        "cid": "c0c92963",
+        "sentenceAudio": {
+          "text": "You're mine.",
+          "audio": {
+            "url": "assets/oral-c0c92963-28d8ee22bd77a958ef5f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f7fcbb338bde31cc21adf9ae3a4ca6c5b494c80bb8efbfa3137a7219d5176c16",
+            "bytes": 3627
+          }
+        }
+      },
+      {
+        "sentence": "I'm yours.",
+        "translation": "我是你的。",
+        "chunks": [
+          "I'm",
+          "yours."
+        ],
+        "hints": [
+          "我是",
+          "你的"
+        ],
+        "cid": "66924fee",
+        "sentenceAudio": {
+          "text": "I'm yours.",
+          "audio": {
+            "url": "assets/oral-66924fee-69d1155b148a435eed6e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "214edf540a79a851dd1e117a1219c3a4b3acc23fbff6dbd843c773edcf5d78c6",
+            "bytes": 3902
+          }
+        }
+      },
+      {
+        "sentence": "I can't live without you.",
+        "translation": "没有你我无法活下去。",
+        "chunks": [
+          "I can't live",
+          "without you."
+        ],
+        "hints": [
+          "我没法活下去",
+          "没有你"
+        ],
+        "cid": "26811d24",
+        "sentenceAudio": {
+          "text": "I can't live without you.",
+          "audio": {
+            "url": "assets/oral-26811d24-d26d11b8462f694f68eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2bd1e4f26d32b4383981a4577a09a630ff81e6eeae1cbd0c78e4a22211440f4d",
+            "bytes": 5175
+          }
+        }
+      },
+      {
+        "sentence": "Come closer.",
+        "translation": "再靠近我些。",
+        "chunks": [
+          "Come",
+          "closer."
+        ],
+        "hints": [
+          "再",
+          "靠近些"
+        ],
+        "cid": "df9dbbdd",
+        "sentenceAudio": {
+          "text": "Come closer.",
+          "audio": {
+            "url": "assets/oral-df9dbbdd-39582520750a478e9701.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c0db9376c40a3dc2c6b2d4d06cdab60c3e22dd66850ab7a5c0da1076cf9c515",
+            "bytes": 3969
+          }
+        }
+      },
+      {
+        "sentence": "What's on your mind?",
+        "translation": "你在想什么呢？",
+        "chunks": [
+          "What's on your mind?"
+        ],
+        "hints": [
+          "你在想什么呢？"
+        ],
+        "cid": "55dc5b48",
+        "sentenceAudio": {
+          "text": "What's on your mind?",
+          "audio": {
+            "url": "assets/oral-55dc5b48-cc0fa7f11b8edf9b0cb7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6b8d1c570d46f0dfe6d0b58fe0ccb88436d91efc8a381f10bfb22ee6331752d9",
+            "bytes": 4407
+          }
+        }
+      },
+      {
+        "sentence": "I think of you night and day.",
+        "translation": "我日夜都想着你。",
+        "chunks": [
+          "I think of you",
+          "night and day."
+        ],
+        "hints": [
+          "我想着你",
+          "日日夜夜"
+        ],
+        "cid": "fe13cef7",
+        "sentenceAudio": {
+          "text": "I think of you night and day.",
+          "audio": {
+            "url": "assets/oral-fe13cef7-93a2bc656657a8dfbed9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "764930296261e8cf998abcef75524cad4a5ff7c96823aa07dd4bed66ade9067f",
+            "bytes": 5609
+          }
+        }
+      },
+      {
+        "sentence": "There will never be another you.",
+        "translation": "你是这个世界上独一无二的人。",
+        "chunks": [
+          "There will never be",
+          "another you."
+        ],
+        "hints": [
+          "再也不会有",
+          "第二个你"
+        ],
+        "cid": "00713920",
+        "sentenceAudio": {
+          "text": "There will never be another you.",
+          "audio": {
+            "url": "assets/oral-00713920-10f3880aed229178f7c1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "908e52e4b4385e64e256f63365129684a09e948e937b37c0b9f6ecf3c363f68f",
+            "bytes": 5674
+          }
+        }
+      },
+      {
+        "sentence": "I like your dress.",
+        "translation": "我喜欢你的连衣裙。",
+        "chunks": [
+          "I like",
+          "your dress."
+        ],
+        "hints": [
+          "我喜欢",
+          "你的连衣裙"
+        ],
+        "cid": "b001063d",
+        "sentenceAudio": {
+          "text": "I like your dress.",
+          "audio": {
+            "url": "assets/oral-b001063d-f0ee294b5a69d2245fad.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d883a430bc05a3a79353653da4f827a02783920838a7eb435f5fc4fc9d6bba2d",
+            "bytes": 4482
+          }
+        }
+      },
+      {
+        "sentence": "Nothing is too good for you.",
+        "translation": "为你我在所不惜。",
+        "chunks": [
+          "Nothing is too good for you."
+        ],
+        "hints": [
+          "为你我在所不惜。"
+        ],
+        "cid": "11d175b1",
+        "sentenceAudio": {
+          "text": "Nothing is too good for you.",
+          "audio": {
+            "url": "assets/oral-11d175b1-705367588a3f2c9118bb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c6b19de8d3559c89ec86a815c65d6212c7494e9b583f74a8ddce9b58e645e5ec",
+            "bytes": 5650
+          }
+        }
+      },
+      {
+        "sentence": "Are you seducing me?",
+        "translation": "你在引诱我吗?",
+        "chunks": [
+          "Are you",
+          "seducing me?"
+        ],
+        "hints": [
+          "你是在",
+          "引诱我吗"
+        ],
+        "cid": "98c3ba55",
+        "sentenceAudio": {
+          "text": "Are you seducing me?",
+          "audio": {
+            "url": "assets/oral-98c3ba55-9bced2ae337b83e12281.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2fb276b749b1f7de1cdbc873440ea6c5934f4b9060447bd5b3a7ac89733e2d13",
+            "bytes": 4664
+          }
+        }
+      },
+      {
+        "sentence": "Hold me tight.",
+        "translation": "抱紧我。",
+        "chunks": [
+          "Hold me",
+          "tight."
+        ],
+        "hints": [
+          "抱住我",
+          "紧紧地"
+        ],
+        "cid": "01e889c8",
+        "sentenceAudio": {
+          "text": "Hold me tight.",
+          "audio": {
+            "url": "assets/oral-01e889c8-e60764655e39ea2ab943.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "50a387a8ce89d1534c708dcf59a8ef749fe3a6f8a64125c304e43c432adedfb5",
+            "bytes": 4178
+          }
+        }
+      },
+      {
+        "sentence": "Don't go away.",
+        "translation": "别离开我。",
+        "chunks": [
+          "Don't",
+          "go away."
+        ],
+        "hints": [
+          "别",
+          "离开"
+        ],
+        "cid": "2b5c3905",
+        "sentenceAudio": {
+          "text": "Don't go away.",
+          "audio": {
+            "url": "assets/oral-2b5c3905-087e599950de22817780.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "10240ef626e457f322f3e772897872d2351c47b2878bff3c864decb874e1919a",
+            "bytes": 3902
+          }
+        }
+      },
+      {
+        "sentence": "I can't help falling in love with you.",
+        "translation": "我无法不爱你。",
+        "chunks": [
+          "I can't help",
+          "falling in love with you."
+        ],
+        "hints": [
+          "我忍不住",
+          "爱上了你"
+        ],
+        "cid": "107f3851",
+        "sentenceAudio": {
+          "text": "I can't help falling in love with you.",
+          "audio": {
+            "url": "assets/oral-107f3851-2e56487fab5fe78e2386.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa3abd967ab5ee10bc6c9cb2cb58508c365e6cb082b5a4df67abbca26e57acfc",
+            "bytes": 6491
+          }
+        }
+      },
+      {
+        "sentence": "I've never felt like this before.",
+        "translation": "我从来没有过这种感觉。",
+        "chunks": [
+          "I've never felt",
+          "like this before."
+        ],
+        "hints": [
+          "我从来没有过",
+          "这种感觉"
+        ],
+        "cid": "52834e5d",
+        "sentenceAudio": {
+          "text": "I've never felt like this before.",
+          "audio": {
+            "url": "assets/oral-52834e5d-1da0a294232329030c1e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "610def6496da587ebfac0c1e9edd25a2b929af51d09e2263c47f7b5bbb1e8638",
+            "bytes": 6233
+          }
+        }
+      },
+      {
+        "sentence": "You're the one for me.",
+        "translation": "你是我的惟一。",
+        "chunks": [
+          "You're",
+          "the one for me."
+        ],
+        "hints": [
+          "你是",
+          "我的唯一"
+        ],
+        "cid": "5fa18058",
+        "sentenceAudio": {
+          "text": "You're the one for me.",
+          "audio": {
+            "url": "assets/oral-5fa18058-bcb41a2f73b9f62d00b0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4f3e235208f018e060eb9c0cda8276070f974db2b250208ed378f495b9af16e6",
+            "bytes": 4375
+          }
+        }
+      },
+      {
+        "sentence": "I'll love you forever.",
+        "translation": "我永远爱你。",
+        "chunks": [
+          "I'll love you",
+          "forever."
+        ],
+        "hints": [
+          "我会爱你",
+          "到永远"
+        ],
+        "cid": "59638967",
+        "sentenceAudio": {
+          "text": "I'll love you forever.",
+          "audio": {
+            "url": "assets/oral-59638967-f1d0265709aa204a675d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8b0cc761487648d013c8746d4c8ea4feef5c390200b72eb81b33870ae7e8044b",
+            "bytes": 4679
+          }
+        }
+      },
+      {
+        "sentence": "I always speak my mind.",
+        "translation": "我一直都说的是真心话。",
+        "chunks": [
+          "I always",
+          "speak my mind."
+        ],
+        "hints": [
+          "我总是",
+          "说出真实想法"
+        ],
+        "cid": "8ed24255",
+        "sentenceAudio": {
+          "text": "I always speak my mind.",
+          "audio": {
+            "url": "assets/oral-8ed24255-88713b14de1fa41c3cbb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e8b5042f16302bf01452908846efdf09e01913b41cafd979416e45a78659a9d",
+            "bytes": 5414
+          }
+        }
+      },
+      {
+        "sentence": "Love me, love my dog.",
+        "translation": "既然那样，那你也要爱屋及乌噢。",
+        "chunks": [
+          "Love me,",
+          "love my dog."
+        ],
+        "hints": [
+          "爱我",
+          "也要爱我的狗"
+        ],
+        "cid": "b4d165a3",
+        "sentenceAudio": {
+          "text": "Love me, love my dog.",
+          "audio": {
+            "url": "assets/oral-b4d165a3-3ce5acd93b651621ca2f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8cba6d0e70d59fc779f29340d1aab9af8454c97907ad752987bbf5d5029bd0a3",
+            "bytes": 5750
+          }
+        }
+      },
+      {
+        "sentence": "Be gentle.",
+        "translation": "请温柔些。",
+        "chunks": [
+          "Be",
+          "gentle."
+        ],
+        "hints": [
+          "请",
+          "温柔些"
+        ],
+        "cid": "62fa51b1",
+        "sentenceAudio": {
+          "text": "Be gentle.",
+          "audio": {
+            "url": "assets/oral-62fa51b1-2098af212006ee2d31eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "77197a65cb8d23c90ef45c439bb2aca03825cee5a5d7bc2994d353fcfe8648da",
+            "bytes": 3870
+          }
+        }
+      },
+      {
+        "sentence": "Love me more.",
+        "translation": "再多爱我一些。",
+        "chunks": [
+          "Love me",
+          "more."
+        ],
+        "hints": [
+          "爱我",
+          "多一些"
+        ],
+        "cid": "9031ee34",
+        "sentenceAudio": {
+          "text": "Love me more.",
+          "audio": {
+            "url": "assets/oral-9031ee34-e0e2ad59d9f5582e01da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "983ce3e1d1c96f5eb91a128a6e31881eae0e24c39d7ae2a382609bcf93ef684e",
+            "bytes": 3868
+          }
+        }
+      },
+      {
+        "sentence": "Look at me!",
+        "translation": "看着我!",
+        "chunks": [
+          "Look",
+          "at me!"
+        ],
+        "hints": [
+          "看",
+          "着我"
+        ],
+        "cid": "b8fe3842",
+        "sentenceAudio": {
+          "text": "Look at me!",
+          "audio": {
+            "url": "assets/oral-b8fe3842-6f94604d4c8484a3dc84.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "54b5059fbcbb85c55200df07f3fbeb12c70917e2cceb3b86e8b07eaf071d5f0f",
+            "bytes": 3771
+          }
+        }
+      },
+      {
+        "sentence": "I fell in love with Rose.",
+        "translation": "我爱上了罗丝。",
+        "chunks": [
+          "I fell in love",
+          "with Rose."
+        ],
+        "hints": [
+          "我爱上了",
+          "罗丝"
+        ],
+        "cid": "6177e4c3",
+        "sentenceAudio": {
+          "text": "I fell in love with Rose.",
+          "audio": {
+            "url": "assets/oral-6177e4c3-77c599ab7ec258f750d1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "188829ac1da44b338bf8ceedd5acdb19d88c40016efc2231a35e0fc26036b01b",
+            "bytes": 5360
+          }
+        }
+      },
+      {
+        "sentence": "I'm deeply in love with Rose.",
+        "translation": "我深深地爱着罗丝。",
+        "chunks": [
+          "I'm deeply",
+          "in love with Rose."
+        ],
+        "hints": [
+          "我深深地",
+          "爱着罗丝"
+        ],
+        "cid": "c3d54333",
+        "sentenceAudio": {
+          "text": "I'm deeply in love with Rose.",
+          "audio": {
+            "url": "assets/oral-c3d54333-74acb613bc51004fb11e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "448a344bce740fc3b1aee594d4ef878fc3d3ceeb03aa6727bd087ef533f31106",
+            "bytes": 5854
+          }
+        }
+      },
+      {
+        "sentence": "Smooch!",
+        "translation": "唧!",
+        "chunks": [
+          "Smooch!"
+        ],
+        "hints": [
+          "唧（亲吻声）"
+        ],
+        "cid": "a75c2df3",
+        "sentenceAudio": {
+          "text": "Smooch!",
+          "audio": {
+            "url": "assets/oral-a75c2df3-6bd48e85f6d73b78e6cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7d03a3cc758e5f85876e4faedbbe2c51b88833a9a47d95b1b32ee12efaaacc7a",
+            "bytes": 3236
+          }
+        }
+      }
+    ]
+  }
+}

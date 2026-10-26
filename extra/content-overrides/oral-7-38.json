@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-7-38",
+    "name": "口语3000句 · (商业信函用语)结语",
+    "short": "(商业信函用语)结语",
+    "desc": "(商业信函用语)结语",
+    "chapter": 7,
+    "section": "7.38",
+    "sectionTitle": "(商业信函用语)结语",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 7,
+    "items": [
+      {
+        "sentence": "Yours very truly,",
+        "translation": "谨致问候",
+        "chunks": [
+          "Yours very truly,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "326a2f75",
+        "sentenceAudio": {
+          "text": "Yours very truly,",
+          "audio": {
+            "url": "assets/oral-326a2f75-7b94c2727b0ef27df067.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9616fc21454ef8021be793d38efdca6c9b1051a74fcd664206d644a4ab8b239c",
+            "bytes": 4971
+          }
+        }
+      },
+      {
+        "sentence": "Sincerely yours,",
+        "translation": "谨致问候",
+        "chunks": [
+          "Sincerely yours,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "68f170bd",
+        "sentenceAudio": {
+          "text": "Sincerely yours,",
+          "audio": {
+            "url": "assets/oral-68f170bd-d063ab7079dfa6ca12db.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3239ad239f72faecc676f197ed135b44232777a10d8a759e5b0083c444dfc960",
+            "bytes": 4705
+          }
+        }
+      },
+      {
+        "sentence": "Cordially,",
+        "translation": "谨致问候",
+        "chunks": [
+          "Cordially,"
+        ],
+        "hints": [
+          "谨致问候，"
+        ],
+        "cid": "18f43dce",
+        "sentenceAudio": {
+          "text": "Cordially,",
+          "audio": {
+            "url": "assets/oral-18f43dce-449384626c966acc0fd3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8707d5ad5f8a2092273c01fd63006cb65da5754f9e4fa4ba92c5bd1224a63bd4",
+            "bytes": 3569
+          }
+        }
+      },
+      {
+        "sentence": "My best regards,",
+        "translation": "谨致问候",
+        "chunks": [
+          "My best regards,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "74057271",
+        "sentenceAudio": {
+          "text": "My best regards,",
+          "audio": {
+            "url": "assets/oral-74057271-096e6100a14974b07153.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "715ccdcbbbc5d5040474d13cbdd917d81966adb44d902bb9133f875450e65d66",
+            "bytes": 4712
+          }
+        }
+      },
+      {
+        "sentence": "With best regards,",
+        "translation": "谨致问候",
+        "chunks": [
+          "With best regards,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "eda8c4af",
+        "sentenceAudio": {
+          "text": "With best regards,",
+          "audio": {
+            "url": "assets/oral-eda8c4af-9548204f2b6d1e735e82.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2c3363042eaa9f9b2562175bfa6f8e4df1908ad76ab0b375dcfcc8e94aefdd6f",
+            "bytes": 4681
+          }
+        }
+      },
+      {
+        "sentence": "The very best to you,",
+        "translation": "谨致问候",
+        "chunks": [
+          "The very best to you,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "43ada8d0",
+        "sentenceAudio": {
+          "text": "The very best to you,",
+          "audio": {
+            "url": "assets/oral-43ada8d0-18ade9ad90271c27f67a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "65f78f763c1e6ae2f0ede8a17848e4b0a2ad51e80d1a6b872b98463b34bced15",
+            "bytes": 4820
+          }
+        }
+      },
+      {
+        "sentence": "Best wishes,",
+        "translation": "谨致问候",
+        "chunks": [
+          "Best wishes,"
+        ],
+        "hints": [
+          "谨致问候"
+        ],
+        "cid": "cbbc7c26",
+        "sentenceAudio": {
+          "text": "Best wishes,",
+          "audio": {
+            "url": "assets/oral-cbbc7c26-0b4407a7a7ef1c454e66.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "174a04e3c64e3588e514a0112988f4192e3058165b24384326654f326854f25a",
+            "bytes": 4014
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-4-24",
+    "name": "口语3000句 · 害羞时",
+    "short": "害羞时",
+    "desc": "害羞时",
+    "chapter": 4,
+    "section": "4.24",
+    "sectionTitle": "害羞时",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 4,
+    "items": [
+      {
+        "sentence": "I'm shy.",
+        "translation": "我不好意思。",
+        "chunks": [
+          "I'm",
+          "shy."
+        ],
+        "hints": [
+          "我",
+          "不好意思"
+        ],
+        "cid": "7b45b52c",
+        "sentenceAudio": {
+          "text": "I'm shy.",
+          "audio": {
+            "url": "assets/oral-7b45b52c-b1a80b8cc252fb184458.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b2463183bcc55273750d1d775d7cf6af70a1cf12d118abc717ff72c0e6947af0",
+            "bytes": 3556
+          }
+        }
+      },
+      {
+        "sentence": "I'm ashamed of myself.",
+        "translation": "我为自己感到惭愧。",
+        "chunks": [
+          "I'm",
+          "ashamed of myself."
+        ],
+        "hints": [
+          "我",
+          "为自己感到惭愧。"
+        ],
+        "cid": "7284f7ce",
+        "sentenceAudio": {
+          "text": "I'm ashamed of myself.",
+          "audio": {
+            "url": "assets/oral-7284f7ce-5ed0b5676efbea740c1d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a13683bbf266bd490d29da7d1b1fb3fdc929736510e70c753bcd434170f4716",
+            "bytes": 5113
+          }
+        }
+      },
+      {
+        "sentence": "How shameful!",
+        "translation": "真恬不知耻!",
+        "chunks": [
+          "How",
+          "shameful!"
+        ],
+        "hints": [
+          "真",
+          "恬不知耻"
+        ],
+        "cid": "281c321f",
+        "sentenceAudio": {
+          "text": "How shameful!",
+          "audio": {
+            "url": "assets/oral-281c321f-6192d22ed2d91e74bec1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ef3f20a5cdf7db74738409f379b70a340afd4e5c2616399626c7f77d3f986b7b",
+            "bytes": 4050
+          }
+        }
+      },
+      {
+        "sentence": "Shame on you!",
+        "translation": "你真丢脸！",
+        "chunks": [
+          "Shame on you!"
+        ],
+        "hints": [
+          "你真丢脸！/真可耻！"
+        ],
+        "cid": "16b468a6",
+        "sentenceAudio": {
+          "text": "Shame on you!",
+          "audio": {
+            "url": "assets/oral-16b468a6-92ec216b18d3aa4ee8fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0feecc872c01ebee72a381e4f3ed5f798c62085258269b8f41eb30c335b62f00",
+            "bytes": 3819
+          }
+        }
+      }
+    ]
+  }
+}

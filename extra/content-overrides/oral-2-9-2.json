@@ -1,0 +1,1765 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-9-2",
+    "name": "口语3000句 · 随意的谈话 · 反问～随声附和",
+    "short": "反问～随声附和",
+    "desc": "反问～随声附和",
+    "chapter": 2,
+    "section": "2.9",
+    "sectionTitle": "随意的谈话",
+    "topic": "反问～随声附和",
+    "baseCount": 0,
+    "totalCount": 71,
+    "items": [
+      {
+        "sentence": "Yes?",
+        "translation": "有事吗?",
+        "chunks": [
+          "Yes?"
+        ],
+        "hints": [
+          "有事吗？"
+        ],
+        "cid": "da81199d",
+        "sentenceAudio": {
+          "text": "Yes?",
+          "audio": {
+            "url": "assets/oral-da81199d-91c988e28aa133efe492.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "02ab71e713c8dca3ca3f8e859e659c85cc74efa63603369b343777354df5cb1a",
+            "bytes": 3097
+          }
+        }
+      },
+      {
+        "sentence": "What for?",
+        "translation": "为了什么?",
+        "chunks": [
+          "What for?"
+        ],
+        "hints": [
+          "为了什么？"
+        ],
+        "cid": "0d42e255",
+        "sentenceAudio": {
+          "text": "What for?",
+          "audio": {
+            "url": "assets/oral-0d42e255-3f846d13b908b6be0e18.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "250907b6570268d2dbb96e9e4d9e86efe04e19db23e71380a5d39d26a57cb8cd",
+            "bytes": 3474
+          }
+        }
+      },
+      {
+        "sentence": "Pardon me?",
+        "translation": "您说什么?",
+        "chunks": [
+          "Pardon me?"
+        ],
+        "hints": [
+          "您说什么？"
+        ],
+        "cid": "235630ca",
+        "sentenceAudio": {
+          "text": "Pardon me?",
+          "audio": {
+            "url": "assets/oral-235630ca-565840c38e7f316f34d1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb654e17de83d0e3ac05b249bb35d9592915b7ae6f0586a00d98c8e478f4c121",
+            "bytes": 3572
+          }
+        }
+      },
+      {
+        "sentence": "How about now?",
+        "translation": "现在怎么样?",
+        "chunks": [
+          "How about",
+          "now?"
+        ],
+        "hints": [
+          "怎么样？",
+          "现在"
+        ],
+        "cid": "6a7a7df1",
+        "sentenceAudio": {
+          "text": "How about now?",
+          "audio": {
+            "url": "assets/oral-6a7a7df1-801ddb16f87bc42181c5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "78dc2a6d9857c570c5d8b31eb31ed55caca9463d3eb13d0ebbecbe96f30bc11e",
+            "bytes": 4247
+          }
+        }
+      },
+      {
+        "sentence": "Excuse me?",
+        "translation": "不好意思，您刚才说什么?",
+        "chunks": [
+          "Excuse me?"
+        ],
+        "hints": [
+          "不好意思，您刚才说什么？"
+        ],
+        "cid": "87361343",
+        "sentenceAudio": {
+          "text": "Excuse me?",
+          "audio": {
+            "url": "assets/oral-87361343-acd2de0fae220e36f823.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eee59de48201c51f21e923127dc76bb2ab8a63ac0d8b787905a64168e9404b2e",
+            "bytes": 3958
+          }
+        }
+      },
+      {
+        "sentence": "What?",
+        "translation": "什么?",
+        "chunks": [
+          "What?"
+        ],
+        "hints": [
+          "什么？"
+        ],
+        "cid": "29829b50",
+        "sentenceAudio": {
+          "text": "What?",
+          "audio": {
+            "url": "assets/oral-29829b50-02c10d47827e3bfbee0a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "922371a856656137087f232c7a24e8aaf1f8dac4e753dbddbd926b216cddfa99",
+            "bytes": 2863
+          }
+        }
+      },
+      {
+        "sentence": "Did you say anything?",
+        "translation": "你说什么来着?",
+        "chunks": [
+          "Did you say",
+          "anything?"
+        ],
+        "hints": [
+          "你刚说",
+          "什么了吗？"
+        ],
+        "cid": "d06fbab1",
+        "sentenceAudio": {
+          "text": "Did you say anything?",
+          "audio": {
+            "url": "assets/oral-d06fbab1-3705da2adf39a7bfca27.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "af0aeea5633dd96354efa9236709ffd77a933d94afb5b00b169773f732ef6d84",
+            "bytes": 4653
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry, what did you say?",
+        "translation": "对不起，你说什么来着?",
+        "chunks": [
+          "I'm sorry,",
+          "what did you say?"
+        ],
+        "hints": [
+          "对不起，",
+          "你说什么来着？"
+        ],
+        "cid": "163799ff",
+        "sentenceAudio": {
+          "text": "I'm sorry, what did you say?",
+          "audio": {
+            "url": "assets/oral-163799ff-68dea7b140b9326fe89f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e9d847d456d6b2585f100e1c3da47a9f7e1cccaefab78c2a5dd93b6d9f6323b",
+            "bytes": 5991
+          }
+        }
+      },
+      {
+        "sentence": "So what?",
+        "translation": "那又怎么样呢?",
+        "chunks": [
+          "So",
+          "what?"
+        ],
+        "hints": [
+          "那",
+          "又怎么样？"
+        ],
+        "cid": "8b3fdd20",
+        "sentenceAudio": {
+          "text": "So what?",
+          "audio": {
+            "url": "assets/oral-8b3fdd20-fa08b382d47a455df3a9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "250ec0da882fcdd8ce2f2768ef8aca783e1bf9120a1ff27d18cb4d5685642ee7",
+            "bytes": 3330
+          }
+        }
+      },
+      {
+        "sentence": "What does it mean?",
+        "translation": "什么意思?",
+        "chunks": [
+          "What does",
+          "it mean?"
+        ],
+        "hints": [
+          "什么？",
+          "它的意思"
+        ],
+        "cid": "db180147",
+        "sentenceAudio": {
+          "text": "What does it mean?",
+          "audio": {
+            "url": "assets/oral-db180147-4be39248c5ffc0150900.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e06c9972971705916da8d68bcedfe156ab87394ac4144dc9969181f476555910",
+            "bytes": 4055
+          }
+        }
+      },
+      {
+        "sentence": "Are you saying that...?",
+        "translation": "你是说……吗?",
+        "chunks": [
+          "Are you",
+          "saying that...?"
+        ],
+        "hints": [
+          "你是",
+          "说……吗？"
+        ],
+        "cid": "61a25703",
+        "sentenceAudio": {
+          "text": "Are you saying that...?",
+          "audio": {
+            "url": "assets/oral-61a25703-5c12ab821b0a3936405f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cbd7a73420b18b5c50a8ae1582c80001dc2851dfd1fdd6f33d0256e9d03e2593",
+            "bytes": 4465
+          }
+        }
+      },
+      {
+        "sentence": "Then what?",
+        "translation": "后来怎么样了?",
+        "chunks": [
+          "Then",
+          "what?"
+        ],
+        "hints": [
+          "后来",
+          "怎么样？"
+        ],
+        "cid": "d1473595",
+        "sentenceAudio": {
+          "text": "Then what?",
+          "audio": {
+            "url": "assets/oral-d1473595-406c6b028a05d9b11f51.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4913bcf57f210545752767f55a3e637196e8c2f6422a53fd9c6920508b709d76",
+            "bytes": 3580
+          }
+        }
+      },
+      {
+        "sentence": "What's he driving at?",
+        "translation": "他到底想说什么?",
+        "chunks": [
+          "What's he",
+          "driving at?"
+        ],
+        "hints": [
+          "他到底",
+          "想说什么？"
+        ],
+        "cid": "9ff2f32d",
+        "sentenceAudio": {
+          "text": "What's he driving at?",
+          "audio": {
+            "url": "assets/oral-9ff2f32d-fd29b7f1a7ac2ce6e24f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "99f7422dbbab41fe59b1e3e6a769bab99f63fea2c13e69dc3772ab719116280f",
+            "bytes": 4591
+          }
+        }
+      },
+      {
+        "sentence": "Would you repeat that, please?",
+        "translation": "您能再说一遍吗?",
+        "chunks": [
+          "Would you repeat",
+          "that, please?"
+        ],
+        "hints": [
+          "你能重复",
+          "一遍吗？"
+        ],
+        "cid": "a5820f00",
+        "sentenceAudio": {
+          "text": "Would you repeat that, please?",
+          "audio": {
+            "url": "assets/oral-a5820f00-2381cafe09cd94fa8d2a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "82d8b9a4ea47f11c18df61041e221b39e6ce6101ac1397284ee2d1affa75f52f",
+            "bytes": 5540
+          }
+        }
+      },
+      {
+        "sentence": "You're speaking too quickly.",
+        "translation": "您说得太快了。",
+        "chunks": [
+          "You're speaking",
+          "too quickly."
+        ],
+        "hints": [
+          "你说得",
+          "太快了。"
+        ],
+        "cid": "66d5d54a",
+        "sentenceAudio": {
+          "text": "You're speaking too quickly.",
+          "audio": {
+            "url": "assets/oral-66d5d54a-1f497fdea222fa8fc194.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ee5e3b9cd5156aa3888611a92d1729a9da77142c443a86110e799a6feb46df2",
+            "bytes": 5498
+          }
+        }
+      },
+      {
+        "sentence": "Please say it more slowly.",
+        "translation": "请您再说慢一点儿。",
+        "chunks": [
+          "Please say it",
+          "more slowly."
+        ],
+        "hints": [
+          "请说得",
+          "再慢一点儿。"
+        ],
+        "cid": "06844c4e",
+        "sentenceAudio": {
+          "text": "Please say it more slowly.",
+          "audio": {
+            "url": "assets/oral-06844c4e-0353b1060ff300215aff.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7aab15744d58cb609a56ed0505e90816df3ec51715c11949191aa6ea67c8825f",
+            "bytes": 5380
+          }
+        }
+      },
+      {
+        "sentence": "I can't keep up.",
+        "translation": "我跟不上您说的。",
+        "chunks": [
+          "I",
+          "can't keep up."
+        ],
+        "hints": [
+          "我",
+          "跟不上。"
+        ],
+        "cid": "368e5213",
+        "sentenceAudio": {
+          "text": "I can't keep up.",
+          "audio": {
+            "url": "assets/oral-368e5213-cbc8217e81d231599819.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "90106a94b09b9fbb6081d212cf1c4be8ce00ecd0887e6b7dab558926ded39572",
+            "bytes": 4333
+          }
+        }
+      },
+      {
+        "sentence": "Please speak a little louder.",
+        "translation": "请再大一点儿声说。",
+        "chunks": [
+          "Please speak",
+          "a little louder."
+        ],
+        "hints": [
+          "请说得",
+          "大声一点儿。"
+        ],
+        "cid": "c37be529",
+        "sentenceAudio": {
+          "text": "Please speak a little louder.",
+          "audio": {
+            "url": "assets/oral-c37be529-b49211b68afc4b761383.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84b46ea4264c630aa6e982c384948130341008488ac567d0d8ed47ac50dac97c",
+            "bytes": 5307
+          }
+        }
+      },
+      {
+        "sentence": "I can't hear you.",
+        "translation": "我听不见。",
+        "chunks": [
+          "I",
+          "can't hear you."
+        ],
+        "hints": [
+          "我",
+          "听不见你说话。"
+        ],
+        "cid": "4664a58a",
+        "sentenceAudio": {
+          "text": "I can't hear you.",
+          "audio": {
+            "url": "assets/oral-4664a58a-2eb653c2075600c14f6e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0acc5e80d55e1973514d14a87448a0513264e65c521e8b96f5f00c2d8063a4b0",
+            "bytes": 4255
+          }
+        }
+      },
+      {
+        "sentence": "I couldn't catch what you said.",
+        "translation": "我没听见你说什么。",
+        "chunks": [
+          "I couldn't catch",
+          "what you said."
+        ],
+        "hints": [
+          "我没听清",
+          "你说什么。"
+        ],
+        "cid": "c7d3e207",
+        "sentenceAudio": {
+          "text": "I couldn't catch what you said.",
+          "audio": {
+            "url": "assets/oral-c7d3e207-76446e6331f63a569b47.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3dd8211920e9476a8ea74003c95f5a01ea419f96c23e8579e2dd159c02fa85b9",
+            "bytes": 5518
+          }
+        }
+      },
+      {
+        "sentence": "What are you talking about?",
+        "translation": "你在说什么呢?",
+        "chunks": [
+          "What are you",
+          "talking about?"
+        ],
+        "hints": [
+          "你在",
+          "说什么呢？"
+        ],
+        "cid": "c441f0e2",
+        "sentenceAudio": {
+          "text": "What are you talking about?",
+          "audio": {
+            "url": "assets/oral-c441f0e2-5916e81fa9c4731744a2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c49888a72fd42fea3311b861942589ab5f7226e6060c09eaf66edb5100802831",
+            "bytes": 4835
+          }
+        }
+      },
+      {
+        "sentence": "Just like me!",
+        "translation": "就像我一样。",
+        "chunks": [
+          "Just",
+          "like me!"
+        ],
+        "hints": [
+          "就",
+          "像我一样！"
+        ],
+        "cid": "b4c57b93",
+        "sentenceAudio": {
+          "text": "Just like me!",
+          "audio": {
+            "url": "assets/oral-b4c57b93-7385c7c320cfdb323f09.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2f0f797f82032a77d3019c737ab9c4e19bee99336fd5bb739045a71b57696bf",
+            "bytes": 4021
+          }
+        }
+      },
+      {
+        "sentence": "Was it good?",
+        "translation": "好吃吗?",
+        "chunks": [
+          "Was it good?"
+        ],
+        "hints": [
+          "好吃吗？"
+        ],
+        "cid": "b53a3071",
+        "sentenceAudio": {
+          "text": "Was it good?",
+          "audio": {
+            "url": "assets/oral-b53a3071-4a20e9c204a9bd073f4d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7ab2327f74913a5952395141fd9609b03bccbfd320e730bbc82e0c88502da320",
+            "bytes": 3805
+          }
+        }
+      },
+      {
+        "sentence": "Did you have fun?",
+        "translation": "玩得高兴吗?",
+        "chunks": [
+          "Did you",
+          "have fun?"
+        ],
+        "hints": [
+          "你",
+          "玩得开心吗？"
+        ],
+        "cid": "dd1007bd",
+        "sentenceAudio": {
+          "text": "Did you have fun?",
+          "audio": {
+            "url": "assets/oral-dd1007bd-f94d7fe96a877a0da5ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b5b7431aa915558a59f92c75c5c15c0d703bcb65cf8250bfb8c94108fc00ec87",
+            "bytes": 4122
+          }
+        }
+      },
+      {
+        "sentence": "How do you like this suit?",
+        "translation": "这套衣服怎么样?",
+        "chunks": [
+          "How do you like",
+          "this suit?"
+        ],
+        "hints": [
+          "觉得怎么样？",
+          "这套衣服"
+        ],
+        "cid": "4e1003a6",
+        "sentenceAudio": {
+          "text": "How do you like this suit?",
+          "audio": {
+            "url": "assets/oral-4e1003a6-077083f2c9cad571fbd6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e5e2c429f00a571408a9fb930f4e91421ff9546ddaa25ed49eaaf6391fd6037a",
+            "bytes": 4805
+          }
+        }
+      },
+      {
+        "sentence": "How did you like it?",
+        "translation": "你觉得怎么样?",
+        "chunks": [
+          "How did you like it?"
+        ],
+        "hints": [
+          "你觉得怎么样？"
+        ],
+        "cid": "1717b650",
+        "sentenceAudio": {
+          "text": "How did you like it?",
+          "audio": {
+            "url": "assets/oral-1717b650-51b04c299e456185bce8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "20f9a3ca3122de0875cc12e4902e6ed631722f94386bf22276c652bcbca4aa95",
+            "bytes": 4261
+          }
+        }
+      },
+      {
+        "sentence": "Did you like it?",
+        "translation": "你喜欢吗?",
+        "chunks": [
+          "Did you",
+          "like it?"
+        ],
+        "hints": [
+          "你",
+          "喜欢它吗？"
+        ],
+        "cid": "b7ffe4b2",
+        "sentenceAudio": {
+          "text": "Did you like it?",
+          "audio": {
+            "url": "assets/oral-b7ffe4b2-b4b8c198a93135025a4b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0486376a18efc7df940f08171f5b5f5133d1a771cdb3fbdcca3f29739279cff1",
+            "bytes": 4013
+          }
+        }
+      },
+      {
+        "sentence": "What do you think of it?",
+        "translation": "你觉得它怎么样?",
+        "chunks": [
+          "What do you think",
+          "of it?"
+        ],
+        "hints": [
+          "你觉得",
+          "它怎么样？"
+        ],
+        "cid": "26d75aaa",
+        "sentenceAudio": {
+          "text": "What do you think of it?",
+          "audio": {
+            "url": "assets/oral-26d75aaa-cdc9967e50866762e470.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c75d689b4f4da1bb6ce41da16ea97ee3888bf415216a0bd25301cfaf59fb2823",
+            "bytes": 4273
+          }
+        }
+      },
+      {
+        "sentence": "How'd things turn out?",
+        "translation": "结果怎么样?",
+        "chunks": [
+          "How'd things",
+          "turn out?"
+        ],
+        "hints": [
+          "事情怎么样？",
+          "结果"
+        ],
+        "cid": "9baef383",
+        "sentenceAudio": {
+          "text": "How'd things turn out?",
+          "audio": {
+            "url": "assets/oral-9baef383-efc00e7c30ca33300493.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e23bca6ccca2ec5170203b4d99a2c15b24fef122c02b85db85cf828cfa9453c3",
+            "bytes": 4836
+          }
+        }
+      },
+      {
+        "sentence": "To make a long story short,...",
+        "translation": "长话短说……",
+        "chunks": [
+          "To make a long story short,..."
+        ],
+        "hints": [
+          "长话短说……"
+        ],
+        "cid": "7cc5f514",
+        "sentenceAudio": {
+          "text": "To make a long story short,...",
+          "audio": {
+            "url": "assets/oral-7cc5f514-c1d735cd21b99bdbb5b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2cc2bc21841df903caa427b0861aa4c4bb9cb1acdcb0eebd2d4004fd680e9022",
+            "bytes": 5932
+          }
+        }
+      },
+      {
+        "sentence": "Just tell me the story in a nutshell.",
+        "translation": "请把故事简明扼要地告诉我。",
+        "chunks": [
+          "Just tell me the story",
+          "in a nutshell."
+        ],
+        "hints": [
+          "就把故事告诉我",
+          "简明扼要地说。"
+        ],
+        "cid": "393bb56d",
+        "sentenceAudio": {
+          "text": "Just tell me the story in a nutshell.",
+          "audio": {
+            "url": "assets/oral-393bb56d-a601d39989d38b91f94c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c1d017f8c5f4a0a59ccd4a5f86301788058da25ee13734d3bc3b9ebef01884a8",
+            "bytes": 6708
+          }
+        }
+      },
+      {
+        "sentence": "Let me know the circumstances.",
+        "translation": "告诉我详细情况。",
+        "chunks": [
+          "Let me know",
+          "the circumstances."
+        ],
+        "hints": [
+          "告诉我",
+          "详细情况。"
+        ],
+        "cid": "8923209c",
+        "sentenceAudio": {
+          "text": "Let me know the circumstances.",
+          "audio": {
+            "url": "assets/oral-8923209c-bc57616b1f6cc5b451fb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b6d85d0cbf24aba2b009999179bd2c038f5a1bf9b7645a400bbff864d6743a9b",
+            "bytes": 6162
+          }
+        }
+      },
+      {
+        "sentence": "A piece of cake.",
+        "translation": "轻而易举。",
+        "chunks": [
+          "A piece of cake."
+        ],
+        "hints": [
+          "轻而易举。"
+        ],
+        "cid": "25578e81",
+        "sentenceAudio": {
+          "text": "A piece of cake.",
+          "audio": {
+            "url": "assets/oral-25578e81-e0f5c6835168a118b66d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "94f3ad25323afa759d64e925183d011930fb74d97128efa783032fd761de8734",
+            "bytes": 4259
+          }
+        }
+      },
+      {
+        "sentence": "So far, so good.",
+        "cid": "d13966c5",
+        "translation": "到现在为止还好。",
+        "chunks": [
+          "So far,",
+          "so good."
+        ],
+        "hints": [
+          "到现在",
+          "都还好。"
+        ],
+        "grammar": [
+          {
+            "role": "状语（习语）",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/soʊ/",
+              "/fɑːr/"
+            ],
+            "pos": "习语",
+            "meaning": "到目前为止"
+          },
+          {
+            "role": "省略表语",
+            "color": "#c87033",
+            "phonetic": [
+              "/soʊ/",
+              "/ɡʊd/"
+            ],
+            "pos": "省略句",
+            "meaning": "都挺好"
+          }
+        ],
+        "explanations": [
+          "**So far so good.** = 到目前为止一切顺利，常回答别人对进度的询问。",
+          "口语省略句，语法上省去了 it's been。书面完整版：So far, everything is going well."
+        ],
+        "distractors": [
+          [
+            "So for",
+            "So long",
+            "Far so"
+          ],
+          [
+            "so well.",
+            "so goods.",
+            "very good."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "So far, so good.",
+          "audio": {
+            "url": "assets/oral-d13966c5-3f841be931a123ec5400.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31521206fe1486d11f11c67655c945ca7ae10f63e550fb13f2f9552f29e9e49e",
+            "bytes": 4937
+          }
+        }
+      },
+      {
+        "sentence": "So-so.",
+        "translation": "马马虎虎。",
+        "chunks": [
+          "So-so."
+        ],
+        "hints": [
+          "马马虎虎。"
+        ],
+        "cid": "121825c2",
+        "sentenceAudio": {
+          "text": "So-so.",
+          "audio": {
+            "url": "assets/oral-121825c2-dd1ed62c265445656bca.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3864827ec05c2c9969ce0b7f43100b3093d6fbfc0f32783b1c6c043956062252",
+            "bytes": 3440
+          }
+        }
+      },
+      {
+        "sentence": "That's about it.",
+        "translation": "(事情)就是这样。",
+        "chunks": [
+          "That's",
+          "about it."
+        ],
+        "hints": [
+          "就",
+          "这些了。"
+        ],
+        "cid": "e08902ce",
+        "sentenceAudio": {
+          "text": "That's about it.",
+          "audio": {
+            "url": "assets/oral-e08902ce-a134ef210594dcc5f167.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d43fba7e7cb2a813052318595f86366f9301ba484e68197230cb0d72423d5f68",
+            "bytes": 4033
+          }
+        }
+      },
+      {
+        "sentence": "It was nothing.",
+        "translation": "没什么了不起的。",
+        "chunks": [
+          "It was",
+          "nothing."
+        ],
+        "hints": [
+          "这",
+          "没什么。"
+        ],
+        "cid": "40c2a822",
+        "sentenceAudio": {
+          "text": "It was nothing.",
+          "audio": {
+            "url": "assets/oral-40c2a822-883c1b622ef506ce5bf4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "269406e2c4f55a6df56569fe6cf54cef1ebff2206a504b6a86de9278532a9a5e",
+            "bytes": 3995
+          }
+        }
+      },
+      {
+        "sentence": "There's nothing to it.",
+        "translation": "这没什么难的。",
+        "chunks": [
+          "There's nothing",
+          "to it."
+        ],
+        "hints": [
+          "这没什么",
+          "难的。"
+        ],
+        "cid": "0c204246",
+        "sentenceAudio": {
+          "text": "There's nothing to it.",
+          "audio": {
+            "url": "assets/oral-0c204246-c796a0e521eca9a51344.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0e931d280886723f7d196cf15c7519376d19db4aa85012b992b86ea08f53e43f",
+            "bytes": 4815
+          }
+        }
+      },
+      {
+        "sentence": "It worked!",
+        "translation": "啊，真灵!",
+        "chunks": [
+          "It worked!"
+        ],
+        "hints": [
+          "啊，真灵！"
+        ],
+        "cid": "ae645ebf",
+        "sentenceAudio": {
+          "text": "It worked!",
+          "audio": {
+            "url": "assets/oral-ae645ebf-9ad3f142cf1865862b21.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d8ef950b3d60fe22d0f67cb76ce7a09297d76f73bc4258e4bbc918eb688d8cf5",
+            "bytes": 3516
+          }
+        }
+      },
+      {
+        "sentence": "It needs work.",
+        "translation": "它还需要改进。",
+        "chunks": [
+          "It needs",
+          "work."
+        ],
+        "hints": [
+          "它还需要",
+          "改进。"
+        ],
+        "cid": "d6790a0c",
+        "sentenceAudio": {
+          "text": "It needs work.",
+          "audio": {
+            "url": "assets/oral-d6790a0c-7ddb88a14beddb747c83.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "00503aff45085d9f826366b162a6df589850c69897abd9667df21644f9300b1d",
+            "bytes": 3963
+          }
+        }
+      },
+      {
+        "sentence": "Almost!",
+        "translation": "就差那么一点儿。",
+        "chunks": [
+          "Almost!"
+        ],
+        "hints": [
+          "就差一点儿！"
+        ],
+        "cid": "999c54ea",
+        "sentenceAudio": {
+          "text": "Almost!",
+          "audio": {
+            "url": "assets/oral-999c54ea-a742eeb9ac63a1ac6488.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7e673081d447d302d266a112a36de0ef7a424f62f1715feb8b3167197cc9980b",
+            "bytes": 3561
+          }
+        }
+      },
+      {
+        "sentence": "Going from bad to worse.",
+        "translation": "越来越糟。",
+        "chunks": [
+          "Going from bad to worse."
+        ],
+        "hints": [
+          "越来越糟。"
+        ],
+        "cid": "b12877a1",
+        "sentenceAudio": {
+          "text": "Going from bad to worse.",
+          "audio": {
+            "url": "assets/oral-b12877a1-ac28b9cda8f0a454eccd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "47328eab9a9260f29617ca9ac297daeb7d671c6a71ac565f0ab7e212182d57d7",
+            "bytes": 5533
+          }
+        }
+      },
+      {
+        "sentence": "He made it big.",
+        "translation": "他一举成名。",
+        "chunks": [
+          "He made it big."
+        ],
+        "hints": [
+          "他一举成名。"
+        ],
+        "cid": "6a21ea88",
+        "sentenceAudio": {
+          "text": "He made it big.",
+          "audio": {
+            "url": "assets/oral-6a21ea88-01efb572cc8aa0683732.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d08dfc12475095917fd4d82fa8dd529e3ecc4d885500edd156845283f5a9fd97",
+            "bytes": 3963
+          }
+        }
+      },
+      {
+        "sentence": "We're set.",
+        "translation": "我们准备好了。",
+        "chunks": [
+          "We're",
+          "set."
+        ],
+        "hints": [
+          "我们",
+          "准备好了。"
+        ],
+        "cid": "ba0f4167",
+        "sentenceAudio": {
+          "text": "We're set.",
+          "audio": {
+            "url": "assets/oral-ba0f4167-743f5fa5fc096c45094b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e2b1c9353807ef0f4c443c5a07ee4f011784c7129334662154dd4cdb0a977495",
+            "bytes": 3511
+          }
+        }
+      },
+      {
+        "sentence": "I see.",
+        "translation": "我明白了。",
+        "chunks": [
+          "I",
+          "see."
+        ],
+        "hints": [
+          "我",
+          "明白了。"
+        ],
+        "cid": "cf4071cb",
+        "sentenceAudio": {
+          "text": "I see.",
+          "audio": {
+            "url": "assets/oral-cf4071cb-d8ed18d4fba7f4ff516e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5ea7c3bef223d3135ba212ea0141f7ef74ae87e967123a389554fe070cbb08e9",
+            "bytes": 3472
+          }
+        }
+      },
+      {
+        "sentence": "Uh-huh.",
+        "translation": "嗯，嗯。",
+        "chunks": [
+          "Uh-huh."
+        ],
+        "hints": [
+          "嗯，嗯。"
+        ],
+        "cid": "f29799a2",
+        "sentenceAudio": {
+          "text": "Uh-huh.",
+          "audio": {
+            "url": "assets/oral-f29799a2-2b65cb68858405ca1a5d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6556e899d1ac22a49fa8ca5c307189caba03b8d8c9b2418de006471747ed9356",
+            "bytes": 3266
+          }
+        }
+      },
+      {
+        "sentence": "You have?",
+        "translation": "是吗?",
+        "chunks": [
+          "You have?"
+        ],
+        "hints": [
+          "是吗？"
+        ],
+        "cid": "87dab11f",
+        "sentenceAudio": {
+          "text": "You have?",
+          "audio": {
+            "url": "assets/oral-87dab11f-e835a09ff2913a6dda0b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8137e310a3e4b7b2d89d3f95bfc375f4bc6487b977fac1e2f037d5ea67afcbcd",
+            "bytes": 3458
+          }
+        }
+      },
+      {
+        "sentence": "Is that right?",
+        "translation": "是那样吗?",
+        "chunks": [
+          "Is",
+          "that right?"
+        ],
+        "hints": [
+          "是",
+          "那样吗？"
+        ],
+        "cid": "b6cc6395",
+        "sentenceAudio": {
+          "text": "Is that right?",
+          "audio": {
+            "url": "assets/oral-b6cc6395-0669ca00c050526036b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "322faa6e09fea369ee4223d19fdc3e1ab5dba1cfba57fd5aafca68d683b57739",
+            "bytes": 3968
+          }
+        }
+      },
+      {
+        "sentence": "That's right.",
+        "translation": "是那样。",
+        "chunks": [
+          "That's",
+          "right."
+        ],
+        "hints": [
+          "是",
+          "那样。"
+        ],
+        "cid": "a1ef9c1a",
+        "sentenceAudio": {
+          "text": "That's right.",
+          "audio": {
+            "url": "assets/oral-a1ef9c1a-a6c8889ca71428cb0896.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a5c302694cb25a3e0e2ee5a7b59f667ea7f21e4e4a481381705d424c881ba7ea",
+            "bytes": 3674
+          }
+        }
+      },
+      {
+        "sentence": "Exactly!",
+        "translation": "没错!",
+        "chunks": [
+          "Exactly!"
+        ],
+        "hints": [
+          "没错！"
+        ],
+        "cid": "20b555b6",
+        "sentenceAudio": {
+          "text": "Exactly!",
+          "audio": {
+            "url": "assets/oral-20b555b6-29d85b079816dc60782d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "814d32810fa29b26799d3f9e17e681d1fdecf12910633c9526969e4bce94d89c",
+            "bytes": 3881
+          }
+        }
+      },
+      {
+        "sentence": "Oh, yeah?",
+        "translation": "是吗?",
+        "chunks": [
+          "Oh,",
+          "yeah?"
+        ],
+        "hints": [
+          "哦，",
+          "是吗？"
+        ],
+        "cid": "85bdd3da",
+        "sentenceAudio": {
+          "text": "Oh, yeah?",
+          "audio": {
+            "url": "assets/oral-85bdd3da-7dbafa5366dd48a8a22e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "34cb3673d661e22d2e3fa5cdec0f31fbcdaf82e6a0c8e227622257347f801935",
+            "bytes": 3560
+          }
+        }
+      },
+      {
+        "sentence": "Is that so?",
+        "translation": "是吗?",
+        "chunks": [
+          "Is",
+          "that so?"
+        ],
+        "hints": [
+          "是",
+          "这样吗？"
+        ],
+        "cid": "d651d749",
+        "sentenceAudio": {
+          "text": "Is that so?",
+          "audio": {
+            "url": "assets/oral-d651d749-d73b39c6013ab8148bd5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "14e477f0ffedb21f9ecf54c1581bca983e590c0791a23da128b0b2d713d66aa2",
+            "bytes": 4015
+          }
+        }
+      },
+      {
+        "sentence": "And?",
+        "translation": "然后呢?",
+        "chunks": [
+          "And?"
+        ],
+        "hints": [
+          "然后呢？"
+        ],
+        "cid": "7a64d57b",
+        "sentenceAudio": {
+          "text": "And?",
+          "audio": {
+            "url": "assets/oral-7a64d57b-9a0f2873688e42514dab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "27c8738989352348b5e3fd2a3c443600c6e483728cc983290b96319cb733ee6f",
+            "bytes": 2731
+          }
+        }
+      },
+      {
+        "sentence": "Me, too.",
+        "translation": "我也是。",
+        "chunks": [
+          "Me,",
+          "too."
+        ],
+        "hints": [
+          "我",
+          "也是。"
+        ],
+        "cid": "95d15fe7",
+        "sentenceAudio": {
+          "text": "Me, too.",
+          "audio": {
+            "url": "assets/oral-95d15fe7-967e210e83d7b6baac58.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cf6c26dab5c6d2d5303a2636672caa8198b64d9bcdaf2013e1bfaaabc5b2c9b3",
+            "bytes": 3674
+          }
+        }
+      },
+      {
+        "sentence": "Neither do I.",
+        "translation": "我也不……",
+        "chunks": [
+          "Neither do I."
+        ],
+        "hints": [
+          "我也不……"
+        ],
+        "cid": "89b98bc0",
+        "sentenceAudio": {
+          "text": "Neither do I.",
+          "audio": {
+            "url": "assets/oral-89b98bc0-12dce6275f1ecf01ed78.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6b56435d7caf50f63007c845b344e3758126f5de9813565430df808fecf2ab93",
+            "bytes": 4225
+          }
+        }
+      },
+      {
+        "sentence": "Don't be silly.",
+        "translation": "别说傻话。",
+        "chunks": [
+          "Don't be silly."
+        ],
+        "hints": [
+          "别说傻话。"
+        ],
+        "cid": "1ac5dda9",
+        "sentenceAudio": {
+          "text": "Don't be silly.",
+          "audio": {
+            "url": "assets/oral-1ac5dda9-d8e4132ba0918641dc69.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ecb71b24d7c442aafbcc4f6d0c4cb924d10724ab369b2e24365ee8f205f50b10",
+            "bytes": 4134
+          }
+        }
+      },
+      {
+        "sentence": "That's too bad.",
+        "translation": "真是太遗憾了。",
+        "chunks": [
+          "That's",
+          "too bad."
+        ],
+        "hints": [
+          "真是",
+          "太遗憾了。"
+        ],
+        "cid": "f74524ff",
+        "sentenceAudio": {
+          "text": "That's too bad.",
+          "audio": {
+            "url": "assets/oral-f74524ff-9790a7e9d1e76907d6d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cb55d02cc07475f51ad195e06689db04c1bcba4418495f0881bb5ef6e2e6e014",
+            "bytes": 4152
+          }
+        }
+      },
+      {
+        "sentence": "Are you sure?",
+        "translation": "真的吗?",
+        "chunks": [
+          "Are you",
+          "sure?"
+        ],
+        "hints": [
+          "你",
+          "确定吗？"
+        ],
+        "cid": "68981be8",
+        "sentenceAudio": {
+          "text": "Are you sure?",
+          "audio": {
+            "url": "assets/oral-68981be8-8a615a36663bce13535e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4167df6be82cfbafbd3a77db95a7771f605b3db028431ab1f652974cd658e348",
+            "bytes": 3692
+          }
+        }
+      },
+      {
+        "sentence": "What a shame!",
+        "translation": "真是太过分(遗憾)了!",
+        "chunks": [
+          "What",
+          "a shame!"
+        ],
+        "hints": [
+          "真",
+          "遗憾！"
+        ],
+        "cid": "9d7a1413",
+        "sentenceAudio": {
+          "text": "What a shame!",
+          "audio": {
+            "url": "assets/oral-9d7a1413-fe2fa672e2e92678d123.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2786f0ba9aee7d613abc865a2b83aff2e3bf0044c2e1684e00aacdfede6cf9ca",
+            "bytes": 3739
+          }
+        }
+      },
+      {
+        "sentence": "Good!",
+        "translation": "那好哇。",
+        "chunks": [
+          "Good!"
+        ],
+        "hints": [
+          "那好哇。"
+        ],
+        "cid": "c42a1c9b",
+        "sentenceAudio": {
+          "text": "Good!",
+          "audio": {
+            "url": "assets/oral-c42a1c9b-2a577f2b0c28d243c4b5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e13c20b460c502e5517155786f5ae2a924b61f3d88eb688f4ec4d998681531f7",
+            "bytes": 2917
+          }
+        }
+      },
+      {
+        "sentence": "What a surprise!",
+        "translation": "真叫人吃惊。",
+        "chunks": [
+          "What",
+          "a surprise!"
+        ],
+        "hints": [
+          "真",
+          "叫人吃惊！"
+        ],
+        "cid": "637df0ba",
+        "sentenceAudio": {
+          "text": "What a surprise!",
+          "audio": {
+            "url": "assets/oral-637df0ba-c1a7a1189eba000005a9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "346bb7f99655ac14bb75cb4d2a823d90ff2c2ab9ba6f970e70eb1622c7f041f0",
+            "bytes": 4289
+          }
+        }
+      },
+      {
+        "sentence": "I hope not.",
+        "translation": "我真希望不是这样。",
+        "chunks": [
+          "I",
+          "hope not."
+        ],
+        "hints": [
+          "我",
+          "希望不是这样。"
+        ],
+        "cid": "ec13b76f",
+        "sentenceAudio": {
+          "text": "I hope not.",
+          "audio": {
+            "url": "assets/oral-ec13b76f-de6204bd6d84c4656758.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9340236ff0de1898e42bf2646266d864d0581e679543b410cc6fb56ac247c979",
+            "bytes": 4010
+          }
+        }
+      },
+      {
+        "sentence": "I hope so.",
+        "translation": "要是那样就好了!",
+        "chunks": [
+          "I",
+          "hope so."
+        ],
+        "hints": [
+          "我",
+          "希望如此。"
+        ],
+        "cid": "d1b37a32",
+        "sentenceAudio": {
+          "text": "I hope so.",
+          "audio": {
+            "url": "assets/oral-d1b37a32-64bd5c1d1295edfb4d5e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "27ea056cf9a0e82f5d52922fd74053eff00ba1c4fe75deeee106bf207940545d",
+            "bytes": 3840
+          }
+        }
+      },
+      {
+        "sentence": "Great!",
+        "translation": "太棒了!",
+        "chunks": [
+          "Great!"
+        ],
+        "hints": [
+          "太棒了！"
+        ],
+        "cid": "bdb20c7d",
+        "sentenceAudio": {
+          "text": "Great!",
+          "audio": {
+            "url": "assets/oral-bdb20c7d-767d798379e3dcd0f527.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e6c1ced9178aa2c49e22879e933ee0a0ce4a01bd44ef4e5df476cd9deddc334b",
+            "bytes": 3227
+          }
+        }
+      },
+      {
+        "sentence": "Unbelievable!",
+        "translation": "难以置信!",
+        "chunks": [
+          "Unbelievable!"
+        ],
+        "hints": [
+          "难以置信！"
+        ],
+        "cid": "553e02da",
+        "sentenceAudio": {
+          "text": "Unbelievable!",
+          "audio": {
+            "url": "assets/oral-553e02da-07f48d5a97d394698af7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bb953891099338713cb9d2ee086fff05a33abc344cbed1ea84fb765e8380b454",
+            "bytes": 4115
+          }
+        }
+      },
+      {
+        "sentence": "No kidding!",
+        "translation": "不会吧!",
+        "chunks": [
+          "No kidding!"
+        ],
+        "hints": [
+          "不会吧！"
+        ],
+        "cid": "af53e44d",
+        "sentenceAudio": {
+          "text": "No kidding!",
+          "audio": {
+            "url": "assets/oral-af53e44d-7d0c7adb6cdcc8f8e9cd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "215f7fac3950601ffa1cf73d10467ce0def4c2585cca7b39f59bfde82d9c8e04",
+            "bytes": 3945
+          }
+        }
+      },
+      {
+        "sentence": "You bet.",
+        "translation": "行!没问题!",
+        "chunks": [
+          "You bet."
+        ],
+        "hints": [
+          "当然！没问题！"
+        ],
+        "cid": "e5a45f97",
+        "sentenceAudio": {
+          "text": "You bet.",
+          "audio": {
+            "url": "assets/oral-e5a45f97-25150fa0ba3275bee7b1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d3d0fd71f81dddf43203df08650a4b0e4e3f31a61bafb9a845e2ed01d82d382f",
+            "bytes": 3375
+          }
+        }
+      },
+      {
+        "sentence": "Sorry, I didn't catch what you said.",
+        "cid": "67ae602e",
+        "translation": "抱歉，我没听清你说的话。",
+        "chunks": [
+          "Sorry,",
+          "I didn't catch",
+          "what you said."
+        ],
+        "hints": [
+          "抱歉",
+          "我没听清",
+          "你说的话"
+        ],
+        "grammar": [
+          {
+            "role": "插入语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈsɒri/"
+            ],
+            "pos": "感叹词",
+            "meaning": "抱歉"
+          },
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/ˈdɪdnt/",
+              "/kætʃ/"
+            ],
+            "pos": "一般过去时否定",
+            "meaning": "我没听清"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#3358e0",
+            "phonetic": [
+              "/wɒt/",
+              "/juː/",
+              "/sed/"
+            ],
+            "pos": "名词性从句",
+            "meaning": "你说的话"
+          }
+        ],
+        "explanations": [
+          "这里 **Sorry** 是独立的礼貌用语，后面用逗号隔开。也可以说 \"Excuse me\" 或 \"Pardon\"。",
+          "**一般过去时的否定**：didn't + 动词原形。常见错误：\n• \"I **don't** catch\" → 时态错了，事情已经发生\n• \"I didn't **caught**\" → caught 是过去分词，didn't 后面要用原形 catch",
+          "**catch 后面的宾语从句用陈述语序**（主语 + 谓语），不是疑问语序。常见错误：\n• \"what **did you** say\" → 这是直接疑问句的语序，从句里要还原成 \"you said\""
+        ],
+        "distractors": [
+          [
+            "Sory,",
+            "Sorrys,",
+            "Sorry for,"
+          ],
+          [
+            "I don't catch",
+            "I didn't caught",
+            "I didn't catches"
+          ],
+          [
+            "what did you say.",
+            "that you said.",
+            "what you say."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Sorry, I didn't catch what you said.",
+          "audio": {
+            "url": "assets/oral-67ae602e-2747ea15c29281678602.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f3f822d2ed784e329047f5dae8c30cebf1bf9c0e6558ae87cad7cf963a871d66",
+            "bytes": 6658
+          }
+        }
+      },
+      {
+        "sentence": "Could you speak a bit more slowly, please?",
+        "cid": "c6319b49",
+        "translation": "你能说慢一点吗？",
+        "chunks": [
+          "Could you speak",
+          "a bit more slowly,",
+          "please?"
+        ],
+        "hints": [
+          "你能说",
+          "稍微慢一点",
+          "麻烦"
+        ],
+        "grammar": [
+          {
+            "role": "情态+主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/spiːk/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能说"
+          },
+          {
+            "role": "程度状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ə/",
+              "/bɪt/",
+              "/mɔːr/",
+              "/ˈsləʊli/"
+            ],
+            "pos": "副词短语",
+            "meaning": "稍微慢一点"
+          },
+          {
+            "role": "礼貌词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/pliːz/"
+            ],
+            "pos": "语气词",
+            "meaning": "麻烦"
+          }
+        ],
+        "explanations": [
+          "`Could you speak more slowly` 请求放慢语速。常见错误：\n• \"speak more **slow**\" → slow 是形容词，修饰动词要用副词 slowly\n• \"speak **slower**\" → 口语偶见，但 more slowly 更规范",
+          "`a bit` = 稍微，用来缓和请求语气，也可换 a little。please 放句末更礼貌。"
+        ],
+        "distractors": [
+          [
+            "Could you spoke",
+            "Could your speak",
+            "Could you to speak"
+          ],
+          [
+            "a bit more slower,",
+            "a bit of more slowly,",
+            "a more bit slowly,"
+          ],
+          [
+            "pleased?",
+            "pleases?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you speak a bit more slowly, please?",
+          "audio": {
+            "url": "assets/oral-c6319b49-4e846a344a0c8c9f9a18.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9c974afdc4393fdebcba3998fc0be73e442e3519327a192e505854a1d842c467",
+            "bytes": 7285
+          }
+        }
+      },
+      {
+        "sentence": "I didn't quite catch what you said.",
+        "cid": "9dc552cd",
+        "translation": "我没太听清你说的话。",
+        "chunks": [
+          "I didn't quite catch",
+          "what you said."
+        ],
+        "hints": [
+          "我没太听清",
+          "你说的话"
+        ],
+        "grammar": [
+          {
+            "role": "主谓结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/ˈdɪdnt/",
+              "/kwaɪt/",
+              "/kætʃ/"
+            ],
+            "pos": "过去时否定",
+            "meaning": "我没太听清"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wɒt/",
+              "/juː/",
+              "/sed/"
+            ],
+            "pos": "what 从句",
+            "meaning": "你说的话"
+          }
+        ],
+        "explanations": [
+          "没听清时请对方重复。`catch` 此处 = 听清/听懂。常见错误：\n• \"I didn't **heard**\" → didn't 后接动词原形 hear/catch\n• \"I didn't quite **listen** what you said\" → 听清用 catch/hear，不用 listen",
+          "`what you said` = 你说的话（what 引导名词性从句）。注意从句语序是陈述语序（you said，不是 did you say）。"
+        ],
+        "distractors": [
+          [
+            "I don't quite catch",
+            "I didn't quite caught",
+            "I didn't quite catching"
+          ],
+          [
+            "what did you said.",
+            "what you say.",
+            "that you said."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I didn't quite catch what you said.",
+          "audio": {
+            "url": "assets/oral-9dc552cd-9d219326a9d3a293fb45.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1482324ace3d5f99b326e6b5c50af47f489fdd0f56db07db6ce05b850aa94c97",
+            "bytes": 5844
+          }
+        }
+      },
+      {
+        "sentence": "Could you run that by me one more time?",
+        "cid": "a5317c23",
+        "translation": "你能再给我说一遍吗？",
+        "chunks": [
+          "Could you run that by me",
+          "one more time?"
+        ],
+        "hints": [
+          "你能给我过一遍",
+          "再一次"
+        ],
+        "grammar": [
+          {
+            "role": "情态+短语动词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/rʌn/",
+              "/ðæt/",
+              "/baɪ/",
+              "/miː/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能给我讲一遍"
+          },
+          {
+            "role": "频率状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/wʌn/",
+              "/mɔːr/",
+              "/taɪm/"
+            ],
+            "pos": "名词短语",
+            "meaning": "再一次"
+          }
+        ],
+        "explanations": [
+          "`run that by me` = 给我讲一遍/过一遍（美式口语，常用于确认理解）。常见错误：\n• \"run **me** by that\" → 语序固定：run that by me\n• \"say that to me again\" → 也对，但 run by 更口语",
+          "`one more time` = 再一次。同义：once more / again."
+        ],
+        "distractors": [
+          [
+            "Could you run that to me",
+            "Can you run me by that",
+            "Could your run that by me"
+          ],
+          [
+            "one another time?",
+            "more one time?",
+            "one more times?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you run that by me one more time?",
+          "audio": {
+            "url": "assets/oral-a5317c23-dfd1978ea8eb8b159935.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "95859afbfb280ff2882c9152d2fd8f70fa22f66a635c073e50b8b7f8318368e3",
+            "bytes": 7211
+          }
+        }
+      }
+    ]
+  }
+}

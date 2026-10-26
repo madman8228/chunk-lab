@@ -1,0 +1,1596 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Hi!",
+      "translation": "嗨!你好!",
+      "chunks": [
+        "Hi!"
+      ],
+      "hints": [
+        "嗨！"
+      ],
+      "cid": "325d0001",
+      "sentenceAudio": {
+        "text": "Hi!",
+        "audio": {
+          "url": "assets/oral-325d0001-5ae4cfaddfb3bf3778fc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "19e181459e7047a1330feec61ce1b8b528fccf5bdc082a243e2bfc7761c36cc0",
+          "bytes": 2951
+        }
+      }
+    },
+    {
+      "sentence": "Good afternoon.",
+      "translation": "下午好！",
+      "chunks": [
+        "Good afternoon."
+      ],
+      "hints": [
+        "下午好！"
+      ],
+      "cid": "ec325166",
+      "sentenceAudio": {
+        "text": "Good afternoon.",
+        "audio": {
+          "url": "assets/oral-ec325166-83e16c2a56713aebb80f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "649c37269fb6e73c254f4fdcaf06e2522a995d500283a121fd409796ff551ec9",
+          "bytes": 4377
+        }
+      }
+    },
+    {
+      "sentence": "Good evening.",
+      "translation": "晚上好!",
+      "chunks": [
+        "Good evening."
+      ],
+      "hints": [
+        "晚上好！"
+      ],
+      "cid": "9e17682e",
+      "sentenceAudio": {
+        "text": "Good evening.",
+        "audio": {
+          "url": "assets/oral-9e17682e-47bdff775f1cf7c0de03.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e5ec076ee94e7e83a2c3117346b7143bdf7aeaa0c9ce21fb3fa6f484f57aa33",
+          "bytes": 3784
+        }
+      }
+    },
+    {
+      "sentence": "How are you?",
+      "translation": "你好吗?",
+      "chunks": [
+        "How are you?"
+      ],
+      "hints": [
+        "你好吗？"
+      ],
+      "cid": "73b95561",
+      "sentenceAudio": {
+        "text": "How are you?",
+        "audio": {
+          "url": "assets/oral-73b95561-17e72c027527556efc18.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e901cb53b0c51ef7b66bb6b3f35f540e755529cb0ae3705f4bb7113c04d80217",
+          "bytes": 3758
+        }
+      }
+    },
+    {
+      "sentence": "Fine, thank you.",
+      "translation": "我很好，谢谢。",
+      "chunks": [
+        "Fine,",
+        "thank you."
+      ],
+      "hints": [
+        "很好，",
+        "谢谢你。"
+      ],
+      "cid": "90c7b48e",
+      "sentenceAudio": {
+        "text": "Fine, thank you.",
+        "audio": {
+          "url": "assets/oral-90c7b48e-877b8bcef52cd14d36ae.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6bf9cc3ffe9d50dc8e3a3818d0e14b206f23507ad4215335fd4a06e3f1ebec25",
+          "bytes": 4400
+        }
+      }
+    },
+    {
+      "sentence": "Not so good.",
+      "translation": "不怎么好。",
+      "chunks": [
+        "Not so",
+        "good."
+      ],
+      "hints": [
+        "不太",
+        "好。"
+      ],
+      "cid": "748b22a9",
+      "sentenceAudio": {
+        "text": "Not so good.",
+        "audio": {
+          "url": "assets/oral-748b22a9-e3aefa611ec67f69227a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c1ea877d95dacd79edb007c8b82cb2866b6c1ef4274203f337c93fa98f21bc3b",
+          "bytes": 3905
+        }
+      }
+    },
+    {
+      "sentence": "Nothing much.",
+      "translation": "没什么特别的。",
+      "chunks": [
+        "Nothing",
+        "much."
+      ],
+      "hints": [
+        "没什么",
+        "特别的。"
+      ],
+      "cid": "0c14c4cb",
+      "sentenceAudio": {
+        "text": "Nothing much.",
+        "audio": {
+          "url": "assets/oral-0c14c4cb-b35c34a875295da03188.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "03d64c2506acd3c3ba9c0f4b8e1230e653ba917ca5eb491aba73360e9d1f320d",
+          "bytes": 4087
+        }
+      }
+    },
+    {
+      "sentence": "Glad to meet you.",
+      "translation": "认识您我很高兴。",
+      "chunks": [
+        "Glad to",
+        "meet you."
+      ],
+      "hints": [
+        "很高兴",
+        "见到你。"
+      ],
+      "cid": "131242c6",
+      "sentenceAudio": {
+        "text": "Glad to meet you.",
+        "audio": {
+          "url": "assets/oral-131242c6-6711da06cf3779a4f5b1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3d97fc122edb0cb532dbe32e4abb20ab6c705d8c0fba04cc6b93c0e7b348da24",
+          "bytes": 4374
+        }
+      }
+    },
+    {
+      "sentence": "What's up?",
+      "cid": "243188cb",
+      "translation": "最近怎么样？",
+      "chunks": [
+        "What's up?"
+      ],
+      "hints": [
+        "最近怎么样？"
+      ],
+      "grammar": [
+        {
+          "role": "固定问候语",
+          "color": "#c87033",
+          "phonetic": [
+            "/wɒts/",
+            "/ʌp/"
+          ],
+          "pos": "口语固定问句",
+          "meaning": "怎么了？/最近怎么样？"
+        }
+      ],
+      "explanations": [
+        "**What's up?** 是口语固定问候，可以问「怎么了？」或「最近怎么样？」，比 `How are you?` 更随意。常见回答有 `Not much.`（没什么）和 `Just hanging out.`（随便逛逛）。"
+      ],
+      "distractors": [
+        [
+          "What up?",
+          "What's down?",
+          "What's the up?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "What's up?",
+        "audio": {
+          "url": "assets/oral-243188cb-5af6475fd03b5749d205.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "760178887a0e3fc9f1e412220f59610be3792df4e0bd700d95951d80c695dd44",
+          "bytes": 3606
+        }
+      }
+    },
+    {
+      "sentence": "How's your family?",
+      "translation": "你的家人怎么样?",
+      "chunks": [
+        "How's your family?"
+      ],
+      "hints": [
+        "你的家人怎么样？"
+      ],
+      "cid": "a30b70bf",
+      "sentenceAudio": {
+        "text": "How's your family?",
+        "audio": {
+          "url": "assets/oral-a30b70bf-a0ad222a287cd0ee8927.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2578002d150b23e8de43182b85dcdf7e65d7f290ebb7e4319cb32a4bd3f2443c",
+          "bytes": 4430
+        }
+      }
+    },
+    {
+      "sentence": "How's everything?",
+      "translation": "一切都还好吗？",
+      "chunks": [
+        "How's everything?"
+      ],
+      "hints": [
+        "一切都还好吗？"
+      ],
+      "cid": "75ebdcbd",
+      "sentenceAudio": {
+        "text": "How's everything?",
+        "audio": {
+          "url": "assets/oral-75ebdcbd-92dda60991e2d71d6739.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3c7848ac90ef222ebd06033cf5e45f2456d620eb4225414235409914aa04a570",
+          "bytes": 4328
+        }
+      }
+    },
+    {
+      "sentence": "How's business?",
+      "translation": "生意怎么样？",
+      "chunks": [
+        "How's business?"
+      ],
+      "hints": [
+        "生意怎么样？"
+      ],
+      "cid": "94c62c0c",
+      "sentenceAudio": {
+        "text": "How's business?",
+        "audio": {
+          "url": "assets/oral-94c62c0c-331a2b3bf9444b15994b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bcf1315e29073f56ea1f1c4fc29a98ba14127efd5e3d00d6e153dfa81e0f4e1f",
+          "bytes": 4250
+        }
+      }
+    },
+    {
+      "sentence": "Not bad.",
+      "translation": "还可以。",
+      "chunks": [
+        "Not bad."
+      ],
+      "hints": [
+        "还不错。"
+      ],
+      "cid": "a51087ed",
+      "sentenceAudio": {
+        "text": "Not bad.",
+        "audio": {
+          "url": "assets/oral-a51087ed-6e75be71fdbc08e03f81.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5198fa16f49d7266e8c861a968da6ab6158549685c28a9d46f920ec7edc97eeb",
+          "bytes": 3595
+        }
+      }
+    },
+    {
+      "sentence": "Oh, same as usual.",
+      "translation": "和往常一样。",
+      "chunks": [
+        "Oh,",
+        "same as usual."
+      ],
+      "hints": [
+        "哦，",
+        "和往常一样。"
+      ],
+      "cid": "2ff78448",
+      "sentenceAudio": {
+        "text": "Oh, same as usual.",
+        "audio": {
+          "url": "assets/oral-2ff78448-df9957f862ac7b861623.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "93a8d468b498d9f3190c4b50f6d024bea3c1396853f261323a32577d3fcb0a5a",
+          "bytes": 5300
+        }
+      }
+    },
+    {
+      "sentence": "What's the hurry?",
+      "translation": "急什么呀？",
+      "chunks": [
+        "What's the hurry?"
+      ],
+      "hints": [
+        "急什么呀？"
+      ],
+      "cid": "fddaa0d5",
+      "sentenceAudio": {
+        "text": "What's the hurry?",
+        "audio": {
+          "url": "assets/oral-fddaa0d5-fbb554cf3486a2c7b2c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "00ddb68ba7ec6997673ae052b368b3b782d9959e16395fe02045f0340ca0cd0a",
+          "bytes": 4122
+        }
+      }
+    },
+    {
+      "sentence": "Where are you headed?",
+      "translation": "你去哪儿?",
+      "chunks": [
+        "Where are you headed?"
+      ],
+      "hints": [
+        "你要去哪儿？"
+      ],
+      "cid": "69849c2d",
+      "sentenceAudio": {
+        "text": "Where are you headed?",
+        "audio": {
+          "url": "assets/oral-69849c2d-323793fc97e380b2d03a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5eec9f027f17cda0ff710432f1764e3fda88f9639cec3075c3a224a9ffdf46e6",
+          "bytes": 4148
+        }
+      }
+    },
+    {
+      "sentence": "I was just thinking.",
+      "translation": "我只是在想点事。",
+      "chunks": [
+        "I was just",
+        "thinking."
+      ],
+      "hints": [
+        "我只是在",
+        "想事情。"
+      ],
+      "cid": "3af2f8cb",
+      "sentenceAudio": {
+        "text": "I was just thinking.",
+        "audio": {
+          "url": "assets/oral-3af2f8cb-d9c6b84ccbf1aab50c59.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5053e023424ea6997755248372d17d8b58fb5b9b36931c4eeb45107365fafad3",
+          "bytes": 4547
+        }
+      }
+    },
+    {
+      "sentence": "I was just daydreaming.",
+      "translation": "我只是在发呆。",
+      "chunks": [
+        "I was just",
+        "daydreaming."
+      ],
+      "hints": [
+        "我只是在",
+        "发呆。"
+      ],
+      "cid": "e1ae78f0",
+      "sentenceAudio": {
+        "text": "I was just daydreaming.",
+        "audio": {
+          "url": "assets/oral-e1ae78f0-5232c8f5010f19650d65.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06b19d63868f925681cb3f715170bef63e045b092015b5a73e2374eb35f29915",
+          "bytes": 5097
+        }
+      }
+    },
+    {
+      "sentence": "I'm just killing time.",
+      "translation": "我只是在消磨时间。",
+      "chunks": [
+        "I'm just",
+        "killing time."
+      ],
+      "hints": [
+        "我只是在",
+        "消磨时间。"
+      ],
+      "cid": "cf35c83f",
+      "sentenceAudio": {
+        "text": "I'm just killing time.",
+        "audio": {
+          "url": "assets/oral-cf35c83f-e94a09c050f0537a78ac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b976b3726548ad16ae4020c25a9c225cfff38bb89a6d5f626a89d8a7f7bc1265",
+          "bytes": 4953
+        }
+      }
+    },
+    {
+      "sentence": "Nothing.",
+      "translation": "没想什么。/没什么。",
+      "chunks": [
+        "Nothing."
+      ],
+      "hints": [
+        "没什么。"
+      ],
+      "cid": "b8d0f14c",
+      "sentenceAudio": {
+        "text": "Nothing.",
+        "audio": {
+          "url": "assets/oral-b8d0f14c-fded8152dad76493a06d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cde29eb00cb8b320bb8c6169e1d8fca7f3df5a703372dfb6cf092c141ecba9b0",
+          "bytes": 3313
+        }
+      }
+    },
+    {
+      "sentence": "Another day, another dollar.",
+      "translation": "又是辛苦挣钱的一天。",
+      "chunks": [
+        "Another day, another dollar."
+      ],
+      "hints": [
+        "又是辛苦挣钱的一天。"
+      ],
+      "cid": "8e28fb6d",
+      "sentenceAudio": {
+        "text": "Another day, another dollar.",
+        "audio": {
+          "url": "assets/oral-8e28fb6d-4fb9911c65cfcc124907.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee068fac409c6c1759171243efe07fa3de6b4ff06606909acd00c09dcbd66054",
+          "bytes": 6112
+        }
+      }
+    },
+    {
+      "sentence": "You've come just in time.",
+      "translation": "你来的正是时候。",
+      "chunks": [
+        "You've come",
+        "just in time."
+      ],
+      "hints": [
+        "你来得",
+        "正是时候。"
+      ],
+      "cid": "b0faabd0",
+      "sentenceAudio": {
+        "text": "You've come just in time.",
+        "audio": {
+          "url": "assets/oral-b0faabd0-59f233bc5edda24e91b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a3d2522cb2a288eab43ee99533b90c861f87fc4a25cf77be192d8c63cacb206a",
+          "bytes": 5233
+        }
+      }
+    },
+    {
+      "sentence": "There you are!",
+      "translation": "原来你在这儿啊!",
+      "chunks": [
+        "There you are!"
+      ],
+      "hints": [
+        "原来你在这儿啊！"
+      ],
+      "cid": "cd7fd34f",
+      "sentenceAudio": {
+        "text": "There you are!",
+        "audio": {
+          "url": "assets/oral-cd7fd34f-90dbdd53d13c01d6ca7f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e98b1d9a16ee5de2381893f08457f03ae8e8ad57cea81d87b17ce5a75b7440f2",
+          "bytes": 3668
+        }
+      }
+    },
+    {
+      "sentence": "Is Jeff around?",
+      "translation": "杰夫在吗?",
+      "chunks": [
+        "Is Jeff around?"
+      ],
+      "hints": [
+        "杰夫在吗？"
+      ],
+      "cid": "e41edb94",
+      "sentenceAudio": {
+        "text": "Is Jeff around?",
+        "audio": {
+          "url": "assets/oral-e41edb94-20218bd5fcf0f881e49c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f472cd4e2fa8bde1aa278c1a4c3028840deb747d09163c39fc9ad42589283d64",
+          "bytes": 4428
+        }
+      }
+    },
+    {
+      "sentence": "Have you seen Scott?",
+      "translation": "你见到斯科特了吗？",
+      "chunks": [
+        "Have you seen Scott?"
+      ],
+      "hints": [
+        "你见到斯科特了吗？"
+      ],
+      "cid": "aba97789",
+      "sentenceAudio": {
+        "text": "Have you seen Scott?",
+        "audio": {
+          "url": "assets/oral-aba97789-2431fe6a3f1bf0437ab8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a969364e76e1c846fa2aa296594573aea9f74c93a4d6cc6d5333efeba43b0b37",
+          "bytes": 4642
+        }
+      }
+    },
+    {
+      "sentence": "I ran into him.",
+      "translation": "我偶然碰到了他。",
+      "chunks": [
+        "I",
+        "ran into him."
+      ],
+      "hints": [
+        "我",
+        "偶然碰到了他。"
+      ],
+      "cid": "eed041cf",
+      "sentenceAudio": {
+        "text": "I ran into him.",
+        "audio": {
+          "url": "assets/oral-eed041cf-7c627ebac21ad3024396.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ddbc1567c508eaca6d48e90e5b417acaeb7b36f38a2281e3a0deae72c297995",
+          "bytes": 4426
+        }
+      }
+    },
+    {
+      "sentence": "Guess who I bumped into yesterday?",
+      "translation": "哎，你猜我昨天遇见谁了?",
+      "chunks": [
+        "Guess",
+        "who I bumped into yesterday?"
+      ],
+      "hints": [
+        "猜猜",
+        "我昨天碰到谁了？"
+      ],
+      "cid": "f896ea11",
+      "sentenceAudio": {
+        "text": "Guess who I bumped into yesterday?",
+        "audio": {
+          "url": "assets/oral-f896ea11-763d345f74691bf4d67d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "39b1e73c9e5760a50d7eb29e7528a14921533ad37b0b5830a789c5ea49425bbd",
+          "bytes": 7100
+        }
+      }
+    },
+    {
+      "sentence": "He's a stranger to me.",
+      "translation": "我跟他素不相识。",
+      "chunks": [
+        "He's a stranger to me."
+      ],
+      "hints": [
+        "我跟他素不相识。"
+      ],
+      "cid": "f8e5a148",
+      "sentenceAudio": {
+        "text": "He's a stranger to me.",
+        "audio": {
+          "url": "assets/oral-f8e5a148-e1ce2ae4552b796d5c3e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "093758bcf54e894798277b3000c2d5737a1d70d43ffef4193bca7d0cccd749cc",
+          "bytes": 5086
+        }
+      }
+    },
+    {
+      "sentence": "It's been a long time.",
+      "translation": "好久不见。",
+      "chunks": [
+        "It's been a long time."
+      ],
+      "hints": [
+        "好久不见。"
+      ],
+      "cid": "ab73ddc2",
+      "sentenceAudio": {
+        "text": "It's been a long time.",
+        "audio": {
+          "url": "assets/oral-ab73ddc2-0f5c84444f3761fd25dc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a7daa4cf19e03c8cb5ee6f52418f8de2e92a66168b2de87bcfbc0600862dce45",
+          "bytes": 4748
+        }
+      }
+    },
+    {
+      "sentence": "It's been so long.",
+      "translation": "好久不见。",
+      "chunks": [
+        "It's been so long."
+      ],
+      "hints": [
+        "好久不见。"
+      ],
+      "cid": "6573982e",
+      "sentenceAudio": {
+        "text": "It's been so long.",
+        "audio": {
+          "url": "assets/oral-6573982e-0c5015f429d08579cdbd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b6ee37558710e85569be28c4753239fab0f166dd74599a0de2c2f6f8320c2f4c",
+          "bytes": 4594
+        }
+      }
+    },
+    {
+      "sentence": "Long time no see.",
+      "cid": "e53f3d82",
+      "translation": "好久不见。",
+      "chunks": [
+        "Long time no see."
+      ],
+      "hints": [
+        "好久不见。"
+      ],
+      "grammar": [
+        {
+          "role": "寒暄习语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/lɔːŋ/",
+            "/taɪm/",
+            "/noʊ/",
+            "/siː/"
+          ],
+          "pos": "固定问候语",
+          "meaning": "好久不见"
+        }
+      ],
+      "explanations": [
+        "**Long time no see.** = 好久不见。虽有中文来源，但已被英语完全接纳，是地道寒暄。",
+        "更正式的说法：**It's been a long time / It's been ages.** 回应：Yeah, how have you been?（你最近怎么样？）"
+      ],
+      "distractors": [
+        [
+          "It's been a long time.",
+          "Good to see you again.",
+          "We haven't met before."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Long time no see.",
+        "audio": {
+          "url": "assets/oral-e53f3d82-3061477a38d6b84f4c13.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "36455fa9d5039f5ea5577df7764ab1a7cbcfc3c4018e4ee7cc2dfc82b40cfbc6",
+          "bytes": 4904
+        }
+      }
+    },
+    {
+      "sentence": "How have you been?",
+      "translation": "你最近过得怎么样？",
+      "chunks": [
+        "How have you been?"
+      ],
+      "hints": [
+        "你最近过得怎么样？"
+      ],
+      "cid": "6744c9d1",
+      "sentenceAudio": {
+        "text": "How have you been?",
+        "audio": {
+          "url": "assets/oral-6744c9d1-f69da56ad0fbd5dada81.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "44385d96d3f1f2a3e35e5d14dc4932b027fd4ceb02a00da00c7d87d69e7f478b",
+          "bytes": 4329
+        }
+      }
+    },
+    {
+      "sentence": "How have you been doing?",
+      "translation": "最近怎么样?",
+      "chunks": [
+        "How have you been doing?"
+      ],
+      "hints": [
+        "你最近过得怎么样？"
+      ],
+      "cid": "c7a71cac",
+      "sentenceAudio": {
+        "text": "How have you been doing?",
+        "audio": {
+          "url": "assets/oral-c7a71cac-be64cc45369ff26a4d27.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ac69429bc53f40ece3454d1b59468474717be8d52ce1eae8fdada953a38a2e0f",
+          "bytes": 4769
+        }
+      }
+    },
+    {
+      "sentence": "What have you been doing?",
+      "translation": "你最近在忙什么？",
+      "chunks": [
+        "What have you been doing?"
+      ],
+      "hints": [
+        "你最近在忙什么？"
+      ],
+      "cid": "cad6a35a",
+      "sentenceAudio": {
+        "text": "What have you been doing?",
+        "audio": {
+          "url": "assets/oral-cad6a35a-ec5c59ff8fd593021d58.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f038dc647d9d06ea01dec74eb6ac227294288983e228b081fdaeec8294073cc3",
+          "bytes": 4528
+        }
+      }
+    },
+    {
+      "sentence": "Where have you been?",
+      "translation": "你去哪儿了？",
+      "chunks": [
+        "Where have you been?"
+      ],
+      "hints": [
+        "你去哪儿了？"
+      ],
+      "cid": "6aa3385e",
+      "sentenceAudio": {
+        "text": "Where have you been?",
+        "audio": {
+          "url": "assets/oral-6aa3385e-6ce9fd39b699829114aa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "86705e7203f682614da81313f7325c5e5a56925093f58ca8fa8df9e9634771ff",
+          "bytes": 4072
+        }
+      }
+    },
+    {
+      "sentence": "I'm glad to see you again.",
+      "translation": "很高兴又见到你。",
+      "chunks": [
+        "I'm glad",
+        "to see you again."
+      ],
+      "hints": [
+        "很高兴",
+        "又见到你。"
+      ],
+      "cid": "ae1303f3",
+      "sentenceAudio": {
+        "text": "I'm glad to see you again.",
+        "audio": {
+          "url": "assets/oral-ae1303f3-eff89a2c0aac95e1d3c9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0569006c5c1d0df7a17a1cade722f0a373b7872c5e61209d65a6468c4aa349d8",
+          "bytes": 5424
+        }
+      }
+    },
+    {
+      "sentence": "You haven't changed at all.",
+      "translation": "你一点儿都没变。",
+      "chunks": [
+        "You",
+        "haven't changed at all."
+      ],
+      "hints": [
+        "你",
+        "一点都没变。"
+      ],
+      "cid": "a8cf598b",
+      "sentenceAudio": {
+        "text": "You haven't changed at all.",
+        "audio": {
+          "url": "assets/oral-a8cf598b-3742f675ee8c95d31135.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d51f3cdb3dee8097bd4e5c6f198f0235ccd2051fe0d17a9a3ee79411d9a7fa8f",
+          "bytes": 5422
+        }
+      }
+    },
+    {
+      "sentence": "You haven't changed much.",
+      "translation": "你没怎么变。",
+      "chunks": [
+        "You",
+        "haven't changed much."
+      ],
+      "hints": [
+        "你",
+        "没怎么变。"
+      ],
+      "cid": "c8593c9a",
+      "sentenceAudio": {
+        "text": "You haven't changed much.",
+        "audio": {
+          "url": "assets/oral-c8593c9a-7e1bc373d1c366e9a9c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "483d53dd5eadf4b3afac345f65440ccfa5df82be3d8c9fb7b78eda5442780012",
+          "bytes": 5294
+        }
+      }
+    },
+    {
+      "sentence": "You've really changed.",
+      "translation": "你变样了。",
+      "chunks": [
+        "You've really",
+        "changed."
+      ],
+      "hints": [
+        "你真的",
+        "变样了。"
+      ],
+      "cid": "0bd369a3",
+      "sentenceAudio": {
+        "text": "You've really changed.",
+        "audio": {
+          "url": "assets/oral-0bd369a3-f49a988dbfd7f15e978f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d573ac38807eb16fea001ed8fe3fac7713bc72fdaa5f3cc417ba6ce92a50272",
+          "bytes": 4572
+        }
+      }
+    },
+    {
+      "sentence": "You've grown up.",
+      "translation": "你长大了。",
+      "chunks": [
+        "You've",
+        "grown up."
+      ],
+      "hints": [
+        "你",
+        "长大了。"
+      ],
+      "cid": "f5adca72",
+      "sentenceAudio": {
+        "text": "You've grown up.",
+        "audio": {
+          "url": "assets/oral-f5adca72-f8dd976556937b6dc338.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c1a1cad0fa50c56ab6f14babd5e4f895b7d0a43a1e958109bb247ca182ec22b5",
+          "bytes": 4005
+        }
+      }
+    },
+    {
+      "sentence": "You've become so beautiful.",
+      "translation": "你变得这么漂亮了。",
+      "chunks": [
+        "You've become",
+        "so beautiful."
+      ],
+      "hints": [
+        "你变得",
+        "这么漂亮了。"
+      ],
+      "cid": "b3a6ab38",
+      "sentenceAudio": {
+        "text": "You've become so beautiful.",
+        "audio": {
+          "url": "assets/oral-b3a6ab38-d2b136537c78d62b1bac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "22d1087266238f471ba0f8f59830753a8087f33d746b9028cd239b99a6a4b0b9",
+          "bytes": 5641
+        }
+      }
+    },
+    {
+      "sentence": "Is John okay?",
+      "translation": "约翰还好吗？",
+      "chunks": [
+        "Is John okay?"
+      ],
+      "hints": [
+        "约翰还好吗？"
+      ],
+      "cid": "31e016e3",
+      "sentenceAudio": {
+        "text": "Is John okay?",
+        "audio": {
+          "url": "assets/oral-31e016e3-0105c25a0ea11c6f0c5f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7790f69d58fdec720aeac88adcaee44a0df45102fcfba85545409603c18912a7",
+          "bytes": 4557
+        }
+      }
+    },
+    {
+      "sentence": "You look great.",
+      "translation": "你看上去不错。",
+      "chunks": [
+        "You look",
+        "great."
+      ],
+      "hints": [
+        "你看上去",
+        "很不错。"
+      ],
+      "cid": "ceeec188",
+      "sentenceAudio": {
+        "text": "You look great.",
+        "audio": {
+          "url": "assets/oral-ceeec188-9cc17e207a35fd79a78a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "864d970d2392f79e1ef00cf733e0ae747c38bf6c3f966bcc29e31fa7a150aff8",
+          "bytes": 4127
+        }
+      }
+    },
+    {
+      "sentence": "How are you feeling?",
+      "translation": "你感觉怎么样?",
+      "chunks": [
+        "How are you feeling?"
+      ],
+      "hints": [
+        "你感觉怎么样？"
+      ],
+      "cid": "3702f995",
+      "sentenceAudio": {
+        "text": "How are you feeling?",
+        "audio": {
+          "url": "assets/oral-3702f995-f633b52cee159accb615.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7098a79fe9c475517194f132a375bea267b45b15235234c78d321ddd2353a795",
+          "bytes": 4315
+        }
+      }
+    },
+    {
+      "sentence": "How's he getting along these days?",
+      "translation": "他这些日子过得怎么样?",
+      "chunks": [
+        "How's he getting along these days?"
+      ],
+      "hints": [
+        "他这些日子过得怎么样？"
+      ],
+      "cid": "abe84ce8",
+      "sentenceAudio": {
+        "text": "How's he getting along these days?",
+        "audio": {
+          "url": "assets/oral-abe84ce8-60c2b3c902378a94b9cb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3896823232f417bc203aab0795591e8dcb604b519d05b2813ebfb919673be1ed",
+          "bytes": 6485
+        }
+      }
+    },
+    {
+      "sentence": "Are you gaining weight?",
+      "translation": "最近你是不是胖了?",
+      "chunks": [
+        "Are you",
+        "gaining weight?"
+      ],
+      "hints": [
+        "你是不是",
+        "胖了？"
+      ],
+      "cid": "46bf64d6",
+      "sentenceAudio": {
+        "text": "Are you gaining weight?",
+        "audio": {
+          "url": "assets/oral-46bf64d6-e963675b7f23b9e16b66.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6dc901b4f68be2d297811b5de778a1a2b9c1c325ae7ae698a62bb23255d42cf3",
+          "bytes": 4518
+        }
+      }
+    },
+    {
+      "sentence": "How was your weekend?",
+      "cid": "77588aab",
+      "translation": "你周末过得怎么样？",
+      "chunks": [
+        "How was your weekend?"
+      ],
+      "hints": [
+        "你周末过得怎么样？"
+      ],
+      "grammar": [
+        {
+          "role": "完整问句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/wɒz/",
+            "/jɔːr/",
+            "/ˈwiːkend/"
+          ],
+          "pos": "过去时问句",
+          "meaning": "你周末过得怎么样？"
+        }
+      ],
+      "explanations": [
+        "\"How is your weekend?\" 问的是\"现在怎么样\"，但周末已经过去了，要用过去式 **was**。",
+        "这里特指\"你刚过去的那个周末\"，所以用 **your**。如果说\"周末通常怎么样？\"才用 \"the weekend\" 或 \"weekends\"。"
+      ],
+      "distractors": [
+        [
+          "How was your day?",
+          "How was your trip?",
+          "What did you do this weekend?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How was your weekend?",
+        "audio": {
+          "url": "assets/oral-77588aab-fe292717b963d5c25baf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "73370d81430bde51ed51871180c6f0fca7920cdedfc7884ffe631032166cde37",
+          "bytes": 4580
+        }
+      }
+    },
+    {
+      "sentence": "I haven't seen you for ages.",
+      "cid": "78b2ed9c",
+      "translation": "好久不见了。",
+      "chunks": [
+        "I haven't seen you for ages."
+      ],
+      "hints": [
+        "好久不见了。"
+      ],
+      "grammar": [
+        {
+          "role": "寒暄表达",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/aɪ/",
+            "/ˈhævnt/",
+            "/siːn/",
+            "/juː/",
+            "/fɔːr/",
+            "/ˈeɪdʒɪz/"
+          ],
+          "pos": "现在完成时+持续时长",
+          "meaning": "好久不见了。"
+        }
+      ],
+      "explanations": [
+        "**现在完成时**（have/has + 过去分词）表示\"从过去持续到现在的状态\"。常见错误：\n• \"I **didn't** see you\" → 一般过去时只强调过去，不含\"到现在\"的意思\n• \"I **don't** see you\" → 一般现在时表示习惯，不符合\"好久不见\"",
+        "**for + 时间段** 表示持续了多久。常见错误：\n• \"**since** ages\" → since 后接时间点（如 since 2020），不是时间段\n• \"for **age**\" → ages 用复数，表示\"许多年、很久\""
+      ],
+      "distractors": [
+        [
+          "I didn't see you yesterday.",
+          "I see you all the time.",
+          "I'll see you soon."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I haven't seen you for ages.",
+        "audio": {
+          "url": "assets/oral-78b2ed9c-6edb0dc3eaa4fb660e44.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a9b928842eb5cb4efba274b976a18ae3f646fcb831c81413947a55dec9c0e066",
+          "bytes": 6003
+        }
+      }
+    },
+    {
+      "sentence": "It's been a while.",
+      "cid": "4fad1198",
+      "translation": "已经有一阵子了。",
+      "chunks": [
+        "It's been",
+        "a while."
+      ],
+      "hints": [
+        "已经有",
+        "一段时间"
+      ],
+      "grammar": [
+        {
+          "role": "主系",
+          "color": "#c87033",
+          "phonetic": [
+            "/ɪts/",
+            "/biːn/"
+          ],
+          "pos": "现在完成时",
+          "meaning": "已经有"
+        },
+        {
+          "role": "表语（时间）",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ə/",
+            "/waɪl/"
+          ],
+          "pos": "名词短语",
+          "meaning": "一段时间"
+        }
+      ],
+      "explanations": [
+        "**It's been a while.** = 已经有一段时间了，常接 since：It's been a while since we met.（我们好久没见了）。",
+        "寒暄常用：It's been a while, how have you been? 也可用于提醒：It's been a while since you visited."
+      ],
+      "distractors": [
+        [
+          "It been",
+          "It's being",
+          "It was"
+        ],
+        [
+          "while.",
+          "a white.",
+          "the while."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It's been a while.",
+        "audio": {
+          "url": "assets/oral-4fad1198-b86de84313bcc1cc3d6d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bf1011bec772f472e8f1f9147896f78fa1f153ba8e0d9e234919d0262a023a21",
+          "bytes": 4275
+        }
+      }
+    },
+    {
+      "sentence": "How are you doing these days?",
+      "cid": "129c08c0",
+      "translation": "你最近过得怎么样？",
+      "chunks": [
+        "How are you doing these days?"
+      ],
+      "hints": [
+        "你最近过得怎么样？"
+      ],
+      "grammar": [
+        {
+          "role": "完整问句",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/haʊ/",
+            "/ɑːr/",
+            "/juː/",
+            "/ˈduːɪŋ/",
+            "/ðiːz/",
+            "/deɪz/"
+          ],
+          "pos": "询问近况",
+          "meaning": "你最近过得怎么样？"
+        }
+      ],
+      "explanations": [
+        "`How are you doing?` 比 `How are you?` 更口语、更关心近况。常见错误：\n• \"How **is** you doing\" → you 是第二人称，要用 are\n• \"How are you **do**\" → 助动词重复，doing 已含进行含义",
+        "`these days` 表「最近、这些天」，常与现在时连用。常见错误：\n• \"this **day**\" → 单数不对，days 用复数表一段时期\n• \"in these days\" → 通常不加 in"
+      ],
+      "distractors": [
+        [
+          "How have you been lately?",
+          "What are you doing today?",
+          "How are you feeling these days?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How are you doing these days?",
+        "audio": {
+          "url": "assets/oral-129c08c0-b86fd1450b8084f46e3e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ca4d42dd2a7dfd7e897ed4ff9a378bc4daaa77b0e9b0e61c61aae3910b624499",
+          "bytes": 5706
+        }
+      }
+    },
+    {
+      "sentence": "How ya doin'?",
+      "cid": "c530aed7",
+      "translation": "最近怎么样？",
+      "chunks": [
+        "How ya doin'?"
+      ],
+      "hints": [
+        "最近怎么样？"
+      ],
+      "alts": [
+        [
+          "How are you doing?"
+        ]
+      ],
+      "grammar": [
+        {
+          "role": "口语问候",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/jə/",
+            "/ˈduːɪn/"
+          ],
+          "pos": "How are you doing 的口语形式",
+          "meaning": "最近怎么样？"
+        }
+      ],
+      "explanations": [
+        "`ya` 是 you 的口语弱读，整句源自 How are you doing?。常见错误：\n• \"How ya doing?\" → 写成 doing 更规范，doin' 是口语拼写\n• \"How you doin'?\" → 也常见，但省略了 are 的读音",
+        "这是非常随意的问候，正式场合要说 How are you?"
+      ],
+      "distractors": [
+        [
+          "How you doing?",
+          "How are you do?",
+          "How's you doing?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How ya doin'?",
+        "audio": {
+          "url": "assets/oral-c530aed7-962bc38ea92491c8b89c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d9017651cc49114ccac802b9d5cee19f951c7ea612fdbf2e5e1172242d820613",
+          "bytes": 4105
+        }
+      }
+    },
+    {
+      "sentence": "Not too bad.",
+      "cid": "c869e3f3",
+      "translation": "还不错。",
+      "chunks": [
+        "Not too bad."
+      ],
+      "hints": [
+        "还不错。"
+      ],
+      "grammar": [
+        {
+          "role": "固定应答",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/nɑːt/",
+            "/tuː/",
+            "/bæd/"
+          ],
+          "pos": "保守式回答",
+          "meaning": "还不错。"
+        }
+      ],
+      "explanations": [
+        "`not too bad` 是英语里典型的「保守式回答」，实际意思接近「挺好的」。常见错误：\n• \"not to bad\" → 程度副词是 too，不是 to\n• \"no too bad\" → 否定词用 not",
+        "同义：Pretty good. / Can't complain. / Not bad at all."
+      ],
+      "distractors": [
+        [
+          "No too bad.",
+          "Not to bad.",
+          "Not too badly."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Not too bad.",
+        "audio": {
+          "url": "assets/oral-c869e3f3-1853b9aaf07e3c213c85.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b34796e8d8b0a5f44d27fdc3f1f8215b34f06c7795129724ab9d599bd578a41",
+          "bytes": 4045
+        }
+      }
+    },
+    {
+      "sentence": "You moved?",
+      "cid": "ac537f80",
+      "translation": "你搬家了？",
+      "chunks": [
+        "You",
+        "moved?"
+      ],
+      "hints": [
+        "你",
+        "搬了"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/juː/"
+          ],
+          "pos": "人称代词",
+          "meaning": "你"
+        },
+        {
+          "role": "谓语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/muːvd/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "搬了"
+        }
+      ],
+      "explanations": [
+        "省略助动词 Did，只靠升调表疑问。常见错误：\n• \"You move?\" → 问已经发生的事要用过去式 moved\n• \"Did you moved?\" → 有 did 时动词要还原成 move",
+        "`move` 表搬家时不及物，常说 move in / move out / move to a new place。"
+      ],
+      "distractors": [
+        [
+          "Your",
+          "You're",
+          "Yours"
+        ],
+        [
+          "move?",
+          "moving?",
+          "moved away?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "You moved?",
+        "audio": {
+          "url": "assets/oral-ac537f80-e8b6a3a573487fa82713.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "31a327b6afa4ac7b67f49dd594b3ce687ee08be8380ae4a3a80fb9556ed487d2",
+          "bytes": 3563
+        }
+      }
+    },
+    {
+      "sentence": "Yes, nice place.",
+      "cid": "b0368ee8",
+      "translation": "是的，好地方。",
+      "chunks": [
+        "Yes,",
+        "nice place."
+      ],
+      "hints": [
+        "是的",
+        "好地方"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jes/"
+          ],
+          "pos": "肯定应答",
+          "meaning": "是的"
+        },
+        {
+          "role": "名词短语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/naɪs/",
+            "/pleɪs/"
+          ],
+          "pos": "形容词+名词",
+          "meaning": "好地方"
+        }
+      ],
+      "explanations": [
+        "`nice place` 是省略句（It's a nice place.），口语常省掉冠词。常见错误：\n• \"nice places\" → 指一处住所要用单数\n• \"a nice place\" → 更完整，省略句里也常见",
+        "同义：Nice spot. / Great location."
+      ],
+      "distractors": [
+        [
+          "Yeah,",
+          "Yep,",
+          "Yup,"
+        ],
+        [
+          "a nice place.",
+          "nice places.",
+          "nice play."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Yes, nice place.",
+        "audio": {
+          "url": "assets/oral-b0368ee8-62f5f2bcf7f61055c8c9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "083b7afeb5be7d49892a7cd2f69cc17ed33d42fb9233778e95725d7f45a566b1",
+          "bytes": 4858
+        }
+      }
+    },
+    {
+      "sentence": "Sounds real nice.",
+      "cid": "7cccaf62",
+      "translation": "听起来不错。",
+      "chunks": [
+        "Sounds",
+        "real nice."
+      ],
+      "hints": [
+        "听起来",
+        "真的很不错"
+      ],
+      "grammar": [
+        {
+          "role": "系动词",
+          "color": "#c87033",
+          "phonetic": [
+            "/saʊndz/"
+          ],
+          "pos": "sound 第三人称单数",
+          "meaning": "听起来"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˈriːəl/",
+            "/naɪs/"
+          ],
+          "pos": "副词 + 形容词",
+          "meaning": "真的很不错"
+        }
+      ],
+      "explanations": [
+        "`sound + 形容词` 表「听起来」。常见错误：\n• \"Sound real nice\" → 主语省略了 It，但要保留 -s 的第三人称单数\n• \"Sounds like nice\" → sound like 后面接名词",
+        "口语里 `real` 常代替 really 作副词。常见错误：\n• 正式写作要用 really nice"
+      ],
+      "distractors": [
+        [
+          "Sound",
+          "Sounding",
+          "Sounds like"
+        ],
+        [
+          "really nice.",
+          "real nicer.",
+          "real nicely."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Sounds real nice.",
+        "audio": {
+          "url": "assets/oral-7cccaf62-81aeeeb7268cc88d5a31.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8a23bed08f046db28877dd24f94d6ec1cfb49f22b8b477d1b39f907b5d6fd733",
+          "bytes": 4847
+        }
+      }
+    },
+    {
+      "sentence": "Kids okay?",
+      "cid": "af4c7939",
+      "translation": "孩子们还好吗？",
+      "chunks": [
+        "Kids",
+        "okay?"
+      ],
+      "hints": [
+        "孩子们",
+        "还好吗"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/kɪdz/"
+          ],
+          "pos": "名词复数",
+          "meaning": "孩子们"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ˌoʊˈkeɪ/"
+          ],
+          "pos": "形容词",
+          "meaning": "还好"
+        }
+      ],
+      "explanations": [
+        "`Kids` 前省略了冠词 the（口语中很常见）。常见错误：\n• \"The kids\" → 更完整，问熟人家里的事时省略也自然\n• \"Kids is\" → 复数主语用 are（这里省略了）",
+        "完整句是 Are the kids okay? 同义：How are the kids doing?"
+      ],
+      "distractors": [
+        [
+          "Kid",
+          "The kids",
+          "Kids is"
+        ],
+        [
+          "OK?",
+          "okay at?",
+          "alright?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Kids okay?",
+        "audio": {
+          "url": "assets/oral-af4c7939-cb93181b2a5e465f9b04.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "449227dc552c6e182b08693642dc038f7c8a34e5ad0cba1b20bf8d78cddf3757",
+          "bytes": 4012
+        }
+      }
+    },
+    {
+      "sentence": "Yeah, they're fine.",
+      "cid": "c0abf276",
+      "translation": "嗯，他们都好。",
+      "chunks": [
+        "Yeah,",
+        "they're fine."
+      ],
+      "hints": [
+        "嗯",
+        "他们都好"
+      ],
+      "grammar": [
+        {
+          "role": "应答词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jeə/"
+          ],
+          "pos": "口语肯定词",
+          "meaning": "嗯"
+        },
+        {
+          "role": "主系表",
+          "color": "#c87033",
+          "phonetic": [
+            "/ðer/",
+            "/faɪn/"
+          ],
+          "pos": "they are 缩写 + 形容词",
+          "meaning": "他们都好"
+        }
+      ],
+      "explanations": [
+        "`they're` = they are，注意和 their（他们的）、there（那里）区分。常见错误：\n• \"their fine\" → 同音但含义不同\n• \"they fine\" → 少了 be 动词",
+        "`fine` 表「身体好、没问题」。同义：They're doing well."
+      ],
+      "distractors": [
+        [
+          "Yes,",
+          "Yep,",
+          "Yup,"
+        ],
+        [
+          "they fine.",
+          "their fine.",
+          "they're find."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Yeah, they're fine.",
+        "audio": {
+          "url": "assets/oral-c0abf276-84da41b7a6d69dd1e23b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8d4beaa5cbe739a73d5c7492048dff10ef6808c13a6f3563c6a504588df129a4",
+          "bytes": 4395
+        }
+      }
+    }
+  ]
+}

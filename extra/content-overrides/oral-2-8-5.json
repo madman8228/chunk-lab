@@ -1,0 +1,1243 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-8-5",
+    "name": "口语3000句 · 见面、分手时 · 有关天气",
+    "short": "有关天气",
+    "desc": "有关天气",
+    "chapter": 2,
+    "section": "2.8",
+    "sectionTitle": "见面、分手时",
+    "topic": "有关天气",
+    "baseCount": 0,
+    "totalCount": 42,
+    "items": [
+      {
+        "sentence": "It's very hot today, isn't it?",
+        "translation": "今天真热呀!",
+        "chunks": [
+          "It's very hot today,",
+          "isn't it?"
+        ],
+        "hints": [
+          "今天真热呀，",
+          "是不是？"
+        ],
+        "cid": "8012117b",
+        "sentenceAudio": {
+          "text": "It's very hot today, isn't it?",
+          "audio": {
+            "url": "assets/oral-8012117b-a60c76bd035869517f11.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "143155a3f548963437b9c41bc6e03a845c79ce0855d02c0773ec416051111355",
+            "bytes": 6273
+          }
+        }
+      },
+      {
+        "sentence": "It's blistering hot.",
+        "translation": "天气炎热。",
+        "chunks": [
+          "It's blistering hot."
+        ],
+        "hints": [
+          "天气热得厉害。"
+        ],
+        "cid": "31076740",
+        "sentenceAudio": {
+          "text": "It's blistering hot.",
+          "audio": {
+            "url": "assets/oral-31076740-27fb9efd6a4d1ed9852e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "600f08d15b87c417c495f8ae7249780a98be00e677ff9745bc7daa4c2dafbcba",
+            "bytes": 4669
+          }
+        }
+      },
+      {
+        "sentence": "It's a fine day today.",
+        "translation": "今天的天气真好!",
+        "chunks": [
+          "It's a fine day",
+          "today."
+        ],
+        "hints": [
+          "天气真好",
+          "今天"
+        ],
+        "cid": "05acebca",
+        "sentenceAudio": {
+          "text": "It's a fine day today.",
+          "audio": {
+            "url": "assets/oral-05acebca-73543fc3c8ea29f75758.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6ab663a6b08852067fe06a623604310ad634319e6c23927fcf0eecf5ef8b8f47",
+            "bytes": 5085
+          }
+        }
+      },
+      {
+        "sentence": "What's the forecast for tomorrow?",
+        "translation": "明天的天气预报怎么样？",
+        "chunks": [
+          "What's the forecast",
+          "for tomorrow?"
+        ],
+        "hints": [
+          "天气预报怎么样？",
+          "明天"
+        ],
+        "cid": "c1be5914",
+        "sentenceAudio": {
+          "text": "What's the forecast for tomorrow?",
+          "audio": {
+            "url": "assets/oral-c1be5914-f7b0a8043ea2c2231bb2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e5f05627eaef150140ace0e254b21b470bdb77d3d764b1a7ba99b1aff55043af",
+            "bytes": 6244
+          }
+        }
+      },
+      {
+        "sentence": "How's the weather today?",
+        "translation": "今天的天气怎么样?",
+        "chunks": [
+          "How's the weather",
+          "today?"
+        ],
+        "hints": [
+          "天气怎么样？",
+          "今天"
+        ],
+        "cid": "7084d912",
+        "sentenceAudio": {
+          "text": "How's the weather today?",
+          "audio": {
+            "url": "assets/oral-7084d912-fa8ec32f9f9180341b95.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2ad38500838f80f4ed147172c14a95787673ba82678fd5ce770561522b9267a1",
+            "bytes": 5066
+          }
+        }
+      },
+      {
+        "sentence": "Is it going to rain today?",
+        "translation": "今天会下雨吗?",
+        "chunks": [
+          "Is it going to rain",
+          "today?"
+        ],
+        "hints": [
+          "会下雨吗？",
+          "今天"
+        ],
+        "cid": "ce9bfc4d",
+        "sentenceAudio": {
+          "text": "Is it going to rain today?",
+          "audio": {
+            "url": "assets/oral-ce9bfc4d-bc2d30bca1638b1b6267.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4651149bbb3e72b2168896465cbb14711f322c5373bd4d700024f73c8ba6b71b",
+            "bytes": 5669
+          }
+        }
+      },
+      {
+        "sentence": "We're expecting some rain.",
+        "translation": "预计会有雨。",
+        "chunks": [
+          "We're expecting",
+          "some rain."
+        ],
+        "hints": [
+          "预计",
+          "会有雨。"
+        ],
+        "cid": "2ac741a8",
+        "sentenceAudio": {
+          "text": "We're expecting some rain.",
+          "audio": {
+            "url": "assets/oral-2ac741a8-2616b601897eeac26bf1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "889ded69f76b08f0765e43f623f3a34d9a780e789fe96f1332bb46b8e53857a9",
+            "bytes": 5493
+          }
+        }
+      },
+      {
+        "sentence": "It's raining.",
+        "cid": "c9dfafd6",
+        "translation": "正在下雨。",
+        "chunks": [
+          "It's raining."
+        ],
+        "hints": [
+          "正在下雨。"
+        ],
+        "grammar": [
+          {
+            "role": "天气表达",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈreɪnɪŋ/"
+            ],
+            "pos": "it 作天气句形式主语 + 现在进行时",
+            "meaning": "正在下雨"
+          }
+        ],
+        "explanations": [
+          "谈天气时用 it 作形式主语，不能用 he/she。常见错误：\n• \"It rains now\" → 眼下正在下要用进行时\n• \"Rain is happening\" → 不地道，直接说 It's raining",
+          "相关：It's pouring.（下大雨）/ It's drizzling.（下毛毛雨）"
+        ],
+        "distractors": [
+          [
+            "It's snowing.",
+            "It's pouring.",
+            "It's sunny."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's raining.",
+          "audio": {
+            "url": "assets/oral-c9dfafd6-3fcec18ea8f312bd0ad1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6d1f420eba8b59ef2e505db553417e3f289b4ecd46b7c2d4faf3e2ac69bf01ea",
+            "bytes": 3779
+          }
+        }
+      },
+      {
+        "sentence": "It's going to rain today.",
+        "translation": "今天会下雨吧!",
+        "chunks": [
+          "It's going to rain",
+          "today."
+        ],
+        "hints": [
+          "快要下雨了",
+          "今天"
+        ],
+        "cid": "3dd8c82a",
+        "sentenceAudio": {
+          "text": "It's going to rain today.",
+          "audio": {
+            "url": "assets/oral-3dd8c82a-8874e29369bdce0f3a43.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c605d6700e93c5e8020f577fc7b5dbc9f9c2d90f0a8fe33ef5328361ee994768",
+            "bytes": 5615
+          }
+        }
+      },
+      {
+        "sentence": "It's hot today.",
+        "translation": "今天很热。",
+        "chunks": [
+          "It's hot",
+          "today."
+        ],
+        "hints": [
+          "很热",
+          "今天"
+        ],
+        "cid": "33ada786",
+        "sentenceAudio": {
+          "text": "It's hot today.",
+          "audio": {
+            "url": "assets/oral-33ada786-a33c48c2a78d61259da7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5da319e212b38844c358171d71cfec363193ef8567c48203d8126e6b45712463",
+            "bytes": 4354
+          }
+        }
+      },
+      {
+        "sentence": "It's warm today.",
+        "translation": "今天很暖和。",
+        "chunks": [
+          "It's warm",
+          "today."
+        ],
+        "hints": [
+          "很暖和",
+          "今天"
+        ],
+        "cid": "50fe57a4",
+        "sentenceAudio": {
+          "text": "It's warm today.",
+          "audio": {
+            "url": "assets/oral-50fe57a4-e7fda94af605eed7ab63.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fa5763502df0c547156d5cfc01eb017430981992f43cb7e2d356dbb71f51919d",
+            "bytes": 4366
+          }
+        }
+      },
+      {
+        "sentence": "It's cold today.",
+        "translation": "今天很冷。",
+        "chunks": [
+          "It's cold",
+          "today."
+        ],
+        "hints": [
+          "很冷",
+          "今天"
+        ],
+        "cid": "3f01085d",
+        "sentenceAudio": {
+          "text": "It's cold today.",
+          "audio": {
+            "url": "assets/oral-3f01085d-9ffa122ac756f2357a7e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8a016f6f713debdd597f4492c7f32c486da2a173102d50214abbd69e2ce6d824",
+            "bytes": 4566
+          }
+        }
+      },
+      {
+        "sentence": "It's chilly today.",
+        "translation": "今天冷嗖嗖的。",
+        "chunks": [
+          "It's chilly",
+          "today."
+        ],
+        "hints": [
+          "冷嗖嗖的",
+          "今天"
+        ],
+        "cid": "ee25ee28",
+        "sentenceAudio": {
+          "text": "It's chilly today.",
+          "audio": {
+            "url": "assets/oral-ee25ee28-55b2e01192ac7ce024a6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "523756a04dbf79f2333c943f567123a7ffa67e475e5d5146933ea337384bbec9",
+            "bytes": 4579
+          }
+        }
+      },
+      {
+        "sentence": "It's windy today.",
+        "translation": "今天风很大。",
+        "chunks": [
+          "It's windy",
+          "today."
+        ],
+        "hints": [
+          "风很大",
+          "今天"
+        ],
+        "cid": "b3d261b8",
+        "sentenceAudio": {
+          "text": "It's windy today.",
+          "audio": {
+            "url": "assets/oral-b3d261b8-82ccfb480c0eff293752.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2f00fe3be09dbc2deab9e3f348fd480ca27e59a9204f66c9e522d3a35ce07aa",
+            "bytes": 4410
+          }
+        }
+      },
+      {
+        "sentence": "It's humid.",
+        "translation": "天气又潮又闷。",
+        "chunks": [
+          "It's humid."
+        ],
+        "hints": [
+          "天气又潮又闷。"
+        ],
+        "cid": "b0ec0c39",
+        "sentenceAudio": {
+          "text": "It's humid.",
+          "audio": {
+            "url": "assets/oral-b0ec0c39-3a0ecd9c3920a1ef8654.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e0401fdfaf713086f86172066f852c172baaa4b94ddb5e1e6272df45ead0488b",
+            "bytes": 3653
+          }
+        }
+      },
+      {
+        "sentence": "It's dry.",
+        "translation": "气候干燥。",
+        "chunks": [
+          "It's dry."
+        ],
+        "hints": [
+          "天气干燥。"
+        ],
+        "cid": "1f9e9c13",
+        "sentenceAudio": {
+          "text": "It's dry.",
+          "audio": {
+            "url": "assets/oral-1f9e9c13-5215822bd7f113ce5af3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "30f74995556cd00ded483c499363f47d4dce7ac1d4c1fce0dcf68fcf8a3bef0d",
+            "bytes": 3735
+          }
+        }
+      },
+      {
+        "sentence": "It's stormy.",
+        "translation": "天气风雨交加。",
+        "chunks": [
+          "It's stormy."
+        ],
+        "hints": [
+          "天气风雨交加。"
+        ],
+        "cid": "585da904",
+        "sentenceAudio": {
+          "text": "It's stormy.",
+          "audio": {
+            "url": "assets/oral-585da904-ba32d14bccfd87bb81d1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ec686033a9b46ea2ac700c9a1be82905808df75338eeec31bc4c10907621db8f",
+            "bytes": 3798
+          }
+        }
+      },
+      {
+        "sentence": "It's snowing.",
+        "translation": "正在下雪。",
+        "chunks": [
+          "It's snowing."
+        ],
+        "hints": [
+          "正在下雪。"
+        ],
+        "cid": "ad65a9fb",
+        "sentenceAudio": {
+          "text": "It's snowing.",
+          "audio": {
+            "url": "assets/oral-ad65a9fb-84e679c156bbd2d4b514.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3fd3d82060f9933914e1eda7f934647b1a5490e244ca910a6a6cb193b3a52ae7",
+            "bytes": 3913
+          }
+        }
+      },
+      {
+        "sentence": "It's gloomy.",
+        "translation": "天阴沉沉的。",
+        "chunks": [
+          "It's gloomy."
+        ],
+        "hints": [
+          "天阴沉沉的。"
+        ],
+        "cid": "20a372dd",
+        "sentenceAudio": {
+          "text": "It's gloomy.",
+          "audio": {
+            "url": "assets/oral-20a372dd-2d4a92d3546298e492b2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "96d06a79e361d0fe5dec154d869f4b55143cf2ba8d566efc01a057c845dd8be1",
+            "bytes": 3798
+          }
+        }
+      },
+      {
+        "sentence": "It looks like we are going to have a thunder shower.",
+        "translation": "看样子我们会遇上雷阵雨。",
+        "chunks": [
+          "It looks like",
+          "we are going to have",
+          "a thunder shower."
+        ],
+        "hints": [
+          "看样子",
+          "我们会遇上",
+          "雷阵雨。"
+        ],
+        "cid": "ac7c8449",
+        "sentenceAudio": {
+          "text": "It looks like we are going to have a thunder shower.",
+          "audio": {
+            "url": "assets/oral-ac7c8449-0aa55f3a89e8cab0b172.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8b52815cb36fbbe0a35daa012f42048a3648aa2e15b6175e11dc15da34a6d120",
+            "bytes": 8592
+          }
+        }
+      },
+      {
+        "sentence": "A typhoon is coming.",
+        "translation": "台风快到了。",
+        "chunks": [
+          "A typhoon",
+          "is coming."
+        ],
+        "hints": [
+          "台风",
+          "快到了。"
+        ],
+        "cid": "94c3bf48",
+        "sentenceAudio": {
+          "text": "A typhoon is coming.",
+          "audio": {
+            "url": "assets/oral-94c3bf48-8ad365d5473747c3e8d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a0a57f202cd3fcd2399acb187fc5cc187cf86a1430052eab3885c833c2e3b6a5",
+            "bytes": 4932
+          }
+        }
+      },
+      {
+        "sentence": "It's foggy.",
+        "translation": "雾蒙蒙的。",
+        "chunks": [
+          "It's foggy."
+        ],
+        "hints": [
+          "雾蒙蒙的。"
+        ],
+        "cid": "1e825a38",
+        "sentenceAudio": {
+          "text": "It's foggy.",
+          "audio": {
+            "url": "assets/oral-1e825a38-19444e620ca53a91b8c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "58d989c71368e11cfac92b44b289958d390b87c9a7a8ace084d31d0831846ebc",
+            "bytes": 3928
+          }
+        }
+      },
+      {
+        "sentence": "It's freezing.",
+        "translation": "冷得像要结冰了。",
+        "chunks": [
+          "It's freezing."
+        ],
+        "hints": [
+          "冷得像要结冰了。"
+        ],
+        "cid": "ad6c1d48",
+        "sentenceAudio": {
+          "text": "It's freezing.",
+          "audio": {
+            "url": "assets/oral-ad6c1d48-932df1b994f55c65d2dd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4476ac36f9e36ae8098cef55a6d7a432bcf284eb4eb7a3982e2bb4b899710664",
+            "bytes": 3973
+          }
+        }
+      },
+      {
+        "sentence": "We're going to have a blizzard.",
+        "translation": "快要有暴风雪了。",
+        "chunks": [
+          "We're going to have",
+          "a blizzard."
+        ],
+        "hints": [
+          "快要有",
+          "暴风雪了。"
+        ],
+        "cid": "b638de8f",
+        "sentenceAudio": {
+          "text": "We're going to have a blizzard.",
+          "audio": {
+            "url": "assets/oral-b638de8f-a67791e90c360fcb8fa2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "630295e3040b6f76d3806867227ddbc50a55798aa32b88370f79a0ca2fb500e3",
+            "bytes": 5592
+          }
+        }
+      },
+      {
+        "sentence": "It's pleasant.",
+        "translation": "这天真舒服。",
+        "chunks": [
+          "It's pleasant."
+        ],
+        "hints": [
+          "这天气真舒服。"
+        ],
+        "cid": "504ca1b8",
+        "sentenceAudio": {
+          "text": "It's pleasant.",
+          "audio": {
+            "url": "assets/oral-504ca1b8-cece58496c8737ae0811.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "54e126d43880917913813696710f639e84b6878a74c1b2f7068d07b41bd025cf",
+            "bytes": 3832
+          }
+        }
+      },
+      {
+        "sentence": "It's mild today.",
+        "translation": "今天天气温和。",
+        "chunks": [
+          "It's mild",
+          "today."
+        ],
+        "hints": [
+          "天气温和",
+          "今天"
+        ],
+        "cid": "202ade45",
+        "sentenceAudio": {
+          "text": "It's mild today.",
+          "audio": {
+            "url": "assets/oral-202ade45-83651b4999c116a8498a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4ea69e2864bb7b8872fb6cb10b6c5fdacfe7fd6ed02202b18d800ca1dd2f347c",
+            "bytes": 4605
+          }
+        }
+      },
+      {
+        "sentence": "It's misty.",
+        "translation": "雾蒙蒙的。",
+        "chunks": [
+          "It's misty."
+        ],
+        "hints": [
+          "雾蒙蒙的。"
+        ],
+        "cid": "9e131334",
+        "sentenceAudio": {
+          "text": "It's misty.",
+          "audio": {
+            "url": "assets/oral-9e131334-0b216bfce9280a560a9b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b7540a840c7dbff9fc262942683831abf5884c813527bb83a551b2a214a161a0",
+            "bytes": 3767
+          }
+        }
+      },
+      {
+        "sentence": "It's overcast today.",
+        "translation": "今天阴天。",
+        "chunks": [
+          "It's overcast",
+          "today."
+        ],
+        "hints": [
+          "阴天",
+          "今天"
+        ],
+        "cid": "58cd5dd4",
+        "sentenceAudio": {
+          "text": "It's overcast today.",
+          "audio": {
+            "url": "assets/oral-58cd5dd4-728935040540ee8302dd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "299ca75e16e203ecc75cee79a5165d307cef24321ef3d141f68dbbd66168c9fb",
+            "bytes": 5035
+          }
+        }
+      },
+      {
+        "sentence": "It's miserable.",
+        "translation": "天气糟透了。",
+        "chunks": [
+          "It's miserable."
+        ],
+        "hints": [
+          "天气糟透了。"
+        ],
+        "cid": "5059d320",
+        "sentenceAudio": {
+          "text": "It's miserable.",
+          "audio": {
+            "url": "assets/oral-5059d320-f9268eb6eb25f1e0b3dc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f56df8c0448973c7438f324a89d457dd748c056f79a7cf7ceece939a570726b5",
+            "bytes": 4013
+          }
+        }
+      },
+      {
+        "sentence": "I'm sensitive to heat.",
+        "translation": "我怕热。",
+        "chunks": [
+          "I'm",
+          "sensitive to heat."
+        ],
+        "hints": [
+          "我",
+          "怕热。"
+        ],
+        "cid": "5cc305f9",
+        "sentenceAudio": {
+          "text": "I'm sensitive to heat.",
+          "audio": {
+            "url": "assets/oral-5cc305f9-eb2aee711286e2c46c4d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "37560df4d211f636b74ec5be28dba545ee98e95ae4ed120261c12aad302e2270",
+            "bytes": 5265
+          }
+        }
+      },
+      {
+        "sentence": "It's breezy today.",
+        "translation": "今天微风习习。",
+        "chunks": [
+          "It's breezy",
+          "today."
+        ],
+        "hints": [
+          "微风习习",
+          "今天"
+        ],
+        "cid": "5c32176a",
+        "sentenceAudio": {
+          "text": "It's breezy today.",
+          "audio": {
+            "url": "assets/oral-5c32176a-808a21a218f9410bef43.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0804214ad29681b794119e49c0527f82ae0d677070ae6c964d6f1a9edce271f4",
+            "bytes": 4700
+          }
+        }
+      },
+      {
+        "sentence": "It's uncomfortable today.",
+        "translation": "今天的天气让人不舒服。",
+        "chunks": [
+          "It's uncomfortable",
+          "today."
+        ],
+        "hints": [
+          "让人不舒服",
+          "今天"
+        ],
+        "cid": "d8447ba8",
+        "sentenceAudio": {
+          "text": "It's uncomfortable today.",
+          "audio": {
+            "url": "assets/oral-d8447ba8-f6f37c2ae763073b0741.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b7a5ccfd3dfdd8dc410e8ea874ed05406d53834eab3f4d5b16b1d8417a1310e2",
+            "bytes": 5664
+          }
+        }
+      },
+      {
+        "sentence": "The heat is killing me.",
+        "translation": "热死我了。",
+        "chunks": [
+          "The heat",
+          "is killing me."
+        ],
+        "hints": [
+          "这热天",
+          "快把我热死了。"
+        ],
+        "cid": "18927bde",
+        "sentenceAudio": {
+          "text": "The heat is killing me.",
+          "audio": {
+            "url": "assets/oral-18927bde-233918ba0c8c8ae1d4d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "83e75a85121023f2e51860af643c257c6693f2eda6c146a639fdd6f253a098ee",
+            "bytes": 4936
+          }
+        }
+      },
+      {
+        "sentence": "It's raining cats and dogs!",
+        "translation": "下了瓢泼大雨。",
+        "chunks": [
+          "It's raining cats and dogs!"
+        ],
+        "hints": [
+          "下了瓢泼大雨。"
+        ],
+        "cid": "7c16b26a",
+        "sentenceAudio": {
+          "text": "It's raining cats and dogs!",
+          "audio": {
+            "url": "assets/oral-7c16b26a-7b27d646aaea896e0726.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "65b4a43b3b44c2833feab603a458b109427f082e1a4b967841ed090abcf2657e",
+            "bytes": 6115
+          }
+        }
+      },
+      {
+        "sentence": "It's frosty today.",
+        "translation": "今天有霜。",
+        "chunks": [
+          "It's frosty",
+          "today."
+        ],
+        "hints": [
+          "有霜",
+          "今天"
+        ],
+        "cid": "d2633cc0",
+        "sentenceAudio": {
+          "text": "It's frosty today.",
+          "audio": {
+            "url": "assets/oral-d2633cc0-611d2a13dbc288f0b92d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d9d6fffc7201e393022ddb8fdf6e4bca5a4d50bbec790d9337540f2be86e95a1",
+            "bytes": 4905
+          }
+        }
+      },
+      {
+        "sentence": "It looks like it's going to rain.",
+        "cid": "05de33a5",
+        "translation": "看起来快要下雨了。",
+        "chunks": [
+          "It looks like",
+          "it's going to rain."
+        ],
+        "hints": [
+          "看起来",
+          "要下雨了"
+        ],
+        "grammar": [
+          {
+            "role": "主句主谓",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪt/",
+              "/lʊks/",
+              "/laɪk/"
+            ],
+            "pos": "主系表结构",
+            "meaning": "看起来"
+          },
+          {
+            "role": "真正主语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈɡəʊɪŋ/",
+              "/tuː/",
+              "/reɪn/"
+            ],
+            "pos": "不定式短语",
+            "meaning": "要下雨了"
+          }
+        ],
+        "explanations": [
+          "**It looks like...** 表示「看起来好像……」。常见错误：\n• \"It **look** like\" → 第三人称单数要加 s\n• \"It **seems** like\" → 也可以，但 seems 更正式",
+          "**be going to** 表示基于现有迹象的预测（看到乌云→要下雨）。与 **will** 的区别：will 是主观判断，be going to 是有客观依据的预测。"
+        ],
+        "distractors": [
+          [
+            "It look like",
+            "It looked like",
+            "It looks as"
+          ],
+          [
+            "it going to rain.",
+            "it's going to raining."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It looks like it's going to rain.",
+          "audio": {
+            "url": "assets/oral-05de33a5-f6ee3ea1b841ec527d79.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e14cd2c76898e1aa13c0e1e1c71239a4f517ca212726719ad1810e5a9d63981",
+            "bytes": 5674
+          }
+        }
+      },
+      {
+        "sentence": "It's pouring outside right now.",
+        "cid": "8139df49",
+        "translation": "外面这会儿正下着倾盆大雨。",
+        "chunks": [
+          "It's pouring",
+          "outside",
+          "right now."
+        ],
+        "hints": [
+          "正下大雨",
+          "外面",
+          "此刻"
+        ],
+        "grammar": [
+          {
+            "role": "主谓（天气）",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈpɔːrɪŋ/"
+            ],
+            "pos": "主系表/进行",
+            "meaning": "正下大雨"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˌaʊtˈsaɪd/"
+            ],
+            "pos": "副词",
+            "meaning": "外面"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/raɪt/",
+              "/naʊ/"
+            ],
+            "pos": "副词短语",
+            "meaning": "此刻"
+          }
+        ],
+        "explanations": [
+          "`It's pouring` 是口语化「下倾盆大雨」。常见错误：\n• \"It **pours** outside\" → 也可，但 pouring 强调此刻正在下\n• \"It is **pour**\" → 进行时要用 pouring",
+          "`right now` = 此刻、马上。区别于 `now`（较泛）。口语常缩写 it's = it is。"
+        ],
+        "distractors": [
+          [
+            "It's snowing",
+            "It's blowing",
+            "It's showing"
+          ],
+          [
+            "outdoor",
+            "in outside"
+          ],
+          [
+            "right away.",
+            "just now.",
+            "right soon."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's pouring outside right now.",
+          "audio": {
+            "url": "assets/oral-8139df49-bc1d1aec895e96ee1410.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "463be5c1d6d6b7b2f8404013e4daf1560be543b3ccfda0a600284cd67633dedf",
+            "bytes": 6141
+          }
+        }
+      },
+      {
+        "sentence": "If it rains, we'll just stay home.",
+        "cid": "362a9411",
+        "translation": "要是下雨，我们就待在家里。",
+        "chunks": [
+          "If it rains,",
+          "we'll just stay home."
+        ],
+        "hints": [
+          "如果下雨",
+          "我们就待在家"
+        ],
+        "grammar": [
+          {
+            "role": "条件从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪf/",
+              "/ɪt/",
+              "/reɪnz/"
+            ],
+            "pos": "if 条件状语从句",
+            "meaning": "如果下雨"
+          },
+          {
+            "role": "主句（短语动词）",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wiːl/",
+              "/dʒʌst/",
+              "/steɪ/",
+              "/hoʊm/"
+            ],
+            "pos": "一般将来时",
+            "meaning": "我们就待在家"
+          }
+        ],
+        "explanations": [
+          "主将从现：if 从句用一般现在时（rains）表将来，主句用 will。常见错误：\n• \"If it **will** rain\" → if 从句不用 will\n• \"we **stay** home\" → 主句表将来要用 will stay",
+          "`stay home` 中 home 是副词，前面不加 at（区别于 stay at home 也可，但 stay home 更口语）。"
+        ],
+        "distractors": [
+          [
+            "If it rain,",
+            "If it will rain,",
+            "If it rainy,"
+          ],
+          [
+            "we just stay home.",
+            "we'll just staying home.",
+            "we'll just stays home."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "If it rains, we'll just stay home.",
+          "audio": {
+            "url": "assets/oral-362a9411-5aa72552c86f0d4a1451.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5fc37a6aaad10de5c55f5a41f516f3cedcd87c2f638f317187a108b7d02628fb",
+            "bytes": 6620
+          }
+        }
+      },
+      {
+        "sentence": "It's boiling hot outside today.",
+        "cid": "dd58f6c9",
+        "translation": "今天外面热死了。",
+        "chunks": [
+          "It's boiling hot",
+          "outside",
+          "today."
+        ],
+        "hints": [
+          "热死了",
+          "外面",
+          "今天"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈbɔɪlɪŋ/",
+              "/hɒt/"
+            ],
+            "pos": "口语夸张",
+            "meaning": "热死了"
+          },
+          {
+            "role": "地点状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˌaʊtˈsaɪd/"
+            ],
+            "pos": "副词",
+            "meaning": "外面"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/təˈdeɪ/"
+            ],
+            "pos": "副词",
+            "meaning": "今天"
+          }
+        ],
+        "explanations": [
+          "`boiling hot` = 滚烫/热得要命（boiling 原义沸腾，口语表夸张）。常见错误：\n• \"boiling **hotly**\" → hot 是形容词，不加 -ly\n• 说 It's boiling 即可表很热，别再叠 very",
+          "对比说法：It's freezing (cold) 冷死了 / It's scorching 酷热。天气句用 it 作主语。"
+        ],
+        "distractors": [
+          [
+            "It's boiled hot",
+            "It's boiling hotter",
+            "It's boiling hots"
+          ],
+          [
+            "outdoor",
+            "in outside"
+          ],
+          [
+            "to day.",
+            "the today."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's boiling hot outside today.",
+          "audio": {
+            "url": "assets/oral-dd58f6c9-27e13480c7eafa936bb3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "13c37b837a87bbfb2b3540aaf1aea894a399f25f4dfe507e11bc1472694b2b03",
+            "bytes": 6626
+          }
+        }
+      },
+      {
+        "sentence": "It depends on the weather, I guess.",
+        "cid": "09a7c3c3",
+        "translation": "这要看天气，我想。",
+        "chunks": [
+          "It depends on",
+          "the weather,",
+          "I guess."
+        ],
+        "hints": [
+          "这要看",
+          "天气",
+          "我想"
+        ],
+        "grammar": [
+          {
+            "role": "主谓结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɪt/",
+              "/dɪˈpendz/",
+              "/ɒn/"
+            ],
+            "pos": "短语动词",
+            "meaning": "这要看"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/ˈweðər/"
+            ],
+            "pos": "名词",
+            "meaning": "天气"
+          },
+          {
+            "role": "插入语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/aɪ/",
+              "/ɡes/"
+            ],
+            "pos": "口语表达",
+            "meaning": "我猜"
+          }
+        ],
+        "explanations": [
+          "`depend on` = 取决于（on 不可省）。常见错误：\n• \"It depends **of**\" → 介词是 on\n• \"It's depend on\" → be 动词多余：It depends on",
+          "`the weather` = 天气。注意 weather 与 whether（是否）同音不同拼。",
+          "`I guess` = 我想/我猜（句尾缓和语气）。"
+        ],
+        "distractors": [
+          [
+            "It depend on",
+            "It depends",
+            "It is depends on"
+          ],
+          [
+            "a weather,",
+            "weather,",
+            "the whether,"
+          ],
+          [
+            "I guessed.",
+            "I think.",
+            "I'm guess."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It depends on the weather, I guess.",
+          "audio": {
+            "url": "assets/oral-09a7c3c3-7a71c811d2364e8b3b9e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d4b624542fe00f71433bfe2aadb378266a0c00a37cb3f128da6395a73127a0ed",
+            "bytes": 6300
+          }
+        }
+      },
+      {
+        "sentence": "The sun's out.",
+        "cid": "d463d7c2",
+        "translation": "太阳出来了。",
+        "chunks": [
+          "The sun's",
+          "out."
+        ],
+        "hints": [
+          "太阳",
+          "出来了"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ðə/",
+              "/sʌnz/"
+            ],
+            "pos": "名词 + is 缩写",
+            "meaning": "太阳（出来了）"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/aʊt/"
+            ],
+            "pos": "副词作表语",
+            "meaning": "出来了、露面"
+          }
+        ],
+        "explanations": [
+          "`The sun's out.` 指太阳出来了，out 在此表「露面」。常见错误：\n• \"The sun's out of\" → out 后面不加东西\n• \"The sun comes out\" 也对，但 the sun's out 更即时",
+          "同类：The moon's out. / The stars are out."
+        ],
+        "distractors": [
+          [
+            "The sun",
+            "The sunny",
+            "The sun is of"
+          ],
+          [
+            "out of.",
+            "outs.",
+            "outing."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The sun's out.",
+          "audio": {
+            "url": "assets/oral-d463d7c2-efb3ac64eedb254aaff9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "40dc25323611c7158d2cde08b5fee7da6e7260025f1ce1e0f71c24da87669659",
+            "bytes": 4032
+          }
+        }
+      },
+      {
+        "sentence": "It's getting windy.",
+        "cid": "6db16bc7",
+        "translation": "正在起风。",
+        "chunks": [
+          "It's getting windy."
+        ],
+        "hints": [
+          "正在起风。"
+        ],
+        "grammar": [
+          {
+            "role": "天气变化表达",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪts/",
+              "/ˈɡetɪŋ/",
+              "/ˈwɪndi/"
+            ],
+            "pos": "get + 形容词（进行时）",
+            "meaning": "正在起风"
+          }
+        ],
+        "explanations": [
+          "`windy` = wind + y，表「起风的」。常见错误：\n• \"It's getting wind\" → 形容词形式是 windy\n• \"It's getting a wind\" → 不需要冠词",
+          "同类天气变化：It's getting cloudy / foggy / chilly."
+        ],
+        "distractors": [
+          [
+            "It's getting cloudy.",
+            "It's getting warmer.",
+            "It's getting dark."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "It's getting windy.",
+          "audio": {
+            "url": "assets/oral-6db16bc7-41c86fc1f14537da1894.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "53526ca40fdf6956fa8688c5375c937f78186840298e75fbdb0874f319593819",
+            "bytes": 4420
+          }
+        }
+      }
+    ]
+  }
+}

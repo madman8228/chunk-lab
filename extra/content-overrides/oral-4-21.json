@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-4-21",
+    "name": "口语3000句 · 怀疑时",
+    "short": "怀疑时",
+    "desc": "怀疑时",
+    "chapter": 4,
+    "section": "4.21",
+    "sectionTitle": "怀疑时",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 10,
+    "items": [
+      {
+        "sentence": "Really?",
+        "translation": "真的?",
+        "chunks": [
+          "Really?"
+        ],
+        "hints": [
+          "真的吗"
+        ],
+        "cid": "43f2a563",
+        "sentenceAudio": {
+          "text": "Really?",
+          "audio": {
+            "url": "assets/oral-43f2a563-fae5730c1695e958f786.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "45a228f2f065d841bbf7c90fd26fa9b533060c8ad7a3f14fc98b9d80daa215bc",
+            "bytes": 3344
+          }
+        }
+      },
+      {
+        "sentence": "Are you serious?",
+        "translation": "你是认真的吗?",
+        "chunks": [
+          "Are you",
+          "serious?"
+        ],
+        "hints": [
+          "你是",
+          "认真的吗"
+        ],
+        "cid": "436bcd4d",
+        "sentenceAudio": {
+          "text": "Are you serious?",
+          "audio": {
+            "url": "assets/oral-436bcd4d-e30f06dd29ffb2a4c084.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3d6f02ff7fed84a8cd476bd3201e53eb148e81f6a1f8d3d3f6cf4b900eba47c6",
+            "bytes": 4093
+          }
+        }
+      },
+      {
+        "sentence": "Are you joking?",
+        "translation": "开玩笑呢吧?",
+        "chunks": [
+          "Are you",
+          "joking?"
+        ],
+        "hints": [
+          "你在",
+          "开玩笑吗"
+        ],
+        "cid": "03c9f1e3",
+        "sentenceAudio": {
+          "text": "Are you joking?",
+          "audio": {
+            "url": "assets/oral-03c9f1e3-de394b0af169151a6c3a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8e479e24eeaaf6fa3611c269212640988b2b2ab4eb7d1b2fd6dcaf2a718c81e8",
+            "bytes": 4297
+          }
+        }
+      },
+      {
+        "sentence": "It sounds fishy to me.",
+        "translation": "听起来可疑。",
+        "chunks": [
+          "It sounds",
+          "fishy to me."
+        ],
+        "hints": [
+          "听起来",
+          "有点可疑"
+        ],
+        "cid": "2fd5117e",
+        "sentenceAudio": {
+          "text": "It sounds fishy to me.",
+          "audio": {
+            "url": "assets/oral-2fd5117e-2768501572b48361560c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d9764c8a64600b026a3e955e43d95f740fe8706db80bc95d03ecf898a92d521b",
+            "bytes": 4786
+          }
+        }
+      },
+      {
+        "sentence": "I won't buy that story.",
+        "translation": "我不信他的话。",
+        "chunks": [
+          "I won't buy",
+          "that story."
+        ],
+        "hints": [
+          "我才不信",
+          "那套说法"
+        ],
+        "cid": "732f07d1",
+        "sentenceAudio": {
+          "text": "I won't buy that story.",
+          "audio": {
+            "url": "assets/oral-732f07d1-da3d40159efd62f42191.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "179bbd7ac70abba7ce8a4e7c3e3e131b7a53413548cd54d34e4017b348dc90bf",
+            "bytes": 5471
+          }
+        }
+      },
+      {
+        "sentence": "Do you think she's serious?",
+        "translation": "你认为她是当真的吗?",
+        "chunks": [
+          "Do you think",
+          "she's serious?"
+        ],
+        "hints": [
+          "你觉得",
+          "她是当真的吗"
+        ],
+        "cid": "305108de",
+        "sentenceAudio": {
+          "text": "Do you think she's serious?",
+          "audio": {
+            "url": "assets/oral-305108de-bc29445dd9eab0a7d732.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "76eb24ce150ee3bb5ec615cacb1cd957861352b9ec6e93a2d588e0edb9fcac83",
+            "bytes": 4810
+          }
+        }
+      },
+      {
+        "sentence": "I don't take him too seriously.",
+        "translation": "我没太把他当回事。",
+        "chunks": [
+          "I don't",
+          "take him too seriously."
+        ],
+        "hints": [
+          "我没",
+          "太把他当回事"
+        ],
+        "cid": "07f6df36",
+        "sentenceAudio": {
+          "text": "I don't take him too seriously.",
+          "audio": {
+            "url": "assets/oral-07f6df36-192a06e76e3f8d472829.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0acb406c3373bc776f61b7a633cd1c92031a8cead07b293fd914971394f51f9d",
+            "bytes": 6285
+          }
+        }
+      },
+      {
+        "sentence": "I don't believe him.",
+        "translation": "我不相信他。",
+        "chunks": [
+          "I don't",
+          "believe him."
+        ],
+        "hints": [
+          "我不",
+          "相信他"
+        ],
+        "cid": "98dce5aa",
+        "sentenceAudio": {
+          "text": "I don't believe him.",
+          "audio": {
+            "url": "assets/oral-98dce5aa-6063084fbac4e0e62569.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "532dadf1495d8cbc9a22e325b7a0e883183cbc3983f4d4e761075c6bc26fa0fc",
+            "bytes": 4415
+          }
+        }
+      },
+      {
+        "sentence": "It's too good to be true.",
+        "translation": "好得让人不敢相信。",
+        "chunks": [
+          "It's too good to be true."
+        ],
+        "hints": [
+          "好得让人不敢相信。"
+        ],
+        "cid": "e227e3a9",
+        "sentenceAudio": {
+          "text": "It's too good to be true.",
+          "audio": {
+            "url": "assets/oral-e227e3a9-6323e2d26475932e759e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "57c559ae420bcdf131c47617e4f0740fa9fbcb7a548ec20033e90cd6b30d1efc",
+            "bytes": 5277
+          }
+        }
+      },
+      {
+        "sentence": "Are you kidding?",
+        "cid": "0f9400f7",
+        "translation": "你在开玩笑吧？/真的假的？",
+        "chunks": [
+          "Are you",
+          "kidding?"
+        ],
+        "hints": [
+          "你",
+          "开玩笑吗"
+        ],
+        "grammar": [
+          {
+            "role": "系动词+主语",
+            "color": "#c87033",
+            "phonetic": [
+              "/ɑːr/",
+              "/juː/"
+            ],
+            "pos": "疑问句",
+            "meaning": "你是否"
+          },
+          {
+            "role": "现在分词",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈkɪdɪŋ/"
+            ],
+            "pos": "现在分词",
+            "meaning": "开玩笑"
+          }
+        ],
+        "explanations": [
+          "**Are you kidding?** 表示惊讶、难以置信。语气取决于上下文——可以是好玩也可以是震惊。",
+          "类似表达：**You're joking!** /**Seriously?** /**For real?**（更年轻化）"
+        ],
+        "distractors": [
+          [
+            "Do you",
+            "You are",
+            "Are your"
+          ],
+          [
+            "kid?",
+            "kiding?",
+            "kidded?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Are you kidding?",
+          "audio": {
+            "url": "assets/oral-0f9400f7-6524af1e08b4c22319da.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "93d2bb5f743446347f1c620cf26dddee4e960b20590997926b5a39f633c5c3d6",
+            "bytes": 3991
+          }
+        }
+      }
+    ]
+  }
+}

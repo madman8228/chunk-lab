@@ -1,0 +1,558 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-3-12-3",
+    "name": "口语3000句 · 商谈 · 叙述、询问理由～指出错误",
+    "short": "叙述、询问理由～指出错误",
+    "desc": "叙述、询问理由～指出错误",
+    "chapter": 3,
+    "section": "3.12",
+    "sectionTitle": "商谈",
+    "topic": "叙述、询问理由～指出错误",
+    "baseCount": 0,
+    "totalCount": 25,
+    "items": [
+      {
+        "sentence": "Why?",
+        "translation": "为什么?",
+        "chunks": [
+          "Why?"
+        ],
+        "hints": [
+          "为什么？"
+        ],
+        "cid": "50d99212",
+        "sentenceAudio": {
+          "text": "Why?",
+          "audio": {
+            "url": "assets/oral-50d99212-ecb4bed139113db3596b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b1073862f87d7e36f630e63bc2455e7e712b6aab1410c4d26fa65fbb362d0390",
+            "bytes": 2976
+          }
+        }
+      },
+      {
+        "sentence": "How come?",
+        "translation": "为什么?",
+        "chunks": [
+          "How come?"
+        ],
+        "hints": [
+          "怎么回事？"
+        ],
+        "cid": "68e7e4dc",
+        "sentenceAudio": {
+          "text": "How come?",
+          "audio": {
+            "url": "assets/oral-68e7e4dc-6e03950b9652c6b2bb26.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8d7b90d271724ca00b65d0ff695d48415745a18456da590b41c14b28428fa996",
+            "bytes": 3488
+          }
+        }
+      },
+      {
+        "sentence": "What makes you think that?",
+        "translation": "你怎么会那么想呢?",
+        "chunks": [
+          "What makes you",
+          "think that?"
+        ],
+        "hints": [
+          "你怎么会",
+          "那么想呢？"
+        ],
+        "cid": "e5726875",
+        "sentenceAudio": {
+          "text": "What makes you think that?",
+          "audio": {
+            "url": "assets/oral-e5726875-684b4b6fe78b96576e9a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "50feaf015ae9656ede974145eb152ea218ee262f35abd7486ded050784b28866",
+            "bytes": 4660
+          }
+        }
+      },
+      {
+        "sentence": "Tell me why.",
+        "translation": "告诉我为什么。",
+        "chunks": [
+          "Tell me",
+          "why."
+        ],
+        "hints": [
+          "告诉我",
+          "为什么。"
+        ],
+        "cid": "8b5b2800",
+        "sentenceAudio": {
+          "text": "Tell me why.",
+          "audio": {
+            "url": "assets/oral-8b5b2800-7b21a6582645aef22068.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7e1a8ed552cbd67a890e1531b284ed55d7d6824a3006763021f46d8e6dacbcf1",
+            "bytes": 3721
+          }
+        }
+      },
+      {
+        "sentence": "How did it happen?",
+        "translation": "是怎么发生的?",
+        "chunks": [
+          "How did it happen?"
+        ],
+        "hints": [
+          "这件事是怎么发生的？"
+        ],
+        "cid": "ae7df83c",
+        "sentenceAudio": {
+          "text": "How did it happen?",
+          "audio": {
+            "url": "assets/oral-ae7df83c-b626767ac1ed3476b49b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2825d63935f613a2ca47ff47a5e1e6fb24b4364f17dc7d947b7ce96ef3c6c40c",
+            "bytes": 4247
+          }
+        }
+      },
+      {
+        "sentence": "What are you doing this for?",
+        "translation": "你干吗要去做这种事呢?",
+        "chunks": [
+          "What are you",
+          "doing this for?"
+        ],
+        "hints": [
+          "你干吗要",
+          "去做这种事呢？"
+        ],
+        "cid": "edeb5371",
+        "sentenceAudio": {
+          "text": "What are you doing this for?",
+          "audio": {
+            "url": "assets/oral-edeb5371-585f4148d285f966061b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5391a51e8bc80a33e763c9f97de753037179f29ea3384031e7ac6cdf833e9ef9",
+            "bytes": 4798
+          }
+        }
+      },
+      {
+        "sentence": "Why did you do that?",
+        "translation": "你为什么干那样的事呢?",
+        "chunks": [
+          "Why did you",
+          "do that?"
+        ],
+        "hints": [
+          "你为什么",
+          "干那样的事呢？"
+        ],
+        "cid": "3a3c72ba",
+        "sentenceAudio": {
+          "text": "Why did you do that?",
+          "audio": {
+            "url": "assets/oral-3a3c72ba-ab08f401ac030bf09d5b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2164df1ab937b36b7e44233cc6cb1bb69ca538fda68f9eafb3d59e57ae072981",
+            "bytes": 4507
+          }
+        }
+      },
+      {
+        "sentence": "What causes it?",
+        "translation": "是什么原因?",
+        "chunks": [
+          "What",
+          "causes it?"
+        ],
+        "hints": [
+          "是什么",
+          "原因？"
+        ],
+        "cid": "7020e323",
+        "sentenceAudio": {
+          "text": "What causes it?",
+          "audio": {
+            "url": "assets/oral-7020e323-4de9d4c690e31468046e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1c746374afa6c3142ec1da1f786f28e12029ca2b845fccdbac36555d66df52f4",
+            "bytes": 4272
+          }
+        }
+      },
+      {
+        "sentence": "Explain it to me.",
+        "translation": "请给我解释一下。",
+        "chunks": [
+          "Explain it to me."
+        ],
+        "hints": [
+          "给我解释一下。"
+        ],
+        "cid": "695f9462",
+        "sentenceAudio": {
+          "text": "Explain it to me.",
+          "audio": {
+            "url": "assets/oral-695f9462-564ac81b146bbd08ab61.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0f725d139de61004246978e6716a4b9058ca17c6c3f51e3dc731b1f56d26d546",
+            "bytes": 4403
+          }
+        }
+      },
+      {
+        "sentence": "What are you so happy about?",
+        "translation": "你为什么这么高兴？",
+        "chunks": [
+          "What are you so",
+          "happy about?"
+        ],
+        "hints": [
+          "你为什么",
+          "这么高兴？"
+        ],
+        "cid": "0346f470",
+        "sentenceAudio": {
+          "text": "What are you so happy about?",
+          "audio": {
+            "url": "assets/oral-0346f470-c2a8d019f8bda5bda7ed.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bed7cf099e4774cfb2666821dd3058f81a3354b5f2c96fe65788d38ff8cc24cd",
+            "bytes": 5167
+          }
+        }
+      },
+      {
+        "sentence": "For who?",
+        "translation": "为了谁?",
+        "chunks": [
+          "For",
+          "who?"
+        ],
+        "hints": [
+          "为了",
+          "谁？"
+        ],
+        "cid": "710bfb35",
+        "sentenceAudio": {
+          "text": "For who?",
+          "audio": {
+            "url": "assets/oral-710bfb35-bac2c663073f8bd57972.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "88e0b0851d253ed17e77d23a38864d3ab02e707e0a696f1df845d9ec159377db",
+            "bytes": 3364
+          }
+        }
+      },
+      {
+        "sentence": "What's the purpose of your visit?",
+        "translation": "你旅行的目的是什么?",
+        "chunks": [
+          "What's the purpose",
+          "of your visit?"
+        ],
+        "hints": [
+          "目的是什么",
+          "你来访的"
+        ],
+        "cid": "636ceefc",
+        "sentenceAudio": {
+          "text": "What's the purpose of your visit?",
+          "audio": {
+            "url": "assets/oral-636ceefc-7a8bcf31bff502c1d77f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ba96398040f29a5dbfa69997e86a7778991cabcfc12cde877dc075bbbd2b99cb",
+            "bytes": 5662
+          }
+        }
+      },
+      {
+        "sentence": "No reason not to.",
+        "translation": "没有理由不这么做。",
+        "chunks": [
+          "No reason",
+          "not to."
+        ],
+        "hints": [
+          "没有理由",
+          "不这么做。"
+        ],
+        "cid": "2ba1ff6a",
+        "sentenceAudio": {
+          "text": "No reason not to.",
+          "audio": {
+            "url": "assets/oral-2ba1ff6a-b9719b6aa27dd3c65e81.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "60da7033e079688cad47c1f40adc6b07fbc97249a5236bceefd51148bffee348",
+            "bytes": 4924
+          }
+        }
+      },
+      {
+        "sentence": "Why are you here?",
+        "translation": "你怎么在这儿?",
+        "chunks": [
+          "Why",
+          "are you here?"
+        ],
+        "hints": [
+          "为什么",
+          "你在这儿？"
+        ],
+        "cid": "7ad93e4b",
+        "sentenceAudio": {
+          "text": "Why are you here?",
+          "audio": {
+            "url": "assets/oral-7ad93e4b-ef5080d16428b42eed98.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8059dc285dd2ba2786305d0b2e518fb79fc3b444d5cf8b22047183e5b761b22b",
+            "bytes": 4111
+          }
+        }
+      },
+      {
+        "sentence": "I'll tell you why...",
+        "translation": "我告诉你为什么……",
+        "chunks": [
+          "I'll tell you",
+          "why..."
+        ],
+        "hints": [
+          "我告诉你",
+          "为什么……"
+        ],
+        "cid": "25b608c9",
+        "sentenceAudio": {
+          "text": "I'll tell you why...",
+          "audio": {
+            "url": "assets/oral-25b608c9-cff5377ef7598d2340c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "100b7596fb48a7d3b1a9b64800c1639450f19f5afbc56cbda4c41aed906cac2e",
+            "bytes": 4459
+          }
+        }
+      },
+      {
+        "sentence": "In brief, it's like this.",
+        "translation": "总之，是这么回事儿。",
+        "chunks": [
+          "In brief,",
+          "it's like this."
+        ],
+        "hints": [
+          "总之，",
+          "是这么回事儿。"
+        ],
+        "cid": "379ba692",
+        "sentenceAudio": {
+          "text": "In brief, it's like this.",
+          "audio": {
+            "url": "assets/oral-379ba692-13d6c2e9709a28f7b9f5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2729ea0f0451c012ae245625279ef7f0854aa07a92429c40b3c308a1113e3e0",
+            "bytes": 5361
+          }
+        }
+      },
+      {
+        "sentence": "It started like this...",
+        "translation": "它的由来是这样的……",
+        "chunks": [
+          "It started",
+          "like this..."
+        ],
+        "hints": [
+          "它的由来",
+          "是这样的……"
+        ],
+        "cid": "72013e3e",
+        "sentenceAudio": {
+          "text": "It started like this...",
+          "audio": {
+            "url": "assets/oral-72013e3e-242a4a412bdb8b6cb382.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5b49bfa3e6de4c6fad99aa334629510370dee8a2bde880c0fd772b598c25e649",
+            "bytes": 4763
+          }
+        }
+      },
+      {
+        "sentence": "That's why!",
+        "translation": "原来如此!",
+        "chunks": [
+          "That's why!"
+        ],
+        "hints": [
+          "怪不得！"
+        ],
+        "cid": "4b3fd43f",
+        "sentenceAudio": {
+          "text": "That's why!",
+          "audio": {
+            "url": "assets/oral-4b3fd43f-6986c1e896f694a87e09.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c730ea6fd7f05cd66177b43ea134fb6a6fd7405b945674c5551dae2173d41656",
+            "bytes": 3620
+          }
+        }
+      },
+      {
+        "sentence": "I think you're mistaken.",
+        "translation": "我觉得你错了。",
+        "chunks": [
+          "I think",
+          "you're mistaken."
+        ],
+        "hints": [
+          "我觉得",
+          "你错了。"
+        ],
+        "cid": "cdb07be5",
+        "sentenceAudio": {
+          "text": "I think you're mistaken.",
+          "audio": {
+            "url": "assets/oral-cdb07be5-9cff08a13e4cc8b9b929.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "255c02a0934739438e819e7abbe598ca60d3784e31ffafe20093028d948de106",
+            "bytes": 5115
+          }
+        }
+      },
+      {
+        "sentence": "You're wrong.",
+        "translation": "你错了。",
+        "chunks": [
+          "You're",
+          "wrong."
+        ],
+        "hints": [
+          "你",
+          "错了。"
+        ],
+        "cid": "ba8f41c5",
+        "sentenceAudio": {
+          "text": "You're wrong.",
+          "audio": {
+            "url": "assets/oral-ba8f41c5-e1e3b2376af744261c8c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aa34cb52ce2068b194177d8fb6707d829a59e8bb35af6b36311ed7d689378d1a",
+            "bytes": 3677
+          }
+        }
+      },
+      {
+        "sentence": "Whose fault is that?",
+        "translation": "那是谁的错呀?",
+        "chunks": [
+          "Whose",
+          "fault is that?"
+        ],
+        "hints": [
+          "谁的",
+          "错呀？"
+        ],
+        "cid": "a3968a67",
+        "sentenceAudio": {
+          "text": "Whose fault is that?",
+          "audio": {
+            "url": "assets/oral-a3968a67-9ec1f420f936ff3d3872.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c24ff16c1f930049491b80366c61b85c0474ac73ab913acae33fa8527cf06fb8",
+            "bytes": 4492
+          }
+        }
+      },
+      {
+        "sentence": "I think it's sour grapes.",
+        "translation": "我觉得你这是吃不着葡萄说葡萄酸。",
+        "chunks": [
+          "I think",
+          "it's sour grapes."
+        ],
+        "hints": [
+          "我觉得",
+          "你这是吃不着葡萄说葡萄酸。"
+        ],
+        "cid": "4de230c2",
+        "sentenceAudio": {
+          "text": "I think it's sour grapes.",
+          "audio": {
+            "url": "assets/oral-4de230c2-ef850c62408f46086d35.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3dbb196b79c02fe734803aafc032a7c0794f2cdb325e79bceeb7694169fe9bbd",
+            "bytes": 5021
+          }
+        }
+      },
+      {
+        "sentence": "That's up to you.",
+        "translation": "那就随便你。",
+        "chunks": [
+          "That's",
+          "up to you."
+        ],
+        "hints": [
+          "这件事",
+          "由你决定。"
+        ],
+        "cid": "732a32fb",
+        "sentenceAudio": {
+          "text": "That's up to you.",
+          "audio": {
+            "url": "assets/oral-732a32fb-d135d1f49dd989face48.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fb4f9e4be1f6ee0feaab7afe3d1d78782e2ab8f1723d88692ed4def7ca36e8c9",
+            "bytes": 4165
+          }
+        }
+      },
+      {
+        "sentence": "That's not the point.",
+        "translation": "那不是重点。",
+        "chunks": [
+          "That's not",
+          "the point."
+        ],
+        "hints": [
+          "那不是",
+          "重点。"
+        ],
+        "cid": "3d684f34",
+        "sentenceAudio": {
+          "text": "That's not the point.",
+          "audio": {
+            "url": "assets/oral-3d684f34-68af8206e36aae8261c9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2fbe868ee5eb1335f599594be67764df1a262e7440ff1ab354ec9ae45c20c6ae",
+            "bytes": 4499
+          }
+        }
+      },
+      {
+        "sentence": "Excuse me. That's mine.",
+        "translation": "对不起，那是我的。",
+        "chunks": [
+          "Excuse me.",
+          "That's mine."
+        ],
+        "hints": [
+          "对不起，",
+          "那是我的。"
+        ],
+        "cid": "516b311c",
+        "sentenceAudio": {
+          "text": "Excuse me. That's mine.",
+          "audio": {
+            "url": "assets/oral-516b311c-170b32cbabdfbe03d344.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9777a795e2f8561ac7f98dc40f8d26b70a9e1e439e63a7dace0cdb0435772364",
+            "bytes": 5874
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,684 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'd like to have a Japanese interpreter.",
+      "translation": "我想请一位日语口译员。",
+      "chunks": [
+        "I'd like to have",
+        "a Japanese interpreter."
+      ],
+      "hints": [
+        "我想请",
+        "一位日语翻译"
+      ],
+      "cid": "ae9f1ed1",
+      "sentenceAudio": {
+        "text": "I'd like to have a Japanese interpreter.",
+        "audio": {
+          "url": "assets/oral-ae9f1ed1-8cdf198de4d9ce761831.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e1ed6dbdeeb6f342dd13f70e4b10f090bcf3858cd99a17a6c648524aee245ffa",
+          "bytes": 7435
+        }
+      }
+    },
+    {
+      "sentence": "I can't speak English.",
+      "translation": "我不会说英语。",
+      "chunks": [
+        "I can't speak",
+        "English."
+      ],
+      "hints": [
+        "我不会说",
+        "英语"
+      ],
+      "cid": "3c9d363f",
+      "sentenceAudio": {
+        "text": "I can't speak English.",
+        "audio": {
+          "url": "assets/oral-3c9d363f-6048d0ebaec4b41b248a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7db3802dee6dbbe8051676f906e364c47c4348baa08a71f23b0c548991771f58",
+          "bytes": 4957
+        }
+      }
+    },
+    {
+      "sentence": "My English isn't good enough.",
+      "translation": "我的英语不太好。",
+      "chunks": [
+        "My English",
+        "isn't good enough."
+      ],
+      "hints": [
+        "我的英语",
+        "不够好"
+      ],
+      "cid": "95707c7d",
+      "sentenceAudio": {
+        "text": "My English isn't good enough.",
+        "audio": {
+          "url": "assets/oral-95707c7d-fd26ce611d38bcc706ed.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bf3d7358847fae3247a16ff0d3cc17837dcafddf7c891a1de249c9c7a6f04c59",
+          "bytes": 5772
+        }
+      }
+    },
+    {
+      "sentence": "A Japanese-speaking person, please.",
+      "translation": "请安排一位会说日语的人。",
+      "chunks": [
+        "A Japanese-speaking person, please."
+      ],
+      "hints": [
+        "请安排一位会说日语的人。"
+      ],
+      "cid": "30e62517",
+      "sentenceAudio": {
+        "text": "A Japanese-speaking person, please.",
+        "audio": {
+          "url": "assets/oral-30e62517-f737d2d68b95e3877cc9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cefab23d4e0c485c2ea0df977b57906ea411192f7e07745a26e1bc2be2fe1a03",
+          "bytes": 7431
+        }
+      }
+    },
+    {
+      "sentence": "What did you say?",
+      "translation": "您说什么?",
+      "chunks": [
+        "What did you",
+        "say?"
+      ],
+      "hints": [
+        "你刚才",
+        "说什么"
+      ],
+      "cid": "92b96d8f",
+      "sentenceAudio": {
+        "text": "What did you say?",
+        "audio": {
+          "url": "assets/oral-92b96d8f-f12c11b4e86a67e02077.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "baf19b5e01b2536114015f5c0f497b69938a080fcc9dfd8f09ada56f080d2763",
+          "bytes": 3985
+        }
+      }
+    },
+    {
+      "sentence": "Would you slow down, please?",
+      "translation": "您能慢一点儿说吗?",
+      "chunks": [
+        "Would you slow down,",
+        "please?"
+      ],
+      "hints": [
+        "您能说慢一点",
+        "好吗"
+      ],
+      "cid": "a5099bb9",
+      "sentenceAudio": {
+        "text": "Would you slow down, please?",
+        "audio": {
+          "url": "assets/oral-a5099bb9-e7e0b47b6c476e38ef7c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5f638637978645e2694ddfd3fbc75c1ca9c8b4d4f95e2577ae191bd6f8932a69",
+          "bytes": 5431
+        }
+      }
+    },
+    {
+      "sentence": "I'd like a Japanese-speaking guide, please.",
+      "translation": "我想请一位会说日语的导游。",
+      "chunks": [
+        "I'd like",
+        "a Japanese-speaking guide,",
+        "please."
+      ],
+      "hints": [
+        "我想请",
+        "一位会说日语的导游",
+        "麻烦您"
+      ],
+      "cid": "44cad86b",
+      "sentenceAudio": {
+        "text": "I'd like a Japanese-speaking guide, please.",
+        "audio": {
+          "url": "assets/oral-44cad86b-1a0ff910c3d96887e642.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "030e210edc8e2d04b3ca19f1a8b8eab78668ad27146820dbb2bbcfc55e7ef244",
+          "bytes": 8573
+        }
+      }
+    },
+    {
+      "sentence": "I can't make myself understood.",
+      "translation": "我没法让别人听懂我说的话。",
+      "chunks": [
+        "I can't make myself",
+        "understood."
+      ],
+      "hints": [
+        "我没法让自己",
+        "被别人听懂。"
+      ],
+      "cid": "72dba1ee",
+      "sentenceAudio": {
+        "text": "I can't make myself understood.",
+        "audio": {
+          "url": "assets/oral-72dba1ee-b3a42cd7722fdaec45c5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ccd77323188159d8915d3aa002b422ce9169a7d2cbddae38d895783726c1b99e",
+          "bytes": 6534
+        }
+      }
+    },
+    {
+      "sentence": "I don't know how to say it in English.",
+      "translation": "我不知道这用英文怎么说。",
+      "chunks": [
+        "I don't know how to say it",
+        "in English."
+      ],
+      "hints": [
+        "我不知道这该怎么说",
+        "用英语"
+      ],
+      "cid": "3df2e057",
+      "sentenceAudio": {
+        "text": "I don't know how to say it in English.",
+        "audio": {
+          "url": "assets/oral-3df2e057-8ebd948c03792c09ccf2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a7a2b8fd157b78eb961b02d00e9996e101eadc5609ca0823eb5d637984bebe12",
+          "bytes": 6671
+        }
+      }
+    },
+    {
+      "sentence": "How do you say “giri” in English?",
+      "translation": "日语中的“义理”用英文怎么说?",
+      "chunks": [
+        "How do you say “giri”",
+        "in English?"
+      ],
+      "hints": [
+        "“义理”怎么说",
+        "用英语"
+      ],
+      "cid": "8e14eeea",
+      "sentenceAudio": {
+        "text": "How do you say “giri” in English?",
+        "audio": {
+          "url": "assets/oral-8e14eeea-119d1e14734a6868bed2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2c540bf3517904c2a46c29db142518581418f5d7988f69a498295cc687b5e250",
+          "bytes": 6609
+        }
+      }
+    },
+    {
+      "sentence": "What do you call this in English?",
+      "translation": "英文管这叫什么?",
+      "chunks": [
+        "What do you call this",
+        "in English?"
+      ],
+      "hints": [
+        "这个叫什么",
+        "用英语"
+      ],
+      "cid": "32e7e92b",
+      "sentenceAudio": {
+        "text": "What do you call this in English?",
+        "audio": {
+          "url": "assets/oral-32e7e92b-73201cef2aed6ad00909.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2be7f0830dfdaee439f1d6f0b08bdbfe298a4f0f172c51442d0d2bd797c99176",
+          "bytes": 5663
+        }
+      }
+    },
+    {
+      "sentence": "Call the police!",
+      "translation": "叫警察。",
+      "chunks": [
+        "Call",
+        "the police!"
+      ],
+      "hints": [
+        "叫",
+        "警察"
+      ],
+      "cid": "70064dcb",
+      "sentenceAudio": {
+        "text": "Call the police!",
+        "audio": {
+          "url": "assets/oral-70064dcb-81d5f6c98e4e5af1df73.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f12d46853f77094b6df3a36196eebf256e0d54bcf0c2c4214913aa9541284094",
+          "bytes": 4115
+        }
+      }
+    },
+    {
+      "sentence": "I had my bag stolen.",
+      "translation": "我的包被偷了。",
+      "chunks": [
+        "I had my bag",
+        "stolen."
+      ],
+      "hints": [
+        "我的包被",
+        "偷了"
+      ],
+      "cid": "90fbf294",
+      "sentenceAudio": {
+        "text": "I had my bag stolen.",
+        "audio": {
+          "url": "assets/oral-90fbf294-58eaa4e1e75fc127bf7a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b322a6cc15263c2ca111e297d9579e0195870cf2328036b7d400222dfe605272",
+          "bytes": 5300
+        }
+      }
+    },
+    {
+      "sentence": "Who should I report it to?",
+      "translation": "我该告诉谁?",
+      "chunks": [
+        "Who should I",
+        "report it to?"
+      ],
+      "hints": [
+        "我该向谁",
+        "报告这件事"
+      ],
+      "cid": "17209658",
+      "sentenceAudio": {
+        "text": "Who should I report it to?",
+        "audio": {
+          "url": "assets/oral-17209658-42578f80c8931b0245d1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "599bc6a5aab72c05ddbf4466c6b11ff0f1972efd9e345152ce838c6501adb388",
+          "bytes": 5371
+        }
+      }
+    },
+    {
+      "sentence": "Where is the Lost and Found?",
+      "translation": "失物招领处在哪儿?",
+      "chunks": [
+        "Where is the",
+        "Lost and Found?"
+      ],
+      "hints": [
+        "在哪里",
+        "失物招领处"
+      ],
+      "cid": "1c6b358b",
+      "sentenceAudio": {
+        "text": "Where is the Lost and Found?",
+        "audio": {
+          "url": "assets/oral-1c6b358b-f6b86a30e2969dc91d5a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f163bcea1b3d09ea4ba50736a53339a0b588b38219f62ba473e7d98a6bb6e34e",
+          "bytes": 5639
+        }
+      }
+    },
+    {
+      "sentence": "What kind of bag?",
+      "translation": "什么样的包?",
+      "chunks": [
+        "What kind of",
+        "bag?"
+      ],
+      "hints": [
+        "什么样的",
+        "包"
+      ],
+      "cid": "090b9e57",
+      "sentenceAudio": {
+        "text": "What kind of bag?",
+        "audio": {
+          "url": "assets/oral-090b9e57-5b791c94b8c0f5a28010.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "99b67d4fc2fb917c5d0e3e8c48fd2cd9f2e20c07cda967be4ee54430b1d52874",
+          "bytes": 4276
+        }
+      }
+    },
+    {
+      "sentence": "What was in it?",
+      "translation": "里面都有什么?",
+      "chunks": [
+        "What was",
+        "in it?"
+      ],
+      "hints": [
+        "有什么",
+        "里面"
+      ],
+      "cid": "480e93d3",
+      "sentenceAudio": {
+        "text": "What was in it?",
+        "audio": {
+          "url": "assets/oral-480e93d3-bfce52edffc5ccebe888.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "df18baaa04a677b3974612dd06bae47639ab64bd4d476ee6c9d8bc4c034dc2e5",
+          "bytes": 3964
+        }
+      }
+    },
+    {
+      "sentence": "How much was in it?",
+      "translation": "里面有多少钱?",
+      "chunks": [
+        "How much",
+        "was in it?"
+      ],
+      "hints": [
+        "多少钱",
+        "在里面"
+      ],
+      "cid": "d5e02498",
+      "sentenceAudio": {
+        "text": "How much was in it?",
+        "audio": {
+          "url": "assets/oral-d5e02498-4bc719c477c1d15f8f17.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "322918405a3224e7ed2ffa0fdd045cf1f7748d83bc7f140a496340dca13b9429",
+          "bytes": 4712
+        }
+      }
+    },
+    {
+      "sentence": "We'll call you if we find it.",
+      "translation": "我们找到后会跟你联系的。",
+      "chunks": [
+        "We'll call you",
+        "if we find it."
+      ],
+      "hints": [
+        "我们会联系你",
+        "如果找到了"
+      ],
+      "cid": "53d742fe",
+      "sentenceAudio": {
+        "text": "We'll call you if we find it.",
+        "audio": {
+          "url": "assets/oral-53d742fe-6477edd5cd368fe90176.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b9010b8e8912873497a7a2974492c3c62908c23f423736bf6af21ab84433943",
+          "bytes": 5571
+        }
+      }
+    },
+    {
+      "sentence": "Could you fill out this form?",
+      "translation": "您能填一下儿这张表吗?",
+      "chunks": [
+        "Could you fill out",
+        "this form?"
+      ],
+      "hints": [
+        "你能填一下",
+        "这张表吗"
+      ],
+      "cid": "9d449f4d",
+      "sentenceAudio": {
+        "text": "Could you fill out this form?",
+        "audio": {
+          "url": "assets/oral-9d449f4d-861cc9b5abab21a66666.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "abc2a00b2010a200782d4731de6f49e979bb3175db5c92983230666e0f7d3ca5",
+          "bytes": 5267
+        }
+      }
+    },
+    {
+      "sentence": "Please give me a report on the theft.",
+      "translation": "请给我一份关于这起盗窃案的报告。",
+      "chunks": [
+        "Please give me a report",
+        "on the theft."
+      ],
+      "hints": [
+        "请给我一份报告",
+        "关于这起盗窃"
+      ],
+      "cid": "c840efe2",
+      "sentenceAudio": {
+        "text": "Please give me a report on the theft.",
+        "audio": {
+          "url": "assets/oral-c840efe2-632c8c6a6bafaf22868e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "df343eac05dbd9140fe390902f31534eb2cb1c1ed8d00a87d4a296abc1636882",
+          "bytes": 7001
+        }
+      }
+    },
+    {
+      "sentence": "Where is the Japanese Embassy?",
+      "translation": "日本大使馆在哪儿?",
+      "chunks": [
+        "Where is the",
+        "Japanese Embassy?"
+      ],
+      "hints": [
+        "在哪里",
+        "日本大使馆"
+      ],
+      "cid": "8c632bc3",
+      "sentenceAudio": {
+        "text": "Where is the Japanese Embassy?",
+        "audio": {
+          "url": "assets/oral-8c632bc3-e8cad2b58abb571ec2b5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "04d051b44c276a6f7b51035aa9194d211e3924904e30f4715637bb91a1dc9b68",
+          "bytes": 6444
+        }
+      }
+    },
+    {
+      "sentence": "I lost my passport.",
+      "translation": "我的护照丢了。",
+      "chunks": [
+        "I lost",
+        "my passport."
+      ],
+      "hints": [
+        "我丢了",
+        "我的护照"
+      ],
+      "cid": "b5bdf9ec",
+      "sentenceAudio": {
+        "text": "I lost my passport.",
+        "audio": {
+          "url": "assets/oral-b5bdf9ec-5e940759cf6c8a54c059.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "505215e09dc957a93656be266fd4a456a9fcfcd0437ecbefc26bbf84cfea591e",
+          "bytes": 5115
+        }
+      }
+    },
+    {
+      "sentence": "Does anyone here speak Japanese?",
+      "translation": "这儿有会说日语的人吗?",
+      "chunks": [
+        "Does anyone here",
+        "speak Japanese?"
+      ],
+      "hints": [
+        "这里有谁",
+        "会说日语吗"
+      ],
+      "cid": "6db0d726",
+      "sentenceAudio": {
+        "text": "Does anyone here speak Japanese?",
+        "audio": {
+          "url": "assets/oral-6db0d726-bfd93b0fda342ef11f50.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cac03e0132937a6d28c759124220eb6a40805271cc1ee8e372fb9d6896da0550",
+          "bytes": 6539
+        }
+      }
+    },
+    {
+      "sentence": "Can I get it reissued?",
+      "translation": "能补发一本吗?",
+      "chunks": [
+        "Can I get it",
+        "reissued?"
+      ],
+      "hints": [
+        "我能让它",
+        "重新补发吗"
+      ],
+      "cid": "bce08e92",
+      "sentenceAudio": {
+        "text": "Can I get it reissued?",
+        "audio": {
+          "url": "assets/oral-bce08e92-4138ce5136b6a25c9f63.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d535ff801929f072253ecf39cb025b444f20ea2d1767c33a391c2f787980f6e2",
+          "bytes": 4923
+        }
+      }
+    },
+    {
+      "sentence": "Please cancel my card number.",
+      "translation": "请取消我的卡号。",
+      "chunks": [
+        "Please cancel",
+        "my card number."
+      ],
+      "hints": [
+        "请注销",
+        "我的卡号"
+      ],
+      "cid": "a110a766",
+      "sentenceAudio": {
+        "text": "Please cancel my card number.",
+        "audio": {
+          "url": "assets/oral-a110a766-0092e6f67258f01cd474.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a8307a9b1d59810a4043145a9c140206c5a69a54dea31093a9492cd73c5e9959",
+          "bytes": 6202
+        }
+      }
+    },
+    {
+      "sentence": "What should I do?",
+      "translation": "我该怎么办?",
+      "chunks": [
+        "What should I",
+        "do?"
+      ],
+      "hints": [
+        "我该",
+        "怎么办"
+      ],
+      "cid": "0df3ccb7",
+      "sentenceAudio": {
+        "text": "What should I do?",
+        "audio": {
+          "url": "assets/oral-0df3ccb7-2f5f663b571c6181b8a8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1c108cd00579bcbe2728c022d45bc87747030a3b0813daa6aef8eb5f1b666424",
+          "bytes": 4199
+        }
+      }
+    },
+    {
+      "sentence": "It's an emergency!",
+      "translation": "这是紧急情况！",
+      "chunks": [
+        "It's an",
+        "emergency!"
+      ],
+      "hints": [
+        "这是",
+        "十万火急的情况"
+      ],
+      "cid": "1d62e3d7",
+      "sentenceAudio": {
+        "text": "It's an emergency!",
+        "audio": {
+          "url": "assets/oral-1d62e3d7-640a1d8d0e1fd0afb8e9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7e2cd85ece3892040f55975b2ae462c3b5e5d77c4c932fedbbb4dbda7f2f8cbf",
+          "bytes": 4712
+        }
+      }
+    },
+    {
+      "sentence": "Please call a doctor.",
+      "translation": "快叫大夫!",
+      "chunks": [
+        "Please call",
+        "a doctor."
+      ],
+      "hints": [
+        "请叫",
+        "一位医生"
+      ],
+      "cid": "8bfaf285",
+      "sentenceAudio": {
+        "text": "Please call a doctor.",
+        "audio": {
+          "url": "assets/oral-8bfaf285-0c7d81d55b0a62dffc14.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8c4228694040a52365ba965e4661d75dcaacacd2fde47dcb90d6e9689a3722e0",
+          "bytes": 4955
+        }
+      }
+    },
+    {
+      "sentence": "Help!",
+      "translation": "救命啊!",
+      "chunks": [
+        "Help!"
+      ],
+      "hints": [
+        "救命"
+      ],
+      "cid": "dba12ce1",
+      "sentenceAudio": {
+        "text": "Help!",
+        "audio": {
+          "url": "assets/oral-dba12ce1-db562735c66ff0dedf43.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6244fff11f86d25dc249e5a74258f187004e9c7295ee6e24a0a6ee5ae6837673",
+          "bytes": 3036
+        }
+      }
+    },
+    {
+      "sentence": "Thief!",
+      "translation": "小偷!",
+      "chunks": [
+        "Thief!"
+      ],
+      "hints": [
+        "抓小偷"
+      ],
+      "cid": "e1f39be6",
+      "sentenceAudio": {
+        "text": "Thief!",
+        "audio": {
+          "url": "assets/oral-e1f39be6-60d1eb52c8962bf2c94b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "24c881ad9c0808ee91c3eec93c6b7f2dba53d98e7d908cd7a082dc3962d9ef0e",
+          "bytes": 2976
+        }
+      }
+    }
+  ]
+}

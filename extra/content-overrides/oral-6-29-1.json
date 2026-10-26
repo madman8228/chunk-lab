@@ -1,0 +1,2161 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-6-29-1",
+    "name": "口语3000句 · 在飞机上、饭店里 · 在飞机上～在饭店遇到困难时",
+    "short": "在飞机上～在饭店遇到困难时",
+    "desc": "在飞机上～在饭店遇到困难时",
+    "chapter": 6,
+    "section": "6.29",
+    "sectionTitle": "在飞机上、饭店里",
+    "topic": "在飞机上～在饭店遇到困难时",
+    "baseCount": 0,
+    "totalCount": 81,
+    "items": [
+      {
+        "sentence": "What would you like to drink?",
+        "translation": "您想喝点儿什么?",
+        "chunks": [
+          "What would you like",
+          "to drink?"
+        ],
+        "hints": [
+          "您想要什么？",
+          "喝点儿"
+        ],
+        "cid": "c0dc7d58",
+        "sentenceAudio": {
+          "text": "What would you like to drink?",
+          "audio": {
+            "url": "assets/oral-c0dc7d58-b9c4f3552f79646516a2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "26d320f83aa0819f273110916f1226a2501f86d37aa08beef59c1af9659b17ca",
+            "bytes": 4825
+          }
+        }
+      },
+      {
+        "sentence": "Coffee, please.",
+        "translation": "请来一杯咖啡。",
+        "chunks": [
+          "Coffee,",
+          "please."
+        ],
+        "hints": [
+          "咖啡",
+          "请。"
+        ],
+        "cid": "37268267",
+        "sentenceAudio": {
+          "text": "Coffee, please.",
+          "audio": {
+            "url": "assets/oral-37268267-8270dbdc54578acc98d9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eda131cc5eb6864ef1a289180b2170b20c95f1ba9faff65f2fba6f3d624e4747",
+            "bytes": 4340
+          }
+        }
+      },
+      {
+        "sentence": "With sugar and cream?",
+        "translation": "要加糖和奶精吗？",
+        "chunks": [
+          "With sugar",
+          "and cream?"
+        ],
+        "hints": [
+          "要加糖",
+          "和奶精吗？"
+        ],
+        "cid": "f41e6b05",
+        "sentenceAudio": {
+          "text": "With sugar and cream?",
+          "audio": {
+            "url": "assets/oral-f41e6b05-d0475fbedc80654cb243.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "17d2f1a9903fd17340da8a0d577f66df51c7d5fc516f2e0816351793a1755891",
+            "bytes": 4840
+          }
+        }
+      },
+      {
+        "sentence": "What would you like for dinner, beef or fish?",
+        "translation": "晚餐您要牛肉还是要鱼?",
+        "chunks": [
+          "What would you like for dinner,",
+          "beef or fish?"
+        ],
+        "hints": [
+          "晚餐您要",
+          "牛肉还是要鱼？"
+        ],
+        "cid": "f4dc1b0b",
+        "sentenceAudio": {
+          "text": "What would you like for dinner, beef or fish?",
+          "audio": {
+            "url": "assets/oral-f4dc1b0b-174f67c199224d579b53.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c92435115a6b0203407c181ae5f21dea8ec986803d0fb91026d63ed1851225b6",
+            "bytes": 7866
+          }
+        }
+      },
+      {
+        "sentence": "Beef, please.",
+        "translation": "请给我牛肉。",
+        "chunks": [
+          "Beef,",
+          "please."
+        ],
+        "hints": [
+          "牛肉",
+          "请。"
+        ],
+        "cid": "d49fde9d",
+        "sentenceAudio": {
+          "text": "Beef, please.",
+          "audio": {
+            "url": "assets/oral-d49fde9d-d6beb223f087444dc1fb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a43a81298500f25f526d98dd991b3d1e438eb7d88d2a2389f7eb216081c4d50a",
+            "bytes": 4136
+          }
+        }
+      },
+      {
+        "sentence": "Have you finished?",
+        "translation": "您用完了吗?",
+        "chunks": [
+          "Have you",
+          "finished?"
+        ],
+        "hints": [
+          "您",
+          "用完了吗？"
+        ],
+        "cid": "8e9dbaf3",
+        "sentenceAudio": {
+          "text": "Have you finished?",
+          "audio": {
+            "url": "assets/oral-8e9dbaf3-729aac8b116a8cde4b2b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "136b4a4a2aade804b544a106c1be57b472816804dfcb6154c1b7144c0e836ec7",
+            "bytes": 3938
+          }
+        }
+      },
+      {
+        "sentence": "May I clear the table?",
+        "translation": "我可以收拾桌子了吗？",
+        "chunks": [
+          "May I",
+          "clear the table?"
+        ],
+        "hints": [
+          "我可以",
+          "收拾桌子吗？"
+        ],
+        "cid": "e1b012e0",
+        "sentenceAudio": {
+          "text": "May I clear the table?",
+          "audio": {
+            "url": "assets/oral-e1b012e0-0751976d3b71c85a3420.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "37907c746653ffd2ffbd5d159116b1564677267b08d5769ecdb1968087f62f13",
+            "bytes": 5035
+          }
+        }
+      },
+      {
+        "sentence": "Clear the table, please.",
+        "translation": "请您收拾一下桌子吧。",
+        "chunks": [
+          "Clear the table,",
+          "please."
+        ],
+        "hints": [
+          "收拾一下桌子",
+          "请。"
+        ],
+        "cid": "aa32f72f",
+        "sentenceAudio": {
+          "text": "Clear the table, please.",
+          "audio": {
+            "url": "assets/oral-aa32f72f-b903250839fffb8ba175.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d9dd7a6346e5cff11b50bb4a52d200b11ea1cd93715f1237e0613f246a84670",
+            "bytes": 5393
+          }
+        }
+      },
+      {
+        "sentence": "Can I have some water?",
+        "translation": "我可以要点水吗？",
+        "chunks": [
+          "Can I have",
+          "some water?"
+        ],
+        "hints": [
+          "我可以要",
+          "点水吗？"
+        ],
+        "cid": "eca9d228",
+        "sentenceAudio": {
+          "text": "Can I have some water?",
+          "audio": {
+            "url": "assets/oral-eca9d228-9e94ec025541b74f0f5b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a6efa2c034462e7bdee91a437d70a011d6e635bed507c8cad6de49f93e7ee1a3",
+            "bytes": 4894
+          }
+        }
+      },
+      {
+        "sentence": "Can I have something to drink?",
+        "translation": "能给我点儿喝的吗?",
+        "chunks": [
+          "Can I have",
+          "something to drink?"
+        ],
+        "hints": [
+          "能给我",
+          "点儿喝的吗？"
+        ],
+        "cid": "dd9e2f54",
+        "sentenceAudio": {
+          "text": "Can I have something to drink?",
+          "audio": {
+            "url": "assets/oral-dd9e2f54-d4ea69beef9953b413ee.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "36e25c1c3f44b0171a450595d3e5049936b98eb15b33550c7d2fea78e6cd14b6",
+            "bytes": 5708
+          }
+        }
+      },
+      {
+        "sentence": "A blanket, please.",
+        "translation": "请给我一条毯子。",
+        "chunks": [
+          "A blanket,",
+          "please."
+        ],
+        "hints": [
+          "一条毯子",
+          "请。"
+        ],
+        "cid": "860ba6e5",
+        "sentenceAudio": {
+          "text": "A blanket, please.",
+          "audio": {
+            "url": "assets/oral-860ba6e5-d092b2dde53bdee6d8c1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "08c2ecb749c6822bfe0f7d017a5728198ebd400de1d671211483fe0b6b6e7133",
+            "bytes": 4868
+          }
+        }
+      },
+      {
+        "sentence": "I feel cold.",
+        "translation": "我觉得冷。",
+        "chunks": [
+          "I feel",
+          "cold."
+        ],
+        "hints": [
+          "我觉得",
+          "冷。"
+        ],
+        "cid": "172a2fac",
+        "sentenceAudio": {
+          "text": "I feel cold.",
+          "audio": {
+            "url": "assets/oral-172a2fac-4a279e4e2ad31eb23712.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "96611917d4508dcc876d777bdc2229c63bb54261fd5a60d485c4f569cbbee4f9",
+            "bytes": 4291
+          }
+        }
+      },
+      {
+        "sentence": "I feel hot.",
+        "translation": "我觉得热。",
+        "chunks": [
+          "I feel",
+          "hot."
+        ],
+        "hints": [
+          "我觉得",
+          "热。"
+        ],
+        "cid": "0bf8d6c7",
+        "sentenceAudio": {
+          "text": "I feel hot.",
+          "audio": {
+            "url": "assets/oral-0bf8d6c7-e4d70cee33f0302b3750.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "053d330fd09c58eed5e758ceed67935f11364ddec4f7694a41775a3bb932f432",
+            "bytes": 4053
+          }
+        }
+      },
+      {
+        "sentence": "Can I have some medicine?",
+        "translation": "能给我点儿药吗?",
+        "chunks": [
+          "Can I have",
+          "some medicine?"
+        ],
+        "hints": [
+          "能给我",
+          "点儿药吗？"
+        ],
+        "cid": "f8d04d65",
+        "sentenceAudio": {
+          "text": "Can I have some medicine?",
+          "audio": {
+            "url": "assets/oral-f8d04d65-97f716d3aee2e13e9c3c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "da8d875befd8a8968b909e5badf1d0b1bdb39975d905e1d4d59dcfecbc496c22",
+            "bytes": 5206
+          }
+        }
+      },
+      {
+        "sentence": "Could you tell me how to fill out this form?",
+        "translation": "您能告诉我怎么填这张表吗?",
+        "chunks": [
+          "Could you tell me",
+          "how to fill out this form?"
+        ],
+        "hints": [
+          "您能告诉我",
+          "怎么填这张表吗？"
+        ],
+        "cid": "234c3c81",
+        "sentenceAudio": {
+          "text": "Could you tell me how to fill out this form?",
+          "audio": {
+            "url": "assets/oral-234c3c81-53a897ee8a4c7f1545a0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "99db595c67bfe151611479ec63654e86c5f5c9ee2584a2a12b33f466ae87ee5a",
+            "bytes": 6813
+          }
+        }
+      },
+      {
+        "sentence": "May I see your passport, please?",
+        "translation": "请出示您的护照。",
+        "chunks": [
+          "May I see",
+          "your passport, please?"
+        ],
+        "hints": [
+          "请出示",
+          "您的护照。"
+        ],
+        "cid": "8c81fba0",
+        "sentenceAudio": {
+          "text": "May I see your passport, please?",
+          "audio": {
+            "url": "assets/oral-8c81fba0-1fcf3c8e67ab746451c7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2225da83d578eb9e25889db1d36ad3598e294fa4a651b78f8ca287fabe00c42",
+            "bytes": 6065
+          }
+        }
+      },
+      {
+        "sentence": "How long will you be staying in the United States?",
+        "translation": "您在美国停留多长时间?",
+        "chunks": [
+          "How long will you be staying",
+          "in the United States?"
+        ],
+        "hints": [
+          "您会停留多久？",
+          "在美国"
+        ],
+        "cid": "c3f77802",
+        "sentenceAudio": {
+          "text": "How long will you be staying in the United States?",
+          "audio": {
+            "url": "assets/oral-c3f77802-09a9585f8a6d1659aafc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "096c09bc39f63977f3b5365d957b1f18d60de20612f7419b5eb974ff4e44e0f9",
+            "bytes": 8566
+          }
+        }
+      },
+      {
+        "sentence": "Sightseeing.",
+        "translation": "旅游。",
+        "chunks": [
+          "Sightseeing."
+        ],
+        "hints": [
+          "旅游。"
+        ],
+        "cid": "e478b71b",
+        "sentenceAudio": {
+          "text": "Sightseeing.",
+          "audio": {
+            "url": "assets/oral-e478b71b-c6aea7b66d5a3cd16fb7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "97eebf3cf76b8753b1ea1f6a4fe2292ce4e89d0a4841890125302bbbfbaae45b",
+            "bytes": 3880
+          }
+        }
+      },
+      {
+        "sentence": "Business.",
+        "translation": "工作。",
+        "chunks": [
+          "Business."
+        ],
+        "hints": [
+          "工作。"
+        ],
+        "cid": "a3d4e99f",
+        "sentenceAudio": {
+          "text": "Business.",
+          "audio": {
+            "url": "assets/oral-a3d4e99f-6d5325275d2799856c3c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "44b88b360375e0e36d787a2a8c2e2ea97238296be04f98370716ef53413ac23a",
+            "bytes": 3408
+          }
+        }
+      },
+      {
+        "sentence": "I'm here on vacation.",
+        "translation": "我是来度假的。",
+        "chunks": [
+          "I'm here",
+          "on vacation."
+        ],
+        "hints": [
+          "我是来",
+          "度假的。"
+        ],
+        "cid": "1604efb4",
+        "sentenceAudio": {
+          "text": "I'm here on vacation.",
+          "audio": {
+            "url": "assets/oral-1604efb4-13169256f15e1de71538.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d387fdabf16d210925718c3bb9c2648346e8b8dfb44ff50ae5f78d83fefb214b",
+            "bytes": 5198
+          }
+        }
+      },
+      {
+        "sentence": "Where are you staying?",
+        "translation": "您住哪儿?",
+        "chunks": [
+          "Where are you staying?"
+        ],
+        "hints": [
+          "您住在哪儿？"
+        ],
+        "cid": "d80cda9b",
+        "sentenceAudio": {
+          "text": "Where are you staying?",
+          "audio": {
+            "url": "assets/oral-d80cda9b-32b73c915bfd80ffc345.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ef775826f653f5b5c7cb1b41829fe5fbc09723ecae4f8004e1b648993214d7c",
+            "bytes": 4250
+          }
+        }
+      },
+      {
+        "sentence": "Do you have anything to declare?",
+        "translation": "有什么需要报关的吗?",
+        "chunks": [
+          "Do you have",
+          "anything to declare?"
+        ],
+        "hints": [
+          "有什么",
+          "需要报关的吗？"
+        ],
+        "cid": "187f57b3",
+        "sentenceAudio": {
+          "text": "Do you have anything to declare?",
+          "audio": {
+            "url": "assets/oral-187f57b3-286185f3754987295549.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8fed01a5a6e7fc1f773e3993137a89a8675fb86fc6cbd55b6991e891079b1f5d",
+            "bytes": 5890
+          }
+        }
+      },
+      {
+        "sentence": "At the Washington Hotel.",
+        "translation": "在华盛顿饭店。",
+        "chunks": [
+          "At",
+          "the Washington Hotel."
+        ],
+        "hints": [
+          "在",
+          "华盛顿饭店。"
+        ],
+        "cid": "94c87f81",
+        "sentenceAudio": {
+          "text": "At the Washington Hotel.",
+          "audio": {
+            "url": "assets/oral-94c87f81-f16a960fccd067fd2671.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9662aba5f6aefb7aca53c916dbc5dc8503e25cfe4eba76ac189f3cf26e463087",
+            "bytes": 5361
+          }
+        }
+      },
+      {
+        "sentence": "How much money do you have?",
+        "translation": "您带了多少现金?",
+        "chunks": [
+          "How much money do you have?"
+        ],
+        "hints": [
+          "您带了多少现金？"
+        ],
+        "cid": "39081a37",
+        "sentenceAudio": {
+          "text": "How much money do you have?",
+          "audio": {
+            "url": "assets/oral-39081a37-1191bd58e81a07cdc875.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ae006e344837348885974a931e8c8fc8d04c66df24608a9a7e675c9fc0c86803",
+            "bytes": 5500
+          }
+        }
+      },
+      {
+        "sentence": "Four hundred dollars and one hundred thousand yen.",
+        "translation": "400美元和10万日元。",
+        "chunks": [
+          "Four hundred dollars",
+          "and one hundred thousand yen."
+        ],
+        "hints": [
+          "400美元",
+          "和10万日元。"
+        ],
+        "cid": "b0e792cb",
+        "sentenceAudio": {
+          "text": "Four hundred dollars and one hundred thousand yen.",
+          "audio": {
+            "url": "assets/oral-b0e792cb-4ae424c662b215eae1b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e6749375868549c05a1fe667c51034d1fb475fb4432c3edb5944cbaa09fd16d",
+            "bytes": 9414
+          }
+        }
+      },
+      {
+        "sentence": "Okay. Have a nice stay.",
+        "translation": "好的，祝您住得愉快！",
+        "chunks": [
+          "Okay.",
+          "Have a nice stay."
+        ],
+        "hints": [
+          "好的，",
+          "祝您住得愉快！"
+        ],
+        "cid": "d4144f0e",
+        "sentenceAudio": {
+          "text": "Okay. Have a nice stay.",
+          "audio": {
+            "url": "assets/oral-d4144f0e-cae205b4a0828d522c51.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "097ca7de79b67d6b356d4cfe8d20996ecec5b11126f8be89eaf39cc34e9c26da",
+            "bytes": 5537
+          }
+        }
+      },
+      {
+        "sentence": "I can't find my baggage.",
+        "translation": "我找不着行李了。",
+        "chunks": [
+          "I can't find",
+          "my baggage."
+        ],
+        "hints": [
+          "我找不着",
+          "行李了。"
+        ],
+        "cid": "2951153a",
+        "sentenceAudio": {
+          "text": "I can't find my baggage.",
+          "audio": {
+            "url": "assets/oral-2951153a-13b312c0d2032d5dea14.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e4288f6cbeb1e157fcdaeec664a76d8b70eae0a9aa8ea20ac4fcaaa5d97352e7",
+            "bytes": 5425
+          }
+        }
+      },
+      {
+        "sentence": "Please check it immediately.",
+        "translation": "请马上查一查。",
+        "chunks": [
+          "Please check it",
+          "immediately."
+        ],
+        "hints": [
+          "请检查一下",
+          "马上。"
+        ],
+        "cid": "bd5fa6e4",
+        "sentenceAudio": {
+          "text": "Please check it immediately.",
+          "audio": {
+            "url": "assets/oral-bd5fa6e4-fab9d86c67413e88be0c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "fc3f4f889bc232e45a17109ca45584e2f7edb194616f5d868b45ad9090170968",
+            "bytes": 5643
+          }
+        }
+      },
+      {
+        "sentence": "Please deliver the baggage to my hotel as soon as you have located it.",
+        "translation": "找到后请马上把我的行李送到饭店。",
+        "chunks": [
+          "Please deliver the baggage to my hotel",
+          "as soon as you have located it."
+        ],
+        "hints": [
+          "请把行李送到饭店",
+          "找到后"
+        ],
+        "cid": "d301252f",
+        "sentenceAudio": {
+          "text": "Please deliver the baggage to my hotel as soon as you have located it.",
+          "audio": {
+            "url": "assets/oral-d301252f-a6000372ed90ebf1bd1b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5fbe5137e8e968a593a258306736a06267892a8abab1a01ae8891393b29a559c",
+            "bytes": 13105
+          }
+        }
+      },
+      {
+        "sentence": "I'd like to reconfirm my flight.",
+        "translation": "我想确认一下我的机票。",
+        "chunks": [
+          "I'd like",
+          "to reconfirm my flight."
+        ],
+        "hints": [
+          "我想",
+          "重新确认我的航班。"
+        ],
+        "cid": "7f76b6e6",
+        "sentenceAudio": {
+          "text": "I'd like to reconfirm my flight.",
+          "audio": {
+            "url": "assets/oral-7f76b6e6-3dd8be63322b243af32a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3fc4d9da253877c5d4a85e8695fea35ebfebf989a6274908f9b011558fafadbc",
+            "bytes": 6551
+          }
+        }
+      },
+      {
+        "sentence": "Where is the Japan Airlines counter?",
+        "translation": "日本航空公司的柜台在哪儿?",
+        "chunks": [
+          "Where is the Japan Airlines counter?"
+        ],
+        "hints": [
+          "日本航空公司的柜台在哪儿？"
+        ],
+        "cid": "bb638bdb",
+        "sentenceAudio": {
+          "text": "Where is the Japan Airlines counter?",
+          "audio": {
+            "url": "assets/oral-bb638bdb-7a1a47fec03b9d90d8f8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "82d54d94fea1fc35ae1c213af071fce75da0f6982c7232ea78a7f1e60afe887c",
+            "bytes": 7422
+          }
+        }
+      },
+      {
+        "sentence": "Where is the boarding gate?",
+        "translation": "登机口在哪儿?",
+        "chunks": [
+          "Where is the boarding gate?"
+        ],
+        "hints": [
+          "登机口在哪儿？"
+        ],
+        "cid": "08be4399",
+        "sentenceAudio": {
+          "text": "Where is the boarding gate?",
+          "audio": {
+            "url": "assets/oral-08be4399-18cb4a31397f332a93eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "11c1b37e7c5bf18f7fa5d80f0b6054d19dffc67c0031212bcf8de19ebe9debd7",
+            "bytes": 5056
+          }
+        }
+      },
+      {
+        "sentence": "What time do you start boarding?",
+        "translation": "什么时候开始登机?",
+        "chunks": [
+          "What time do you",
+          "start boarding?"
+        ],
+        "hints": [
+          "什么时候",
+          "开始登机？"
+        ],
+        "cid": "13cb7d97",
+        "sentenceAudio": {
+          "text": "What time do you start boarding?",
+          "audio": {
+            "url": "assets/oral-13cb7d97-fd968ac21a25b279b95f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "725ed026090b8d4b0eab36ffd452310692981c8ecb797234343d973b044cbfb2",
+            "bytes": 5715
+          }
+        }
+      },
+      {
+        "sentence": "Has this flight begun boarding?",
+        "translation": "这个航班开始登机了吗?",
+        "chunks": [
+          "Has this flight",
+          "begun boarding?"
+        ],
+        "hints": [
+          "这个航班",
+          "开始登机了吗？"
+        ],
+        "cid": "050f1d09",
+        "sentenceAudio": {
+          "text": "Has this flight begun boarding?",
+          "audio": {
+            "url": "assets/oral-050f1d09-a6cb3dd43b1b03a1ff24.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "322022838398a1aa933634ce14662c900a01292859990d5daa4526b124e0158d",
+            "bytes": 6181
+          }
+        }
+      },
+      {
+        "sentence": "What time will we arrive in Tokyo?",
+        "translation": "几点到东京?",
+        "chunks": [
+          "What time will we",
+          "arrive in Tokyo?"
+        ],
+        "hints": [
+          "几点",
+          "到东京？"
+        ],
+        "cid": "1eb96825",
+        "sentenceAudio": {
+          "text": "What time will we arrive in Tokyo?",
+          "audio": {
+            "url": "assets/oral-1eb96825-a845b044db1aea357da8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "10d64dae33db0c0f2da5e4a987ae61e9183dd2082165337ae615bf70e3126d9e",
+            "bytes": 6842
+          }
+        }
+      },
+      {
+        "sentence": "Is there a room available for tonight?",
+        "translation": "今天晚上有空房间吗?",
+        "chunks": [
+          "Is there a room",
+          "available for tonight?"
+        ],
+        "hints": [
+          "有房间吗？",
+          "今晚有空"
+        ],
+        "cid": "193a09a7",
+        "sentenceAudio": {
+          "text": "Is there a room available for tonight?",
+          "audio": {
+            "url": "assets/oral-193a09a7-4ac2fcc1d0482639b44b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b46de15808a6723a4bbfee6f89c3a257b214eefcd4360f0b751ad99b94e38f79",
+            "bytes": 7180
+          }
+        }
+      },
+      {
+        "sentence": "I reserved a room for tonight.",
+        "translation": "我预订了今晚的房间。",
+        "chunks": [
+          "I reserved",
+          "a room for tonight."
+        ],
+        "hints": [
+          "我预订了",
+          "今晚的一个房间。"
+        ],
+        "cid": "85c2ea02",
+        "sentenceAudio": {
+          "text": "I reserved a room for tonight.",
+          "audio": {
+            "url": "assets/oral-85c2ea02-ea52223521e3571e9200.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ed65d4d23ffeef838e6aa797d62af12dd5f4c071a975327f35d514d291a1b665",
+            "bytes": 6279
+          }
+        }
+      },
+      {
+        "sentence": "Check in, please.",
+        "translation": "请办入住手续。",
+        "chunks": [
+          "Check in,",
+          "please."
+        ],
+        "hints": [
+          "办理入住手续",
+          "请。"
+        ],
+        "cid": "33a4f94e",
+        "sentenceAudio": {
+          "text": "Check in, please.",
+          "audio": {
+            "url": "assets/oral-33a4f94e-737d946fe6e4aa468231.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4f676b979ef9c55bef26eb4800945bf7201b62d2f35c40b447e5e04e37f83a64",
+            "bytes": 4346
+          }
+        }
+      },
+      {
+        "sentence": "Take my baggage, please.",
+        "translation": "请帮我拿一下行李。",
+        "chunks": [
+          "Take my baggage,",
+          "please."
+        ],
+        "hints": [
+          "帮我拿一下行李",
+          "请。"
+        ],
+        "cid": "f1f4867e",
+        "sentenceAudio": {
+          "text": "Take my baggage, please.",
+          "audio": {
+            "url": "assets/oral-f1f4867e-b0223aa65f09258f8ade.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c1ea3a33086d545df15efefeb1319e064de8020bd72e0f461b445c490fc92b1",
+            "bytes": 5674
+          }
+        }
+      },
+      {
+        "sentence": "I'd like a key to room 809, please.",
+        "translation": "请给我809房间的钥匙。",
+        "chunks": [
+          "I'd like",
+          "a key to room 809, please."
+        ],
+        "hints": [
+          "我想要",
+          "一把809房间的钥匙。"
+        ],
+        "cid": "51912087",
+        "sentenceAudio": {
+          "text": "I'd like a key to room 809, please.",
+          "audio": {
+            "url": "assets/oral-51912087-d6bc9ac9a6b82430dea7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f0590346d6bc61e4d6cd60cd6afb87d5844f358796e57408bce9c91460099542",
+            "bytes": 9152
+          }
+        }
+      },
+      {
+        "sentence": "Where is the dining room?",
+        "translation": "餐厅在哪儿?",
+        "chunks": [
+          "Where is",
+          "the dining room?"
+        ],
+        "hints": [
+          "在哪儿？",
+          "餐厅"
+        ],
+        "cid": "8908d568",
+        "sentenceAudio": {
+          "text": "Where is the dining room?",
+          "audio": {
+            "url": "assets/oral-8908d568-6730fe393f2b366ed304.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4761603e30b166d40d53b13f27e5d9835a9634ef13179db49e1efdc92e626a33",
+            "bytes": 5077
+          }
+        }
+      },
+      {
+        "sentence": "What time does the dining room open?",
+        "translation": "餐厅几点开门?",
+        "chunks": [
+          "What time does",
+          "the dining room open?"
+        ],
+        "hints": [
+          "几点",
+          "餐厅开门？"
+        ],
+        "cid": "68fb336f",
+        "sentenceAudio": {
+          "text": "What time does the dining room open?",
+          "audio": {
+            "url": "assets/oral-68fb336f-703ddf718045402cacca.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bf24babf040ec487fb7ff1c5059723ad5d23c6a08327ddb51dba6d6cedc2e76f",
+            "bytes": 6688
+          }
+        }
+      },
+      {
+        "sentence": "What time can I have breakfast?",
+        "translation": "几点吃早饭?",
+        "chunks": [
+          "What time",
+          "can I have breakfast?"
+        ],
+        "hints": [
+          "几点",
+          "吃早饭？"
+        ],
+        "cid": "ff786355",
+        "sentenceAudio": {
+          "text": "What time can I have breakfast?",
+          "audio": {
+            "url": "assets/oral-ff786355-168c39305389ddf17741.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "feff4599b0b46b6e96bcefb475d78d5bb4addb9ddd40ee13284d2016f04ce5b2",
+            "bytes": 6113
+          }
+        }
+      },
+      {
+        "sentence": "Where can I get some beer?",
+        "translation": "我在哪儿可以买到啤酒?",
+        "chunks": [
+          "Where",
+          "can I get some beer?"
+        ],
+        "hints": [
+          "在哪儿",
+          "我可以买到啤酒？"
+        ],
+        "cid": "a1fc4148",
+        "sentenceAudio": {
+          "text": "Where can I get some beer?",
+          "audio": {
+            "url": "assets/oral-a1fc4148-fc81e5e2e5453e2a8704.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9fe4f2b64bf4636ba8300a4a5b266fb64c125225a10e08ab0e9c7a70bc476d76",
+            "bytes": 5200
+          }
+        }
+      },
+      {
+        "sentence": "Can you keep my valuables?",
+        "translation": "您能帮我保管贵重物品吗？",
+        "chunks": [
+          "Can you keep",
+          "my valuables?"
+        ],
+        "hints": [
+          "您能保管吗",
+          "我的贵重物品"
+        ],
+        "cid": "a7a6135d",
+        "sentenceAudio": {
+          "text": "Can you keep my valuables?",
+          "audio": {
+            "url": "assets/oral-a7a6135d-7f0e865ef41bc01ff0b5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "42ca85c4121093d214e1e93ab91a4844446652b57bd505ba7a4cd6995582c39d",
+            "bytes": 5695
+          }
+        }
+      },
+      {
+        "sentence": "Yen to dollars, please.",
+        "translation": "请把日元换成美元。",
+        "chunks": [
+          "Yen to dollars,",
+          "please."
+        ],
+        "hints": [
+          "日元换成美元",
+          "请。"
+        ],
+        "cid": "e82aba2d",
+        "sentenceAudio": {
+          "text": "Yen to dollars, please.",
+          "audio": {
+            "url": "assets/oral-e82aba2d-4723383c27a3c5f56646.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2205dd72e74ce7e366ae10d84a05400b29b11dfe0b42365620647d35ef42dbf6",
+            "bytes": 5535
+          }
+        }
+      },
+      {
+        "sentence": "Cash, please.",
+        "translation": "请换成现金。",
+        "chunks": [
+          "Cash,",
+          "please."
+        ],
+        "hints": [
+          "现金",
+          "请。"
+        ],
+        "cid": "6500f822",
+        "sentenceAudio": {
+          "text": "Cash, please.",
+          "audio": {
+            "url": "assets/oral-6500f822-d0ef2c2e66ddff4ce777.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e2992247d70e21a21b053fa105ffe28a60dda9ec8e4c10efe775451ee2fe8586",
+            "bytes": 4318
+          }
+        }
+      },
+      {
+        "sentence": "Could you cash this traveler's check for me?",
+        "translation": "您能帮我把旅行支票换成现金吗?",
+        "chunks": [
+          "Could you cash",
+          "this traveler's check",
+          "for me?"
+        ],
+        "hints": [
+          "您能兑现",
+          "这张旅行支票",
+          "帮我吗？"
+        ],
+        "cid": "37f9eac5",
+        "sentenceAudio": {
+          "text": "Could you cash this traveler's check for me?",
+          "audio": {
+            "url": "assets/oral-37f9eac5-0c56999d8f2b5c41556e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "02e75803cb9a48f313547a97bb278eca54a3a913580b15b6edbadf3203dbff86",
+            "bytes": 7581
+          }
+        }
+      },
+      {
+        "sentence": "Would you exchange this one hundred dollar bill with five twenties?",
+        "translation": "您能帮我把这张100美元的钞票换成5张20美元的吗？",
+        "chunks": [
+          "Would you exchange",
+          "this one hundred dollar bill",
+          "with five twenties?"
+        ],
+        "hints": [
+          "您能帮我换吗？",
+          "这张100美元的钞票",
+          "换成5张20美元的？"
+        ],
+        "cid": "8f561de7",
+        "sentenceAudio": {
+          "text": "Would you exchange this one hundred dollar bill with five twenties?",
+          "audio": {
+            "url": "assets/oral-8f561de7-641303efc6719bfd635a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f93c007a41149034e2375814a42e0fe5eaa8f9f33f4d3406f528c687f6e31489",
+            "bytes": 11621
+          }
+        }
+      },
+      {
+        "sentence": "Does anyone speak Japanese?",
+        "translation": "有人会说日语吗?",
+        "chunks": [
+          "Does anyone",
+          "speak Japanese?"
+        ],
+        "hints": [
+          "有人会",
+          "说日语吗？"
+        ],
+        "cid": "e1003cb0",
+        "sentenceAudio": {
+          "text": "Does anyone speak Japanese?",
+          "audio": {
+            "url": "assets/oral-e1003cb0-60cee7aceec0e8181bbd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0cd5b54a47c7ccc6a894e32771c774d1fedaca58f92c92f3cede431bdcb57607",
+            "bytes": 5987
+          }
+        }
+      },
+      {
+        "sentence": "Are there any messages for me?",
+        "translation": "有给我的留言吗?",
+        "chunks": [
+          "Are there any",
+          "messages for me?"
+        ],
+        "hints": [
+          "有吗？",
+          "给我的留言"
+        ],
+        "cid": "d9b5584b",
+        "sentenceAudio": {
+          "text": "Are there any messages for me?",
+          "audio": {
+            "url": "assets/oral-d9b5584b-c37034838899a30ec2b7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d4be821129f58ac4342e76a99eef7374b5601bf0a51a761470a0d7a088bc704b",
+            "bytes": 5689
+          }
+        }
+      },
+      {
+        "sentence": "Check out, please.",
+        "translation": "请帮我办理退房。",
+        "chunks": [
+          "Check out,",
+          "please."
+        ],
+        "hints": [
+          "办理退房",
+          "请。"
+        ],
+        "cid": "08800961",
+        "sentenceAudio": {
+          "text": "Check out, please.",
+          "audio": {
+            "url": "assets/oral-08800961-130d31a12aa513981e39.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "26e2cf520b8fbca88dd4ba026cb55d739629e0b41f87650a43358bacb55ffef3",
+            "bytes": 4375
+          }
+        }
+      },
+      {
+        "sentence": "Here's my room key.",
+        "translation": "这是我房间的钥匙。",
+        "chunks": [
+          "Here's",
+          "my room key."
+        ],
+        "hints": [
+          "这是",
+          "我的房间钥匙"
+        ],
+        "cid": "3c09b183",
+        "sentenceAudio": {
+          "text": "Here's my room key.",
+          "audio": {
+            "url": "assets/oral-3c09b183-85bcbb9a34046f184200.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7875a798e658de2cc5b1c47093d96579579d9dd70a2a172622ad8edf28154360",
+            "bytes": 4721
+          }
+        }
+      },
+      {
+        "sentence": "I didn't make any phone calls.",
+        "translation": "我没有打电话。",
+        "chunks": [
+          "I",
+          "didn't make any phone calls."
+        ],
+        "hints": [
+          "我",
+          "没有打电话"
+        ],
+        "cid": "f726b6d7",
+        "sentenceAudio": {
+          "text": "I didn't make any phone calls.",
+          "audio": {
+            "url": "assets/oral-f726b6d7-b8249a55790fbd5448bf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "73c49db038097f8d19e044eb523ba29984d3bef2800ae5ebff006f47a0fe8fdb",
+            "bytes": 5779
+          }
+        }
+      },
+      {
+        "sentence": "Here's your bill.",
+        "translation": "这是您的账单。",
+        "chunks": [
+          "Here's",
+          "your bill."
+        ],
+        "hints": [
+          "这是",
+          "您的账单。"
+        ],
+        "cid": "2c8fb98d",
+        "sentenceAudio": {
+          "text": "Here's your bill.",
+          "audio": {
+            "url": "assets/oral-2c8fb98d-2669d24f4255e7fda05f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "92cee864d54a589b73589ba0cf9c8bf93dcdb8709bb7f0d413a919e8660e0408",
+            "bytes": 4060
+          }
+        }
+      },
+      {
+        "sentence": "Could you call a taxi for me?",
+        "translation": "能帮我叫一辆出租车吗?",
+        "chunks": [
+          "Could you",
+          "call a taxi for me?"
+        ],
+        "hints": [
+          "您能",
+          "帮我叫一辆出租车吗？"
+        ],
+        "cid": "45a7feb0",
+        "sentenceAudio": {
+          "text": "Could you call a taxi for me?",
+          "audio": {
+            "url": "assets/oral-45a7feb0-93799c6ac341faa2ebee.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "607d5a3787c54b1b9ed6182648c3cfb3839d5ddabdd2cccf74fe1f1ce1688a68",
+            "bytes": 5681
+          }
+        }
+      },
+      {
+        "sentence": "Room service, please.",
+        "translation": "请提供客房服务。",
+        "chunks": [
+          "Room service, please."
+        ],
+        "hints": [
+          "请提供客房服务。"
+        ],
+        "cid": "9b60a1ab",
+        "sentenceAudio": {
+          "text": "Room service, please.",
+          "audio": {
+            "url": "assets/oral-9b60a1ab-8c92ae772033cce3e723.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bebf1b1ff4b78ec47157e891e357ae1e80b62238a1e7d53367c123e748e14112",
+            "bytes": 5196
+          }
+        }
+      },
+      {
+        "sentence": "A wake-up call, please.",
+        "translation": "请提供叫早服务。",
+        "chunks": [
+          "A wake-up call, please."
+        ],
+        "hints": [
+          "请提供叫早服务。"
+        ],
+        "cid": "98a7f04e",
+        "sentenceAudio": {
+          "text": "A wake-up call, please.",
+          "audio": {
+            "url": "assets/oral-98a7f04e-1f474df41d77cfc623eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2cf4bf22705c8b6e33d21b7bb48d3587dcfe55989fda3d3377ac8e4cecc5582",
+            "bytes": 5442
+          }
+        }
+      },
+      {
+        "sentence": "Can I borrow a hair dryer?",
+        "translation": "我可以借一下吹风机吗?",
+        "chunks": [
+          "Can I borrow",
+          "a hair dryer?"
+        ],
+        "hints": [
+          "我可以借",
+          "一下吹风机吗？"
+        ],
+        "cid": "1a16614f",
+        "sentenceAudio": {
+          "text": "Can I borrow a hair dryer?",
+          "audio": {
+            "url": "assets/oral-1a16614f-b5f1743ad175e401e824.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1f2f070d7d9ade7f517f2b2998a82996724cfd1f1894a9c16b83fbc32072c0a8",
+            "bytes": 5626
+          }
+        }
+      },
+      {
+        "sentence": "Please bring me a pot of coffee.",
+        "translation": "请送一壶咖啡。",
+        "chunks": [
+          "Please bring me",
+          "a pot of coffee."
+        ],
+        "hints": [
+          "请送",
+          "一壶咖啡。"
+        ],
+        "cid": "103edabe",
+        "sentenceAudio": {
+          "text": "Please bring me a pot of coffee.",
+          "audio": {
+            "url": "assets/oral-103edabe-e4e1c79c74027acdc733.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "53c9a64400f83432909ecc35596719062737dc793dcfb8f13d7545ad0caf5846",
+            "bytes": 5916
+          }
+        }
+      },
+      {
+        "sentence": "Laundry service, please.",
+        "translation": "请提供洗衣服务。",
+        "chunks": [
+          "Laundry service, please."
+        ],
+        "hints": [
+          "请提供洗衣服务。"
+        ],
+        "cid": "977d261f",
+        "sentenceAudio": {
+          "text": "Laundry service, please.",
+          "audio": {
+            "url": "assets/oral-977d261f-21347f3639d9515b1017.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "28a68e25165c32ecdb8e1b06c71f5fb38eb733e48daf763dafd5704e3b7261ac",
+            "bytes": 5581
+          }
+        }
+      },
+      {
+        "sentence": "When will it be ready?",
+        "translation": "什么时候能弄好?",
+        "chunks": [
+          "When will it",
+          "be ready?"
+        ],
+        "hints": [
+          "什么时候",
+          "能弄好？"
+        ],
+        "cid": "bc4027c7",
+        "sentenceAudio": {
+          "text": "When will it be ready?",
+          "audio": {
+            "url": "assets/oral-bc4027c7-a08dcea784ac64586b9a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1bc97e4c435b2fa030269c642dfd489f8ba033fe9321286917abdb1648378f38",
+            "bytes": 4645
+          }
+        }
+      },
+      {
+        "sentence": "Your room number, please.",
+        "translation": "请告诉我您的房间号码。",
+        "chunks": [
+          "Your room number, please."
+        ],
+        "hints": [
+          "请告诉我您的房间号。"
+        ],
+        "cid": "13eef39e",
+        "sentenceAudio": {
+          "text": "Your room number, please.",
+          "audio": {
+            "url": "assets/oral-13eef39e-a66d1c3f4443ef74c759.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "070c3a22b77e651d5dac5bdd1249b9b7229599732f7d413aeb921feac86aa723",
+            "bytes": 5383
+          }
+        }
+      },
+      {
+        "sentence": "This is room 501.",
+        "translation": "这是501房间。",
+        "chunks": [
+          "This is",
+          "room 501."
+        ],
+        "hints": [
+          "这是",
+          "501房间。"
+        ],
+        "cid": "7f4d3048",
+        "sentenceAudio": {
+          "text": "This is room 501.",
+          "audio": {
+            "url": "assets/oral-7f4d3048-df67c64572084a9e4a89.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b56ede987fa194f03a9184305323d83b9f336fc02776d1317cb54fa56dfc41fb",
+            "bytes": 6543
+          }
+        }
+      },
+      {
+        "sentence": "Come in.",
+        "cid": "6de68bea",
+        "translation": "请进。",
+        "chunks": [
+          "Come in."
+        ],
+        "hints": [
+          "请进。"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʌm/",
+              "/ɪn/"
+            ],
+            "pos": "邀请语",
+            "meaning": "请进"
+          }
+        ],
+        "explanations": [
+          "`Come in.` 是让人进屋最常用的说法，也用来回应敲门。常见错误：\n• \"Come into\" → into 后面必须接宾语（come into the room）\n• \"Enter in\" → enter 本身不接 in\n相关：Come on in.（快进来，更热情）/ After you.（您先请）"
+        ],
+        "distractors": [
+          [
+            "Come into.",
+            "Enter in.",
+            "Come out."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Come in.",
+          "audio": {
+            "url": "assets/oral-6de68bea-9b429eb76f4e20acb44d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9d03a23037c338d633fd8882392d1a2968616217d8844304969e6c8ce6e1149e",
+            "bytes": 3407
+          }
+        }
+      },
+      {
+        "sentence": "There is no hot water.",
+        "translation": "没有热水。",
+        "chunks": [
+          "There is no",
+          "hot water."
+        ],
+        "hints": [
+          "没有",
+          "热水。"
+        ],
+        "cid": "bc24cb70",
+        "sentenceAudio": {
+          "text": "There is no hot water.",
+          "audio": {
+            "url": "assets/oral-bc24cb70-b6d884dcb163de5c3c0d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f1bd66e90c7372e2293f93b2be63027d0878244e26fad0604268951396ca2edd",
+            "bytes": 5242
+          }
+        }
+      },
+      {
+        "sentence": "The room next door is noisy.",
+        "translation": "隔壁太吵了。",
+        "chunks": [
+          "The room next door",
+          "is noisy."
+        ],
+        "hints": [
+          "隔壁",
+          "太吵了。"
+        ],
+        "cid": "18564538",
+        "sentenceAudio": {
+          "text": "The room next door is noisy.",
+          "audio": {
+            "url": "assets/oral-18564538-6c57d046227ad94a9689.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "747217d919d0a96a617d2e2b4ef32c2c95f060ec5bf3c6ac8f36380ce142db9c",
+            "bytes": 5943
+          }
+        }
+      },
+      {
+        "sentence": "Could I possibly have another room key?",
+        "translation": "我能再要一把房间钥匙吗?",
+        "chunks": [
+          "Could I possibly have",
+          "another room key?"
+        ],
+        "hints": [
+          "我能再要",
+          "一把房间钥匙吗？"
+        ],
+        "cid": "8afc0384",
+        "sentenceAudio": {
+          "text": "Could I possibly have another room key?",
+          "audio": {
+            "url": "assets/oral-8afc0384-cf86f741993638c302a8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cea8afd5728595970250edc42ccf6083e9cf2af1490adc923c24490006c7ceed",
+            "bytes": 7055
+          }
+        }
+      },
+      {
+        "sentence": "I locked myself out.",
+        "translation": "我把自己锁在门外了。",
+        "chunks": [
+          "I",
+          "locked myself out."
+        ],
+        "hints": [
+          "我",
+          "把自己锁在门外了。"
+        ],
+        "cid": "2b75b5cc",
+        "sentenceAudio": {
+          "text": "I locked myself out.",
+          "audio": {
+            "url": "assets/oral-2b75b5cc-55b9edcad10cea2c4a2b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4855d363f8b564e9a1d9e5ac9dc2dbb1c71ad2644e732e7ad565451b8d23ebe",
+            "bytes": 5067
+          }
+        }
+      },
+      {
+        "sentence": "I'm locked out.",
+        "translation": "我被锁在外面了。",
+        "chunks": [
+          "I'm",
+          "locked out."
+        ],
+        "hints": [
+          "我",
+          "被锁在门外了。"
+        ],
+        "cid": "082f36f4",
+        "sentenceAudio": {
+          "text": "I'm locked out.",
+          "audio": {
+            "url": "assets/oral-082f36f4-e6372ac19a5ace6f617f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "568df6acfda21c01d93707c7efec63476eae6e7152595ee6550cfe0dbac16104",
+            "bytes": 4157
+          }
+        }
+      },
+      {
+        "sentence": "The TV doesn't work in my room.",
+        "translation": "我房间的电视不能看。",
+        "chunks": [
+          "The TV doesn't work",
+          "in my room."
+        ],
+        "hints": [
+          "电视不能用",
+          "在我房间里"
+        ],
+        "cid": "5ecc1eb9",
+        "sentenceAudio": {
+          "text": "The TV doesn't work in my room.",
+          "audio": {
+            "url": "assets/oral-5ecc1eb9-362554e2dbfedd9bec61.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6483d5ebb1fc46911dd8920e4b1045f748949cd6473deea3ed514d31d2366cdd",
+            "bytes": 6753
+          }
+        }
+      },
+      {
+        "sentence": "Could you send someone to fix it?",
+        "translation": "您能派人给修理一下儿吗?",
+        "chunks": [
+          "Could you send someone",
+          "to fix it?"
+        ],
+        "hints": [
+          "您能派人",
+          "给修理一下儿吗？"
+        ],
+        "cid": "83ea6863",
+        "sentenceAudio": {
+          "text": "Could you send someone to fix it?",
+          "audio": {
+            "url": "assets/oral-83ea6863-be29b7a1324950fac309.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e05f370ff28a481cefc3cd7d546c19bda069bc49620a43896e4e465ab0879603",
+            "bytes": 5758
+          }
+        }
+      },
+      {
+        "sentence": "Could you send someone up?",
+        "translation": "能请人上来一趟吗？",
+        "chunks": [
+          "Could you",
+          "send someone up?"
+        ],
+        "hints": [
+          "您能",
+          "请人上来一趟吗？"
+        ],
+        "cid": "75cb60af",
+        "sentenceAudio": {
+          "text": "Could you send someone up?",
+          "audio": {
+            "url": "assets/oral-75cb60af-f5e2913c926c6d07b065.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "855c13d5b559e406751f2d132da70805a3425a3738dbab1f7fce5fb994be968c",
+            "bytes": 4623
+          }
+        }
+      },
+      {
+        "sentence": "I have a reservation under the name Chen.",
+        "cid": "faaa45bb",
+        "translation": "我以陈这个名字订了房间。",
+        "chunks": [
+          "I have a reservation",
+          "under the name Chen."
+        ],
+        "hints": [
+          "我有一个预订",
+          "以陈这个名字"
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/hæv/",
+              "/ə/",
+              "/ˌrezəˈveɪʃn/"
+            ],
+            "pos": "完成陈述",
+            "meaning": "我有预订"
+          },
+          {
+            "role": "介词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈʌndər/",
+              "/ðə/",
+              "/neɪm/",
+              "/tʃen/"
+            ],
+            "pos": "方式状语",
+            "meaning": "以陈这个名字"
+          }
+        ],
+        "explanations": [
+          "酒店前台报预订名的标准句。`have a reservation` = 有预订。常见错误：\n• \"I **reserved** a room\" → 也正确但 hotel 场景用 have a reservation 更自然\n• \"I have reservation\" → 可数名词要加 a",
+          "`under the name Chen` = 以…名义预订，介词用 under 不用 with/in。"
+        ],
+        "distractors": [
+          [
+            "I've reservation",
+            "I have the reservation",
+            "I'm have a reservation"
+          ],
+          [
+            "with the name Chen.",
+            "on the name Chen.",
+            "under name Chen."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I have a reservation under the name Chen.",
+          "audio": {
+            "url": "assets/oral-faaa45bb-a99a7f2f8f4250a5ff9a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "217d0853387bdf3214adad768f9a2bb45470a5e087ebd90868c65e0cf5bce7ac",
+            "bytes": 7709
+          }
+        }
+      },
+      {
+        "sentence": "What time is check-out tomorrow morning?",
+        "cid": "32facf35",
+        "translation": "明天早上几点退房？",
+        "chunks": [
+          "What time is",
+          "check-out",
+          "tomorrow morning?"
+        ],
+        "hints": [
+          "几点",
+          "退房",
+          "明天早上"
+        ],
+        "grammar": [
+          {
+            "role": "疑问结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɒt/",
+              "/taɪm/",
+              "/ɪz/"
+            ],
+            "pos": "特殊疑问句",
+            "meaning": "几点"
+          },
+          {
+            "role": "名词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈtʃekaʊt/"
+            ],
+            "pos": "复合名词",
+            "meaning": "退房"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/təˈmɒrəʊ/",
+              "/ˈmɔːnɪŋ/"
+            ],
+            "pos": "名词短语",
+            "meaning": "明天早上"
+          }
+        ],
+        "explanations": [
+          "酒店场景问退房时间。`check-out`（退房）对应 check-in（入住）。常见错误：\n• \"What time **is it** check-out\" → 直接 What time is + 事件，不加 it\n• \"when is checkout\" → 也可以，但 what time 更精确到几点",
+          "`tomorrow morning` 时间状语，前面不加 in/on。同系列：this morning / yesterday morning。"
+        ],
+        "distractors": [
+          [
+            "What time does",
+            "Which time is",
+            "What time was"
+          ],
+          [
+            "check in",
+            "the check-out",
+            "checking-out"
+          ],
+          [
+            "in tomorrow morning?",
+            "next morning?",
+            "on tomorrow morning?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What time is check-out tomorrow morning?",
+          "audio": {
+            "url": "assets/oral-32facf35-207252f57684c7ae418d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5a4c534947534cdfaf4f558842a67b2d75f51056cb9caac5a40e6d9b797edad3",
+            "bytes": 7143
+          }
+        }
+      },
+      {
+        "sentence": "Could I have a room with a view?",
+        "cid": "c0724b3e",
+        "translation": "我能要一间看得见风景的房间吗？",
+        "chunks": [
+          "Could I have",
+          "a room with a view?"
+        ],
+        "hints": [
+          "我能要",
+          "一间能看到风景的房间"
+        ],
+        "grammar": [
+          {
+            "role": "情态疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/aɪ/",
+              "/hæv/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "我能要"
+          },
+          {
+            "role": "名词短语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/ruːm/",
+              "/wɪð/",
+              "/ə/",
+              "/vjuː/"
+            ],
+            "pos": "宾语",
+            "meaning": "能看到风景的房间"
+          }
+        ],
+        "explanations": [
+          "`Could I have...` 酒店委婉索取句式（同 Could we have / May I have）。",
+          "`a room with a view` = 景观房。with 引导后置定语修饰 room。常见错误：\n• \"a view room\" → 不地道，用 a room with a view\n• \"a room **has** a view\" → 定语用 with，不能直接接动词"
+        ],
+        "distractors": [
+          [
+            "Can I had",
+            "Could I to have",
+            "Could me have"
+          ],
+          [
+            "a view room?",
+            "a room in a view?",
+            "a room with view?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could I have a room with a view?",
+          "audio": {
+            "url": "assets/oral-c0724b3e-73d2e2e890d7b3f36bae.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a80bdc89bf7e63195801820636148ee91f3fd04f92ed46522f68e78f403114d3",
+            "bytes": 5641
+          }
+        }
+      },
+      {
+        "sentence": "The air conditioner doesn't seem to work.",
+        "cid": "e0229bb6",
+        "translation": "空调好像坏了。",
+        "chunks": [
+          "The air conditioner",
+          "doesn't seem to work."
+        ],
+        "hints": [
+          "空调",
+          "似乎不工作了"
+        ],
+        "grammar": [
+          {
+            "role": "主语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ði/",
+              "/eər/",
+              "/kənˈdɪʃənər/"
+            ],
+            "pos": "名词短语",
+            "meaning": "空调"
+          },
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈdʌznt/",
+              "/siːm/",
+              "/tuː/",
+              "/wɜːk/"
+            ],
+            "pos": "seem 结构",
+            "meaning": "似乎不工作"
+          }
+        ],
+        "explanations": [
+          "`the air conditioner` 空调（口语常缩略为 the AC）。",
+          "`doesn't seem to work` = 似乎坏了。seem to do = 看起来…。常见错误：\n• \"doesn't seems to work\" → 助动词后接原形 seem\n• \"doesn't work\" → 少了 seem 的委婉，直接说坏了语气太绝对"
+        ],
+        "distractors": [
+          [
+            "The air conditioners",
+            "An air conditioner",
+            "The air's conditioner"
+          ],
+          [
+            "doesn't seems to work.",
+            "isn't seem to work.",
+            "doesn't work to seem."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "The air conditioner doesn't seem to work.",
+          "audio": {
+            "url": "assets/oral-e0229bb6-177131f2d5180f44f798.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "393a294946f8e33e5cc84839970deb2b19d1e90854abfe789a58ef551e7e717e",
+            "bytes": 7528
+          }
+        }
+      },
+      {
+        "sentence": "Could you send someone up to fix it?",
+        "cid": "8f6161c2",
+        "translation": "你能派人上来修一下吗？",
+        "chunks": [
+          "Could you send someone up",
+          "to fix it?"
+        ],
+        "hints": [
+          "你能派个人上来",
+          "修理它"
+        ],
+        "grammar": [
+          {
+            "role": "情态+谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/juː/",
+              "/send/",
+              "/ˈsʌmwʌn/",
+              "/ʌp/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "你能派人上来"
+          },
+          {
+            "role": "不定式目的",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tuː/",
+              "/fɪks/",
+              "/ɪt/"
+            ],
+            "pos": "目的状语",
+            "meaning": "去修理"
+          }
+        ],
+        "explanations": [
+          "酒店报修用语。`send someone up` = 派人上来（up 指上楼到客房）。常见错误：\n• \"send someone **to** up\" → up 是副词，直接接在宾语后\n• \"send up someone\" → 宾语长时 up 放后更自然",
+          "`to fix it` 不定式表目的 = 来修理。同义：to repair it / to take a look at it."
+        ],
+        "distractors": [
+          [
+            "Could you sent someone up",
+            "Can you to send someone up",
+            "Could you send anyone up"
+          ],
+          [
+            "fixing it?",
+            "to fixing it?",
+            "for fix it?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you send someone up to fix it?",
+          "audio": {
+            "url": "assets/oral-8f6161c2-c2552e67d833bc0f0fd1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1d00c821eec03e019d9686f33318151778c43433164b7faa31b06173e5227aea",
+            "bytes": 6072
+          }
+        }
+      },
+      {
+        "sentence": "Could I see your boarding pass, please?",
+        "cid": "cf1b44ab",
+        "translation": "请出示您的登机牌好吗？",
+        "chunks": [
+          "Could I see",
+          "your boarding pass,",
+          "please?"
+        ],
+        "hints": [
+          "我能看一下",
+          "您的登机牌",
+          "请"
+        ],
+        "grammar": [
+          {
+            "role": "情态疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/kʊd/",
+              "/aɪ/",
+              "/siː/"
+            ],
+            "pos": "委婉请求",
+            "meaning": "我能看"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jɔːr/",
+              "/ˈbɔːdɪŋ/",
+              "/pɑːs/"
+            ],
+            "pos": "名词短语",
+            "meaning": "您的登机牌"
+          },
+          {
+            "role": "礼貌词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/pliːz/"
+            ],
+            "pos": "语气词",
+            "meaning": "请"
+          }
+        ],
+        "explanations": [
+          "机场登机口查验登机牌的用语。`boarding pass` = 登机牌（boarding card 同义）。",
+          "`your boarding pass,` 名词短语作宾语，后接 please 表请求。注意 boarding pass 中间不加空格外的词：不说 boarding **the** pass。",
+          "`please?` 放在句尾升调表请求。也可前置：Please, could I see…?"
+        ],
+        "distractors": [
+          [
+            "Can I saw",
+            "Could me see",
+            "Could I seeing"
+          ],
+          [
+            "your board pass,",
+            "you boarding pass,",
+            "your boarding ticket,"
+          ],
+          [
+            "pleased?",
+            "pleases?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Could I see your boarding pass, please?",
+          "audio": {
+            "url": "assets/oral-cf1b44ab-24ff72ae6d80a34a607b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "450b92dd9d16c9a0709842aa044486f5b9247defaa0d671918c81d707c30c4fe",
+            "bytes": 6590
+          }
+        }
+      },
+      {
+        "sentence": "How many bags are you checking in?",
+        "cid": "df26fb4e",
+        "translation": "您要托运几件行李？",
+        "chunks": [
+          "How many bags",
+          "are you checking in?"
+        ],
+        "hints": [
+          "多少件行李",
+          "你要托运"
+        ],
+        "grammar": [
+          {
+            "role": "疑问短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/haʊ/",
+              "/ˈmeni/",
+              "/bæɡz/"
+            ],
+            "pos": "疑问词+名词",
+            "meaning": "多少件行李"
+          },
+          {
+            "role": "现在进行疑问",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɑːr/",
+              "/juː/",
+              "/ˈtʃekɪŋ/",
+              "/ɪn/"
+            ],
+            "pos": "进行时疑问",
+            "meaning": "你要托运"
+          }
+        ],
+        "explanations": [
+          "值机柜台问行李数。`bags` 口语指行李箱。常见错误：\n• \"How **much** bags\" → bags 可数用 many\n• \"How many **baggage**\" → baggage 不可数，不用 many 修饰",
+          "`check in` 此处指「托运行李」（check in bags）。注意拆开使用：checking **in** 的 in 不能丢。"
+        ],
+        "distractors": [
+          [
+            "How much bags",
+            "How many bag",
+            "How many luggages"
+          ],
+          [
+            "you are checking in?",
+            "are you check in?",
+            "are you checking on?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "How many bags are you checking in?",
+          "audio": {
+            "url": "assets/oral-df26fb4e-307ae746e760601de2aa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f6a936dacb282e74c1d9874ffe745bccced41db06fb09b3dedbdd04559bf577b",
+            "bytes": 6213
+          }
+        }
+      },
+      {
+        "sentence": "Get on the plane.",
+        "cid": "284f75cd",
+        "translation": "上飞机。",
+        "chunks": [
+          "Get on",
+          "the plane."
+        ],
+        "hints": [
+          "登上",
+          "飞机"
+        ],
+        "grammar": [
+          {
+            "role": "谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ɡet/",
+              "/ɑːn/"
+            ],
+            "pos": "短语动词 get on",
+            "meaning": "登上"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ðə/",
+              "/pleɪn/"
+            ],
+            "pos": "名词短语",
+            "meaning": "飞机"
+          }
+        ],
+        "explanations": [
+          "飞机、公交、火车、船这类「登上去」的交通工具用 `get on`。常见错误：\n• \"Get in the plane\" → in 指进到某个内部空间，登机用 on\n• \"Get the plane\" → 少了 on，意思变成得到飞机",
+          "下机：get off the plane。"
+        ],
+        "distractors": [
+          [
+            "Get in",
+            "Get at",
+            "Get of"
+          ],
+          [
+            "the planes.",
+            "a plane.",
+            "the plane of."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Get on the plane.",
+          "audio": {
+            "url": "assets/oral-284f75cd-a63b8906c3b94cabce0c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "450d03e3eba645699d9a003e4c051bbebec12d8941b6e63b43d8c329d3efcca2",
+            "bytes": 4225
+          }
+        }
+      }
+    ]
+  }
+}

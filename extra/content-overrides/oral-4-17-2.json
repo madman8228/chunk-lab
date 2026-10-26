@@ -1,0 +1,1444 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-4-17-2",
+    "name": "口语3000句 · 生气时 · 厌烦～吵骂",
+    "short": "厌烦～吵骂",
+    "desc": "厌烦～吵骂",
+    "chapter": 4,
+    "section": "4.17",
+    "sectionTitle": "生气时",
+    "topic": "厌烦～吵骂",
+    "baseCount": 0,
+    "totalCount": 67,
+    "items": [
+      {
+        "sentence": "It's boring.",
+        "translation": "真无聊!",
+        "chunks": [
+          "It's",
+          "boring."
+        ],
+        "hints": [
+          "真",
+          "无聊！"
+        ],
+        "cid": "7d1a31c3",
+        "sentenceAudio": {
+          "text": "It's boring.",
+          "audio": {
+            "url": "assets/oral-7d1a31c3-650bc80f283dd2b8b98a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "877d0e4ec734f851a398f818819ab2a26e300c73573fd4274dffe2397605caa5",
+            "bytes": 3896
+          }
+        }
+      },
+      {
+        "sentence": "Dull.",
+        "translation": "真没意思!",
+        "chunks": [
+          "Dull."
+        ],
+        "hints": [
+          "真没意思！"
+        ],
+        "cid": "a6f4e1c4",
+        "sentenceAudio": {
+          "text": "Dull.",
+          "audio": {
+            "url": "assets/oral-a6f4e1c4-310c3c5095e65e90f119.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8b23ff9b0295b43e023c2a82a5717d6c9f197da268bd1146a1e26ed76107081b",
+            "bytes": 2922
+          }
+        }
+      },
+      {
+        "sentence": "It's for the birds.",
+        "translation": "毫无价值！/不值一提！",
+        "chunks": [
+          "It's for the birds."
+        ],
+        "hints": [
+          "毫无价值！/不值一提！"
+        ],
+        "cid": "49d2d930",
+        "sentenceAudio": {
+          "text": "It's for the birds.",
+          "audio": {
+            "url": "assets/oral-49d2d930-6094eb5c61dc0cd36fd4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "718769fb28d93ddc9f9eab29cc616056c468b34414641e259714cfd55e3b83aa",
+            "bytes": 4432
+          }
+        }
+      },
+      {
+        "sentence": "I'm not interested.",
+        "translation": "我不感兴趣。",
+        "chunks": [
+          "I'm not",
+          "interested."
+        ],
+        "hints": [
+          "我不",
+          "感兴趣。"
+        ],
+        "cid": "d3228102",
+        "sentenceAudio": {
+          "text": "I'm not interested.",
+          "audio": {
+            "url": "assets/oral-d3228102-d104b72d4390d5344ce8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e19f553bf44bb22daf1cea1dd8b1f9aad84def0a37f32ef720886f2bb0d2044",
+            "bytes": 4730
+          }
+        }
+      },
+      {
+        "sentence": "It's nothing great.",
+        "translation": "没什么了不起的。",
+        "chunks": [
+          "It's",
+          "nothing great."
+        ],
+        "hints": [
+          "没什么",
+          "了不起的。"
+        ],
+        "cid": "a5ffdfa8",
+        "sentenceAudio": {
+          "text": "It's nothing great.",
+          "audio": {
+            "url": "assets/oral-a5ffdfa8-cf3bfca8c775810b9260.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "732aea084a79b137917bcdd5c1c91e55018992a83c1baa6896af172c79e471b5",
+            "bytes": 4607
+          }
+        }
+      },
+      {
+        "sentence": "I'm not satisfied.",
+        "translation": "我不满意。",
+        "chunks": [
+          "I'm not",
+          "satisfied."
+        ],
+        "hints": [
+          "我不",
+          "满意。"
+        ],
+        "cid": "a0c88b41",
+        "sentenceAudio": {
+          "text": "I'm not satisfied.",
+          "audio": {
+            "url": "assets/oral-a0c88b41-d5f798d428779fe27d5e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b07e18208f91635b4be9b6d3545bf25aafb2bd4b0855733d3523b99aaf7dba93",
+            "bytes": 4772
+          }
+        }
+      },
+      {
+        "sentence": "It was just another meeting.",
+        "translation": "不过只是又一场会议。",
+        "chunks": [
+          "It was just",
+          "another meeting."
+        ],
+        "hints": [
+          "不过只是",
+          "又一场会议。"
+        ],
+        "cid": "2da32e1f",
+        "sentenceAudio": {
+          "text": "It was just another meeting.",
+          "audio": {
+            "url": "assets/oral-2da32e1f-748f64d4cf8080d23a4e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f39f10dfe8830778eb303b2be11bcd16c780c524a929eaa0b4bcdb9f983512ac",
+            "bytes": 5627
+          }
+        }
+      },
+      {
+        "sentence": "I can't get into my work.",
+        "translation": "我不能专心工作。",
+        "chunks": [
+          "I can't",
+          "get into my work."
+        ],
+        "hints": [
+          "我不能",
+          "专心工作。"
+        ],
+        "cid": "b8d24250",
+        "sentenceAudio": {
+          "text": "I can't get into my work.",
+          "audio": {
+            "url": "assets/oral-b8d24250-0f92588d68c96680bfa3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "98ac8b5eed86f54a1323f42dbbd2e6895a32f0f8490407e2707851bb88d9948b",
+            "bytes": 5222
+          }
+        }
+      },
+      {
+        "sentence": "It's outdated.",
+        "translation": "过时了。",
+        "chunks": [
+          "It's outdated."
+        ],
+        "hints": [
+          "过时了。"
+        ],
+        "cid": "89ab6ea0",
+        "sentenceAudio": {
+          "text": "It's outdated.",
+          "audio": {
+            "url": "assets/oral-89ab6ea0-8899e7214bb9284351ac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "79b6be45dacc5c2934909384b1e06f1318a0e0689937c0cae375c0f31a798568",
+            "bytes": 4121
+          }
+        }
+      },
+      {
+        "sentence": "Give me a break",
+        "translation": "拜托！/饶了我吧！",
+        "chunks": [
+          "Give me a break"
+        ],
+        "hints": [
+          "拜托！/饶了我吧！"
+        ],
+        "cid": "5d29495a",
+        "sentenceAudio": {
+          "text": "Give me a break",
+          "audio": {
+            "url": "assets/oral-5d29495a-5f6238b140b561618504.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "114ac789309b93eb612b8cf6b495a917f9162bd4c054e4c182aaea6dd52d83f3",
+            "bytes": 3907
+          }
+        }
+      },
+      {
+        "sentence": "I can't stand it.",
+        "translation": "我忍受不了。",
+        "chunks": [
+          "I",
+          "can't stand it."
+        ],
+        "hints": [
+          "我",
+          "忍受不了。"
+        ],
+        "cid": "e2c185a0",
+        "sentenceAudio": {
+          "text": "I can't stand it.",
+          "audio": {
+            "url": "assets/oral-e2c185a0-c297f747efbd4e5fda3b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1b053a7999e1cd2410b9406e085b16d5a7080065aec6a9b9a93836bbcb9d640a",
+            "bytes": 4370
+          }
+        }
+      },
+      {
+        "sentence": "That's enough.",
+        "translation": "够了!",
+        "chunks": [
+          "That's",
+          "enough."
+        ],
+        "hints": [
+          "那",
+          "够了。"
+        ],
+        "cid": "bd48d404",
+        "sentenceAudio": {
+          "text": "That's enough.",
+          "audio": {
+            "url": "assets/oral-bd48d404-9346eff9ed59dd1b6008.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e71d13c0989e810df431effddaa9ef8daab45c4a7b39127a65d7d4b3afd33ec3",
+            "bytes": 3704
+          }
+        }
+      },
+      {
+        "sentence": "Have a heart!",
+        "translation": "饶了我吧!",
+        "chunks": [
+          "Have a heart!"
+        ],
+        "hints": [
+          "饶了我吧！"
+        ],
+        "cid": "29176067",
+        "sentenceAudio": {
+          "text": "Have a heart!",
+          "audio": {
+            "url": "assets/oral-29176067-5b322a652deba5bc3737.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2d1060eddd0a9b37e6518e553490b7cd694ee0a16d1edcf28cc05e30c61a320a",
+            "bytes": 3777
+          }
+        }
+      },
+      {
+        "sentence": "The more I hear about it, the more disgusted I get.",
+        "translation": "越听越反感。",
+        "chunks": [
+          "The more I hear about it,",
+          "the more disgusted I get."
+        ],
+        "hints": [
+          "越听",
+          "越反感。"
+        ],
+        "cid": "72a1f935",
+        "sentenceAudio": {
+          "text": "The more I hear about it, the more disgusted I get.",
+          "audio": {
+            "url": "assets/oral-72a1f935-97e4bcd556b824b49480.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e6e544ccf0150a38ab5e84ae48967452196847a830436d0b8feaf4397f48e8ec",
+            "bytes": 9784
+          }
+        }
+      },
+      {
+        "sentence": "There she goes again.",
+        "translation": "她又来了。",
+        "chunks": [
+          "There she",
+          "goes again."
+        ],
+        "hints": [
+          "她",
+          "又来了。"
+        ],
+        "cid": "201d877b",
+        "sentenceAudio": {
+          "text": "There she goes again.",
+          "audio": {
+            "url": "assets/oral-201d877b-0bf6b4db07885f2d0594.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1b184b9d9c2499898e01a2757aab2b29b4a071c61436959aba6350c10a4dd1d3",
+            "bytes": 4752
+          }
+        }
+      },
+      {
+        "sentence": "Oh, man!",
+        "translation": "哦，真烦。",
+        "chunks": [
+          "Oh,",
+          "man!"
+        ],
+        "hints": [
+          "哦，",
+          "真烦。"
+        ],
+        "cid": "dd8413b9",
+        "sentenceAudio": {
+          "text": "Oh, man!",
+          "audio": {
+            "url": "assets/oral-dd8413b9-129c207d590d5a63260a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d513c21d21e38fbb3af12c7fde4b221d3deee5bb8fe30525a150b6fa6370305b",
+            "bytes": 3615
+          }
+        }
+      },
+      {
+        "sentence": "I don't want to hear it.",
+        "translation": "我不想听。",
+        "chunks": [
+          "I",
+          "don't want to hear it."
+        ],
+        "hints": [
+          "我",
+          "不想听。"
+        ],
+        "cid": "dec40676",
+        "sentenceAudio": {
+          "text": "I don't want to hear it.",
+          "audio": {
+            "url": "assets/oral-dec40676-f9085e51c783abf69153.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8e026ae6319ecdeba6ed676598095580468c89639019339f53df6fbfff2d1dfc",
+            "bytes": 4492
+          }
+        }
+      },
+      {
+        "sentence": "Now what?",
+        "translation": "这次又是什么?",
+        "chunks": [
+          "Now",
+          "what?"
+        ],
+        "hints": [
+          "这次又",
+          "是什么？"
+        ],
+        "cid": "6fbc9600",
+        "sentenceAudio": {
+          "text": "Now what?",
+          "audio": {
+            "url": "assets/oral-6fbc9600-228eee0af405c2389c6c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "18cde5cabff86de74e057a1a95ef51004f8ad080d3e4241f950f2313aff2b63e",
+            "bytes": 3487
+          }
+        }
+      },
+      {
+        "sentence": "Shut up!",
+        "translation": "闭嘴!",
+        "chunks": [
+          "Shut up!"
+        ],
+        "hints": [
+          "闭嘴！"
+        ],
+        "cid": "37fb578b",
+        "sentenceAudio": {
+          "text": "Shut up!",
+          "audio": {
+            "url": "assets/oral-37fb578b-9be007074b1762e0f480.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "de66b8b732e51a547f10645dd8eb7b468a3142ceafb70ef9f996c87130707713",
+            "bytes": 3306
+          }
+        }
+      },
+      {
+        "sentence": "Don't be a back seat driver.",
+        "translation": "别指手划脚!",
+        "chunks": [
+          "Don't be a",
+          "back seat driver."
+        ],
+        "hints": [
+          "别",
+          "指手划脚！"
+        ],
+        "cid": "6143c661",
+        "sentenceAudio": {
+          "text": "Don't be a back seat driver.",
+          "audio": {
+            "url": "assets/oral-6143c661-3936404efc0129463cb1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3390680aadadbc72ccb62d19f3bd9532bd8fe317ee9f9479ea0d3129523f1638",
+            "bytes": 5512
+          }
+        }
+      },
+      {
+        "sentence": "Stop shouting!",
+        "translation": "别大声嚷嚷!",
+        "chunks": [
+          "Stop",
+          "shouting!"
+        ],
+        "hints": [
+          "别大声",
+          "嚷嚷！"
+        ],
+        "cid": "ef0d37b3",
+        "sentenceAudio": {
+          "text": "Stop shouting!",
+          "audio": {
+            "url": "assets/oral-ef0d37b3-6bbafa42d832b8028d2f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cb410bb8dc4a4b6b4d3ae440dd8c3693530777194c8b8e464e583958387106b6",
+            "bytes": 4224
+          }
+        }
+      },
+      {
+        "sentence": "Stop complaining!",
+        "translation": "别抱怨了!",
+        "chunks": [
+          "Stop",
+          "complaining!"
+        ],
+        "hints": [
+          "别",
+          "抱怨了！"
+        ],
+        "cid": "7cc10ddb",
+        "sentenceAudio": {
+          "text": "Stop complaining!",
+          "audio": {
+            "url": "assets/oral-7cc10ddb-b019b4741df182ae865e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a7aaae89eb9f9ceedde42c35a10ad30b7b4d6e00a6c212a434253b5f721fe95f",
+            "bytes": 4524
+          }
+        }
+      },
+      {
+        "sentence": "Calm down, will you?",
+        "translation": "安静点，行不行?",
+        "chunks": [
+          "Calm down,",
+          "will you?"
+        ],
+        "hints": [
+          "安静点，",
+          "行不行？"
+        ],
+        "cid": "c702772e",
+        "sentenceAudio": {
+          "text": "Calm down, will you?",
+          "audio": {
+            "url": "assets/oral-c702772e-9ce474630ff504bb8e5c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ef7373dd6de232fc779736155ab4be723cc138de3bafca9d1e2db82c78b41c0c",
+            "bytes": 4698
+          }
+        }
+      },
+      {
+        "sentence": "Stop nagging!",
+        "translation": "别唠叨了！",
+        "chunks": [
+          "Stop",
+          "nagging!"
+        ],
+        "hints": [
+          "别",
+          "唠叨了！"
+        ],
+        "cid": "82313627",
+        "sentenceAudio": {
+          "text": "Stop nagging!",
+          "audio": {
+            "url": "assets/oral-82313627-afa4eaf6f80d5dd6608e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a57a0a6525a7d7f299502a178c5ca0d98125f33dc56b4a7c913ddca06166b01c",
+            "bytes": 3992
+          }
+        }
+      },
+      {
+        "sentence": "Get off my back.",
+        "translation": "别再烦我了！",
+        "chunks": [
+          "Get off my back."
+        ],
+        "hints": [
+          "别再烦我了！"
+        ],
+        "cid": "0ca09aef",
+        "sentenceAudio": {
+          "text": "Get off my back.",
+          "audio": {
+            "url": "assets/oral-0ca09aef-8e5e19f2b94131702eda.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ac63fcb1bb26813693628a8bd72af70a7a31fe2548f3bc3bb7ffdc03bea4213d",
+            "bytes": 4246
+          }
+        }
+      },
+      {
+        "sentence": "Don't talk back to me!",
+        "translation": "别跟我顶嘴!",
+        "chunks": [
+          "Don't talk back to me!"
+        ],
+        "hints": [
+          "别跟我顶嘴！"
+        ],
+        "cid": "8b8dcbe4",
+        "sentenceAudio": {
+          "text": "Don't talk back to me!",
+          "audio": {
+            "url": "assets/oral-8b8dcbe4-c96e09ca12ebbe100d71.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f90125b06f70d3c1b10fde7d9cd8f3065381feea0c1b3887177776ade758ca63",
+            "bytes": 4921
+          }
+        }
+      },
+      {
+        "sentence": "Big mouth!",
+        "translation": "多嘴!",
+        "chunks": [
+          "Big mouth!"
+        ],
+        "hints": [
+          "多嘴！"
+        ],
+        "cid": "14a5e161",
+        "sentenceAudio": {
+          "text": "Big mouth!",
+          "audio": {
+            "url": "assets/oral-14a5e161-9ed493fc0f4ef3adc212.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "87e0700a4dba764e58c5464bd549bab16b4ebe1979e372be6dcc5ce0ceee270a",
+            "bytes": 3710
+          }
+        }
+      },
+      {
+        "sentence": "Leave me alone!",
+        "translation": "离我远点儿!",
+        "chunks": [
+          "Leave me",
+          "alone!"
+        ],
+        "hints": [
+          "离我",
+          "远点儿！"
+        ],
+        "cid": "5e16b0d4",
+        "sentenceAudio": {
+          "text": "Leave me alone!",
+          "audio": {
+            "url": "assets/oral-5e16b0d4-8227beeebbf69c4bc7c5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31cb02123f7c2f015caded86e9a31f4e9c403af21dde856a59f9c4f69572e36a",
+            "bytes": 4208
+          }
+        }
+      },
+      {
+        "sentence": "None of your business.",
+        "translation": "没你的事!",
+        "chunks": [
+          "None of",
+          "your business."
+        ],
+        "hints": [
+          "没",
+          "你的事！"
+        ],
+        "cid": "efd57bbf",
+        "sentenceAudio": {
+          "text": "None of your business.",
+          "audio": {
+            "url": "assets/oral-efd57bbf-ba8b9c7490e1f4ad225a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "193165b1ce44824c60a4dbf1ce82c3fdd336eb5908932deb6687c8f06f4cdbf3",
+            "bytes": 4637
+          }
+        }
+      },
+      {
+        "sentence": "Who asked you?",
+        "translation": "谁问你了?",
+        "chunks": [
+          "Who",
+          "asked you?"
+        ],
+        "hints": [
+          "谁",
+          "问你了？"
+        ],
+        "cid": "44f4277d",
+        "sentenceAudio": {
+          "text": "Who asked you?",
+          "audio": {
+            "url": "assets/oral-44f4277d-1bafede4043fc7a0c642.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a6dd0176ad0790c11fb55b03bb3376bf34113b4db7d5ab6dfa304696e3bd7411",
+            "bytes": 3924
+          }
+        }
+      },
+      {
+        "sentence": "I can't talk to you now.",
+        "translation": "现在不能跟你说。",
+        "chunks": [
+          "I can't talk to you",
+          "now."
+        ],
+        "hints": [
+          "我不能跟你说话",
+          "现在"
+        ],
+        "cid": "6faf0309",
+        "sentenceAudio": {
+          "text": "I can't talk to you now.",
+          "audio": {
+            "url": "assets/oral-6faf0309-aeb47c5b84f01df2c9cb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "21af297358c7e27564ea05a8f6011e1891e5bf0a91851504f35357a85c7df4dc",
+            "bytes": 5098
+          }
+        }
+      },
+      {
+        "sentence": "I don't need your help.",
+        "translation": "我不需要你的帮助。",
+        "chunks": [
+          "I don't need",
+          "your help."
+        ],
+        "hints": [
+          "我不需要",
+          "你的帮助。"
+        ],
+        "cid": "f7229c5e",
+        "sentenceAudio": {
+          "text": "I don't need your help.",
+          "audio": {
+            "url": "assets/oral-f7229c5e-e2ecace537d18d720e6f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "796a1361e0ec631acfdf28cff41531f6b168d676459fb9af05218be9abf4bdb8",
+            "bytes": 4258
+          }
+        }
+      },
+      {
+        "sentence": "Get out of my face!",
+        "translation": "离我远点！",
+        "chunks": [
+          "Get out of my face!"
+        ],
+        "hints": [
+          "离我远点！"
+        ],
+        "cid": "59809d42",
+        "sentenceAudio": {
+          "text": "Get out of my face!",
+          "audio": {
+            "url": "assets/oral-59809d42-6a77f6f1ea2bdc09bb4a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "df624648429e3c6042815dabdf4fdfbc36069807dbf95c52ee3261d828a85183",
+            "bytes": 4504
+          }
+        }
+      },
+      {
+        "sentence": "Don't bother me!",
+        "translation": "别打扰我!",
+        "chunks": [
+          "Don't",
+          "bother me!"
+        ],
+        "hints": [
+          "别",
+          "打扰我！"
+        ],
+        "cid": "108eec46",
+        "sentenceAudio": {
+          "text": "Don't bother me!",
+          "audio": {
+            "url": "assets/oral-108eec46-726df2bd46431139d4d7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9a0e3056fd8cc82234e590f90462b31c85dbfa2f3570594912423ce4f9d7cc74",
+            "bytes": 4203
+          }
+        }
+      },
+      {
+        "sentence": "Are you trying to get rid of me?",
+        "translation": "你想把我轰走吗?",
+        "chunks": [
+          "Are you trying",
+          "to get rid of me?"
+        ],
+        "hints": [
+          "你想",
+          "把我轰走吗？"
+        ],
+        "cid": "a5bbce7d",
+        "sentenceAudio": {
+          "text": "Are you trying to get rid of me?",
+          "audio": {
+            "url": "assets/oral-a5bbce7d-cc42e7b10918fdb9d377.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ade021170e0c8de49a4c37b771fb18cb6b8e0c9e7ee66cbe7d0d6abb1f69dcda",
+            "bytes": 5340
+          }
+        }
+      },
+      {
+        "sentence": "Liar!",
+        "translation": "骗子!",
+        "chunks": [
+          "Liar!"
+        ],
+        "hints": [
+          "骗子！"
+        ],
+        "cid": "6b53d39c",
+        "sentenceAudio": {
+          "text": "Liar!",
+          "audio": {
+            "url": "assets/oral-6b53d39c-f0a76b1e70617df5b056.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "02d44158b1d4dfda01da23d54f04097f2ab52b0978fb7493093f9e1e43ea621f",
+            "bytes": 3341
+          }
+        }
+      },
+      {
+        "sentence": "That's a lie!",
+        "translation": "那是瞎说!",
+        "chunks": [
+          "That's",
+          "a lie!"
+        ],
+        "hints": [
+          "那是",
+          "瞎说！"
+        ],
+        "cid": "9d691ad6",
+        "sentenceAudio": {
+          "text": "That's a lie!",
+          "audio": {
+            "url": "assets/oral-9d691ad6-8c5b261c7ed787edc64f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f9476326c90ab336c89fcd67ae4cd65a7de47ca7b2a1d44a6a8ea0fbd2e4457f",
+            "bytes": 3905
+          }
+        }
+      },
+      {
+        "sentence": "Don't lie to me.",
+        "translation": "别骗我。",
+        "chunks": [
+          "Don't",
+          "lie to me."
+        ],
+        "hints": [
+          "别",
+          "骗我。"
+        ],
+        "cid": "05d9b444",
+        "sentenceAudio": {
+          "text": "Don't lie to me.",
+          "audio": {
+            "url": "assets/oral-05d9b444-2b5866029da4d6a78338.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4bc919ca5010ed2104f4817e600a9321642673439c943ccf91a493c69d55a691",
+            "bytes": 4172
+          }
+        }
+      },
+      {
+        "sentence": "Stop joking!",
+        "translation": "别开玩笑!",
+        "chunks": [
+          "Stop",
+          "joking!"
+        ],
+        "hints": [
+          "别",
+          "开玩笑！"
+        ],
+        "cid": "30ba812a",
+        "sentenceAudio": {
+          "text": "Stop joking!",
+          "audio": {
+            "url": "assets/oral-30ba812a-edb5c5d5ddaaebff7544.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2b7fda5113a2d6e590fea2ac39c75f0d900c9ee85a92514359c3532f5e9d3a9a",
+            "bytes": 4323
+          }
+        }
+      },
+      {
+        "sentence": "I've had enough of your nonsense.",
+        "translation": "我受够了你这些胡说八道！",
+        "chunks": [
+          "I've had enough",
+          "of your nonsense."
+        ],
+        "hints": [
+          "我受够了",
+          "你这些胡说八道"
+        ],
+        "cid": "f5bc1610",
+        "sentenceAudio": {
+          "text": "I've had enough of your nonsense.",
+          "audio": {
+            "url": "assets/oral-f5bc1610-cbcd437c1c35609b2aae.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3d74b999a1e3c1f7fbdaa91dc9ab134db0f295bc3289ae89c0f67447127d6d15",
+            "bytes": 5637
+          }
+        }
+      },
+      {
+        "sentence": "Stop putting us on.",
+        "translation": "别捉弄我们。",
+        "chunks": [
+          "Stop putting us on."
+        ],
+        "hints": [
+          "别捉弄我们。"
+        ],
+        "cid": "af727489",
+        "sentenceAudio": {
+          "text": "Stop putting us on.",
+          "audio": {
+            "url": "assets/oral-af727489-78d8e5538eb293dba157.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1e62eae4b06ec34a9f23c2a8ee1c56e98b973b37c64ffbda0f0bdcf2cb6b0d2f",
+            "bytes": 4723
+          }
+        }
+      },
+      {
+        "sentence": "Don't act stupid!",
+        "translation": "别装傻！",
+        "chunks": [
+          "Don't",
+          "act stupid!"
+        ],
+        "hints": [
+          "别",
+          "装傻！"
+        ],
+        "cid": "8a0d828b",
+        "sentenceAudio": {
+          "text": "Don't act stupid!",
+          "audio": {
+            "url": "assets/oral-8a0d828b-1341363dcb7b0d07e32e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f54fa37eba741b31c916a951c29ffc568e10b95a7d3a2d970098be41eef7872c",
+            "bytes": 4494
+          }
+        }
+      },
+      {
+        "sentence": "That's stupid.",
+        "translation": "那也太蠢了!",
+        "chunks": [
+          "That's",
+          "stupid."
+        ],
+        "hints": [
+          "那也太",
+          "蠢了！"
+        ],
+        "cid": "f48dba29",
+        "sentenceAudio": {
+          "text": "That's stupid.",
+          "audio": {
+            "url": "assets/oral-f48dba29-9fc7b9181e37ce49d7a9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9999380a9110f5766e7c06044a4600ace478ac1c051879c9281f124cc1062d9c",
+            "bytes": 4090
+          }
+        }
+      },
+      {
+        "sentence": "Don't pull my leg!",
+        "translation": "别逗我！",
+        "chunks": [
+          "Don't pull my leg!"
+        ],
+        "hints": [
+          "别逗我！"
+        ],
+        "cid": "8231b309",
+        "sentenceAudio": {
+          "text": "Don't pull my leg!",
+          "audio": {
+            "url": "assets/oral-8231b309-8714919392b92e37e08a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "99eb4358ad618da0035c7f66b69b65bd38a5d2824ed98051f420378be53fceee",
+            "bytes": 4499
+          }
+        }
+      },
+      {
+        "sentence": "Take it back!",
+        "translation": "收回你说过的话！",
+        "chunks": [
+          "Take it back!"
+        ],
+        "hints": [
+          "收回你说过的话！"
+        ],
+        "cid": "a13cc761",
+        "sentenceAudio": {
+          "text": "Take it back!",
+          "audio": {
+            "url": "assets/oral-a13cc761-533ae288613227fd7449.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cefacc5f1828653b2bd573753090ca6f3e792990cc4673d0b9a4b712473335e5",
+            "bytes": 3749
+          }
+        }
+      },
+      {
+        "sentence": "I don't want to hear any more of your lies.",
+        "translation": "我不想再听你说的谎话。",
+        "chunks": [
+          "I don't want to hear",
+          "any more of your lies."
+        ],
+        "hints": [
+          "我不想再听",
+          "你说的谎话。"
+        ],
+        "cid": "70041919",
+        "sentenceAudio": {
+          "text": "I don't want to hear any more of your lies.",
+          "audio": {
+            "url": "assets/oral-70041919-1dbfa29e5b2d5cebd075.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b8fe85d077957a80a5a0b354974923999da00cd313f383fc6dada529d0093882",
+            "bytes": 6890
+          }
+        }
+      },
+      {
+        "sentence": "Did you make up a story?",
+        "translation": "你编了个故事吗？",
+        "chunks": [
+          "Did you",
+          "make up a story?"
+        ],
+        "hints": [
+          "你",
+          "编了个故事吗？"
+        ],
+        "cid": "91c29e49",
+        "sentenceAudio": {
+          "text": "Did you make up a story?",
+          "audio": {
+            "url": "assets/oral-91c29e49-5a1a8a7a09a0f5082eb3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c9dd442faf57c70d90b45f680906cd546cfbe659f17b93f0fc07e829e66ff89c",
+            "bytes": 5063
+          }
+        }
+      },
+      {
+        "sentence": "Phony!",
+        "translation": "冒牌货！",
+        "chunks": [
+          "Phony!"
+        ],
+        "hints": [
+          "冒牌货！"
+        ],
+        "cid": "9d5b877e",
+        "sentenceAudio": {
+          "text": "Phony!",
+          "audio": {
+            "url": "assets/oral-9d5b877e-cb7548192255df068b7d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09a45aaea92ffa38ddf6112149efb9e0265db9801959fcb80d0ae0c4b79ba22e",
+            "bytes": 3249
+          }
+        }
+      },
+      {
+        "sentence": "Don't play dumb!",
+        "translation": "别装傻!",
+        "chunks": [
+          "Don't play",
+          "dumb!"
+        ],
+        "hints": [
+          "别",
+          "装傻！"
+        ],
+        "cid": "2230ba76",
+        "sentenceAudio": {
+          "text": "Don't play dumb!",
+          "audio": {
+            "url": "assets/oral-2230ba76-22688400d5fb9e39e1e4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "876b8af2b6fd2cfe4aef7964f3d55c85d2c4bb6fa355e37e33c2408bff87b9c6",
+            "bytes": 4283
+          }
+        }
+      },
+      {
+        "sentence": "You tricked me.",
+        "translation": "你骗了我。",
+        "chunks": [
+          "You",
+          "tricked me."
+        ],
+        "hints": [
+          "你",
+          "骗了我。"
+        ],
+        "cid": "035a8206",
+        "sentenceAudio": {
+          "text": "You tricked me.",
+          "audio": {
+            "url": "assets/oral-035a8206-d804d747c2a69c6525e6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5df47c3b5ffe652ca820c47fba7fa11c94719f80acc73a31ce745cb01fe94cbd",
+            "bytes": 4038
+          }
+        }
+      },
+      {
+        "sentence": "None of your tricks will work on me.",
+        "translation": "你骗人的把戏可蒙不了我。",
+        "chunks": [
+          "None of your tricks",
+          "will work on me."
+        ],
+        "hints": [
+          "你骗人的把戏",
+          "可蒙不了我。"
+        ],
+        "cid": "88773455",
+        "sentenceAudio": {
+          "text": "None of your tricks will work on me.",
+          "audio": {
+            "url": "assets/oral-88773455-41bb2a02995e87bfb487.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1b598c11690df478d9e166327443600b44b5c8e870aef1e138382dad8218a4b7",
+            "bytes": 6040
+          }
+        }
+      },
+      {
+        "sentence": "You coward!",
+        "translation": "胆小鬼!",
+        "chunks": [
+          "You coward!"
+        ],
+        "hints": [
+          "胆小鬼！"
+        ],
+        "cid": "e55d1b23",
+        "sentenceAudio": {
+          "text": "You coward!",
+          "audio": {
+            "url": "assets/oral-e55d1b23-147a1bdbf21e9e3c2d94.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d423715254c3f91013872dd8ccface3e79b5cb31af69a8c43afa5baf96566d0b",
+            "bytes": 3717
+          }
+        }
+      },
+      {
+        "sentence": "Nobody's perfect!",
+        "translation": "人无完人!",
+        "chunks": [
+          "Nobody's",
+          "perfect!"
+        ],
+        "hints": [
+          "人无",
+          "完人！"
+        ],
+        "cid": "c8146114",
+        "sentenceAudio": {
+          "text": "Nobody's perfect!",
+          "audio": {
+            "url": "assets/oral-c8146114-7b73b8fc0903a86bafb3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3cc113d0ef05bd069add8292439259958134cdac91e00910776522596c88b467",
+            "bytes": 4850
+          }
+        }
+      },
+      {
+        "sentence": "Stingy.",
+        "translation": "小气鬼。",
+        "chunks": [
+          "Stingy."
+        ],
+        "hints": [
+          "小气鬼。"
+        ],
+        "cid": "e0fa9ab1",
+        "sentenceAudio": {
+          "text": "Stingy.",
+          "audio": {
+            "url": "assets/oral-e0fa9ab1-2d9ff8c5210c38fe7556.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "363aaf5921748d740793035ad0025f7d5eaa6b6613421fac07a26e8fdd9963a9",
+            "bytes": 3473
+          }
+        }
+      },
+      {
+        "sentence": "Fuck you!",
+        "translation": "你这混蛋!",
+        "chunks": [
+          "Fuck you!"
+        ],
+        "hints": [
+          "你这混蛋！"
+        ],
+        "cid": "a25c1e30",
+        "sentenceAudio": {
+          "text": "Fuck you!",
+          "audio": {
+            "url": "assets/oral-a25c1e30-ed1b6dd81995412dafa3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1a26a81b1ff69cec1b81d19571be78408efe5866aab56cd1befe064bc1122eb9",
+            "bytes": 3470
+          }
+        }
+      },
+      {
+        "sentence": "You asshole!",
+        "translation": "混蛋！",
+        "chunks": [
+          "You asshole!"
+        ],
+        "hints": [
+          "混蛋！"
+        ],
+        "cid": "d096ab7e",
+        "sentenceAudio": {
+          "text": "You asshole!",
+          "audio": {
+            "url": "assets/oral-d096ab7e-f106f0e81c18382901a0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3f3930ce4edf741a0ccc571693980b4971bcf6281d8b8f54f1715665a1ff41b7",
+            "bytes": 3780
+          }
+        }
+      },
+      {
+        "sentence": "Christ!",
+        "translation": "天哪！",
+        "chunks": [
+          "Christ!"
+        ],
+        "hints": [
+          "天哪！"
+        ],
+        "cid": "658be19b",
+        "sentenceAudio": {
+          "text": "Christ!",
+          "audio": {
+            "url": "assets/oral-658be19b-57fcf3a8cc22292e3376.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9196947f14e3b270d0fc164e964fd6209ce495192353ff60f6ae7f4b2c62c703",
+            "bytes": 3188
+          }
+        }
+      },
+      {
+        "sentence": "You beast!",
+        "translation": "你这畜牲!",
+        "chunks": [
+          "You",
+          "beast!"
+        ],
+        "hints": [
+          "你这",
+          "畜牲！"
+        ],
+        "cid": "c0c4acce",
+        "sentenceAudio": {
+          "text": "You beast!",
+          "audio": {
+            "url": "assets/oral-c0c4acce-2cc316aab63c843865f8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d77fc4a3f39efcca8eceba80c2e1b20ed7f1a4261c0e27a6921f7fed51d68022",
+            "bytes": 3601
+          }
+        }
+      },
+      {
+        "sentence": "You tomboy!",
+        "translation": "你这个假小子！",
+        "chunks": [
+          "You",
+          "tomboy!"
+        ],
+        "hints": [
+          "你这",
+          "假小子！"
+        ],
+        "cid": "38f9d165",
+        "sentenceAudio": {
+          "text": "You tomboy!",
+          "audio": {
+            "url": "assets/oral-38f9d165-a8266aee13c8e7401551.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f87bf9628113ad83b78a9e50eb24fe57f1c207cf9318183555ab2f80a84b7c6b",
+            "bytes": 3921
+          }
+        }
+      },
+      {
+        "sentence": "You sly dog!",
+        "translation": "滑头的家伙!",
+        "chunks": [
+          "You",
+          "sly dog!"
+        ],
+        "hints": [
+          "滑头的",
+          "家伙！"
+        ],
+        "cid": "3393ee13",
+        "sentenceAudio": {
+          "text": "You sly dog!",
+          "audio": {
+            "url": "assets/oral-3393ee13-252f8f987765864d614b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c131d547252ec5ba044a9af658c3fce8f0554130d8ef1418413dde40e1259adc",
+            "bytes": 4330
+          }
+        }
+      },
+      {
+        "sentence": "Fag!",
+        "translation": "同性恋!",
+        "chunks": [
+          "Fag!"
+        ],
+        "hints": [
+          "同性恋！"
+        ],
+        "cid": "681c7514",
+        "sentenceAudio": {
+          "text": "Fag!",
+          "audio": {
+            "url": "assets/oral-681c7514-392d75d4be6f7ceea041.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e66d3f1b191fa55365e428bc947cff2038d60757db9052ceb98b78df1eceffd7",
+            "bytes": 3093
+          }
+        }
+      },
+      {
+        "sentence": "Hey, ugly!",
+        "translation": "丑八怪!",
+        "chunks": [
+          "Hey, ugly!"
+        ],
+        "hints": [
+          "丑八怪！"
+        ],
+        "cid": "8d7d1239",
+        "sentenceAudio": {
+          "text": "Hey, ugly!",
+          "audio": {
+            "url": "assets/oral-8d7d1239-fdac27bc9647c84f4114.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7f04c5c9581ba5733dcfa6ec289c7b6b88985faf14b21e42bb4d19724c14828c",
+            "bytes": 3818
+          }
+        }
+      },
+      {
+        "sentence": "Fatso!",
+        "translation": "肥猪!",
+        "chunks": [
+          "Fatso!"
+        ],
+        "hints": [
+          "肥猪！"
+        ],
+        "cid": "1d78772d",
+        "sentenceAudio": {
+          "text": "Fatso!",
+          "audio": {
+            "url": "assets/oral-1d78772d-b7a24ec9e2d8f8e07acd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4aaa9abe21574419a2f9b82a1f8cc9599cc7eb03dc36f70e9c462918382bae1d",
+            "bytes": 3516
+          }
+        }
+      },
+      {
+        "sentence": "Shorty!",
+        "translation": "矬子!",
+        "chunks": [
+          "Shorty!"
+        ],
+        "hints": [
+          "矬子！"
+        ],
+        "cid": "706f311f",
+        "sentenceAudio": {
+          "text": "Shorty!",
+          "audio": {
+            "url": "assets/oral-706f311f-c96dc744cf844246b13a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0c7a9410874b4e89bafdb846cce8a25e780c0a91ccaa1904410324f7e841d501",
+            "bytes": 3326
+          }
+        }
+      },
+      {
+        "sentence": "What an ungrateful man!",
+        "translation": "忘恩负义的家伙!",
+        "chunks": [
+          "What an",
+          "ungrateful man!"
+        ],
+        "hints": [
+          "忘恩负义的",
+          "家伙！"
+        ],
+        "cid": "7176d06e",
+        "sentenceAudio": {
+          "text": "What an ungrateful man!",
+          "audio": {
+            "url": "assets/oral-7176d06e-e6ed731fea9d288df843.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e9d04e0c965b9841dc9edfb8a64f7931d71fceebc3fd6d5920a1433e2ac2402",
+            "bytes": 5018
+          }
+        }
+      },
+      {
+        "sentence": "You lowlife!",
+        "translation": "你这下流坯!",
+        "chunks": [
+          "You",
+          "lowlife!"
+        ],
+        "hints": [
+          "你这",
+          "下流坯！"
+        ],
+        "cid": "67b09d4f",
+        "sentenceAudio": {
+          "text": "You lowlife!",
+          "audio": {
+            "url": "assets/oral-67b09d4f-cc12c7e042c1e84d9337.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "86519da85d508575e3aeeddb8ace82d1c782982d8a4c28b138b0934133fbb65e",
+            "bytes": 3896
+          }
+        }
+      },
+      {
+        "sentence": "Stop trying to be cool!",
+        "translation": "别硬装酷了。",
+        "chunks": [
+          "Stop trying",
+          "to be cool!"
+        ],
+        "hints": [
+          "别硬",
+          "装酷了。"
+        ],
+        "cid": "b5991276",
+        "sentenceAudio": {
+          "text": "Stop trying to be cool!",
+          "audio": {
+            "url": "assets/oral-b5991276-bb565b0679b68bebeb83.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f4fdd8edfad9038427045e89e4c06ab27d43633b05bfe25524c1aac73fa85eb7",
+            "bytes": 5196
+          }
+        }
+      }
+    ]
+  }
+}

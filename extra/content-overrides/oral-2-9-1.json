@@ -1,0 +1,1396 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-9-1",
+    "name": "口语3000句 · 随意的谈话 · 征求意见～不明白、不知道",
+    "short": "征求意见～不明白、不知道",
+    "desc": "征求意见～不明白、不知道",
+    "chapter": 2,
+    "section": "2.9",
+    "sectionTitle": "随意的谈话",
+    "topic": "征求意见～不明白、不知道",
+    "baseCount": 0,
+    "totalCount": 56,
+    "items": [
+      {
+        "sentence": "Do you understand?",
+        "translation": "懂吗?",
+        "chunks": [
+          "Do you",
+          "understand?"
+        ],
+        "hints": [
+          "你",
+          "明白吗？"
+        ],
+        "cid": "f6bd3104",
+        "sentenceAudio": {
+          "text": "Do you understand?",
+          "audio": {
+            "url": "assets/oral-f6bd3104-dc6dc704308c8b580202.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2e2b21109f6517de0166af3043db4848ef16a9d83a05cbd6776b5d34ec90bfca",
+            "bytes": 4229
+          }
+        }
+      },
+      {
+        "sentence": "Understood?",
+        "translation": "懂了吗?",
+        "chunks": [
+          "Understood?"
+        ],
+        "hints": [
+          "懂了吗？"
+        ],
+        "cid": "fc596479",
+        "sentenceAudio": {
+          "text": "Understood?",
+          "audio": {
+            "url": "assets/oral-fc596479-61b7cb5191bcfd1d27eb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4088b177b54af5caed1a40b0317b64d4d89eebd6ea336ff187c4ec18616cd5c6",
+            "bytes": 3928
+          }
+        }
+      },
+      {
+        "sentence": "Is that clear?",
+        "translation": "清楚了吗?",
+        "chunks": [
+          "Is that",
+          "clear?"
+        ],
+        "hints": [
+          "这样",
+          "清楚吗？"
+        ],
+        "cid": "c51af574",
+        "sentenceAudio": {
+          "text": "Is that clear?",
+          "audio": {
+            "url": "assets/oral-c51af574-5838cf06684a3ae2a4b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f545b6a6323522c1663381488feb63fb8606ff693bca52e4b6ad39f1e492521b",
+            "bytes": 4038
+          }
+        }
+      },
+      {
+        "sentence": "Get the picture?",
+        "translation": "明白了吗?",
+        "chunks": [
+          "Get the picture?"
+        ],
+        "hints": [
+          "明白了吗？"
+        ],
+        "cid": "727d70eb",
+        "sentenceAudio": {
+          "text": "Get the picture?",
+          "audio": {
+            "url": "assets/oral-727d70eb-8291d27ccfd1460e05f2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "afcb7a7fdd27c11c8a09d57d1db59d0dede4b4467b8fdef264b1bacc12d3073a",
+            "bytes": 4215
+          }
+        }
+      },
+      {
+        "sentence": "Do you know what I mean?",
+        "translation": "你懂我说的意思吗?",
+        "chunks": [
+          "Do you know",
+          "what I mean?"
+        ],
+        "hints": [
+          "你懂",
+          "我的意思吗？"
+        ],
+        "cid": "538a6a81",
+        "sentenceAudio": {
+          "text": "Do you know what I mean?",
+          "audio": {
+            "url": "assets/oral-538a6a81-5b90dea498f9f68e88cf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a3f6ebc6ce72f2d478f2df9a6f807ed13015e441a9b82dbabb717c494ef99c19",
+            "bytes": 4607
+          }
+        }
+      },
+      {
+        "sentence": "Are you listening to me?",
+        "translation": "你在听吗?",
+        "chunks": [
+          "Are you",
+          "listening to me?"
+        ],
+        "hints": [
+          "你",
+          "在听我说话吗？"
+        ],
+        "cid": "2d4624cb",
+        "sentenceAudio": {
+          "text": "Are you listening to me?",
+          "audio": {
+            "url": "assets/oral-2d4624cb-e5e923edad3f8c3fe071.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b8fccc50fec52454fab4780f49d51d4dc8988a679f1c19d8b08ed1e0cca6bbb6",
+            "bytes": 4562
+          }
+        }
+      },
+      {
+        "sentence": "Are you blind?",
+        "translation": "你不知道吗?",
+        "chunks": [
+          "Are you",
+          "blind?"
+        ],
+        "hints": [
+          "你",
+          "看不见吗？"
+        ],
+        "cid": "782de9ce",
+        "sentenceAudio": {
+          "text": "Are you blind?",
+          "audio": {
+            "url": "assets/oral-782de9ce-f181feec68d766c84241.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a0bbef92895c3a987b7e1fb5f2b348cc430484866a47e45b2d0c031b5a8daff0",
+            "bytes": 4060
+          }
+        }
+      },
+      {
+        "sentence": "You know what I'm talking about.",
+        "translation": "你明白我说的意思吧。",
+        "chunks": [
+          "You know",
+          "what I'm talking about."
+        ],
+        "hints": [
+          "你明白",
+          "我在说什么吧。"
+        ],
+        "cid": "89b53307",
+        "sentenceAudio": {
+          "text": "You know what I'm talking about.",
+          "audio": {
+            "url": "assets/oral-89b53307-3fcf00cfe8c427e992b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1157a52a44a5dbac844ed8a84a5b54025c190261b1a7a33e19c3d11e034ec665",
+            "bytes": 5629
+          }
+        }
+      },
+      {
+        "sentence": "I said that, didn't I?",
+        "translation": "我是那样说的吧?",
+        "chunks": [
+          "I said that,",
+          "didn't I?"
+        ],
+        "hints": [
+          "我是那样说的",
+          "对吧？"
+        ],
+        "cid": "b6390910",
+        "sentenceAudio": {
+          "text": "I said that, didn't I?",
+          "audio": {
+            "url": "assets/oral-b6390910-afc8ce23f418a7b7f850.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5ac43c5907213b60826ed3aa975e0db06f322954b478c8020bcf5ea4120186e8",
+            "bytes": 4699
+          }
+        }
+      },
+      {
+        "sentence": "Do you know that?",
+        "translation": "你知道那事吗?",
+        "chunks": [
+          "Do you",
+          "know that?"
+        ],
+        "hints": [
+          "你",
+          "知道那件事吗？"
+        ],
+        "cid": "d8eb39f0",
+        "sentenceAudio": {
+          "text": "Do you know that?",
+          "audio": {
+            "url": "assets/oral-d8eb39f0-d3008aa273219d16d740.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a19192f731b162061521c948cd9805dc44194aca416ae379e81a4edcaaf27cc8",
+            "bytes": 3897
+          }
+        }
+      },
+      {
+        "sentence": "Do you happen to know...?",
+        "translation": "说不定你知道……吧?",
+        "chunks": [
+          "Do you happen",
+          "to know...?"
+        ],
+        "hints": [
+          "你也许",
+          "知道……吧？"
+        ],
+        "cid": "9982f162",
+        "sentenceAudio": {
+          "text": "Do you happen to know...?",
+          "audio": {
+            "url": "assets/oral-9982f162-916be514c1a9da503839.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d98807f951dc82f5f3f755977f9b364f6e4e8f3a0dbffc65d42329547b094abd",
+            "bytes": 4788
+          }
+        }
+      },
+      {
+        "sentence": "I can't tell the difference.",
+        "translation": "我辨别不出来。",
+        "chunks": [
+          "I can't tell",
+          "the difference."
+        ],
+        "hints": [
+          "我分辨不出",
+          "区别。"
+        ],
+        "cid": "48be7874",
+        "sentenceAudio": {
+          "text": "I can't tell the difference.",
+          "audio": {
+            "url": "assets/oral-48be7874-ef0f7a6d6632c31168e4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8c32333db4b0fe1a7ad8640c94af65e7012c80f6fabbe03bb2cec70cd48b4ef0",
+            "bytes": 5163
+          }
+        }
+      },
+      {
+        "sentence": "Can you hear me?",
+        "translation": "你听得见吗?",
+        "chunks": [
+          "Can you",
+          "hear me?"
+        ],
+        "hints": [
+          "你",
+          "听得见我说话吗？"
+        ],
+        "cid": "a26299b5",
+        "sentenceAudio": {
+          "text": "Can you hear me?",
+          "audio": {
+            "url": "assets/oral-a26299b5-98ea3f74246a16d05d8e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e5ef7912175633a5106d039499e6819fd24103d98d172e5fb6098113910e42e9",
+            "bytes": 4011
+          }
+        }
+      },
+      {
+        "sentence": "Did you hear me?",
+        "translation": "你听见我说的了吗?",
+        "chunks": [
+          "Did you",
+          "hear me?"
+        ],
+        "hints": [
+          "你",
+          "听见我说的了吗？"
+        ],
+        "cid": "36a11a1c",
+        "sentenceAudio": {
+          "text": "Did you hear me?",
+          "audio": {
+            "url": "assets/oral-36a11a1c-f57680bdd238863319d2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "10df11956c9c59ae634feff3bcd0c5aae3f7d17603ca257f801e5f3507f3fa1d",
+            "bytes": 3952
+          }
+        }
+      },
+      {
+        "sentence": "I understand.",
+        "translation": "我明白了。",
+        "chunks": [
+          "I",
+          "understand."
+        ],
+        "hints": [
+          "我",
+          "明白了。"
+        ],
+        "cid": "50e68df0",
+        "sentenceAudio": {
+          "text": "I understand.",
+          "audio": {
+            "url": "assets/oral-50e68df0-4e8f4ae4a2147d6529c2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "67bc0e740e200860fb37a53ec36a004606e1e7b3e0b30d11c1db1c4bbf914ee4",
+            "bytes": 4301
+          }
+        }
+      },
+      {
+        "sentence": "See?",
+        "translation": "明白了吗?",
+        "chunks": [
+          "See?"
+        ],
+        "hints": [
+          "明白了吗？"
+        ],
+        "cid": "2b72980d",
+        "sentenceAudio": {
+          "text": "See?",
+          "audio": {
+            "url": "assets/oral-2b72980d-da96b516a82686fd2abf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "abe9a3f4e119b8a5f84e765aaa955119ea70d32474d0ccf82c0ea3a3a56f33bc",
+            "bytes": 2951
+          }
+        }
+      },
+      {
+        "sentence": "I understand very well.",
+        "translation": "我完全明白。",
+        "chunks": [
+          "I",
+          "understand very well."
+        ],
+        "hints": [
+          "我",
+          "完全明白。"
+        ],
+        "cid": "14c146f8",
+        "sentenceAudio": {
+          "text": "I understand very well.",
+          "audio": {
+            "url": "assets/oral-14c146f8-ef595384070131c4803a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "96533ee8b4d01939c94b6d5537585a4117b8872d9c5b902246f65457fb40c345",
+            "bytes": 5216
+          }
+        }
+      },
+      {
+        "sentence": "I think I understand.",
+        "translation": "我想我懂了。",
+        "chunks": [
+          "I think",
+          "I understand."
+        ],
+        "hints": [
+          "我想",
+          "我懂了。"
+        ],
+        "cid": "7ffebedf",
+        "sentenceAudio": {
+          "text": "I think I understand.",
+          "audio": {
+            "url": "assets/oral-7ffebedf-1eedc5ed3d0ec33265ba.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3bca4908940c2afe9f76ba3e056206fe737f8434ab4abd9092084b5d0b3b0ead",
+            "bytes": 5060
+          }
+        }
+      },
+      {
+        "sentence": "I see what you mean.",
+        "translation": "我明白你说的了。",
+        "chunks": [
+          "I see",
+          "what you mean."
+        ],
+        "hints": [
+          "我明白",
+          "你的意思了。"
+        ],
+        "cid": "7b5c9de1",
+        "sentenceAudio": {
+          "text": "I see what you mean.",
+          "audio": {
+            "url": "assets/oral-7b5c9de1-3b89d9924d16bb23d7b1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1acbbf0c536776f2f2e31d8f1d5526168284b625b61d74c5f38a740f9dc217f1",
+            "bytes": 4628
+          }
+        }
+      },
+      {
+        "sentence": "I know that too well.",
+        "translation": "我太清楚那种事了。",
+        "chunks": [
+          "I know",
+          "that too well."
+        ],
+        "hints": [
+          "我知道",
+          "那种事太清楚了。"
+        ],
+        "cid": "0bc4bc40",
+        "sentenceAudio": {
+          "text": "I know that too well.",
+          "audio": {
+            "url": "assets/oral-0bc4bc40-c0ce6e068db5df5a7c5d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7c37e36bf9563659a81c616adfb35774657e4effc8b2f6e02ffc30c0bb16dfc7",
+            "bytes": 4942
+          }
+        }
+      },
+      {
+        "sentence": "I see your point.",
+        "translation": "我明白你的意思。",
+        "chunks": [
+          "I see",
+          "your point."
+        ],
+        "hints": [
+          "我明白",
+          "你的意思。"
+        ],
+        "cid": "bfdf119a",
+        "sentenceAudio": {
+          "text": "I see your point.",
+          "audio": {
+            "url": "assets/oral-bfdf119a-689fa767549e3298e0ac.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3521b7694541927b5834211aff24a7f54da14db0d6eb9b79670cf084dc378acf",
+            "bytes": 4253
+          }
+        }
+      },
+      {
+        "sentence": "I get it.",
+        "translation": "我明白了。",
+        "chunks": [
+          "I",
+          "get it."
+        ],
+        "hints": [
+          "我",
+          "明白了。"
+        ],
+        "cid": "f7cec091",
+        "sentenceAudio": {
+          "text": "I get it.",
+          "audio": {
+            "url": "assets/oral-f7cec091-d13270ca4a3ffbf04574.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a7e1ea534db3e39b4695d2d49a849abee99c9e7e1db2ecb6e59a48e19cd545ea",
+            "bytes": 3657
+          }
+        }
+      },
+      {
+        "sentence": "I got it.",
+        "translation": "我懂了。",
+        "chunks": [
+          "I",
+          "got it."
+        ],
+        "hints": [
+          "我",
+          "懂了。"
+        ],
+        "cid": "778524a7",
+        "sentenceAudio": {
+          "text": "I got it.",
+          "audio": {
+            "url": "assets/oral-778524a7-ac229c0287913d1cfb13.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "72d3bf89bc9570e26a2aecb53e25a26fd3d13fe1df002025dbff994f9d992daf",
+            "bytes": 3702
+          }
+        }
+      },
+      {
+        "sentence": "I know that much!",
+        "translation": "这点事儿我还是知道的！",
+        "chunks": [
+          "I know that much!"
+        ],
+        "hints": [
+          "这点事儿我还是知道的！"
+        ],
+        "cid": "fb98cca8",
+        "sentenceAudio": {
+          "text": "I know that much!",
+          "audio": {
+            "url": "assets/oral-fb98cca8-b4629080e9df4ed8d774.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "50f64fe503cb92d19f66836ca04de442e5e49ad701e33cb7aa60ba086a2b8224",
+            "bytes": 4348
+          }
+        }
+      },
+      {
+        "sentence": "That solves it.",
+        "translation": "那就解决了。",
+        "chunks": [
+          "That",
+          "solves it."
+        ],
+        "hints": [
+          "那",
+          "就解决了。"
+        ],
+        "cid": "e625717d",
+        "sentenceAudio": {
+          "text": "That solves it.",
+          "audio": {
+            "url": "assets/oral-e625717d-9666e2670c16e472a37e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0b3fd41ae14e120935115753a60985dba81d13a39b376486222f211b15a50b32",
+            "bytes": 4064
+          }
+        }
+      },
+      {
+        "sentence": "All right, all right. I understand.",
+        "translation": "好吧，好吧，我知道了。",
+        "chunks": [
+          "All right, all right. I",
+          "understand."
+        ],
+        "hints": [
+          "好吧，好吧，我",
+          "知道了。"
+        ],
+        "cid": "91d91604",
+        "sentenceAudio": {
+          "text": "All right, all right. I understand.",
+          "audio": {
+            "url": "assets/oral-91d91604-4a3694e9b48091799cc5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d9cc1a4f4dd99b45e0044b891fbb14ee57f227cef414e6be3e5c0e427cc125ed",
+            "bytes": 6933
+          }
+        }
+      },
+      {
+        "sentence": "I know.",
+        "translation": "我知道呀。",
+        "chunks": [
+          "I",
+          "know."
+        ],
+        "hints": [
+          "我",
+          "知道呀。"
+        ],
+        "cid": "543caffb",
+        "sentenceAudio": {
+          "text": "I know.",
+          "audio": {
+            "url": "assets/oral-543caffb-ca6a5f302e9d6e6f342b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "16886f664c7c483824cb3fa12ea1c96c113b17f822ac8ba9f92f87bf03b16f76",
+            "bytes": 3446
+          }
+        }
+      },
+      {
+        "sentence": "I know that person.",
+        "translation": "我认识那个人。",
+        "chunks": [
+          "I know",
+          "that person."
+        ],
+        "hints": [
+          "我认识",
+          "那个人。"
+        ],
+        "cid": "0c3465fd",
+        "sentenceAudio": {
+          "text": "I know that person.",
+          "audio": {
+            "url": "assets/oral-0c3465fd-f768028b2fe434f10072.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6404a0f8ee33f7e5fb1955b3e9bfdf37867b7fc412e515c5942daa3e8961e3bc",
+            "bytes": 4660
+          }
+        }
+      },
+      {
+        "sentence": "I know him by sight.",
+        "translation": "我见过他。",
+        "chunks": [
+          "I know him",
+          "by sight."
+        ],
+        "hints": [
+          "我认得他",
+          "只是面熟。"
+        ],
+        "cid": "998f9c2f",
+        "sentenceAudio": {
+          "text": "I know him by sight.",
+          "audio": {
+            "url": "assets/oral-998f9c2f-ace205e2a59ceb1005e0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dc31cd34812e5d21dbc9d0744ec166a9811c368ed837e9279bde435dc9c3609e",
+            "bytes": 4923
+          }
+        }
+      },
+      {
+        "sentence": "Yeah, I heard about it.",
+        "translation": "嗯，我听说了。",
+        "chunks": [
+          "Yeah,",
+          "I heard about it."
+        ],
+        "hints": [
+          "嗯，",
+          "我听说了。"
+        ],
+        "cid": "21c20c7d",
+        "sentenceAudio": {
+          "text": "Yeah, I heard about it.",
+          "audio": {
+            "url": "assets/oral-21c20c7d-aa4912f2d1bf22623658.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8ce8ffe2e0d2d8d61bf3abb88a20526b9d8b845132a6ce0c2cb4e2b9a19106ad",
+            "bytes": 5303
+          }
+        }
+      },
+      {
+        "sentence": "I hear you.",
+        "translation": "我明白你的意思。",
+        "chunks": [
+          "I hear you."
+        ],
+        "hints": [
+          "我明白你的意思。"
+        ],
+        "cid": "ec91d953",
+        "sentenceAudio": {
+          "text": "I hear you.",
+          "audio": {
+            "url": "assets/oral-ec91d953-f8a53b78eacd3829f9b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f47721d402646e02898af392d0be2abaf90a8a91adee12c9df4328cdf03f008e",
+            "bytes": 3885
+          }
+        }
+      },
+      {
+        "sentence": "I'm following you.",
+        "translation": "我跟得上你的思路。",
+        "chunks": [
+          "I'm following you."
+        ],
+        "hints": [
+          "我跟得上你的思路。"
+        ],
+        "cid": "1138639e",
+        "sentenceAudio": {
+          "text": "I'm following you.",
+          "audio": {
+            "url": "assets/oral-1138639e-34845bc02623841751be.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "be477e8193a06911b0c1d89213cb1a4fcc40125c204c6b3366ec3513dac1d334",
+            "bytes": 4536
+          }
+        }
+      },
+      {
+        "sentence": "Makes sense.",
+        "translation": "有道理。",
+        "chunks": [
+          "Makes sense."
+        ],
+        "hints": [
+          "有道理。"
+        ],
+        "cid": "ad531bc4",
+        "sentenceAudio": {
+          "text": "Makes sense.",
+          "audio": {
+            "url": "assets/oral-ad531bc4-87de9979efedbd58180f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "271ad8c0138c9fd2e45e6466562b567c47fcd5ef635b30a4dd04e0a4f8c7736a",
+            "bytes": 3760
+          }
+        }
+      },
+      {
+        "sentence": "I don't understand.",
+        "translation": "我不明白。",
+        "chunks": [
+          "I",
+          "don't understand."
+        ],
+        "hints": [
+          "我",
+          "不明白。"
+        ],
+        "cid": "2226081a",
+        "sentenceAudio": {
+          "text": "I don't understand.",
+          "audio": {
+            "url": "assets/oral-2226081a-a84353ea72d860e25bfa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7b1e5f9972adbe0d176b9dd3251589fa64027c590aa44335abfe990513b11ae3",
+            "bytes": 4408
+          }
+        }
+      },
+      {
+        "sentence": "I don't really understand.",
+        "translation": "我不太明白。",
+        "chunks": [
+          "I don't",
+          "really understand."
+        ],
+        "hints": [
+          "我不",
+          "太明白。"
+        ],
+        "cid": "fd42aa91",
+        "sentenceAudio": {
+          "text": "I don't really understand.",
+          "audio": {
+            "url": "assets/oral-fd42aa91-af9af2c496ad762c62f9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cec89e282ee84143e328ee209df9162526eb48a06abfee1ca75f5d933a547d12",
+            "bytes": 5237
+          }
+        }
+      },
+      {
+        "sentence": "That's not clear.",
+        "translation": "这不清楚。",
+        "chunks": [
+          "That's",
+          "not clear."
+        ],
+        "hints": [
+          "这",
+          "不清楚。"
+        ],
+        "cid": "85da5e3c",
+        "sentenceAudio": {
+          "text": "That's not clear.",
+          "audio": {
+            "url": "assets/oral-85da5e3c-70ea31bae9eb304cf33b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9f336d4340307b0dc1b3d1f4a3068dd554c34103a1b513d9e913a1756f22f11c",
+            "bytes": 4219
+          }
+        }
+      },
+      {
+        "sentence": "I can't see your point.",
+        "translation": "我不明白你在说什么。",
+        "chunks": [
+          "I can't see",
+          "your point."
+        ],
+        "hints": [
+          "我看不出",
+          "你的意思。"
+        ],
+        "cid": "b74a1d37",
+        "sentenceAudio": {
+          "text": "I can't see your point.",
+          "audio": {
+            "url": "assets/oral-b74a1d37-5f17896b2d1e2546517d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "38562696424bbc6119a25994e7b59870cbc03b9e78b1b6583f9950ec15e9658d",
+            "bytes": 4829
+          }
+        }
+      },
+      {
+        "sentence": "I can't understand what you mean.",
+        "translation": "我不明白你的意思。",
+        "chunks": [
+          "I can't understand",
+          "what you mean."
+        ],
+        "hints": [
+          "我不明白",
+          "你的意思。"
+        ],
+        "cid": "c794456b",
+        "sentenceAudio": {
+          "text": "I can't understand what you mean.",
+          "audio": {
+            "url": "assets/oral-c794456b-d76ae3d74e46db70c11f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a7fbc649d8cb98947d057abd21eb2dd8fb24922434daf205ddf8ab3d8ce9ad33",
+            "bytes": 6038
+          }
+        }
+      },
+      {
+        "sentence": "I'm not sure what you mean.",
+        "translation": "我弄不清楚你想说什么。",
+        "chunks": [
+          "I'm not sure",
+          "what you mean."
+        ],
+        "hints": [
+          "我不确定",
+          "你是什么意思。"
+        ],
+        "cid": "0e85410e",
+        "sentenceAudio": {
+          "text": "I'm not sure what you mean.",
+          "audio": {
+            "url": "assets/oral-0e85410e-2f73551761c3aa95fb69.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "801bec9f466699f6ed6f320d91569e6c81cdc37906fe4f02ac972f454fce1414",
+            "bytes": 5146
+          }
+        }
+      },
+      {
+        "sentence": "I don't know what's what.",
+        "translation": "我根本不知道这是怎么回事。",
+        "chunks": [
+          "I don't know",
+          "what's what."
+        ],
+        "hints": [
+          "我根本不知道",
+          "这是怎么回事。"
+        ],
+        "cid": "cd4162bf",
+        "sentenceAudio": {
+          "text": "I don't know what's what.",
+          "audio": {
+            "url": "assets/oral-cd4162bf-d0b38dc9a3d30889f610.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b09ed4ecf5edc619ec3768d7a2b955f591d6ebef70d67eea71c568bb7ef7a071",
+            "bytes": 4753
+          }
+        }
+      },
+      {
+        "sentence": "It's over my head.",
+        "translation": "这超出我的理解范围。",
+        "chunks": [
+          "It's",
+          "over my head."
+        ],
+        "hints": [
+          "这",
+          "超出我的理解范围。"
+        ],
+        "cid": "33a7a7a6",
+        "sentenceAudio": {
+          "text": "It's over my head.",
+          "audio": {
+            "url": "assets/oral-33a7a7a6-4544e75264886be5ce26.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9aca0abfc1d3ce9fa4e3efb189171b5f0840a40627c42088afa994d7cf401dbf",
+            "bytes": 4577
+          }
+        }
+      },
+      {
+        "sentence": "Your guess is as good as mine.",
+        "translation": "我也搞不清楚。",
+        "chunks": [
+          "Your guess is",
+          "as good as mine."
+        ],
+        "hints": [
+          "你猜的",
+          "和我一样（都不知道）。"
+        ],
+        "cid": "06b1157f",
+        "sentenceAudio": {
+          "text": "Your guess is as good as mine.",
+          "audio": {
+            "url": "assets/oral-06b1157f-0dd229026f362a99b20c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8468a5a2f4a03fee349042d13b150115c754559c5dd7daa83079c939e192696b",
+            "bytes": 6543
+          }
+        }
+      },
+      {
+        "sentence": "The more I think about it, the less I understand it.",
+        "translation": "越想越糊涂。",
+        "chunks": [
+          "The more I think about it,",
+          "the less I understand it."
+        ],
+        "hints": [
+          "我越想",
+          "越不明白。"
+        ],
+        "cid": "b58b230a",
+        "sentenceAudio": {
+          "text": "The more I think about it, the less I understand it.",
+          "audio": {
+            "url": "assets/oral-b58b230a-712b5676b161a475560d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9b730c25e4a72dd6439aa7e0437e87caa8b3d584eb19f5b16d9210084165c21d",
+            "bytes": 9088
+          }
+        }
+      },
+      {
+        "sentence": "I don't know what he is driving at.",
+        "translation": "我不知道他到底想表达什么。",
+        "chunks": [
+          "I don't know",
+          "what he is driving at."
+        ],
+        "hints": [
+          "我不知道",
+          "他到底想表达什么。"
+        ],
+        "cid": "e07bab12",
+        "sentenceAudio": {
+          "text": "I don't know what he is driving at.",
+          "audio": {
+            "url": "assets/oral-e07bab12-d7c808ac5964301fe79c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f2d1d210c9322cd6ad8bd3ba314c7afde393bea4c760830beb2bc2bcdd975227",
+            "bytes": 6341
+          }
+        }
+      },
+      {
+        "sentence": "What's she after?",
+        "translation": "她到底想干什么?",
+        "chunks": [
+          "What's she",
+          "after?"
+        ],
+        "hints": [
+          "她到底",
+          "想干什么？"
+        ],
+        "cid": "49b97732",
+        "sentenceAudio": {
+          "text": "What's she after?",
+          "audio": {
+            "url": "assets/oral-49b97732-fce939853802c1a754d5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31102d8e9fffc401168a07cf14d0c5659ffc3fd9c5b22b7aef8aca08becb16ff",
+            "bytes": 4149
+          }
+        }
+      },
+      {
+        "sentence": "I have no idea.",
+        "translation": "我一点儿都不知道。",
+        "chunks": [
+          "I",
+          "have no idea."
+        ],
+        "hints": [
+          "我",
+          "一点儿都不知道。"
+        ],
+        "cid": "bc4791c6",
+        "sentenceAudio": {
+          "text": "I have no idea.",
+          "audio": {
+            "url": "assets/oral-bc4791c6-3507d8710346adc2bbc6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "221c36d17f05d41dc319cafc1dad0a44e42e5c82d4509115d2f0dc1d336a31b0",
+            "bytes": 4445
+          }
+        }
+      },
+      {
+        "sentence": "I didn't know that.",
+        "translation": "我之前不知道这件事。",
+        "chunks": [
+          "I",
+          "didn't know that."
+        ],
+        "hints": [
+          "我",
+          "之前不知道这件事。"
+        ],
+        "cid": "4187b494",
+        "sentenceAudio": {
+          "text": "I didn't know that.",
+          "audio": {
+            "url": "assets/oral-4187b494-9872dee833fede4a31b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "976315bc22a8e13e3935de2bab44a5d97da8a77b538aba56f49aaf3cde0e2eea",
+            "bytes": 4231
+          }
+        }
+      },
+      {
+        "sentence": "I don't know.",
+        "translation": "不知道。/不太清楚。",
+        "chunks": [
+          "I",
+          "don't know."
+        ],
+        "hints": [
+          "我",
+          "不知道。"
+        ],
+        "cid": "4b3f475d",
+        "sentenceAudio": {
+          "text": "I don't know.",
+          "audio": {
+            "url": "assets/oral-4b3f475d-d348a031347e83fb3543.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6b1cb5ab3b2ef206a9d55d4c1ecde3e88bc5d1ae6b229d00617d4c95136e1751",
+            "bytes": 3720
+          }
+        }
+      },
+      {
+        "sentence": "I don't know for sure.",
+        "translation": "我不太清楚。",
+        "chunks": [
+          "I",
+          "don't know for sure."
+        ],
+        "hints": [
+          "我",
+          "不太确定。"
+        ],
+        "cid": "e3888ed3",
+        "sentenceAudio": {
+          "text": "I don't know for sure.",
+          "audio": {
+            "url": "assets/oral-e3888ed3-8166d4dc469c6fb9f8a7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ca26a2231fcca3955cf9d095dadad083713c84e2e37b79cf8d8b98a9006f0de3",
+            "bytes": 4604
+          }
+        }
+      },
+      {
+        "sentence": "No one knows for sure.",
+        "translation": "谁也不知道确切的情况。",
+        "chunks": [
+          "No one knows",
+          "for sure."
+        ],
+        "hints": [
+          "没有人知道",
+          "确切情况"
+        ],
+        "cid": "dccc9a2c",
+        "sentenceAudio": {
+          "text": "No one knows for sure.",
+          "audio": {
+            "url": "assets/oral-dccc9a2c-4ca6eab4dae951cd3da5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ea6c7a873da78c3f9c82c04ed94e4310156781e6fc373fa35a513c67b3f526cd",
+            "bytes": 5096
+          }
+        }
+      },
+      {
+        "sentence": "How should I know?",
+        "translation": "我怎么会知道?",
+        "chunks": [
+          "How should",
+          "I know?"
+        ],
+        "hints": [
+          "怎么会",
+          "我知道？"
+        ],
+        "cid": "74765fb7",
+        "sentenceAudio": {
+          "text": "How should I know?",
+          "audio": {
+            "url": "assets/oral-74765fb7-7a06e0b1035b3005912f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c6a569d8f6dcf29e4fbfad9c14435548e97956d6ebb1d921c6948d44c5ce47c8",
+            "bytes": 4376
+          }
+        }
+      },
+      {
+        "sentence": "Who knows?",
+        "translation": "谁能知道?",
+        "chunks": [
+          "Who",
+          "knows?"
+        ],
+        "hints": [
+          "谁",
+          "知道呢？"
+        ],
+        "cid": "74a2b484",
+        "sentenceAudio": {
+          "text": "Who knows?",
+          "audio": {
+            "url": "assets/oral-74a2b484-5888725e8cc47581e11b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8ad8625f6d0f6711752c98c1ecab843b0dfb0bedcb9cb2ef7905f69241a53bd3",
+            "bytes": 3695
+          }
+        }
+      },
+      {
+        "sentence": "Do you prefer coffee or tea?",
+        "cid": "5b28a18d",
+        "translation": "你更喜欢咖啡还是茶？",
+        "chunks": [
+          "Do you prefer",
+          "coffee or tea?"
+        ],
+        "hints": [
+          "你更喜欢",
+          "咖啡还是茶"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/duː/",
+              "/juː/",
+              "/prɪˈfɜːr/"
+            ],
+            "pos": "一般疑问句",
+            "meaning": "你更喜欢"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈkɒfi/",
+              "/ɔːr/",
+              "/tiː/"
+            ],
+            "pos": "选择疑问句",
+            "meaning": "咖啡还是茶"
+          }
+        ],
+        "explanations": [
+          "**prefer A or B?** 是选择题问法。常见错误：\n• \"Do you **more** like coffee\" → 比较要用 prefer，不是 more like\n• \"Do you prefer **to** coffee\" → prefer 直接接名词，不加 to",
+          "**prefer** 常见搭配：prefer A to B（比起 B 更喜欢 A）、prefer doing。注意这里 A or B 问句结构。"
+        ],
+        "distractors": [
+          [
+            "Are you prefer",
+            "Do you prefers",
+            "Do you prefer to"
+          ],
+          [
+            "coffee and tea?",
+            "a coffee or tea?",
+            "coffee or the tea?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Do you prefer coffee or tea?",
+          "audio": {
+            "url": "assets/oral-5b28a18d-4730d8a3ed9a346f0062.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "07d7e3862b3fdf63a5f9622b64231e740d98f050ffe55f1a5e157ce2395039d4",
+            "bytes": 5801
+          }
+        }
+      },
+      {
+        "sentence": "What's your favorite way to relax?",
+        "cid": "300d8e13",
+        "translation": "你最喜欢的放松方式是什么？",
+        "chunks": [
+          "What's your favorite way",
+          "to relax?"
+        ],
+        "hints": [
+          "你最喜欢的方式",
+          "去放松"
+        ],
+        "grammar": [
+          {
+            "role": "主句",
+            "color": "#c87033",
+            "phonetic": [
+              "/wɒts/",
+              "/jɔːr/",
+              "/ˈfeɪvərɪt/",
+              "/weɪ/"
+            ],
+            "pos": "主系表",
+            "meaning": "你最喜欢的方式"
+          },
+          {
+            "role": "后置定语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/tuː/",
+              "/rɪˈlæks/"
+            ],
+            "pos": "不定式短语",
+            "meaning": "用来放松"
+          }
+        ],
+        "explanations": [
+          "**What's your favorite way to...?** = 你最喜欢用什么方式做……？常见错误：\n• \"What **is your favorite way for** relax\" → 固定搭配 way to do\n• \"How's your favorite way\" → how 问方式，这里问的是「什么」",
+          "回答：I like to watch movies / go for a walk / listen to music. 类似问法：What do you do to relax?"
+        ],
+        "distractors": [
+          [
+            "What your favorite way",
+            "What's you favorite way",
+            "What's your favorite ways"
+          ],
+          [
+            "to relaxing?",
+            "for relax?",
+            "relaxing?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What's your favorite way to relax?",
+          "audio": {
+            "url": "assets/oral-300d8e13-1bab9c726d538c858e3c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a204f2ab66129b4d28be818d9aa2fd881807919b0d4fd75f1b332c0105e42a1e",
+            "bytes": 6508
+          }
+        }
+      },
+      {
+        "sentence": "What do you think of this idea?",
+        "cid": "a5117784",
+        "translation": "你觉得这个主意怎么样？",
+        "chunks": [
+          "What do you think",
+          "of this idea?"
+        ],
+        "hints": [
+          "你怎么看",
+          "这个主意"
+        ],
+        "grammar": [
+          {
+            "role": "疑问主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɒt/",
+              "/duː/",
+              "/juː/",
+              "/θɪŋk/"
+            ],
+            "pos": "特殊疑问句",
+            "meaning": "你怎么看"
+          },
+          {
+            "role": "介词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əv/",
+              "/ðɪs/",
+              "/aɪˈdɪə/"
+            ],
+            "pos": "介词短语",
+            "meaning": "这个主意"
+          }
+        ],
+        "explanations": [
+          "**What do you think of...?** = 你对……怎么看？常见错误：\n• \"How do you think **about** it\" → 也有人说，但标准句式是 What ... think of\n• \"What are you think\" → 疑问句用助动词 do，不是 be",
+          "征求意见的两大句式：What do you think of...? / How do you like...? 回答：I think it's great / I'm not sure about it."
+        ],
+        "distractors": [
+          [
+            "What do you thinks",
+            "What are you think",
+            "What do you thinking"
+          ],
+          [
+            "in this idea?",
+            "of that idea?",
+            "of this ideal?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "What do you think of this idea?",
+          "audio": {
+            "url": "assets/oral-a5117784-3e3eafaa54922b576e25.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c76fc600faca323083145cc30fe68b47bfdf94b60beb5fa7bd008fdd3f90e6b8",
+            "bytes": 5676
+          }
+        }
+      },
+      {
+        "sentence": "That reminds me of something.",
+        "cid": "5e6bba59",
+        "translation": "那让我想起了一件事。",
+        "chunks": [
+          "That reminds me",
+          "of something."
+        ],
+        "hints": [
+          "那让我想起",
+          "一件事。"
+        ],
+        "grammar": [
+          {
+            "role": "主句谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ðæt/",
+              "/rɪˈmaɪndz/",
+              "/miː/"
+            ],
+            "pos": "一般现在时",
+            "meaning": "那让我想起"
+          },
+          {
+            "role": "介词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əv/",
+              "/ˈsʌmθɪŋ/"
+            ],
+            "pos": "remind of 搭配",
+            "meaning": "一件事"
+          }
+        ],
+        "explanations": [
+          "**remind sb of sth** = 让某人想起某事。常见错误：\n• \"remind me **about** something\" → about 是「提醒」，of 是「使想起」，语境不同\n• \"That **remember** me\" → 人作主语才用 remember，事物用 remind",
+          "口语中常用来引出话题：That reminds me of a funny story...（那让我想起一个有趣的故事）。"
+        ],
+        "distractors": [
+          [
+            "That remind me",
+            "That reminded me",
+            "That reminds I"
+          ],
+          [
+            "of anything.",
+            "about something.",
+            "of somethings."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "That reminds me of something.",
+          "audio": {
+            "url": "assets/oral-5e6bba59-980a208352c91362798a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7e0e313448c315b1e7e5237bd978a9b0a16eaee3068990605c652fe229ad0050",
+            "bytes": 5594
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "Calm down.",
+      "translation": "冷静下来！",
+      "chunks": [
+        "Calm down."
+      ],
+      "hints": [
+        "冷静下来！"
+      ],
+      "cid": "9a1a2a3c",
+      "sentenceAudio": {
+        "text": "Calm down.",
+        "audio": {
+          "url": "assets/oral-9a1a2a3c-28c5f438cff92698df71.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f75e9228af5f6c067df54b9da453fb93f42f23d0e0540073367b7b4d4d4dcf30",
+          "bytes": 3925
+        }
+      }
+    },
+    {
+      "sentence": "Don't get so uptight.",
+      "translation": "何必当真了呢。",
+      "chunks": [
+        "Don't get so uptight."
+      ],
+      "hints": [
+        "别这么紧张。/何必当真呢？"
+      ],
+      "cid": "4cc0bec0",
+      "sentenceAudio": {
+        "text": "Don't get so uptight.",
+        "audio": {
+          "url": "assets/oral-4cc0bec0-0900571aaf23d21dc6d8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b2dafc0807db9378875b3e1cda010d44410b57c7360e56996c63e54dd0b3c2ff",
+          "bytes": 4754
+        }
+      }
+    },
+    {
+      "sentence": "Don't be so stiff.",
+      "translation": "放松点儿。",
+      "chunks": [
+        "Don't be so stiff."
+      ],
+      "hints": [
+        "别这么僵硬。/放松点儿。"
+      ],
+      "cid": "de8ead9c",
+      "sentenceAudio": {
+        "text": "Don't be so stiff.",
+        "audio": {
+          "url": "assets/oral-de8ead9c-d1277559fd0b28476d70.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dc9fbaace5eb8a1551a4ca5e2a4b98f623fbdd8037877c09615395224875708e",
+          "bytes": 4350
+        }
+      }
+    },
+    {
+      "sentence": "Kick back!",
+      "translation": "放松点儿。",
+      "chunks": [
+        "Kick back!"
+      ],
+      "hints": [
+        "放松一下！"
+      ],
+      "cid": "f3d79d61",
+      "sentenceAudio": {
+        "text": "Kick back!",
+        "audio": {
+          "url": "assets/oral-f3d79d61-d7caa17dff3a03b82f1f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b1884073d97df69f24961e1cc5315885b3cb8b423874acd4a26bfe5e2bc4728",
+          "bytes": 3494
+        }
+      }
+    },
+    {
+      "sentence": "Take your time.",
+      "cid": "22a86a18",
+      "translation": "慢慢来，不着急。",
+      "chunks": [
+        "Take your time."
+      ],
+      "hints": [
+        "慢慢来，不着急。"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/teɪk jɔːr taɪm/"
+          ],
+          "pos": "劝人不用着急的习语",
+          "meaning": "慢慢来，不用着急"
+        }
+      ],
+      "explanations": [
+        "**Take your time.** = 慢慢来、不用急，对方需要时间思考或忙时安慰用。",
+        "结构 take one's time：take my time / take his time。反义：**Hurry up!** 别与 **It takes time**（需要时间）混淆。"
+      ],
+      "distractors": [
+        [
+          "Don't rush.",
+          "Take your time off.",
+          "Use your time wisely."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Take your time.",
+        "audio": {
+          "url": "assets/oral-22a86a18-c1e5de8bcef288f0817c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e88925f1763bee3d570850c12bbdd2677f1f0cf6afb3e271ce1c61d41681cba4",
+          "bytes": 4080
+        }
+      }
+    },
+    {
+      "sentence": "There's no need to rush.",
+      "translation": "没必要着急。",
+      "chunks": [
+        "There's no need",
+        "to rush."
+      ],
+      "hints": [
+        "没必要",
+        "着急。"
+      ],
+      "cid": "050703df",
+      "sentenceAudio": {
+        "text": "There's no need to rush.",
+        "audio": {
+          "url": "assets/oral-050703df-e9beb20729ba3095d46a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "66f677158dc3ccb0bab49377ad9b577a94040aa848dd16c5d2fb4f57e5b0f873",
+          "bytes": 5158
+        }
+      }
+    },
+    {
+      "sentence": "Let's make up.",
+      "translation": "我们和好吧!",
+      "chunks": [
+        "Let's",
+        "make up."
+      ],
+      "hints": [
+        "我们",
+        "和好吧！"
+      ],
+      "cid": "50e3dfab",
+      "sentenceAudio": {
+        "text": "Let's make up.",
+        "audio": {
+          "url": "assets/oral-50e3dfab-64638b1bc46ab9081cde.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "00c22e575df73a09b5eeacf94da92082991f0f0553d044cfd88c8ec1fe53cf1b",
+          "bytes": 4042
+        }
+      }
+    },
+    {
+      "sentence": "Did you make up?",
+      "translation": "你们和好了吗？",
+      "chunks": [
+        "Did you",
+        "make up?"
+      ],
+      "hints": [
+        "你们",
+        "和好了吗？"
+      ],
+      "cid": "f9f5bbb7",
+      "sentenceAudio": {
+        "text": "Did you make up?",
+        "audio": {
+          "url": "assets/oral-f9f5bbb7-8d0f853a9074e7334558.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e0c9eac4d47762b9ec8b987614b976dfd002124892e410acc4659e0d172492d",
+          "bytes": 3913
+        }
+      }
+    },
+    {
+      "sentence": "Can't we talk it over?",
+      "translation": "我们就不能好好谈谈吗?",
+      "chunks": [
+        "Can't we",
+        "talk it over?"
+      ],
+      "hints": [
+        "我们就不能",
+        "好好谈谈吗？"
+      ],
+      "cid": "b346db1a",
+      "sentenceAudio": {
+        "text": "Can't we talk it over?",
+        "audio": {
+          "url": "assets/oral-b346db1a-0f4e2082ce5757d364c4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8f5ea13000e8b3a673ec3af3c24f87302ee60b35b7b36a8d21f6ceea3977e6bc",
+          "bytes": 4775
+        }
+      }
+    },
+    {
+      "sentence": "Try to get along.",
+      "translation": "你俩要好好相处。",
+      "chunks": [
+        "Try to",
+        "get along."
+      ],
+      "hints": [
+        "你俩要",
+        "好好相处。"
+      ],
+      "cid": "88b38414",
+      "sentenceAudio": {
+        "text": "Try to get along.",
+        "audio": {
+          "url": "assets/oral-88b38414-f12e2e10df85da96f4ef.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9bfaa9ee591c87136f76b60d277271030f83a9fc7de257d066770cd70f87fd0d",
+          "bytes": 4126
+        }
+      }
+    },
+    {
+      "sentence": "Let's forgive and forget!",
+      "translation": "过去的事就让它过去吧。",
+      "chunks": [
+        "Let's forgive and forget!"
+      ],
+      "hints": [
+        "过去的事就让它过去吧。"
+      ],
+      "cid": "0d434eef",
+      "sentenceAudio": {
+        "text": "Let's forgive and forget!",
+        "audio": {
+          "url": "assets/oral-0d434eef-655ebec3e41b0bac2d26.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3defe93294364ddf85a07d20c7e8b569ceb5a7360605be4377d88348fa897ead",
+          "bytes": 5398
+        }
+      }
+    },
+    {
+      "sentence": "I've beaten you.",
+      "translation": "我打败了你。",
+      "chunks": [
+        "I've beaten",
+        "you."
+      ],
+      "hints": [
+        "我打败了",
+        "你。"
+      ],
+      "cid": "6e2e28ee",
+      "sentenceAudio": {
+        "text": "I've beaten you.",
+        "audio": {
+          "url": "assets/oral-6e2e28ee-2384b91939a324ee973e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cb6598069f5cebd7fd6361787c52dd3e1ab7895581d30183dcd5af71369359a4",
+          "bytes": 4155
+        }
+      }
+    },
+    {
+      "sentence": "I didn't mean to hurt you.",
+      "translation": "我无意伤害你。",
+      "chunks": [
+        "I didn't mean",
+        "to hurt you."
+      ],
+      "hints": [
+        "我无意",
+        "伤害你。"
+      ],
+      "cid": "92d5aac4",
+      "sentenceAudio": {
+        "text": "I didn't mean to hurt you.",
+        "audio": {
+          "url": "assets/oral-92d5aac4-abe85753336cc50fffde.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "006e283506a906b2b494b71779648285b7014fed6c4111d85ea2649326b0e416",
+          "bytes": 5119
+        }
+      }
+    },
+    {
+      "sentence": "I missed you.",
+      "translation": "我很想念你。",
+      "chunks": [
+        "I",
+        "missed you."
+      ],
+      "hints": [
+        "我",
+        "很想念你。"
+      ],
+      "cid": "5188d030",
+      "sentenceAudio": {
+        "text": "I missed you.",
+        "audio": {
+          "url": "assets/oral-5188d030-63ebe7ec086bbbfa9d75.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9ed8925c90d80a35864c75ef36f067af62f3a93ae6d87ad75a95fb220a895e8f",
+          "bytes": 3921
+        }
+      }
+    },
+    {
+      "sentence": "I get lonely easily.",
+      "translation": "我很容易感到寂寞。",
+      "chunks": [
+        "I",
+        "get lonely easily."
+      ],
+      "hints": [
+        "我",
+        "很容易感到寂寞。"
+      ],
+      "cid": "e94e0c7e",
+      "sentenceAudio": {
+        "text": "I get lonely easily.",
+        "audio": {
+          "url": "assets/oral-e94e0c7e-7a5d58de13d3ff0d7a07.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "880876caf9dcf95b8c1a285c7fb2bf1f6d0b721db1637ee7f33bd1742e9e0f78",
+          "bytes": 5033
+        }
+      }
+    },
+    {
+      "sentence": "Can't you patch things up?",
+      "translation": "你们就不能和好吗?",
+      "chunks": [
+        "Can't you",
+        "patch things up?"
+      ],
+      "hints": [
+        "你们就不能",
+        "和好吗？"
+      ],
+      "cid": "6eebdafe",
+      "sentenceAudio": {
+        "text": "Can't you patch things up?",
+        "audio": {
+          "url": "assets/oral-6eebdafe-57691f9412da7bf92f0e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c7e2f35d19b1ac53ebfac9530e96c9701f3ec2d587812ce0638a6013638058c1",
+          "bytes": 5039
+        }
+      }
+    }
+  ]
+}

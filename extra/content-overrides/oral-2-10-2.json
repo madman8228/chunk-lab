@@ -1,0 +1,1584 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-10-2",
+    "name": "口语3000句 · 提醒、忠告 · 提醒～责备",
+    "short": "提醒～责备",
+    "desc": "提醒～责备",
+    "chapter": 2,
+    "section": "2.10",
+    "sectionTitle": "提醒、忠告",
+    "topic": "提醒～责备",
+    "baseCount": 0,
+    "totalCount": 66,
+    "items": [
+      {
+        "sentence": "Let me give you a piece of advice.",
+        "translation": "让我给你一点建议。",
+        "chunks": [
+          "Let me give you",
+          "a piece of advice."
+        ],
+        "hints": [
+          "让我给你",
+          "一点建议。"
+        ],
+        "cid": "2c0e7e7a",
+        "sentenceAudio": {
+          "text": "Let me give you a piece of advice.",
+          "audio": {
+            "url": "assets/oral-2c0e7e7a-942a52d74a63c742b10b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3a5ca57b4b9a6bb7240b436d353c6d597198a2d1d041c59af668afa1e59ebbca",
+            "bytes": 6364
+          }
+        }
+      },
+      {
+        "sentence": "Watch out!",
+        "translation": "小心!",
+        "chunks": [
+          "Watch out!"
+        ],
+        "hints": [
+          "小心！"
+        ],
+        "cid": "a36c3007",
+        "sentenceAudio": {
+          "text": "Watch out!",
+          "audio": {
+            "url": "assets/oral-a36c3007-cf82d34b0c931bb7c8b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4dea2ca8a53ddf7c41bbba82c98742a1f7abffae185470089b030bca52bcbe44",
+            "bytes": 3728
+          }
+        }
+      },
+      {
+        "sentence": "Hold on to me tight.",
+        "translation": "紧紧抓住我。",
+        "chunks": [
+          "Hold on to me",
+          "tight."
+        ],
+        "hints": [
+          "抓住我",
+          "紧紧地。"
+        ],
+        "cid": "fac24826",
+        "sentenceAudio": {
+          "text": "Hold on to me tight.",
+          "audio": {
+            "url": "assets/oral-fac24826-978378c2c548053856c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "77ca5eda9a4fc3a5f48db62a157690a4d6fc1cff49454c47c2bea0151c979cb3",
+            "bytes": 4937
+          }
+        }
+      },
+      {
+        "sentence": "Watch out for him!",
+        "translation": "要提防他!",
+        "chunks": [
+          "Watch out",
+          "for him!"
+        ],
+        "hints": [
+          "要提防",
+          "他！"
+        ],
+        "cid": "c012a540",
+        "sentenceAudio": {
+          "text": "Watch out for him!",
+          "audio": {
+            "url": "assets/oral-c012a540-4780e8330bf7be46bc73.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9ef08ba977d204e008c5511bbb1ebd5ff91159e494988c06625c24f56c7d44c8",
+            "bytes": 4538
+          }
+        }
+      },
+      {
+        "sentence": "There's a little catch.",
+        "translation": "这里有点儿蹊跷。",
+        "chunks": [
+          "There's a little",
+          "catch."
+        ],
+        "hints": [
+          "这里有点",
+          "蹊跷。"
+        ],
+        "cid": "f016df93",
+        "sentenceAudio": {
+          "text": "There's a little catch.",
+          "audio": {
+            "url": "assets/oral-f016df93-3428500fe093487be52c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "32afab7b5669c37245c73897262dd94390f5183d58fdc2f29396d3d8b9638944",
+            "bytes": 4418
+          }
+        }
+      },
+      {
+        "sentence": "Think twice before you do it.",
+        "translation": "三思而后行。",
+        "chunks": [
+          "Think twice",
+          "before you do it."
+        ],
+        "hints": [
+          "要三思",
+          "做之前。"
+        ],
+        "cid": "1c9a6d9f",
+        "sentenceAudio": {
+          "text": "Think twice before you do it.",
+          "audio": {
+            "url": "assets/oral-1c9a6d9f-ed256d7c4d081bfb34bd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1e9608dfb918b5baba30557eed3a3951066cfa5ba802b8c606a6302ee4007e83",
+            "bytes": 5653
+          }
+        }
+      },
+      {
+        "sentence": "Easy does it.",
+        "translation": "轻拿轻放。/动作轻点儿。",
+        "chunks": [
+          "Easy does it."
+        ],
+        "hints": [
+          "动作轻一点。"
+        ],
+        "cid": "63bbcbdd",
+        "sentenceAudio": {
+          "text": "Easy does it.",
+          "audio": {
+            "url": "assets/oral-63bbcbdd-b3455e8558f624574d7f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ba9e90651b72e7ab51408899201a69a35c22b169295853e568a5f04748fd763f",
+            "bytes": 3990
+          }
+        }
+      },
+      {
+        "sentence": "Please go easy on me.",
+        "translation": "手下留情。",
+        "chunks": [
+          "Please",
+          "go easy on me."
+        ],
+        "hints": [
+          "请",
+          "对我手下留情。"
+        ],
+        "cid": "1453e4a4",
+        "sentenceAudio": {
+          "text": "Please go easy on me.",
+          "audio": {
+            "url": "assets/oral-1453e4a4-16f73e7c4d043da2a668.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c0f597522af86f1cf45a48c6a067e00b47f4e92db291eac117176444772ff09e",
+            "bytes": 5030
+          }
+        }
+      },
+      {
+        "sentence": "Let's not jump the gun.",
+        "translation": "别操之过急。",
+        "chunks": [
+          "Let's not jump the gun."
+        ],
+        "hints": [
+          "别操之过急。"
+        ],
+        "cid": "2ff8110c",
+        "sentenceAudio": {
+          "text": "Let's not jump the gun.",
+          "audio": {
+            "url": "assets/oral-2ff8110c-042583bd6c1e88001c96.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eb218542b0f1184a5f6ff4a46a2ae67c2b00ba02a4e88d07c8fea6e7983718c1",
+            "bytes": 5155
+          }
+        }
+      },
+      {
+        "sentence": "Let's not go overboard.",
+        "translation": "不要做得太过火。",
+        "chunks": [
+          "Let's not",
+          "go overboard."
+        ],
+        "hints": [
+          "不要",
+          "做得太过火。"
+        ],
+        "cid": "83db9e9f",
+        "sentenceAudio": {
+          "text": "Let's not go overboard.",
+          "audio": {
+            "url": "assets/oral-83db9e9f-c8115044d016aa66116d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a87d124f3223509a82878a4da2f2c8c3bd36d049aee96b7560265b2bbf3c6e85",
+            "bytes": 5595
+          }
+        }
+      },
+      {
+        "sentence": "Let's wait and see how things go.",
+        "translation": "我们看情况再说。",
+        "chunks": [
+          "Let's wait and see",
+          "how things go."
+        ],
+        "hints": [
+          "我们看看",
+          "情况再说。"
+        ],
+        "cid": "5302923a",
+        "sentenceAudio": {
+          "text": "Let's wait and see how things go.",
+          "audio": {
+            "url": "assets/oral-5302923a-370424e86d395c6244a6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7e1d9688ec4fb3f6cc3e7cce9c5057dbc7d3c36018cf0afe77bb4540adac780f",
+            "bytes": 6740
+          }
+        }
+      },
+      {
+        "sentence": "Don't jump to conclusions!",
+        "translation": "别这么快地下结论。",
+        "chunks": [
+          "Don't jump",
+          "to conclusions!"
+        ],
+        "hints": [
+          "别急着",
+          "下结论！"
+        ],
+        "cid": "365228b7",
+        "sentenceAudio": {
+          "text": "Don't jump to conclusions!",
+          "audio": {
+            "url": "assets/oral-365228b7-9fbdef8db0002ca98b16.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d8620863c211ceb12fc741239524b14fc826fdd0a5a8cd1b26bd3282b81ff837",
+            "bytes": 5860
+          }
+        }
+      },
+      {
+        "sentence": "Don't be selfish.",
+        "translation": "别那么自私。",
+        "chunks": [
+          "Don't be",
+          "selfish."
+        ],
+        "hints": [
+          "别",
+          "那么自私。"
+        ],
+        "cid": "65d1a1ae",
+        "sentenceAudio": {
+          "text": "Don't be selfish.",
+          "audio": {
+            "url": "assets/oral-65d1a1ae-dbe0cbba425fd85be1c2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6d5f069168197c5e569212aadd3e36d235d33011b7319bc8fef4a730d11901ea",
+            "bytes": 4366
+          }
+        }
+      },
+      {
+        "sentence": "Your work is always inconsistent.",
+        "translation": "你的工作表现总是不稳定。",
+        "chunks": [
+          "Your work is",
+          "always inconsistent."
+        ],
+        "hints": [
+          "你的工作表现",
+          "总是不稳定。"
+        ],
+        "cid": "0df2bdb9",
+        "sentenceAudio": {
+          "text": "Your work is always inconsistent.",
+          "audio": {
+            "url": "assets/oral-0df2bdb9-30e7df12628b990c3295.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f5dbe719eecbf95fd6b9aae76f326797c41225d7d885a574ffaece5707b6671b",
+            "bytes": 7128
+          }
+        }
+      },
+      {
+        "sentence": "You shouldn't spend money foolishly.",
+        "translation": "你不该随便乱花钱。",
+        "chunks": [
+          "You shouldn't spend",
+          "money foolishly."
+        ],
+        "hints": [
+          "你不该",
+          "随便乱花钱。"
+        ],
+        "cid": "c1fb72e3",
+        "sentenceAudio": {
+          "text": "You shouldn't spend money foolishly.",
+          "audio": {
+            "url": "assets/oral-c1fb72e3-dde55742d0985d932319.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a9fbc090847fcfd873b9e32c6576b8eefdbb27d71ef7964750d5edf8343cd1bf",
+            "bytes": 6075
+          }
+        }
+      },
+      {
+        "sentence": "You have an attitude problem.",
+        "translation": "你的态度太恶劣了。",
+        "chunks": [
+          "You have",
+          "an attitude problem."
+        ],
+        "hints": [
+          "你的态度",
+          "有问题。"
+        ],
+        "cid": "a7592a98",
+        "sentenceAudio": {
+          "text": "You have an attitude problem.",
+          "audio": {
+            "url": "assets/oral-a7592a98-00fdb7f1e5b194adced0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "09447dac46563f6e22203335120416a6a07317f5b57e0cb12e94f37bab811bf9",
+            "bytes": 5954
+          }
+        }
+      },
+      {
+        "sentence": "Don't be so naughty.",
+        "translation": "别这么调皮。",
+        "chunks": [
+          "Don't be",
+          "so naughty."
+        ],
+        "hints": [
+          "别",
+          "这么调皮。"
+        ],
+        "cid": "942c8512",
+        "sentenceAudio": {
+          "text": "Don't be so naughty.",
+          "audio": {
+            "url": "assets/oral-942c8512-1577b5823d96b0f83b42.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d2e12bc6b5e0cbe3b6982159098227ad5742d620432340e4b718a7258bb4847c",
+            "bytes": 4464
+          }
+        }
+      },
+      {
+        "sentence": "Hold it down!",
+        "translation": "把声音放低！",
+        "chunks": [
+          "Hold it down!"
+        ],
+        "hints": [
+          "把声音放低！"
+        ],
+        "cid": "c10e709e",
+        "sentenceAudio": {
+          "text": "Hold it down!",
+          "audio": {
+            "url": "assets/oral-c10e709e-06cdf7af0726963508fd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cedc274b671537b9f499478bb76b935bdca7cddf61b2642803aa14fc25bc0f21",
+            "bytes": 4053
+          }
+        }
+      },
+      {
+        "sentence": "Hush!",
+        "translation": "嘘!",
+        "chunks": [
+          "Hush!"
+        ],
+        "hints": [
+          "嘘！"
+        ],
+        "cid": "7437e10c",
+        "sentenceAudio": {
+          "text": "Hush!",
+          "audio": {
+            "url": "assets/oral-7437e10c-7daddf92200a722d1492.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "745327cf795c1fc4b21a35416e5920c27408828e5bc4cb5fd5d5258e4ed680f9",
+            "bytes": 3051
+          }
+        }
+      },
+      {
+        "sentence": "It's too noisy.",
+        "translation": "这里太吵了。",
+        "chunks": [
+          "It's",
+          "too noisy."
+        ],
+        "hints": [
+          "这里",
+          "太吵了。"
+        ],
+        "cid": "ae2d3c8c",
+        "sentenceAudio": {
+          "text": "It's too noisy.",
+          "audio": {
+            "url": "assets/oral-ae2d3c8c-0e6963a215f156a2e9a2.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e3fede383b8e706fe285a2e30e79b1f1c81f7849cda976f429efa3b610897ac8",
+            "bytes": 4243
+          }
+        }
+      },
+      {
+        "sentence": "Don't make a fool of yourself.",
+        "translation": "别丢人现眼了!",
+        "chunks": [
+          "Don't",
+          "make a fool of yourself."
+        ],
+        "hints": [
+          "别",
+          "丢人现眼！"
+        ],
+        "cid": "5dd2b7d2",
+        "sentenceAudio": {
+          "text": "Don't make a fool of yourself.",
+          "audio": {
+            "url": "assets/oral-5dd2b7d2-0fd7d5ec35c7465332b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5317f0c9f2142cfe0ded56cc8bf73a2f307ea1c0fc77bc5de0a3ce01624fc6f0",
+            "bytes": 5902
+          }
+        }
+      },
+      {
+        "sentence": "Think about where you are.",
+        "translation": "分清场合。",
+        "chunks": [
+          "Think about",
+          "where you are."
+        ],
+        "hints": [
+          "想想",
+          "你身处什么场合。"
+        ],
+        "cid": "77d753c6",
+        "sentenceAudio": {
+          "text": "Think about where you are.",
+          "audio": {
+            "url": "assets/oral-77d753c6-ef36dbac8f11638c6b14.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "798817653692bfa5c9b116b0dbe317ce9253a78492da2c41d6e60f7987f27b5e",
+            "bytes": 4843
+          }
+        }
+      },
+      {
+        "sentence": "Act your age.",
+        "translation": "像个成年人一样举止得体。",
+        "chunks": [
+          "Act",
+          "your age."
+        ],
+        "hints": [
+          "表现得",
+          "符合你的年龄。"
+        ],
+        "cid": "c3563299",
+        "sentenceAudio": {
+          "text": "Act your age.",
+          "audio": {
+            "url": "assets/oral-c3563299-eb6cede19ebec7f2d787.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0daeea8961a2b7416d9c92e6a7da86e0778a166189aaed7f6fe9eb03471e616e",
+            "bytes": 3984
+          }
+        }
+      },
+      {
+        "sentence": "Your view is too optimistic.",
+        "translation": "你想得也太天真了。",
+        "chunks": [
+          "Your view is",
+          "too optimistic."
+        ],
+        "hints": [
+          "你的想法",
+          "也太天真了。"
+        ],
+        "cid": "bf109e22",
+        "sentenceAudio": {
+          "text": "Your view is too optimistic.",
+          "audio": {
+            "url": "assets/oral-bf109e22-06db8397f7c0a44cf257.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e3ec828bd56865f13bf93f07df90d2430bda8f5a57f189db1a9a58f34f1a7513",
+            "bytes": 6274
+          }
+        }
+      },
+      {
+        "sentence": "You should get your head out of the clouds.",
+        "translation": "你的想法太不现实了。",
+        "chunks": [
+          "You should get your head",
+          "out of the clouds."
+        ],
+        "hints": [
+          "你该",
+          "现实一点儿了。"
+        ],
+        "cid": "860fd1fa",
+        "sentenceAudio": {
+          "text": "You should get your head out of the clouds.",
+          "audio": {
+            "url": "assets/oral-860fd1fa-46c4e86ba38cecb65765.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "681f8cd110018fe69333ad7d764a0e6422cc28397724d26eea040e9f71a204a9",
+            "bytes": 6432
+          }
+        }
+      },
+      {
+        "sentence": "Don't make such stupid mistakes again!",
+        "translation": "别再犯这种愚蠢的错误！",
+        "chunks": [
+          "Don't make",
+          "such stupid mistakes",
+          "again!"
+        ],
+        "hints": [
+          "别犯",
+          "这种愚蠢的错误",
+          "再一次！"
+        ],
+        "cid": "30f11657",
+        "sentenceAudio": {
+          "text": "Don't make such stupid mistakes again!",
+          "audio": {
+            "url": "assets/oral-30f11657-1069667910a941be1c75.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3c63f5667025d642f660019099a104b468a8abc583cd24d63c821a256ed1baac",
+            "bytes": 7053
+          }
+        }
+      },
+      {
+        "sentence": "Don't be stuck-up.",
+        "translation": "别那么自命不凡。",
+        "chunks": [
+          "Don't be",
+          "stuck-up."
+        ],
+        "hints": [
+          "别",
+          "那么自命不凡。"
+        ],
+        "cid": "bbb46736",
+        "sentenceAudio": {
+          "text": "Don't be stuck-up.",
+          "audio": {
+            "url": "assets/oral-bbb46736-d9a838b16b2829edbe31.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f27b20f711eb98499e4b518e12f6d994958b5bc7eb6b5b1befe0bedb64b72823",
+            "bytes": 4241
+          }
+        }
+      },
+      {
+        "sentence": "Don't judge a book by its cover.",
+        "translation": "人不可貌相。",
+        "chunks": [
+          "Don't judge a book",
+          "by its cover."
+        ],
+        "hints": [
+          "人不可",
+          "貌相。"
+        ],
+        "cid": "80bf0e94",
+        "sentenceAudio": {
+          "text": "Don't judge a book by its cover.",
+          "audio": {
+            "url": "assets/oral-80bf0e94-7b25159272ee2bf021d3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f5267db947ac4a3bcb4a3be9a060e92da5ec254b690994d4252a27cff8ca288f",
+            "bytes": 6165
+          }
+        }
+      },
+      {
+        "sentence": "Watch your tongue.",
+        "translation": "注意你的言辞。",
+        "chunks": [
+          "Watch",
+          "your tongue."
+        ],
+        "hints": [
+          "注意",
+          "你的言辞。"
+        ],
+        "cid": "1fee68bd",
+        "sentenceAudio": {
+          "text": "Watch your tongue.",
+          "audio": {
+            "url": "assets/oral-1fee68bd-4a748acbfe78f7b5d273.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f331f19155f78adb494d0ae64a391bd5b683556a9caced6d887bba396a705aed",
+            "bytes": 4094
+          }
+        }
+      },
+      {
+        "sentence": "Follow the rules.",
+        "translation": "要遵守规则。",
+        "chunks": [
+          "Follow",
+          "the rules."
+        ],
+        "hints": [
+          "要遵守",
+          "规则。"
+        ],
+        "cid": "b94e6576",
+        "sentenceAudio": {
+          "text": "Follow the rules.",
+          "audio": {
+            "url": "assets/oral-b94e6576-43bc4cac5b513aea495d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "97c07dfe18bc681736aa6571c9a351ace97f090324b17f82c6cb1ac6e6e34dd5",
+            "bytes": 4378
+          }
+        }
+      },
+      {
+        "sentence": "Stop goofing off!",
+        "translation": "别偷懒!",
+        "chunks": [
+          "Stop",
+          "goofing off!"
+        ],
+        "hints": [
+          "别",
+          "偷懒！"
+        ],
+        "cid": "57cda8ac",
+        "sentenceAudio": {
+          "text": "Stop goofing off!",
+          "audio": {
+            "url": "assets/oral-57cda8ac-9b5b8eb57deb20af21d0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "dee1fa58951ddce7ed05ae8f495e920e222133c9ba3fac59eefcb441e8172872",
+            "bytes": 4547
+          }
+        }
+      },
+      {
+        "sentence": "Do as I said!",
+        "translation": "照我说的做!",
+        "chunks": [
+          "Do as I said!"
+        ],
+        "hints": [
+          "照我说的做！"
+        ],
+        "cid": "ffe44987",
+        "sentenceAudio": {
+          "text": "Do as I said!",
+          "audio": {
+            "url": "assets/oral-ffe44987-b76648759af5ec327931.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "692416dd7296d07cdf1f1485805793b88cf3c79aa1360c5800582174cabe9384",
+            "bytes": 4022
+          }
+        }
+      },
+      {
+        "sentence": "Don't say bad things about others.",
+        "translation": "不要说别人的坏话。",
+        "chunks": [
+          "Don't say bad things",
+          "about others."
+        ],
+        "hints": [
+          "别说",
+          "别人的坏话。"
+        ],
+        "cid": "3b98e4f8",
+        "sentenceAudio": {
+          "text": "Don't say bad things about others.",
+          "audio": {
+            "url": "assets/oral-3b98e4f8-e46a8d49798d19a588ab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ead0bff7bb79d7ae6c397526d4af080b8b93baa778777b264d64d9c95ee4ac50",
+            "bytes": 6505
+          }
+        }
+      },
+      {
+        "sentence": "Don't go back on your word!",
+        "translation": "别食言。",
+        "chunks": [
+          "Don't",
+          "go back on your word!"
+        ],
+        "hints": [
+          "别",
+          "食言。"
+        ],
+        "cid": "4f4ec61b",
+        "sentenceAudio": {
+          "text": "Don't go back on your word!",
+          "audio": {
+            "url": "assets/oral-4f4ec61b-de234f548d026777a6ca.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84c8dd4a638f9657f2eab5b8b613b10b903470444f104b0442da3e5e59cf86bc",
+            "bytes": 5139
+          }
+        }
+      },
+      {
+        "sentence": "Don't take on more than you can.",
+        "translation": "别接超出自己能力范围的事。",
+        "chunks": [
+          "Don't take on",
+          "more than you can."
+        ],
+        "hints": [
+          "别接下，",
+          "超出自己能力范围的事。"
+        ],
+        "cid": "4f400bc2",
+        "sentenceAudio": {
+          "text": "Don't take on more than you can.",
+          "audio": {
+            "url": "assets/oral-4f400bc2-28f0d1c0da777208a6d9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1da97e8686e48135fdb22babc55da04fcd36de348c10b655cb8f861a22d105ec",
+            "bytes": 5742
+          }
+        }
+      },
+      {
+        "sentence": "Don't be rude!",
+        "translation": "别那么粗鲁!",
+        "chunks": [
+          "Don't be",
+          "rude!"
+        ],
+        "hints": [
+          "别",
+          "那么粗鲁！"
+        ],
+        "cid": "4a9be27f",
+        "sentenceAudio": {
+          "text": "Don't be rude!",
+          "audio": {
+            "url": "assets/oral-4a9be27f-e98201ee759d7d8a6ef0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3e6a4cc59a757e16facccafe0b5f596aa65ff39cf7edd76a311d467e47404bbe",
+            "bytes": 4005
+          }
+        }
+      },
+      {
+        "sentence": "You're fired!",
+        "translation": "你被开除了。",
+        "chunks": [
+          "You're",
+          "fired!"
+        ],
+        "hints": [
+          "你",
+          "被开除了！"
+        ],
+        "cid": "53633217",
+        "sentenceAudio": {
+          "text": "You're fired!",
+          "audio": {
+            "url": "assets/oral-53633217-4ccadb6d456f266c945d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ea749d89ec919fc57697a8f03c07f0fc965d20b3f1dd9c14938d87c1b91ef393",
+            "bytes": 3728
+          }
+        }
+      },
+      {
+        "sentence": "Be a man!",
+        "translation": "你得像个男子汉!",
+        "chunks": [
+          "Be",
+          "a man!"
+        ],
+        "hints": [
+          "拿出",
+          "男子汉的样子来！"
+        ],
+        "cid": "5332d16e",
+        "sentenceAudio": {
+          "text": "Be a man!",
+          "audio": {
+            "url": "assets/oral-5332d16e-7328face53ec8e3f736e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4c52ef2aa1976632c9aed6873b99b04633d1d6e935719bffecd412ef6bafee6d",
+            "bytes": 3640
+          }
+        }
+      },
+      {
+        "sentence": "Don't talk boastfully.",
+        "translation": "别自吹自擂。",
+        "chunks": [
+          "Don't talk",
+          "boastfully."
+        ],
+        "hints": [
+          "别",
+          "自吹自擂。"
+        ],
+        "cid": "8374c1da",
+        "sentenceAudio": {
+          "text": "Don't talk boastfully.",
+          "audio": {
+            "url": "assets/oral-8374c1da-b313bc0f0d290c38a65c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2aaa6aa0ff021fc36259d211c8d229449b024bf385128197be9da92d3d9b8ed9",
+            "bytes": 4921
+          }
+        }
+      },
+      {
+        "sentence": "Please don't disappoint me.",
+        "translation": "请别让我失望。",
+        "chunks": [
+          "Please don't",
+          "disappoint me."
+        ],
+        "hints": [
+          "请别让我",
+          "失望。"
+        ],
+        "cid": "70c3400e",
+        "sentenceAudio": {
+          "text": "Please don't disappoint me.",
+          "audio": {
+            "url": "assets/oral-70c3400e-07aba5a5be09dc671f6b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ee0c7010de15383e67e2d199e43aca92abee01903b1ecd820e9572f2ddc50e6a",
+            "bytes": 5621
+          }
+        }
+      },
+      {
+        "sentence": "Don't flirt with girls!",
+        "translation": "别挑逗女孩!",
+        "chunks": [
+          "Don't flirt",
+          "with girls!"
+        ],
+        "hints": [
+          "别去挑逗",
+          "女孩子！"
+        ],
+        "cid": "cd038038",
+        "sentenceAudio": {
+          "text": "Don't flirt with girls!",
+          "audio": {
+            "url": "assets/oral-cd038038-447b2dcbd3a958d5c528.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "eaddd3983c00e0bf45afbaa2d2bc6d0c96c541f644c8a8c3e79ef0b56d30f562",
+            "bytes": 4816
+          }
+        }
+      },
+      {
+        "sentence": "Don't flirt with boys!",
+        "translation": "别挑逗男孩!",
+        "chunks": [
+          "Don't flirt",
+          "with boys!"
+        ],
+        "hints": [
+          "别去挑逗",
+          "男孩子！"
+        ],
+        "cid": "8f66a1a0",
+        "sentenceAudio": {
+          "text": "Don't flirt with boys!",
+          "audio": {
+            "url": "assets/oral-8f66a1a0-95cb930b321c850b93fd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ef6a06f60f930683cabfbcd844df07428242487b04fc3c8493470b304bcf3776",
+            "bytes": 4948
+          }
+        }
+      },
+      {
+        "sentence": "Don't complain and do as you are told.",
+        "translation": "别抱怨，叫你怎么做，就怎么做。",
+        "chunks": [
+          "Don't complain",
+          "and do as you are told."
+        ],
+        "hints": [
+          "别抱怨，",
+          "叫你怎么做就怎么做。"
+        ],
+        "cid": "285f9636",
+        "sentenceAudio": {
+          "text": "Don't complain and do as you are told.",
+          "audio": {
+            "url": "assets/oral-285f9636-51d626c349ad6afdd049.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9436e4474f5cc72e64fa22125fa89f0c77862503a0300f7a5e7b6a07aff6e600",
+            "bytes": 7343
+          }
+        }
+      },
+      {
+        "sentence": "Make it snappy!",
+        "translation": "动作麻利点，快点！",
+        "chunks": [
+          "Make it",
+          "snappy!"
+        ],
+        "hints": [
+          "动作麻利点",
+          "快点！"
+        ],
+        "cid": "ce479742",
+        "sentenceAudio": {
+          "text": "Make it snappy!",
+          "audio": {
+            "url": "assets/oral-ce479742-5bd3b5b5efba49567d0e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b8845e440ae7b38e7629063cdac8ccc1a4eb77167b18abb6f8cae436a027a91f",
+            "bytes": 4320
+          }
+        }
+      },
+      {
+        "sentence": "Step on it!",
+        "translation": "麻利点!/利索点!",
+        "chunks": [
+          "Step on it!"
+        ],
+        "hints": [
+          "快点儿！"
+        ],
+        "cid": "19899e9c",
+        "sentenceAudio": {
+          "text": "Step on it!",
+          "audio": {
+            "url": "assets/oral-19899e9c-68d33f5818ca40b69fe4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "060d25b89001a45f523115accaba36c7c65197606b4c1479f9cfbec9897101f7",
+            "bytes": 3645
+          }
+        }
+      },
+      {
+        "sentence": "Don't blame me.",
+        "translation": "别把责任推给我。",
+        "chunks": [
+          "Don't blame",
+          "me."
+        ],
+        "hints": [
+          "别怪罪",
+          "我。"
+        ],
+        "cid": "325c176a",
+        "sentenceAudio": {
+          "text": "Don't blame me.",
+          "audio": {
+            "url": "assets/oral-325c176a-1be134f81953d177c1e6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "31acdfe2a2519e40427a01800d699994c8ffedf0c000e97e1bfbccebd45c6eee",
+            "bytes": 4175
+          }
+        }
+      },
+      {
+        "sentence": "You're to blame.",
+        "translation": "这是你的过错。",
+        "chunks": [
+          "You're",
+          "to blame."
+        ],
+        "hints": [
+          "你",
+          "有责任。"
+        ],
+        "cid": "5cf07698",
+        "sentenceAudio": {
+          "text": "You're to blame.",
+          "audio": {
+            "url": "assets/oral-5cf07698-7c323d0595b6268823b8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9fbb459d55e8d685aab0e2a3317d75d1353dff0a581aef99ea4fccbbca9fe7eb",
+            "bytes": 3965
+          }
+        }
+      },
+      {
+        "sentence": "Put yourself in my shoes.",
+        "translation": "你站在我的立场上想想。",
+        "chunks": [
+          "Put yourself in my shoes."
+        ],
+        "hints": [
+          "站在我的立场上想想。"
+        ],
+        "cid": "bb43392e",
+        "sentenceAudio": {
+          "text": "Put yourself in my shoes.",
+          "audio": {
+            "url": "assets/oral-bb43392e-073477d5c92b18700c38.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "04a2646c229dac275b513826bcb415797bcdc0f98a5f8500236f7ad49427a312",
+            "bytes": 5386
+          }
+        }
+      },
+      {
+        "sentence": "Aren't you ashamed of yourself?",
+        "translation": "你就不觉得害臊吗?",
+        "chunks": [
+          "Aren't you ashamed",
+          "of yourself?"
+        ],
+        "hints": [
+          "你就不觉得",
+          "害臊吗？"
+        ],
+        "cid": "9ac831e9",
+        "sentenceAudio": {
+          "text": "Aren't you ashamed of yourself?",
+          "audio": {
+            "url": "assets/oral-9ac831e9-6110dc1e2feadbf8a236.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d474e239a07e719907e2cd2f9a75569b420df1902468edc78be0cce19d0752ca",
+            "bytes": 5568
+          }
+        }
+      },
+      {
+        "sentence": "I'll give him a piece of my mind.",
+        "translation": "我要教训他一顿。",
+        "chunks": [
+          "I'll give him",
+          "a piece of my mind."
+        ],
+        "hints": [
+          "我要",
+          "教训他一顿。"
+        ],
+        "cid": "e2a13522",
+        "sentenceAudio": {
+          "text": "I'll give him a piece of my mind.",
+          "audio": {
+            "url": "assets/oral-e2a13522-b86a9d94aaea688a2f0f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d627c42e0df504d70ec3e4d492a6d647e3194381a8fa315cccedb8e6058fbf1a",
+            "bytes": 6316
+          }
+        }
+      },
+      {
+        "sentence": "Don't involve me!",
+        "translation": "别把我卷进去。",
+        "chunks": [
+          "Don't",
+          "involve me!"
+        ],
+        "hints": [
+          "别",
+          "把我卷进去！"
+        ],
+        "cid": "3a78d601",
+        "sentenceAudio": {
+          "text": "Don't involve me!",
+          "audio": {
+            "url": "assets/oral-3a78d601-6488a574329d278ea0b4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c74186b387e00761d208f5abc042abd2f2f387c23d55f43168506de0e4972901",
+            "bytes": 4335
+          }
+        }
+      },
+      {
+        "sentence": "I told you so.",
+        "translation": "我早就告诉过你吧。",
+        "chunks": [
+          "I told you so."
+        ],
+        "hints": [
+          "我早就说过吧。"
+        ],
+        "cid": "ffce96b6",
+        "sentenceAudio": {
+          "text": "I told you so.",
+          "audio": {
+            "url": "assets/oral-ffce96b6-7e3e78ab0c4aa1c66ccd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "098961d885173eb3740960d753feda052e82b7a6fdb6da0a5a91f9bb05cd0570",
+            "bytes": 4309
+          }
+        }
+      },
+      {
+        "sentence": "You knew that, didn't you?",
+        "translation": "你知道的吧?",
+        "chunks": [
+          "You knew that,",
+          "didn't you?"
+        ],
+        "hints": [
+          "你是知道的，",
+          "对吧？"
+        ],
+        "cid": "50331490",
+        "sentenceAudio": {
+          "text": "You knew that, didn't you?",
+          "audio": {
+            "url": "assets/oral-50331490-5823f204588363562298.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e0e2c5a14369179c3b46c2988da8aff253cc97a3b0a8b56e4c0bb472ffdb160f",
+            "bytes": 4569
+          }
+        }
+      },
+      {
+        "sentence": "It is as if I had done something wrong.",
+        "translation": "好像是我做错了什么事似的。",
+        "chunks": [
+          "It is as if",
+          "I had done something wrong."
+        ],
+        "hints": [
+          "就好像",
+          "我做错了什么事似的。"
+        ],
+        "cid": "cfe63654",
+        "sentenceAudio": {
+          "text": "It is as if I had done something wrong.",
+          "audio": {
+            "url": "assets/oral-cfe63654-9bc63c1e154488d40d05.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f501807fe1b5e66a40cb26718ce4fb95e640968f64878325332b0830b01d75db",
+            "bytes": 7258
+          }
+        }
+      },
+      {
+        "sentence": "He chickened out at the last moment.",
+        "translation": "他在最后一刻退缩了。",
+        "chunks": [
+          "He chickened out",
+          "at the last moment."
+        ],
+        "hints": [
+          "他退缩了",
+          "在最后一刻。"
+        ],
+        "cid": "7e3234bc",
+        "sentenceAudio": {
+          "text": "He chickened out at the last moment.",
+          "audio": {
+            "url": "assets/oral-7e3234bc-90455ee9df928d286775.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "753402b8e969159d793242d60e3d8cbe5cc2298cbd5c86d806a01a236f9b1631",
+            "bytes": 6654
+          }
+        }
+      },
+      {
+        "sentence": "Don't take it out on me.",
+        "translation": "别冲我发火。",
+        "chunks": [
+          "Don't take it out",
+          "on me."
+        ],
+        "hints": [
+          "别把气撒出来",
+          "冲我。"
+        ],
+        "cid": "c8fada0e",
+        "sentenceAudio": {
+          "text": "Don't take it out on me.",
+          "audio": {
+            "url": "assets/oral-c8fada0e-021c0cf59ac18dd2aa28.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "68e05d5573ee7bfee685152b1104ca2d0b9ce9f5b7d56c8268711b136206c68b",
+            "bytes": 5017
+          }
+        }
+      },
+      {
+        "sentence": "Pay up!",
+        "translation": "把钱还了！",
+        "chunks": [
+          "Pay up!"
+        ],
+        "hints": [
+          "把钱还了！"
+        ],
+        "cid": "2d32a7cd",
+        "sentenceAudio": {
+          "text": "Pay up!",
+          "audio": {
+            "url": "assets/oral-2d32a7cd-692b9b785f2fd0e28d48.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e7ba869a8614029a1550a64e0dc780a2fa297260eaf7875699d47b2be0d2ef71",
+            "bytes": 3231
+          }
+        }
+      },
+      {
+        "sentence": "You'll pay for this.",
+        "translation": "你会为此付出代价。",
+        "chunks": [
+          "You'll pay",
+          "for this."
+        ],
+        "hints": [
+          "你会付出代价",
+          "为此"
+        ],
+        "cid": "f2c685fa",
+        "sentenceAudio": {
+          "text": "You'll pay for this.",
+          "audio": {
+            "url": "assets/oral-f2c685fa-06e77736898d282703e9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "65c1cc3c68ec1d29f78057894f08929456d58b2833f50a313b7848df0326d92a",
+            "bytes": 4354
+          }
+        }
+      },
+      {
+        "sentence": "You're out of your mind!",
+        "translation": "你疯了!",
+        "chunks": [
+          "You're",
+          "out of your mind!"
+        ],
+        "hints": [
+          "你",
+          "疯了！"
+        ],
+        "cid": "8d788dcb",
+        "sentenceAudio": {
+          "text": "You're out of your mind!",
+          "audio": {
+            "url": "assets/oral-8d788dcb-be147b0bf2b5d4a35971.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "84a486161c52f364b3b4817bad8a4b8d0353f633d54290419bc7a38c11ec4c8a",
+            "bytes": 4303
+          }
+        }
+      },
+      {
+        "sentence": "You shouldn't say things like that.",
+        "translation": "你不该说那种话。",
+        "chunks": [
+          "You shouldn't",
+          "say things like that."
+        ],
+        "hints": [
+          "你不该",
+          "说这种话。"
+        ],
+        "cid": "549c8ed2",
+        "sentenceAudio": {
+          "text": "You shouldn't say things like that.",
+          "audio": {
+            "url": "assets/oral-549c8ed2-cfd937b10a75dd94b6a0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "30912636c0135f95d0c6a1e8031d4aaf691c6cb342e0b61811b26036eba64026",
+            "bytes": 5839
+          }
+        }
+      },
+      {
+        "sentence": "It's for your own good!",
+        "translation": "这可全为了你!",
+        "chunks": [
+          "It's for",
+          "your own good!"
+        ],
+        "hints": [
+          "这可全是为了",
+          "你好！"
+        ],
+        "cid": "019c7158",
+        "sentenceAudio": {
+          "text": "It's for your own good!",
+          "audio": {
+            "url": "assets/oral-019c7158-758957a40d7444be056a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "004b9336c2f6b137d13c45e4e93ca0507efa0bb677cfc97872780f43020ede5f",
+            "bytes": 4726
+          }
+        }
+      },
+      {
+        "sentence": "Why are you picking on me?",
+        "translation": "你干吗老挑我的刺儿?",
+        "chunks": [
+          "Why are you",
+          "picking on me?"
+        ],
+        "hints": [
+          "你为什么",
+          "老挑我的刺儿？"
+        ],
+        "cid": "f64db5a3",
+        "sentenceAudio": {
+          "text": "Why are you picking on me?",
+          "audio": {
+            "url": "assets/oral-f64db5a3-ebf54d6964e75e357262.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a8e815ce80b5387bbf23897f0e8bbe1efb9144341157f12f770db6e25e446d70",
+            "bytes": 5132
+          }
+        }
+      },
+      {
+        "sentence": "He always finds fault with my work.",
+        "translation": "他总是挑我的工作毛病。",
+        "chunks": [
+          "He always finds fault",
+          "with my work."
+        ],
+        "hints": [
+          "他总是挑毛病",
+          "对我的工作"
+        ],
+        "cid": "fe5568b4",
+        "sentenceAudio": {
+          "text": "He always finds fault with my work.",
+          "audio": {
+            "url": "assets/oral-fe5568b4-e03ef1154f3c95a5c07d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "49f8b1ac050ca2311c179f32724613ae74333bd11054b5e5fcba830f829ca840",
+            "bytes": 6621
+          }
+        }
+      },
+      {
+        "sentence": "Make sure you lock the door when you leave.",
+        "cid": "4bb2e115",
+        "translation": "你离开时一定锁好门。",
+        "chunks": [
+          "Make sure",
+          "you lock the door",
+          "when you leave."
+        ],
+        "hints": [
+          "确保",
+          "你锁门",
+          "当你离开时"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/meɪk/",
+              "/ʃʊər/"
+            ],
+            "pos": "祈使短语",
+            "meaning": "确保"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/juː/",
+              "/lɒk/",
+              "/ðə/",
+              "/dɔːr/"
+            ],
+            "pos": "从句",
+            "meaning": "你锁门"
+          },
+          {
+            "role": "时间状语从句",
+            "color": "#3358e0",
+            "phonetic": [
+              "/wen/",
+              "/juː/",
+              "/liːv/"
+            ],
+            "pos": "when 从句",
+            "meaning": "当你离开时"
+          }
+        ],
+        "explanations": [
+          "`Make sure` = 确保（后接从句）。常见错误：\n• \"Make **sure** you will lock\" → 表将来用一般现在即可，不加 will\n• \"Be sure lock\" → 漏了 that 或结构错：make sure (that) you lock",
+          "`you lock the door` = 你锁门。lock the door 固定搭配。",
+          "`when you leave` = 当你离开时。主将从现：主句祈使（现在时），when 从句也用现在时 leave。"
+        ],
+        "distractors": [
+          [
+            "Making sure",
+            "Be sure",
+            "Make certain"
+          ],
+          [
+            "you locking the door",
+            "you locks the door",
+            "you lock a door"
+          ],
+          [
+            "when you leaving.",
+            "while you leave.",
+            "when you left."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Make sure you lock the door when you leave.",
+          "audio": {
+            "url": "assets/oral-4bb2e115-771262bd935537283946.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1199a892791a89772d2d0e14dac1167ca6540cb10d5c262b6fe127eb38d39da5",
+            "bytes": 6837
+          }
+        }
+      },
+      {
+        "sentence": "Be careful.",
+        "cid": "14d3f87e",
+        "translation": "当心。",
+        "chunks": [
+          "Be",
+          "careful."
+        ],
+        "hints": [
+          "要（保持）",
+          "小心"
+        ],
+        "grammar": [
+          {
+            "role": "系动词（祈使）",
+            "color": "#c87033",
+            "phonetic": [
+              "/biː/"
+            ],
+            "pos": "be 的祈使形式",
+            "meaning": "要（处于某状态）"
+          },
+          {
+            "role": "表语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈkerfl/"
+            ],
+            "pos": "形容词",
+            "meaning": "小心的"
+          }
+        ],
+        "explanations": [
+          "祈使句里 be 用原形：Be careful. 常见错误：\n• \"Are careful\" → 祈使句不用 are\n• \"Be carefully\" → carefully 是副词，这里需要形容词 careful",
+          "加限定：Be careful with the knife.（用刀当心）/ Be careful out there."
+        ],
+        "distractors": [
+          [
+            "Are",
+            "Being",
+            "Was"
+          ],
+          [
+            "carefully.",
+            "care.",
+            "cares."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Be careful.",
+          "audio": {
+            "url": "assets/oral-14d3f87e-ecefc4b8acba379a2428.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d91881e249bac89f1ff7d940b03ec8cba452e68083031afa0486ea4fd6de86d0",
+            "bytes": 3667
+          }
+        }
+      },
+      {
+        "sentence": "Don't fall down.",
+        "cid": "5b99a19c",
+        "translation": "别摔了。",
+        "chunks": [
+          "Don't",
+          "fall down."
+        ],
+        "hints": [
+          "别",
+          "摔下来"
+        ],
+        "grammar": [
+          {
+            "role": "否定祈使",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/doʊnt/"
+            ],
+            "pos": "do not 缩写",
+            "meaning": "别"
+          },
+          {
+            "role": "谓语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːl/",
+              "/daʊn/"
+            ],
+            "pos": "短语动词 fall down",
+            "meaning": "摔倒、掉下来"
+          }
+        ],
+        "explanations": [
+          "否定祈使用 `Don't + 动词原形`。常见错误：\n• \"Don't falls down\" → 不用第三人称单数\n• \"No fall down\" → 英语没有 no + 动词 的祈使形式",
+          "`fall down` 指摔倒、跌落；从某物上掉下来用 fall off（fall off the bike）。"
+        ],
+        "distractors": [
+          [
+            "Doesn't",
+            "No",
+            "Not"
+          ],
+          [
+            "falls down.",
+            "fell down.",
+            "fall on."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Don't fall down.",
+          "audio": {
+            "url": "assets/oral-5b99a19c-9d49e8924f2226a975aa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5942caa82b730240e6f0b5f30e1602ec79ad3ef47188b5bdcb7cd5139cc0eb89",
+            "bytes": 4345
+          }
+        }
+      }
+    ]
+  }
+}

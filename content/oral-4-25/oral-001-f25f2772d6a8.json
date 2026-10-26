@@ -1,0 +1,380 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'm shocked!",
+      "cid": "8a621293",
+      "translation": "我很震惊。",
+      "chunks": [
+        "I'm",
+        "shocked!"
+      ],
+      "hints": [
+        "我",
+        "很震惊"
+      ],
+      "grammar": [
+        {
+          "role": "主语",
+          "color": "#c87033",
+          "phonetic": [
+            "/aɪm/"
+          ],
+          "pos": "I am 缩写",
+          "meaning": "我"
+        },
+        {
+          "role": "表语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ʃɑːkt/"
+          ],
+          "pos": "过去分词作形容词",
+          "meaning": "震惊的"
+        }
+      ],
+      "explanations": [
+        "`shocked` 表「感到震惊的」，是过去分词作形容词。常见错误：\n• \"I'm shocking\" → shocking 是「令人震惊的」，形容事物\n• \"I shock\" → 要加 be 动词",
+        "同类：I'm surprised.（惊讶）/ I'm stunned.（惊呆了）"
+      ],
+      "distractors": [
+        [
+          "I",
+          "I've",
+          "Me"
+        ],
+        [
+          "shocking.",
+          "shock.",
+          "shocks."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm shocked!",
+        "audio": {
+          "url": "assets/oral-8a621293-35274f98bf461d3bad00.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6dad38e668b6196838254d7af4ddcc1f8a56dac93e209941767af3426610fc23",
+          "bytes": 3711
+        }
+      }
+    },
+    {
+      "sentence": "That's amazing!",
+      "translation": "太让人吃惊了!",
+      "chunks": [
+        "That's",
+        "amazing!"
+      ],
+      "hints": [
+        "太",
+        "让人吃惊了"
+      ],
+      "cid": "c25a6b00",
+      "sentenceAudio": {
+        "text": "That's amazing!",
+        "audio": {
+          "url": "assets/oral-c25a6b00-fcddfe53f221694f7bd1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "27115a0c2d15da2ce85aa634eaa5e3c7abb706a986950b95c3ecb2b1e2526aef",
+          "bytes": 4308
+        }
+      }
+    },
+    {
+      "sentence": "You're kidding!",
+      "translation": "你在开玩笑吧!",
+      "chunks": [
+        "You're",
+        "kidding!"
+      ],
+      "hints": [
+        "你在",
+        "开玩笑吧"
+      ],
+      "cid": "eb1cbd37",
+      "sentenceAudio": {
+        "text": "You're kidding!",
+        "audio": {
+          "url": "assets/oral-eb1cbd37-eeac66a6b28a6d7f3ace.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "25c1fdc6dedd5addf4f0b9fe8a9fd095589ee27a292a3e6f85b4fb63096f8e63",
+          "bytes": 3683
+        }
+      }
+    },
+    {
+      "sentence": "It can't be!",
+      "translation": "怎么可能!",
+      "chunks": [
+        "It",
+        "can't be!"
+      ],
+      "hints": [
+        "这",
+        "不可能吧"
+      ],
+      "cid": "f4385699",
+      "sentenceAudio": {
+        "text": "It can't be!",
+        "audio": {
+          "url": "assets/oral-f4385699-9960b4defb00e53d670b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1cef6d0c93d812f9f7f2415fa0b6badc2e96a18582ec59af81cf4543b4b037c4",
+          "bytes": 3976
+        }
+      }
+    },
+    {
+      "sentence": "That's really something!",
+      "translation": "真了不起！",
+      "chunks": [
+        "That's really",
+        "something!"
+      ],
+      "hints": [
+        "真是",
+        "了不起"
+      ],
+      "cid": "a1d75fec",
+      "sentenceAudio": {
+        "text": "That's really something!",
+        "audio": {
+          "url": "assets/oral-a1d75fec-69b2162ab9fdbd6ce8a8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "61b51393bc046660de7b80e2971369abb856129a9d876de847ff135fb96884b4",
+          "bytes": 4642
+        }
+      }
+    },
+    {
+      "sentence": "Oh, my!",
+      "translation": "天哪！",
+      "chunks": [
+        "Oh, my!"
+      ],
+      "hints": [
+        "天哪！/哎呀！"
+      ],
+      "cid": "3905b6a3",
+      "sentenceAudio": {
+        "text": "Oh, my!",
+        "audio": {
+          "url": "assets/oral-3905b6a3-268486a9abd4e98e0b7e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7016b51ddc3844afe5f2c158a750f3c9d2bbbca28be22955db329d8fe9230eb8",
+          "bytes": 3610
+        }
+      }
+    },
+    {
+      "sentence": "Well, well.",
+      "translation": "哎呀呀!",
+      "chunks": [
+        "Well,",
+        "well."
+      ],
+      "hints": [
+        "哎呀",
+        "哎呀呀"
+      ],
+      "cid": "53fbe90d",
+      "sentenceAudio": {
+        "text": "Well, well.",
+        "audio": {
+          "url": "assets/oral-53fbe90d-c1e830d71652591f1563.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "da563ea519369deab919b7e7453ce36b8280a7c51be7699915411b42c1762412",
+          "bytes": 3668
+        }
+      }
+    },
+    {
+      "sentence": "You surprised me!",
+      "translation": "你吓死我了。",
+      "chunks": [
+        "You",
+        "surprised me!"
+      ],
+      "hints": [
+        "你",
+        "吓我一跳"
+      ],
+      "cid": "88bde0cc",
+      "sentenceAudio": {
+        "text": "You surprised me!",
+        "audio": {
+          "url": "assets/oral-88bde0cc-f28f540a63dda565586e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "03991f49a4b13f778fc90c2ce6e493f5806138a10ae5e55bb70a93e091e167dd",
+          "bytes": 4476
+        }
+      }
+    },
+    {
+      "sentence": "You don't say!",
+      "translation": "真的吗？/不会吧！",
+      "chunks": [
+        "You don't say!"
+      ],
+      "hints": [
+        "真的吗？/不会吧！"
+      ],
+      "cid": "6a0ddec0",
+      "sentenceAudio": {
+        "text": "You don't say!",
+        "audio": {
+          "url": "assets/oral-6a0ddec0-c6192559dedfef79deeb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3e266d2ead752bd0ec72e50d31fb3da1257d2b2c68e3377df629e8442319cd92",
+          "bytes": 3830
+        }
+      }
+    },
+    {
+      "sentence": "That'll be the day!",
+      "translation": "永远不可能有那样的事!",
+      "chunks": [
+        "That'll be the day!"
+      ],
+      "hints": [
+        "永远不会有这种事！"
+      ],
+      "cid": "486779b6",
+      "sentenceAudio": {
+        "text": "That'll be the day!",
+        "audio": {
+          "url": "assets/oral-486779b6-5a0ddcaba45e4e833d63.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d53fa28ec269651cbb0c9498880e7baaa58bf54a46935977c83e0e6deec2f61d",
+          "bytes": 4239
+        }
+      }
+    },
+    {
+      "sentence": "A great shock.",
+      "translation": "震惊。",
+      "chunks": [
+        "A great",
+        "shock."
+      ],
+      "hints": [
+        "巨大的",
+        "震惊"
+      ],
+      "cid": "d7266af7",
+      "sentenceAudio": {
+        "text": "A great shock.",
+        "audio": {
+          "url": "assets/oral-d7266af7-80ba39961cfb6fe08e2a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "887684ba7bdee6207d4251a062eeda019ecd82b35db99c236396c5e0c927da5e",
+          "bytes": 4119
+        }
+      }
+    },
+    {
+      "sentence": "That's news to me.",
+      "translation": "第一次听说。",
+      "chunks": [
+        "That's news to me."
+      ],
+      "hints": [
+        "这是我第一次听说。"
+      ],
+      "cid": "a24f89a6",
+      "sentenceAudio": {
+        "text": "That's news to me.",
+        "audio": {
+          "url": "assets/oral-a24f89a6-c76ffaf755e78aaca0f4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e4c12734638951228392ac8101053469e9eeb05e09028fca3ec66c125a9d2cdf",
+          "bytes": 4355
+        }
+      }
+    },
+    {
+      "sentence": "It's mind-boggling!",
+      "translation": "太不可思议了！",
+      "chunks": [
+        "It's",
+        "mind-boggling!"
+      ],
+      "hints": [
+        "这真是",
+        "不可思议！"
+      ],
+      "cid": "767f534b",
+      "sentenceAudio": {
+        "text": "It's mind-boggling!",
+        "audio": {
+          "url": "assets/oral-767f534b-451ea09dca01d97527d5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e0881012d1612d559e8f56763710cf3061ac7c15722c51342de2c850109473ff",
+          "bytes": 4803
+        }
+      }
+    },
+    {
+      "sentence": "Gosh!",
+      "translation": "天哪！",
+      "chunks": [
+        "Gosh!"
+      ],
+      "hints": [
+        "天哪！"
+      ],
+      "cid": "162634d3",
+      "sentenceAudio": {
+        "text": "Gosh!",
+        "audio": {
+          "url": "assets/oral-162634d3-7d2d3ed0b275eea7d373.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9beab39e5dd8b6f84aa3dc5ebb5a6f3bd83c4db3e8aaf92b411e3b5a6db91512",
+          "bytes": 3128
+        }
+      }
+    },
+    {
+      "sentence": "We were surprised by the news.",
+      "translation": "我们听到这条消息都很吃惊。",
+      "chunks": [
+        "We were surprised by the news."
+      ],
+      "hints": [
+        "我们听到这条消息都很吃惊。"
+      ],
+      "cid": "a7d62da8",
+      "sentenceAudio": {
+        "text": "We were surprised by the news.",
+        "audio": {
+          "url": "assets/oral-a7d62da8-ffe141a7d260b6ac1223.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0e73ffef1b3499b7206a6e3a006206c3a2a471f9abb3ce35ac165e501f93ad80",
+          "bytes": 5960
+        }
+      }
+    },
+    {
+      "sentence": "Boo!",
+      "translation": "哇!",
+      "chunks": [
+        "Boo!"
+      ],
+      "hints": [
+        "哇"
+      ],
+      "cid": "e273b326",
+      "sentenceAudio": {
+        "text": "Boo!",
+        "audio": {
+          "url": "assets/oral-e273b326-58ca93a2f3435c668d0f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "62a956f35a49ff025e587c0224e54338032c25b04888607f39c67a6763aa8792",
+          "bytes": 3018
+        }
+      }
+    }
+  ]
+}

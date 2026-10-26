@@ -1,0 +1,1582 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "What a disappointment!",
+      "translation": "真让人失望!",
+      "chunks": [
+        "What a",
+        "disappointment!"
+      ],
+      "hints": [
+        "真让人",
+        "失望！"
+      ],
+      "cid": "87777ff4",
+      "sentenceAudio": {
+        "text": "What a disappointment!",
+        "audio": {
+          "url": "assets/oral-87777ff4-bda9b02968acfd271d09.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7e562e3737778ca03ee4e0e47c6d0bec416399d76301dc37db7850752bd6ba4f",
+          "bytes": 4758
+        }
+      }
+    },
+    {
+      "sentence": "What a pity.",
+      "translation": "太遗憾了。",
+      "chunks": [
+        "What a pity."
+      ],
+      "hints": [
+        "真遗憾！"
+      ],
+      "cid": "127f114a",
+      "sentenceAudio": {
+        "text": "What a pity.",
+        "audio": {
+          "url": "assets/oral-127f114a-fe427d331578932af529.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9d3d3813cddd509e1e011d10069057dc28807d149b9863bf3e80be8ce822cc22",
+          "bytes": 3830
+        }
+      }
+    },
+    {
+      "sentence": "It was a waste of effort.",
+      "translation": "白费力了。",
+      "chunks": [
+        "It was a waste",
+        "of effort."
+      ],
+      "hints": [
+        "白费",
+        "力气了。"
+      ],
+      "cid": "aac1dcf5",
+      "sentenceAudio": {
+        "text": "It was a waste of effort.",
+        "audio": {
+          "url": "assets/oral-aac1dcf5-c10d5020615b39077364.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2ca8716cc662e1422c8d6ea80488639ec14116fcfa871ab3cf882f7ba10a290e",
+          "bytes": 5116
+        }
+      }
+    },
+    {
+      "sentence": "a wild-goose chase.",
+      "translation": "白费劲。",
+      "chunks": [
+        "a wild-goose chase."
+      ],
+      "hints": [
+        "白费劲；徒劳无功。"
+      ],
+      "cid": "23882fb6",
+      "sentenceAudio": {
+        "text": "a wild-goose chase.",
+        "audio": {
+          "url": "assets/oral-23882fb6-073153f9079097300d53.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cb35c8eb4782953b1e17eff1b7c19c0a94e0b78ad5d4f6a049d0879ea503698a",
+          "bytes": 4930
+        }
+      }
+    },
+    {
+      "sentence": "All that for nothing.",
+      "translation": "忙了半天，结果全白费。",
+      "chunks": [
+        "All that for nothing."
+      ],
+      "hints": [
+        "忙了半天，全都白费。"
+      ],
+      "cid": "534f8bdb",
+      "sentenceAudio": {
+        "text": "All that for nothing.",
+        "audio": {
+          "url": "assets/oral-534f8bdb-9ab5caa6f96f26fad4a0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "229dd1f899bd792e016c2251ad3986d5327f2e30292f54b55a3b2b81668cb63f",
+          "bytes": 4642
+        }
+      }
+    },
+    {
+      "sentence": "You let me down.",
+      "translation": "你真让我失望。",
+      "chunks": [
+        "You",
+        "let me down."
+      ],
+      "hints": [
+        "你",
+        "让我失望。"
+      ],
+      "cid": "8d12fb3f",
+      "sentenceAudio": {
+        "text": "You let me down.",
+        "audio": {
+          "url": "assets/oral-8d12fb3f-0bf07886af37335e5460.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f3d29a46de9d48826591d86e26972c933e0898ef93aa76cfac031f39e6889947",
+          "bytes": 4223
+        }
+      }
+    },
+    {
+      "sentence": "I blew it.",
+      "translation": "我真失策。",
+      "chunks": [
+        "I blew it."
+      ],
+      "hints": [
+        "我搞砸了。"
+      ],
+      "cid": "3a0ea893",
+      "sentenceAudio": {
+        "text": "I blew it.",
+        "audio": {
+          "url": "assets/oral-3a0ea893-ead221275b900372ac54.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b51cf0858be80cd9f2a048ccd456bcf93047d4584193b1fbbb329515c28f02f1",
+          "bytes": 3594
+        }
+      }
+    },
+    {
+      "sentence": "It can't be helped.",
+      "translation": "毫无办法。",
+      "chunks": [
+        "It can't be helped."
+      ],
+      "hints": [
+        "也没办法。"
+      ],
+      "cid": "b83dceaa",
+      "sentenceAudio": {
+        "text": "It can't be helped.",
+        "audio": {
+          "url": "assets/oral-b83dceaa-04c1d59be6a4e378e4c6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "04b523f4b648d8268a8d2e6ee06edda28435e61c3ca592cc7708705ff549d292",
+          "bytes": 4236
+        }
+      }
+    },
+    {
+      "sentence": "It's a waste of time.",
+      "translation": "纯属浪费时间。",
+      "chunks": [
+        "It's a waste",
+        "of time."
+      ],
+      "hints": [
+        "纯属",
+        "浪费时间。"
+      ],
+      "cid": "9de1d6f1",
+      "sentenceAudio": {
+        "text": "It's a waste of time.",
+        "audio": {
+          "url": "assets/oral-9de1d6f1-b6a73189282c2f2038d4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "98ba7882acd0576e22bfa64963b840459f5fa644d2d9921e65137eb5eb5de524",
+          "bytes": 4758
+        }
+      }
+    },
+    {
+      "sentence": "I feel sad.",
+      "translation": "我感到悲伤。",
+      "chunks": [
+        "I feel",
+        "sad."
+      ],
+      "hints": [
+        "我感到",
+        "悲伤。"
+      ],
+      "cid": "c28a9e4e",
+      "sentenceAudio": {
+        "text": "I feel sad.",
+        "audio": {
+          "url": "assets/oral-c28a9e4e-2fac4019e71c6f317ced.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fd8f03520c0efadc8ef59e824073386e7848cd0bac7e28f354ed50a7f459fa22",
+          "bytes": 3947
+        }
+      }
+    },
+    {
+      "sentence": "I feel really sad.",
+      "translation": "我感到非常难过。",
+      "chunks": [
+        "I feel",
+        "really sad."
+      ],
+      "hints": [
+        "我感到",
+        "非常难过。"
+      ],
+      "cid": "fb0644e7",
+      "sentenceAudio": {
+        "text": "I feel really sad.",
+        "audio": {
+          "url": "assets/oral-fb0644e7-927098e15be3398290a8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "12ff08c1c819c86f0f57dc600792b9af4e45c8e8b4a723526d49a30e13157033",
+          "bytes": 4658
+        }
+      }
+    },
+    {
+      "sentence": "Oh, dear!",
+      "translation": "哦!天哪!",
+      "chunks": [
+        "Oh, dear!"
+      ],
+      "hints": [
+        "哎呀！天哪！"
+      ],
+      "cid": "96a1e605",
+      "sentenceAudio": {
+        "text": "Oh, dear!",
+        "audio": {
+          "url": "assets/oral-96a1e605-09ada2543a32c38c042f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2bc5fd47c2f853aa975236f40f4ec940762b6116495a91f86d457de2b5dd59bb",
+          "bytes": 3552
+        }
+      }
+    },
+    {
+      "sentence": "Boohoo.",
+      "translation": "呜呜!",
+      "chunks": [
+        "Boohoo."
+      ],
+      "hints": [
+        "呜呜！"
+      ],
+      "cid": "5ec96753",
+      "sentenceAudio": {
+        "text": "Boohoo.",
+        "audio": {
+          "url": "assets/oral-5ec96753-e10acd59dbdd8a337209.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dd2e20731c11fa3c20227ff4f13dd1e8f4da9e1457f97541b3a970eb76ec9468",
+          "bytes": 3360
+        }
+      }
+    },
+    {
+      "sentence": "My heart broke.",
+      "translation": "我的心都碎了。",
+      "chunks": [
+        "My heart",
+        "broke."
+      ],
+      "hints": [
+        "我的心",
+        "都碎了。"
+      ],
+      "cid": "942594f8",
+      "sentenceAudio": {
+        "text": "My heart broke.",
+        "audio": {
+          "url": "assets/oral-942594f8-f261d9788014cab39f7b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "85080f716f7cf0db40372f49f5b5d77227f3c5679a1f91345a0de0b43c8d81ca",
+          "bytes": 4365
+        }
+      }
+    },
+    {
+      "sentence": "My heart has been filled with grief.",
+      "translation": "我的内心充满了悲伤。",
+      "chunks": [
+        "My heart has been",
+        "filled with grief."
+      ],
+      "hints": [
+        "我的内心",
+        "充满了悲伤。"
+      ],
+      "cid": "be0764a6",
+      "sentenceAudio": {
+        "text": "My heart has been filled with grief.",
+        "audio": {
+          "url": "assets/oral-be0764a6-f6df157736926a68baac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c3ce8842c595ddd7ebb6763fb9deefb8076e32c255c7fe160b8874dd8fb5a13d",
+          "bytes": 6561
+        }
+      }
+    },
+    {
+      "sentence": "The sad story depressed me.",
+      "translation": "那悲惨的故事使我心情抑郁。",
+      "chunks": [
+        "The sad story",
+        "depressed me."
+      ],
+      "hints": [
+        "那悲惨的故事",
+        "使我心情抑郁。"
+      ],
+      "cid": "072ceade",
+      "sentenceAudio": {
+        "text": "The sad story depressed me.",
+        "audio": {
+          "url": "assets/oral-072ceade-a36dae416a2b9411f758.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5767a8c8475176c7fce584cd3750ac890c6dcd820e0b09c0cc96a6379b97bfd0",
+          "bytes": 5662
+        }
+      }
+    },
+    {
+      "sentence": "How ruthless!",
+      "translation": "真无情!",
+      "chunks": [
+        "How",
+        "ruthless!"
+      ],
+      "hints": [
+        "真",
+        "无情！"
+      ],
+      "cid": "046d3d0e",
+      "sentenceAudio": {
+        "text": "How ruthless!",
+        "audio": {
+          "url": "assets/oral-046d3d0e-dc92bb8617a4dd0200ac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ed9aa31e2a600e937f7460bd5e85a44ffaf0b32e320c08af78af13297168025d",
+          "bytes": 4256
+        }
+      }
+    },
+    {
+      "sentence": "No one can understand how I really feel",
+      "translation": "没人能真正理解我的感受。",
+      "chunks": [
+        "No one can understand",
+        "how I really feel"
+      ],
+      "hints": [
+        "没人能知道",
+        "我的感受。"
+      ],
+      "cid": "5102d3de",
+      "sentenceAudio": {
+        "text": "No one can understand how I really feel",
+        "audio": {
+          "url": "assets/oral-5102d3de-2e339eb0ab06bc7f76d1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1abf99a4eae46907463aa7ac49fa2654c6e072cbd5f47daad669445c9599956b",
+          "bytes": 8311
+        }
+      }
+    },
+    {
+      "sentence": "I feel lonely.",
+      "translation": "我感到很寂寞。",
+      "chunks": [
+        "I feel",
+        "lonely."
+      ],
+      "hints": [
+        "我感到",
+        "很寂寞。"
+      ],
+      "cid": "7662e3a3",
+      "sentenceAudio": {
+        "text": "I feel lonely.",
+        "audio": {
+          "url": "assets/oral-7662e3a3-5d279e08d9b7d2ee49bf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9b9fe01d1dc0eed21f63999ee8238121b40424ececc37d7641dda70de6f17686",
+          "bytes": 4138
+        }
+      }
+    },
+    {
+      "sentence": "I hate being alone.",
+      "translation": "我讨厌孤独。",
+      "chunks": [
+        "I hate",
+        "being alone."
+      ],
+      "hints": [
+        "我讨厌",
+        "孤独。"
+      ],
+      "cid": "8221946a",
+      "sentenceAudio": {
+        "text": "I hate being alone.",
+        "audio": {
+          "url": "assets/oral-8221946a-2a608f0e9d2b231db0fb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c57b7f8442497555a15cc43e441828bfd91ddb99d905d5f9dc3d6c18ea023913",
+          "bytes": 4765
+        }
+      }
+    },
+    {
+      "sentence": "I don't mind being alone.",
+      "translation": "我不在乎孤独。",
+      "chunks": [
+        "I don't mind",
+        "being alone."
+      ],
+      "hints": [
+        "我不在乎",
+        "孤独。"
+      ],
+      "cid": "5f1fb6c4",
+      "sentenceAudio": {
+        "text": "I don't mind being alone.",
+        "audio": {
+          "url": "assets/oral-5f1fb6c4-4ea75566b52f90e825e7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3b325e3833b36ded99b91e7c5ebdf7ac5b78fcc767e59cd0bd0c542dd9ec0218",
+          "bytes": 5204
+        }
+      }
+    },
+    {
+      "sentence": "I miss you.",
+      "translation": "我想念你。",
+      "chunks": [
+        "I",
+        "miss you."
+      ],
+      "hints": [
+        "我",
+        "想念你。"
+      ],
+      "cid": "5f6d50eb",
+      "sentenceAudio": {
+        "text": "I miss you.",
+        "audio": {
+          "url": "assets/oral-5f6d50eb-5d17085a5fa692f21fae.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5f9ad632d5e766030d06e32ae1f5b0fa9921a8c581a18d8744e56428f3579991",
+          "bytes": 3731
+        }
+      }
+    },
+    {
+      "sentence": "I feel empty.",
+      "translation": "我觉得空荡荡的。",
+      "chunks": [
+        "I feel",
+        "empty."
+      ],
+      "hints": [
+        "我觉得",
+        "空荡荡的。"
+      ],
+      "cid": "883a270d",
+      "sentenceAudio": {
+        "text": "I feel empty.",
+        "audio": {
+          "url": "assets/oral-883a270d-b2e0893542a6e516cff1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bd07950231745b437aedb90b6cc5b3d8eb47f4cd88d5666a2d0325d781951f51",
+          "bytes": 4404
+        }
+      }
+    },
+    {
+      "sentence": "My life is empty.",
+      "translation": "我的生活很空虚。",
+      "chunks": [
+        "My life",
+        "is empty."
+      ],
+      "hints": [
+        "我的生活",
+        "很空虚。"
+      ],
+      "cid": "d6cc1c4a",
+      "sentenceAudio": {
+        "text": "My life is empty.",
+        "audio": {
+          "url": "assets/oral-d6cc1c4a-4795f6144d67e1e2dff0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c7994a3abc3bb4d6e32e4d1926f6a714ee08ac6eff2b357932eb4c56dcf853a8",
+          "bytes": 5100
+        }
+      }
+    },
+    {
+      "sentence": "Alone at last.",
+      "translation": "最终只剩下了我一个人。",
+      "chunks": [
+        "Alone at last."
+      ],
+      "hints": [
+        "终于只剩我一个人了。"
+      ],
+      "cid": "5186665f",
+      "sentenceAudio": {
+        "text": "Alone at last.",
+        "audio": {
+          "url": "assets/oral-5186665f-af5e591597d40d942a20.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "66f7399f80f0a845e74fb2e31b8b78092523675994c845e3e60c5756b2e517b7",
+          "bytes": 4310
+        }
+      }
+    },
+    {
+      "sentence": "I'm depressed.",
+      "translation": "我很沮丧。",
+      "chunks": [
+        "I'm",
+        "depressed."
+      ],
+      "hints": [
+        "我很",
+        "沮丧。"
+      ],
+      "cid": "0c9cdc2b",
+      "sentenceAudio": {
+        "text": "I'm depressed.",
+        "audio": {
+          "url": "assets/oral-0c9cdc2b-930b5658b78bf1901a6e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "617d264f3b0b964f23ad555424175cdc40acc09f899448de02c66eb2f502e9b9",
+          "bytes": 4067
+        }
+      }
+    },
+    {
+      "sentence": "I've got the blues today.",
+      "translation": "我今天感到很忧郁。",
+      "chunks": [
+        "I've got the blues",
+        "today."
+      ],
+      "hints": [
+        "我心情忧郁",
+        "今天。"
+      ],
+      "cid": "1d1356c1",
+      "sentenceAudio": {
+        "text": "I've got the blues today.",
+        "audio": {
+          "url": "assets/oral-1d1356c1-6fd40cb2bfa4dfa7b7f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "00c8ad5e770d32e8a3a36b8a0ddc61b8c9e07eda5409516f1cdbbd1363bd1aeb",
+          "bytes": 5186
+        }
+      }
+    },
+    {
+      "sentence": "It's depressing.",
+      "translation": "这真让人沮丧。",
+      "chunks": [
+        "It's",
+        "depressing."
+      ],
+      "hints": [
+        "这真",
+        "让人沮丧。"
+      ],
+      "cid": "92a0b29a",
+      "sentenceAudio": {
+        "text": "It's depressing.",
+        "audio": {
+          "url": "assets/oral-92a0b29a-81b24e5da418fefb1b6f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9e50855aae1a8d96bb5ef08c752cb5e7048e817cdb13d89096b839b1795b1684",
+          "bytes": 4355
+        }
+      }
+    },
+    {
+      "sentence": "Rainy days get me down.",
+      "translation": "雨天使我感到消沉。",
+      "chunks": [
+        "Rainy days",
+        "get me down."
+      ],
+      "hints": [
+        "雨天",
+        "使我感到消沉。"
+      ],
+      "cid": "9fd94553",
+      "sentenceAudio": {
+        "text": "Rainy days get me down.",
+        "audio": {
+          "url": "assets/oral-9fd94553-114a1615b060a8853d78.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fcdd1f1bd1befae99ffbcb79ceef843b4cebe9a2f575e500cac8c7fd4fbd1b4d",
+          "bytes": 5636
+        }
+      }
+    },
+    {
+      "sentence": "I don't feel like doing anything.",
+      "translation": "我提不起精神来做事。",
+      "chunks": [
+        "I don't feel like",
+        "doing anything."
+      ],
+      "hints": [
+        "我提不起精神来",
+        "做事。"
+      ],
+      "cid": "6eb54c86",
+      "sentenceAudio": {
+        "text": "I don't feel like doing anything.",
+        "audio": {
+          "url": "assets/oral-6eb54c86-b49c4200944451f152e3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5c9d5e5d2c3157c560f59574b94f692b8e4ffabceee3829c9e7017211598435c",
+          "bytes": 5762
+        }
+      }
+    },
+    {
+      "sentence": "He looks melancholy.",
+      "translation": "他满脸忧愁。",
+      "chunks": [
+        "He looks",
+        "melancholy."
+      ],
+      "hints": [
+        "他",
+        "满脸忧愁。"
+      ],
+      "cid": "149ca620",
+      "sentenceAudio": {
+        "text": "He looks melancholy.",
+        "audio": {
+          "url": "assets/oral-149ca620-19cbbd88e722dc3e5f77.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7d998bc2b3fa2382a29ccb82f1882b87698df07f9f093cad0cc9107ba8c7edaa",
+          "bytes": 5024
+        }
+      }
+    },
+    {
+      "sentence": "He looks gloomy today.",
+      "translation": "今天，他看上去很郁闷。",
+      "chunks": [
+        "He looks gloomy",
+        "today."
+      ],
+      "hints": [
+        "他看起来很郁闷",
+        "今天"
+      ],
+      "cid": "c5723152",
+      "sentenceAudio": {
+        "text": "He looks gloomy today.",
+        "audio": {
+          "url": "assets/oral-c5723152-82526e07c177a4aa6d87.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fac1a3d37b957acf7525a199ce3b75f7fb1589e9de51aba7150acd3ddaa56f0d",
+          "bytes": 5112
+        }
+      }
+    },
+    {
+      "sentence": "I give up.",
+      "translation": "放弃了。/投降了。",
+      "chunks": [
+        "I give up."
+      ],
+      "hints": [
+        "我放弃了。/我认输了。"
+      ],
+      "cid": "92ae2264",
+      "sentenceAudio": {
+        "text": "I give up.",
+        "audio": {
+          "url": "assets/oral-92ae2264-60c38ca3c06198492345.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e0b68b9b6f95a870c47421248f1d291a4ec55cf32bd8f4d7bf41f0fc79f9ec44",
+          "bytes": 3655
+        }
+      }
+    },
+    {
+      "sentence": "I can't help it.",
+      "translation": "没法子。",
+      "chunks": [
+        "I can't help it."
+      ],
+      "hints": [
+        "我也没办法。"
+      ],
+      "cid": "7f6c40ed",
+      "sentenceAudio": {
+        "text": "I can't help it.",
+        "audio": {
+          "url": "assets/oral-7f6c40ed-fca039159af1e7e17e73.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6fe97ad010393fd63992b6ee2946cf16a68b64ef6c116fef1a073d6220264bb5",
+          "bytes": 4163
+        }
+      }
+    },
+    {
+      "sentence": "Not a chance!",
+      "translation": "没戏。",
+      "chunks": [
+        "Not a chance!"
+      ],
+      "hints": [
+        "没戏！/绝不可能！"
+      ],
+      "cid": "93c377f2",
+      "sentenceAudio": {
+        "text": "Not a chance!",
+        "audio": {
+          "url": "assets/oral-93c377f2-5d0fe561e5de8c70d81a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a7e23e3f15a3afdd3a011fd2440192fa07cf21f64e648d019ed023b12d7c356d",
+          "bytes": 4038
+        }
+      }
+    },
+    {
+      "sentence": "That's the way it goes.",
+      "translation": "事情就是这样。",
+      "chunks": [
+        "That's the way it goes."
+      ],
+      "hints": [
+        "事情就是这样。"
+      ],
+      "cid": "10f0017b",
+      "sentenceAudio": {
+        "text": "That's the way it goes.",
+        "audio": {
+          "url": "assets/oral-10f0017b-3c9e2d8cb06836667a64.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4719d484cce8d64ce33c27a682af54aae549ae8f85601965cb0de1244ebba564",
+          "bytes": 4966
+        }
+      }
+    },
+    {
+      "sentence": "I have no clue.",
+      "translation": "我毫无头绪。",
+      "chunks": [
+        "I have no clue."
+      ],
+      "hints": [
+        "我完全不知道。"
+      ],
+      "cid": "a4a83c28",
+      "sentenceAudio": {
+        "text": "I have no clue.",
+        "audio": {
+          "url": "assets/oral-a4a83c28-705e535138584efb57e1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6e3fce022bc3d503990bd373ea0cd1bcb49f650a3bc8e98ff75955cf72508cf8",
+          "bytes": 4414
+        }
+      }
+    },
+    {
+      "sentence": "I'm throwing in the towel.",
+      "translation": "我认输了。",
+      "chunks": [
+        "I'm throwing in the towel."
+      ],
+      "hints": [
+        "我认输了。"
+      ],
+      "cid": "5a660b57",
+      "sentenceAudio": {
+        "text": "I'm throwing in the towel.",
+        "audio": {
+          "url": "assets/oral-5a660b57-cc26f46cde2a237e7ee4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "821e734ac316da49580d52e897fc0fa12390f0cba958ab00e3a8e26346ff3f8b",
+          "bytes": 5148
+        }
+      }
+    },
+    {
+      "sentence": "It's hopeless.",
+      "translation": "绝望了。",
+      "chunks": [
+        "It's",
+        "hopeless."
+      ],
+      "hints": [
+        "绝望",
+        "了。"
+      ],
+      "cid": "d9141a2d",
+      "sentenceAudio": {
+        "text": "It's hopeless.",
+        "audio": {
+          "url": "assets/oral-d9141a2d-b17edae1f79f526fae4d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9785c928e14d2e29bc014f5f9220cbdbf0e3d9a1c70dcbde3ef3389bbd9865a3",
+          "bytes": 3995
+        }
+      }
+    },
+    {
+      "sentence": "Better than nothing.",
+      "translation": "总比没有强。",
+      "chunks": [
+        "Better than nothing."
+      ],
+      "hints": [
+        "总比没有强。"
+      ],
+      "cid": "579b28b3",
+      "sentenceAudio": {
+        "text": "Better than nothing.",
+        "audio": {
+          "url": "assets/oral-579b28b3-e31285dc7d9789fc8749.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ea3091e42138312819d04a2a6894477a7db50eba2689763de73d4b9195d6053b",
+          "bytes": 4502
+        }
+      }
+    },
+    {
+      "sentence": "It was fate.",
+      "translation": "这就是命运呀!",
+      "chunks": [
+        "It was fate."
+      ],
+      "hints": [
+        "这就是命。"
+      ],
+      "cid": "712a7ca5",
+      "sentenceAudio": {
+        "text": "It was fate.",
+        "audio": {
+          "url": "assets/oral-712a7ca5-a97a37dce57993c73905.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f232a4ef0011004a3ea107c98f129e0ba2b9d1a32a6db381a5f6e4788091d45f",
+          "bytes": 3856
+        }
+      }
+    },
+    {
+      "sentence": "It's history.",
+      "translation": "都已经过去了。",
+      "chunks": [
+        "It's",
+        "history."
+      ],
+      "hints": [
+        "都已经",
+        "过去了。"
+      ],
+      "cid": "68a96a90",
+      "sentenceAudio": {
+        "text": "It's history.",
+        "audio": {
+          "url": "assets/oral-68a96a90-2b5f56dacd4e8f74a198.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "834635c6f6cc04a01746809824620ce83bbaa69cbb20149bac4799b798a79e11",
+          "bytes": 3948
+        }
+      }
+    },
+    {
+      "sentence": "It beats me.",
+      "translation": "我也不知道。/这可把我难住了。",
+      "chunks": [
+        "It beats me."
+      ],
+      "hints": [
+        "我也不知道。/这可把我难住了。"
+      ],
+      "cid": "6b82e755",
+      "sentenceAudio": {
+        "text": "It beats me.",
+        "audio": {
+          "url": "assets/oral-6b82e755-dcc0ffbf16c6f5955579.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "21e10fecba813dcd7b8bad3c481bb54b1699a1a7d450b7c63f2cc6232f600d54",
+          "bytes": 4026
+        }
+      }
+    },
+    {
+      "sentence": "I have no other choice but to do so.",
+      "translation": "我别无选择，只能这么做。",
+      "chunks": [
+        "I have no other choice",
+        "but to do so."
+      ],
+      "hints": [
+        "我别无选择",
+        "只能这么做"
+      ],
+      "cid": "8081355f",
+      "sentenceAudio": {
+        "text": "I have no other choice but to do so.",
+        "audio": {
+          "url": "assets/oral-8081355f-cf5e97452acc349dd5a2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb83ce694097190178a4d6ea8a38ac056abd7c36e91071f3c8a0ae980b42df57",
+          "bytes": 7183
+        }
+      }
+    },
+    {
+      "sentence": "I no longer feel devoted to this company.",
+      "translation": "我已经不再留恋这个公司了。",
+      "chunks": [
+        "I no longer feel devoted",
+        "to this company."
+      ],
+      "hints": [
+        "我已经不再留恋",
+        "这个公司了。"
+      ],
+      "cid": "8f318dd5",
+      "sentenceAudio": {
+        "text": "I no longer feel devoted to this company.",
+        "audio": {
+          "url": "assets/oral-8f318dd5-8503cc776f1035fc25b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "42984f66be9e76f2d3bfa738db6447ffcd3d90836b651a1d9fd43901d50fb1e4",
+          "bytes": 8241
+        }
+      }
+    },
+    {
+      "sentence": "That figures.",
+      "translation": "果不其然。",
+      "chunks": [
+        "That figures."
+      ],
+      "hints": [
+        "果然如此；这倒不奇怪。"
+      ],
+      "cid": "ec990221",
+      "sentenceAudio": {
+        "text": "That figures.",
+        "audio": {
+          "url": "assets/oral-ec990221-c60a6b47d587a5eba81a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e96254b7522bef130fd91afcf40d11e7bd1b134191ed48f79638b17c28daa91f",
+          "bytes": 3998
+        }
+      }
+    },
+    {
+      "sentence": "It is just as I imagined.",
+      "translation": "这正如我所想象的那样。",
+      "chunks": [
+        "It is just",
+        "as I imagined."
+      ],
+      "hints": [
+        "这正如",
+        "我所想象的那样。"
+      ],
+      "cid": "d561cfbb",
+      "sentenceAudio": {
+        "text": "It is just as I imagined.",
+        "audio": {
+          "url": "assets/oral-d561cfbb-eaa75e09126c12994217.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "93d905fe2b94d82dd87c00095736272c17a79e13b80cb961263b2ef465af3a80",
+          "bytes": 6278
+        }
+      }
+    },
+    {
+      "sentence": "See, didn't I tell you so?",
+      "translation": "瞧，我不早告诉你了吗?",
+      "chunks": [
+        "See,",
+        "didn't I tell you so?"
+      ],
+      "hints": [
+        "瞧，",
+        "我不早告诉你了吗？"
+      ],
+      "cid": "ffdcf2f8",
+      "sentenceAudio": {
+        "text": "See, didn't I tell you so?",
+        "audio": {
+          "url": "assets/oral-ffdcf2f8-a0fa1ddbe1f796a75b7a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "aaef351f18fbba397beed09feba98408c63332576b12ba2a2620574f90b25b95",
+          "bytes": 5274
+        }
+      }
+    },
+    {
+      "sentence": "Serves you right.",
+      "translation": "报应!/活该。",
+      "chunks": [
+        "Serves you right."
+      ],
+      "hints": [
+        "活该！/报应！"
+      ],
+      "cid": "09e58b2a",
+      "sentenceAudio": {
+        "text": "Serves you right.",
+        "audio": {
+          "url": "assets/oral-09e58b2a-1af6a341737d3eb9dd35.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "033a62b9076590130b77507d2204d7b7813260d579d8bb0f37680b45b27e6cd7",
+          "bytes": 4260
+        }
+      }
+    },
+    {
+      "sentence": "You never know.",
+      "translation": "很难说。/世事难料。",
+      "chunks": [
+        "You never know."
+      ],
+      "hints": [
+        "很难说。/世事难料。"
+      ],
+      "cid": "c7e44e31",
+      "sentenceAudio": {
+        "text": "You never know.",
+        "audio": {
+          "url": "assets/oral-c7e44e31-89c44e2f288334f6d266.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e2a67849740a0e37a322cb239ef2d7981c75f1d429639ae80dabd90a29750fa0",
+          "bytes": 4040
+        }
+      }
+    },
+    {
+      "sentence": "No wonder.",
+      "translation": "不足为奇。/没什么奇怪的。",
+      "chunks": [
+        "No wonder."
+      ],
+      "hints": [
+        "不足为奇。/没什么奇怪的。"
+      ],
+      "cid": "e7031d7d",
+      "sentenceAudio": {
+        "text": "No wonder.",
+        "audio": {
+          "url": "assets/oral-e7031d7d-f4b5d9623cc475f1939b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "86a474e748b0ddd12b659cc1d8d8f379e0410ca17a07beab4f2bbe8bc5ea8a84",
+          "bytes": 3871
+        }
+      }
+    },
+    {
+      "sentence": "I shouldn't have done it.",
+      "translation": "我真不该那样。",
+      "chunks": [
+        "I shouldn't have",
+        "done it."
+      ],
+      "hints": [
+        "我真不该",
+        "那样。"
+      ],
+      "cid": "35225687",
+      "sentenceAudio": {
+        "text": "I shouldn't have done it.",
+        "audio": {
+          "url": "assets/oral-35225687-2a288ac81fbc656a165c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5132e8e35ae2a21086a93230199cc2f6f347530a0275749f7642c5e7d9b2a262",
+          "bytes": 4745
+        }
+      }
+    },
+    {
+      "sentence": "I shouldn't have said that.",
+      "translation": "我不该说那话。",
+      "chunks": [
+        "I shouldn't have",
+        "said that."
+      ],
+      "hints": [
+        "我不该",
+        "说那话。"
+      ],
+      "cid": "a2b84d52",
+      "sentenceAudio": {
+        "text": "I shouldn't have said that.",
+        "audio": {
+          "url": "assets/oral-a2b84d52-7bfce7fb0291e065ce1c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "df8411943abc036f8f420a5606b2d7f01fdf26eb3e661f60aca7617542eeca3d",
+          "bytes": 5092
+        }
+      }
+    },
+    {
+      "sentence": "I should have known.",
+      "translation": "我早该知道了。",
+      "chunks": [
+        "I should have",
+        "known."
+      ],
+      "hints": [
+        "我早该",
+        "知道了。"
+      ],
+      "cid": "df6209ba",
+      "sentenceAudio": {
+        "text": "I should have known.",
+        "audio": {
+          "url": "assets/oral-df6209ba-e74799c9d9d8ad69ae42.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "014859e37cc09956ae9a4468b2f79899f39cad71cf479e55cea598da286aebc5",
+          "bytes": 4159
+        }
+      }
+    },
+    {
+      "sentence": "It was careless of me to do so.",
+      "translation": "我那样做真是太不小心了。",
+      "chunks": [
+        "It was careless of me to do so."
+      ],
+      "hints": [
+        "我那样做真是太不小心了。"
+      ],
+      "cid": "29276560",
+      "sentenceAudio": {
+        "text": "It was careless of me to do so.",
+        "audio": {
+          "url": "assets/oral-29276560-ac93c8941fb7ba328e9e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d0148e85de8464ac823752e991054f7bce9c7c30a38cbd71a7ea38f6cd8fed81",
+          "bytes": 6021
+        }
+      }
+    },
+    {
+      "sentence": "I regret doing that.",
+      "translation": "我后悔我做的事。",
+      "chunks": [
+        "I regret",
+        "doing that."
+      ],
+      "hints": [
+        "我后悔",
+        "那样做。"
+      ],
+      "cid": "4968ba8f",
+      "sentenceAudio": {
+        "text": "I regret doing that.",
+        "audio": {
+          "url": "assets/oral-4968ba8f-0ab6e7cb6479094bba9c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9556fffb5fbcd8654d4fe227e24906b8cd7312e73955faf80c4168bcb8f88ccf",
+          "bytes": 5004
+        }
+      }
+    },
+    {
+      "sentence": "I had no choice.",
+      "translation": "我别无选择。",
+      "chunks": [
+        "I had",
+        "no choice."
+      ],
+      "hints": [
+        "我",
+        "别无选择。"
+      ],
+      "cid": "cd62105f",
+      "sentenceAudio": {
+        "text": "I had no choice.",
+        "audio": {
+          "url": "assets/oral-cd62105f-cfa381cbbf2167204676.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2897b59924dedaf8bfbe58727aedd7b872d406451575ae10d13083eb667b15c3",
+          "bytes": 4437
+        }
+      }
+    },
+    {
+      "sentence": "I went too far.",
+      "translation": "我做得太过了。",
+      "chunks": [
+        "I went",
+        "too far."
+      ],
+      "hints": [
+        "我做得",
+        "太过了。"
+      ],
+      "cid": "ca4ddce5",
+      "sentenceAudio": {
+        "text": "I went too far.",
+        "audio": {
+          "url": "assets/oral-ca4ddce5-8c0f54523dded5266426.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d2172f5d6f54e59b9a0bed64b6abbfd5d525392b13544a40d9402d0a67a79d46",
+          "bytes": 4388
+        }
+      }
+    },
+    {
+      "sentence": "I was too nervous.",
+      "translation": "我太紧张了。",
+      "chunks": [
+        "I was",
+        "too nervous."
+      ],
+      "hints": [
+        "我",
+        "太紧张了。"
+      ],
+      "cid": "4ed006e5",
+      "sentenceAudio": {
+        "text": "I was too nervous.",
+        "audio": {
+          "url": "assets/oral-4ed006e5-444a4473af94dc918f9a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f54c615dc3447bf21cbe2933bc75a77159ebe6061d65107ec65bd57917002653",
+          "bytes": 4438
+        }
+      }
+    },
+    {
+      "sentence": "I wish I had studied harder.",
+      "translation": "我要是再用功点就好了。",
+      "chunks": [
+        "I wish I had",
+        "studied harder."
+      ],
+      "hints": [
+        "我要是",
+        "再用功点就好了。"
+      ],
+      "cid": "fbbb7865",
+      "sentenceAudio": {
+        "text": "I wish I had studied harder.",
+        "audio": {
+          "url": "assets/oral-fbbb7865-469b0a95474f32a2cba3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c5d5528471153acf76ffb42f224f46a1528baa891b3f0f69a9661d803e425d1f",
+          "bytes": 5689
+        }
+      }
+    },
+    {
+      "sentence": "I should have asked him.",
+      "translation": "我要是问他一下就好了。",
+      "chunks": [
+        "I should have",
+        "asked him."
+      ],
+      "hints": [
+        "我要是",
+        "问他一下就好了。"
+      ],
+      "cid": "11fe04f1",
+      "sentenceAudio": {
+        "text": "I should have asked him.",
+        "audio": {
+          "url": "assets/oral-11fe04f1-9e13d64cb51535375fcb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6388a08f73d9204859cfb15c75f6bee44d0f4576271874df7a30ea8940545b51",
+          "bytes": 4489
+        }
+      }
+    },
+    {
+      "sentence": "It slipped my mind.",
+      "cid": "d2d4552d",
+      "translation": "不留神给忘了。",
+      "chunks": [
+        "It slipped my mind."
+      ],
+      "hints": [
+        "我一时忘了。"
+      ],
+      "grammar": [
+        {
+          "role": "固定表达",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ɪt/",
+            "/slɪpt/"
+          ],
+          "pos": "习语",
+          "meaning": "一时忘了"
+        }
+      ],
+      "explanations": [
+        "**slip one's mind** = 被遗忘（事情溜出脑海），是忘记的惯用表达。",
+        "常见错误：\"It slipped **in** my mind\" → 不需要 in。忘记做某事也可说 **It completely slipped my mind**（我完全忘了）。"
+      ],
+      "distractors": [
+        [
+          "It escaped my memory.",
+          "I forgot about it.",
+          "It slipped my brain."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "It slipped my mind.",
+        "audio": {
+          "url": "assets/oral-d2d4552d-f45f5ce0e052656024e1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ff8e8f53250be3d7ab332080226df85b343eee1f1d4b05f07393e91fc9322ec0",
+          "bytes": 4649
+        }
+      }
+    },
+    {
+      "sentence": "I'm really stressed out about the exam.",
+      "cid": "0c31e53d",
+      "translation": "我对考试真的压力很大。",
+      "chunks": [
+        "I'm really",
+        "stressed out",
+        "about the exam."
+      ],
+      "hints": [
+        "我真的很",
+        "压力山大",
+        "关于考试"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈriːəli/"
+          ],
+          "pos": "be + 表语",
+          "meaning": "我真的很"
+        },
+        {
+          "role": "表语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/strest/",
+            "/aʊt/"
+          ],
+          "pos": "固定短语",
+          "meaning": "压力很大"
+        },
+        {
+          "role": "对象状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/əˈbaʊt/",
+            "/ðə/",
+            "/ɪɡˈzæm/"
+          ],
+          "pos": "介词短语",
+          "meaning": "关于考试"
+        }
+      ],
+      "explanations": [
+        "`stressed out` = 压力极大的。常见错误：\n• \"stress out\" → 作表语要 be stressed out\n• \"I'm stress\" → stress 是名词/动词，形容词是 stressed",
+        "`about + 事由`。同义：I'm under a lot of pressure."
+      ],
+      "distractors": [
+        [
+          "I really",
+          "I'm real",
+          "I very am"
+        ],
+        [
+          "stress out",
+          "stressed of",
+          "stressing out"
+        ],
+        [
+          "about exam.",
+          "to the exam.",
+          "about the exams."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm really stressed out about the exam.",
+        "audio": {
+          "url": "assets/oral-0c31e53d-67979e6cfb6ef41c4d14.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "91204e4f2f8d0af0eb53320e4be98e4b7fbd78f62c28c393d91350f91a4747bc",
+          "bytes": 6893
+        }
+      }
+    },
+    {
+      "sentence": "I'm worried about the job interview tomorrow.",
+      "cid": "edc8aa29",
+      "translation": "我很担心明天的求职面试。",
+      "chunks": [
+        "I'm worried about",
+        "the job interview",
+        "tomorrow."
+      ],
+      "hints": [
+        "我担心",
+        "求职面试",
+        "明天"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪm/",
+            "/ˈwɜːrid/",
+            "/əˈbaʊt/"
+          ],
+          "pos": "be worried about",
+          "meaning": "我担心"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/dʒɑːb/",
+            "/ˈɪntərvjuː/"
+          ],
+          "pos": "名词短语",
+          "meaning": "求职面试"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/təˈmɑːroʊ/"
+          ],
+          "pos": "副词",
+          "meaning": "明天"
+        }
+      ],
+      "explanations": [
+        "`be worried about` = 担心……。常见错误：\n• \"I worried about\" → 缺 be 动词（worried 是形容词/过去分词）\n• \"worry about\" 动词短语：I worry about... 也可",
+        "`job interview` = 求职面试。"
+      ],
+      "distractors": [
+        [
+          "I worry about",
+          "I'm worrying of",
+          "I'm worried to"
+        ],
+        [
+          "a job interview",
+          "the job interviews",
+          "job's interview"
+        ],
+        [
+          "in tomorrow.",
+          "tomorrow now.",
+          "the tomorrow."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I'm worried about the job interview tomorrow.",
+        "audio": {
+          "url": "assets/oral-edc8aa29-dc9615be9b55a6582b55.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "98ac2992c69e18af13fe3720d46cd78982d617807442fcb88f567ff0bd6f2cb7",
+          "bytes": 8006
+        }
+      }
+    },
+    {
+      "sentence": "What if it rains on the wedding day?",
+      "cid": "96308679",
+      "translation": "婚礼那天下雨怎么办？",
+      "chunks": [
+        "What if",
+        "it rains",
+        "on the wedding day?"
+      ],
+      "hints": [
+        "万一……怎么办？",
+        "下雨",
+        "婚礼那天"
+      ],
+      "grammar": [
+        {
+          "role": "疑问短语",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wʌt/",
+            "/ɪf/"
+          ],
+          "pos": "what if",
+          "meaning": "万一……怎么办"
+        },
+        {
+          "role": "从句主谓",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ɪt/",
+            "/reɪnz/"
+          ],
+          "pos": "一般现在时(表将来)",
+          "meaning": "天下雨"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ɑːn/",
+            "/ðə/",
+            "/ˈwedɪŋ/",
+            "/deɪ/"
+          ],
+          "pos": "介词短语",
+          "meaning": "在婚礼那天"
+        }
+      ],
+      "explanations": [
+        "`What if...?` = 万一……怎么办？假设建议。常见错误：\n• \"What about if\" → 直接用 what if\n• \"If what\" → 语序错",
+        "条件句用一般现在时表将来：What if it **rains**（不是 will rain）。"
+      ],
+      "distractors": [
+        [
+          "How if",
+          "What about if",
+          "Whatever if"
+        ],
+        [
+          "it will rain",
+          "it rain",
+          "it rained now"
+        ],
+        [
+          "on wedding day?",
+          "in the wedding day?",
+          "at the wedding day?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "What if it rains on the wedding day?",
+        "audio": {
+          "url": "assets/oral-96308679-534cb053bcc51cc880ac.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7d34840d0f557c22ac553a0d0e57c71b66c3e0188f5a39b236235ca83528035c",
+          "bytes": 6460
+        }
+      }
+    }
+  ]
+}

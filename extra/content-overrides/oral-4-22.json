@@ -1,0 +1,401 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-4-22",
+    "name": "口语3000句 · 为难时",
+    "short": "为难时",
+    "desc": "为难时",
+    "chapter": 4,
+    "section": "4.22",
+    "sectionTitle": "为难时",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 15,
+    "items": [
+      {
+        "sentence": "I don't know what to do.",
+        "translation": "我不知道该怎么办。",
+        "chunks": [
+          "I don't know",
+          "what to do."
+        ],
+        "hints": [
+          "我不知道",
+          "该怎么办"
+        ],
+        "cid": "581a9eab",
+        "sentenceAudio": {
+          "text": "I don't know what to do.",
+          "audio": {
+            "url": "assets/oral-581a9eab-932d80121adb63823710.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "241b96ddbb27e3f9347a9c8547ac5d73dcf91b684fce3757afed30f49b331fc8",
+            "bytes": 4817
+          }
+        }
+      },
+      {
+        "sentence": "What am I supposed to do?",
+        "translation": "我该怎么办?",
+        "chunks": [
+          "What am I",
+          "supposed to do?"
+        ],
+        "hints": [
+          "我该",
+          "怎么办才好"
+        ],
+        "cid": "09f4b186",
+        "sentenceAudio": {
+          "text": "What am I supposed to do?",
+          "audio": {
+            "url": "assets/oral-09f4b186-42ff54867654d49a684b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "46e0d939579ba1232c7aa571493af937833b5f10df1951a2cc2406df7645d329",
+            "bytes": 5412
+          }
+        }
+      },
+      {
+        "sentence": "We are in trouble.",
+        "translation": "这下可麻烦了。",
+        "chunks": [
+          "We are",
+          "in trouble."
+        ],
+        "hints": [
+          "我们",
+          "有麻烦了"
+        ],
+        "cid": "d9a69161",
+        "sentenceAudio": {
+          "text": "We are in trouble.",
+          "audio": {
+            "url": "assets/oral-d9a69161-79024a310d8e6cd3085b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "233776ef1aa1cf6a67f289d1ce2d41c91a9e6429e9921b3d54fb56bfd60c9a11",
+            "bytes": 4134
+          }
+        }
+      },
+      {
+        "sentence": "It's a hassle.",
+        "translation": "那很麻烦。",
+        "chunks": [
+          "It's",
+          "a hassle."
+        ],
+        "hints": [
+          "真是",
+          "件麻烦事"
+        ],
+        "cid": "1a295d11",
+        "sentenceAudio": {
+          "text": "It's a hassle.",
+          "audio": {
+            "url": "assets/oral-1a295d11-49bb4252a872f23b1029.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "135074f9b234dd0257c01eea4f1f7e6003359745ccbc0cddf43deff21a23c344",
+            "bytes": 4015
+          }
+        }
+      },
+      {
+        "sentence": "It's really a difficult problem.",
+        "translation": "这真是个难题。",
+        "chunks": [
+          "It's really",
+          "a difficult problem."
+        ],
+        "hints": [
+          "这真是",
+          "个难题"
+        ],
+        "cid": "a582b643",
+        "sentenceAudio": {
+          "text": "It's really a difficult problem.",
+          "audio": {
+            "url": "assets/oral-a582b643-b50107d6bc2f34f13b0f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4b937ca3af7f73c3a99201bf9205af2ac51ef32608d00550e06161f476428c87",
+            "bytes": 6035
+          }
+        }
+      },
+      {
+        "sentence": "I don't know what to say.",
+        "translation": "我不知道说什么才好。",
+        "chunks": [
+          "I don't know",
+          "what to say."
+        ],
+        "hints": [
+          "我不知道",
+          "说什么才好"
+        ],
+        "cid": "d720d9f9",
+        "sentenceAudio": {
+          "text": "I don't know what to say.",
+          "audio": {
+            "url": "assets/oral-d720d9f9-53617925cc0bd6a80065.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "42447761438f62a76d79432984e40a8df2f3230e5b1b1ce35c05d55f91ad2866",
+            "bytes": 4914
+          }
+        }
+      },
+      {
+        "sentence": "You got me.",
+        "translation": "这下可难住我了。",
+        "chunks": [
+          "You got me."
+        ],
+        "hints": [
+          "这下可难住我了。"
+        ],
+        "cid": "30112726",
+        "sentenceAudio": {
+          "text": "You got me.",
+          "audio": {
+            "url": "assets/oral-30112726-3b2fb057e973e6c906d8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c373b1355147617585b7c22d61d886f4386648877ed4b0752de0e7e8836a677a",
+            "bytes": 3855
+          }
+        }
+      },
+      {
+        "sentence": "He's a nuisance.",
+        "translation": "他特招人讨厌。",
+        "chunks": [
+          "He's",
+          "a nuisance."
+        ],
+        "hints": [
+          "他",
+          "真招人烦"
+        ],
+        "cid": "ca5fc7f7",
+        "sentenceAudio": {
+          "text": "He's a nuisance.",
+          "audio": {
+            "url": "assets/oral-ca5fc7f7-f3c003f722f6f64a35fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e3b5be89ec8a1b06a095f7221d9009f027938b943514a201bcf82cca08158bf",
+            "bytes": 4309
+          }
+        }
+      },
+      {
+        "sentence": "Oops!",
+        "translation": "哎哟!",
+        "chunks": [
+          "Oops!"
+        ],
+        "hints": [
+          "哎哟"
+        ],
+        "cid": "29d2a17d",
+        "sentenceAudio": {
+          "text": "Oops!",
+          "audio": {
+            "url": "assets/oral-29d2a17d-921ce02003f53b03ff14.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2a4b63175603926768734a568eb673c4b0f9b2be360d30d4c46d9c6b0aaa49cd",
+            "bytes": 3095
+          }
+        }
+      },
+      {
+        "sentence": "Oh, no!",
+        "translation": "噢!不!",
+        "chunks": [
+          "Oh,",
+          "no!"
+        ],
+        "hints": [
+          "噢",
+          "不"
+        ],
+        "cid": "6ba23ca4",
+        "sentenceAudio": {
+          "text": "Oh, no!",
+          "audio": {
+            "url": "assets/oral-6ba23ca4-ec762c2784b9632e3608.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d2047fd7e086c4752840d75486b22e93db385bb48a64f0d43aa591d133da753",
+            "bytes": 3567
+          }
+        }
+      },
+      {
+        "sentence": "That's the hard part.",
+        "translation": "这正是难点。",
+        "chunks": [
+          "That's",
+          "the hard part."
+        ],
+        "hints": [
+          "这",
+          "才是难点"
+        ],
+        "cid": "ddfe1007",
+        "sentenceAudio": {
+          "text": "That's the hard part.",
+          "audio": {
+            "url": "assets/oral-ddfe1007-942e734a18f12ee93708.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9b3011a8310ad734b0faab05f656e2ab0c001bbaeea1a2261bbda0de3106e0f4",
+            "bytes": 4702
+          }
+        }
+      },
+      {
+        "sentence": "I feel guilty.",
+        "translation": "我感到内疚。",
+        "chunks": [
+          "I feel",
+          "guilty."
+        ],
+        "hints": [
+          "我感到",
+          "内疚"
+        ],
+        "cid": "6646ddb0",
+        "sentenceAudio": {
+          "text": "I feel guilty.",
+          "audio": {
+            "url": "assets/oral-6646ddb0-bf310821f3983f0e4b73.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "88752fb86686c89058facb9f70cfb9bc108f16ca55ec5e5ce180243459d4a1e0",
+            "bytes": 4580
+          }
+        }
+      },
+      {
+        "sentence": "You look puzzled.",
+        "translation": "你看来很困惑。",
+        "chunks": [
+          "You look",
+          "puzzled."
+        ],
+        "hints": [
+          "你看起来",
+          "很困惑"
+        ],
+        "cid": "d9bbdd37",
+        "sentenceAudio": {
+          "text": "You look puzzled.",
+          "audio": {
+            "url": "assets/oral-d9bbdd37-a2a852f7fbcd6bd0034b.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "85cb33f192064165724cf385440fbb70358923ff4d1849658102dbdebbdfcc7c",
+            "bytes": 4049
+          }
+        }
+      },
+      {
+        "sentence": "The idea haunts me.",
+        "translation": "那个念头总是萦绕着我。",
+        "chunks": [
+          "The idea",
+          "haunts me."
+        ],
+        "hints": [
+          "那个念头",
+          "总缠着我"
+        ],
+        "cid": "e76c552c",
+        "sentenceAudio": {
+          "text": "The idea haunts me.",
+          "audio": {
+            "url": "assets/oral-e76c552c-b94ef58c5a9c9ddd9798.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "67370acbe2975ae529969985477fc175c9832cc981bdd1aad3c94049a854141d",
+            "bytes": 4934
+          }
+        }
+      },
+      {
+        "sentence": "I can't remember where I put my keys.",
+        "cid": "6abc41f7",
+        "translation": "我忘了把钥匙放哪儿了。",
+        "chunks": [
+          "I can't remember",
+          "where I put",
+          "my keys."
+        ],
+        "hints": [
+          "我想不起来",
+          "我放在哪儿",
+          "我的钥匙"
+        ],
+        "grammar": [
+          {
+            "role": "主谓否定",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/kænt/",
+              "/rɪˈmembər/"
+            ],
+            "pos": "否定句",
+            "meaning": "我想不起来"
+          },
+          {
+            "role": "宾语从句",
+            "color": "#3358e0",
+            "phonetic": [
+              "/wer/",
+              "/aɪ/",
+              "/pʊt/"
+            ],
+            "pos": "名词性从句",
+            "meaning": "我放在哪儿"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/maɪ/",
+              "/kiːz/"
+            ],
+            "pos": "名词短语",
+            "meaning": "我的钥匙"
+          }
+        ],
+        "explanations": [
+          "`remember + where 从句` 用陈述语序。常见错误：\n• \"where **did I** put\" → 从句内不倒装，用 I put\n• \"remember **to find**\" → remember where 是宾语从句，不是 remember to do",
+          "put 的过去式仍是 put（不规则动词不变形）。近义句：I can't find my keys anywhere."
+        ],
+        "distractors": [
+          [
+            "I can't remembered",
+            "I cann't remember",
+            "I can't to remember"
+          ],
+          [
+            "where I putted",
+            "where did I put",
+            "where I puts"
+          ],
+          [
+            "my key.",
+            "mine keys.",
+            "keys."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I can't remember where I put my keys.",
+          "audio": {
+            "url": "assets/oral-6abc41f7-6210d7bc72fc1761f621.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4e569bc23e6c2874a654be75a340a23fb01df4252e83a9ea076deb3f99829d7c",
+            "bytes": 7171
+          }
+        }
+      }
+    ]
+  }
+}

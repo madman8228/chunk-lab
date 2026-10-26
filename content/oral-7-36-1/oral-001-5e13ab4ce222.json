@@ -1,0 +1,1600 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "We are told that...",
+      "translation": "我们被告知……",
+      "chunks": [
+        "We are told",
+        "that..."
+      ],
+      "hints": [
+        "我们被告知",
+        "……"
+      ],
+      "cid": "5d66f8f5",
+      "sentenceAudio": {
+        "text": "We are told that...",
+        "audio": {
+          "url": "assets/oral-5d66f8f5-c2aedebfc776743d782a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a3fbdfcf49b2c4e32b6c94623b9c3a00dd0e5223b28d50c865e2dc65fc6f6601",
+          "bytes": 4251
+        }
+      }
+    },
+    {
+      "sentence": "We understand from Mr. Aoki that...",
+      "translation": "我们从青木先生那儿了解到……",
+      "chunks": [
+        "We understand from Mr. Aoki",
+        "that..."
+      ],
+      "hints": [
+        "我们从青木先生那儿了解到",
+        "……"
+      ],
+      "cid": "24192031",
+      "sentenceAudio": {
+        "text": "We understand from Mr. Aoki that...",
+        "audio": {
+          "url": "assets/oral-24192031-ebe1c0ce74416252a82a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a86831288a751fcf04891ffbc779c832019671aa7c1a402d8bd8fc3d031a272b",
+          "bytes": 7967
+        }
+      }
+    },
+    {
+      "sentence": "We observed that...",
+      "translation": "我们察觉到……",
+      "chunks": [
+        "We observed",
+        "that..."
+      ],
+      "hints": [
+        "我们察觉到",
+        "……"
+      ],
+      "cid": "c079b4ee",
+      "sentenceAudio": {
+        "text": "We observed that...",
+        "audio": {
+          "url": "assets/oral-c079b4ee-a8839921b591efe0c58a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "050d96ef2535c78b32dd6f56468a8361f4186762e093d962a4c958075ac7f69b",
+          "bytes": 4429
+        }
+      }
+    },
+    {
+      "sentence": "We would like to call your attention to...",
+      "translation": "我们希望提醒贵方注意……",
+      "chunks": [
+        "We would like to",
+        "call your attention to..."
+      ],
+      "hints": [
+        "我们希望",
+        "提醒贵方注意……"
+      ],
+      "cid": "ad7a3f7c",
+      "sentenceAudio": {
+        "text": "We would like to call your attention to...",
+        "audio": {
+          "url": "assets/oral-ad7a3f7c-415d99cccab56e3d01c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "43cad2dccb77c0bd09a3d4c8d002aad2f7a6b8a28cd30ae7537ab9cdc126f3dc",
+          "bytes": 6555
+        }
+      }
+    },
+    {
+      "sentence": "May we take this occasion to remind you that...",
+      "translation": "我们想借此机会提醒您……",
+      "chunks": [
+        "May we take this occasion",
+        "to remind you",
+        "that..."
+      ],
+      "hints": [
+        "我们想利用这次的机会",
+        "提醒您",
+        "……"
+      ],
+      "cid": "59799afe",
+      "sentenceAudio": {
+        "text": "May we take this occasion to remind you that...",
+        "audio": {
+          "url": "assets/oral-59799afe-1ffbb78879b9d2eea9dd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "61f3312fe57bdb7fe1c8a9ab4b14f4b5e8cbd6c2aa08a54c0bb317c1c1132a7a",
+          "bytes": 8738
+        }
+      }
+    },
+    {
+      "sentence": "We hope that you will...",
+      "translation": "我们希望您能……",
+      "chunks": [
+        "We hope",
+        "that you will..."
+      ],
+      "hints": [
+        "我们希望",
+        "您能……"
+      ],
+      "cid": "77d2d80b",
+      "sentenceAudio": {
+        "text": "We hope that you will...",
+        "audio": {
+          "url": "assets/oral-77d2d80b-6a82695c4a0ff78c402a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3f34a8d8cf04edf24af49ea9a488e5d07ff80a2d1b728d0d4a066e39dfd7fcb9",
+          "bytes": 4887
+        }
+      }
+    },
+    {
+      "sentence": "We hope to receive...",
+      "translation": "我们希望收到……",
+      "chunks": [
+        "We hope",
+        "to receive..."
+      ],
+      "hints": [
+        "我们希望",
+        "收到……"
+      ],
+      "cid": "551bc2e3",
+      "sentenceAudio": {
+        "text": "We hope to receive...",
+        "audio": {
+          "url": "assets/oral-551bc2e3-ff9ba72b0b3481e67ee5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "26c71b9c1f00af8e4a8b576f3d336e6ff0c2355c2038ba5d00de8a51bd3e6700",
+          "bytes": 4858
+        }
+      }
+    },
+    {
+      "sentence": "We are interested in...",
+      "translation": "我们对……很感兴趣。",
+      "chunks": [
+        "We are",
+        "interested in..."
+      ],
+      "hints": [
+        "我们",
+        "对……很感兴趣"
+      ],
+      "cid": "28b7e4b9",
+      "sentenceAudio": {
+        "text": "We are interested in...",
+        "audio": {
+          "url": "assets/oral-28b7e4b9-77b140488b052a3633fb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a9f5a19b3a5d9688d6ba005793d1df85bfdff9225b74b11f76278a5bd5d86fcf",
+          "bytes": 4834
+        }
+      }
+    },
+    {
+      "sentence": "We would be interested to learn...",
+      "translation": "我们渴望知道……",
+      "chunks": [
+        "We would be interested",
+        "to learn..."
+      ],
+      "hints": [
+        "我们渴望",
+        "知道……"
+      ],
+      "cid": "da2ae55b",
+      "sentenceAudio": {
+        "text": "We would be interested to learn...",
+        "audio": {
+          "url": "assets/oral-da2ae55b-6ed793e24f96a0cff9b8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "131a21c78020a06dd1a3f51f6f170aa6882e21363209cdbc06d6972ef0798030",
+          "bytes": 5774
+        }
+      }
+    },
+    {
+      "sentence": "We would appreciate it if you will let us know...",
+      "translation": "如果您能告诉我们……，我们将不胜感激。",
+      "chunks": [
+        "We would appreciate it",
+        "if you will let us know..."
+      ],
+      "hints": [
+        "我们将不胜感激",
+        "如果您能告诉我们……"
+      ],
+      "cid": "9f19ff85",
+      "sentenceAudio": {
+        "text": "We would appreciate it if you will let us know...",
+        "audio": {
+          "url": "assets/oral-9f19ff85-a183b7fd161ca34c31b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "502e3a093f7a43a23a64f80bd608d80b6df69f2a9f840e6ee3e737d098c60b44",
+          "bytes": 8173
+        }
+      }
+    },
+    {
+      "sentence": "May we ask you to send us...?",
+      "translation": "我们能麻烦您将……寄给我们吗?",
+      "chunks": [
+        "May we ask you",
+        "to send us...?"
+      ],
+      "hints": [
+        "我们能麻烦您",
+        "将……寄给我们吗"
+      ],
+      "cid": "f56462c0",
+      "sentenceAudio": {
+        "text": "May we ask you to send us...?",
+        "audio": {
+          "url": "assets/oral-f56462c0-fed52c3aacdb2525961f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0125e349868e1b291b79d6abc49e7906c021f73d6a0dbbd6f1148566b30e3ccb",
+          "bytes": 5574
+        }
+      }
+    },
+    {
+      "sentence": "We thank you for your offer.",
+      "translation": "非常感谢您的提议。",
+      "chunks": [
+        "We thank you",
+        "for your offer."
+      ],
+      "hints": [
+        "非常感谢您",
+        "提出的提议。"
+      ],
+      "cid": "636243b8",
+      "sentenceAudio": {
+        "text": "We thank you for your offer.",
+        "audio": {
+          "url": "assets/oral-636243b8-af11705b5759b530c03c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "99d647178f4d262c3077d7e58fd5b64f8ed4b614d2cb986e5f4410ef794f893a",
+          "bytes": 5292
+        }
+      }
+    },
+    {
+      "sentence": "I appreciate very much that you...",
+      "translation": "您……，我非常感激。",
+      "chunks": [
+        "I appreciate very much",
+        "that you..."
+      ],
+      "hints": [
+        "我非常感激",
+        "您……"
+      ],
+      "cid": "3026522f",
+      "sentenceAudio": {
+        "text": "I appreciate very much that you...",
+        "audio": {
+          "url": "assets/oral-3026522f-e689fb7407da2afd59ea.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ffc5faff106c241701dc98aa79f262730402be588d096535d6111e026b4a72de",
+          "bytes": 7126
+        }
+      }
+    },
+    {
+      "sentence": "We appreciate your cooperation and...",
+      "translation": "对贵方的大力合作我们万分感激。",
+      "chunks": [
+        "We appreciate your cooperation",
+        "and..."
+      ],
+      "hints": [
+        "对贵方的大力合作我们万分感激",
+        "以及……"
+      ],
+      "cid": "9de71ad4",
+      "sentenceAudio": {
+        "text": "We appreciate your cooperation and...",
+        "audio": {
+          "url": "assets/oral-9de71ad4-ac6920d560956db67843.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5ced790ac7e297cc32e338fcbed15be6b1f6e42f2a5fda84930b201567298a19",
+          "bytes": 7507
+        }
+      }
+    },
+    {
+      "sentence": "It is regretful to learn of...",
+      "translation": "得知……，我们感到很遗憾。",
+      "chunks": [
+        "It is regretful",
+        "to learn of..."
+      ],
+      "hints": [
+        "我们感到很遗憾",
+        "得知……"
+      ],
+      "cid": "542789ea",
+      "sentenceAudio": {
+        "text": "It is regretful to learn of...",
+        "audio": {
+          "url": "assets/oral-542789ea-244cdba172129a17f3df.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "990b33a17788f61f4e354a429353e2a9b0ff140705b27805008f8b540401787c",
+          "bytes": 6170
+        }
+      }
+    },
+    {
+      "sentence": "We are very sorry that...",
+      "translation": "为……，我们深表遗憾。",
+      "chunks": [
+        "We are very sorry",
+        "that..."
+      ],
+      "hints": [
+        "我们深表遗憾",
+        "为……"
+      ],
+      "cid": "12ca18a5",
+      "sentenceAudio": {
+        "text": "We are very sorry that...",
+        "audio": {
+          "url": "assets/oral-12ca18a5-622d9aa929b380adb88e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fcf01c7273c68b1d4aa168b0ba9b4810b35ca1d61cd7c4b2d5209af597926e32",
+          "bytes": 5126
+        }
+      }
+    },
+    {
+      "sentence": "We apologize for...",
+      "translation": "就……，我们表示歉意。",
+      "chunks": [
+        "We apologize",
+        "for..."
+      ],
+      "hints": [
+        "我们表示歉意",
+        "就……"
+      ],
+      "cid": "12dbd516",
+      "sentenceAudio": {
+        "text": "We apologize for...",
+        "audio": {
+          "url": "assets/oral-12dbd516-db1f4a7307ba0c873650.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "38bf72598bbd9f18357100a6072dc3a47e339c73870623d0b5a236121218a6f7",
+          "bytes": 5020
+        }
+      }
+    },
+    {
+      "sentence": "We are very sorry for...",
+      "translation": "我们对……感到非常抱歉。",
+      "chunks": [
+        "We are very sorry",
+        "for..."
+      ],
+      "hints": [
+        "我们感到非常抱歉",
+        "对……"
+      ],
+      "cid": "58295e13",
+      "sentenceAudio": {
+        "text": "We are very sorry for...",
+        "audio": {
+          "url": "assets/oral-58295e13-0c235f8064411a8626c5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a5e1d84e2d6344e8c3c1d2a7118c2380f550413bf15a48c3a3bc7284e40c094b",
+          "bytes": 5216
+        }
+      }
+    },
+    {
+      "sentence": "We very much regret to have to remind you of...",
+      "translation": "我们很遗憾，不得不提醒您……",
+      "chunks": [
+        "We very much regret",
+        "to have to remind you",
+        "of..."
+      ],
+      "hints": [
+        "我们很遗憾",
+        "不得不提醒您",
+        "……"
+      ],
+      "cid": "93211638",
+      "sentenceAudio": {
+        "text": "We very much regret to have to remind you of...",
+        "audio": {
+          "url": "assets/oral-93211638-fdb2dfcc08f8ec91d4e5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e1799fff575b0755ed52d8415d6fe8d2e13d138415321357723369f2d19ad385",
+          "bytes": 8814
+        }
+      }
+    },
+    {
+      "sentence": "We invite your attention to...",
+      "translation": "请您注意……。",
+      "chunks": [
+        "We invite your attention",
+        "to..."
+      ],
+      "hints": [
+        "请您注意",
+        "……"
+      ],
+      "cid": "3e799806",
+      "sentenceAudio": {
+        "text": "We invite your attention to...",
+        "audio": {
+          "url": "assets/oral-3e799806-bd0052b548842236e174.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "90d5c2a3394248a96277afbdfccb2cdc6ccf0825b4d996f289e163966e50ea36",
+          "bytes": 5726
+        }
+      }
+    },
+    {
+      "sentence": "May we remind you that...?",
+      "translation": "我们想提醒您注意……",
+      "chunks": [
+        "May we remind you",
+        "that...?"
+      ],
+      "hints": [
+        "我们想提醒您注意",
+        "……"
+      ],
+      "cid": "86ccc412",
+      "sentenceAudio": {
+        "text": "May we remind you that...?",
+        "audio": {
+          "url": "assets/oral-86ccc412-f1a819b05c1b7c7eacb0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ad250fe27e1e73f55fb8fae547db10242dabe2f8c32abe324987cdc2271f9989",
+          "bytes": 5218
+        }
+      }
+    },
+    {
+      "sentence": "We wish to point out that...",
+      "translation": "我们想指出…… ”。",
+      "chunks": [
+        "We wish to point out",
+        "that..."
+      ],
+      "hints": [
+        "我们想指出",
+        "……"
+      ],
+      "cid": "60428ba2",
+      "sentenceAudio": {
+        "text": "We wish to point out that...",
+        "audio": {
+          "url": "assets/oral-60428ba2-39b0d1d7dc11ad4373c7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "22a9933df15f1fddb41e1dd1e2563a612ac1f5265bb96657cc7ac47c27368206",
+          "bytes": 5230
+        }
+      }
+    },
+    {
+      "sentence": "We are delighted to learn that...",
+      "translation": "我们非常高兴地获悉……",
+      "chunks": [
+        "We are delighted",
+        "to learn",
+        "that..."
+      ],
+      "hints": [
+        "我们非常高兴地",
+        "获悉",
+        "……"
+      ],
+      "cid": "362f3907",
+      "sentenceAudio": {
+        "text": "We are delighted to learn that...",
+        "audio": {
+          "url": "assets/oral-362f3907-543d9124c0c55fe07b73.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a1e90db7ea0ccd9209c61d59670192aac486da33fd4c5ff7f57221f95d83bcf6",
+          "bytes": 5888
+        }
+      }
+    },
+    {
+      "sentence": "Congratulations on your...",
+      "translation": "衷心地祝贺你……",
+      "chunks": [
+        "Congratulations",
+        "on your..."
+      ],
+      "hints": [
+        "衷心地祝贺你",
+        "……"
+      ],
+      "cid": "0bda4902",
+      "sentenceAudio": {
+        "text": "Congratulations on your...",
+        "audio": {
+          "url": "assets/oral-0bda4902-a41e46c9ab9d77ad71b7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3116c6a2c5e781d276815c7c9e08e4f8b91a2946f392ca831fb904af13973906",
+          "bytes": 5939
+        }
+      }
+    },
+    {
+      "sentence": "We have just learned with profound sorrow of the passing away of...",
+      "translation": "我们刚刚惊悉××不幸逝世，对此深感悲痛。",
+      "chunks": [
+        "We have just learned",
+        "with profound sorrow",
+        "of the passing away of..."
+      ],
+      "hints": [
+        "我们刚刚惊悉",
+        "对此深感悲痛",
+        "××不幸逝世"
+      ],
+      "cid": "cea77801",
+      "sentenceAudio": {
+        "text": "We have just learned with profound sorrow of the passing away of...",
+        "audio": {
+          "url": "assets/oral-cea77801-fd1c764c1bf7012e7f91.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06c6434f353f083ca22197e141a0820aebd5df6c1ce45b207ae823018e00429c",
+          "bytes": 11220
+        }
+      }
+    },
+    {
+      "sentence": "We wish to express our deep regret over the passing of...",
+      "translation": "对××的不幸逝世我们深感痛惜。",
+      "chunks": [
+        "We wish to express our deep regret",
+        "over the passing of..."
+      ],
+      "hints": [
+        "对××的不幸逝世我们深感痛惜",
+        "……"
+      ],
+      "cid": "3f5a7347",
+      "sentenceAudio": {
+        "text": "We wish to express our deep regret over the passing of...",
+        "audio": {
+          "url": "assets/oral-3f5a7347-54ab0a57166a7a2a9f9c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "367f35dafb15ac53cf85433196af2fef36c166ff63454be13b665e6af8a75b9c",
+          "bytes": 10042
+        }
+      }
+    },
+    {
+      "sentence": "Please accept my sincerest condolences.",
+      "translation": "请接受我最诚挚的哀悼。",
+      "chunks": [
+        "Please accept",
+        "my sincerest condolences."
+      ],
+      "hints": [
+        "请接受",
+        "我最诚挚的哀悼"
+      ],
+      "cid": "8a9545a2",
+      "sentenceAudio": {
+        "text": "Please accept my sincerest condolences.",
+        "audio": {
+          "url": "assets/oral-8a9545a2-f00be59491a38c2cab45.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "101ccfa3602739eb26155e37e94f3ce16482d8911e94fcbec06ec6f38fbf0728",
+          "bytes": 8847
+        }
+      }
+    },
+    {
+      "sentence": "We agree with you on...",
+      "translation": "我们同意你们关于……的意见。",
+      "chunks": [
+        "We agree with you",
+        "on..."
+      ],
+      "hints": [
+        "我们同意你们",
+        "关于……的意见"
+      ],
+      "cid": "a792cbe9",
+      "sentenceAudio": {
+        "text": "We agree with you on...",
+        "audio": {
+          "url": "assets/oral-a792cbe9-16cddd73f0f7d52c571c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "32b26a6db13eff71ab9e941c92619775aed6860b72cd572dc56e5bf88a3fed03",
+          "bytes": 4621
+        }
+      }
+    },
+    {
+      "sentence": "We are in full agreement with the points raised in your letter.",
+      "translation": "我们完全同意您信中提出的各项意见。",
+      "chunks": [
+        "We are in full agreement",
+        "with the points",
+        "raised in your letter."
+      ],
+      "hints": [
+        "我们完全同意",
+        "这些意见",
+        "您信中提出的"
+      ],
+      "cid": "2f321aa7",
+      "sentenceAudio": {
+        "text": "We are in full agreement with the points raised in your letter.",
+        "audio": {
+          "url": "assets/oral-2f321aa7-8f4fad9fb2b452bb787b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a6a02f6821e78b1987ce80cdae564a2693237f63f2b4cc18c63a546c544e17ad",
+          "bytes": 10702
+        }
+      }
+    },
+    {
+      "sentence": "We are very pleased to have the opportunity to...",
+      "translation": "我们非常高兴能有机会……",
+      "chunks": [
+        "We are very pleased",
+        "to have the opportunity",
+        "to..."
+      ],
+      "hints": [
+        "我们非常高兴",
+        "能有机会",
+        "……"
+      ],
+      "cid": "6f038625",
+      "sentenceAudio": {
+        "text": "We are very pleased to have the opportunity to...",
+        "audio": {
+          "url": "assets/oral-6f038625-fd1f1c100803e2db21b5.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "82268be7c4432597baa6a5ca946d259e5b81846598528243ab8de7ee77eedc58",
+          "bytes": 8753
+        }
+      }
+    },
+    {
+      "sentence": "We will be delighted to...",
+      "translation": "我们非常高兴地……",
+      "chunks": [
+        "We will be delighted",
+        "to..."
+      ],
+      "hints": [
+        "我们非常高兴地",
+        "……"
+      ],
+      "cid": "23ee5291",
+      "sentenceAudio": {
+        "text": "We will be delighted to...",
+        "audio": {
+          "url": "assets/oral-23ee5291-7b9e8e06bf9650aa2916.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "cadb657ed4fde84bd3747f918e7b5ae8c8ddf1560003b6962a756d059d9fe48d",
+          "bytes": 5163
+        }
+      }
+    },
+    {
+      "sentence": "We think that...",
+      "translation": "我们认为……",
+      "chunks": [
+        "We think",
+        "that..."
+      ],
+      "hints": [
+        "我们认为",
+        "……"
+      ],
+      "cid": "c9feefc4",
+      "sentenceAudio": {
+        "text": "We think that...",
+        "audio": {
+          "url": "assets/oral-c9feefc4-1b0e37a534c146c6c7d2.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "68acf24624dbdcc19753924112a95c52ed06bc7ebe08a3b331ea6ed69a29f805",
+          "bytes": 3902
+        }
+      }
+    },
+    {
+      "sentence": "We feel strongly that...",
+      "translation": "我们强烈地感到……",
+      "chunks": [
+        "We feel strongly",
+        "that..."
+      ],
+      "hints": [
+        "我们强烈地感到",
+        "……"
+      ],
+      "cid": "37e41078",
+      "sentenceAudio": {
+        "text": "We feel strongly that...",
+        "audio": {
+          "url": "assets/oral-37e41078-2ad2f2d52e17e0178524.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d2c5d402b50de1bc4eb7011c215e90185f53fae27bc7827965946de82ca4cfcd",
+          "bytes": 5058
+        }
+      }
+    },
+    {
+      "sentence": "It is our understanding that...",
+      "translation": "我们所理解的是……",
+      "chunks": [
+        "It is our understanding",
+        "that..."
+      ],
+      "hints": [
+        "我们所理解的是",
+        "……"
+      ],
+      "cid": "52fe6769",
+      "sentenceAudio": {
+        "text": "It is our understanding that...",
+        "audio": {
+          "url": "assets/oral-52fe6769-7d9bb0787001f3d5e73f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "fe0ed87b201ecb7d88da4cdb8898347d16ffdc6369923d041088f1b3d738d039",
+          "bytes": 5844
+        }
+      }
+    },
+    {
+      "sentence": "We do not anticipate any objections to...",
+      "translation": "我们预计不会有人反对……。",
+      "chunks": [
+        "We do not anticipate",
+        "any objections to..."
+      ],
+      "hints": [
+        "我们预计不会",
+        "有人反对……"
+      ],
+      "cid": "39631fc4",
+      "sentenceAudio": {
+        "text": "We do not anticipate any objections to...",
+        "audio": {
+          "url": "assets/oral-39631fc4-1f73c321f3dfa56b4f06.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a8c5bd61e070565b297377edd966741ea164744d4fcd8db2d1fc4fce8ac2b25d",
+          "bytes": 8526
+        }
+      }
+    },
+    {
+      "sentence": "We can see no reason why...",
+      "translation": "我们找不到任何理由……",
+      "chunks": [
+        "We can see no reason",
+        "why..."
+      ],
+      "hints": [
+        "我们找不到任何理由",
+        "……"
+      ],
+      "cid": "3e9e6ed3",
+      "sentenceAudio": {
+        "text": "We can see no reason why...",
+        "audio": {
+          "url": "assets/oral-3e9e6ed3-f5b3613632567815ed28.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e8a881452d5f8f64877a83c2151920b1049154dcbba596f0fe0ab662e7f1202d",
+          "bytes": 5903
+        }
+      }
+    },
+    {
+      "sentence": "It is not quite clear to us what you had in mind.",
+      "translation": "我们不清楚您到底是怎么想的。",
+      "chunks": [
+        "It is not quite clear to us",
+        "what you had in mind."
+      ],
+      "hints": [
+        "我们不清楚",
+        "您到底是怎么想的"
+      ],
+      "cid": "6ae64100",
+      "sentenceAudio": {
+        "text": "It is not quite clear to us what you had in mind.",
+        "audio": {
+          "url": "assets/oral-6ae64100-e23d087507dee1cf3b56.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ddb7e057e134522a494854a1bcedf393be894b65e04043deef8d0348253072a3",
+          "bytes": 8769
+        }
+      }
+    },
+    {
+      "sentence": "The one point that concerned us a little was...",
+      "translation": "使我们担心的一点是……",
+      "chunks": [
+        "The one point",
+        "that concerned us a little",
+        "was..."
+      ],
+      "hints": [
+        "唯一的一点",
+        "让我们有些担心的",
+        "是……"
+      ],
+      "cid": "c8b599c4",
+      "sentenceAudio": {
+        "text": "The one point that concerned us a little was...",
+        "audio": {
+          "url": "assets/oral-c8b599c4-b70bc4f71e2aafef9fb6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "50b411b70422efd4dd5990a7233ca7991a3b59715a701e3202127a75d40578f8",
+          "bytes": 8023
+        }
+      }
+    },
+    {
+      "sentence": "We have become concerned with regards to...",
+      "translation": "我们对……感到担心和挂念。",
+      "chunks": [
+        "We have become concerned",
+        "with regards to..."
+      ],
+      "hints": [
+        "我们感到担心和挂念",
+        "关于……"
+      ],
+      "cid": "f5d28c58",
+      "sentenceAudio": {
+        "text": "We have become concerned with regards to...",
+        "audio": {
+          "url": "assets/oral-f5d28c58-e35e9945a90f1575077b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2d4da468dd1016410b68b5b9f84975c5b7480c0b7eda2ff4ac60ede83078ada0",
+          "bytes": 7837
+        }
+      }
+    },
+    {
+      "sentence": "We are now in the process of...",
+      "translation": "我们正在……过程中。",
+      "chunks": [
+        "We are now",
+        "in the process of..."
+      ],
+      "hints": [
+        "我们正在",
+        "……过程中"
+      ],
+      "cid": "9620f031",
+      "sentenceAudio": {
+        "text": "We are now in the process of...",
+        "audio": {
+          "url": "assets/oral-9620f031-79530ae30ad640bb1122.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c9e5e28f79445fe3012618a11de522ae22bb1b04db4d991a30d6d616c6e16a60",
+          "bytes": 6101
+        }
+      }
+    },
+    {
+      "sentence": "We value ... highly.",
+      "translation": "我们非常重视……",
+      "chunks": [
+        "We",
+        "value ... highly."
+      ],
+      "hints": [
+        "我们",
+        "非常重视……"
+      ],
+      "cid": "9d12ea25",
+      "sentenceAudio": {
+        "text": "We value ... highly.",
+        "audio": {
+          "url": "assets/oral-9d12ea25-ee3c1e531137290ab374.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb46cb161a4fa31bae71851d1394a656c4cd48cde9e1e1febbd40cde707293c3",
+          "bytes": 4912
+        }
+      }
+    },
+    {
+      "sentence": "We thank you for raising the issue.",
+      "translation": "我们非常感谢您提出的这件事。",
+      "chunks": [
+        "We thank you",
+        "for raising the issue."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "您提出的这件事"
+      ],
+      "cid": "6fe9eefc",
+      "sentenceAudio": {
+        "text": "We thank you for raising the issue.",
+        "audio": {
+          "url": "assets/oral-6fe9eefc-1d32ffaeea0874dff945.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ea04d9cd33b193d2d64869c54318019c750d45d4c4d29900671f482ac0d0cbd8",
+          "bytes": 6642
+        }
+      }
+    },
+    {
+      "sentence": "Your suggestions are being followed up by...",
+      "translation": "您的建议将由……继续跟进。",
+      "chunks": [
+        "Your suggestions",
+        "are being followed up",
+        "by..."
+      ],
+      "hints": [
+        "您的建议",
+        "正在跟进",
+        "由……负责"
+      ],
+      "cid": "1e38c6e2",
+      "sentenceAudio": {
+        "text": "Your suggestions are being followed up by...",
+        "audio": {
+          "url": "assets/oral-1e38c6e2-484a325506a109f9b035.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "24cb07074937ac1b17901e8e6591984bbd950031d3f9e38364bdd697f86ed097",
+          "bytes": 8313
+        }
+      }
+    },
+    {
+      "sentence": "We hope you will understand our reason for this action.",
+      "translation": "我们希望您能理解我们这次行动的理由。",
+      "chunks": [
+        "We hope you will understand",
+        "our reason for this action."
+      ],
+      "hints": [
+        "我们希望您能理解",
+        "我们这次行动的理由"
+      ],
+      "cid": "db753313",
+      "sentenceAudio": {
+        "text": "We hope you will understand our reason for this action.",
+        "audio": {
+          "url": "assets/oral-db753313-0ff3bbb38322985fe7e6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "237f4138eaa01efdb3773f748f3a46ced467127573486c8dbe39a65e834421b8",
+          "bytes": 9372
+        }
+      }
+    },
+    {
+      "sentence": "It would be difficult for us to accept...",
+      "translation": "我们很难接受……",
+      "chunks": [
+        "It would be difficult",
+        "for us to accept..."
+      ],
+      "hints": [
+        "会很困难",
+        "让我们接受……"
+      ],
+      "cid": "8f2ffa20",
+      "sentenceAudio": {
+        "text": "It would be difficult for us to accept...",
+        "audio": {
+          "url": "assets/oral-8f2ffa20-6359b6e73c9d4a89bf0f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "14bc72ddb2e8dfb5da26d6603f188b5dba64e33a9c924c3ecf068dfe22f093c2",
+          "bytes": 6831
+        }
+      }
+    },
+    {
+      "sentence": "We regret that we are unable to...",
+      "translation": "非常遗憾，我们不能……",
+      "chunks": [
+        "We regret",
+        "that we are unable to..."
+      ],
+      "hints": [
+        "非常遗憾",
+        "我们不能……"
+      ],
+      "cid": "1e31d483",
+      "sentenceAudio": {
+        "text": "We regret that we are unable to...",
+        "audio": {
+          "url": "assets/oral-1e31d483-fb6429240a028f45f154.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eba5226e4a60f37c1fb6aefe41b8bf9512cb8ded1cee1cfd3bcbad389c74aa74",
+          "bytes": 6980
+        }
+      }
+    },
+    {
+      "sentence": "We have no alternative but to...",
+      "translation": "我们别无选择，只能……",
+      "chunks": [
+        "We have no alternative",
+        "but to..."
+      ],
+      "hints": [
+        "我们别无选择",
+        "只能……"
+      ],
+      "cid": "ba22ba61",
+      "sentenceAudio": {
+        "text": "We have no alternative but to...",
+        "audio": {
+          "url": "assets/oral-ba22ba61-09e4ac8b4079f0434ffa.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a5feb89698741a2673ed9c47d7e81ef54eb94762fab297621403f728a9ad7d9a",
+          "bytes": 6400
+        }
+      }
+    },
+    {
+      "sentence": "Consequently we are in the position to...",
+      "translation": "因此，我们可以……",
+      "chunks": [
+        "Consequently we are",
+        "in the position to..."
+      ],
+      "hints": [
+        "因此，我们",
+        "可以……"
+      ],
+      "cid": "c1abbd9b",
+      "sentenceAudio": {
+        "text": "Consequently we are in the position to...",
+        "audio": {
+          "url": "assets/oral-c1abbd9b-2d9dd613963fdf7f877c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0d35abbe0b747fb34809f020a50149acb4f7333cd3720dc4e27dad84d01dd1b9",
+          "bytes": 8110
+        }
+      }
+    },
+    {
+      "sentence": "We are pleased to recommend...to you.",
+      "translation": "我们很高兴向您推荐……",
+      "chunks": [
+        "We are pleased",
+        "to recommend...to you."
+      ],
+      "hints": [
+        "我们很高兴",
+        "向您推荐……"
+      ],
+      "cid": "b85b105a",
+      "sentenceAudio": {
+        "text": "We are pleased to recommend...to you.",
+        "audio": {
+          "url": "assets/oral-b85b105a-f2a7625aac6ca2bbd565.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ac0ac67229fcb39d2f9e56eda317a89aebccb1b98e34eb8341471a0e68487990",
+          "bytes": 7156
+        }
+      }
+    },
+    {
+      "sentence": "We work closely together with...",
+      "translation": "我们与……密切合作。",
+      "chunks": [
+        "We work closely",
+        "together with..."
+      ],
+      "hints": [
+        "我们密切合作",
+        "与……"
+      ],
+      "cid": "d97c8543",
+      "sentenceAudio": {
+        "text": "We work closely together with...",
+        "audio": {
+          "url": "assets/oral-d97c8543-6c87ee9cbf21f5cd13fb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d9d599bf88e5eea72717d15e534ee9a1a9d4e1522d46b8c96c4b333155c14662",
+          "bytes": 5998
+        }
+      }
+    },
+    {
+      "sentence": "We are also told that...",
+      "translation": "我们已经得知……",
+      "chunks": [
+        "We are also told",
+        "that..."
+      ],
+      "hints": [
+        "我们已经得知",
+        "……"
+      ],
+      "cid": "915ef7fa",
+      "sentenceAudio": {
+        "text": "We are also told that...",
+        "audio": {
+          "url": "assets/oral-915ef7fa-3febfb6b647f7bbc3cd1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "21b0e7544ce13a04f2a8c4be5b231dbf5c29939a9b409076ae1251eb744c3e6d",
+          "bytes": 5152
+        }
+      }
+    },
+    {
+      "sentence": "The amendment provides that...",
+      "translation": "修改后规定……",
+      "chunks": [
+        "The amendment provides",
+        "that..."
+      ],
+      "hints": [
+        "修改后规定",
+        "……"
+      ],
+      "cid": "4460fb0a",
+      "sentenceAudio": {
+        "text": "The amendment provides that...",
+        "audio": {
+          "url": "assets/oral-4460fb0a-561134dbffe18dc3554a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ea0f6ad5586c11a25d3647b2a65a3ea2114f7f03bd4bc719f607c25a7ffd545c",
+          "bytes": 5903
+        }
+      }
+    },
+    {
+      "sentence": "The following conditions show that...",
+      "translation": "以下的条件表明……",
+      "chunks": [
+        "The following conditions",
+        "show that..."
+      ],
+      "hints": [
+        "以下的条件",
+        "表明……"
+      ],
+      "cid": "83692e09",
+      "sentenceAudio": {
+        "text": "The following conditions show that...",
+        "audio": {
+          "url": "assets/oral-83692e09-11962af97604f29b760f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ea9b0d167dcc1166d5a8812961e895f4e744a5d41640fd66d6d2207a4d1bde3f",
+          "bytes": 6706
+        }
+      }
+    },
+    {
+      "sentence": "The effect of this change will be to delay...",
+      "translation": "这种变更意味着将会推迟……",
+      "chunks": [
+        "The effect of this change",
+        "will be to delay..."
+      ],
+      "hints": [
+        "这种变更意味着",
+        "将会推迟……"
+      ],
+      "cid": "81f9707b",
+      "sentenceAudio": {
+        "text": "The effect of this change will be to delay...",
+        "audio": {
+          "url": "assets/oral-81f9707b-298f025f1c17e879a8b6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "934058a34e1ece8224c9d77194cf9cd9fe32e85d262dbc17dccaba0a34ab35ff",
+          "bytes": 7719
+        }
+      }
+    },
+    {
+      "sentence": "We appreciate your business and...",
+      "translation": "感谢您的惠顾，并且……",
+      "chunks": [
+        "We appreciate",
+        "your business",
+        "and..."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "您的惠顾",
+        "并且……"
+      ],
+      "cid": "f39f8733",
+      "sentenceAudio": {
+        "text": "We appreciate your business and...",
+        "audio": {
+          "url": "assets/oral-f39f8733-0f3aae65f75c5a054d27.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6a5812785b5424d9a6aecf4047236a825a22ec6333c9f2573d3f1f454c17cc28",
+          "bytes": 6345
+        }
+      }
+    },
+    {
+      "sentence": "We would appreciate receiving your comments.",
+      "translation": "如能收到您的意见，我们将不胜感激。",
+      "chunks": [
+        "We would appreciate",
+        "receiving your comments."
+      ],
+      "hints": [
+        "我们非常感谢",
+        "收到您的意见"
+      ],
+      "cid": "9fc1fe7f",
+      "sentenceAudio": {
+        "text": "We would appreciate receiving your comments.",
+        "audio": {
+          "url": "assets/oral-9fc1fe7f-6062b6259ea90b397529.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b31895bac940c63afcfc6a5173bc8d3339568ce190148639c61529b614d01576",
+          "bytes": 7553
+        }
+      }
+    },
+    {
+      "sentence": "We shall be interested in receiving your comments.",
+      "translation": "我们期待收到您的意见。",
+      "chunks": [
+        "We shall be interested",
+        "in receiving your comments."
+      ],
+      "hints": [
+        "我们期待",
+        "收到您的意见"
+      ],
+      "cid": "1cc133ef",
+      "sentenceAudio": {
+        "text": "We shall be interested in receiving your comments.",
+        "audio": {
+          "url": "assets/oral-1cc133ef-f3ad75670e39bd76e2c0.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ee7cc8ac38e5bef7fd269872adf69b0c6832410009bbc4b25d03bae2ddccce64",
+          "bytes": 8881
+        }
+      }
+    },
+    {
+      "sentence": "We are confident that...",
+      "translation": "我们确信……",
+      "chunks": [
+        "We are confident",
+        "that..."
+      ],
+      "hints": [
+        "我们确信",
+        "……"
+      ],
+      "cid": "3159bc8e",
+      "sentenceAudio": {
+        "text": "We are confident that...",
+        "audio": {
+          "url": "assets/oral-3159bc8e-65a025de9bc506f1dabe.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b2b0a5352e70957150e23f60f0954cd2ca12c939377ab56747b7027811863cb3",
+          "bytes": 4900
+        }
+      }
+    },
+    {
+      "sentence": "We are enthusiastic over the possibilities of...",
+      "translation": "我们就……的可能性表示极大的热忱。",
+      "chunks": [
+        "We are enthusiastic",
+        "over the possibilities of..."
+      ],
+      "hints": [
+        "我们充满热忱",
+        "对……的可能性"
+      ],
+      "cid": "dcbedf46",
+      "sentenceAudio": {
+        "text": "We are enthusiastic over the possibilities of...",
+        "audio": {
+          "url": "assets/oral-dcbedf46-86a8d18c10ad9f427fb4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4ac9f8045087dd0e671fb702657003ac91da47ac4d766f7f9e237e6762d6c7b7",
+          "bytes": 9574
+        }
+      }
+    },
+    {
+      "sentence": "We welcome this development very much.",
+      "translation": "我们非常欢迎这一进展。",
+      "chunks": [
+        "We welcome this development very much."
+      ],
+      "hints": [
+        "我们非常欢迎这一进展。"
+      ],
+      "cid": "4f3d0a4f",
+      "sentenceAudio": {
+        "text": "We welcome this development very much.",
+        "audio": {
+          "url": "assets/oral-4f3d0a4f-55060d3365468ece893f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "81ab031261927aa0ee8f60e42b76bb5b114f27a831f376969f64eed3334a5503",
+          "bytes": 7782
+        }
+      }
+    },
+    {
+      "sentence": "We will continue to do all we can to...",
+      "translation": "我们将继续尽一切努力去……",
+      "chunks": [
+        "We will continue",
+        "to do all we can",
+        "to..."
+      ],
+      "hints": [
+        "我们将继续",
+        "尽一切努力",
+        "去……"
+      ],
+      "cid": "81609150",
+      "sentenceAudio": {
+        "text": "We will continue to do all we can to...",
+        "audio": {
+          "url": "assets/oral-81609150-384c26831260f7938739.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2914ba5dfcecca62c5e2d212b7a15ec9b4ef512a0dd6bcdbbdbaf484ad5e9c70",
+          "bytes": 7158
+        }
+      }
+    },
+    {
+      "sentence": "We will do our utmost to...",
+      "translation": "我们将竭尽全力地……",
+      "chunks": [
+        "We will do our utmost",
+        "to..."
+      ],
+      "hints": [
+        "我们将竭尽全力地",
+        "……"
+      ],
+      "cid": "15986251",
+      "sentenceAudio": {
+        "text": "We will do our utmost to...",
+        "audio": {
+          "url": "assets/oral-15986251-c3854aa75e0fee4af581.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3f2e2cca1c8ecbde812ce4d49f57c6c7d512e020f0b387d770a921fe5539af49",
+          "bytes": 5424
+        }
+      }
+    },
+    {
+      "sentence": "We shall do whatever we can to extend...",
+      "translation": "为了扩大……，我们将付出最大的努力。",
+      "chunks": [
+        "We shall do",
+        "whatever we can",
+        "to extend..."
+      ],
+      "hints": [
+        "我们将",
+        "尽我们所能",
+        "去扩大……"
+      ],
+      "cid": "26e7a7cb",
+      "sentenceAudio": {
+        "text": "We shall do whatever we can to extend...",
+        "audio": {
+          "url": "assets/oral-26e7a7cb-afe611532dbc943047a3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c68f0ccc95113fae1d6df0d97937c14bd63b7f283a4f9c24ef5f7751edf8af9d",
+          "bytes": 7773
+        }
+      }
+    },
+    {
+      "sentence": "We will always endeavor to offer you our most favorable rates.",
+      "translation": "我们将尽力为您提供最优惠的价格。",
+      "chunks": [
+        "We will always endeavor",
+        "to offer you",
+        "our most favorable rates."
+      ],
+      "hints": [
+        "我们将尽力",
+        "提供给您",
+        "最优惠的价格"
+      ],
+      "cid": "cc47a762",
+      "sentenceAudio": {
+        "text": "We will always endeavor to offer you our most favorable rates.",
+        "audio": {
+          "url": "assets/oral-cc47a762-3936dc5003f0b9e0f19b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4deab0c52cf4e9e208b5c52bf600d34004cce5c1b634e3afd0082ff109297c84",
+          "bytes": 11132
+        }
+      }
+    },
+    {
+      "sentence": "You may rest assured that...",
+      "translation": "就……一事，请您尽管放心。",
+      "chunks": [
+        "You may rest assured",
+        "that..."
+      ],
+      "hints": [
+        "请您尽管放心",
+        "就……一事"
+      ],
+      "cid": "0d401eab",
+      "sentenceAudio": {
+        "text": "You may rest assured that...",
+        "audio": {
+          "url": "assets/oral-0d401eab-94a6d1610ccd51661438.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f7f8723ae9801adec0b2fb2fd5452e3d701104e266fbfa8860f165ac2e4fb533",
+          "bytes": 5131
+        }
+      }
+    },
+    {
+      "sentence": "We wish to keep you fully informed on this matter.",
+      "translation": "我们希望随时向您通报此事的进展。",
+      "chunks": [
+        "We wish",
+        "to keep you fully informed",
+        "on this matter."
+      ],
+      "hints": [
+        "我们希望",
+        "让您随时了解",
+        "此事的进展。"
+      ],
+      "cid": "d978d82d",
+      "sentenceAudio": {
+        "text": "We wish to keep you fully informed on this matter.",
+        "audio": {
+          "url": "assets/oral-d978d82d-389237e5a741eb2bb6f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c9d2f99e61f83ca0566ba97a17fc87b7847909757425b3ce19bc194ff1a8d07b",
+          "bytes": 8671
+        }
+      }
+    },
+    {
+      "sentence": "Kindly inform us when this is put into effect.",
+      "translation": "这项措施生效时，烦请通知我们。",
+      "chunks": [
+        "Kindly inform us",
+        "when this is put into effect."
+      ],
+      "hints": [
+        "烦请通知我们一声",
+        "在这项措施生效时"
+      ],
+      "cid": "ac7b81bb",
+      "sentenceAudio": {
+        "text": "Kindly inform us when this is put into effect.",
+        "audio": {
+          "url": "assets/oral-ac7b81bb-a2621eead61123e64e6a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4e933c696ae0449cada152bec29b9d135ec4a0537e74094440eea6cfd8eb6e45",
+          "bytes": 9416
+        }
+      }
+    },
+    {
+      "sentence": "We feel certain you will understand our position in this matter.",
+      "translation": "我们相信您能够理解我们的立场。",
+      "chunks": [
+        "We feel certain",
+        "you will understand",
+        "our position in this matter."
+      ],
+      "hints": [
+        "我们相信",
+        "您能够理解",
+        "我们的立场"
+      ],
+      "cid": "e7d2ac25",
+      "sentenceAudio": {
+        "text": "We feel certain you will understand our position in this matter.",
+        "audio": {
+          "url": "assets/oral-e7d2ac25-48bab3bd750220fcabaf.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e4b0a931b952ece6aba0e75cfae987bad65f356655525fff29c269975a607fa0",
+          "bytes": 10652
+        }
+      }
+    },
+    {
+      "sentence": "Nevertheless, we will do everything we can to...",
+      "translation": "尽管如此，我们将做我们所能做的一切……",
+      "chunks": [
+        "Nevertheless,",
+        "we will do everything we can",
+        "to..."
+      ],
+      "hints": [
+        "尽管如此",
+        "我们将做我们所能做的一切",
+        "……"
+      ],
+      "cid": "4675c200",
+      "sentenceAudio": {
+        "text": "Nevertheless, we will do everything we can to...",
+        "audio": {
+          "url": "assets/oral-4675c200-dd2b8a196259dc99c30a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d402888c06a697b99a6b1ccc6ce289c60f100250c258b921cff442669fe75188",
+          "bytes": 8852
+        }
+      }
+    },
+    {
+      "sentence": "There is no objection, as far as we are concerned, in...",
+      "translation": "对于……，就我们来说，没有异议。",
+      "chunks": [
+        "There is no objection,",
+        "as far as we are concerned,",
+        "in..."
+      ],
+      "hints": [
+        "没有异议",
+        "就我们来说",
+        "对于……"
+      ],
+      "cid": "f2f1a97e",
+      "sentenceAudio": {
+        "text": "There is no objection, as far as we are concerned, in...",
+        "audio": {
+          "url": "assets/oral-f2f1a97e-c00b455345e2add800f8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "68b50d3097543d4f44881aefd581b9aedf93c4522c26269d1138ce462e4d4d95",
+          "bytes": 10580
+        }
+      }
+    },
+    {
+      "sentence": "These have been placed into our files for future reference.",
+      "translation": "我们已将这些资料存档，以备将来查阅。",
+      "chunks": [
+        "These have been placed",
+        "into our files",
+        "for future reference."
+      ],
+      "hints": [
+        "这些已被存入",
+        "我们的文档",
+        "为今后的参考"
+      ],
+      "cid": "56d6cc23",
+      "sentenceAudio": {
+        "text": "These have been placed into our files for future reference.",
+        "audio": {
+          "url": "assets/oral-56d6cc23-f1051b24a4fc71cee308.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a059497f3fbf9ea462791abc042dba3eb264baa6293582cbe1b48224c8fd8ce6",
+          "bytes": 10139
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2355 @@
+{
+  "schemaVersion": 1,
+  "profile": "sentence-deck/1",
+  "course": {
+    "id": "oral-2-11-1",
+    "name": "口语3000句 · 内心表白 · 道谢～关心对方",
+    "short": "道谢～关心对方",
+    "desc": "道谢～关心对方",
+    "chapter": 2,
+    "section": "2.11",
+    "sectionTitle": "内心表白",
+    "topic": "道谢～关心对方",
+    "baseCount": 0,
+    "totalCount": 71,
+    "items": [
+      {
+        "sentence": "Thank you.",
+        "translation": "谢谢!",
+        "chunks": [
+          "Thank you."
+        ],
+        "hints": [
+          "谢谢！"
+        ],
+        "cid": "fa18b162",
+        "sentenceAudio": {
+          "text": "Thank you.",
+          "audio": {
+            "url": "assets/oral-fa18b162-9195f74e1ebf7c37a8ab.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bd188efe3af7f083530377680e98ae31026c956fb8df2167f0ca73a03938971b",
+            "bytes": 3443
+          }
+        }
+      },
+      {
+        "sentence": "Thanks.",
+        "translation": "多谢!",
+        "chunks": [
+          "Thanks."
+        ],
+        "hints": [
+          "多谢！"
+        ],
+        "cid": "e0a259da",
+        "sentenceAudio": {
+          "text": "Thanks.",
+          "audio": {
+            "url": "assets/oral-e0a259da-abb21f73c972e5e29bd8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "2f015d7b79149160f8679cf752d8e1f224028d09363027db678329b42080ea1c",
+            "bytes": 3057
+          }
+        }
+      },
+      {
+        "sentence": "Thank you very much.",
+        "translation": "非常感谢!",
+        "chunks": [
+          "Thank you very much."
+        ],
+        "hints": [
+          "非常感谢！"
+        ],
+        "cid": "b882bf75",
+        "sentenceAudio": {
+          "text": "Thank you very much.",
+          "audio": {
+            "url": "assets/oral-b882bf75-0f9987fc4e55f0dbf89a.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f04bf2bbfa217880946490d489d8609f4532c411168a2d8a48c468a99ad60c7c",
+            "bytes": 4701
+          }
+        }
+      },
+      {
+        "sentence": "Much appreciated. Thank you.",
+        "translation": "非常感谢，谢谢你。",
+        "chunks": [
+          "Much appreciated.",
+          "Thank you."
+        ],
+        "hints": [
+          "非常感谢。",
+          "谢谢你。"
+        ],
+        "cid": "5d0f4f0f",
+        "sentenceAudio": {
+          "text": "Much appreciated. Thank you.",
+          "audio": {
+            "url": "assets/oral-5d0f4f0f-3f53c8dabbbce86182f6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4cc35a731981ffb67fda3d4fc2c85afef809fbfcb22c80435db37a751cbf124c",
+            "bytes": 6701
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for your kindness.",
+        "translation": "谢谢您的好意。",
+        "chunks": [
+          "Thanks for",
+          "your kindness."
+        ],
+        "hints": [
+          "谢谢您的",
+          "好意。"
+        ],
+        "cid": "93fd93f7",
+        "sentenceAudio": {
+          "text": "Thanks for your kindness.",
+          "audio": {
+            "url": "assets/oral-93fd93f7-fc21c7ad45f771000ee1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "37255ec1f0ec30e8bb310737b10278859a47ab8345fc3862ccf1ade8c6d4e38e",
+            "bytes": 4927
+          }
+        }
+      },
+      {
+        "sentence": "I appreciate your kindness.",
+        "translation": "非常感谢你的关怀。",
+        "chunks": [
+          "I appreciate",
+          "your kindness."
+        ],
+        "hints": [
+          "非常感谢",
+          "你的关怀。"
+        ],
+        "cid": "f447ecb4",
+        "sentenceAudio": {
+          "text": "I appreciate your kindness.",
+          "audio": {
+            "url": "assets/oral-f447ecb4-17122286a9e014bd8286.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d8176efb010780bf8fbe8484394c506ee06cbea3311cf09ce712a72d72a3bebd",
+            "bytes": 5899
+          }
+        }
+      },
+      {
+        "sentence": "I can't thank you enough.",
+        "translation": "我无法表达对您的感谢。",
+        "chunks": [
+          "I can't thank you enough."
+        ],
+        "hints": [
+          "真不知该怎么感谢您。"
+        ],
+        "cid": "4157dce8",
+        "sentenceAudio": {
+          "text": "I can't thank you enough.",
+          "audio": {
+            "url": "assets/oral-4157dce8-7a02cb8c6e4f97370c6c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5cbc21ef5c6cb84eb9422a6b91322c358da71ca1860002376c74728c9dadb70e",
+            "bytes": 4750
+          }
+        }
+      },
+      {
+        "sentence": "I can hardly thank you enough for your kindness.",
+        "translation": "真不知如何感谢你的关心。",
+        "chunks": [
+          "I can hardly thank you enough",
+          "for your kindness."
+        ],
+        "hints": [
+          "真不知如何感谢",
+          "你的关心。"
+        ],
+        "cid": "da0d7bcc",
+        "sentenceAudio": {
+          "text": "I can hardly thank you enough for your kindness.",
+          "audio": {
+            "url": "assets/oral-da0d7bcc-9a46c014590b6e54ba6f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f04d899476b5fe159809ddb712f36ab7869a7a3b49402518b7ef3fb6a6c1e642",
+            "bytes": 7719
+          }
+        }
+      },
+      {
+        "sentence": "You've been very helpful.",
+        "translation": "你帮我大忙了。",
+        "chunks": [
+          "You've been very helpful."
+        ],
+        "hints": [
+          "你帮了我大忙。"
+        ],
+        "cid": "f3a2b67a",
+        "sentenceAudio": {
+          "text": "You've been very helpful.",
+          "audio": {
+            "url": "assets/oral-f3a2b67a-2bfedacfff1b864e6b53.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b659a2a3c6544215d19d55c73bfc21b1ce82ff4d28bc247a634e53d6749f8056",
+            "bytes": 4894
+          }
+        }
+      },
+      {
+        "sentence": "Thank you for the help.",
+        "translation": "谢谢你的帮助。",
+        "chunks": [
+          "Thank you",
+          "for the help."
+        ],
+        "hints": [
+          "谢谢你的",
+          "帮助。"
+        ],
+        "cid": "cdf5bdab",
+        "sentenceAudio": {
+          "text": "Thank you for the help.",
+          "audio": {
+            "url": "assets/oral-cdf5bdab-1ff35fb665ddc095ec03.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c673e2b0e6c56be72c20c6dddcef0476eee034b4f0822224aa868ec88c1ed76f",
+            "bytes": 4635
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for your time.",
+        "translation": "谢谢您抽出时间。",
+        "chunks": [
+          "Thanks for your time."
+        ],
+        "hints": [
+          "感谢您抽出时间。"
+        ],
+        "cid": "8c80cbf3",
+        "sentenceAudio": {
+          "text": "Thanks for your time.",
+          "audio": {
+            "url": "assets/oral-8c80cbf3-53be900cd715147d18f7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "691475e6e2735008d75794aaa2a137f4f0e295844e79bde1ac561e17a3a3a755",
+            "bytes": 4469
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for everything.",
+        "translation": "感谢您为我做的一切。",
+        "chunks": [
+          "Thanks for everything."
+        ],
+        "hints": [
+          "感谢您为我做的一切。"
+        ],
+        "cid": "249b19b2",
+        "sentenceAudio": {
+          "text": "Thanks for everything.",
+          "audio": {
+            "url": "assets/oral-249b19b2-2a96eee4c3c19ee409b3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "df6d206e072307110c90fd720aec794d31be1e4eddbc1e3c8a5a53d14abaf42a",
+            "bytes": 4949
+          }
+        }
+      },
+      {
+        "sentence": "Thank you anyway.",
+        "translation": "不管怎么都要谢谢您。",
+        "chunks": [
+          "Thank you anyway."
+        ],
+        "hints": [
+          "不管怎样，还是谢谢您。"
+        ],
+        "cid": "2ac75d95",
+        "sentenceAudio": {
+          "text": "Thank you anyway.",
+          "audio": {
+            "url": "assets/oral-2ac75d95-be19a259452111c7da34.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0a844efaf338c607e42fccb7358bfb7ad2cdaea2c14380d7d85fecbc5b37d937",
+            "bytes": 4343
+          }
+        }
+      },
+      {
+        "sentence": "How nice!",
+        "translation": "哦!那太好了。",
+        "chunks": [
+          "How nice!"
+        ],
+        "hints": [
+          "哦！那太好了。"
+        ],
+        "cid": "f02b812d",
+        "sentenceAudio": {
+          "text": "How nice!",
+          "audio": {
+            "url": "assets/oral-f02b812d-332e726ea4c544f61700.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "45359deb9a345652b184097a7566d06a35237f386d2ed3a018947d75156a502c",
+            "bytes": 3766
+          }
+        }
+      },
+      {
+        "sentence": "I owe you one.",
+        "translation": "我欠你的情。",
+        "chunks": [
+          "I owe",
+          "you one."
+        ],
+        "hints": [
+          "我欠",
+          "你的情。"
+        ],
+        "cid": "e40fa374",
+        "sentenceAudio": {
+          "text": "I owe you one.",
+          "audio": {
+            "url": "assets/oral-e40fa374-93233ce277240422fddb.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "63b0ebadc1d0bae06c5e870bb83800a788b49d8341ef261d5d29fe65fcb97bcf",
+            "bytes": 4289
+          }
+        }
+      },
+      {
+        "sentence": "Thanks a lot for your present.",
+        "translation": "谢谢你送给我的礼物。",
+        "chunks": [
+          "Thanks a lot",
+          "for your present."
+        ],
+        "hints": [
+          "非常感谢",
+          "你的礼物。"
+        ],
+        "cid": "f3978b69",
+        "sentenceAudio": {
+          "text": "Thanks a lot for your present.",
+          "audio": {
+            "url": "assets/oral-f3978b69-150114b71586346350ca.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5d5720b80fdc3461593a901c571c5b849b83fc58dcc89d9b4d61309302dee155",
+            "bytes": 5727
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for saying so.",
+        "translation": "谢谢您这么说。",
+        "chunks": [
+          "Thanks",
+          "for saying so."
+        ],
+        "hints": [
+          "谢谢",
+          "您这么说"
+        ],
+        "cid": "1f519414",
+        "sentenceAudio": {
+          "text": "Thanks for saying so.",
+          "audio": {
+            "url": "assets/oral-1f519414-54ca1e7b65c0f91df64d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9f61b1425da680a63f554afc28bde6c014ad980340cb16668cc4bab767a1d0d5",
+            "bytes": 4753
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for telling me.",
+        "translation": "谢谢你告诉我。",
+        "chunks": [
+          "Thanks for",
+          "telling me."
+        ],
+        "hints": [
+          "谢谢你",
+          "告诉我。"
+        ],
+        "cid": "bce51732",
+        "sentenceAudio": {
+          "text": "Thanks for telling me.",
+          "audio": {
+            "url": "assets/oral-bce51732-c8de53f97558644215a4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "06fecd6e67f2eb340b3c96038ad1f616fa97f4c29c3771d8b5030149123f650e",
+            "bytes": 4733
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for waiting for me.",
+        "translation": "非常感谢你等着我。",
+        "chunks": [
+          "Thanks for",
+          "waiting for me."
+        ],
+        "hints": [
+          "非常感谢你",
+          "等着我。"
+        ],
+        "cid": "5fd1b5c3",
+        "sentenceAudio": {
+          "text": "Thanks for waiting for me.",
+          "audio": {
+            "url": "assets/oral-5fd1b5c3-b113d59ed274b3d24c43.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7555fbe198845cb9aecaef5a0d009ba9ab02a4e3fe198e12d9857201fa47eed4",
+            "bytes": 5270
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for asking me out.",
+        "translation": "谢谢你约我出来。",
+        "chunks": [
+          "Thanks for",
+          "asking me out."
+        ],
+        "hints": [
+          "谢谢你",
+          "约我出来。"
+        ],
+        "cid": "1941d106",
+        "sentenceAudio": {
+          "text": "Thanks for asking me out.",
+          "audio": {
+            "url": "assets/oral-1941d106-01feca87a21f58856417.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "0bded11f4c51a32e2b851f21f619b7990f999431466e034908a46ec25a6bacc3",
+            "bytes": 5190
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for cheering me up.",
+        "translation": "谢谢你鼓励我。",
+        "chunks": [
+          "Thanks for",
+          "cheering me up."
+        ],
+        "hints": [
+          "谢谢你",
+          "鼓励我。"
+        ],
+        "cid": "e878d299",
+        "sentenceAudio": {
+          "text": "Thanks for cheering me up.",
+          "audio": {
+            "url": "assets/oral-e878d299-6cdbd3134b6c1b0b557f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "488eff23d889636ebc59a90a6b9b0a744731deeee501039fbfa4c221b057e8ff",
+            "bytes": 4996
+          }
+        }
+      },
+      {
+        "sentence": "You saved my life.",
+        "translation": "你救了我一命。",
+        "chunks": [
+          "You saved",
+          "my life."
+        ],
+        "hints": [
+          "你救了",
+          "我一命。"
+        ],
+        "cid": "c626e787",
+        "sentenceAudio": {
+          "text": "You saved my life.",
+          "audio": {
+            "url": "assets/oral-c626e787-3d6ee7a8785183a7d184.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "db74ad29802f06e000263e8ed08f1234dc262c66feadd1acd3d76dd95ee52230",
+            "bytes": 4891
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for warning me.",
+        "translation": "谢谢你提醒我。",
+        "chunks": [
+          "Thanks for",
+          "warning me."
+        ],
+        "hints": [
+          "谢谢你",
+          "提醒我。"
+        ],
+        "cid": "e33bb81b",
+        "sentenceAudio": {
+          "text": "Thanks for warning me.",
+          "audio": {
+            "url": "assets/oral-e33bb81b-344470e75f60fedbc95c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8409e08b70b218463b28293c16ec80ff4db4d346a067ddd94919c6c1d9a8e884",
+            "bytes": 4687
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for coming all the way over here.",
+        "translation": "谢谢你不远万里专程跑一趟。",
+        "chunks": [
+          "Thanks for coming",
+          "all the way over here."
+        ],
+        "hints": [
+          "谢谢你来",
+          "大老远专程跑一趟。"
+        ],
+        "cid": "a7a60cbd",
+        "sentenceAudio": {
+          "text": "Thanks for coming all the way over here.",
+          "audio": {
+            "url": "assets/oral-a7a60cbd-3057db478b43c51a82b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "b941b07edc652572c76f8f3735a11610b8e20b44038aa98c14c8dfb5b128f2e9",
+            "bytes": 7310
+          }
+        }
+      },
+      {
+        "sentence": "Thank you for your letter. It was very kind of you.",
+        "translation": "谢谢你的来信，你对我太好了。",
+        "chunks": [
+          "Thank you for your letter.",
+          "It was very kind of you."
+        ],
+        "hints": [
+          "谢谢你的来信。",
+          "你真是太好了！"
+        ],
+        "cid": "9816ee6e",
+        "sentenceAudio": {
+          "text": "Thank you for your letter. It was very kind of you.",
+          "audio": {
+            "url": "assets/oral-9816ee6e-52a50fcb578c41763672.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4d94cca219391d88e4141347c64611e4c37d580f75f57f32f23afa4de772b611",
+            "bytes": 8556
+          }
+        }
+      },
+      {
+        "sentence": "You're welcome.",
+        "cid": "11e9ed12",
+        "translation": "不客气。",
+        "chunks": [
+          "You're welcome."
+        ],
+        "hints": [
+          "不客气！"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jʊr ˈwelkəm/"
+            ],
+            "pos": "回应感谢的习语",
+            "meaning": "不客气"
+          }
+        ],
+        "explanations": [
+          "**You're welcome.** 回应 Thank you 的标准说法：比 No problem 正式一点，比 My pleasure 更日常。",
+          "常见错误：写成 **You're welcomed**（被动语态，此义不成立）→ 正确是形容词 welcome。单独说 Welcome! 则是「欢迎（到来）」。"
+        ],
+        "distractors": [
+          [
+            "Thank you.",
+            "My pleasure.",
+            "No problem."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You're welcome.",
+          "audio": {
+            "url": "assets/oral-11e9ed12-7feffbb1bceec863d120.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6faccce4a3de90082dc02cb76075dd08d76798f8680952b6f4a846f535342f24",
+            "bytes": 3950
+          }
+        }
+      },
+      {
+        "sentence": "Don't mention it.",
+        "translation": "不必客气。",
+        "chunks": [
+          "Don't mention it."
+        ],
+        "hints": [
+          "不必客气。"
+        ],
+        "cid": "81cd2ec2",
+        "sentenceAudio": {
+          "text": "Don't mention it.",
+          "audio": {
+            "url": "assets/oral-81cd2ec2-25108d345db887c34fa4.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "19d5d79ea2e05d1eca453ec02239bd2175e449aadeaa30b8071a41009963fe73",
+            "bytes": 4132
+          }
+        }
+      },
+      {
+        "sentence": "I'm glad I could help.",
+        "translation": "能帮助您，我非常高兴。",
+        "chunks": [
+          "I'm glad",
+          "I could help."
+        ],
+        "hints": [
+          "我很高兴",
+          "能帮上忙。"
+        ],
+        "cid": "2a177bbb",
+        "sentenceAudio": {
+          "text": "I'm glad I could help.",
+          "audio": {
+            "url": "assets/oral-2a177bbb-d7ed29cc2db2f2932fa7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "40b793cb8572c457e7fd492faea9fb73777a630f8744d5e5a73f50a7449687cf",
+            "bytes": 4720
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry.",
+        "translation": "对不起。",
+        "chunks": [
+          "I'm sorry."
+        ],
+        "hints": [
+          "对不起。"
+        ],
+        "cid": "b3d2e4fd",
+        "sentenceAudio": {
+          "text": "I'm sorry.",
+          "audio": {
+            "url": "assets/oral-b3d2e4fd-38f46a056a1cedd97f25.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8568ea6fa229418b34b75604ed59e33e8a5274f1f81218d8e4c71722cebb9cda",
+            "bytes": 3821
+          }
+        }
+      },
+      {
+        "sentence": "Whoops, excuse me.",
+        "translation": "啊!对不起。",
+        "chunks": [
+          "Whoops,",
+          "excuse me."
+        ],
+        "hints": [
+          "啊！",
+          "对不起。"
+        ],
+        "cid": "02c86168",
+        "sentenceAudio": {
+          "text": "Whoops, excuse me.",
+          "audio": {
+            "url": "assets/oral-02c86168-4b51e016b7c1d5dad644.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c944213b2374b2e78a5cfe8d54c17dc97418b0dfdaaaf9c90ff0f96f7d3bf1a6",
+            "bytes": 5049
+          }
+        }
+      },
+      {
+        "sentence": "I'm awfully sorry.",
+        "translation": "真的非常抱歉。",
+        "chunks": [
+          "I'm awfully",
+          "sorry."
+        ],
+        "hints": [
+          "真的非常",
+          "抱歉。"
+        ],
+        "cid": "94bb5add",
+        "sentenceAudio": {
+          "text": "I'm awfully sorry.",
+          "audio": {
+            "url": "assets/oral-94bb5add-de8d1fa886df8832bb77.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "70906c58cb014655b8891324d6f94e664552c38884e5b7eae90b748072319c0b",
+            "bytes": 4848
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry about that.",
+        "translation": "那件事我很抱歉。",
+        "chunks": [
+          "I'm sorry about that."
+        ],
+        "hints": [
+          "这件事我很抱歉。"
+        ],
+        "cid": "eb45a005",
+        "sentenceAudio": {
+          "text": "I'm sorry about that.",
+          "audio": {
+            "url": "assets/oral-eb45a005-0e731de4124cbb80450f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4aa1be41235f053950784d7277ec30c8ca10de2197b7b6162f62ad49993b1d3b",
+            "bytes": 4751
+          }
+        }
+      },
+      {
+        "sentence": "It's my fault.",
+        "translation": "这是我的疏忽。",
+        "chunks": [
+          "It's",
+          "my fault."
+        ],
+        "hints": [
+          "这是",
+          "我的错"
+        ],
+        "cid": "21e6b1a6",
+        "sentenceAudio": {
+          "text": "It's my fault.",
+          "audio": {
+            "url": "assets/oral-21e6b1a6-68158284d3c850755843.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bd1e01d8fbf09946f710c1e344d2ac39d816caca2294619216ca3bb9e4d57f11",
+            "bytes": 4098
+          }
+        }
+      },
+      {
+        "sentence": "Oops. My mistake.",
+        "translation": "哎呀，我弄错了。",
+        "chunks": [
+          "Oops.",
+          "My mistake."
+        ],
+        "hints": [
+          "哎呀！",
+          "我弄错了。"
+        ],
+        "cid": "aded6adc",
+        "sentenceAudio": {
+          "text": "Oops. My mistake.",
+          "audio": {
+            "url": "assets/oral-aded6adc-4fa65b74e96757f8b1cd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f146e138d14fc4540762171d0ad52f974175fa1a165a5e344d766630bf369e43",
+            "bytes": 4765
+          }
+        }
+      },
+      {
+        "sentence": "I feel bad about it.",
+        "translation": "那事我觉得很抱歉。",
+        "chunks": [
+          "I feel bad",
+          "about it."
+        ],
+        "hints": [
+          "我感到抱歉",
+          "因为那件事。"
+        ],
+        "cid": "b34a7d0f",
+        "sentenceAudio": {
+          "text": "I feel bad about it.",
+          "audio": {
+            "url": "assets/oral-b34a7d0f-c0107b2beff816fb0833.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "140c6a1aea2ba8084a2296bc0d2f47e87c73893fb52c2ede66cf5205fc6ce68f",
+            "bytes": 4791
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry I couldn't come.",
+        "translation": "真抱歉，我不能来。",
+        "chunks": [
+          "I'm sorry",
+          "I couldn't come."
+        ],
+        "hints": [
+          "真抱歉，",
+          "我不能来。"
+        ],
+        "cid": "3556c15e",
+        "sentenceAudio": {
+          "text": "I'm sorry I couldn't come.",
+          "audio": {
+            "url": "assets/oral-3556c15e-c44c74118069e41c3ef3.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ab2aa3e6f0ae7c172218f223a3ea68b9eede92f2b540fbe5278c493d9a91f4ff",
+            "bytes": 5219
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry about the other day.",
+        "translation": "前几天真是很抱歉。",
+        "chunks": [
+          "I'm sorry",
+          "about the other day."
+        ],
+        "hints": [
+          "真抱歉",
+          "关于前几天那件事。"
+        ],
+        "cid": "daccefa3",
+        "sentenceAudio": {
+          "text": "I'm sorry about the other day.",
+          "audio": {
+            "url": "assets/oral-daccefa3-4c9712a926bfae3d6d21.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6a0776ad1ca50b608a33a286ba176ddd267dfc6db1380ec0df641c9aadaf0fa4",
+            "bytes": 5715
+          }
+        }
+      },
+      {
+        "sentence": "Please forgive my rudeness.",
+        "translation": "请您原谅我的失礼。",
+        "chunks": [
+          "Please forgive",
+          "my rudeness."
+        ],
+        "hints": [
+          "请您原谅",
+          "我的失礼。"
+        ],
+        "cid": "943b59f0",
+        "sentenceAudio": {
+          "text": "Please forgive my rudeness.",
+          "audio": {
+            "url": "assets/oral-943b59f0-14fc6cbf2778c2cb743e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "5e9c79c27467fa9d8c925091f7e4886d4bf061fca77e9f58d618fe327d67614b",
+            "bytes": 5798
+          }
+        }
+      },
+      {
+        "sentence": "I don't know how to apologize to you.",
+        "translation": "我不知该怎样向您道歉。",
+        "chunks": [
+          "I don't know",
+          "how to apologize to you."
+        ],
+        "hints": [
+          "我不知道",
+          "怎样向您道歉。"
+        ],
+        "cid": "2296f776",
+        "sentenceAudio": {
+          "text": "I don't know how to apologize to you.",
+          "audio": {
+            "url": "assets/oral-2296f776-89e44174f7ec73b52fa1.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6bf5141433353da407edc99734ba9e1a6e811a0205de45ad6b25297d282cae69",
+            "bytes": 7318
+          }
+        }
+      },
+      {
+        "sentence": "I didn't mean that.",
+        "translation": "我并没有那个意思。",
+        "chunks": [
+          "I didn't",
+          "mean that."
+        ],
+        "hints": [
+          "我并没有",
+          "那个意思。"
+        ],
+        "cid": "b51bec02",
+        "sentenceAudio": {
+          "text": "I didn't mean that.",
+          "audio": {
+            "url": "assets/oral-b51bec02-dd578d42721dfb4fe817.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "bef36e0790cbba298009f550a2308759fb2c3568c1bcd158295955a5afa064c9",
+            "bytes": 4260
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry to trouble you.",
+        "translation": "真对不起，给您添麻烦了。",
+        "chunks": [
+          "I'm sorry",
+          "to trouble you."
+        ],
+        "hints": [
+          "真对不起，",
+          "给您添麻烦了。"
+        ],
+        "cid": "461eba94",
+        "sentenceAudio": {
+          "text": "I'm sorry to trouble you.",
+          "audio": {
+            "url": "assets/oral-461eba94-3c208dd88d0bc21e5939.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "24c0fb76ceb2a15876849269102d3e1979a3ecd7fa14f235a85df89e054a60c1",
+            "bytes": 5381
+          }
+        }
+      },
+      {
+        "sentence": "I'm really sorry for troubling you.",
+        "translation": "实在对不起，让您费心了。",
+        "chunks": [
+          "I'm really sorry",
+          "for troubling you."
+        ],
+        "hints": [
+          "实在对不起，",
+          "让您费心了。"
+        ],
+        "cid": "ec63fa00",
+        "sentenceAudio": {
+          "text": "I'm really sorry for troubling you.",
+          "audio": {
+            "url": "assets/oral-ec63fa00-3d128025c06bbad082df.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "a2721cdb90c3d870095ef64a1d6f2e68b69163ac652d68776ff6f946019ebd4c",
+            "bytes": 6655
+          }
+        }
+      },
+      {
+        "sentence": "I wish I could...",
+        "translation": "但愿我能……",
+        "chunks": [
+          "I wish",
+          "I could..."
+        ],
+        "hints": [
+          "但愿",
+          "我能……"
+        ],
+        "cid": "f9476499",
+        "sentenceAudio": {
+          "text": "I wish I could...",
+          "audio": {
+            "url": "assets/oral-f9476499-feed2d0f9cf027777e5f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ee8d82d56b59d97b1b6d1f0f143b3834c45fb889d96ae9db087d1a0c80306d4d",
+            "bytes": 4284
+          }
+        }
+      },
+      {
+        "sentence": "That's all right.",
+        "translation": "没事儿。/别放在心里!",
+        "chunks": [
+          "That's all right."
+        ],
+        "hints": [
+          "没关系。"
+        ],
+        "cid": "15fadbc3",
+        "sentenceAudio": {
+          "text": "That's all right.",
+          "audio": {
+            "url": "assets/oral-15fadbc3-282acc7f1f39aa73be2d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "cb48cca21ca7ad6947b20d776b6c4e021c92ad382a3364c380395ec4a900a7d8",
+            "bytes": 3901
+          }
+        }
+      },
+      {
+        "sentence": "Please be more careful next time.",
+        "translation": "下次要多加小心。",
+        "chunks": [
+          "Please be more careful",
+          "next time."
+        ],
+        "hints": [
+          "请更加小心",
+          "下次"
+        ],
+        "cid": "7a072f0b",
+        "sentenceAudio": {
+          "text": "Please be more careful next time.",
+          "audio": {
+            "url": "assets/oral-7a072f0b-546ed25dfef29c366db8.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "192ed8c68006b6bab276daf65980f1df5011fa4e1e1dbdcea2c0bc14a66c27ef",
+            "bytes": 6443
+          }
+        }
+      },
+      {
+        "sentence": "Let me get your coat for you.",
+        "translation": "我帮您收大衣吧。",
+        "chunks": [
+          "Let me",
+          "get your coat for you."
+        ],
+        "hints": [
+          "让我",
+          "替您拿外套。"
+        ],
+        "cid": "87f02154",
+        "sentenceAudio": {
+          "text": "Let me get your coat for you.",
+          "audio": {
+            "url": "assets/oral-87f02154-d3fd607641256ce74642.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7a9f7d92c4d47b3a4b6a1f1071ff4c2e74cace0ea00be528fbb6270f72abfee8",
+            "bytes": 5231
+          }
+        }
+      },
+      {
+        "sentence": "Make yourself at home.",
+        "translation": "别拘束，像在自己家一样吧。",
+        "chunks": [
+          "Make yourself",
+          "at home."
+        ],
+        "hints": [
+          "别拘束，",
+          "像在自己家一样吧。"
+        ],
+        "cid": "9b787492",
+        "sentenceAudio": {
+          "text": "Make yourself at home.",
+          "audio": {
+            "url": "assets/oral-9b787492-85f3991756b62c797c3e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "167eabc542676169866474ea5e119448b6bbb78b64866b790832d280765f19fc",
+            "bytes": 4948
+          }
+        }
+      },
+      {
+        "sentence": "Do you have a minute?",
+        "translation": "现在您有空吗?",
+        "chunks": [
+          "Do you have",
+          "a minute?"
+        ],
+        "hints": [
+          "您有",
+          "一点时间吗？"
+        ],
+        "cid": "43ed253d",
+        "sentenceAudio": {
+          "text": "Do you have a minute?",
+          "audio": {
+            "url": "assets/oral-43ed253d-0c50becc7d2f6cd19bc7.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "204f6ea827ecd5acf54f3380322f3b541908f306e44d264b9e7d9d85537c2b67",
+            "bytes": 4180
+          }
+        }
+      },
+      {
+        "sentence": "Can I talk to you for a minute?",
+        "translation": "我能跟您说几句话吗?",
+        "chunks": [
+          "Can I talk to you",
+          "for a minute?"
+        ],
+        "hints": [
+          "我能跟您谈谈",
+          "一会儿吗？"
+        ],
+        "cid": "18cac98f",
+        "sentenceAudio": {
+          "text": "Can I talk to you for a minute?",
+          "audio": {
+            "url": "assets/oral-18cac98f-34cd07c849485213678f.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "ab7a64ea4526a08c3ed41a9b99efdb0c602077419fd6d29405169d7547bac27c",
+            "bytes": 5489
+          }
+        }
+      },
+      {
+        "sentence": "After you.",
+        "translation": "您先请。",
+        "chunks": [
+          "After you."
+        ],
+        "hints": [
+          "您先请。"
+        ],
+        "cid": "20f7a6ec",
+        "sentenceAudio": {
+          "text": "After you.",
+          "audio": {
+            "url": "assets/oral-20f7a6ec-9cc0f6cffad0e83f47cc.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "29d90204e174ef774526bbaaca1c3bcffd9538115da019fa2d198c693a6727cc",
+            "bytes": 3717
+          }
+        }
+      },
+      {
+        "sentence": "Can I give you a hand?",
+        "translation": "我帮您一把吧!",
+        "chunks": [
+          "Can I give you a hand?"
+        ],
+        "hints": [
+          "要我帮您吗？"
+        ],
+        "cid": "40dfa6d5",
+        "sentenceAudio": {
+          "text": "Can I give you a hand?",
+          "audio": {
+            "url": "assets/oral-40dfa6d5-cf06e4ab03809dad1e6e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "50d8951284ce454eb16ce32cabc93e51fc047b2c23c07270736438fb2b4cdb76",
+            "bytes": 4713
+          }
+        }
+      },
+      {
+        "sentence": "I'll accept your offer.",
+        "translation": "我接受你的建议。/就照你说的。",
+        "chunks": [
+          "I'll accept",
+          "your offer."
+        ],
+        "hints": [
+          "我接受",
+          "你的建议。"
+        ],
+        "cid": "d626de3a",
+        "sentenceAudio": {
+          "text": "I'll accept your offer.",
+          "audio": {
+            "url": "assets/oral-d626de3a-c4ab84e5683f70b14718.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "07f81825b0629faca533ea3a2bd52686c4e0dc76ca1dd4210981a2a70d0a6ae7",
+            "bytes": 4852
+          }
+        }
+      },
+      {
+        "sentence": "Sorry to interrupt you.",
+        "translation": "对不起，打断一下。",
+        "chunks": [
+          "Sorry to",
+          "interrupt you."
+        ],
+        "hints": [
+          "对不起，",
+          "打断一下。"
+        ],
+        "cid": "1b7a1af3",
+        "sentenceAudio": {
+          "text": "Sorry to interrupt you.",
+          "audio": {
+            "url": "assets/oral-1b7a1af3-c7fb52a94bc8f383ffea.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "9257795976412cdbebf1baf84413eb964066a0b3d47444cf0052489633c5a706",
+            "bytes": 5078
+          }
+        }
+      },
+      {
+        "sentence": "Sorry for the short notice.",
+        "translation": "真抱歉，这么突然。",
+        "chunks": [
+          "Sorry for",
+          "the short notice."
+        ],
+        "hints": [
+          "真抱歉，",
+          "这么突然。"
+        ],
+        "cid": "de1387ae",
+        "sentenceAudio": {
+          "text": "Sorry for the short notice.",
+          "audio": {
+            "url": "assets/oral-de1387ae-5a0c0466fc6e3005dd4d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "e15b0db0c5b1f5c70e9547129e688a1e7d4a1a980fa9f35075703ab7742caa70",
+            "bytes": 5596
+          }
+        }
+      },
+      {
+        "sentence": "Let me know if you need anything.",
+        "cid": "9f813037",
+        "translation": "你需要什么就告诉我。",
+        "chunks": [
+          "Let me know",
+          "if you need anything."
+        ],
+        "hints": [
+          "让我知道",
+          "如果你需要什么"
+        ],
+        "grammar": [
+          {
+            "role": "祈使主句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/let/",
+              "/miː/",
+              "/noʊ/"
+            ],
+            "pos": "let sb do 结构",
+            "meaning": "让我知道"
+          },
+          {
+            "role": "条件从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪf/",
+              "/juː/",
+              "/niːd/",
+              "/ˈeniθɪŋ/"
+            ],
+            "pos": "条件状语从句",
+            "meaning": "如果你需要什么"
+          }
+        ],
+        "explanations": [
+          "**Let me know if...** = 如果……就告诉我。let 后接动词原形（let sb do）。常见错误：\n• \"Let me **to** know\" → let 后不加 to\n• \"Let me **knowing**\" → 用原形 know",
+          "主动提供帮助的客套话，主人对客人、同事间都很常用。同义：If you need anything, just ask."
+        ],
+        "distractors": [
+          [
+            "Let I know",
+            "Lets me know",
+            "Let me to know"
+          ],
+          [
+            "if you needs anything.",
+            "when you need anything.",
+            "if you need something."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let me know if you need anything.",
+          "audio": {
+            "url": "assets/oral-9f813037-f4bac6f0c8279d058fee.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "828251978ce99795d04046f6dcd2e1cfe122028baef9074227c750c17e55f35c",
+            "bytes": 5686
+          }
+        }
+      },
+      {
+        "sentence": "I'm looking forward to it.",
+        "cid": "afa391b8",
+        "translation": "我很期待。",
+        "chunks": [
+          "I'm looking",
+          "forward to it."
+        ],
+        "hints": [
+          "我在期待",
+          "着它"
+        ],
+        "grammar": [
+          {
+            "role": "主语+进行时",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/lʊkɪŋ/"
+            ],
+            "pos": "现在进行时",
+            "meaning": "我正在期待"
+          },
+          {
+            "role": "固定搭配",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/ˈfɔːrwərd/",
+              "/tuː/",
+              "/ɪt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "期待着它"
+          }
+        ],
+        "explanations": [
+          "**look forward to** 中 **to** 是介词，后面要接名词或动名词（-ing）。常见错误：look forward to *see* → 应为 *seeing*。",
+          "用于回复邀请、约定等场景：See you tomorrow! — **I'm looking forward to it!**"
+        ],
+        "distractors": [
+          [
+            "I looking",
+            "I'm look",
+            "I'm looks"
+          ],
+          [
+            "forward it.",
+            "forward to them.",
+            "forward to do it."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm looking forward to it.",
+          "audio": {
+            "url": "assets/oral-afa391b8-2b2661a95d22d0ba9bbd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "52c01b34bd0bcb5f7146d9b8637a60fcff4759deb5714017c1643ac95f418aac",
+            "bytes": 5351
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for helping me out yesterday.",
+        "cid": "61b69c3a",
+        "translation": "谢谢你昨天帮我解围。",
+        "chunks": [
+          "Thanks for",
+          "helping me out",
+          "yesterday."
+        ],
+        "hints": [
+          "谢谢",
+          "帮我解围",
+          "昨天"
+        ],
+        "grammar": [
+          {
+            "role": "核心谓语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/θæŋks/",
+              "/fɔːr/"
+            ],
+            "pos": "介词动词",
+            "meaning": "谢谢"
+          },
+          {
+            "role": "介词宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈhelpɪŋ/",
+              "/miː/",
+              "/aʊt/"
+            ],
+            "pos": "动名词短语",
+            "meaning": "帮我解围"
+          },
+          {
+            "role": "时间状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈjestədeɪ/"
+            ],
+            "pos": "副词",
+            "meaning": "昨天"
+          }
+        ],
+        "explanations": [
+          "**Thank / Thanks + for + doing** 是固定搭配。常见错误：\n• \"Thank you **to** help\" → to 不对，要用 for\n• \"Thanks **you**\" → Thanks 已经包含「你」的意思，不需要再加 you",
+          "**help sb out** = 帮某人摆脱困境/解围。out 在这里表示「从困境中出来」。如果只说 \"helping me\" 也可以，但少了「解围」这层含义。",
+          "**yesterday** 是过去时间副词，放在句末或句首都可以。注意：yesterday 不能和现在完成时连用（不能说 \"I have seen him yesterday\"）。"
+        ],
+        "distractors": [
+          [
+            "Thanks to",
+            "Thank for",
+            "Thanks about"
+          ],
+          [
+            "help me out",
+            "helped me out",
+            "helping I out"
+          ],
+          [
+            "tomorrow.",
+            "the yesterday.",
+            "yesterdays."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Thanks for helping me out yesterday.",
+          "audio": {
+            "url": "assets/oral-61b69c3a-520341e8d4cbfc2556a0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6bfb76a8885dd0307e9f2026ee9f06430a37df9b86b9b33927a7f0e91d9fbf48",
+            "bytes": 6709
+          }
+        }
+      },
+      {
+        "sentence": "I'm really sorry about that.",
+        "cid": "b0be2b46",
+        "translation": "那件事我真的很抱歉。",
+        "chunks": [
+          "I'm really sorry",
+          "about that."
+        ],
+        "hints": [
+          "我真的很抱歉",
+          "关于那件事"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈrɪəli/",
+              "/ˈsɒri/"
+            ],
+            "pos": "主系表结构",
+            "meaning": "我真的很抱歉"
+          },
+          {
+            "role": "介词宾语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əˈbaʊt/",
+              "/ðæt/"
+            ],
+            "pos": "介词短语",
+            "meaning": "关于那件事"
+          }
+        ],
+        "explanations": [
+          "`be sorry about + 事` 为某事道歉。常见错误：\n• \"I'm sorry **for** that\" → for 也可以，但 about 更强调针对具体事件\n• \"I'm sorry **to** that\" → 错，about/for 才接名词",
+          "`really` 加强语气。注意位置在 be 动词后、形容词前：`I'm really sorry`，不是 `I really am sorry`（后者语法对但语气不同）。"
+        ],
+        "distractors": [
+          [
+            "I'm really angry",
+            "I'm really sad",
+            "I'm really sorries"
+          ],
+          [
+            "at that.",
+            "of that.",
+            "about those."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm really sorry about that.",
+          "audio": {
+            "url": "assets/oral-b0be2b46-df69701bd8063cec74bd.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "f71b92fd62e55fe3d27d952c7c0b33659dfa487a1e6b0510496b381479f6806b",
+            "bytes": 5647
+          }
+        }
+      },
+      {
+        "sentence": "I really appreciate your help.",
+        "cid": "cb22e2a1",
+        "translation": "我真的很感激你的帮助。",
+        "chunks": [
+          "I really appreciate",
+          "your help."
+        ],
+        "hints": [
+          "我真的很感激",
+          "你的帮助"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/ˈrɪəli/",
+              "/əˈpriːʃieɪt/"
+            ],
+            "pos": "主谓结构",
+            "meaning": "我真的很感激"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/jɔːr/",
+              "/help/"
+            ],
+            "pos": "名词短语",
+            "meaning": "你的帮助"
+          }
+        ],
+        "explanations": [
+          "`appreciate` 是及物动词，直接接名词/动名词。常见错误：\n• \"I appreciate **you**\" → 语法可，但 appreciate your help 更自然；appreciate 后不接人作宾语时易歧义\n• \"I appreciate **that you help**\" → 改用动名词：appreciate your helping",
+          "`appreciate` 比 `thank` 更正式、更强调内心的感激，谢谢用 thank，感激用 appreciate。"
+        ],
+        "distractors": [
+          [
+            "I really thank",
+            "I really need",
+            "I really expect"
+          ],
+          [
+            "you help.",
+            "your helps.",
+            "a help."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I really appreciate your help.",
+          "audio": {
+            "url": "assets/oral-cb22e2a1-9ff5b3d446215b641863.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7aa4d2c5246014dd66cccf563f948f2ad6aeb748453de07cd0543813e3147234",
+            "bytes": 6015
+          }
+        }
+      },
+      {
+        "sentence": "I'm sorry to keep you waiting.",
+        "cid": "99621477",
+        "translation": "抱歉让你久等了。",
+        "chunks": [
+          "I'm sorry",
+          "to keep you waiting."
+        ],
+        "hints": [
+          "我很抱歉",
+          "让你久等"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈsɒri/"
+            ],
+            "pos": "致歉表达",
+            "meaning": "我很抱歉"
+          },
+          {
+            "role": "不定式短语",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/tuː/",
+              "/kiːp/",
+              "/juː/",
+              "/ˈweɪtɪŋ/"
+            ],
+            "pos": "不定式+宾补",
+            "meaning": "让你久等"
+          }
+        ],
+        "explanations": [
+          "`sorry to do` 为做了某事道歉；`sorry for doing` 侧重为已发生的事道歉。常见错误：\n• \"sorry **for keep** you waiting\" → for 后接动名词 keeping，不是原形 keep\n• \"sorry **about** waiting\" → 语义含糊，keep you waiting 更清楚",
+          "`keep sb doing` = 让某人一直处于某种状态。原形结构：keep + 宾语 + 现在分词（waiting）。"
+        ],
+        "distractors": [
+          [
+            "I sorry",
+            "I'm sorries",
+            "I'm sorrys"
+          ],
+          [
+            "to kept you waiting.",
+            "to keep you wait.",
+            "for keep you waiting."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm sorry to keep you waiting.",
+          "audio": {
+            "url": "assets/oral-99621477-4455b3e2d2d3f91101fa.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "d01e786e704396f79f03d109cc17ed1dbb54562ebfc15d25ffa0fe13102b4f37",
+            "bytes": 5868
+          }
+        }
+      },
+      {
+        "sentence": "I should have called you earlier.",
+        "cid": "c3850bef",
+        "translation": "我本该早点给你打电话的。",
+        "chunks": [
+          "I should have",
+          "called you",
+          "earlier."
+        ],
+        "hints": [
+          "我本应该",
+          "给你打电话",
+          "更早"
+        ],
+        "grammar": [
+          {
+            "role": "情态完成式",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/ʃʊd/",
+              "/hæv/"
+            ],
+            "pos": "should have done",
+            "meaning": "我本应该"
+          },
+          {
+            "role": "过去分词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/kɔːld/",
+              "/juː/"
+            ],
+            "pos": "完成时谓语",
+            "meaning": "给你打电话"
+          },
+          {
+            "role": "比较状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ˈɜːrliər/"
+            ],
+            "pos": "比较级副词",
+            "meaning": "更早"
+          }
+        ],
+        "explanations": [
+          "`should have done` = 本应该做而没做（表后悔/责备）。常见错误：\n• \"I should **called**\" → 情态动词后接 have + 过去分词\n• \"I should have **call**\" → 需用过去分词 called",
+          "表达后悔三兄弟：should have（本应该）/ could have（本可以）/ would have（本会）。earlier 是 early 的比较级。"
+        ],
+        "distractors": [
+          [
+            "I should has",
+            "I should of",
+            "I should to have"
+          ],
+          [
+            "call you",
+            "calling you",
+            "called your"
+          ],
+          [
+            "early.",
+            "more earlier.",
+            "earliest."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I should have called you earlier.",
+          "audio": {
+            "url": "assets/oral-c3850bef-9246f3d3206b882fbb77.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "36f341b0d46f1e5fb12463f948c0897ce8fe111f3fb91b2a7dfd553606d47ed8",
+            "bytes": 5353
+          }
+        }
+      },
+      {
+        "sentence": "Let me know if you need anything else.",
+        "cid": "3a6102e6",
+        "translation": "如果你还需要什么，告诉我。",
+        "chunks": [
+          "Let me know",
+          "if you need",
+          "anything else."
+        ],
+        "hints": [
+          "告诉我",
+          "如果你需要",
+          "其他任何东西"
+        ],
+        "grammar": [
+          {
+            "role": "祈使句",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/let/",
+              "/miː/",
+              "/nəʊ/"
+            ],
+            "pos": "使役结构",
+            "meaning": "让我知道"
+          },
+          {
+            "role": "条件从句",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/ɪf/",
+              "/juː/",
+              "/niːd/"
+            ],
+            "pos": "if 从句",
+            "meaning": "如果你需要"
+          },
+          {
+            "role": "不定代词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈeniθɪŋ/",
+              "/els/"
+            ],
+            "pos": "宾语",
+            "meaning": "其他任何东西"
+          }
+        ],
+        "explanations": [
+          "服务收尾常用语。`let me know` = 告诉我（let + 人 + 动词原形）。常见错误：\n• \"Let me **to** know\" → let 后接原形，不加 to\n• \"Tell me know\" → 中式表达，正确是 let me know",
+          "`if you need anything else` = 如果你还需要别的。else 放 anything 后。"
+        ],
+        "distractors": [
+          [
+            "Let me to know",
+            "Lets me know",
+            "Tell me know"
+          ],
+          [
+            "when you need",
+            "if you needing",
+            "if your need"
+          ],
+          [
+            "anything others.",
+            "else anything.",
+            "something else."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Let me know if you need anything else.",
+          "audio": {
+            "url": "assets/oral-3a6102e6-0e87a6fbbe90b7ad62b9.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "beaac71e80712d803594196001fded71f445dc9fd501bc59aac180eb9944463d",
+            "bytes": 6159
+          }
+        }
+      },
+      {
+        "sentence": "I've been meaning to call you all week.",
+        "cid": "9e19d0bc",
+        "translation": "我这一整周都想给你打电话。",
+        "chunks": [
+          "I've been meaning to",
+          "call you",
+          "all week."
+        ],
+        "hints": [
+          "我一直打算",
+          "给你打电话",
+          "整个星期"
+        ],
+        "grammar": [
+          {
+            "role": "现在完成进行",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪv/",
+              "/bɪn/",
+              "/ˈmiːnɪŋ/",
+              "/tuː/"
+            ],
+            "pos": "完成进行时",
+            "meaning": "我一直打算"
+          },
+          {
+            "role": "动词短语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/kɔːl/",
+              "/juː/"
+            ],
+            "pos": "不定式",
+            "meaning": "给你打电话"
+          },
+          {
+            "role": "时间状语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ɔːl/",
+              "/wiːk/"
+            ],
+            "pos": "名词短语",
+            "meaning": "整个星期"
+          }
+        ],
+        "explanations": [
+          "`have been meaning to do` = 一直打算做（但没做）。常见错误：\n• \"I meant to call\" → 过去时只表曾打算，完成进行强调一直拖到现在\n• \"I've been meaning **call**\" → 漏了 to：meaning to + 原形",
+          "`call you` = 给你打电话（美式，英式常用 ring you）。",
+          "`all week` = 整个星期。时间状语，前面不加介词。"
+        ],
+        "distractors": [
+          [
+            "I've meaning to",
+            "I've been meaning",
+            "I been meaning to"
+          ],
+          [
+            "calling you",
+            "to call your",
+            "call to you"
+          ],
+          [
+            "the all week.",
+            "all weeks.",
+            "for all week."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I've been meaning to call you all week.",
+          "audio": {
+            "url": "assets/oral-9e19d0bc-40c23aa8e1ea52c8dcdf.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4306e05a18cadcbda9a922f07f67400fa11bd401ef9a6d3163cf349da6adeb10",
+            "bytes": 6555
+          }
+        }
+      },
+      {
+        "sentence": "No wonder you look so tired.",
+        "cid": "f5fe9a5f",
+        "translation": "难怪你看起来这么累。",
+        "chunks": [
+          "No wonder",
+          "you look so tired."
+        ],
+        "hints": [
+          "难怪",
+          "你看起来这么累"
+        ],
+        "grammar": [
+          {
+            "role": "固定表达",
+            "color": "#3358e0",
+            "phonetic": [
+              "/nəʊ/",
+              "/ˈwʌndər/"
+            ],
+            "pos": "惯用语",
+            "meaning": "难怪"
+          },
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/juː/",
+              "/lʊk/",
+              "/səʊ/",
+              "/ˈtaɪəd/"
+            ],
+            "pos": "系动词+表语",
+            "meaning": "你看起来这么累"
+          }
+        ],
+        "explanations": [
+          "`No wonder` = 难怪/怪不得（It's no wonder 的省略）。常见错误：\n• \"No **wonders**\" → wonder 此处不可数\n• \"Not wonder\" → 固定是 No wonder",
+          "`look tired` = 看起来累。look 是系动词接形容词 tired，不接副词 tiredly。"
+        ],
+        "distractors": [
+          [
+            "No wonders",
+            "Not wonder",
+            "Wonder no"
+          ],
+          [
+            "you are look so tired.",
+            "you looks so tired.",
+            "you look so tiredly."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "No wonder you look so tired.",
+          "audio": {
+            "url": "assets/oral-f5fe9a5f-47bc6cd3b70b5c38e5e0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8d95b4cf9f7ed9d5815658b0c6e6b65ad74d925faf2b0a5e8f910096b9b8a897",
+            "bytes": 6142
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for having me, I had a great time.",
+        "cid": "28b5e31b",
+        "translation": "谢谢招待，我玩得很开心。",
+        "chunks": [
+          "Thanks for having me,",
+          "I had",
+          "a great time."
+        ],
+        "hints": [
+          "谢谢招待我",
+          "我度过了",
+          "一段美好时光"
+        ],
+        "grammar": [
+          {
+            "role": "致谢结构",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/θæŋks/",
+              "/fɔːr/",
+              "/ˈhævɪŋ/",
+              "/miː/"
+            ],
+            "pos": "thanks for 结构",
+            "meaning": "谢谢招待我"
+          },
+          {
+            "role": "主谓结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/hæd/"
+            ],
+            "pos": "过去时",
+            "meaning": "我度过了"
+          },
+          {
+            "role": "宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ə/",
+              "/ɡreɪt/",
+              "/taɪm/"
+            ],
+            "pos": "名词短语",
+            "meaning": "一段美好时光"
+          }
+        ],
+        "explanations": [
+          "做客/聚会后道谢。`thanks for having me` = 谢谢邀请/招待我。常见错误：\n• \"thanks for **have** me\" → for 后接动名词 having\n• \"thanks to have me\" → 搭配是 thanks for doing",
+          "`I had` = 我度过了（过去时）。",
+          "`a great time` = 美好时光。固定搭配 have a great time。常见错误：\n• \"have great time\" → 缺 a"
+        ],
+        "distractors": [
+          [
+            "Thanks for have me,",
+            "Thank for having me,",
+            "Thanks to having me,"
+          ],
+          [
+            "I have",
+            "I've had",
+            "I was had"
+          ],
+          [
+            "great time.",
+            "a great times.",
+            "a good time."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Thanks for having me, I had a great time.",
+          "audio": {
+            "url": "assets/oral-28b5e31b-2a8676c76653be8da47e.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "41cd1695c5e34ea19fa8f957fc790cc9f2be20496f7f6aed8ea1fe05bdf53e6d",
+            "bytes": 7997
+          }
+        }
+      },
+      {
+        "sentence": "I'm looking forward to seeing you again.",
+        "cid": "6159c055",
+        "translation": "我期待再次见到你。",
+        "chunks": [
+          "I'm looking forward to",
+          "seeing you",
+          "again."
+        ],
+        "hints": [
+          "我期待着",
+          "见到你",
+          "再次"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪm/",
+              "/ˈlʊkɪŋ/",
+              "/ˈfɔːrwərd/",
+              "/tə/"
+            ],
+            "pos": "look forward to",
+            "meaning": "我期待着"
+          },
+          {
+            "role": "动名词宾语",
+            "color": "#3358e0",
+            "phonetic": [
+              "/ˈsiːɪŋ/",
+              "/juː/"
+            ],
+            "pos": "动名词短语",
+            "meaning": "见到你"
+          },
+          {
+            "role": "频度副词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əˈɡen/"
+            ],
+            "pos": "副词",
+            "meaning": "再次"
+          }
+        ],
+        "explanations": [
+          "`look forward to` = 期待，**to 是介词**后接动名词。常见错误：\n• \"look forward to **see** you\" → to 后要 doing\n• \"looking forward to see\" → 同一错误\n• 漏 be：I look forward to 也可（正式）",
+          "`again` = 再一次。"
+        ],
+        "distractors": [
+          [
+            "I look forward to",
+            "I'm looking forward",
+            "I'm looking forward for"
+          ],
+          [
+            "to see you",
+            "seeing yours",
+            "seen you"
+          ],
+          [
+            "again now.",
+            "one again.",
+            "again soon."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm looking forward to seeing you again.",
+          "audio": {
+            "url": "assets/oral-6159c055-cd32a6084912b63ff260.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "3f2520a883237c528cd7911579bad441b26fa153f2549fa3745e8067e02634a5",
+            "bytes": 7190
+          }
+        }
+      },
+      {
+        "sentence": "I completely forgot about our appointment.",
+        "cid": "777f5c9d",
+        "translation": "我完全忘了我们的约会。",
+        "chunks": [
+          "I completely forgot",
+          "about our",
+          "appointment."
+        ],
+        "hints": [
+          "我完全忘了",
+          "关于我们的",
+          "约定"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/aɪ/",
+              "/kəmˈpliːtli/",
+              "/fərˈɡɑːt/"
+            ],
+            "pos": "一般过去时",
+            "meaning": "我完全忘了"
+          },
+          {
+            "role": "介词",
+            "color": "#3358e0",
+            "phonetic": [
+              "/əˈbaʊt/",
+              "/aʊər/"
+            ],
+            "pos": "介词+限定词",
+            "meaning": "关于我们的"
+          },
+          {
+            "role": "宾语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/əˈpɔɪntmənt/"
+            ],
+            "pos": "名词",
+            "meaning": "约定/约会"
+          }
+        ],
+        "explanations": [
+          "`forget about` = 忘掉某事。常见错误：\n• \"forgot to about\" → 搭配混乱\n• \"I forget\" → 讲过去发生的忘记用 forgot",
+          "`appointment` = 预约（看病/商务）；`date` = 约会（浪漫）。"
+        ],
+        "distractors": [
+          [
+            "I complete forgot",
+            "I completely forgetted",
+            "I'm completely forgot"
+          ],
+          [
+            "to our",
+            "about hour",
+            "for our"
+          ],
+          [
+            "appointments.",
+            "a appointment.",
+            "the appointment now."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I completely forgot about our appointment.",
+          "audio": {
+            "url": "assets/oral-777f5c9d-2a855a49152614f28350.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "7f63a7ed0c8ea97882685b1fb7d9eec18e849d26f59eff8e7cc883c46153e9bf",
+            "bytes": 7700
+          }
+        }
+      },
+      {
+        "sentence": "Want me to help?",
+        "cid": "9c364fa8",
+        "translation": "要我帮忙吗？",
+        "chunks": [
+          "Want me",
+          "to help?"
+        ],
+        "hints": [
+          "想要我",
+          "帮忙"
+        ],
+        "grammar": [
+          {
+            "role": "主谓宾",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/wɑːnt/",
+              "/miː/"
+            ],
+            "pos": "省略 Do you 的问句",
+            "meaning": "想要我"
+          },
+          {
+            "role": "不定式",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tə/",
+              "/help/"
+            ],
+            "pos": "不定式短语",
+            "meaning": "帮忙"
+          }
+        ],
+        "explanations": [
+          "口语省略句首的 Do you，直接说 Want me...? 常见错误：\n• \"Want I to help?\" → 宾语用宾格 me\n• \"Wants me to help?\" → 省略了主语，动词不加 s",
+          "`want sb to do sth` 是固定结构，不能省 to。常见错误：\n• \"Want me help?\" → 少了 to 就变错了"
+        ],
+        "distractors": [
+          [
+            "Want I",
+            "Wants me",
+            "Want my"
+          ],
+          [
+            "help?",
+            "for help?",
+            "helping?"
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Want me to help?",
+          "audio": {
+            "url": "assets/oral-9c364fa8-aa7b013810f975d585c0.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "74a97c2677a6a5eec10f04b37ea520dab7d99e2b4e702464ba0a404e729317ad",
+            "bytes": 4121
+          }
+        }
+      },
+      {
+        "sentence": "Thanks for asking.",
+        "cid": "93a0fe58",
+        "translation": "谢谢关心。",
+        "chunks": [
+          "Thanks",
+          "for asking."
+        ],
+        "hints": [
+          "谢谢",
+          "来问（关心）"
+        ],
+        "grammar": [
+          {
+            "role": "致谢结构",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/θæŋks/"
+            ],
+            "pos": "名词（复数形式固定）",
+            "meaning": "谢谢"
+          },
+          {
+            "role": "介词+动名词",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/fɔːr/",
+              "/ˈæskɪŋ/"
+            ],
+            "pos": "for + doing",
+            "meaning": "来问我"
+          }
+        ],
+        "explanations": [
+          "`Thanks` 比 Thank you 更随意，常用于熟人间。常见错误：\n• \"Thank you for asking\" → 更正式，也对\n• \"Thanks for ask\" → 介词 for 后要用动名词",
+          "`for + 动名词` 表感谢的原因。这个结构固定，不能换成不定式。"
+        ],
+        "distractors": [
+          [
+            "Thank",
+            "Thanks to",
+            "Thanks for"
+          ],
+          [
+            "to ask.",
+            "for ask.",
+            "for asked."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Thanks for asking.",
+          "audio": {
+            "url": "assets/oral-93a0fe58-b982ad8ee38316d7f6e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "c649d3af4ecc2fd22520989952d85a5d8cf78c2263755caeae965364cb12c630",
+            "bytes": 4565
+          }
+        }
+      },
+      {
+        "sentence": "You matter to me.",
+        "cid": "fb895572",
+        "translation": "你对我很重要。",
+        "chunks": [
+          "You matter",
+          "to me."
+        ],
+        "hints": [
+          "你很重要",
+          "对我来说"
+        ],
+        "grammar": [
+          {
+            "role": "主谓",
+            "color": "#e74c7a",
+            "phonetic": [
+              "/juː/",
+              "/ˈmætər/"
+            ],
+            "pos": "matter 作动词",
+            "meaning": "你很重要"
+          },
+          {
+            "role": "对象状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tə/",
+              "/miː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "对我来说"
+          }
+        ],
+        "explanations": [
+          "`matter` 作动词表「要紧、重要」。常见错误：\n• \"You matters\" → 主语 you 用原形\n• \"You are matter\" → be 与动词混用",
+          "`matter to sb` 表「对某人重要」。常见错误：\n• \"matter for me\" → 固定介词是 to"
+        ],
+        "distractors": [
+          [
+            "You matters",
+            "You mattering",
+            "Your matter"
+          ],
+          [
+            "to my.",
+            "for me.",
+            "to mine."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You matter to me.",
+          "audio": {
+            "url": "assets/oral-fb895572-e76605b67f813baf924d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "8e43dbb78886634017ea7ed71d8238a959557e85c9993fae4f02f0806f1dd145",
+            "bytes": 4289
+          }
+        }
+      },
+      {
+        "sentence": "You're nice to me.",
+        "cid": "09c464f6",
+        "translation": "你对我真好。",
+        "chunks": [
+          "You're nice",
+          "to me."
+        ],
+        "hints": [
+          "你很好",
+          "对我"
+        ],
+        "grammar": [
+          {
+            "role": "主系表",
+            "color": "#c87033",
+            "phonetic": [
+              "/jʊr/",
+              "/naɪs/"
+            ],
+            "pos": "you are + 形容词",
+            "meaning": "你很好"
+          },
+          {
+            "role": "对象状语",
+            "color": "#7c5cbf",
+            "phonetic": [
+              "/tə/",
+              "/miː/"
+            ],
+            "pos": "介词短语",
+            "meaning": "对我"
+          }
+        ],
+        "explanations": [
+          "`You're` = you are，别和 your（你的）搞混。常见错误：\n• \"Your nice to me\" → Your 不能构成主系表\n• \"You're nicely to me\" → 表语要用形容词 nice",
+          "`be nice to sb` 是固定搭配，介词用 to。常见错误：\n• \"nice for me\" → 对人态度用 to"
+        ],
+        "distractors": [
+          [
+            "Your nice",
+            "You nice",
+            "You're nicely"
+          ],
+          [
+            "to my.",
+            "for me.",
+            "to mine."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "You're nice to me.",
+          "audio": {
+            "url": "assets/oral-09c464f6-928270acf7f68955fdef.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "aded1a817b96c94e07950f4ce3b8200842a5cde2606e98985cc43b345dff99f9",
+            "bytes": 4366
+          }
+        }
+      }
+    ]
+  }
+}

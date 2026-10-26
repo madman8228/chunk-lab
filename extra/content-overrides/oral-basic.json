@@ -8,7 +8,10 @@
     "desc": "没有固定场景、随时能用的万能句",
     "chapter": 0,
     "section": "0",
-    "profile": "sentence-deck/1",
+    "sectionTitle": "万能表达",
+    "topic": "",
+    "baseCount": 0,
+    "totalCount": 7,
     "items": [
       {
         "sentence": "Could you give me a moment, please?",
@@ -77,7 +80,16 @@
             "pleased?",
             "pleases?"
           ]
-        ]
+        ],
+        "sentenceAudio": {
+          "text": "Could you give me a moment, please?",
+          "audio": {
+            "url": "assets/oral-b95cd0f4-f03455fb482848a10415.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "90d5688fddff41f9e38158249daf8a18ca86d8f31e569260336fae6222598b51",
+            "bytes": 5984
+          }
+        }
       },
       {
         "sentence": "I mean it.",
@@ -93,7 +105,11 @@
           {
             "role": "固定表达",
             "color": "#e74c7a",
-            "phonetic": ["/aɪ/", "/miːn/", "/ɪt/"],
+            "phonetic": [
+              "/aɪ/",
+              "/miːn/",
+              "/ɪt/"
+            ],
             "pos": "口语表达",
             "meaning": "我是认真的"
           }
@@ -101,7 +117,22 @@
         "explanations": [
           "**I mean it.** = 我说的是真的/不是在开玩笑，用来强调上一句话的严肃性。语境：— I'll quit if this continues! — Are you serious? — **I mean it!** 近义：**I'm serious.**"
         ],
-        "distractors": [["I means it.", "I'm mean it.", "I mean to it."]]
+        "distractors": [
+          [
+            "I means it.",
+            "I'm mean it.",
+            "I mean to it."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I mean it.",
+          "audio": {
+            "url": "assets/oral-b6c66834-395b344a4edd78f663b6.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "1f8735d9e59bb05f68edc363311c11d37c5a01137f5b6bbdc1370e9094b9d2b4",
+            "bytes": 3547
+          }
+        }
       },
       {
         "sentence": "I'm all right.",
@@ -117,7 +148,11 @@
           {
             "role": "固定表达",
             "color": "#c87033",
-            "phonetic": ["/aɪm/", "/ɔːl/", "/raɪt/"],
+            "phonetic": [
+              "/aɪm/",
+              "/ɔːl/",
+              "/raɪt/"
+            ],
             "pos": "语境表达",
             "meaning": "我没事；不用了"
           }
@@ -125,7 +160,22 @@
         "explanations": [
           "`I'm all right` 有两层意思：身体「我没事」，回答提议时是「不用了」。常见错误：\n• \"I'm alright\" → 也可接受，但规范写法是 all right\n• \"I'm right\" → 意思变成「我是对的」。同义（拒绝提议）：I'm good. / No thanks."
         ],
-        "distractors": [["I'm alright.", "I'm right.", "I'm all write."]]
+        "distractors": [
+          [
+            "I'm alright.",
+            "I'm right.",
+            "I'm all write."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "I'm all right.",
+          "audio": {
+            "url": "assets/oral-e24acc99-3b5b21d911688627033c.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "67c621d45a34eda21f8373e03c20ce27dff09525ca4dafecd5a207f0d5c06910",
+            "bytes": 3862
+          }
+        }
       },
       {
         "sentence": "I've got this.",
@@ -175,7 +225,16 @@
             "these.",
             "this's."
           ]
-        ]
+        ],
+        "sentenceAudio": {
+          "text": "I've got this.",
+          "audio": {
+            "url": "assets/oral-e70c8cf4-a7a60d8832667518373d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "55a4c758ce14cdc62c3aee9a536ebad4d9f74408a7376977e7a7cd9aecc77224",
+            "bytes": 4049
+          }
+        }
       },
       {
         "sentence": "Hold on.",
@@ -191,7 +250,10 @@
           {
             "role": "短语动词",
             "color": "#e74c7a",
-            "phonetic": ["/hoʊld/", "/ɑːn/"],
+            "phonetic": [
+              "/hoʊld/",
+              "/ɑːn/"
+            ],
             "pos": "固定表达",
             "meaning": "抓紧；稍等"
           }
@@ -199,7 +261,22 @@
         "explanations": [
           "`hold on` 有两义：① 抓紧 ② 等一下（打电话时最常听）。常见错误：\n• \"Hold on to\" 后面要接宾语（hold on to the rail）\n• \"Hold up\" 也可表等等，但「抓紧」只用 hold on。电话里听到 Hold on, please. 就是「请稍等」。"
         ],
-        "distractors": [["Hold off.", "Holds on.", "Hold up."]]
+        "distractors": [
+          [
+            "Hold off.",
+            "Holds on.",
+            "Hold up."
+          ]
+        ],
+        "sentenceAudio": {
+          "text": "Hold on.",
+          "audio": {
+            "url": "assets/oral-4436b78d-625554311886c298d5e5.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "70bb4f9e632ba6fd0d009f708d8847e2947a25a3d9f0e3d7d1d8ef8bfc35115b",
+            "bytes": 3624
+          }
+        }
       },
       {
         "sentence": "Give me a thumbs up.",
@@ -251,7 +328,16 @@
             "a thumbs-ups.",
             "thumb ups."
           ]
-        ]
+        ],
+        "sentenceAudio": {
+          "text": "Give me a thumbs up.",
+          "audio": {
+            "url": "assets/oral-1bcdc1c7-1a10d9d9292958c54852.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "4da43840ad8b8987b2c0b209fb74ec0bea549b3339526aa1b43d54a312371918",
+            "bytes": 4442
+          }
+        }
       },
       {
         "sentence": "We have more like this.",
@@ -303,7 +389,16 @@
             "more likes this.",
             "much like this."
           ]
-        ]
+        ],
+        "sentenceAudio": {
+          "text": "We have more like this.",
+          "audio": {
+            "url": "assets/oral-2dc7b93b-40246af5cd7f5c0c649d.ogg",
+            "mimeType": "audio/ogg",
+            "sha256": "6f1ae6ed0bffe124b9a028c4d0ebb68934ac9bc475885f7830a90234a9ea51b2",
+            "bytes": 4757
+          }
+        }
       }
     ]
   }

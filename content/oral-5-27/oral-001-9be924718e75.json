@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I sympathize with you.",
+      "translation": "我对您深表同情!",
+      "chunks": [
+        "I",
+        "sympathize with you."
+      ],
+      "hints": [
+        "我",
+        "对您深表同情"
+      ],
+      "cid": "584cba91",
+      "sentenceAudio": {
+        "text": "I sympathize with you.",
+        "audio": {
+          "url": "assets/oral-584cba91-cccf2fd99aca9a88e52b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1b4748035efb305cbfce60b256b0bf452c4e2213755c197dfef7df6136a6793f",
+          "bytes": 5126
+        }
+      }
+    },
+    {
+      "sentence": "What a pity we've lost such a great man!",
+      "translation": "我们为失去一个这么好的人而感到遗憾!",
+      "chunks": [
+        "What a pity",
+        "we've lost",
+        "such a great man!"
+      ],
+      "hints": [
+        "真遗憾",
+        "我们失去了",
+        "这么好的人"
+      ],
+      "cid": "ca483d32",
+      "sentenceAudio": {
+        "text": "What a pity we've lost such a great man!",
+        "audio": {
+          "url": "assets/oral-ca483d32-86acab04f073f1fe2136.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "eea7ab84bff47f72cc667ca50433e823dcda832b9d4f6e0b1b5270c40c8a9566",
+          "bytes": 7567
+        }
+      }
+    },
+    {
+      "sentence": "I'm going to miss my grandpa.",
+      "translation": "我很怀念我的爷爷。",
+      "chunks": [
+        "I'm going to miss",
+        "my grandpa."
+      ],
+      "hints": [
+        "我会怀念",
+        "我的爷爷"
+      ],
+      "cid": "00e8bdc2",
+      "sentenceAudio": {
+        "text": "I'm going to miss my grandpa.",
+        "audio": {
+          "url": "assets/oral-00e8bdc2-66c0fa9a5ab0621ecee3.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "39a825efa58f5d812e3f63f444c2786c1eec710ed1e1a269362a8d939bf8d9c8",
+          "bytes": 6477
+        }
+      }
+    },
+    {
+      "sentence": "Try not to get depressed.",
+      "translation": "别太消沉了。",
+      "chunks": [
+        "Try not to",
+        "get depressed."
+      ],
+      "hints": [
+        "尽量别",
+        "消沉"
+      ],
+      "cid": "99f6ce5f",
+      "sentenceAudio": {
+        "text": "Try not to get depressed.",
+        "audio": {
+          "url": "assets/oral-99f6ce5f-75e352e3e85b03afc401.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "6f06fefc60278492fc0fdf4e3ef0fc07a20087dee8bccb085251b806a0d677a0",
+          "bytes": 5338
+        }
+      }
+    },
+    {
+      "sentence": "It was terrible this time, wasn't it?",
+      "translation": "这次很麻烦，对吧?",
+      "chunks": [
+        "It was terrible",
+        "this time,",
+        "wasn't it?"
+      ],
+      "hints": [
+        "太糟糕了",
+        "这一次",
+        "是不是"
+      ],
+      "cid": "666f9e81",
+      "sentenceAudio": {
+        "text": "It was terrible this time, wasn't it?",
+        "audio": {
+          "url": "assets/oral-666f9e81-c5eaa37115e9e0f7c8b4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "63ca44751b86dbf91a86592d824ed2376e5dac9522a55dd12c61ad622d71bb5a",
+          "bytes": 6780
+        }
+      }
+    },
+    {
+      "sentence": "I'm so sorry.",
+      "translation": "听到这个消息，我很难过。",
+      "chunks": [
+        "I'm so sorry."
+      ],
+      "hints": [
+        "听到这个消息，我很难过。/请节哀。"
+      ],
+      "cid": "4a35d147",
+      "sentenceAudio": {
+        "text": "I'm so sorry.",
+        "audio": {
+          "url": "assets/oral-4a35d147-a41ca70c8b033c07884d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "37eec9a98a59b45bca51962f8128219660fce1f1a9249b3b5b06c68e6092a527",
+          "bytes": 4266
+        }
+      }
+    }
+  ]
+}

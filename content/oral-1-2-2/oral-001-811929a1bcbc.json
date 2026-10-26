@@ -1,0 +1,1576 @@
+{
+  "schemaVersion": 1,
+  "mode": "replace",
+  "items": [
+    {
+      "sentence": "I'd like to play golf.",
+      "translation": "我想打高尔夫球。",
+      "chunks": [
+        "I'd like",
+        "to play golf."
+      ],
+      "hints": [
+        "我想打",
+        "高尔夫球。"
+      ],
+      "cid": "c2d2b0e9",
+      "sentenceAudio": {
+        "text": "I'd like to play golf.",
+        "audio": {
+          "url": "assets/oral-c2d2b0e9-84024aa5789e1404718a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1faab02b8d516e92d2c26c9d59f503bd8630fdad71e8c5a32151528a9d03735a",
+          "bytes": 4907
+        }
+      }
+    },
+    {
+      "sentence": "Would you like to golf tomorrow?",
+      "translation": "明天打高尔夫球，好吗?",
+      "chunks": [
+        "Would you like to golf",
+        "tomorrow?"
+      ],
+      "hints": [
+        "你想打高尔夫球吗",
+        "明天？"
+      ],
+      "cid": "c02899b7",
+      "sentenceAudio": {
+        "text": "Would you like to golf tomorrow?",
+        "audio": {
+          "url": "assets/oral-c02899b7-d05b6ce48d2e63b041e7.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "859338acfc1c6b2bd0b7b2d24385629c0cc52acc9e650a8b6ea7457109d4ebcf",
+          "bytes": 5941
+        }
+      }
+    },
+    {
+      "sentence": "Do you want to join me?",
+      "translation": "愿意和我一起打高尔夫球吗?",
+      "chunks": [
+        "Do you want",
+        "to join me?"
+      ],
+      "hints": [
+        "愿意",
+        "和我一起吗？"
+      ],
+      "cid": "59f2b10f",
+      "sentenceAudio": {
+        "text": "Do you want to join me?",
+        "audio": {
+          "url": "assets/oral-59f2b10f-6b2bd83ec38062bac87c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "9f1045cbd5a0aea00cfe037f886d73cb0122413bd6befc0cf6e08f3faf863841",
+          "bytes": 4733
+        }
+      }
+    },
+    {
+      "sentence": "Are there any golf courses around here?",
+      "translation": "这附近有高尔夫球场地吗?",
+      "chunks": [
+        "Are there any",
+        "golf courses around here?"
+      ],
+      "hints": [
+        "有没有",
+        "附近的高尔夫球场？"
+      ],
+      "cid": "dea1cbb9",
+      "sentenceAudio": {
+        "text": "Are there any golf courses around here?",
+        "audio": {
+          "url": "assets/oral-dea1cbb9-cde6d0043ff263ff98ff.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f4b9b047e9df2ef01f6029ec7a812ed3c8efaa304b3c607c45947c55bc54eef4",
+          "bytes": 6778
+        }
+      }
+    },
+    {
+      "sentence": "How much is it per person?",
+      "translation": "1个人多少钱?",
+      "chunks": [
+        "How much is it",
+        "per person?"
+      ],
+      "hints": [
+        "多少钱？",
+        "每人"
+      ],
+      "cid": "09976f4e",
+      "sentenceAudio": {
+        "text": "How much is it per person?",
+        "audio": {
+          "url": "assets/oral-09976f4e-bab29ae7dff35892dc3b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7a6da83b644c1c9dda22b04199a6b589521bc647730e24f3ecf21d126fac068d",
+          "bytes": 5651
+        }
+      }
+    },
+    {
+      "sentence": "How much is it per day?",
+      "translation": "1天多少钱?",
+      "chunks": [
+        "How much is it",
+        "per day?"
+      ],
+      "hints": [
+        "多少钱？",
+        "每天"
+      ],
+      "cid": "40f9bf2f",
+      "sentenceAudio": {
+        "text": "How much is it per day?",
+        "audio": {
+          "url": "assets/oral-40f9bf2f-5beff37168bef02cda11.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bc3c06e5f00d50449938a266657a5e5a157cbb36f7c46c85084036352389b219",
+          "bytes": 5336
+        }
+      }
+    },
+    {
+      "sentence": "Are there any extra charges?",
+      "translation": "此外还有其它的花费吗?",
+      "chunks": [
+        "Are there",
+        "any extra charges?"
+      ],
+      "hints": [
+        "还有",
+        "额外费用吗？"
+      ],
+      "cid": "fa2c1bb7",
+      "sentenceAudio": {
+        "text": "Are there any extra charges?",
+        "audio": {
+          "url": "assets/oral-fa2c1bb7-4770722eed82cbe040ce.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "06e6c7f55685f03deb9e2614993fc7131b42c5b02c0d888497c71d2ae7e81f79",
+          "bytes": 6030
+        }
+      }
+    },
+    {
+      "sentence": "Can I rent the equipment?",
+      "translation": "我可以租用用具吗?",
+      "chunks": [
+        "Can I",
+        "rent the equipment?"
+      ],
+      "hints": [
+        "我可以",
+        "租用用具吗？"
+      ],
+      "cid": "f6172d77",
+      "sentenceAudio": {
+        "text": "Can I rent the equipment?",
+        "audio": {
+          "url": "assets/oral-f6172d77-c21a51ff53e2fee0d192.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "981d1fde349141053ec27cc9b967daf73a839f5203e60603bc1f47ae1439e32a",
+          "bytes": 5118
+        }
+      }
+    },
+    {
+      "sentence": "Please make a reservation for golf.",
+      "translation": "请帮我预约高尔夫球。",
+      "chunks": [
+        "Please make a reservation",
+        "for golf."
+      ],
+      "hints": [
+        "请帮我预约",
+        "高尔夫球。"
+      ],
+      "cid": "acd0a557",
+      "sentenceAudio": {
+        "text": "Please make a reservation for golf.",
+        "audio": {
+          "url": "assets/oral-acd0a557-176700fe09114c07037c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e86b28ee70f7891e73518978af7f2b7ad903010baf76a94e28bf04f719d91f24",
+          "bytes": 7359
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to make golf reservations.",
+      "translation": "我想预约高尔夫球。",
+      "chunks": [
+        "I'd like to make",
+        "golf reservations."
+      ],
+      "hints": [
+        "我想预约",
+        "高尔夫球。"
+      ],
+      "cid": "6da6c48a",
+      "sentenceAudio": {
+        "text": "I'd like to make golf reservations.",
+        "audio": {
+          "url": "assets/oral-6da6c48a-ff088174a30572e52893.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0c1bbc895a521b9bce08b19da768da501573d62ae85ef5c79e1ecfb4438a56ad",
+          "bytes": 6892
+        }
+      }
+    },
+    {
+      "sentence": "When would you like to play?",
+      "translation": "你想什么时候打球？",
+      "chunks": [
+        "When would you like",
+        "to play?"
+      ],
+      "hints": [
+        "你想什么时候",
+        "打球？"
+      ],
+      "cid": "ec3d01d4",
+      "sentenceAudio": {
+        "text": "When would you like to play?",
+        "audio": {
+          "url": "assets/oral-ec3d01d4-5a39b4c919df1eab55b8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a2ca74fecb6e1a6bac0f314f00454aa276025ef8b7fbc42a0df7542d2288aa83",
+          "bytes": 5172
+        }
+      }
+    },
+    {
+      "sentence": "This Friday, if possible.",
+      "translation": "如果方便的话，就安排在这个星期五。",
+      "chunks": [
+        "This Friday,",
+        "if possible."
+      ],
+      "hints": [
+        "这个星期五，",
+        "如果方便的话。"
+      ],
+      "cid": "6094fb88",
+      "sentenceAudio": {
+        "text": "This Friday, if possible.",
+        "audio": {
+          "url": "assets/oral-6094fb88-d3fa563902e57b534c68.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "58803a36ba7f3553a4d5fc08b2f200616589fe655c2493c90e30bf4dcdff0def",
+          "bytes": 5871
+        }
+      }
+    },
+    {
+      "sentence": "There are four of us.",
+      "translation": "我们一共4个人。",
+      "chunks": [
+        "There are",
+        "four of us."
+      ],
+      "hints": [
+        "一共有",
+        "我们四个"
+      ],
+      "cid": "c66d2828",
+      "sentenceAudio": {
+        "text": "There are four of us.",
+        "audio": {
+          "url": "assets/oral-c66d2828-3919980c4fec1b677ab4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5cc2d0781732325e54fd1c596d41a9a65915509f1fe8ff18320e8316e743a939",
+          "bytes": 4346
+        }
+      }
+    },
+    {
+      "sentence": "What time are we starting?",
+      "translation": "我们几点开始?",
+      "chunks": [
+        "What time are we",
+        "starting?"
+      ],
+      "hints": [
+        "我们几点",
+        "开始？"
+      ],
+      "cid": "89ce6783",
+      "sentenceAudio": {
+        "text": "What time are we starting?",
+        "audio": {
+          "url": "assets/oral-89ce6783-124f0aa6277723268b0a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "75020e3fb33bff15fbf817b4d4886f333074c96d214d78de3edac4a4f4c04c5d",
+          "bytes": 5200
+        }
+      }
+    },
+    {
+      "sentence": "How about a drink?",
+      "translation": "去喝一杯怎么样?",
+      "chunks": [
+        "How about",
+        "a drink?"
+      ],
+      "hints": [
+        "怎么样？",
+        "喝一杯"
+      ],
+      "cid": "22e35f9a",
+      "sentenceAudio": {
+        "text": "How about a drink?",
+        "audio": {
+          "url": "assets/oral-22e35f9a-e264379b57ccf5dbc7f4.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "630a2287e7ce69753d237484345584ad5f0cf25f9efbda7ee1da779f0c04b950",
+          "bytes": 4285
+        }
+      }
+    },
+    {
+      "sentence": "I need a drink.",
+      "translation": "我想去喝一杯。",
+      "chunks": [
+        "I need",
+        "a drink."
+      ],
+      "hints": [
+        "我需要",
+        "喝一杯。"
+      ],
+      "cid": "6274bb39",
+      "sentenceAudio": {
+        "text": "I need a drink.",
+        "audio": {
+          "url": "assets/oral-6274bb39-31db763462d5b54ec9cc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4854e84769e938d8bf1548838ba9df3f6c0c44317cb63cea8d249e7339c678d4",
+          "bytes": 4123
+        }
+      }
+    },
+    {
+      "sentence": "Would you like to have a drink after work?",
+      "translation": "下班后想不想去喝一杯？",
+      "chunks": [
+        "Would you like to have a drink",
+        "after work?"
+      ],
+      "hints": [
+        "想不想去喝一杯",
+        "下班后？"
+      ],
+      "cid": "6cd96cc4",
+      "sentenceAudio": {
+        "text": "Would you like to have a drink after work?",
+        "audio": {
+          "url": "assets/oral-6cd96cc4-1ead6b3fcfa740e050df.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1ce87c3625ef753ebdb60871b9dfc93cae78a1e66f89993f1573326b9a527151",
+          "bytes": 7020
+        }
+      }
+    },
+    {
+      "sentence": "Do you have any beer?",
+      "translation": "有啤酒吗?",
+      "chunks": [
+        "Do you have",
+        "any beer?"
+      ],
+      "hints": [
+        "有",
+        "啤酒吗？"
+      ],
+      "cid": "ce69b2ee",
+      "sentenceAudio": {
+        "text": "Do you have any beer?",
+        "audio": {
+          "url": "assets/oral-ce69b2ee-c0ee59718801a3b7f235.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "3168b86bb5ecd0cc9d722d831e674f2c0e316005ae15f99e020fcdf333207e66",
+          "bytes": 4403
+        }
+      }
+    },
+    {
+      "sentence": "Two bottles of beer, please.",
+      "translation": "请来两瓶啤酒。",
+      "chunks": [
+        "Two bottles of beer,",
+        "please."
+      ],
+      "hints": [
+        "两瓶啤酒",
+        "麻烦了。"
+      ],
+      "cid": "b8170c87",
+      "sentenceAudio": {
+        "text": "Two bottles of beer, please.",
+        "audio": {
+          "url": "assets/oral-b8170c87-05de742d0beb6a1b325c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "15d98e8c41a464b10595412ae88a99da5ec7c03c1102f7c733876300543f815c",
+          "bytes": 6018
+        }
+      }
+    },
+    {
+      "sentence": "One whiskey with water, please.",
+      "translation": "请来杯掺水的威士忌。",
+      "chunks": [
+        "One whiskey with water,",
+        "please."
+      ],
+      "hints": [
+        "一杯掺水的威士忌",
+        "麻烦了。"
+      ],
+      "cid": "7d2961ec",
+      "sentenceAudio": {
+        "text": "One whiskey with water, please.",
+        "audio": {
+          "url": "assets/oral-7d2961ec-4543e515fdedfa6063b8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a67bce4aee259e5b7c2ff8355e474ca85661bbbaa0909518e7e06f84f9353102",
+          "bytes": 6489
+        }
+      }
+    },
+    {
+      "sentence": "What kind of snacks should we have?",
+      "translation": "要什么下酒菜呢?",
+      "chunks": [
+        "What kind of",
+        "snacks should we have?"
+      ],
+      "hints": [
+        "什么样的",
+        "下酒菜呢？"
+      ],
+      "cid": "97a75be5",
+      "sentenceAudio": {
+        "text": "What kind of snacks should we have?",
+        "audio": {
+          "url": "assets/oral-97a75be5-d2f094dcd1090ddb07cc.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7873f6e5df0cc1cc129fdd0932ba5f75cc3aa9e28a22ac6962f6792bc5337ffa",
+          "bytes": 5806
+        }
+      }
+    },
+    {
+      "sentence": "Let's forget about work and have some fun.",
+      "translation": "让我们忘了工作，痛快一会儿吧。",
+      "chunks": [
+        "Let's forget about work",
+        "and have some fun."
+      ],
+      "hints": [
+        "让我们忘了工作，",
+        "痛快一会儿吧。"
+      ],
+      "cid": "01dd38a3",
+      "sentenceAudio": {
+        "text": "Let's forget about work and have some fun.",
+        "audio": {
+          "url": "assets/oral-01dd38a3-6b83cce667ea2e66de51.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a1eec28ca6f59ab4b4ec4003d5e60939f26a4edb7dc23b10a024a1ee4c9d1a2b",
+          "bytes": 7975
+        }
+      }
+    },
+    {
+      "sentence": "Cheers!",
+      "translation": "干杯!",
+      "chunks": [
+        "Cheers!"
+      ],
+      "hints": [
+        "干杯！"
+      ],
+      "cid": "0aaab58e",
+      "sentenceAudio": {
+        "text": "Cheers!",
+        "audio": {
+          "url": "assets/oral-0aaab58e-6273f4e2671c7695823a.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "81f71c27c2a040b050a417f6b3a2151af5894a13b9b880084c8b5c16101596fa",
+          "bytes": 3475
+        }
+      }
+    },
+    {
+      "sentence": "What are you drinking?",
+      "translation": "喝什么呢?",
+      "chunks": [
+        "What are you drinking?"
+      ],
+      "hints": [
+        "你在喝什么？"
+      ],
+      "cid": "63a95869",
+      "sentenceAudio": {
+        "text": "What are you drinking?",
+        "audio": {
+          "url": "assets/oral-63a95869-9b508fd1c98e217fc621.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "23ab34d822190ffeba79a843b7567e56f03cff92a313ebb1ae7965fc141aab64",
+          "bytes": 4324
+        }
+      }
+    },
+    {
+      "sentence": "I like to go barhopping.",
+      "translation": "我喜欢换酒馆喝。",
+      "chunks": [
+        "I like to",
+        "go barhopping."
+      ],
+      "hints": [
+        "我喜欢",
+        "换酒馆喝。"
+      ],
+      "cid": "805e08c4",
+      "sentenceAudio": {
+        "text": "I like to go barhopping.",
+        "audio": {
+          "url": "assets/oral-805e08c4-fe954e283551bae4e8eb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "7a79b35faaf2e6261a042f063a6ce26c5c412890d17544cc4cf54db112182194",
+          "bytes": 5358
+        }
+      }
+    },
+    {
+      "sentence": "The first sip is the best!",
+      "translation": "第一口最舒坦了。",
+      "chunks": [
+        "The first sip",
+        "is the best!"
+      ],
+      "hints": [
+        "第一口",
+        "最舒坦了。"
+      ],
+      "cid": "00baf754",
+      "sentenceAudio": {
+        "text": "The first sip is the best!",
+        "audio": {
+          "url": "assets/oral-00baf754-49d80e5bc638c202bfcd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "20bc9ac94114eb89c6c577dd0129ed28a5cb3e404d0e9945225a853662209f34",
+          "bytes": 5383
+        }
+      }
+    },
+    {
+      "sentence": "Nothing beats this!",
+      "translation": "没有什么比这个更好了！",
+      "chunks": [
+        "Nothing beats",
+        "this!"
+      ],
+      "hints": [
+        "没有什么比得上",
+        "这个！"
+      ],
+      "cid": "e1e65f38",
+      "sentenceAudio": {
+        "text": "Nothing beats this!",
+        "audio": {
+          "url": "assets/oral-e1e65f38-cdf4e8f14480dc3b07ad.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "a33b3137ffddcfc4af774b429733d38338300a654ec1bd202190c8cf9ea0ecfb",
+          "bytes": 4851
+        }
+      }
+    },
+    {
+      "sentence": "Would you like a refill?",
+      "translation": "再来一杯，怎么样?",
+      "chunks": [
+        "Would you like",
+        "a refill?"
+      ],
+      "hints": [
+        "你想要",
+        "再添一杯吗？"
+      ],
+      "cid": "7cb47e46",
+      "sentenceAudio": {
+        "text": "Would you like a refill?",
+        "audio": {
+          "url": "assets/oral-7cb47e46-4c166977463a0207df0f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b9f460e0caf8547b3a3ff44ae4f7aa1dd9d4cc242b331508bd39ed8696c87c2c",
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "sentence": "Another beer, please.",
+      "translation": "再来一瓶啤酒!",
+      "chunks": [
+        "Another beer,",
+        "please."
+      ],
+      "hints": [
+        "再来一瓶啤酒",
+        "麻烦了。"
+      ],
+      "cid": "a18757ae",
+      "sentenceAudio": {
+        "text": "Another beer, please.",
+        "audio": {
+          "url": "assets/oral-a18757ae-e9646dbb523cb6b1221c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "bb77b70af6de15982e7a3f778f6b264698865eb0602e9bbb3232606a96340680",
+          "bytes": 5194
+        }
+      }
+    },
+    {
+      "sentence": "This whiskey is strong.",
+      "translation": "这种威士忌挺冲。",
+      "chunks": [
+        "This whiskey",
+        "is strong."
+      ],
+      "hints": [
+        "这种威士忌",
+        "挺冲。"
+      ],
+      "cid": "88c28a4e",
+      "sentenceAudio": {
+        "text": "This whiskey is strong.",
+        "audio": {
+          "url": "assets/oral-88c28a4e-3844f96e10b66e8f221d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ec609817837637cc0911b324001a94b7ea205a94fd52fce0448c8449c889c0e2",
+          "bytes": 4896
+        }
+      }
+    },
+    {
+      "sentence": "How do you like sake?",
+      "translation": "日本酒怎么样?",
+      "chunks": [
+        "How do you like",
+        "sake?"
+      ],
+      "hints": [
+        "觉得怎么样？",
+        "日本酒"
+      ],
+      "cid": "1a879699",
+      "sentenceAudio": {
+        "text": "How do you like sake?",
+        "audio": {
+          "url": "assets/oral-1a879699-28a9bbb65cb0e0dcfa4d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "e454f31e7ce7ab8684d633037b486094e96419f05a4bdee8d8516d36b41da6c7",
+          "bytes": 4427
+        }
+      }
+    },
+    {
+      "sentence": "It's strong.",
+      "translation": "酒劲大。",
+      "chunks": [
+        "It's",
+        "strong."
+      ],
+      "hints": [
+        "酒劲",
+        "大。"
+      ],
+      "cid": "b9fa7655",
+      "sentenceAudio": {
+        "text": "It's strong.",
+        "audio": {
+          "url": "assets/oral-b9fa7655-5248d766b25d5eaf9905.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "2b77152ff64f99c6ccd3af91a8a1cffcec05d394e6ad785248c14b2c22ba4372",
+          "bytes": 3781
+        }
+      }
+    },
+    {
+      "sentence": "I'm drunk.",
+      "translation": "我喝醉了。",
+      "chunks": [
+        "I'm",
+        "drunk."
+      ],
+      "hints": [
+        "我",
+        "喝醉了。"
+      ],
+      "cid": "e4555fac",
+      "sentenceAudio": {
+        "text": "I'm drunk.",
+        "audio": {
+          "url": "assets/oral-e4555fac-72f460deba754c86a7c8.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c569b14c96f672819984f38b047c813ad5ea6b0ad772eef8e477afb645d6cad0",
+          "bytes": 3575
+        }
+      }
+    },
+    {
+      "sentence": "I feel a little tipsy.",
+      "translation": "我觉得有点儿醉了。",
+      "chunks": [
+        "I feel",
+        "a little tipsy."
+      ],
+      "hints": [
+        "我觉得",
+        "有点儿醉了。"
+      ],
+      "cid": "68092f2a",
+      "sentenceAudio": {
+        "text": "I feel a little tipsy.",
+        "audio": {
+          "url": "assets/oral-68092f2a-e33a8485a986c746c1f9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "30389665497c08a041f0031710faa5805c54161a35b23bffeff246061719a615",
+          "bytes": 4916
+        }
+      }
+    },
+    {
+      "sentence": "I'm loaded.",
+      "translation": "酩酊大醉。",
+      "chunks": [
+        "I'm loaded."
+      ],
+      "hints": [
+        "酩酊大醉。"
+      ],
+      "cid": "b2373a55",
+      "sentenceAudio": {
+        "text": "I'm loaded.",
+        "audio": {
+          "url": "assets/oral-b2373a55-bdeae7138a907a40d504.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "59aa869d8fcdcdfb9e8bef6c8d18752b8bd376785c1cb51d29b6f1a7ee6fe48e",
+          "bytes": 3753
+        }
+      }
+    },
+    {
+      "sentence": "Drink moderately.",
+      "translation": "喝酒要适可而止。",
+      "chunks": [
+        "Drink",
+        "moderately."
+      ],
+      "hints": [
+        "喝酒要",
+        "适可而止。"
+      ],
+      "cid": "62eaf1c9",
+      "sentenceAudio": {
+        "text": "Drink moderately.",
+        "audio": {
+          "url": "assets/oral-62eaf1c9-3f02075dc5397737fb5e.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "329ba779f0f07ab1872314eb6bbbae49541272e7d0d3f2b62dbb870bcdf2402a",
+          "bytes": 4527
+        }
+      }
+    },
+    {
+      "sentence": "I get drunk easily.",
+      "translation": "我的酒量小。",
+      "chunks": [
+        "I get drunk",
+        "easily."
+      ],
+      "hints": [
+        "我的酒量",
+        "小。"
+      ],
+      "cid": "8a183357",
+      "sentenceAudio": {
+        "text": "I get drunk easily.",
+        "audio": {
+          "url": "assets/oral-8a183357-688bc942f195583de5af.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ce25715f996b6bb9a966ac78f7f7b518edbf5520d6b1541e50249542e27167c5",
+          "bytes": 5009
+        }
+      }
+    },
+    {
+      "sentence": "I drank too much.",
+      "translation": "我喝得太多了。",
+      "chunks": [
+        "I drank",
+        "too much."
+      ],
+      "hints": [
+        "我喝得",
+        "太多了。"
+      ],
+      "cid": "1d3ebcf9",
+      "sentenceAudio": {
+        "text": "I drank too much.",
+        "audio": {
+          "url": "assets/oral-1d3ebcf9-17ec6fba01cbc8ba3be1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "86194f80ddeabbcad449dfad4502897c91e88d3fb2e37fcff34c3a0d4fef7a17",
+          "bytes": 4487
+        }
+      }
+    },
+    {
+      "sentence": "I should have drunk less.",
+      "translation": "我早知道就少喝点了。",
+      "chunks": [
+        "I should have",
+        "drunk less."
+      ],
+      "hints": [
+        "早知道就",
+        "少喝点。"
+      ],
+      "cid": "6a74e470",
+      "sentenceAudio": {
+        "text": "I should have drunk less.",
+        "audio": {
+          "url": "assets/oral-6a74e470-4711b503314c16db75e9.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "18ffea1a426fa32bbb0b5e71805b6befa5654ad076ca2031ab4418a21fa244a1",
+          "bytes": 4837
+        }
+      }
+    },
+    {
+      "sentence": "Let's go to karaoke!",
+      "translation": "我们去唱卡拉OK吧。",
+      "chunks": [
+        "Let's go",
+        "to karaoke!"
+      ],
+      "hints": [
+        "我们去",
+        "唱卡拉OK吧。"
+      ],
+      "cid": "18703ae0",
+      "sentenceAudio": {
+        "text": "Let's go to karaoke!",
+        "audio": {
+          "url": "assets/oral-18703ae0-027d4008ada07dc4a0af.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "884ea12045698565ac379ee5d7049cd21d84e747ed68d101a7328ef510b2680a",
+          "bytes": 5584
+        }
+      }
+    },
+    {
+      "sentence": "What is karaoke?",
+      "translation": "什么是卡拉OK?",
+      "chunks": [
+        "What is",
+        "karaoke?"
+      ],
+      "hints": [
+        "什么是",
+        "卡拉OK？"
+      ],
+      "cid": "ef864d54",
+      "sentenceAudio": {
+        "text": "What is karaoke?",
+        "audio": {
+          "url": "assets/oral-ef864d54-b5ba347fa8e8eac5243d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "c075f3e5d178e05cdd919f81081e53da069437b34789e95c04c34e6f5dba3b34",
+          "bytes": 4704
+        }
+      }
+    },
+    {
+      "sentence": "Singing along with recorded music.",
+      "translation": "跟着录音带的音乐一起唱。",
+      "chunks": [
+        "Singing along",
+        "with recorded music."
+      ],
+      "hints": [
+        "跟着一起唱歌",
+        "伴着录音带的音乐。"
+      ],
+      "cid": "ef019226",
+      "sentenceAudio": {
+        "text": "Singing along with recorded music.",
+        "audio": {
+          "url": "assets/oral-ef019226-af8db39f64e63272cc56.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "16090820be62233f96bf12fa45003cc34272f1183da2b9af183a484b9d123329",
+          "bytes": 6980
+        }
+      }
+    },
+    {
+      "sentence": "Are you good at singing?",
+      "translation": "你擅长唱歌吗？",
+      "chunks": [
+        "Are you",
+        "good at singing?"
+      ],
+      "hints": [
+        "你",
+        "擅长唱歌吗？"
+      ],
+      "cid": "82c199de",
+      "sentenceAudio": {
+        "text": "Are you good at singing?",
+        "audio": {
+          "url": "assets/oral-82c199de-3f28b9f091e4eb85806b.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ff47ab6ba133f10c6d328b7f5c562b3bbc3313fa52091dad5dfd25088bfef0c0",
+          "bytes": 4496
+        }
+      }
+    },
+    {
+      "sentence": "I'd like to request a song.",
+      "translation": "我想点首歌。",
+      "chunks": [
+        "I'd like to",
+        "request a song."
+      ],
+      "hints": [
+        "我想",
+        "点首歌。"
+      ],
+      "cid": "1f43d8f0",
+      "sentenceAudio": {
+        "text": "I'd like to request a song.",
+        "audio": {
+          "url": "assets/oral-1f43d8f0-a3ace8792e7f58da73cd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "052b5d398d8b6677ad6f0f4046f261e88378384ed9e0f4c5dfc7f322885bccb1",
+          "bytes": 5462
+        }
+      }
+    },
+    {
+      "sentence": "You sing first.",
+      "translation": "你先唱。",
+      "chunks": [
+        "You sing",
+        "first."
+      ],
+      "hints": [
+        "你",
+        "先唱。"
+      ],
+      "cid": "3f87fa81",
+      "sentenceAudio": {
+        "text": "You sing first.",
+        "audio": {
+          "url": "assets/oral-3f87fa81-091135559535de895ca6.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "4e733f7c989fd937d5b3956354b04d57fecd743259cf830853564832a69bead6",
+          "bytes": 4299
+        }
+      }
+    },
+    {
+      "sentence": "Let's enjoy ourselves.",
+      "translation": "大家高兴地玩吧!",
+      "chunks": [
+        "Let's",
+        "enjoy ourselves."
+      ],
+      "hints": [
+        "我们",
+        "尽情享受吧！"
+      ],
+      "cid": "5eab8463",
+      "sentenceAudio": {
+        "text": "Let's enjoy ourselves.",
+        "audio": {
+          "url": "assets/oral-5eab8463-09bc5762a7ff7bed61c1.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "dd653be0500316a2360d8cdaa89c0e0789fbd2d93f3e7498b503a1c4c03cc4d3",
+          "bytes": 5471
+        }
+      }
+    },
+    {
+      "sentence": "How about a song, John?",
+      "translation": "约翰，你来唱一首吧。",
+      "chunks": [
+        "How about a song,",
+        "John?"
+      ],
+      "hints": [
+        "来首歌怎么样？",
+        "约翰？"
+      ],
+      "cid": "7f74511e",
+      "sentenceAudio": {
+        "text": "How about a song, John?",
+        "audio": {
+          "url": "assets/oral-7f74511e-4b3e1c88dbe2606f6a21.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "1b7780d9a5077d98c4d10d81e8c2cc15a1b04ebf6cef85f59f1e60019996106e",
+          "bytes": 4883
+        }
+      }
+    },
+    {
+      "sentence": "What are you going to sing?",
+      "translation": "你打算唱什么歌?",
+      "chunks": [
+        "What are you going to sing?"
+      ],
+      "hints": [
+        "你打算唱什么歌？"
+      ],
+      "cid": "4a04c385",
+      "sentenceAudio": {
+        "text": "What are you going to sing?",
+        "audio": {
+          "url": "assets/oral-4a04c385-acec456af22939eda269.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b244192aaa241f88657c54caf62a3ceadbd92e3e95db4de2300a22e6e606469a",
+          "bytes": 4620
+        }
+      }
+    },
+    {
+      "sentence": "Let's sing a duet.",
+      "translation": "来个二重唱吧。",
+      "chunks": [
+        "Let's sing",
+        "a duet."
+      ],
+      "hints": [
+        "来个",
+        "二重唱吧。"
+      ],
+      "cid": "0a64bf4c",
+      "sentenceAudio": {
+        "text": "Let's sing a duet.",
+        "audio": {
+          "url": "assets/oral-0a64bf4c-3e236e8243422491b87d.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "b95af9c8b6e621186400115bb5c6a3483c645c382d87383b04feb6b01d758745",
+          "bytes": 4480
+        }
+      }
+    },
+    {
+      "sentence": "Now it's my turn.",
+      "translation": "现在轮到我了。",
+      "chunks": [
+        "Now it's",
+        "my turn."
+      ],
+      "hints": [
+        "现在",
+        "轮到我了。"
+      ],
+      "cid": "4eaed82b",
+      "sentenceAudio": {
+        "text": "Now it's my turn.",
+        "audio": {
+          "url": "assets/oral-4eaed82b-cd150e9823f87c8a55ca.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "98a6567685fe83c495adda649cf7c36d94e0ee0edbfde4c5befb841c844deb82",
+          "bytes": 4567
+        }
+      }
+    },
+    {
+      "sentence": "I don't have the nerve to sing in front of people.",
+      "translation": "我不敢在大家面前唱歌。",
+      "chunks": [
+        "I don't have the nerve",
+        "to sing in front of people."
+      ],
+      "hints": [
+        "我不敢",
+        "在大家面前唱歌。"
+      ],
+      "cid": "6b54aa75",
+      "sentenceAudio": {
+        "text": "I don't have the nerve to sing in front of people.",
+        "audio": {
+          "url": "assets/oral-6b54aa75-d422aa1faf3c0e844679.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5a4d1b1e4fb643a4c7448e29c8af345a3ee9e64e66eb487dd347d74f878a7556",
+          "bytes": 8128
+        }
+      }
+    },
+    {
+      "sentence": "I can't keep up with the new songs.",
+      "translation": "我跟不上新歌的速度(我不会唱新歌。)",
+      "chunks": [
+        "I can't keep up",
+        "with the new songs."
+      ],
+      "hints": [
+        "我跟不上",
+        "新歌的速度。"
+      ],
+      "cid": "aaf4a5e4",
+      "sentenceAudio": {
+        "text": "I can't keep up with the new songs.",
+        "audio": {
+          "url": "assets/oral-aaf4a5e4-c02079fd2d3e016f5054.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "8f97134c48faae19c8cf9696e1e8aa6c11e969654563d3cceb7fce6f94c04ab9",
+          "bytes": 6514
+        }
+      }
+    },
+    {
+      "sentence": "I'm tone-deaf.",
+      "translation": "我五音不全。",
+      "chunks": [
+        "I'm",
+        "tone-deaf."
+      ],
+      "hints": [
+        "我",
+        "五音不全。"
+      ],
+      "cid": "bf0a8c7b",
+      "sentenceAudio": {
+        "text": "I'm tone-deaf.",
+        "audio": {
+          "url": "assets/oral-bf0a8c7b-e2f57e89585d248d5dbb.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "87fd9af456815586cfaa1cad81ff36b80d337584cb6c7bd92f99f7e7d28b5093",
+          "bytes": 4181
+        }
+      }
+    },
+    {
+      "sentence": "What's your karaoke specialty?",
+      "translation": "你唱卡拉OK有什么拿手的歌吗?",
+      "chunks": [
+        "What's your",
+        "karaoke specialty?"
+      ],
+      "hints": [
+        "你有什么",
+        "拿手的卡拉OK歌曲？"
+      ],
+      "cid": "d0de4c97",
+      "sentenceAudio": {
+        "text": "What's your karaoke specialty?",
+        "audio": {
+          "url": "assets/oral-d0de4c97-9eb241c02fb6b16ba982.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "84554768d8c3d860225beff27521f832e84cc787ca2919115a4480f3a23dc414",
+          "bytes": 6049
+        }
+      }
+    },
+    {
+      "sentence": "I've never heard of that song.",
+      "translation": "我从来没听说过那首歌。",
+      "chunks": [
+        "I've never heard",
+        "of that song."
+      ],
+      "hints": [
+        "我从来没听说过",
+        "那首歌。"
+      ],
+      "cid": "0accd0c1",
+      "sentenceAudio": {
+        "text": "I've never heard of that song.",
+        "audio": {
+          "url": "assets/oral-0accd0c1-81bae061dae993e29e53.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "5ce1e9296e5cfce768fb7595348b89c633c50b7e1133778418267c023c7a3c7d",
+          "bytes": 5733
+        }
+      }
+    },
+    {
+      "sentence": "You're a good singer!",
+      "translation": "你唱得真好!",
+      "chunks": [
+        "You're a",
+        "good singer!"
+      ],
+      "hints": [
+        "你唱得",
+        "真好！"
+      ],
+      "cid": "3b12a8ff",
+      "sentenceAudio": {
+        "text": "You're a good singer!",
+        "audio": {
+          "url": "assets/oral-3b12a8ff-7c6c7d9b503589ab5dab.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "ecdea97d4dba33359ff031bed99d0e2a82ab22648ef04445c5674f150e062879",
+          "bytes": 4394
+        }
+      }
+    },
+    {
+      "sentence": "We went hiking last Sunday.",
+      "cid": "7e998d83",
+      "translation": "上周日我们去徒步了。",
+      "chunks": [
+        "We went hiking",
+        "last Sunday."
+      ],
+      "hints": [
+        "我们去徒步",
+        "上周日"
+      ],
+      "grammar": [
+        {
+          "role": "主谓",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/wiː/",
+            "/went/",
+            "/ˈhaɪkɪŋ/"
+          ],
+          "pos": "一般过去时",
+          "meaning": "我们去徒步"
+        },
+        {
+          "role": "时间状语",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/læst/",
+            "/ˈsʌndeɪ/"
+          ],
+          "pos": "名词短语",
+          "meaning": "上周日"
+        }
+      ],
+      "explanations": [
+        "`go hiking` = 去徒步（go + 动名词表户外活动）。常见错误：\n• \"We **go** hiking last Sunday\" → 过去时间要用 went\n• \"We went **to hike**\" → 也可，但 went hiking 更自然",
+        "`last Sunday` 前不加介词（不说 on last Sunday）。对比 `next Sunday` 同样不加 on。"
+      ],
+      "distractors": [
+        [
+          "We go hiking",
+          "We went hike",
+          "We gone hiking"
+        ],
+        [
+          "the last Sunday.",
+          "on last Sunday.",
+          "last Saturdays."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "We went hiking last Sunday.",
+        "audio": {
+          "url": "assets/oral-7e998d83-29071eed5a6d1451366c.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "f13c65699d1f2ce9e1f95046531ae3f69cded882c2d74df1b201502e9a2bcd59",
+          "bytes": 5784
+        }
+      }
+    },
+    {
+      "sentence": "Have you seen the latest movie yet?",
+      "cid": "48a08dbe",
+      "translation": "你看过那部最新的电影了吗？",
+      "chunks": [
+        "Have you seen",
+        "the latest movie",
+        "yet?"
+      ],
+      "hints": [
+        "你看过",
+        "最新的那部电影",
+        "了吗"
+      ],
+      "grammar": [
+        {
+          "role": "现在完成疑问",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/hæv/",
+            "/juː/",
+            "/siːn/"
+          ],
+          "pos": "have done 疑问",
+          "meaning": "你看过……吗"
+        },
+        {
+          "role": "宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈleɪtɪst/",
+            "/ˈmuːvi/"
+          ],
+          "pos": "名词短语",
+          "meaning": "最新电影"
+        },
+        {
+          "role": "时间副词",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/jet/"
+          ],
+          "pos": "副词",
+          "meaning": "已经(疑问句)"
+        }
+      ],
+      "explanations": [
+        "`Have you seen...?` 现在完成表「到现在为止看过吗」。常见错误：\n• \"Did you seen\" → did 后原形 see\n• \"Have you saw\" → 完成时用过去分词 seen",
+        "`yet` 用于疑问/否定句尾。`latest` = 最新的（late 的最高级），勿混 lasted（持续）。"
+      ],
+      "distractors": [
+        [
+          "Did you seen",
+          "Have you saw",
+          "Do you seen"
+        ],
+        [
+          "the latest movies",
+          "a latest movie",
+          "latest movie"
+        ],
+        [
+          "already?",
+          "now?",
+          "yet now?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "Have you seen the latest movie yet?",
+        "audio": {
+          "url": "assets/oral-48a08dbe-a87973da82e9ee6c106f.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "de249d7bf72db786cd3c4c3bbbc65c4087ac7e7c471852919f575b542f08af83",
+          "bytes": 6252
+        }
+      }
+    },
+    {
+      "sentence": "The book is way better than the movie.",
+      "cid": "f265bd24",
+      "translation": "这本书比电影好看多了。",
+      "chunks": [
+        "The book is",
+        "way better than",
+        "the movie."
+      ],
+      "hints": [
+        "这本书是",
+        "远远好于",
+        "那部电影"
+      ],
+      "grammar": [
+        {
+          "role": "主系表",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/ðə/",
+            "/bʊk/",
+            "/ɪz/"
+          ],
+          "pos": "主系表",
+          "meaning": "这本书是"
+        },
+        {
+          "role": "比较级",
+          "color": "#3358e0",
+          "phonetic": [
+            "/weɪ/",
+            "/ˈbetər/",
+            "/ðæn/"
+          ],
+          "pos": "比较级+than",
+          "meaning": "远好于"
+        },
+        {
+          "role": "比较对象",
+          "color": "#7c5cbf",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmuːvi/"
+          ],
+          "pos": "名词",
+          "meaning": "那部电影"
+        }
+      ],
+      "explanations": [
+        "`way better` = 好得多（way 口语作程度副词 = much/far）。常见错误：\n• \"more better\" → better 已是比较级不加 more\n• \"way more better\" → 双重比较",
+        "`than` 引出比较对象。常见错误：\n• \"better **then**\" → 比较用 than（then 是然后）"
+      ],
+      "distractors": [
+        [
+          "A book is",
+          "The book are",
+          "Books is"
+        ],
+        [
+          "much more better than",
+          "way better as",
+          "more better than"
+        ],
+        [
+          "a movie.",
+          "movies.",
+          "the movies."
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "The book is way better than the movie.",
+        "audio": {
+          "url": "assets/oral-f265bd24-5d3fcb4deaec43ed5777.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "651c940358b268aee726ed96f881b7d119ec8df8622ffe1fdb59dbc92560ef34",
+          "bytes": 6436
+        }
+      }
+    },
+    {
+      "sentence": "I can't put this novel down.",
+      "cid": "574f6eb0",
+      "translation": "这本小说让我爱不释手。",
+      "chunks": [
+        "I can't",
+        "put this novel down."
+      ],
+      "hints": [
+        "我没法",
+        "放下这本小说"
+      ],
+      "grammar": [
+        {
+          "role": "主句主语和情态",
+          "color": "#e74c7a",
+          "phonetic": [
+            "/aɪ/",
+            "/kænt/"
+          ],
+          "pos": "can't",
+          "meaning": "我没法"
+        },
+        {
+          "role": "固定短语动词及宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/pʊt/",
+            "/ðɪs/",
+            "/ˈnɑːvl/",
+            "/daʊn/"
+          ],
+          "pos": "put ... down",
+          "meaning": "放下这本小说"
+        }
+      ],
+      "explanations": [
+        "`can't put sth down` = 放不下手/爱不释手（书太好看了）。常见错误：\n• \"can't put down this novel\" → 也可以，但 put + 宾语 + down 是常见语序\n• \"can't put it down\" 更口语",
+        "`novel` = 长篇小说；`story` = 故事。"
+      ],
+      "distractors": [
+        [
+          "I can't putting",
+          "I don't put",
+          "I can't to put"
+        ],
+        [
+          "put this novel off",
+          "put up with this novel",
+          "put this novel over"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "I can't put this novel down.",
+        "audio": {
+          "url": "assets/oral-574f6eb0-b17fafdef21880c0f7fd.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "d13b4bcce699f834a38cc1db59261822acbbded80671b6644a60dfa3d16bb3e9",
+          "bytes": 5904
+        }
+      }
+    },
+    {
+      "sentence": "How about the movies?",
+      "cid": "56db8fc9",
+      "translation": "看电影怎么样？",
+      "chunks": [
+        "How about",
+        "the movies?"
+      ],
+      "hints": [
+        "怎么样",
+        "电影（院）"
+      ],
+      "alts": [
+        [
+          "What about"
+        ],
+        null
+      ],
+      "grammar": [
+        {
+          "role": "建议句型",
+          "color": "#c87033",
+          "phonetic": [
+            "/haʊ/",
+            "/əˈbaʊt/"
+          ],
+          "pos": "How about 固定句型",
+          "meaning": "……怎么样"
+        },
+        {
+          "role": "介词宾语",
+          "color": "#3358e0",
+          "phonetic": [
+            "/ðə/",
+            "/ˈmuːviz/"
+          ],
+          "pos": "名词短语",
+          "meaning": "电影"
+        }
+      ],
+      "explanations": [
+        "`How about + 名词/动名词` 是提建议的固定句型，about 是介词。常见错误：\n• \"How about go to the movies?\" → 后面接名词或 doing，不能接原形\n• \"How about the movie?\" → 去电影院说 the movies",
+        "`the movies` 固定用复数，指「电影院、看电影这件事」。常见错误：\n• \"the movie\" → 指某一部影片，不指「去看电影」"
+      ],
+      "distractors": [
+        [
+          "How abouts",
+          "How for",
+          "How with"
+        ],
+        [
+          "the movie?",
+          "movies?",
+          "the cinema?"
+        ]
+      ],
+      "sentenceAudio": {
+        "text": "How about the movies?",
+        "audio": {
+          "url": "assets/oral-56db8fc9-5446c41aebd6d6869b84.ogg",
+          "mimeType": "audio/ogg",
+          "sha256": "0e4bda662b98377a37e419fde23c143b6bff255ff77d9727d5fc47e991786093",
+          "bytes": 4574
+        }
+      }
+    }
+  ]
+}
