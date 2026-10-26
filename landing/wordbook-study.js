@@ -75,7 +75,9 @@
       document.body.classList.add('recognition-page');
       const back=document.getElementById('bookBack');back.setAttribute('aria-label','返回课程目录');back.title='返回课程目录';
       back.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>';
-      form=VocabularyListenWordView.create(item,{autoplay:listeningAutoplay,rate:listeningRate,onRateChange:value=>{listeningRate=value;},getFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId),onFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId,true),positionLabel:(position+1)+' / '+page.itemCount,hasPrevious:position>0,onPrevious:()=>{if(busy||position<=0)return;busy=true;position--;loadCurrent().catch(showError).finally(()=>{busy=false;});},onAutoplayChange:value=>{listeningAutoplay=value;},onNext:()=>{if(busy)return;busy=true;position++;loadCurrent().catch(showError).finally(()=>{busy=false;});}});
+      let listeningNotice=null;
+      const onNotice=(message,onAction)=>{listeningNotice?.remove();listeningNotice=null;if(message){listeningNotice=NoticeBanner.create({message,actionLabel:'重试',onAction});document.getElementById('noticeBannerRail').append(listeningNotice);}};
+      form=VocabularyListenWordView.create(item,{onNotice,autoplay:listeningAutoplay,rate:listeningRate,onRateChange:value=>{listeningRate=value;},getFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId),onFavorite:()=>LearningWorkspaceStore.word(bookId,item.itemId,true),positionLabel:(position+1)+' / '+page.itemCount,hasPrevious:position>0,onPrevious:()=>{if(busy||position<=0)return;busy=true;position--;loadCurrent().catch(showError).finally(()=>{busy=false;});},onAutoplayChange:value=>{listeningAutoplay=value;},onNext:()=>{if(busy)return;busy=true;position++;loadCurrent().catch(showError).finally(()=>{busy=false;});}});
       root.append(form.element);document.getElementById('studyTools')?.replaceChildren(cacheStatus,form.settings);return;
     }
     const area=node('section'),figure=node('figure'),picture=node('picture'),copy=node('div');
@@ -192,6 +194,12 @@
     }catch(error){if(current(ticket))showError(error,retries);}
   }
   window.addEventListener('storage',()=>{try{if(owner!==LearningSessionBootstrap.identity()){generation++;form?.destroy?.();courseAudio?.destroy();root.replaceChildren();document.getElementById('studyTools')?.replaceChildren();showStatus('账号已变化，请重新打开单词本；原记录保留。');}}catch(_){generation++;form?.destroy?.();courseAudio?.destroy();root.replaceChildren();document.getElementById('studyTools')?.replaceChildren();}});
+  document.addEventListener('keydown',event=>{
+    if(!recognition||event.key!=='Enter'||event.defaultPrevented||event.isComposing||event.ctrlKey||event.metaKey||event.altKey||event.shiftKey||document.hidden||owner!==LearningSessionBootstrap.identity())return;
+    if(event.target?.closest?.('input,textarea,select,a,[contenteditable]:not([contenteditable="false"]),[role="dialog"]'))return;
+    const next=root.querySelector('.listen-word-next');if(!next||!form?.element?.isConnected)return;
+    event.preventDefault();if(event.repeat||busy||complete||loadFailed||next.disabled)return;next.click();
+  });
   document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.repeat||event.isComposing||!event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||event.code!=='KeyS'||document.hidden||busy||complete||loadFailed||owner!==LearningSessionBootstrap.identity())return;const skip=document.getElementById('studySkip');if(!skip||!root.querySelector('.wordbook-exercise'))return;event.preventDefault();skip.click();});
   window.addEventListener('online',()=>{if(!temporaryPractice&&!busy&&(!form||complete))boot();});boot();
 })();

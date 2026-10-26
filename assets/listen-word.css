@@ -48,13 +48,13 @@
 .recognition-page .listen-word-placeholder[hidden]{display:none}
 .recognition-page .listen-word-picture{border-radius:var(--ui-radius-card)}
 .recognition-page .listen-word-sentence{max-width:640px;margin:0 auto;text-align:center;font-size:clamp(24px,3.4vw,34px);line-height:1.5;font-weight:600;color:#283747;text-wrap:pretty}
-.recognition-page .listen-word-target{display:inline;vertical-align:baseline}
+.recognition-page .listen-word-target{display:inline-grid;vertical-align:baseline}
 .recognition-page .listen-word-word-details{display:none}
 .recognition-page button.listen-word-token{margin:0 3px;padding:4px 12px;min-height:44px;border:1px solid #eabf49;border-radius:var(--ui-radius-control);background:#fff1bb;box-shadow:0 2px 0 #d6aa40,0 4px 8px #b08a2920;color:#573316;line-height:1.2}
 .recognition-page button.listen-word-token:hover{background:#ffe49a}
 .recognition-page button.listen-word-token[aria-expanded=true]{background:#ffe18b}
 .recognition-page .listen-word-assistance{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;margin-top:22px}
-.recognition-page .listen-word-pronunciation{padding:6px 10px;border:1px solid #e3eaf0;border-radius:var(--ui-radius-control);color:#65768b;font-size:13px}
+.wordbook-study .listen-word-pronunciation{display:block;padding:3px 3px 0;color:#65768b;font-size:14px;font-weight:400;line-height:1.4;overflow-wrap:anywhere}
 .recognition-page .listen-word-accent{min-height:38px;padding:6px 9px;border:1px solid #e0e8ee;border-radius:var(--ui-radius-control);background:#f0f4f8;color:#41576e;font-size:12px}
 .recognition-page button.listen-word-play,.recognition-page button.listen-word-translate{gap:7px;margin:0;padding:8px 12px;min-height:38px;background:#f0f4f8;border:1px solid #e0e8ee;border-radius:var(--ui-radius-control);font-size:12px;color:#41576e}
 .recognition-page .listen-word-play svg{color:#c28416;width:19px;height:19px}
@@ -64,13 +64,15 @@
 .recognition-page .listen-word-position{display:none}
 .recognition-page .listen-word-controls{display:grid;grid-template-columns:1fr auto 1fr}
 .recognition-page .listen-word-previous{justify-self:start}
-.recognition-page .listen-word-next{justify-self:end}
+.recognition-page .listen-word-next{justify-self:end;display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .recognition-page .listen-word-bottom-actions{display:flex;align-items:center;gap:8px}
 .recognition-page button.listen-word-favorite,.recognition-page .listen-word-speed{box-sizing:border-box;width:44px;height:44px;padding:8px;background:#fffefb;border:1px solid #dde6ec;border-radius:var(--ui-radius-control);color:#476681;font-size:12px;box-shadow:0 2px 4px #43586b0a;cursor:pointer}
-.recognition-page .listen-word-speed{width:68px}
+.recognition-page .listen-word-speed{width:54.4px;padding-inline:4px}
 .recognition-page .listen-word-favorite[aria-pressed=true]{background:#fff0b7;border-color:#d9b24f;color:#936217}
 .recognition-page .listen-word-favorite[aria-pressed=true] svg{fill:#efc658}
-.recognition-page .listen-word-speed:focus-visible{outline:2px solid #3768b4;outline-offset:3px}
+.recognition-page .listen-word-speed:focus{outline:none}
+.recognition-page .listen-word-speed:focus-visible{outline:2px solid #3768b4;outline-offset:-3px}
+.recognition-page button:focus:not(:focus-visible){outline:none}
 .recognition-page button.listen-word-previous{background:#fffdf4;border-color:#dfdfd2;font-size:14px;color:#6a706b}
 .recognition-page button.listen-word-next{padding:11px 24px;background:#ffc838;border-color:#e7ad19;font-size:15px;color:#573316;box-shadow:0 3px 8px #c8911920}
 .recognition-page .listen-word-media-missing{padding:20px;text-align:center;font-size:13px;color:#745333}

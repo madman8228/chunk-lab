@@ -6,7 +6,7 @@
   async function play(clip){
    if(destroyed)return;stop();const ticket=generation,valid=()=>!destroyed&&ticket===generation;
    if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel();
-   onStatus('正在读取课程音频…');timer=setTimeout(()=>{if(valid()){stop();onStatus('音频读取或播放超时，请再次点击重试。');}},12000);
+   timer=setTimeout(()=>{if(valid()){stop();onStatus('音频读取或播放超时，请再次点击重试。');}},12000);
    try{
     let entry=cache.get(clip.sha256);
     if(!entry){
@@ -17,10 +17,10 @@
      if(bytes.byteLength!==clip.bytes||digest!==clip.sha256)throw Error('课程音频版本不一致，请重新读取课程。');
      const url=URL.createObjectURL(new Blob([bytes],{type:clip.mimeType}));audio.src=url;audio.preload='none';entry={audio,url};cache.set(clip.sha256,entry);
     }
-    current=entry.audio;current.onplaying=()=>{if(valid()){clearTimeout(timer);onStatus('正在播放课程音频。');}};
+    current=entry.audio;current.onplaying=()=>{if(valid())clearTimeout(timer);};
     current.onended=()=>{if(valid()){onStatus('');onEnded?.();}};current.onerror=()=>{if(valid()){stop();onStatus('课程音频播放失败，请再次点击重试。');}};
     current.playbackRate=rate;current.preservesPitch=true;current.currentTime=0;await current.play();
-   }catch(error){if(valid()){stop();onStatus(navigator.onLine===false?'音频尚未缓存，联网后可播放；可继续文字学习。':(error.message||'音频播放失败')+' 请再次点击重试；不会切换为浏览器合成声音。');}}
+   }catch(error){if(valid()){stop();onStatus(error.name==='NotAllowedError'?'请点击播放按钮开始播放。':navigator.onLine===false?'音频尚未缓存，联网后可播放；可继续文字学习。':(error.message||'音频播放失败')+' 请再次点击重试；不会切换为浏览器合成声音。');}}
   }
   function visibility(){if(document.hidden)stop();}
   function destroy(){if(destroyed)return;stop();destroyed=true;for(const entry of cache.values()){entry.audio.removeAttribute('src');entry.audio.load();URL.revokeObjectURL(entry.url);}cache.clear();document.removeEventListener('visibilitychange',visibility);root.removeEventListener('pagehide',stop);}
