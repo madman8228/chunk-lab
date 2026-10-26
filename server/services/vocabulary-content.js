@@ -14,11 +14,11 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
     const data=model.validateIndex(JSON.parse(fs.readFileSync(file,'utf8')));
     const locations=new Map(),items=new Map(),books=new Map();
     for(const name of entries){const folder=path.join(published,name),manifest=model.validateIndex(JSON.parse(fs.readFileSync(path.join(folder,'manifest.json'),'utf8')));
-      for(const entry of manifest.books){const active=versions?versions.current(entry.bookId):{book:entry,candidate:null,legacy:true,releaseId:entry.revision};const row=active.book;
+      for(const entry of manifest.books){const active=versions?(versions.metadata?versions.metadata(entry.bookId):versions.current(entry.bookId)):{book:entry,candidate:null,legacy:true,releaseId:entry.revision};const row=active.book;
         data.books.push(row);books.set(row.bookId,active);
         for(const ref of row.items){const key=ref.itemId+'\n'+ref.contentRevision;if(!items.has(key)){
           const candidateItem=active.candidate?.items?.find(value=>value.itemId===ref.itemId);
-          const location=active.legacy?path.join(folder,'items',ref.itemId.replace(/:/g,'_')+'.json'):null;
+          const location=active.legacy?path.join(folder,'items',ref.itemId.replace(/:/g,'_')+'.json'):path.join(folder,'releases',active.releaseId,'items',ref.itemId.replace(/:/g,'_')+'.json');
           if(!candidateItem&&(!location||!fs.existsSync(location)))throw fail('单词本项目缺失',503);
           items.set(key,candidateItem||location);
         }locations.set(key,items.get(key));}
@@ -45,7 +45,15 @@ function createVocabularyContent({appRoot,publishedRoot,personal,versions}) {
     const matching=[...new Map(refs.map(ref=>[ref.contentRevision,ref])).values()].filter(ref=>!revision||ref.contentRevision===revision);
     if(!matching.length)throw fail(revision?'教学内容版本已变化或暂不可用':'教学项目暂不可用',revision?409:404);
     if(!revision&&matching.length>1)throw fail('教学内容版本存在歧义，请提供课程版本',409);
-    const ref=matching[0];let source=publishedItems.get(id+'\n'+ref.contentRevision);
+    const ref=matching[0];
+    // Validate the selected course before serving its bodies; directory pages need only metadata.
+    if(versions)for(const active of publicBooks.values())if(!active.candidate&&active.book.items.some(item=>item.itemId===id&&item.contentRevision===ref.contentRevision)){
+      const verified=versions.current(active.book.bookId);
+      if(verified.releaseId!==active.releaseId)throw fail('课程版本已更新，请重新读取目录',409);
+      Object.assign(active,verified);
+      for(const item of verified.candidate.items)publishedItems.set(item.itemId+'\n'+item.contentRevision,item);
+    }
+    let source=publishedItems.get(id+'\n'+ref.contentRevision);
     if(!source&&versions){for(const active of publicBooks.values()){const historical=versions.history(active.book.bookId).find(row=>row.book.items.some(item=>item.itemId===id&&item.contentRevision===ref.contentRevision));if(historical){source=historical.candidate?.items?.find(item=>item.itemId===id)||path.join(versions.directory(active.book.bookId),'items',id.replace(/:/g,'_')+'.json');break;}}}
     if(!source)source=itemPath(id);
     const result=typeof source==='string'?JSON.parse(fs.readFileSync(source,'utf8')):structuredClone(source);

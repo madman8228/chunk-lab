@@ -78,7 +78,7 @@ function createPublicWordbookVersions({publishedRoot}){
   let legacyId=records[0]?.baseReleaseId;
   if(!legacyId){const fingerprint=jsonHash(index),cached=legacySummaryIds.get(bookId);if(cached?.fingerprint===fingerprint)legacyId=cached.releaseId;else{legacyId=readLegacy(bookId,dir).releaseId;legacySummaryIds.set(bookId,{fingerprint,releaseId:legacyId});}}
   const releaseId=records.at(-1)?.releaseId||legacyId,activeIndex=releaseId===legacyId?index:summaryManifest(bookId,path.join(dir,'releases',releaseId));
-  return {book:activeIndex.books[0],releaseId};
+  return {book:activeIndex.books[0],releaseId,legacy:releaseId===legacyId};
  }
  function hasPublished(bookId){const dir=directory(bookId);if(!fs.existsSync(path.join(dir,'manifest.json')))return false;summaryManifest(bookId,dir);return true;}
  function publishedBooks(metadataOnly=false){
@@ -142,6 +142,6 @@ function createPublicWordbookVersions({publishedRoot}){
    fs.renameSync(staging,target);return readRelease(bookId,dir,releaseId);
   }catch(error){if(fs.existsSync(staging)&&path.dirname(staging)===releases&&path.basename(staging).startsWith('.pending-'))fs.rmSync(staging,{recursive:true,force:true});throw error;}
  }
- return {current,history,publishedBooks,publishedSummaries:()=>publishedBooks(true),hasPublished,install,activate,readRelease,readLegacy,readAny,findActivatedImport,directory};
+ return {current,metadata:summary,history,publishedBooks,publishedSummaries:()=>publishedBooks(true),hasPublished,install,activate,readRelease,readLegacy,readAny,findActivatedImport,directory};
 }
 module.exports={createPublicWordbookVersions};
