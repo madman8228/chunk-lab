@@ -13,7 +13,7 @@ function assetReferences(candidate){
  const book=candidate?.index?.books?.[0];if(book?.catalog?.coverUrl)add(book.catalog.coverUrl,'cover');
  for(const item of candidate?.items||[]){
   for(const url of item.images?.wide||[])add(url,'illustration');for(const url of item.images?.mobile||[])add(url,'illustration');
-  for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean))add(activity.audio?.url,'audio',activity.audio);
+  for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean))for(const clip of [activity.audio,...Object.values(activity.audioByAccent||{})])add(clip?.url,'audio',clip);
  }
  return [...refs.values()].sort((a,b)=>a.url.localeCompare(b.url));
 }
@@ -55,7 +55,7 @@ function validatePackage(candidate,{appRoot,readPrivate,allowMissing=false,check
  const itemById=new Map((candidate.items||[]).map(item=>[item.itemId,item]));
  const missing=new Set(assets.filter(a=>a.missing).map(a=>a.url));
  for(const item of itemById.values()){
-  const audioUrls=[item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean).map(a=>a.audio?.url);
+  const audioUrls=[item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean).flatMap(a=>[a.audio,...Object.values(a.audioByAccent||{})]).map(audio=>audio?.url);
   if(!audioUrls.some(url=>missing.has(url)))validateDictationAssets(item,appRoot,readAsset);
  }
  const pictures=assets.filter(a=>a.kind==='illustration');if(checkAlias)checkAlias(pictures);

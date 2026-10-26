@@ -56,6 +56,18 @@ async function main(){
     assert.equal(await page.locator('.home-content-kind').first().textContent(),'句子','sentence course uses the concise shared label');
     assert.equal(await page.locator('.home-course-progress-line .home-deck-progress').textContent(),'已学 3 / 418 句');
     assert.equal(await page.locator('.home-course-progress-line .home-course-metrics .home-progress-track').count(),1,'learned count and progress track share the dedicated progress row');
+    const progressSource=fs.readFileSync(path.join(root,'main.html'),'utf8').match(/var homeProgressMarkup = [\s\S]*?(?=    var lastStudiedAt)/)[0];
+    const dualProgress=require('node:vm').runInNewContext(progressSource+';homeProgressMarkup',{coursePercent:2,hasLessonMetric:true,focusTitle:'请医生看病',lessonPercent:7,courseSegmentPercent:2,lessonSegmentPercent:7,escX:String});
+    await page.evaluate(()=>document.getElementById('pageHome').append(document.getElementById('home')));
+    for(const width of [937,390]){
+      await page.setViewportSize({width,height:932});
+      await page.evaluate(markup=>draw({resume:{toolId:'chunks',deck:{id:'lesson-1'},idx:4},courseRows:[{course:{id:'dual',title:'口语3000句'},lessons:[{contentRef:{type:'sentence-deck',id:'lesson-1'}},{}],resource:{available:true},progress:'已学 1 / 65 课节',homeProgressMarkup:markup}]}),dualProgress);
+      const segments=page.locator('.home-progress-track [role="progressbar"]');
+      assert.deepEqual(await segments.evaluateAll(nodes=>nodes.map(node=>({value:node.getAttribute('aria-valuenow'),width:node.getBoundingClientRect().width>0,color:getComputedStyle(node).backgroundColor}))),[{value:'2',width:true,color:'rgb(245, 158, 11)'},{value:'7',width:true,color:'rgb(16, 185, 129)'}],'both progress values remain visible in distinct colors');
+      assert.equal(await page.locator('.home-current-progress-label').isVisible(),true);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,'dual progress fits narrow screens');
+    }
+    await page.evaluate(()=>document.body.append(document.getElementById('home')));
     await page.locator('#pageHome').evaluate(node=>{node.innerHTML='<section class="workspace-active"><div class="hd-row"><button class="hd-main-action"><span class="workspace-course-cover"><span class="hc-course-cover"></span></span><span class="grow"><span class="home-course-title-line"><span class="nm">口语3000句</span></span><span class="home-course-progress-line"><span class="sub home-deck-progress">已学 1 / 65 课节</span><span class="home-course-metrics"><span class="home-progress-metric"><span class="home-progress-label"><b>2%</b></span><span class="home-progress-track"><span></span></span></span></span></span></span></button><button class="hd-select-lessons">选课节</button><a class="hd-action">继续学习</a></div></section>';});
     assert.equal(await page.locator('#pageHome .hd-row').evaluate(node=>node.getBoundingClientRect().height<=165),true,'course card with lesson selector has no oversized blank height');
     assert.equal(await page.locator('#pageHome .hd-action').evaluate(node=>getComputedStyle(node).position),'static','resume action stays in normal flow below the course');

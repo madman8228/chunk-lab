@@ -6,7 +6,7 @@ import { validateLessonV3 } from './schema.mjs';
 
 const normalize = value => value.normalize('NFKC').trim().toLowerCase().replace(/[’‘]/g, "'").replace(/[.!?。！？]+$/u, '').replace(/\s+/g, ' ');
 
-export function createSchemaRunner({ document, window, activity, trail, feedback, progress, next, reviewEntry, catalog, getNodeLessonIds, getNodeLessonLabel, loadNodeLesson }) {
+export function createSchemaRunner({ document, window, activity, teachingBoard, trail, feedback, progress, next, reviewEntry, catalog, getNodeLessonIds, getNodeLessonLabel, loadNodeLesson }) {
   let lesson = null;
   let run = null;
   let keyboard = createKeyboardState();
@@ -36,7 +36,16 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
   };
   const tokenById = id => lesson.tokens.find(token => token.id === id);
   const currentStep = () => lesson.steps.find(step => step.id === run.currentStepId);
-  const announce = (text, kind = '') => { feedback.textContent = text; feedback.className = kind; };
+  const announce = (text, kind = '') => {
+    if (!teachingBoard) { feedback.textContent = text; feedback.className = kind; return; }
+    feedback.textContent = '';
+    teachingBoard.querySelector('.blackboard-feedback')?.remove();
+    if (text) {
+      const message = make('p', text, `blackboard-feedback ${kind}`);
+      message.setAttribute('role', 'status');
+      teachingBoard.append(message);
+    }
+  };
   const stepIsComplete = id => run.completedStepIds.includes(id);
   const persist = () => review.saveSession(lesson.id, serializeRun(run));
   const record = (step, response, outcome) => {
@@ -194,7 +203,7 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
   }
 
   function renderCompose(step) {
-    if (step.instruction) activity.append(make('p', step.instruction, 'schema-explanation'));
+    if (step.instruction && !teachingBoard) activity.append(make('p', step.instruction, 'schema-explanation'));
     const output = make('div', '', 'assembly schema-assembly');
     const selectedStep = { ...step, targetTokenIds: selected };
     output.append(drawSyntax(selectedStep, selected, true, id => {
@@ -252,7 +261,7 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
   }
 
   function renderTransform(step) {
-    if (step.instruction) activity.append(make('p', step.instruction, 'schema-explanation'));
+    if (step.instruction && !teachingBoard) activity.append(make('p', step.instruction, 'schema-explanation'));
     const source = make('div', '', 'reference schema-reference');
     for (const [index, id] of step.sourceTokenIds.entries()) {
       const operationIndex = step.operations.findIndex(item => (item.type === 'insert' ? item.anchorId : item.from[0]) === id);
@@ -267,7 +276,7 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
     activity.append(source);
     if (transformFocus !== null) {
       const operation = step.operations[transformFocus];
-      if (operation.type === 'insert') activity.append(make('p', `在 ${tokenById(operation.anchorId).text} ${operation.position === 'after' ? '后' : '前'}加入词块`, 'schema-explanation'));
+      if (operation.type === 'insert') (teachingBoard ?? activity).append(make('p', `在 ${tokenById(operation.anchorId).text} ${operation.position === 'after' ? '后' : '前'}加入词块`, 'schema-explanation'));
       const choices = make('div', '', 'bank schema-bank');
       for (const id of operation.to) {
         const token = tokenById(id);
@@ -333,6 +342,14 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
 
   function render() {
     if (!lesson || !run) return;
+    if (teachingBoard) {
+      teachingBoard.hidden = false;
+      teachingBoard.classList.remove('is-prompt', 'has-visual');
+      teachingBoard.replaceChildren();
+      const step = currentStep();
+      teachingBoard.append(make('h2', step.meaning, 'blackboard-title blackboard-instruction'));
+      if (step.instruction) teachingBoard.append(make('p', step.instruction, 'blackboard-question blackboard-instruction'));
+    }
     activity.replaceChildren();
     announce('');
     const step = currentStep();
@@ -343,7 +360,7 @@ export function createSchemaRunner({ document, window, activity, trail, feedback
     if (reviewMode || step.hideHistory || ['independent-output', 'delayed-review'].includes(step.activity)) {
       trail.replaceChildren(); trail.hidden = true;
     } else drawTrail();
-    activity.append(make('h2', step.meaning, 'target-meaning'));
+    if (!teachingBoard) activity.append(make('h2', step.meaning, 'target-meaning'));
     if (reviewComplete || finished) {
       const lastAttempt = [...run.attempts].reverse().find(attempt => attempt.stepId === step.id);
       activity.append(make('p', lastAttempt?.response ?? '', 'reference schema-result'));

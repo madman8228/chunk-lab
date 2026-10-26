@@ -33,6 +33,12 @@ function prepare(snapshot, bookId, output, forms, appRoot, catalogFile) {
   if (!book) throw Error('教材未进入生产目录');
   if (snapshot.errors.some(row => row.bookId === bookId)) throw Error('教材有文件核验异常');
   const queue = JSON.parse(fs.readFileSync(book.queuePath, 'utf8'));
+  let sourceRecords=[];
+  if(queue.source?.sha256){
+    const bytes=fs.readFileSync(path.resolve(appRoot,queue.source.path));
+    if(hash(bytes)!==queue.source.sha256)throw Error('教材音标来源摘要变化，请重新核验源文件');
+    sourceRecords=JSON.parse(bytes).records||[];
+  }
   const identity=bookIdentity(queue.book,bookId);
   const catalog = JSON.parse(fs.readFileSync(catalogFile, 'utf8'));
   const catalogAssets = new Map(catalog.assets.map(row => [row.sha256, row]));
@@ -60,7 +66,9 @@ function prepare(snapshot, bookId, output, forms, appRoot, catalogFile) {
       if (!units.some(unit => unit.unitId === row.unitId)) units.push({ unitId: row.unitId, title: row.unit, itemIds: [] });
       units.find(unit => unit.unitId === row.unitId).itemIds.push(row.itemId);
       targetBindings.push({ itemId: row.itemId, term: row.term, target: span.text, sentenceFingerprint: row.sentenceFingerprint });
-      return { itemId: row.itemId, unitId: row.unitId, word: row.term, meaning: row.meaning, scene: row.chinese, translation: row.chinese,
+      const original=sourceRecords.find(record=>(record.entryId||record.itemId)===row.itemId&&record.unitId===row.unitId&&record.term===row.term&&record.meaning===row.meaning);
+      const phonetic=original&&(!original.phoneticScope||original.phoneticScope==='term')?original.phonetic?.trim():undefined;
+      return { itemId: row.itemId, unitId: row.unitId, word: row.term, meaning: row.meaning,...(phonetic?{phonetic}:{}), scene: row.chinese, translation: row.chinese,
         exercise: draftModel.exercise(row.english.slice(0, span.start) + '[' + span.text + ']' + row.english.slice(span.start + span.length)),
         images: { wide: [imageUrl], mobile: [imageUrl] }, dictation: { audio: audio(row.wordAudio), answers: [row.term] },
         sentenceAudio: { text: row.english, audio: audio(row.sentenceAudio) } };

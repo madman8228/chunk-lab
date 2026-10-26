@@ -7,6 +7,17 @@ assert.equal(api.safe('javascript:alert(1)'),'');
 assert.equal(api.safe('server/data/chunklab.db'),'');
 assert.equal(api.destination('?returnTo=https%3A%2F%2Fevil.example'),'main.html?view=my-learning');
 assert.equal(api.destination('?returnView=discover'),'main.html?view=discover');
+assert.equal(api.safe('decks.html?courseView=joined&courseType=decks'),'main.html?view=my-learning');
+assert.equal(api.safe('decks.html?courseView=discover'),'main.html?view=discover');
+assert.equal(api.safe('decks.html'),'main.html?view=discover');
+assert.equal(api.safe('decks.html?manage=1&courseView=joined'),'decks.html?manage=1&courseView=joined');
+assert.equal(api.destination('?returnTo='+encodeURIComponent('decks.html?courseView=joined')),'main.html?view=my-learning');
+const entryScript=fs.readFileSync('decks.html','utf8').match(/<script>\s*([\s\S]*?)<\/script>/)[1];
+for(const [search,expected] of [['?courseView=joined&courseType=decks','main.html?view=my-learning'],['','main.html?view=discover'],['?course=builtin%3Aoral',null],['?manage=1&courseView=joined',null]]){
+ let redirected=null;
+ vm.runInNewContext(entryScript,{URLSearchParams,CourseReturn:api,location:{href:'http://localhost/decks.html'+search,search,replace:value=>{redirected=value;}}});
+ assert.equal(redirected,expected,'legacy list entry redirects while course directories and editing remain available');
+}
 const original='main.html?view=my-learning&contentStatus=completed&contentQuery=hello';
 const detail=api.forward('wordbook-details.html?book=sample',original);
 assert.equal(api.destination('?'+detail.split('?')[1]),original);

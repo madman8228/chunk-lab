@@ -228,6 +228,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 /* ★ 中文翻译绝对定位到卡片正中：左侧圆环 / 右侧 tag 宽度变化都不会把它挤偏 */
 .zh-wrap{position:absolute;left:50%;top:0;transform:translateX(-50%);text-align:center;min-width:0;max-width:calc(100% - 150px);display:flex;flex-direction:column;align-items:center;z-index:1}
 .sentence-speak{width:24px;height:24px;padding:0}
+#btnSpeak .icon{transform:translateY(1px)}
 .stage .icon-action:hover{background:transparent}
 .stage-head-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
 .qno{
@@ -614,7 +615,7 @@ a.brand:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .stage-head-right > #btnMaster:focus-visible,
 .stage-head-right > #btnExplain.explain-text-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .kbd{
-  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;box-sizing:border-box;height:18px;
+  display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;box-sizing:border-box;height:19.8px;
   font:11px/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);
   border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:var(--ui-radius-sm);padding:2px 5px;background:#fff;
 }
@@ -1560,7 +1561,7 @@ html:has(#updateToast[style*="display: flex"]) .boot-screen{top:100px}
   <div class="practice-toolbar">
   <div class="practice-options" id="practiceOptions" hidden>
     <label id="practiceModeRow"><span>答题模式</span><select id="practiceMode" aria-label="答题模式"><option value="choose">选择</option><option value="type">手拼</option></select></label>
-    <label id="practiceShuffleRow" title="下次开始练习时生效，不打乱当前题组"><input type="checkbox" id="practiceShuffle">乱序出题（下次开始生效）</label>
+    <label id="practiceShuffleRow" title="下次开始练习时生效，不打乱当前题组"><input type="checkbox" id="practiceShuffle">乱序出题</label>
   </div>
   <label class="practice-batch-size" id="practiceBatchSizeRow" hidden>
     <select id="practiceBatchSize" aria-label="每组练习句数" aria-describedby="practiceBatchSizeHint">
@@ -1607,7 +1608,7 @@ html:has(#updateToast[style*="display: flex"]) .boot-screen{top:100px}
       <div class="track" id="track"></div>
     </div>
     <div class="stage-foot">
-      <button class="icon-action sentence-speak hidden" id="btnSpeak" title="听全句朗读" aria-label="听全句朗读" aria-pressed="false"><span class="sentence-waves" aria-hidden="true"><i></i><i></i><i></i></span><span data-icon="speak"></span><span>听全句朗读</span></button>
+      <button class="icon-action sentence-speak hidden" id="btnSpeak" title="全句朗读" aria-label="全句朗读" aria-pressed="false"><span class="sentence-waves" aria-hidden="true"><i></i><i></i><i></i></span><span data-icon="speak"></span><span>全句朗读</span></button>
       <span class="spacer"></span>
       <button class="practice-reset" id="btnResetSelection" type="button" title="重新选择当前题；保留错误、提示及历史学习记录" hidden><span data-icon="rotateCcw" aria-hidden="true"></span>重置选择</button>
       <button class="btn sm primary hidden" id="btnNext">下一题</button>
@@ -5528,8 +5529,8 @@ function renderHome(modelOnly){
     courseCompletion[course.id] = {state:state};
     var homeProgressMarkup = '<span class="home-progress-metric"><span class="home-progress-label"><b>' + coursePercent + '%</b></span>'
       + '<span class="home-progress-track"><span style="width:' + coursePercent + '%"></span></span></span>';
-    if(hasLessonMetric)homeProgressMarkup += '<span class="home-progress-metric is-current"><span class="home-progress-label"><span title="' + escX(focusTitle) + '">当前课节：' + escX(focusTitle) + '</span><b>' + lessonPercent + '%</b></span>'
-      + '<span class="home-progress-track"><span style="width:' + lessonPercent + '%"></span></span></span>';
+    if(hasLessonMetric)homeProgressMarkup = '<span class="home-progress-metric"><span class="home-progress-label"><b title="课程总进度">' + coursePercent + '%</b><b class="home-current-progress-label" title="当前课节：' + escX(focusTitle) + '">本课 ' + lessonPercent + '%</b></span>'
+      + '<span class="home-progress-track is-combined"><span role="progressbar" aria-label="课程总进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + coursePercent + '" style="width:' + courseSegmentPercent + '%"></span><span class="is-lesson" role="progressbar" aria-label="当前课节进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + lessonPercent + '" style="width:' + lessonSegmentPercent + '%"></span></span></span>';
     var lastStudiedAt=sentenceLessons.reduce(function(latest,lesson){return Math.max(latest,lastStudyByDeck[lesson.contentRef.id]||0);},0);
     return { course:course, lessons:lessons, title:title, completionState:state, lastStudiedAt:lastStudiedAt,lastOpenedAt:latestPlayed,coverMarkup:courseCover(course,lessons), progress:progressText, progressAria:progressAria, progressMarkup:progressMarkup,homeProgressMarkup:homeProgressMarkup };
   });
@@ -5595,7 +5596,7 @@ function renderHome(modelOnly){
   if(_courseRows.length || !joinedCourses.length){
     var _courseCardHtml = '<div class="home-card home-courses">'
       + '<div class="hc-title">' + ic('book') + '我的课程<span class="hc-membership-count">' + _homeJoinedCourseCount + '/' + (CourseEnrollment.MAX_JOINED_COURSES || 3) + '</span><span class="grow"></span>'
-      + '<a class="hc-manage" href="decks.html?courseView=joined">管理 ' + ic('chevR') + '</a>'
+      + '<a class="hc-manage" href="main.html?view=my-learning">管理 ' + ic('chevR') + '</a>'
       + '</div>'
       + '<div class="home-decks">' + _courseRows.join('') + '</div>'
       + (_homeJoinedCourseCount < (CourseEnrollment.MAX_JOINED_COURSES || 3)
@@ -5698,8 +5699,8 @@ function renderHome(modelOnly){
   h.push('<div class="home-rail">' + _railWrong + '</div>');
   var body = $('homeBody');
   body.innerHTML = h.join('');
-  var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'decks.html'; };
-  var addCourse = body.querySelector('#homeAddCourse'); if(addCourse) addCourse.onclick = function(){ location.href = 'decks.html?courseView=discover'; };
+  var goDecks = body.querySelector('#homeGoDecks'); if(goDecks) goDecks.onclick = function(){ location.href = 'main.html?view=discover'; };
+  var addCourse = body.querySelector('#homeAddCourse'); if(addCourse) addCourse.onclick = function(){ location.href = 'main.html?view=discover'; };
   body.querySelectorAll('.hc-course-cover img').forEach(function(img){ img.onerror = function(){ img.hidden = true; }; if(img.complete && !img.naturalWidth) img.hidden = true; });
   Array.prototype.forEach.call(body.querySelectorAll('[data-home-course]'), function(btn){
     btn.onclick = function(){
@@ -6526,7 +6527,7 @@ var _masterBtn = $('btnMaster'); if(_masterBtn) _masterBtn.onclick = toggleMaste
    - 工具栏 book 图标 = 题库工具栏入口
    2026-09-10 误以为重复删了 onclick → 按钮"点不动"，已恢复 */
 $('btnStats').onclick = function(){ window.location.href = 'stats.html'; };
-$('btnDecks').onclick = function(){ window.location.href = 'decks.html?courseView=joined'; };
+$('btnDecks').onclick = function(){ window.location.href = 'main.html?view=my-learning'; };
 
 
 /* 快捷键标签可点击：委托 stage-tip-bar 上的 [data-action] */

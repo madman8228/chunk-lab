@@ -345,6 +345,7 @@
       if(!data.libraryControlsUnavailable){
         var create=element('a','创建/导入','library-create');create.href='course-create.html';
         var libraryHeadingActions=element('div',undefined,'workspace-heading-actions');libraryHeadingActions.append(create);heading.append(libraryHeadingActions);
+        var editCourses=element('a','课程编辑','library-create');editCourses.href='decks.html?manage=1&courseView=joined&returnView=my-learning';libraryHeadingActions.append(editCourses);
         var search=element('input');search.type='search';search.className='library-search-input';search.value=searchDraft===null?query:searchDraft;search.placeholder='搜索';search.setAttribute('aria-label','搜索我的学习');search.setAttribute('data-focus-key','library-search');libraryHeadingActions.insertBefore(search,create);
         var composing=false,lastSearchValue=search.value;
         function applySearch(){if(search.value===lastSearchValue)return;lastSearchValue=search.value;actions.filter({contentQuery:search.value},false,'my-learning',true);}

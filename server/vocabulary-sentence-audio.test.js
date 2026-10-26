@@ -4,8 +4,12 @@ const root=path.resolve(__dirname,'..'),input=path.join(root,'drafts/scene-wordb
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sentence-audio-test-'));let service;
 (async()=>{try{
  const appRoot=path.join(temp,'app'),dataDir=path.join(temp,'data');fs.mkdirSync(dataDir);fs.mkdirSync(path.join(appRoot,'assets'),{recursive:true});fs.mkdirSync(path.join(appRoot,'content/vocabulary'),{recursive:true});fs.writeFileSync(path.join(appRoot,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
- const draft=read('wordbook.json'),library=read('library.json');
+ const draft=read('wordbook.json'),library=read('library.json'),accentFixture=draft.items.find(item=>item.sentenceAudio),accentClip={...accentFixture.sentenceAudio.audio,url:'assets/en-gb-fixture.ogg'};
+ accentFixture.sentenceAudio.audioByAccent={'en-GB':accentClip};const materialModel=require('../scripts/lib/vocabulary-materials.cjs'),activityIndex=library.activities.findIndex(row=>row.itemId===accentFixture.itemId),activity=library.activities[activityIndex];
+ activity.sentenceAudio={audio:accentFixture.sentenceAudio.audio,text:accentFixture.sentenceAudio.text,audioByAccent:{'en-GB':accentClip}};const versionedActivity=materialModel.versioned(activity);library.activities[activityIndex]=versionedActivity;
+ for(const [index,course] of library.courses.entries()){for(const unit of course.units)for(const ref of unit.activityRefs)if(ref.itemId===versionedActivity.itemId)ref.revision=versionedActivity.revision;library.courses[index]=materialModel.versioned(course);}
  for(const url of new Set(draft.items.flatMap(item=>[...item.images.wide,item.dictation.audio.url,item.sentenceAudio.audio.url])))fs.copyFileSync(path.join(root,url),path.join(appRoot,url));
+ fs.copyFileSync(path.join(root,accentFixture.sentenceAudio.audio.url),path.join(appRoot,accentClip.url));
  const compiler=require('../js/wordbook-draft'),candidate=await compiler.compile(draft),check=require('./services/vocabulary-dictation-assets').validateDictationAssets;
  for(const item of candidate.items)check(item,appRoot);
  const bad=structuredClone(draft);bad.items[0].sentenceAudio.text='A different sentence.';await assert.rejects(compiler.compile(bad),/例句/);
@@ -18,8 +22,8 @@ const temp=fs.mkdtempSync(path.join(os.tmpdir(),'sentence-audio-test-'));let ser
  for(const key of ['content','level','assets','rights'])preparation.review[key]='approved';const validated=await release.validate('fixture',preparation);await release.publish('fixture',preparation,validated.fingerprint,true);
  assert.equal(content.item(candidate.items[0].itemId).learning.sentenceAudio.text,draft.items[0].sentenceAudio.text);
  const backup=await require('./services/vocabulary-material-backup').backupVocabularyMaterials({dataDir,appRoot,backupDir:path.join(temp,'backup')}),manifest=JSON.parse(fs.readFileSync(path.join(backup.path,'manifest.json'),'utf8'));
- assert.equal(manifest.files.filter(f=>f.path.endsWith('.ogg')).length,12,'Both word and sentence audio survive backup');
+ assert.equal(manifest.files.filter(f=>f.path.endsWith('.ogg')).length,13,'US, GB, word and sentence audio survive backup');
  const recovery=path.join(temp,'recovery');fs.cpSync(backup.path,recovery,{recursive:true});fs.mkdirSync(path.join(recovery,'content/vocabulary'),{recursive:true});fs.writeFileSync(path.join(recovery,'content/vocabulary/index.json'),JSON.stringify({schemaVersion:1,books:[]}));
- const restored=require('./services/vocabulary-content').createVocabularyContent({appRoot:recovery,publishedRoot:path.join(recovery,'wordbook-publications')});assert.deepEqual(restored.item(candidate.items[0].itemId).learning.sentenceAudio,candidate.items[0].learning.sentenceAudio);
- console.log('Sentence audio: exact authored text, strict revision/asset checks, pending review rejection, isolated publication, all 12 clips backed up and readable from fresh recovery passed.');
+ const restored=require('./services/vocabulary-content').createVocabularyContent({appRoot:recovery,publishedRoot:path.join(recovery,'wordbook-publications')});assert.deepEqual(restored.item(candidate.items[0].itemId).learning.sentenceAudio,candidate.items[0].learning.sentenceAudio);assert.deepEqual(restored.item(accentFixture.itemId).learning.sentenceAudio.audioByAccent,{'en-GB':accentClip});
+ console.log('Sentence audio: exact authored text, strict revision/asset checks, accent-specific playback assets, pending review rejection, isolated publication, all 13 clips backed up and readable from fresh recovery passed.');
  }finally{service?.close();assert.equal(path.dirname(fs.realpathSync(temp)),fs.realpathSync(os.tmpdir()));assert.ok(path.basename(temp).startsWith('sentence-audio-test-'));fs.rmSync(temp,{recursive:true,force:true});}})().catch(error=>{console.error(error);process.exitCode=1;});

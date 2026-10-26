@@ -1,6 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),crypto=require('node:crypto');
 const contract=require('../js/vocabulary-course-contract'),engine=require('../landing/sentence-cloze-engine'),model=require('../js/vocabulary-study.cjs');
+const sentenceAudioModel=require('../js/vocabulary-sentence-audio');
 const guided=require('../landing/guided-sentence-content'),{validatePackage}=require('./validate-vocabulary-package.cjs');
 const {createVocabularyContent}=require('../server/services/vocabulary-content');
 const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
@@ -16,6 +17,13 @@ assert.equal(capabilities.find(x=>x.practiceType==='chunk-order').reason,'缺少
 assert.equal(capabilities.find(x=>x.practiceType==='word-choice').reason,'缺少课程选词素材');
 assert.equal(capabilities.find(x=>x.practiceType==='word-dictation').reason,'缺少课程听写音频');
 assert.throws(()=>contract.validateLearning({...item,learning:{schemaVersion:1,dictation:{}}},engine),/未支持/);
+const phoneticVariants={'en-US':'/ˈbɑːrəʊ/','en-GB':'/ˈbɒrəʊ/'};
+contract.validateLearning({...item,phonetics:phoneticVariants},engine);
+assert.throws(()=>contract.validateLearning({...item,phonetics:{...phoneticVariants,'en-AU':'/x/'}},engine),/音标/);
+const usClip={url:'assets/test-us.ogg',mimeType:'audio/ogg',bytes:100,sha256:'a'.repeat(64)},gbClip={url:'assets/test-gb.ogg',mimeType:'audio/ogg',bytes:120,sha256:'b'.repeat(64)};
+const accentAudioBody={text:engine.sentence(item.exercise),audio:usClip,audioByAccent:{'en-GB':gbClip}};
+sentenceAudioModel.validate(item,{schemaVersion:1,...accentAudioBody,revision:hash(accentAudioBody)},engine);
+assert.throws(()=>sentenceAudioModel.validate(item,{schemaVersion:1,...accentAudioBody,audioByAccent:{'en-AU':gbClip},revision:hash({...accentAudioBody,audioByAccent:{'en-AU':gbClip}})},engine),/口音/);
 assert.throws(()=>contract.validateGuidedActivity(item,{...item.learning.guidedExpression,steps:steps.map((s,i)=>i===1?{...s,field:'not-a-field'}:s)},engine),/字段/);
 assert.throws(()=>contract.validateGuidedActivity(item,{...item.learning.guidedExpression,steps:steps.map((s,i)=>i===0?{...s,choices:['Can I','can i']}:s)},engine),/重复/);
 const units=[{unitId:'unit-1',title:'借用物品',itemIds:[item.itemId]}];

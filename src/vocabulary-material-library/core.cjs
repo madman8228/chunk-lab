@@ -19,7 +19,7 @@ function validate(library){
  check(library.format==='vocabulary-material-library'&&library.schemaVersion===1&&library.stage==='draft','只接受第一版制作草稿，不接受发布或学习记录');
  const sources=rows(library.sources,'sourceId',['sourceId','revision','kind','title','metadata','entries'],'来源');
  const senses=rows(library.senses,'senseId',['senseId','revision','word','meaning','partOfSpeech','definition','sourceRefs'],'词义');
- const activities=rows(library.activities,'itemId',['itemId','revision','senseRef','authorship','scene','translation','exercise','guidedSteps','dictation','sentenceAudio','wordChoice','chunkOrder','readAloud','images'],'教学任务');
+ const activities=rows(library.activities,'itemId',['itemId','revision','senseRef','authorship','scene','translation','exercise','phonetic','phonetics','guidedSteps','dictation','sentenceAudio','wordChoice','chunkOrder','readAloud','images'],'教学任务');
  const applications=rows(library.applications,'materialId',['materialId','revision','kind','authorship','title','lines'],'应用材料');
  const courses=rows(library.courses,'courseId',['courseId','revision','title','module','audience','levelProposal','units'],'课程编排');
  check(sources.size&&senses.size&&activities.size&&courses.size,'来源、词义、教学任务和课程不能是空库');
@@ -47,7 +47,8 @@ function validate(library){
   engine.validate(activity.exercise);check(engine.blanks(activity.exercise).some(blank=>blank.answers.some(answer=>engine.normalize(answer)===engine.normalize(sense.word))),'教学任务未练习所引用词义的词头');
   if(activity.guidedSteps!==undefined)contract.validateGuidedActivity(activity,{schemaVersion:1,revision:hash(JSON.stringify(activity.guidedSteps)),steps:activity.guidedSteps},engine);
   if(activity.dictation!==undefined){fields(activity.dictation,['audio','answers'],'听写草稿');contract.validateLearning({word:sense.word,learning:{schemaVersion:1,wordDictation:{...activity.dictation,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
-  if(activity.sentenceAudio!==undefined){fields(activity.sentenceAudio,['audio','text'],'例句音频草稿');contract.validateLearning({exercise:activity.exercise,learning:{schemaVersion:1,sentenceAudio:{...activity.sentenceAudio,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
+  if(activity.phonetic!==undefined||activity.phonetics!==undefined)contract.validateLearning({phonetic:activity.phonetic,phonetics:activity.phonetics},engine);
+  if(activity.sentenceAudio!==undefined){fields(activity.sentenceAudio,['audio','text','audioByAccent'],'例句音频草稿');contract.validateLearning({exercise:activity.exercise,learning:{schemaVersion:1,sentenceAudio:{...activity.sentenceAudio,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
   if(activity.wordChoice!==undefined){fields(activity.wordChoice,['field','options','correctOptionId'],'选词草稿');contract.validateLearning({word:sense.word,exercise:activity.exercise,learning:{schemaVersion:1,wordChoice:{...activity.wordChoice,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
   if(activity.chunkOrder!==undefined){fields(activity.chunkOrder,['chunks','correctOrder'],'拼块草稿');contract.validateLearning({word:sense.word,exercise:activity.exercise,learning:{schemaVersion:1,chunkOrder:{...activity.chunkOrder,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
   if(activity.readAloud!==undefined){fields(activity.readAloud,['target','text','audio'],'跟读草稿');contract.validateLearning({word:sense.word,exercise:activity.exercise,learning:{schemaVersion:1,readAloud:{...activity.readAloud,schemaVersion:1,revision:'a'.repeat(64)}}},engine);}
@@ -76,6 +77,7 @@ function projectUnchecked(course,senses,activities){
  return {schemaVersion:1,book:{bookId:course.courseId,title:course.title,catalog:{facets:{levels:[course.levelProposal]}},units:course.units.map(unit=>({unitId:unit.unitId,title:unit.title}))},items:course.units.flatMap(unit=>unit.activityRefs.map(ref=>{
   const activity=activities.get(ref.itemId),sense=senses.get(activity.senseRef.senseId);
   const item={itemId:activity.itemId,unitId:unit.unitId,word:sense.word,meaning:sense.meaning,scene:activity.scene,translation:activity.translation,exercise:structuredClone(activity.exercise),images:structuredClone(activity.images)};
+  if(activity.phonetic!==undefined)item.phonetic=activity.phonetic;if(activity.phonetics!==undefined)item.phonetics=structuredClone(activity.phonetics);
   if(activity.guidedSteps!==undefined)item.guidedSteps=structuredClone(activity.guidedSteps);if(activity.dictation!==undefined)item.dictation=structuredClone(activity.dictation);if(activity.sentenceAudio!==undefined)item.sentenceAudio=structuredClone(activity.sentenceAudio);if(activity.wordChoice!==undefined)item.wordChoice=structuredClone(activity.wordChoice);if(activity.chunkOrder!==undefined)item.chunkOrder=structuredClone(activity.chunkOrder);if(activity.readAloud!==undefined)item.readAloud=structuredClone(activity.readAloud);return item;
  }))};
 }

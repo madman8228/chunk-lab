@@ -66,14 +66,13 @@ html.practice-reference-layout #stage .track.compact-chunks .chunk.bad .chunk-an
 html.practice-reference-layout #stage .track.compact-chunks .chunk.revealed .chunk-answer{border-bottom-color:#71819a}
 html.practice-reference-layout #stage .chunk-role{font-size:11px;padding:3px 7px;border-radius:var(--ui-radius-sm)}
 html.practice-reference-layout #stage .stage-foot{margin-top:24px;min-height:36px}
-html.practice-reference-layout #stage .sentence-speak{display:inline-flex;align-items:center;gap:6px;width:auto;height:auto;min-height:32px;padding:5px 10px;background:#f0f4f9;border-radius:var(--ui-radius-control);color:#33445b;font-size:12px;white-space:nowrap}
+html.practice-reference-layout #stage .sentence-speak{display:inline-flex;align-items:center;gap:3px;width:auto;height:auto;min-height:32px;padding:5px 10px;background:#f0f4f9;border-radius:var(--ui-radius-control);color:#33445b;font-size:12px;white-space:nowrap}
 html.practice-reference-layout #stage .sentence-speak.hidden{display:none}
 html.practice-reference-layout #stage .sentence-speak svg{width:16px;height:16px;color:#aa6200}
 html.practice-reference-layout #stage .sentence-waves{display:inline-flex;align-items:center;gap:2px;height:15px;color:#aa6200}
 html.practice-reference-layout #stage .sentence-waves i{display:block;width:2px;height:6px;border-radius:var(--ui-radius-sm);background:currentColor;transform-origin:center}
 html.practice-reference-layout #stage .sentence-waves i:nth-child(2){height:13px}
 html.practice-reference-layout #stage .sentence-waves i:nth-child(3){height:9px}
-html.practice-reference-layout #stage .sentence-speak.is-speaking{background:#fff1d1}
 html.practice-reference-layout #stage .sentence-speak.is-speaking .sentence-waves i{animation:sentence-wave .65s ease-in-out infinite alternate}
 html.practice-reference-layout #stage .sentence-speak.is-speaking .sentence-waves i:nth-child(2){animation-delay:-.3s}
 html.practice-reference-layout #stage .sentence-speak.is-speaking .sentence-waves i:nth-child(3){animation-delay:-.45s}

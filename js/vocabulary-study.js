@@ -163,14 +163,22 @@ var VocabularyStudy = (() => {
         const check = (ok, message) => {
           if (!ok) throw Error(message);
         };
-        function validate(item, activity, engine) {
-          check(activity && activity.schemaVersion === 1 && /^[a-f0-9]{64}$/.test(activity.revision), "\u4F8B\u53E5\u97F3\u9891\u7248\u672C\u65E0\u6548");
-          check(Object.keys(activity).every((k) => ["schemaVersion", "revision", "text", "audio"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u5305\u542B\u672A\u77E5\u5B57\u6BB5");
-          check(typeof activity.text === "string" && activity.text.length <= 4e3 && activity.text === engine.sentence(item.exercise), "\u4F8B\u53E5\u97F3\u9891\u6587\u672C\u4E0E\u5F53\u524D\u4F8B\u53E5\u4E0D\u4E00\u81F4");
-          const audio = activity.audio, formats = { "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav" };
+        const formats = { "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav" };
+        function validateClip(audio) {
           check(audio && Object.keys(audio).every((k) => ["url", "sha256", "bytes", "mimeType"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u914D\u7F6E\u65E0\u6548");
           check(formats[audio.mimeType] && typeof audio.url === "string" && new RegExp("^assets/[A-Za-z0-9._-]+\\." + formats[audio.mimeType] + "$").test(audio.url), "\u4F8B\u53E5\u97F3\u9891\u5FC5\u987B\u4F7F\u7528\u56FA\u5B9A\u672C\u5730\u7D20\u6750\u5F15\u7528");
           check(/^[a-f0-9]{64}$/.test(audio.sha256 || "") && Number.isSafeInteger(audio.bytes) && audio.bytes > 0 && audio.bytes <= 1e7, "\u4F8B\u53E5\u97F3\u9891\u6458\u8981\u6216\u5927\u5C0F\u65E0\u6548");
+        }
+        function validate(item, activity, engine) {
+          check(activity && activity.schemaVersion === 1 && /^[a-f0-9]{64}$/.test(activity.revision), "\u4F8B\u53E5\u97F3\u9891\u7248\u672C\u65E0\u6548");
+          check(Object.keys(activity).every((k) => ["schemaVersion", "revision", "text", "audio", "audioByAccent"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u5305\u542B\u672A\u77E5\u5B57\u6BB5");
+          check(typeof activity.text === "string" && activity.text.length <= 4e3 && activity.text === engine.sentence(item.exercise), "\u4F8B\u53E5\u97F3\u9891\u6587\u672C\u4E0E\u5F53\u524D\u4F8B\u53E5\u4E0D\u4E00\u81F4");
+          validateClip(activity.audio);
+          if (activity.audioByAccent !== void 0) {
+            const variants = activity.audioByAccent;
+            check(variants && typeof variants === "object" && !Array.isArray(variants) && Object.keys(variants).length > 0 && Object.keys(variants).every((accent) => ["en-US", "en-GB"].includes(accent)), "\u4F8B\u53E5\u97F3\u9891\u53E3\u97F3\u65E0\u6548");
+            for (const clip of Object.values(variants)) validateClip(clip);
+          }
           return activity;
         }
         const api = { validate };
@@ -284,6 +292,11 @@ var VocabularyStudy = (() => {
           return activity;
         }
         function validateLearning(item, engine) {
+          if (item.phonetic !== void 0) check(typeof item.phonetic === "string" && !!item.phonetic.trim() && item.phonetic.length <= 200, "\u97F3\u6807\u65E0\u6548\u6216\u8FC7\u957F");
+          if (item.phonetics !== void 0) {
+            const variants = item.phonetics;
+            check(variants && typeof variants === "object" && !Array.isArray(variants) && Object.keys(variants).length > 0 && Object.keys(variants).every((accent) => ["en-US", "en-GB"].includes(accent)) && Object.values(variants).every((value) => typeof value === "string" && !!value.trim() && value.length <= 200), "\u53E3\u97F3\u97F3\u6807\u65E0\u6548\u6216\u8FC7\u957F");
+          }
           if (item.learning === void 0) return item;
           check(item.learning && item.learning.schemaVersion === 1, "\u6559\u5B66\u914D\u7F6E\u7248\u672C\u65E0\u6548");
           check(Object.keys(item.learning).every((k) => ["schemaVersion", "guidedExpression", "wordDictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud"].includes(k)), "\u5305\u542B\u672A\u652F\u6301\u7684\u7EC3\u4E60\u914D\u7F6E");

@@ -87,7 +87,7 @@
           check(library.format === "vocabulary-material-library" && library.schemaVersion === 1 && library.stage === "draft", "\u53EA\u63A5\u53D7\u7B2C\u4E00\u7248\u5236\u4F5C\u8349\u7A3F\uFF0C\u4E0D\u63A5\u53D7\u53D1\u5E03\u6216\u5B66\u4E60\u8BB0\u5F55");
           const sources = rows(library.sources, "sourceId", ["sourceId", "revision", "kind", "title", "metadata", "entries"], "\u6765\u6E90");
           const senses = rows(library.senses, "senseId", ["senseId", "revision", "word", "meaning", "partOfSpeech", "definition", "sourceRefs"], "\u8BCD\u4E49");
-          const activities = rows(library.activities, "itemId", ["itemId", "revision", "senseRef", "authorship", "scene", "translation", "exercise", "guidedSteps", "dictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud", "images"], "\u6559\u5B66\u4EFB\u52A1");
+          const activities = rows(library.activities, "itemId", ["itemId", "revision", "senseRef", "authorship", "scene", "translation", "exercise", "phonetic", "phonetics", "guidedSteps", "dictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud", "images"], "\u6559\u5B66\u4EFB\u52A1");
           const applications = rows(library.applications, "materialId", ["materialId", "revision", "kind", "authorship", "title", "lines"], "\u5E94\u7528\u6750\u6599");
           const courses = rows(library.courses, "courseId", ["courseId", "revision", "title", "module", "audience", "levelProposal", "units"], "\u8BFE\u7A0B\u7F16\u6392");
           check(sources.size && senses.size && activities.size && courses.size, "\u6765\u6E90\u3001\u8BCD\u4E49\u3001\u6559\u5B66\u4EFB\u52A1\u548C\u8BFE\u7A0B\u4E0D\u80FD\u662F\u7A7A\u5E93");
@@ -130,8 +130,9 @@
               fields(activity.dictation, ["audio", "answers"], "\u542C\u5199\u8349\u7A3F");
               contract2.validateLearning({ word: sense.word, learning: { schemaVersion: 1, wordDictation: { ...activity.dictation, schemaVersion: 1, revision: "a".repeat(64) } } }, engine2);
             }
+            if (activity.phonetic !== void 0 || activity.phonetics !== void 0) contract2.validateLearning({ phonetic: activity.phonetic, phonetics: activity.phonetics }, engine2);
             if (activity.sentenceAudio !== void 0) {
-              fields(activity.sentenceAudio, ["audio", "text"], "\u4F8B\u53E5\u97F3\u9891\u8349\u7A3F");
+              fields(activity.sentenceAudio, ["audio", "text", "audioByAccent"], "\u4F8B\u53E5\u97F3\u9891\u8349\u7A3F");
               contract2.validateLearning({ exercise: activity.exercise, learning: { schemaVersion: 1, sentenceAudio: { ...activity.sentenceAudio, schemaVersion: 1, revision: "a".repeat(64) } } }, engine2);
             }
             if (activity.wordChoice !== void 0) {
@@ -185,6 +186,8 @@
           return { schemaVersion: 1, book: { bookId: course.courseId, title: course.title, catalog: { facets: { levels: [course.levelProposal] } }, units: course.units.map((unit) => ({ unitId: unit.unitId, title: unit.title })) }, items: course.units.flatMap((unit) => unit.activityRefs.map((ref) => {
             const activity = activities.get(ref.itemId), sense = senses.get(activity.senseRef.senseId);
             const item = { itemId: activity.itemId, unitId: unit.unitId, word: sense.word, meaning: sense.meaning, scene: activity.scene, translation: activity.translation, exercise: structuredClone(activity.exercise), images: structuredClone(activity.images) };
+            if (activity.phonetic !== void 0) item.phonetic = activity.phonetic;
+            if (activity.phonetics !== void 0) item.phonetics = structuredClone(activity.phonetics);
             if (activity.guidedSteps !== void 0) item.guidedSteps = structuredClone(activity.guidedSteps);
             if (activity.dictation !== void 0) item.dictation = structuredClone(activity.dictation);
             if (activity.sentenceAudio !== void 0) item.sentenceAudio = structuredClone(activity.sentenceAudio);
@@ -459,14 +462,22 @@
         const check = (ok, message) => {
           if (!ok) throw Error(message);
         };
-        function validate(item, activity, engine2) {
-          check(activity && activity.schemaVersion === 1 && /^[a-f0-9]{64}$/.test(activity.revision), "\u4F8B\u53E5\u97F3\u9891\u7248\u672C\u65E0\u6548");
-          check(Object.keys(activity).every((k) => ["schemaVersion", "revision", "text", "audio"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u5305\u542B\u672A\u77E5\u5B57\u6BB5");
-          check(typeof activity.text === "string" && activity.text.length <= 4e3 && activity.text === engine2.sentence(item.exercise), "\u4F8B\u53E5\u97F3\u9891\u6587\u672C\u4E0E\u5F53\u524D\u4F8B\u53E5\u4E0D\u4E00\u81F4");
-          const audio = activity.audio, formats = { "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav" };
+        const formats = { "audio/mpeg": "mp3", "audio/ogg": "ogg", "audio/wav": "wav" };
+        function validateClip(audio) {
           check(audio && Object.keys(audio).every((k) => ["url", "sha256", "bytes", "mimeType"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u914D\u7F6E\u65E0\u6548");
           check(formats[audio.mimeType] && typeof audio.url === "string" && new RegExp("^assets/[A-Za-z0-9._-]+\\." + formats[audio.mimeType] + "$").test(audio.url), "\u4F8B\u53E5\u97F3\u9891\u5FC5\u987B\u4F7F\u7528\u56FA\u5B9A\u672C\u5730\u7D20\u6750\u5F15\u7528");
           check(/^[a-f0-9]{64}$/.test(audio.sha256 || "") && Number.isSafeInteger(audio.bytes) && audio.bytes > 0 && audio.bytes <= 1e7, "\u4F8B\u53E5\u97F3\u9891\u6458\u8981\u6216\u5927\u5C0F\u65E0\u6548");
+        }
+        function validate(item, activity, engine2) {
+          check(activity && activity.schemaVersion === 1 && /^[a-f0-9]{64}$/.test(activity.revision), "\u4F8B\u53E5\u97F3\u9891\u7248\u672C\u65E0\u6548");
+          check(Object.keys(activity).every((k) => ["schemaVersion", "revision", "text", "audio", "audioByAccent"].includes(k)), "\u4F8B\u53E5\u97F3\u9891\u5305\u542B\u672A\u77E5\u5B57\u6BB5");
+          check(typeof activity.text === "string" && activity.text.length <= 4e3 && activity.text === engine2.sentence(item.exercise), "\u4F8B\u53E5\u97F3\u9891\u6587\u672C\u4E0E\u5F53\u524D\u4F8B\u53E5\u4E0D\u4E00\u81F4");
+          validateClip(activity.audio);
+          if (activity.audioByAccent !== void 0) {
+            const variants = activity.audioByAccent;
+            check(variants && typeof variants === "object" && !Array.isArray(variants) && Object.keys(variants).length > 0 && Object.keys(variants).every((accent) => ["en-US", "en-GB"].includes(accent)), "\u4F8B\u53E5\u97F3\u9891\u53E3\u97F3\u65E0\u6548");
+            for (const clip of Object.values(variants)) validateClip(clip);
+          }
           return activity;
         }
         const api = { validate };
@@ -580,6 +591,11 @@
           return activity;
         }
         function validateLearning(item, engine2) {
+          if (item.phonetic !== void 0) check(typeof item.phonetic === "string" && !!item.phonetic.trim() && item.phonetic.length <= 200, "\u97F3\u6807\u65E0\u6548\u6216\u8FC7\u957F");
+          if (item.phonetics !== void 0) {
+            const variants = item.phonetics;
+            check(variants && typeof variants === "object" && !Array.isArray(variants) && Object.keys(variants).length > 0 && Object.keys(variants).every((accent) => ["en-US", "en-GB"].includes(accent)) && Object.values(variants).every((value) => typeof value === "string" && !!value.trim() && value.length <= 200), "\u53E3\u97F3\u97F3\u6807\u65E0\u6548\u6216\u8FC7\u957F");
+          }
           if (item.learning === void 0) return item;
           check(item.learning && item.learning.schemaVersion === 1, "\u6559\u5B66\u914D\u7F6E\u7248\u672C\u65E0\u6548");
           check(Object.keys(item.learning).every((k) => ["schemaVersion", "guidedExpression", "wordDictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud"].includes(k)), "\u5305\u542B\u672A\u652F\u6301\u7684\u7EC3\u4E60\u914D\u7F6E");
@@ -696,7 +712,13 @@
               errors.push(prefix + "\u6559\u5B66\u9879\u76EE\u683C\u5F0F\u65E0\u6548");
               return;
             }
-            if (Object.keys(item).some((k) => !["itemId", "unitId", "word", "meaning", "scene", "translation", "exercise", "images", "guidedSteps", "dictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud"].includes(k))) errors.push(prefix + "\u5305\u542B\u4E0D\u652F\u6301\u7684\u5B57\u6BB5\uFF0C\u4E0D\u80FD\u9759\u9ED8\u4E22\u5F03");
+            if (Object.keys(item).some((k) => !["itemId", "unitId", "word", "meaning", "phonetic", "phonetics", "scene", "translation", "exercise", "images", "guidedSteps", "dictation", "sentenceAudio", "wordChoice", "chunkOrder", "readAloud"].includes(k))) errors.push(prefix + "\u5305\u542B\u4E0D\u652F\u6301\u7684\u5B57\u6BB5\uFF0C\u4E0D\u80FD\u9759\u9ED8\u4E22\u5F03");
+            if (item.phonetic !== void 0 && (typeof item.phonetic !== "string" || !item.phonetic.trim() || item.phonetic.length > 200)) errors.push(prefix + "\u97F3\u6807\u65E0\u6548\u6216\u8FC7\u957F");
+            if (item.phonetics !== void 0) try {
+              contract2().validateLearning({ ...item, learning: { schemaVersion: 1 } }, engine2());
+            } catch (error) {
+              errors.push(prefix + error.message);
+            }
             if (item.readAloud !== void 0) try {
               if (!item.readAloud || Object.keys(item.readAloud).some((k) => !["target", "text", "audio"].includes(k))) throw Error("\u8DDF\u8BFB\u8349\u7A3F\u5B57\u6BB5\u65E0\u6548");
               contract2().validateLearning({ ...item, learning: { schemaVersion: 1, readAloud: { ...item.readAloud, schemaVersion: 1, revision: "a".repeat(64) } } }, engine2());
@@ -716,7 +738,7 @@
               errors.push(prefix + error.message);
             }
             if (item.sentenceAudio !== void 0) try {
-              if (!item.sentenceAudio || Object.keys(item.sentenceAudio).some((k) => !["audio", "text"].includes(k))) throw Error("\u4F8B\u53E5\u97F3\u9891\u8349\u7A3F\u5B57\u6BB5\u65E0\u6548");
+              if (!item.sentenceAudio || Object.keys(item.sentenceAudio).some((k) => !["audio", "audioByAccent", "text"].includes(k))) throw Error("\u4F8B\u53E5\u97F3\u9891\u8349\u7A3F\u5B57\u6BB5\u65E0\u6548");
               contract2().validateLearning({ ...item, learning: { schemaVersion: 1, sentenceAudio: { ...item.sentenceAudio, schemaVersion: 1, revision: "a".repeat(64) } } }, engine2());
             } catch (error) {
               errors.push(prefix + error.message);
@@ -759,9 +781,15 @@
           draft.items.forEach((item) => grouped.get(item.unitId).push(item));
           for (const unit of draft.book.units) for (const source of grouped.get(unit.unitId)) {
             const item = { itemId: source.itemId, word: source.word, meaning: source.meaning, scene: source.scene, example: engine2().sentence(source.exercise), translation: source.translation, exercise: source.exercise, images: source.images };
+            if (source.phonetic !== void 0) item.phonetic = source.phonetic.trim();
+            if (source.phonetics !== void 0) item.phonetics = structuredClone(source.phonetics);
             if (source.guidedSteps) item.learning = { schemaVersion: 1, guidedExpression: { schemaVersion: 1, revision: await hash(source.guidedSteps), steps: source.guidedSteps } };
             if (source.dictation) item.learning = { ...item.learning, schemaVersion: 1, wordDictation: { schemaVersion: 1, audio: structuredClone(source.dictation.audio), answers: [...source.dictation.answers], revision: await hash({ audio: source.dictation.audio, answers: source.dictation.answers }) } };
-            if (source.sentenceAudio) item.learning = { ...item.learning, schemaVersion: 1, sentenceAudio: { schemaVersion: 1, audio: structuredClone(source.sentenceAudio.audio), text: source.sentenceAudio.text, revision: await hash({ audio: source.sentenceAudio.audio, text: source.sentenceAudio.text }) } };
+            if (source.sentenceAudio) {
+              const body = { audio: structuredClone(source.sentenceAudio.audio), text: source.sentenceAudio.text };
+              if (source.sentenceAudio.audioByAccent !== void 0) body.audioByAccent = structuredClone(source.sentenceAudio.audioByAccent);
+              item.learning = { ...item.learning, schemaVersion: 1, sentenceAudio: { schemaVersion: 1, ...body, revision: await hash(body) } };
+            }
             if (source.wordChoice) {
               const body = { field: source.wordChoice.field, options: structuredClone(source.wordChoice.options), correctOptionId: source.wordChoice.correctOptionId };
               item.learning = { ...item.learning, schemaVersion: 1, wordChoice: { schemaVersion: 1, ...body, revision: await hash(body) } };

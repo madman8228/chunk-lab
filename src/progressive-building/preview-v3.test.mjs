@@ -217,6 +217,11 @@ for (const course of lessons) {
       key('Enter');
       continue;
     }
+    if (course.id === 'like-transfer-preview' && index === 6) {
+      bank().children.find(item => item.dataset.wordId === 'coffee').click();
+      assert.equal(ids.feedback.textContent, '顺序不对。下一步请选 I（我）。');
+      assert.equal(ids.next.hidden, true);
+    }
     assert.deepEqual(bank().children.map(item => item.dataset.wordId), [...step.wordIds].reverse());
     const shown = course.sequence.slice(0, index + 1).filter(item => !['teach', 'identify'].includes(item.type));
     assert.equal(ids.trail.children.length, shown.length);

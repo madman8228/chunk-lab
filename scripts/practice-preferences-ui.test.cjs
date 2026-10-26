@@ -23,6 +23,7 @@ const styles=Array.from(html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g),m=>m[1
    });
    await page.addScriptTag({content:source});await page.evaluate(()=>updatePracticeOptions());
    const mode=page.getByRole('combobox',{name:'答题模式'}),shuffle=page.getByRole('checkbox');
+   assert.equal(await shuffle.evaluate(el=>el.closest('label').textContent.trim()),'乱序出题');
    await mode.selectOption('type');await page.waitForFunction(()=>!document.getElementById('practiceMode').disabled);
    assert.equal(await mode.inputValue(),'type');
    await shuffle.check();await page.waitForFunction(()=>!document.getElementById('practiceShuffle').disabled);

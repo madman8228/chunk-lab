@@ -48,6 +48,8 @@
   check(assigned.size===fields.length,'引导练习遗漏原题字段');check(engine.normalize(steps.map(s=>s.answer).join(' '))===engine.normalize(engine.sentence(item.exercise)),'引导步骤改变了原句');return activity;
  }
  function validateLearning(item,engine){
+  if(item.phonetic!==undefined)check(typeof item.phonetic==='string'&&!!item.phonetic.trim()&&item.phonetic.length<=200,'音标无效或过长');
+  if(item.phonetics!==undefined){const variants=item.phonetics;check(variants&&typeof variants==='object'&&!Array.isArray(variants)&&Object.keys(variants).length>0&&Object.keys(variants).every(accent=>['en-US','en-GB'].includes(accent))&&Object.values(variants).every(value=>typeof value==='string'&&!!value.trim()&&value.length<=200),'口音音标无效或过长');}
   if(item.learning===undefined)return item;
   check(item.learning&&item.learning.schemaVersion===1,'教学配置版本无效');
   check(Object.keys(item.learning).every(k=>['schemaVersion','guidedExpression','wordDictation','sentenceAudio','wordChoice','chunkOrder','readAloud'].includes(k)),'包含未支持的练习配置');

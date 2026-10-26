@@ -33,11 +33,13 @@
   draft.items.forEach((item,index)=>{
    const prefix='第 '+(index+1)+' 项：';
    if(!item||typeof item!=='object'||Array.isArray(item)){errors.push(prefix+'教学项目格式无效');return;}
-   if(Object.keys(item).some(k=>!['itemId','unitId','word','meaning','scene','translation','exercise','images','guidedSteps','dictation','sentenceAudio','wordChoice','chunkOrder','readAloud'].includes(k)))errors.push(prefix+'包含不支持的字段，不能静默丢弃');
+   if(Object.keys(item).some(k=>!['itemId','unitId','word','meaning','phonetic','phonetics','scene','translation','exercise','images','guidedSteps','dictation','sentenceAudio','wordChoice','chunkOrder','readAloud'].includes(k)))errors.push(prefix+'包含不支持的字段，不能静默丢弃');
+   if(item.phonetic!==undefined&&(typeof item.phonetic!=='string'||!item.phonetic.trim()||item.phonetic.length>200))errors.push(prefix+'音标无效或过长');
+   if(item.phonetics!==undefined)try{contract().validateLearning({...item,learning:{schemaVersion:1}},engine());}catch(error){errors.push(prefix+error.message);}
    if(item.readAloud!==undefined)try{if(!item.readAloud||Object.keys(item.readAloud).some(k=>!['target','text','audio'].includes(k)))throw Error('跟读草稿字段无效');contract().validateLearning({...item,learning:{schemaVersion:1,readAloud:{...item.readAloud,schemaVersion:1,revision:'a'.repeat(64)}}},engine());}catch(error){errors.push(prefix+error.message);}
    if(item.chunkOrder!==undefined)try{if(!item.chunkOrder||Object.keys(item.chunkOrder).some(k=>!['chunks','correctOrder'].includes(k)))throw Error('拼块草稿字段无效');contract().validateLearning({...item,learning:{schemaVersion:1,chunkOrder:{...item.chunkOrder,schemaVersion:1,revision:'a'.repeat(64)}}},engine());}catch(error){errors.push(prefix+error.message);}
    if(item.wordChoice!==undefined)try{if(!item.wordChoice||Object.keys(item.wordChoice).some(k=>!['field','options','correctOptionId'].includes(k)))throw Error('选词草稿字段无效');contract().validateLearning({...item,learning:{schemaVersion:1,wordChoice:{...item.wordChoice,schemaVersion:1,revision:'a'.repeat(64)}}},engine());}catch(error){errors.push(prefix+error.message);}
-   if(item.sentenceAudio!==undefined)try{if(!item.sentenceAudio||Object.keys(item.sentenceAudio).some(k=>!['audio','text'].includes(k)))throw Error('例句音频草稿字段无效');contract().validateLearning({...item,learning:{schemaVersion:1,sentenceAudio:{...item.sentenceAudio,schemaVersion:1,revision:'a'.repeat(64)}}},engine());}catch(error){errors.push(prefix+error.message);}
+   if(item.sentenceAudio!==undefined)try{if(!item.sentenceAudio||Object.keys(item.sentenceAudio).some(k=>!['audio','audioByAccent','text'].includes(k)))throw Error('例句音频草稿字段无效');contract().validateLearning({...item,learning:{schemaVersion:1,sentenceAudio:{...item.sentenceAudio,schemaVersion:1,revision:'a'.repeat(64)}}},engine());}catch(error){errors.push(prefix+error.message);}
    if(!id(item.itemId)||ids.has(item.itemId))errors.push(prefix+'项目编号无效或重复');ids.add(item.itemId);
    if(!unitIds.has(item.unitId))errors.push(prefix+'未分配到有效单元');
    for(const key of ['word','meaning','scene','translation'])if(typeof item[key]!=='string'||!item[key].trim()||item[key].length>1000)errors.push(prefix+'缺少或过长的 '+key);
@@ -58,9 +60,11 @@
   const items=[],grouped=new Map(draft.book.units.map(u=>[u.unitId,[]]));draft.items.forEach(item=>grouped.get(item.unitId).push(item));
   for(const unit of draft.book.units)for(const source of grouped.get(unit.unitId)){
    const item={itemId:source.itemId,word:source.word,meaning:source.meaning,scene:source.scene,example:engine().sentence(source.exercise),translation:source.translation,exercise:source.exercise,images:source.images};
+   if(source.phonetic!==undefined)item.phonetic=source.phonetic.trim();
+   if(source.phonetics!==undefined)item.phonetics=structuredClone(source.phonetics);
    if(source.guidedSteps)item.learning={schemaVersion:1,guidedExpression:{schemaVersion:1,revision:await hash(source.guidedSteps),steps:source.guidedSteps}};
    if(source.dictation)item.learning={...item.learning,schemaVersion:1,wordDictation:{schemaVersion:1,audio:structuredClone(source.dictation.audio),answers:[...source.dictation.answers],revision:await hash({audio:source.dictation.audio,answers:source.dictation.answers})}};
-   if(source.sentenceAudio)item.learning={...item.learning,schemaVersion:1,sentenceAudio:{schemaVersion:1,audio:structuredClone(source.sentenceAudio.audio),text:source.sentenceAudio.text,revision:await hash({audio:source.sentenceAudio.audio,text:source.sentenceAudio.text})}};
+   if(source.sentenceAudio){const body={audio:structuredClone(source.sentenceAudio.audio),text:source.sentenceAudio.text};if(source.sentenceAudio.audioByAccent!==undefined)body.audioByAccent=structuredClone(source.sentenceAudio.audioByAccent);item.learning={...item.learning,schemaVersion:1,sentenceAudio:{schemaVersion:1,...body,revision:await hash(body)}};}
    if(source.wordChoice){const body={field:source.wordChoice.field,options:structuredClone(source.wordChoice.options),correctOptionId:source.wordChoice.correctOptionId};item.learning={...item.learning,schemaVersion:1,wordChoice:{schemaVersion:1,...body,revision:await hash(body)}};}
    if(source.chunkOrder){const body={chunks:structuredClone(source.chunkOrder.chunks),correctOrder:[...source.chunkOrder.correctOrder]};item.learning={...item.learning,schemaVersion:1,chunkOrder:{schemaVersion:1,...body,revision:await hash(body)}};}
    if(source.readAloud){const body={target:source.readAloud.target,text:source.readAloud.text,audio:structuredClone(source.readAloud.audio)};item.learning={...item.learning,schemaVersion:1,readAloud:{schemaVersion:1,...body,revision:await hash(body)}};}

@@ -18,7 +18,7 @@ function setup(appRoot = process.cwd()) {
 }
 
 function draft(units = 1) {
-  const first = { itemId: 'draft:first', unitId: 'unit:one', word: 'sincere', meaning: '真诚的', scene: '朋友认真倾听',
+  const first = { itemId: 'draft:first', unitId: 'unit:one', word: 'sincere', meaning: '真诚的', phonetic:'/fixture/', scene: '朋友认真倾听',
     translation: '朋友认真倾听。', exercise: draftModel.exercise('A [sincere] friend listens.'), images: { wide: [], mobile: [] } };
   const bookUnits = [{ unitId: 'unit:one', title: 'Unit 1' }];
   const items = [first];

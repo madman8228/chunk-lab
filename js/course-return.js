@@ -10,6 +10,7 @@
       var nested=url.searchParams.get('returnTo');
       url.searchParams.delete('returnTo');
       if(nested&&(depth||0)<2){var checked=safe(nested,(depth||0)+1);if(checked)url.searchParams.set('returnTo',checked);}
+      if(url.pathname==='/decks.html'&&!url.searchParams.get('course')&&url.searchParams.get('manage')!=='1')return 'main.html?view='+(url.searchParams.get('courseView')==='joined'?'my-learning':'discover');
       return url.pathname.slice(1)+url.search;
     }catch(_){return '';}
   }

@@ -156,7 +156,10 @@ html:has(:is(#pageHome,#pageMyLearning,#pageStats):not(.hidden)) .home-header-re
 #pageHome .workspace-active .home-course-metrics,#pageHome .workspace-active .home-progress-metric:not(.is-current){display:contents}
 #pageHome .workspace-active .home-progress-label{grid-column:2;grid-row:1;display:inline-flex;align-items:center;gap:4px;margin:0;white-space:nowrap}
 #pageHome .workspace-active .home-progress-track{grid-column:1/-1;grid-row:2;width:100%;height:4px;min-width:0}
-#pageHome .home-progress-metric.is-current{display:none}
+#pageHome .home-progress-track.is-combined{display:flex}
+#pageHome .home-progress-track.is-combined>span{flex:0 0 auto;min-width:0}
+#pageHome .home-progress-track.is-combined>.is-lesson{background:#10b981}
+#pageHome .home-progress-label .home-current-progress-label{color:#047857}
 #pageHome .workspace-active .hd-select-lessons{display:inline-flex;top:18px;right:20px;min-height:30px;padding:4px 10px}
 #pageHome .workspace-active .hd-action{left:22px;right:22px;bottom:20px;justify-content:center;min-height:36px;border-radius:var(--ui-radius-control)}
 #pageHome .workspace-active .hd-row.is-wordbook{border-color:#cfe0ff}

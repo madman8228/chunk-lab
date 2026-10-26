@@ -1,8 +1,10 @@
 import { lesson as original, wordIdsForGroups } from './lesson-v3.mjs?v=20261024-5';
-import { foundations } from './foundations-v3.mjs?v=20261025-22';
-import { mixedReview } from './mixed-review-v3.mjs?v=20261024-1';
-import { nounPhrase } from './noun-phrase-v3.mjs?v=20261024-2';
+import { foundations } from './foundations-v3.mjs?v=20261026-9';
+import { visualScenes } from './visual-scenes.mjs?v=20261026-9';
+import { mixedReview } from './mixed-review-v3.mjs?v=20261026-9';
+import { nounPhrase } from './noun-phrase-v3.mjs?v=20261026-9';
 import { quantity } from './quantity-v3.mjs?v=20261024-1';
+import { likeTransfer } from './like-transfer-v3.mjs?v=20261026-4';
 
 // Ranges are half-open token positions in this step, not permanent word roles.
 const span = (start, end, label, level = 0) => ({ start, end, label, level });
@@ -66,7 +68,7 @@ const question = {
   ],
 };
 
-export const lessons = [...foundations, mixedReview, nounPhrase, quantity, first, book, question];
+export const lessons = [...foundations, likeTransfer, mixedReview, nounPhrase, quantity, first, book, question];
 
 export function normalizeAnswer(value) {
   return value.trim().toLowerCase().replace(/[’‘]/g, "'").replace(/[.!?。！？]+$/g, '').trim().replace(/\s+/g, ' ');
@@ -78,7 +80,15 @@ export function matchesTransfer(step, answer) {
 
 export function validatePreviewLesson(course) {
   if (!course.id || !course.sequence.length) throw new Error('Missing preview lesson');
+  for (const word of Object.values(course.words)) {
+    if (word.visualSceneId && !visualScenes.scenes[word.visualSceneId]) throw new Error('Invalid word illustration');
+  }
   course.sequence.forEach((step, index) => {
+    if (step.visual) {
+      const scene = visualScenes.scenes[step.visual.sceneId];
+      if (!scene || !['practice', 'after-correct'].includes(step.visual.show) || !scene.assetIds.length || scene.assetIds.some(id => !visualScenes.assets[id])) throw new Error('Invalid step illustration');
+    }
+    if (step.bankWordIds && (!Array.isArray(step.bankWordIds) || new Set(step.bankWordIds).size !== step.bankWordIds.length || step.bankWordIds.some(id => !course.words[id]) || step.wordIds.some(id => !step.bankWordIds.includes(id)))) throw new Error('Invalid compose choice bank');
     if (step.type && !['compose', 'transfer', 'teach', 'replace', 'identify', 'classify', 'insert-modifier', 'quantity'].includes(step.type)) throw new Error('Unknown activity type');
     if (step.type === 'transfer') {
       if (index !== course.sequence.length - 1 || !step.answers?.length) throw new Error('Transfer must be last and have reviewed answers');
@@ -121,6 +131,8 @@ export function validatePreviewLesson(course) {
       if (!matchesTransfer(step, step.wordIds.map(id => course.words[id].en).join(' '))) throw new Error('Transfer reference must be an accepted answer');
     }
     if (step.dependsOn.some(value => !Number.isInteger(value) || value < 0 || value >= index)) throw new Error('Invalid step dependency');
+    if (step.clearSentenceResultOnComplete !== undefined && typeof step.clearSentenceResultOnComplete !== 'boolean') throw new Error('Sentence clearing requires an explicit boolean');
+    if (step.replacesTrailIndexes && (!Array.isArray(step.replacesTrailIndexes) || new Set(step.replacesTrailIndexes).size !== step.replacesTrailIndexes.length || step.replacesTrailIndexes.some(value => !Number.isInteger(value) || !step.dependsOn.includes(value)))) throw new Error('Trail replacement must name distinct earlier dependencies');
     for (const annotation of step.annotations) {
       if (!Number.isInteger(annotation.start) || !Number.isInteger(annotation.end) || annotation.start < 0 || annotation.end > step.wordIds.length || annotation.start >= annotation.end || !annotation.label || !Number.isInteger(annotation.level) || annotation.level < 0) throw new Error('Invalid syntax range');
     }

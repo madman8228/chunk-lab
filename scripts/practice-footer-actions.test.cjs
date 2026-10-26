@@ -24,10 +24,15 @@ const exposure=html.slice(html.indexOf('function recordSentenceExposure(){'),htm
   window.Audio=class{constructor(url){this.url=url;window.lastAudio=this;}play(){return Promise.resolve();}pause(){this.onpause?.();}};
  });
  await page.addScriptTag({content:playback+'\n'+exposure+'\n'+reset+'\n'+click+"\n$('btnResetSelection').onclick=resetPracticeSelection;"});
- await page.getByRole('button',{name:'听全句朗读',exact:true}).click();
+ assert.equal(await page.locator('#btnSpeak').innerText(),'全句朗读');
+ assert.equal(await page.locator('#btnSpeak').getAttribute('aria-label'),'全句朗读');
+ assert.equal(await page.locator('#btnSpeak').getAttribute('title'),'全句朗读');
+ const speakBackground=await page.locator('#btnSpeak').evaluate(el=>{el.style.transition='none';return getComputedStyle(el).backgroundColor;});
+ await page.getByRole('button',{name:'全句朗读',exact:true}).click();
  assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'false','no fake animation before speech starts');
  assert.equal(await page.evaluate(()=>S.hinted),true,'full answer audio is assisted practice');
  await page.evaluate(()=>lastUtterance.onstart());assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'true');
+ assert.equal(await page.locator('#btnSpeak').evaluate(el=>getComputedStyle(el).backgroundColor),speakBackground,'playback changes the waveform only, not the button background');
  assert.equal(await page.locator('.sentence-waves i').count(),3);
  assert.equal(await page.locator('.sentence-waves i').first().evaluate(node=>getComputedStyle(node).animationName),'sentence-wave');
  await page.evaluate(()=>lastUtterance.onend());assert.equal(await page.locator('#btnSpeak').getAttribute('aria-pressed'),'false');

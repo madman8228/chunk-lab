@@ -38,7 +38,9 @@ function validateMaterialRelease(candidate,appRoot,readAsset){
   const dictation=item.learning?.wordDictation;
   if(hash(dictation?{audio:dictation.audio,answers:dictation.answers}:null)!==hash(activity.dictation??null))throw fail('发布听写与原材料不一致');
   const sentence=item.learning?.sentenceAudio;
-  if(hash(sentence?{audio:sentence.audio,text:sentence.text}:null)!==hash(activity.sentenceAudio?{audio:activity.sentenceAudio.audio,text:activity.sentenceAudio.text}:null))throw fail('发布例句音频与原材料不一致');
+  const sentenceBody=sentence?{audio:sentence.audio,text:sentence.text,...(sentence.audioByAccent?{audioByAccent:sentence.audioByAccent}:{})}:null;
+  const activitySentenceBody=activity.sentenceAudio?{audio:activity.sentenceAudio.audio,text:activity.sentenceAudio.text,...(activity.sentenceAudio.audioByAccent?{audioByAccent:activity.sentenceAudio.audioByAccent}:{})}:null;
+  if(hash(sentenceBody)!==hash(activitySentenceBody))throw fail('发布例句音频与原材料不一致');
   const choice=item.learning?.wordChoice;
   if(model.revisionOf({choice:choice?{field:choice.field,options:choice.options,correctOptionId:choice.correctOptionId}:null})!==model.revisionOf({choice:activity.wordChoice??null}))throw fail('发布选词与原材料不一致');
   const order=item.learning?.chunkOrder;

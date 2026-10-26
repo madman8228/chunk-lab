@@ -32,6 +32,12 @@ const markup=html.slice(html.indexOf('<div class="wrap">'),html.indexOf('<!-- è¯
   const masterStyle=await page.locator('#btnMaster').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(el).borderRadius}));
   const explainStyle=await page.locator('#btnExplain').evaluate(el=>({height:el.getBoundingClientRect().height,radius:getComputedStyle(el).borderRadius}));
   const actionGroup=await page.locator('.stage-head-right').evaluate(el=>({height:el.getBoundingClientRect().height,gap:getComputedStyle(el).gap}));
+  const shortcutKeyHeights=await page.locator('#stageTipBar button.kbd').evaluateAll(elements=>elements.map(el=>el.getBoundingClientRect().height));
+  assert.ok(shortcutKeyHeights.length>0&&shortcutKeyHeights.every(height=>Math.abs(height-19.8)<.1),'keyboard shortcut buttons should be 10% taller at '+width+': '+JSON.stringify(shortcutKeyHeights));
+  const speakArtwork=await page.locator('#btnSpeak').evaluate(button=>{const svg=button.querySelector('.icon'),label=button.lastElementChild,parts=[...svg.querySelectorAll('path,rect,circle,polygon,polyline,line')];const points=parts.flatMap(part=>{const r=part.getBBox(),m=part.getScreenCTM();return[[r.x,r.y],[r.x+r.width,r.y+r.height]].map(([x,y])=>new DOMPoint(x,y).matrixTransform(m).y)});const center=el=>{const r=el.getBoundingClientRect();return{top:r.top,bottom:r.bottom,center:(r.top+r.bottom)/2}};return{artworkCenter:(Math.min(...points)+Math.max(...points))/2,svg:center(svg),svgParent:center(svg.parentElement),label:center(label),button:center(button)}});
+  assert.ok(Math.abs((speakArtwork.artworkCenter-speakArtwork.label.center)-1)<=.25,'speaker artwork should receive a 1px optical vertical correction against its label at '+width+': '+JSON.stringify(speakArtwork));
+  const speakGap=await page.locator('#btnSpeak').evaluate(button=>button.lastElementChild.getBoundingClientRect().left-button.querySelector('.icon').getBoundingClientRect().right);
+  assert.ok(Math.abs(speakGap-3)<.1,'speaker icon and label should have a 3px gap at '+width+': '+speakGap);
   const chunkGeometry=await page.locator('#track .chunk').evaluateAll(els=>els.map(el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,width:r.width};}));
   const trackGeometry=await page.locator('.track-line').boundingBox();
   const finalChunkLines=await page.locator('#track .chunk-answer').nth(2).evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);return range.getClientRects().length;});

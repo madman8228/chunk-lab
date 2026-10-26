@@ -57,7 +57,7 @@ async function backupVocabularyMaterials({dataDir,appRoot,backupDir}){
      const relative=path.join('wordbook-publications',folder,'items',ref.itemId.replace(/:/g,'_')+'.json'),file=path.join(source,relative),item=JSON.parse(fs.readFileSync(file,'utf8')),{contentRevision,...body}=item;
      if(item.itemId!==ref.itemId||contentRevision!==ref.contentRevision||digest(Buffer.from(JSON.stringify(body)))!==contentRevision)throw Error('发布任务版本不一致');
      for(const url of [...item.images.wide,...item.images.mobile])assets.add(url);
-     for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean)){const audio=activity.audio;assets.add(audio.url);const prior=expectedAssets.get(audio.url);if(prior&&(prior.sha256!==audio.sha256||prior.bytes!==audio.bytes))throw Error('课程音频摘要冲突');expectedAssets.set(audio.url,audio);}
+     for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean))for(const audio of [activity.audio,...Object.values(activity.audioByAccent||{})]){assets.add(audio.url);const prior=expectedAssets.get(audio.url);if(prior&&(prior.sha256!==audio.sha256||prior.bytes!==audio.bytes))throw Error('课程音频摘要冲突');expectedAssets.set(audio.url,audio);}
      copy(file,relative,source);
     }
    }
@@ -78,7 +78,7 @@ async function backupVocabularyMaterials({dataDir,appRoot,backupDir}){
      const sourceItem=path.join(releaseDir,'items',ref.itemId.replace(/:/g,'_')+'.json'),item=JSON.parse(fs.readFileSync(sourceItem,'utf8')),{contentRevision,...body}=item;
      if(item.itemId!==ref.itemId||contentRevision!==ref.contentRevision||digest(Buffer.from(JSON.stringify(body)))!==contentRevision)throw Error('历史教材词条版本校验失败');
      for(const url of [...(item.images?.wide||[]),...(item.images?.mobile||[])])assets.add(url);
-     for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean)){const audio=activity.audio;assets.add(audio.url);const prior=expectedAssets.get(audio.url);if(prior&&(prior.sha256!==audio.sha256||prior.bytes!==audio.bytes))throw Error('历史课程音频摘要冲突');expectedAssets.set(audio.url,audio);}
+     for(const activity of [item.learning?.wordDictation,item.learning?.sentenceAudio,item.learning?.readAloud].filter(Boolean))for(const audio of [activity.audio,...Object.values(activity.audioByAccent||{})]){assets.add(audio.url);const prior=expectedAssets.get(audio.url);if(prior&&(prior.sha256!==audio.sha256||prior.bytes!==audio.bytes))throw Error('历史课程音频摘要冲突');expectedAssets.set(audio.url,audio);}
      copy(sourceItem,path.join(prefix,'items',ref.itemId.replace(/:/g,'_')+'.json'),source);
     }
    }

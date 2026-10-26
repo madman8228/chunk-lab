@@ -8,7 +8,7 @@ const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
 const library = require('./lib/vocabulary-illustrations.cjs');
 const args = process.argv.slice(2);
-const option = name => args[args.indexOf(name) + 1];
+const option = name => { const index = args.indexOf(name); return index < 0 ? undefined : args[index + 1]; };
 const root = path.resolve(option('--root') || path.resolve(__dirname, '..'));
 const fail = message => { throw new Error(message); };
 const inside = relative => {

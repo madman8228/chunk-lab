@@ -15,7 +15,8 @@ try {
   const image = Buffer.from('RIFF fixture WEBP'), audio = Buffer.from('OggS fixture OpusHead'), imageHash = hash(image), audioHash = hash(audio);
   const imageFile = write('image.webp', image), audioFile = write('audio.ogg', audio);
   const catalogFile = write('catalog.json', { assets: [{ sha256: imageHash, path: path.basename(imageFile), bytes: image.length, width: 512, height: 288 }] });
-  const queuePath = write('queue.json', { book: { bookId:'textbook-wordbook:pep-junior-grade8-lower-2024',publisher:'人民教育出版社',title: '八年级下册' }, source: { path: 'fixture.json' } });
+  const sourceFile=write('source.json',{records:[{entryId:'unit-1:entry:001',unitId:'unit-1',term:'borrow',meaning:'借入',phonetic:'/ˈbɒrəʊ/',phoneticScope:'term'}]});
+  const queuePath = write('queue.json', { book: { bookId:'textbook-wordbook:pep-junior-grade8-lower-2024',publisher:'人民教育出版社',title: '八年级下册' }, source: { path: sourceFile,sha256:hash(fs.readFileSync(sourceFile)) } });
   const bookId = 'textbook-wordbook:pep-junior-grade8-lower-2024';
   const item = { itemId: 'unit-1:entry:001', unitId: 'unit-1', unit: 'Unit 1', term: 'borrow', meaning: '借入', english: 'Can I borrow it?', chinese: '我能借用它吗？', reviewStatus: 'approved', imageHashes: [imageHash], wordAudio: audioHash, sentenceAudio: audioHash, sentenceFingerprint: 'a'.repeat(64) };
   const book = { id: bookId, taskCount: 1, queuePath, sourceSha256: 'b'.repeat(64), items: [item] };
@@ -24,6 +25,7 @@ try {
   assert.equal(prepare(snapshot, bookId, output, {}, temp, catalogFile).words, 1);
   const result = readImportPackage(output);
   assert.equal(result.draft.items[0].sentenceAudio.text, item.english);
+  assert.equal(result.draft.items[0].phonetic,'/ˈbɒrəʊ/','hash-bound source phonetic reaches the import draft');
   assert.equal(result.draft.items[0].images.mobile[0], result.draft.items[0].images.wide[0]);
   assert.equal(result.manifest.publishable, false);
   assert.throws(() => prepare(snapshot, bookId, output, {}, temp, catalogFile), /新的版本/);

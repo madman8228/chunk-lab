@@ -94,7 +94,14 @@ function plan(catalog,manifest,{stage,styleReference=manifest.styleReference}={}
   const sameWord=catalog.bindings.filter(b=>normalize(b.word)===normalize(cell.word));
   const exact=sameWord.filter(b=>normalize(b.meaning)===normalize(cell.meaning)&&b.stage===stage&&b.styleReference===styleReference);
   const candidates=exact.filter(b=>b.review==='pass');
-  return {itemId:cell.itemId,word:cell.word,meaning:cell.meaning,action:candidates.length?'select-approved-image':sameWord.length?'review-existing-candidates':'generate',candidates,otherCandidates:sameWord.filter(b=>!candidates.includes(b))};
+  const reviews=cell.candidateReviews??[],rejected=new Set();
+  if(!Array.isArray(reviews))throw Error('Target candidate reviews must be an array');
+  for(const review of reviews){
+   if(review.decision!=='unsuitable-for-target'||review.sceneReviewed!==true||typeof review.reason!=='string'||!review.reason.trim()||rejected.has(review.assetId)||!sameWord.some(b=>b.assetId===review.assetId))throw Error('Invalid hash-bound target candidate review');
+   rejected.add(review.assetId);
+  }
+  const otherCandidates=sameWord.filter(b=>!candidates.includes(b)&&!rejected.has(b.assetId));
+  return {itemId:cell.itemId,word:cell.word,meaning:cell.meaning,action:candidates.length?'select-approved-image':otherCandidates.length?'review-existing-candidates':'generate',candidates,otherCandidates,...(reviews.length?{targetCandidateReviews:reviews}: {})};
  })};
 }
 function applyReuse(root,{catalog,manifest,draft,selections,stage}){

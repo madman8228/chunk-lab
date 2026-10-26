@@ -26,25 +26,42 @@
 .semantic-teaching-term{color:var(--accent)}
 .semantic-teaching p{margin:2px 0 0}
 .semantic-growth-chunks{display:flex;align-items:flex-start;gap:18px;max-width:100%;overflow-x:auto}
-.semantic-growth-chunk{flex:0 0 auto}
+.semantic-growth-chunk{flex:0 0 auto;width:max-content;max-width:100%}
 .semantic-growth-chunk .semantic-heading{justify-content:center}
 .semantic-words.is-pending{visibility:hidden;pointer-events:none;user-select:none}
 #activity>.bank:first-child{margin-top:0}
-#teaching-board{height:201.6px;overflow-y:auto;scrollbar-color:#b8c3a5 #233e34;margin:16px 0 10px;padding:18px 22px;background:#233e34;color:#fffbed;border:2px solid #745333;border-radius:8px}
-#sentence-result{height:80px;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;gap:2px;border-bottom:1px solid var(--line)}
+#teaching-board{min-height:201.6px;overflow:visible;margin:16px 0 10px;padding:18px 22px;background:#233e34;color:#fffbed;border:2px solid #745333;border-radius:8px}
+#sentence-result{min-height:136px;padding:10px 0;display:flex;flex-direction:column;justify-content:center;gap:2px;border-bottom:1px solid var(--line)}
 .sentence-result-en{font-size:24px;line-height:1.4;overflow-wrap:anywhere}
 .sentence-result-zh{font-size:16px;color:var(--muted)}
+#sentence-result>.semantic-words{margin-top:0;padding-bottom:0;flex-shrink:0}
+.syntax-word-gloss{font-size:18px;font-weight:600;line-height:1.4;text-align:center}
 #trail.has-sentence-level{min-height:104px}
 #activity>.bank{min-height:52px;align-items:flex-start}
 .practice-chunk{display:inline-block;justify-self:center;min-height:44px;padding:8px 14px;font:inherit;font-size:18px;font-weight:400;color:var(--ink);background:#fff0ce;border:1px solid #c9ad82;border-bottom:4px solid #b78942;border-radius:var(--ui-radius-control,8px);box-shadow:inset 0 1px 0 #fffbed,0 4px 8px #563d201c;transition:transform 120ms ease-out,box-shadow 120ms ease-out}
 @media(max-width:600px){.practice-chunk{font-size:17px}}
 #activity>.bank button:hover:not(:disabled){background:#ffe6ab;transform:translateY(-2px)}
 #activity>.bank button:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 1px 0 #fffbed,0 1px 3px #563d201c}
-@media(max-width:600px){#teaching-board{height:252px;padding:16px}}
+@media(max-width:600px){#teaching-board{min-height:252px;padding:16px}}
 @media(prefers-reduced-motion:reduce){#activity>.bank button{transition:none}}
 #teaching-board .blackboard-title{margin:0 0 8px;font-size:21px;line-height:1.35}
 #teaching-board p{margin:8px 0 0;line-height:1.6}
 #teaching-board .blackboard-question{font-weight:600}
+#teaching-board .blackboard-instruction{text-align:center}
+#teaching-board .blackboard-feedback.error{color:#ffda99}
+#teaching-board .blackboard-feedback.success{color:#d7efc5}
+.blackboard-visuals{float:right;display:flex;width:34%;max-width:240px;min-width:150px;aspect-ratio:16/9;gap:8px;margin:0 0 8px 16px;background:#fffbed12;border-radius:var(--ui-radius-control,8px)}
+.blackboard-visual{display:block;flex:1 1 0;min-width:0;width:100%;height:100%;object-fit:contain;border-radius:var(--ui-radius-control,8px)}
+.blackboard-link{flex:0 0 40px;width:40px;height:48px;align-self:center;font-size:14px}
+.blackboard-state-placeholder{flex:1 1 0;min-width:0;align-self:center;padding:8px 2px;border:1px dashed currentColor;text-align:center}
+.blackboard-visuals.is-object-pair{width:52%;max-width:360px;min-width:0;aspect-ratio:32/9}
+.blackboard-visuals.is-triple{width:60%;max-width:420px;aspect-ratio:48/9}
+#teaching-board.is-prompt.has-visual{display:grid;grid-template-columns:minmax(0,1fr) minmax(112px,34%);gap:16px;align-items:center}
+#teaching-board.is-prompt.has-visual .blackboard-visuals{float:none;width:100%;min-width:0;max-width:240px;margin:0}
+#teaching-board.is-prompt.has-visual .blackboard-visuals.is-object-pair{width:100%;max-width:360px}
+@media(max-width:600px){.blackboard-visuals{width:112px;min-width:0;margin-left:12px}.blackboard-visuals.is-object-pair{float:none;width:100%;max-width:360px;margin:0 0 12px auto}#teaching-board.is-prompt.has-visual{grid-template-columns:minmax(0,1fr) 112px;gap:12px;padding:16px}}
+#teaching-board.is-prompt{display:grid;place-items:center}
+#teaching-board .blackboard-target{margin:0;font-size:clamp(32px,5vw,44px);font-weight:700;text-align:center;line-height:1.35}
 #teaching-board .syntax-part-label,#teaching-board .syntax-label{color:#efe3bb;border-color:#b8c3a5}
 .syntax-part-label{white-space:nowrap}
 #lesson-select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:16px 0 4px;max-width:100%;min-height:44px}
@@ -62,6 +79,18 @@
 .grammar-choices{padding-top:12px;border-top:1px solid var(--line)}
 .grammar-choices small{display:block;color:var(--muted)}
 .grammar-words small{display:block;font-size:14px;color:var(--muted)}
+.grammar-words .identification-result:disabled{opacity:1;cursor:default}
+.grammar-words .identification-result.is-correct{background:#deebd6;border:2px solid #35613c;color:#24492a}
+.identification-feedback-slot{height:68px;padding-top:12px}
+.identification-success{position:relative;width:56px;height:56px;color:#35613c}
+.identification-success svg{display:block;width:100%;height:100%}
+.identification-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.identification-check{stroke-dasharray:1;stroke-dashoffset:0}
+.identification-success.is-animated{animation:identification-pop 320ms cubic-bezier(.16,1,.3,1) both}
+.identification-success.is-animated .identification-check{animation:identification-draw 320ms 80ms ease-out both}
+@keyframes identification-pop{0%{transform:scale(.72)}65%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes identification-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.identification-success.is-animated,.identification-success.is-animated .identification-check{animation:none}}
 .modifier-relation{font-size:22px;font-weight:600;color:var(--new);margin:14px 0 6px}
 .grammar-options{display:grid;gap:9px;margin-top:14px}
 .grammar-options button{text-align:left}

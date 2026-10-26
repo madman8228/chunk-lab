@@ -20,6 +20,17 @@ const engine=require('../landing/sentence-cloze-engine'),contract=require('../js
  assert.ok(draftModel.validate({...draft,book:{...draft.book,bookId:'pilot-six-v1'}}).some(x=>x.includes('替换')));
  assert.ok(draftModel.validate({...draft,items:[item,item]}).some(x=>x.includes('重复')));
  const result=await draftModel.compile(draft);model.validateIndex(result.index);contract.validateLearning(result.items[0],engine);
+ const withPhonetic=structuredClone(draft);withPhonetic.items[0].phonetic='/ˈbɒrəʊ/';
+ assert.deepEqual(draftModel.validate(withPhonetic),[],'draft accepts source phonetics');
+ const phoneticPackage=await draftModel.compile(withPhonetic);
+ assert.equal(phoneticPackage.items[0].phonetic,'/ˈbɒrəʊ/','publication preserves phonetics');
+ assert.notEqual(phoneticPackage.items[0].contentRevision,result.items[0].contentRevision,'phonetics belong to immutable learning content');
+ const accentDraft=structuredClone(draft);accentDraft.items[0].phonetics={'en-US':'/ˈbɑːroʊ/','en-GB':'/ˈbɒrəʊ/'};accentDraft.items[0].sentenceAudio={text:'Can I borrow your charger?',audio:{url:'assets/us.ogg',sha256:'a'.repeat(64),bytes:10,mimeType:'audio/ogg'},audioByAccent:{'en-GB':{url:'assets/gb.ogg',sha256:'b'.repeat(64),bytes:12,mimeType:'audio/ogg'}}};
+ const accentPackage=await draftModel.compile(accentDraft),accentItem=accentPackage.items[0];
+ assert.deepEqual(accentItem.phonetics,accentDraft.items[0].phonetics,'accent IPA survives compilation');
+ assert.deepEqual(accentItem.learning.sentenceAudio.audioByAccent,accentDraft.items[0].sentenceAudio.audioByAccent,'accent audio survives compilation');
+ assert.equal(accentItem.learning.sentenceAudio.audio.sha256,'a'.repeat(64),'legacy default audio is retained');
+ for(const value of [null,42,'', 'x'.repeat(201)])assert.ok(draftModel.validate({...draft,items:[{...item,phonetic:value}]}).some(error=>error.includes('音标')));
  assert.equal(result.index.books[0].revision,linkedPackage.index.books[0].revision,'association does not invalidate learning content revisions');
  const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex'),{contentRevision,...body}=result.items[0];assert.equal(hash(body),contentRevision);
  assert.equal(result.index.books[0].structureRevision,hash(result.index.books[0].units));assert.equal(result.published,false);assert.equal(result.assetVerification,'pending');assert.equal(JSON.stringify(draft),before);

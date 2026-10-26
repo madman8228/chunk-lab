@@ -20,14 +20,19 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
    window.LearningSessionBootstrap={identity:()=> 'fixture',ready:async()=>{persistenceCalls++;throw Error('cache must not gate read-only recognition');}};
    window.VocabularyStudyStore={state:async()=>{persistenceCalls++;},submit:async()=>{persistenceCalls++;},pending:async()=>{persistenceCalls++;return [];}};
    window.VocabularyUnitCache={create:async()=>null};VocabularyStudyStore.useUnit=()=>{};
-   window.fixture={word:'textbook',meaning:'教科书；课本',phonetic:'fixture phonetic',scene:'上学前整理书包',translation:'我把课本放在书包里。',images:{wide:['assets/vocab-u1-textbook-wide-v2.webp'],mobile:['assets/vocab-u1-textbook-wide-v2.webp']},exercise:{version:1,parts:[{text:'I keep my '},{id:'blank1',label:'textbook',answers:['textbook']},{text:' in my schoolbag.'}]},learning:{sentenceAudio:{audio:{url:'fixture-audio',sha256:'fixture'}}}};
-   window.ChunkAPI={getToken:()=> 'fixture-token',request:async url=>url.includes('/items')?{title:'人教版英语 九年级全一册（2013） · Unit 1 How can we become good learners?',revision:'fixture',itemCount:2,items:[{itemId:'one',contentRevision:'fixture'},{itemId:'two',contentRevision:'fixture'}]}:structuredClone(fixture)};
+   window.fixture={word:'textbook',meaning:'教科书；课本',phonetic:'fixture British phonetic',phonetics:{'en-US':'fixture American phonetic','en-GB':'fixture British phonetic'},scene:'上学前整理书包',translation:'我把课本放在书包里。',images:{wide:['assets/vocab-u1-textbook-wide-v2.webp'],mobile:['assets/vocab-u1-textbook-wide-v2.webp']},exercise:{version:1,parts:[{text:'I keep my '},{id:'blank1',label:'textbook',answers:['textbook']},{text:' in my schoolbag.'}]},learning:{sentenceAudio:{audio:{url:'fixture-us-audio',sha256:'fixture-us'},audioByAccent:{'en-GB':{url:'fixture-gb-audio',sha256:'fixture-gb'}}}}};
+   window.fixtureWithoutBritishAudio={...structuredClone(fixture),learning:{sentenceAudio:{audio:fixture.learning.sentenceAudio.audio}}};
+   window.ChunkAPI={getToken:()=> 'fixture-token',request:async url=>url.includes('/items')?{title:'人教版英语 九年级全一册（2013） · Unit 1 How can we become good learners?',revision:'fixture',itemCount:2,items:[{itemId:'one',contentRevision:'fixture'},{itemId:'two',contentRevision:'fixture'}]}:structuredClone(url.includes('/two')?fixtureWithoutBritishAudio:fixture)};
   });
   await page.addScriptTag({path:'landing/wordbook-study.js'});
-  const word=page.getByRole('button',{name:'textbook，查看图片和释义',exact:true});await word.waitFor();
+  const word=page.getByRole('button',{name:'textbook，查看图片和释义',exact:true});try{await word.waitFor({timeout:5000});}catch(error){throw Error((await page.locator('body').innerText())+'\n'+errors.join('\n')+'\n'+error.message);}
   await page.getByRole('button',{name:'收藏当前单词',exact:true}).click();assert.equal(await page.getByRole('button',{name:'取消收藏当前单词',exact:true}).getAttribute('aria-pressed'),'true');
   await page.getByRole('button',{name:'取消收藏当前单词',exact:true}).click();
   await page.getByLabel('语音播放速度',{exact:true}).selectOption('0.75');assert.equal(await page.evaluate(()=>rates.at(-1)),0.75);
+  const accent=page.getByLabel('发音口音',{exact:true});assert.equal(await accent.inputValue(),'en-US');assert.equal(await page.locator('.listen-word-pronunciation').textContent(),'fixture American phonetic');
+  await accent.selectOption('en-GB');assert.equal(await page.locator('.listen-word-pronunciation').textContent(),'fixture British phonetic');
+  await page.getByRole('button',{name:'重播整句',exact:true}).click();assert.deepEqual(await page.evaluate(()=>played.at(-1)),{url:'fixture-gb-audio',sha256:'fixture-gb'});
+  await accent.selectOption('en-US');await page.getByRole('button',{name:'重播整句',exact:true}).click();assert.deepEqual(await page.evaluate(()=>played.at(-1)),{url:'fixture-us-audio',sha256:'fixture-us'});
   assert.equal(await page.locator('#bookPosition').isVisible(),true);
   assert.equal(await page.locator('.listen-word-pronunciation').isVisible(),true);
   assert.equal(await page.getByRole('button',{name:'← 上一词',exact:true}).isEnabled(),false);
@@ -44,9 +49,9 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
    await word.click();const closed=await page.locator('.listen-word-sentence').boundingBox();assert.equal(closed.y,before.y,'closing image keeps sentence position at '+width);
   }
   await page.setViewportSize({width:1024,height:932});
-  assert.equal(await page.evaluate(()=>played.length),1,'sentence autoplays once');
+  assert.equal(await page.evaluate(()=>played.length),3,'sentence autoplays in the selected accent');
   await word.click();await page.waitForFunction(()=>document.querySelector('.listen-word-picture img')?.naturalWidth>0);
-  assert.equal(await page.locator('.listen-word-pronunciation').textContent(),'fixture phonetic');
+  assert.equal(await page.locator('.listen-word-pronunciation').textContent(),'fixture American phonetic');
   assert.equal(await page.locator('.listen-word-picture .listen-word-meaning').textContent(),'教科书；课本');
   const pictureBox=await page.locator('.listen-word-picture').boundingBox(),meaningBox=await page.locator('.listen-word-definition').boundingBox();
   assert.ok(meaningBox.y-pictureBox.y<12,'meaning stays at image top');
@@ -57,16 +62,18 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=requ
   assert.ok(definition.y>=token.y+token.height,'phonetic sits in the assistance row below the sentence');
   assert.equal(images.length,1);await word.click();assert.equal(await page.locator('.listen-word-picture').isVisible(),false);
   await word.click();assert.equal(images.length,1,'reopening reuses the existing image');
-  await page.getByRole('button',{name:'重播整句',exact:true}).click();assert.equal(await page.evaluate(()=>played.length),2);
+  await page.getByRole('button',{name:'重播整句',exact:true}).click();assert.equal(await page.evaluate(()=>played.length),4);
   fs.mkdirSync('output/playwright/listen-word',{recursive:true});
   for(const width of [1024,390]){await page.setViewportSize({width,height:932});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await page.screenshot({path:'output/playwright/listen-word/revealed-'+width+'.png'});}
   assert.equal(await page.locator('#studyTools details').count(),0,'autoplay is directly visible without a menu');
   assert.equal(await page.getByLabel('自动播放整句',{exact:true}).isVisible(),true);
   await page.getByLabel('自动播放整句',{exact:true}).uncheck();
   await page.getByRole('button',{name:'下一词 →',exact:true}).click();await page.waitForFunction(()=>document.getElementById('bookPosition').textContent==='2 / 2');
+  assert.equal(await accent.inputValue(),'en-US');await accent.selectOption('en-GB');assert.equal(await page.locator('.listen-word-pronunciation').textContent(),'fixture British phonetic');
+  await page.getByRole('button',{name:'重播整句',exact:true}).click();assert.equal(await page.evaluate(()=>played.length),4,'missing British audio never falls back to American');assert.match(await page.locator('.listen-word-audio-status').textContent(),/暂无英式音频/);
   assert.equal(await page.getByLabel('语音播放速度',{exact:true}).inputValue(),'0.75');
   assert.equal(await page.getByRole('button',{name:'← 上一词',exact:true}).isEnabled(),true);
-  assert.equal(await page.locator('#studyRoot img').count(),0,'next word starts with hidden image');assert.equal(await page.evaluate(()=>played.length),2,'autoplay preference is kept for the next word');
+  assert.equal(await page.locator('#studyRoot img').count(),0,'next word starts with hidden image');assert.equal(await page.evaluate(()=>played.length),4,'autoplay preference is kept without playing a different accent');
   await page.getByRole('button',{name:'← 上一词',exact:true}).click();await page.waitForFunction(()=>document.getElementById('bookPosition').textContent==='1 / 2');
   assert.equal(await page.getByRole('button',{name:'← 上一词',exact:true}).isEnabled(),false);
   assert.equal(await page.evaluate(()=>persistenceCalls),0,'recognition never touches existing progress or pending operations');
