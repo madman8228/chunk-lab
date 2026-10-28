@@ -66,8 +66,11 @@ export function selectionFromUrl(search) {
   selection.wordbookCategory = selection.kind === 'wordbook' && !selection.category && Object.hasOwn(WORDBOOK_CATEGORIES, params.get('wordbookCategory')) ? params.get('wordbookCategory') : '';
   selection.practicalTopic = selection.category === 'practical' && Object.hasOwn(PRACTICAL_TOPICS, params.get('practicalTopic')) ? params.get('practicalTopic') : '';
   if (!selection.category && selection.kind === 'textbook') { selection.kind = ''; selection.category = 'school'; }
-  for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
-  if (selection.category === 'school' && !selection.schoolStages.length) selection.schoolStages = ['小学'];
+  for (const key of Object.keys(FACET_LABELS)) {
+    const values = params.getAll(key);
+    selection[key] = key === 'schoolStages' && values.includes('all') ? [] : values;
+  }
+  if (selection.category === 'school' && !params.has('schoolStages')) selection.schoolStages = ['小学'];
   return selection;
 }
 

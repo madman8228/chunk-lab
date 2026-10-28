@@ -208,7 +208,7 @@
         function filterRow(label,key,choices,allLabel){
           var row=element('div',undefined,'discover-text-tabs');row.setAttribute('role','group');row.setAttribute('aria-label',label);
           row.append(element('span',label,'discover-facet-label'));
-          (key==='schoolStages'?choices:[''].concat(choices)).forEach(function(value){var tab=button(value||(allLabel||'全部'+label),function(){var patch={};patch[key]=value?[value]:[];if(key==='schoolStages')patch.grades=[];actions.filter(patch);});tab.setAttribute('aria-pressed',value?selection[key].includes(value):!selection[key].length);tab.setAttribute('data-focus-key','discover-'+key+'-'+(value||'all'));row.append(tab);});filters.append(row);
+          [''].concat(choices).forEach(function(value){var tab=button(value||(allLabel||'全部'+label),function(){var patch={};patch[key]=value?[value]:[];if(key==='schoolStages')patch.grades=[];actions.filter(patch);});tab.setAttribute('aria-pressed',value?selection[key].includes(value):!selection[key].length);tab.setAttribute('data-focus-key','discover-'+key+'-'+(value||'all'));row.append(tab);});filters.append(row);
         }
         filterRow('学段','schoolStages',['小学','初中','高中'],'全部');
         var gradesByStage={'小学':['一年级','二年级','三年级','四年级','五年级','六年级'],'初中':['七年级','八年级','九年级'],'高中':['高一','高二','高三']};

@@ -17,7 +17,7 @@ function writeJson(filePath, value) {
 function createFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'textbook-sentence-review-'));
   const bookRoot = path.join(root, 'fixture-book');
-  const queuePath = path.join(bookRoot, 'audio-batches', '20261021-audio-queue-v1', 'audio-task-queue.json');
+  const queuePath = path.join(bookRoot, 'audio-batches', '20261028-audio-queue-v1', 'audio-task-queue.json');
   const draftPath = path.join(bookRoot, 'audio-batches', '20261021-sentence-drafts-v1', 'unit-1-sentences.json');
   const reviewStatePath = path.join(root, 'review-decisions.json');
   const queue = {

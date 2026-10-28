@@ -70,7 +70,7 @@ function prepare(snapshot, bookId, output, forms, appRoot, catalogFile) {
       const phonetic=original&&(!original.phoneticScope||original.phoneticScope==='term')?original.phonetic?.trim():undefined;
       return { itemId: row.itemId, unitId: row.unitId, word: row.term, meaning: row.meaning,...(phonetic?{phonetic}:{}), scene: row.chinese, translation: row.chinese,
         exercise: draftModel.exercise(row.english.slice(0, span.start) + '[' + span.text + ']' + row.english.slice(span.start + span.length)),
-        images: { wide: [imageUrl], mobile: [imageUrl] }, dictation: { audio: audio(row.wordAudio), answers: [row.term] },
+        images: { wide: [imageUrl], mobile: [imageUrl] }, dictation: { audio: audio(row.wordAudio), answers: row.wordDictationAnswers || [row.term] },
         sentenceAudio: { text: row.english, audio: audio(row.sentenceAudio) } };
     } catch (error) { blockers.push({ itemId: row.itemId, term: row.term, english: row.english, reason: error.message }); return null; }
   }).filter(Boolean);

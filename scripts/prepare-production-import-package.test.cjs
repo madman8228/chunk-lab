@@ -28,6 +28,13 @@ try {
   assert.equal(result.draft.items[0].phonetic,'/ˈbɒrəʊ/','hash-bound source phonetic reaches the import draft');
   assert.equal(result.draft.items[0].images.mobile[0], result.draft.items[0].images.wide[0]);
   assert.equal(result.manifest.publishable, false);
+  const phrase = { ...item, term: 'ask ... for help', meaning: '向……求助', english: 'You can ask your teacher for help.', chinese: '你可以向老师求助。', wordDictationAnswers: ['ask ... for help', 'ask someone for help'] };
+  const phraseSnapshot = { ...snapshot, books: [{ ...book, items: [phrase] }] };
+  const phraseOutput = path.join(temp, 'phrase-package');
+  assert.equal(prepare(phraseSnapshot, bookId, phraseOutput, { 'ask ... for help': 'ask your teacher for help' }, temp, catalogFile).words, 1);
+  const phraseDraft = readImportPackage(phraseOutput).draft.items[0];
+  assert.equal(phraseDraft.word, 'ask ... for help');
+  assert.deepEqual(phraseDraft.dictation.answers, ['ask ... for help', 'ask someone for help']);
   assert.throws(() => prepare(snapshot, bookId, output, {}, temp, catalogFile), /新的版本/);
   item.reviewStatus = 'pending';
   const blocked = path.join(temp, 'blocked');

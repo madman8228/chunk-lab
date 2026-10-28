@@ -13,7 +13,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
    {title:'英语 必修 第一册',facets:{textbookVersion:'经审核的较长教材版本名称用于检查标签截断',edition:'2024',volume:'必修 第一册'}},
    {title:'人教版英语 未补齐的旧教材',facets:{publisherId:'人民教育出版社',grades:['七年级'],volume:'下册',edition:'2024'}},
    {title:'口语3000句',facets:{}},
-   {title:'口语课程·家庭场景跟读训练——常用表达与生活对话完整课程',facets:{}}
+   {title:'口语课程·家庭场景跟读训练——常用表达与生活对话完整课程',facets:{}},
+   {title:'PEP英语 六年级上册（2024）',facets:{publisherId:'人民教育出版社',textbookVersion:'人教版',seriesId:'PEP',edition:'2024',grades:['六年级'],volume:'上册'}},
+   {title:'精通英语 六年级上册（2024）',facets:{publisherId:'人民教育出版社',textbookVersion:'人教版',seriesId:'精通',edition:'2024',grades:['六年级'],volume:'上册'}}
   ];
   for(const variant of ['library','discover']){
    const shelf=document.createElement('section');shelf.id=variant==='discover'?'discoverBody':'';shelf.className='learning-workspace workspace-'+variant;
@@ -39,6 +41,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
   assert.equal(await cards.nth(4).locator('.content-card-version').count(),0);
   assert.equal(await cards.nth(4).locator('.content-card-title').innerText(),'人教版英语 未补齐的旧教材');
   assert.equal(await cards.nth(5).locator('.content-card-title').innerText(),'口语3000句');
+  assert.equal(await cards.nth(7).locator('.content-card-version').innerText(),'人教PEP');
+  assert.equal(await cards.nth(8).locator('.content-card-version').innerText(),'人教精通');
   const longTitle=cards.nth(6).locator('.content-card-title');
   assert.equal(await longTitle.getAttribute('title'),'口语课程·家庭场景跟读训练——常用表达与生活对话完整课程','hover title keeps the full course name');
   assert.deepEqual(await longTitle.locator('xpath=..').evaluate(heading=>{const style=getComputedStyle(heading);return {whiteSpace:style.whiteSpace,overflow:style.overflow,textOverflow:style.textOverflow,height:heading.getBoundingClientRect().height}}),

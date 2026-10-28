@@ -78,7 +78,7 @@ function loadProduction({ appRoot, sourceRoot, packageRoot, dataRoot, catalogFil
       const identity = key({ ...item, unitId: unit.id }), word = words.get(identity);
       const imageHashes = [...new Set(bindings.filter(b => b.word === item.term && meaningKey(b.meaning) === meaningKey(item.meaning) && b.review === 'pass').map(b => imageAssets.get(b.assetId)?.sha256).filter(Boolean))];
       return { ...item, unitId: unit.id, unit: word?.section || unit.title,
-        imageHashes, wordAudio: byKind.word.get(identity)?.sha256 || null, sentenceAudio: byKind.sentence.get(identity)?.sha256 || null };
+        imageHashes, wordDictationAnswers: word?.dictationAnswers || [item.term], wordAudio: byKind.word.get(identity)?.sha256 || null, sentenceAudio: byKind.sentence.get(identity)?.sha256 || null };
     }));
     const missing = { word: [...words].filter(([id]) => !byKind.word.has(id)).map(([,task]) => task),
       sentence: items.filter(item => item.reviewStatus === 'approved' && !item.sentenceAudio) };

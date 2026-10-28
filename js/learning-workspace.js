@@ -182,8 +182,11 @@ var LearningWorkspace = (() => {
       selection.kind = "";
       selection.category = "school";
     }
-    for (const key of Object.keys(FACET_LABELS)) selection[key] = params.getAll(key);
-    if (selection.category === "school" && !selection.schoolStages.length) selection.schoolStages = ["\u5C0F\u5B66"];
+    for (const key of Object.keys(FACET_LABELS)) {
+      const values2 = params.getAll(key);
+      selection[key] = key === "schoolStages" && values2.includes("all") ? [] : values2;
+    }
+    if (selection.category === "school" && !params.has("schoolStages")) selection.schoolStages = ["\u5C0F\u5B66"];
     return selection;
   }
   function resourceKindCounts(resources, selection = {}) {

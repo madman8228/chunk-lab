@@ -35,6 +35,7 @@
   function create(options){
     var resource=options.resource,library=options.variant==='library';
     var facets=resource.facets||{},version=facets.textbookVersion;
+    if(version==='人教版'&&['PEP','精通'].includes(facets.seriesId))version='人教'+facets.seriesId;
     var shortTitle=version&&facets.grades?.length===1&&facets.volume&&facets.edition?facets.grades[0]+facets.volume+'（'+facets.edition+'）':resource.title;
     // Legacy class aliases preserve existing entry-point/test selectors, not separate visual templates.
     var article=node('article',undefined,'workspace-card content-card'+(library?'':' discover-card'));

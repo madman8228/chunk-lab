@@ -136,7 +136,7 @@
     }
     function show(){currentView=viewFromUrl();host.show(currentView);draw();refresh();}
     function navigate(view){var url=new URL(location.href);url.search='';url.searchParams.set('view',view);history.pushState({},'',url);show();}
-    function filter(patch,clear,targetView,replace){var target=targetView==='my-learning'?'my-learning':'discover';var url=new URL(location.href);if(clear)url.search='?view='+target;Object.keys(patch).forEach(function(key){url.searchParams.delete(key);var values=Array.isArray(patch[key])?patch[key]:[patch[key]];values.filter(Boolean).forEach(function(value){url.searchParams.append(key,value);});});url.searchParams.set('view',target);
+    function filter(patch,clear,targetView,replace){var target=targetView==='my-learning'?'my-learning':'discover';var url=new URL(location.href);if(clear)url.search='?view='+target;Object.keys(patch).forEach(function(key){url.searchParams.delete(key);var values=Array.isArray(patch[key])?patch[key]:[patch[key]];values.filter(Boolean).forEach(function(value){url.searchParams.append(key,value);});if(key==='schoolStages'&&!values.some(Boolean))url.searchParams.append(key,'all');});url.searchParams.set('view',target);
       if(Object.hasOwn(patch,'schoolStages')){
         var selection=LearningWorkspace.selectionFromUrl(url.search),options=LearningWorkspace.facetOptions(publicResources||[],selection);
         var publisher=url.searchParams.get('publisherId');if(publisher&&!options.publisherId.some(function(option){return option.value===publisher;})){url.searchParams.delete('publisherId');status='已清除不适用于当前学段的版本条件。';}

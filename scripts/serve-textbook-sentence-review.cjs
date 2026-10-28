@@ -136,7 +136,7 @@ function loadCatalog(assetRoot) {
     if (!isInside(root, realAudioRoot)) throw new Error(`Audio batch directory escapes the asset root: ${audioRoot}`);
 
     const queueFiles = walkFiles(audioRoot, name => name === 'audio-task-queue.json')
-      .filter(filePath => path.basename(path.dirname(filePath)).startsWith('20261021-audio-queue-'))
+      .filter(filePath => /^\d{8}-audio-queue-/.test(path.basename(path.dirname(filePath))))
       .sort();
     const draftFiles = walkFiles(audioRoot, name => /^[a-z0-9-]+-sentences\.json$/i.test(name))
       .sort();
