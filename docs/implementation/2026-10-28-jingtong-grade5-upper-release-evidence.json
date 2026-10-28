@@ -1,0 +1,56 @@
+{
+  "format": "textbook-release-evidence-summary",
+  "schemaVersion": 1,
+  "bookId": "textbook-wordbook:primary-jingtong-grade5-upper-20261014",
+  "releaseId": "ddb7debcebd12e8c7dc853a288423daf050ea6375151f64b8a7b0632705ce5d2",
+  "ownerPublicationConfirmation": "批准发布精通五年级上册到系统内置课程，保留12项音标缺项",
+  "counts": {
+    "units": 6,
+    "items": 96,
+    "images": 96,
+    "wordAudio": 96,
+    "sentenceAudio": 96,
+    "cambridgeUS": 84,
+    "deferredPhonetics": 12
+  },
+  "preparedSha256": "c5f9adef7bb43a3754ecc54d7910cbc72d148d0093f9088d0bae24ed152c6bd4",
+  "manifestSha256": "ce15f4ab66537ae6c9cbe4063eebd64e2d8b2f3d86b1c3af790a5a707f856558",
+  "verification": {
+    "isolatedPublicationRehearsal": true,
+    "all96LiveItemsMatched": true,
+    "moreRepairVerified": true,
+    "accountDataAccess": false
+  },
+  "localEvidence": [
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/authorization.json",
+      "sha256": "0ad373f997eba680a48c5a3a9603c5eb87c894a509f5ef35ddde8b3331907910"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/recovery-state.json",
+      "sha256": "4be18aa884f2295702325bd5a98fa9e9e1bf2f87ed8d290b5e088fce2ca0b8eb"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/rehearsal.json",
+      "sha256": "1de0b8083ff7f2e63d8adea4c2d2f65b07bcd54ac1a2a1a5a359da9a70255c40"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/receipt.json",
+      "sha256": "1e97a7b77104e56cfc96cc245adcd5e67f13eac50a1f29afdc7488053ad9a517"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/result.json",
+      "sha256": "8e7373d83efe467b57069282351d220b83b4c2b723b2fd19029d221b0360d15e"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/live-verification.json",
+      "sha256": "0e3fff2e9cb766476813d0e0e8dfd4a8ae4dac7f4e49a3ea1679328aa6482fbb"
+    },
+    {
+      "path": "output/textbook-publication-20261028-jingtong-grade5-upper-v1/production-catalog-audit.json",
+      "sha256": "5c0a22d5721b7c1ccce9bc4e3c673ceed9b1875537dd01172cfe456084127d3d"
+    }
+  ],
+  "archiveLocation": "E:/chunk-practice-assets/textbooks/primary-jingtong-grade5-upper-20261014/revisions/20261028-release-candidate-v1",
+  "remoteBackupVerified": false
+}
